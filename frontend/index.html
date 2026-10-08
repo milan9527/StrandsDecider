@@ -10,8 +10,8 @@
     />
     <title>Strands Decider · 决策实验室</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=timing1" />
-    <script src="/static/app.js?v=timing1" type="module"></script>
+    <link rel="stylesheet" href="/static/styles.css?v=scenarios1" />
+    <script src="/static/app.js?v=scenarios1" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -234,8 +234,43 @@
             <h2>从一个场景开始 <span>QUICK START</span></h2>
             <span class="muted">预设英文输入，也可用真实模型尝试中文</span>
           </div>
+          <div class="scenario-toolbar">
+            <div
+              id="scenario-filters"
+              class="scenario-filters"
+              role="group"
+              aria-label="场景分类"
+            ></div>
+            <label class="scenario-search">
+              <span data-icon="search"></span>
+              <input
+                id="scenario-search"
+                type="search"
+                placeholder="搜索场景，如 RAG、退款、ECS"
+                aria-label="搜索演示场景"
+                maxlength="100"
+              />
+            </label>
+          </div>
+          <p id="scenario-count" class="scenario-count" role="status"></p>
           <div class="scenario-grid" id="scenarios">
             <div class="loading-placeholder">正在加载演示场景…</div>
+          </div>
+          <div id="scenario-guide" class="scenario-guide" hidden>
+            <div class="scenario-guide-heading">
+              <span id="selected-category" class="subtle-badge"></span>
+              <h3 id="selected-scenario-title"></h3>
+              <span id="selected-question-count"></span>
+            </div>
+            <p id="scenario-description"></p>
+            <p class="scenario-suggestion">
+              <span data-icon="lightbulb"></span
+              ><span
+                ><strong>试一试：</strong
+                ><span id="scenario-suggestion"></span>
+                修改输入后，请切换到真实模型。</span
+              >
+            </p>
           </div>
 
           <div class="workbench">

@@ -128,6 +128,13 @@ python deployment/verify.py --region us-east-2 --credentials .deployment/admin-c
 # 对已部署页面运行完整浏览器检查，含真实模型
 uv run --with playwright python scripts/check_browser.py \
   --url https://YOUR_DISTRIBUTION.cloudfront.net --credentials .deployment/admin-credentials.json --live
+
+# 验证新增的 8 个场景，结果保存在本机，不包含登录凭据
+uv run python -m scripts.check_scenarios \
+  --url https://YOUR_DISTRIBUTION.cloudfront.net \
+  --credentials .deployment/admin-credentials.json \
+  --ids refund leads moderation invoice incident rag approval summary \
+  --output .deployment/scenarios-live.json
 ```
 
 S3 对象的匿名直连必须返回 `403`；通过 CloudFront 则应返回 `200`。未登录访问业务 API 返回 `401`；登录后 `/api/health` 应返回 `connected: true`，真实决策应返回 `source: live` 和实际模型名。

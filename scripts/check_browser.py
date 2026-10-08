@@ -46,14 +46,57 @@ def main():
         expect(page.locator(".shell")).to_be_hidden()
         page.locator("#login-password").fill(credentials["password"])
         page.locator("#login-submit").click()
-        expect(page.locator(".scenario-card")).to_have_count(4)
+        expect(page.locator(".scenario-card")).to_have_count(12)
         expect(page.locator("#login-page")).to_be_hidden()
         expect(page.locator("#account-name")).to_have_text(credentials["username"])
         assert "decider_session" not in page.evaluate("document.cookie")
         expect(page.locator("#questions .question-card")).to_have_count(3)
 
-        for name, count in [("support", 3), ("tools", 2), ("sentiment", 2), ("language", 1)]:
-            page.locator(f'[data-example="{name}"]').click()
+        catalog = page.request.get(args.url + "/api/examples").json()
+        assert {item["id"] for item in catalog} == {
+            "support",
+            "tools",
+            "sentiment",
+            "language",
+            "refund",
+            "leads",
+            "moderation",
+            "invoice",
+            "incident",
+            "rag",
+            "approval",
+            "summary",
+        }
+        page.locator('[data-category="Agent 流程"]').click()
+        expect(page.locator(".scenario-card")).to_have_count(3)
+        page.locator("#scenario-search").fill("RAG")
+        expect(page.locator(".scenario-card")).to_have_count(1)
+        page.locator('[data-example="rag"]').click()
+        expect(page.locator("#selected-scenario-title")).to_have_text("RAG 回答依据")
+        expect(page.locator("#scenario-suggestion")).to_contain_text("酒店")
+        page.locator("#state-input").fill("User-edited context must survive filtering.")
+        page.locator("#scenario-search").fill("not-a-scenario-<img>")
+        expect(page.locator(".scenario-card")).to_have_count(0)
+        expect(page.locator(".scenario-empty")).to_contain_text("没有匹配的场景")
+        page.locator("#clear-scenario-filters").click()
+        expect(page.locator(".scenario-card")).to_have_count(12)
+        expect(page.locator("#state-input")).to_have_value(
+            "User-edited context must survive filtering."
+        )
+        page.locator("#scenario-search").fill("ECS")
+        expect(page.locator(".scenario-card")).to_have_count(1)
+        expect(page.locator('[data-example="incident"]')).to_be_visible()
+        page.locator("#scenario-search").fill("")
+        expect(page.locator(".scenario-card")).to_have_count(12)
+        page.locator("#reset-example").click()
+        page.screenshot(path=str(artifacts / "scenarios-desktop.png"), full_page=True)
+
+        for example in catalog:
+            count = len(example["questions"])
+            page.locator(f'[data-example="{example["id"]}"]').click()
+            expect(page.locator("#selected-scenario-title")).to_have_text(example["title"])
+            expect(page.locator("#scenario-description")).to_have_text(example["description"])
+            expect(page.locator("#questions .question-card")).to_have_count(count)
             page.locator("#run-decision").click()
             expect(page.locator("#results .answer-card")).to_have_count(count)
             expect(page.locator("#results .source-banner")).to_contain_text("非模型推理")
@@ -87,6 +130,7 @@ def main():
         page.locator("#reset-example").click()
 
         if args.live:
+            page.locator('[data-example="rag"]').click()
             page.locator('#page-playground [data-mode="live"]').click()
             with page.expect_response("**/api/decide", timeout=190000) as decision_response:
                 page.locator("#run-decision").click()
@@ -96,7 +140,11 @@ def main():
             expect(page.locator("#results")).to_contain_text("模型处理耗时")
             measured = decision_response.value.json()["timings"]
             assert measured["execution"] == "individual"
-            assert len(measured["decisions_ms"]) == 3
+            assert set(measured["decisions_ms"]) == {
+                "can_answer",
+                "next_action",
+                "evidence_quality",
+            }
             assert all(value > 0 for value in measured["decisions_ms"].values())
             assert measured["backend_total_ms"] >= sum(measured["decisions_ms"].values()) - 0.01
             for badge in page.locator("#results .answer-duration").all_text_contents():
@@ -142,9 +190,10 @@ def main():
             page.locator('#page-guard [data-mode="example"]').click()
 
         page.locator('nav [data-page="history"]').click()
-        expect(page.locator(".history-row")).to_have_count(8 if args.live else 6)
+        history_count = len(catalog) + (4 if args.live else 2)
+        expect(page.locator(".history-row")).to_have_count(history_count)
         page.reload(wait_until="domcontentloaded")
-        expect(page.locator(".history-row")).to_have_count(8 if args.live else 6)
+        expect(page.locator(".history-row")).to_have_count(history_count)
         expect(page.locator(".history-duration").first).to_contain_text("总时间")
         page.locator(".history-row summary").first.click()
         expect(page.locator(".history-row").first.locator(".history-timings")).to_be_visible()
@@ -180,6 +229,12 @@ def main():
             "aria-current", "page"
         )
         page.screenshot(path=str(artifacts / "mobile.png"), full_page=True, animations="disabled")
+        page.locator('[data-category="Agent 流程"]').click()
+        page.locator("#scenario-search").fill("RAG")
+        expect(page.locator(".scenario-card")).to_have_count(1)
+        page.locator('[data-example="rag"]').click()
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+        page.screenshot(path=str(artifacts / "scenarios-mobile.png"), full_page=True)
         page.set_viewport_size({"width": 320, "height": 740})
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         page.locator("#logout-button").click()
@@ -192,7 +247,7 @@ def main():
         assert not errors, errors
         browser.close()
     print(
-        "Browser checks passed: login, password error, session refresh, logout, protected API, examples, editing, errors, guard, per-decision and total timing, history, export, mobile."
+        "Browser checks passed: login, 12 scenarios, category/search filters, scenario guides, editing, errors, guard, timing, history, export, mobile, logout."
     )
     if args.live:
         print("Real model inference through the browser passed.")

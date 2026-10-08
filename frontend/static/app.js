@@ -1,4 +1,5 @@
 const paths = {
+  search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   shield:
     '<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>',
@@ -76,6 +77,7 @@ let guardResult = null;
 let history = [];
 let currentUser = null;
 let historyKey = null;
+let scenarioCategory = "all";
 
 function toast(message) {
   const el = $("#toast");
@@ -179,6 +181,14 @@ function selectExample(id) {
     ([id, question]) => ({ id, ...question }),
   );
   $("#state-input").value = selected.state;
+  $("#scenario-guide").hidden = false;
+  $("#selected-category").textContent = selected.category || "基础场景";
+  $("#selected-scenario-title").textContent = selected.title;
+  $("#selected-question-count").textContent = `${questions.length} 个决策`;
+  $("#scenario-description").textContent =
+    selected.description || selected.subtitle;
+  $("#scenario-suggestion").textContent =
+    selected.suggestion || "修改上下文，观察判断如何变化。";
   $$(".scenario-card").forEach((el) => {
     el.classList.toggle("active", el.dataset.example === id);
     el.setAttribute("aria-pressed", String(el.dataset.example === id));
@@ -186,6 +196,54 @@ function selectExample(id) {
   renderQuestions();
   countChars();
   invalidate();
+}
+function renderScenarios() {
+  const search = $("#scenario-search").value.trim().toLowerCase();
+  const categories = [
+    ...new Set(examples.map((example) => example.category || "基础场景")),
+  ];
+  $("#scenario-filters").innerHTML = [
+    { id: "all", label: "全部场景", count: examples.length },
+    ...categories.map((category) => ({
+      id: category,
+      label: category,
+      count: examples.filter(
+        (example) => (example.category || "基础场景") === category,
+      ).length,
+    })),
+  ]
+    .map(
+      (category) =>
+        `<button type="button" data-category="${esc(category.id)}" class="scenario-filter ${scenarioCategory === category.id ? "active" : ""}" aria-pressed="${scenarioCategory === category.id}">${esc(category.label)}<span>${category.count}</span></button>`,
+    )
+    .join("");
+  const visible = examples.filter((example) => {
+    const categoryMatches =
+      scenarioCategory === "all" ||
+      (example.category || "基础场景") === scenarioCategory;
+    const text = [
+      example.id,
+      example.title,
+      example.subtitle,
+      example.category,
+      example.description,
+      example.state,
+    ]
+      .join(" ")
+      .toLowerCase();
+    return categoryMatches && text.includes(search);
+  });
+  $("#scenario-count").textContent =
+    `显示 ${visible.length} / ${examples.length} 个场景 · 支持示例回放与真实推理`;
+  $("#scenarios").innerHTML = visible.length
+    ? visible
+        .map((example) => {
+          const active = selected?.id === example.id;
+          return `<button class="scenario-card ${active ? "active" : ""}" data-example="${esc(example.id)}" aria-pressed="${active}">
+      <span class="scenario-icon">${icon(example.icon)}</span><div><h3>${esc(example.title)}</h3><p>${esc(example.subtitle)}</p><span class="tag">${esc(example.tag)} · ${Object.keys(example.questions).length} 个决策</span></div><span class="scenario-check"></span></button>`;
+        })
+        .join("")
+    : `<div class="scenario-empty">${icon("search")}<h3>没有匹配的场景</h3><p>尝试其他关键词，或查看全部场景。</p><button type="button" class="secondary-button" id="clear-scenario-filters">清除筛选</button></div>`;
 }
 function countChars() {
   $("#char-count").textContent =
@@ -545,6 +603,20 @@ async function copyText(text) {
 }
 
 document.addEventListener("click", (e) => {
+  const category = e.target.closest("[data-category]");
+  if (category && !running) {
+    scenarioCategory = category.dataset.category;
+    renderScenarios();
+    $$("#scenario-filters button")
+      .find((button) => button.dataset.category === scenarioCategory)
+      ?.focus();
+  }
+  if (e.target.closest("#clear-scenario-filters")) {
+    scenarioCategory = "all";
+    $("#scenario-search").value = "";
+    renderScenarios();
+    $("#scenario-search").focus();
+  }
   const modeButton = e.target.closest("[data-mode]");
   if (modeButton) setMode(modeButton.dataset.mode);
   const scenario = e.target.closest("[data-example]");
@@ -590,6 +662,7 @@ document.addEventListener("click", (e) => {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 });
+$("#scenario-search").addEventListener("input", renderScenarios);
 $("#questions").addEventListener("input", (e) => {
   const card = e.target.closest("[data-question]");
   if (!card || running) return;
@@ -692,14 +765,7 @@ async function initializeWorkspace(user) {
   checkConnection();
   try {
     examples = await api("/api/examples");
-    $("#scenarios").innerHTML = examples
-      .map(
-        (
-          example,
-        ) => `<button class="scenario-card" data-example="${esc(example.id)}" aria-pressed="false">
-    <span class="scenario-icon">${icon(example.icon)}</span><div><h3>${esc(example.title)}</h3><p>${esc(example.subtitle)}</p><span class="tag">${esc(example.tag)}</span></div><span class="scenario-check"></span></button>`,
-      )
-      .join("");
+    renderScenarios();
     selectExample(examples[0].id);
   } catch (e) {
     $("#scenarios").innerHTML =

@@ -5,7 +5,7 @@
 支持：
 
 - **用户名登录**：自建用户名 / 密码认证，无 Cognito；支持退出、会话过期、登录限流和管理员重置密码。
-- **决策工作台**：客服分流、工具选择、情感评分、多语言识别；可编辑上下文、问题类型与选项，一次最多 8 个问题。
+- **决策工作台**：12 个场景，覆盖业务运营、Agent 流程、内容理解、数据与运维；支持分类筛选、关键词搜索，可编辑上下文、问题类型与选项，一次最多 8 个问题。
 - **三种官方问题类型**：`choice`、`noul`、`score`，展示结构化结果、候选项分布、confidence、JSON 和请求代码。
 - **决策计时**：每个问题显示实测耗时，运行中显示累计时间，完成后显示总时间；运行记录和 JSON 导出保留计时数据。
 - **工具调用守卫**：复现天气案例，用两个判断决定 `Guide` / `Proceed`，可调整策略阈值。
@@ -87,6 +87,27 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ## 演示路线
 
+场景支持按分类筛选，或搜索 `RAG`、`退款`、`ECS` 等关键词。选中场景后会显示用途说明和“试一试”提示；修改输入后切换到真实模型观察变化。
+
+| 分类 | 场景 | 演示重点 |
+| --- | --- | --- |
+| 业务运营 | 客服工单分流 | 负责团队、紧急程度、客户情绪 |
+| 业务运营 | 退款资格审核 | 退货条件、金额审批、下一步流程 |
+| 业务运营 | 销售线索优先级 | 购买意向、上线时间、跟进方式 |
+| Agent 流程 | Agent 工具选择 | 工具路由、必要参数是否缺失 |
+| Agent 流程 | RAG 回答依据 | 现有证据是否足够、是否继续检索 |
+| Agent 流程 | 工具操作审批 | 工具与用户意图是否一致、写操作授权、只读重新规划 |
+| 内容理解 | 评论情感分析 | 情感量表、推荐意愿 |
+| 内容理解 | 多语言识别 | 在自定义语言候选项中选择 |
+| 内容理解 | 社区内容审核 | 区分正常负面评价与促销内容 |
+| 内容理解 | 摘要质量检查 | 事实一致性、忠实度、重写建议 |
+| 数据与运维 | 发票字段校验 | 单据类型、采购单号要求、处理条件 |
+| 数据与运维 | 运维告警分级 | ECS / ALB 示例信号、客户影响、值班通知判断 |
+
+场景输入和示例结果均为演示数据。所有场景只展示判断，不执行退款、SQL 或 AWS 操作。真实输出可能与预设分布不同；预设概率不是模型的准确率或实际运行结果。
+
+推荐先尝试：
+
 1. 在「客服工单分流」点击运行：同一个状态同时得到部门选择、紧急程度判断和挫败程度评分。
 2. 切换到「JSON 响应」，观察三个答案分别带有 `choice`、`noul` 和 `score` 字段。
 3. 连接模型后修改上下文，或添加自定义问题，再用真实模式运行。选项编辑区接受 JSON 对象（Choice/Noul）或从低到高的 JSON 数组（Score）。
@@ -129,7 +150,7 @@ uv run --with strands-agents python -m examples.strands_agent \
 | `GET /api/auth/me` | 返回当前用户名和会话到期时间 |
 | `POST /api/auth/logout` | 服务端撤销会话并清除 Cookie |
 | `GET /api/health` | 检查真实模型连接、模型名称与设备 |
-| `GET /api/examples` | 获取四个预设的上下文和问题 |
+| `GET /api/examples` | 获取 12 个场景的分类、说明、修改提示、上下文和问题 |
 | `POST /api/decide` | 示例回放或官方 System One 推理 |
 | `POST /api/guard` | 执行两项工具检查并返回策略结果 |
 
@@ -183,7 +204,15 @@ uv run --with playwright python scripts/check_browser.py --credentials .deployme
 # uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json --live
 # 如需使用已经安装的 Chromium：
 # CHROMIUM_PATH=/path/to/chrome uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json
+
+# 逐个验证新增场景的真实推理，保存实际输出与耗时
+uv run python -m scripts.check_scenarios \
+  --credentials .deployment/local-credentials.json \
+  --ids refund leads moderation invoice incident rag approval summary \
+  --output .deployment/scenarios-local.json
 ```
+
+`check_scenarios` 验证输入可执行、响应结构和计时完整性，不以预设答案判定模型准确率。省略 `--ids` 可运行全部场景；指定 `--url` 可验证 AWS 环境。
 
 早期批处理验证中，本机 ARM64 CPU 运行 v19 的客服样例三个问题约 4.9 秒、天气守卫约 4.8 秒。它们不代表逐项计时模式的耗时，也不是性能保证；设备、输入长度、问题数量和热身状态都会改变耗时。
 
@@ -205,6 +234,7 @@ examples/
 scripts/
   serve_model.sh     # 启动官方模型服务
   check_browser.py   # 浏览器交互检查
+  check_scenarios.py # 真实场景执行、结果结构与逐项计时检查
   manage_users.py    # 创建、重置、停用账号（无公共注册接口）
 tests/
   test_api.py        # 后端协议、错误与策略测试
