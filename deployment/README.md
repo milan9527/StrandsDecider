@@ -29,7 +29,8 @@ flowchart LR
 - 健康检查：API 的 `/api/live` 检查进程，ALB 的 `/api/ready` 检查真实模型已就绪。API 等模型容器健康后启动。
 - 日志：CloudWatch `/ecs/strands-decider-demo`，保留 14 天。
 - API 不缓存。静态资源缓存 1 小时，HTML 不缓存；发布完成后创建 CloudFront invalidation。
-- API 序列化推理；等待槽位超过 5 秒返回 `429`。模型请求超时为 50 秒，CloudFront origin timeout 为 60 秒。
+- API 序列化整次运行；等待槽位超过 5 秒返回 `429`。所有问题共用 50 秒执行预算，CloudFront origin timeout 为 60 秒；任一问题失败或整次执行超时都不返回部分答案。
+- 界面为逐项实测设置 `measure_decisions: true`，在一次 API 请求中依次执行问题，显示每项时间和浏览器总时间。省略此参数的 API 请求仍使用原来的批处理。计时定义见项目 [README](../README.md#时间的含义)。
 
 访问入口是 CloudFront 默认 HTTPS 域名，使用自建用户名和密码登录，无 Cognito。S3 和 ALB 本身不提供公共访问入口。
 

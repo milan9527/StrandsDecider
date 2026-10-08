@@ -7,6 +7,7 @@
 - **用户名登录**：自建用户名 / 密码认证，无 Cognito；支持退出、会话过期、登录限流和管理员重置密码。
 - **决策工作台**：客服分流、工具选择、情感评分、多语言识别；可编辑上下文、问题类型与选项，一次最多 8 个问题。
 - **三种官方问题类型**：`choice`、`noul`、`score`，展示结构化结果、候选项分布、confidence、JSON 和请求代码。
+- **决策计时**：每个问题显示实测耗时，运行中显示累计时间，完成后显示总时间；运行记录和 JSON 导出保留计时数据。
 - **工具调用守卫**：复现天气案例，用两个判断决定 `Guide` / `Proceed`，可调整策略阈值。
 - **运行记录**：按账号在当前标签页保存最近 30 次请求，刷新后保留，退出或关闭标签页后清除。
 - **两种模式**：无需下载模型的示例回放，以及连接官方服务的真实推理。
@@ -29,6 +30,15 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 打开 **http://localhost:8000**，使用生成文件中的账号密码登录。默认是示例回放，选择场景后点击「运行决策」；快捷键 `Ctrl/⌘ + Enter`。
 
 示例模式的概率是为教学设置的预设数值，**不是模型输出，也不展示虚构的推理时间或 token 用量**。只允许回放未修改的预设；修改文本或问题后需切换到真实模型。真实推理失败时会直接报错，不会退回示例数据。
+
+## 时间的含义
+
+- **单项耗时**：后端发起该问题的模型请求，到收到并校验结果的实际时间，包括 API 到模型的通信开销。
+- **总时间**：浏览器发起请求，到收到并解析完整结果的实际时间，包括鉴权、排队、网络与处理开销，因此通常大于各项耗时之和。
+- **模型处理耗时合计**：模型服务返回的各项推理时间相加，不含浏览器网络与 API 排队时间。
+- **示例回放**：每项标记“未推理”，只显示实际读取示例的总时间；不伪造模型耗时。
+
+官方批处理只提供整批耗时，不能准确分摊到每个问题。界面设置 `measure_decisions: true`，在同一次浏览器请求内依次调用每个问题以获取真实计时；它可能比共享前缀的批量推理更慢。直接调用 API 时省略该参数或设置 `false`，仍使用原来的批处理，不提供单项计时。工作台和工具调用守卫使用同一规则。
 
 ## 运行真实模型
 
@@ -139,6 +149,7 @@ curl http://localhost:8000/api/decide \
   -H 'Content-Type: application/json' \
   -d '{
     "mode": "live",
+    "measure_decisions": true,
     "state": "Help! My payouts have been failing for 3 days!",
     "questions": {
       "department": {
@@ -151,6 +162,8 @@ curl http://localhost:8000/api/decide \
   }'
 ```
 
+真实结果的 `timings` 包含 `execution`（`individual` / `batch`）、`decisions_ms`（按问题 ID）、`queue_ms`、`processing_ms`、`backend_total_ms`。其中后端总时间包含等待推理槽位的时间；`round_trip_ms` 保留为处理阶段的耗时。浏览器另外记录 `timings.client_total_ms`，用于界面总时间、运行记录和导出。示例及批处理的 `decisions_ms` 为 `null`，不会用平均值代替实测值。
+
 ## 验证
 
 ```bash
@@ -159,7 +172,7 @@ uv run --extra dev ruff check app tests examples scripts
 node --check frontend/static/app.js   # 可选 JavaScript 语法检查
 ```
 
-测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，以及三种协议、错误处理、守卫边界、并发请求串行化。
+测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，以及三种协议、错误处理、守卫边界、逐项计时与排队合计、整次运行超时、并发运行保持问题连续执行。
 
 浏览器端检查（需要已启动的 Web 服务）：
 
@@ -172,7 +185,7 @@ uv run --with playwright python scripts/check_browser.py --credentials .deployme
 # CHROMIUM_PATH=/path/to/chrome uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json
 ```
 
-本机已在 ARM64 CPU 上运行 v19：客服样例一次回答三个问题约 4.9 秒，天气守卫约 4.8 秒。它们是本次运行的观测值，不是性能保证；GPU、其他 CPU、输入长度和热身状态都会改变耗时。
+早期批处理验证中，本机 ARM64 CPU 运行 v19 的客服样例三个问题约 4.9 秒、天气守卫约 4.8 秒。它们不代表逐项计时模式的耗时，也不是性能保证；设备、输入长度、问题数量和热身状态都会改变耗时。
 
 ## 项目结构
 
@@ -196,6 +209,7 @@ scripts/
 tests/
   test_api.py        # 后端协议、错误与策略测试
   test_auth.py       # 认证、会话、限流与 CSRF 测试
+  test_timings.py    # 逐项计时、合计、排队、超时与并发测试
 ```
 
 模型与演示面向实验用途。页面字体优先使用在线字体，无法联网时自动使用系统字体。浏览器运行记录会保存输入文本，可在「运行记录」中清空。模型说明与权重以[官方仓库](https://github.com/strands-labs/strands-decider)为准；本项目不是官方产品。

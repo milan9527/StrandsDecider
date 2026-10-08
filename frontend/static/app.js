@@ -87,6 +87,7 @@ function toast(message) {
   }, 3500);
 }
 async function api(path, body) {
+  const started = performance.now();
   let response;
   try {
     response = await fetch(path, {
@@ -125,6 +126,12 @@ async function api(path, body) {
     throw new Error(
       typeof detail === "string" ? detail : `请求失败 (${response.status})`,
     );
+  }
+  if (path === "/api/decide" || path === "/api/guard") {
+    data.timings = {
+      ...data.timings,
+      client_total_ms: Number((performance.now() - started).toFixed(3)),
+    };
   }
   return data;
 }
@@ -245,6 +252,7 @@ function collectRequest() {
   }
   return {
     mode,
+    measure_decisions: true,
     example_id: selected?.id,
     state: $("#state-input").value,
     questions: wireQuestions,
@@ -262,12 +270,44 @@ function setMode(next) {
   });
   $("#mode-caption").textContent =
     mode === "live"
-      ? "将向已配置的 Strands Decider 服务发送请求。CPU 首次推理可能需要较长时间。"
+      ? "逐项调用真实模型并记录耗时；总时间包含网络与排队。逐项执行可能比批量执行慢。"
       : "示例回放使用预设数据，不调用模型。修改输入后请切换到真实模型。";
   if (mode === "live") checkConnection();
 }
 function sourceBanner(data) {
-  return `<div class="source-banner ${data.source === "live" ? "live" : ""}">${icon(data.source === "live" ? "check-circle" : "info")}<span>${data.source === "live" ? `真实推理 · ${esc(data.model)}` : "预设示例数据 · 非模型推理 · 不提供性能测量"}</span></div>`;
+  return `<div class="source-banner ${data.source === "live" ? "live" : ""}">${icon(data.source === "live" ? "check-circle" : "info")}<span>${data.source === "live" ? `真实推理 · ${esc(data.model)}` : "预设示例数据 · 非模型推理 · 未调用模型"}</span></div>`;
+}
+function duration(ms) {
+  if (!Number.isFinite(ms) || ms < 0) return "—";
+  if (ms >= 1000) return `${(ms / 1000).toFixed(2)} s`;
+  if (ms > 0 && ms < 0.1) return "< 0.1 ms";
+  return `${ms.toFixed(1)} ms`;
+}
+function totalDuration(data) {
+  return data.timings?.client_total_ms ?? data.timings?.backend_total_ms;
+}
+function decisionTiming(data, key) {
+  if (data.source !== "live") return "示例 · 未推理";
+  const elapsed = data.timings?.decisions_ms?.[key];
+  return Number.isFinite(elapsed)
+    ? `耗时 ${duration(elapsed)}`
+    : data.timings?.execution === "batch"
+      ? "批量 · 未单独计时"
+      : "耗时未记录";
+}
+function startRunTimer(container) {
+  const started = performance.now();
+  const timer = document.createElement("span");
+  timer.className = "running-elapsed";
+  timer.setAttribute("role", "timer");
+  timer.setAttribute("aria-live", "off");
+  const update = () => {
+    timer.textContent = `已用时间 ${duration(performance.now() - started)}`;
+  };
+  update();
+  $(".result-loading", container).append(timer);
+  const interval = setInterval(update, 100);
+  return () => clearInterval(interval);
 }
 function bars(probabilities, winner, legend = {}) {
   return Object.entries(probabilities)
@@ -282,8 +322,8 @@ function bars(probabilities, winner, legend = {}) {
     )
     .join("");
 }
-function renderAnswer(key, answer) {
-  const title = `<div class="answer-title"><span class="type-badge ${esc(answer.type)}">${esc(answer.type)}</span>${esc(key)}</div>`;
+function renderAnswer(key, answer, data, label = key) {
+  const title = `<div class="answer-title"><span class="type-badge ${esc(answer.type)}">${esc(answer.type)}</span><span class="answer-id">${esc(label)}</span><span class="answer-duration">${decisionTiming(data, key)}</span></div>`;
   if (answer.type === "noul") {
     const uncertain = Math.abs(answer.noul - 0.5) < 0.05;
     return `<article class="answer-card">${title}<div class="answer-value"><strong>${uncertain ? "不确定" : answer.noul >= 0.5 ? "是 · Yes" : "否 · No"}</strong><span>P(true)</span><b class="confidence-badge">${pct(answer.noul)}</b></div>
@@ -302,13 +342,15 @@ function renderAnswer(key, answer) {
     ${bars(answer.probabilities, String(Math.round(answer.score)), answer.legend)}</article>`;
 }
 function metrics(data) {
-  if (data.source !== "live")
-    return '<p class="answer-explainer">这些数值是为教学设置的示例，不代表模型准确率或校准表现。</p>';
-  return `<div class="run-metrics"><div><label>模型处理耗时</label><strong>${typeof data.latency_ms === "number" ? `${data.latency_ms.toFixed(0)} ms` : "—"}</strong></div><div><label>输入 tokens</label><strong>${esc(data.usage?.input_tokens ?? "—")}</strong></div><div><label>决策数量</label><strong>${Object.keys(data.answers).length}</strong></div></div>`;
+  const live = data.source === "live";
+  const clientMeasured = Number.isFinite(data.timings?.client_total_ms);
+  return `<div class="run-metrics"><div class="total-duration"><label>${clientMeasured ? "总时间" : "后端总时间"}</label><strong>${duration(totalDuration(data))}</strong></div><div><label>模型处理耗时${data.timings?.execution === "individual" ? "合计" : ""}</label><strong>${live ? duration(data.latency_ms) : "未调用模型"}</strong></div><div><label>输入 tokens</label><strong>${live ? esc(data.usage?.input_tokens ?? "—") : "—"}</strong></div><div><label>决策数量</label><strong>${Object.keys(data.answers).length}</strong></div></div>
+    <p class="timing-note">${live ? (data.timings?.execution === "individual" ? "每项耗时为该项模型请求到校验完成的实测时间。" : "批量运行共用一次模型请求，不单独分摊耗时。") : "示例结果为预设数据，每项无推理耗时；总时间仅表示读取示例的请求时间。"}${clientMeasured ? "总时间从发起请求到收到结果，包含网络、排队和处理开销。" : ""}</p>`;
 }
 function requestCode(request) {
   const wire = {
     mode: "live",
+    measure_decisions: true,
     state: request.state,
     questions: request.questions,
   };
@@ -323,7 +365,7 @@ function renderResults() {
       ? `<div class="results-body">${sourceBanner(result)}${Object.entries(
           result.answers,
         )
-          .map(([k, a]) => renderAnswer(k, a))
+          .map(([k, a]) => renderAnswer(k, a, result))
           .join("")}${metrics(result)}</div>`
       : `<pre class="json-view">${esc(resultTab === "json" ? json(result) : requestCode(lastRequest))}</pre>`;
 }
@@ -368,6 +410,7 @@ async function runDecision() {
   $("#result-status").textContent = mode === "live" ? "推理中" : "读取示例";
   $("#results").innerHTML =
     `<div class="result-loading"><div class="spinner"></div><span>${mode === "live" ? "Decider 正在判断…" : "正在读取示例…"}</span>${mode === "live" ? '<span class="muted">CPU 首次推理可能较慢，请稍候</span>' : ""}</div>`;
+  const stopTimer = startRunTimer($("#results"));
   try {
     result = await api("/api/decide", body);
     lastRequest = body;
@@ -381,6 +424,7 @@ async function runDecision() {
     $("#result-status").className = "subtle-badge";
     showError($("#results"), e.message);
   } finally {
+    stopTimer();
     running = false;
     $$(
       "#page-playground input, #page-playground textarea, #page-playground select, #page-playground button",
@@ -405,6 +449,7 @@ async function runGuard() {
   if (!currentUser || guardRunning || running) return;
   const body = {
     mode,
+    measure_decisions: true,
     message: $("#guard-message").value,
     location: $("#guard-location").value,
     threshold: Number($("#guard-threshold").value),
@@ -421,6 +466,7 @@ async function runGuard() {
   );
   $("#guard-results").innerHTML =
     '<div class="result-loading"><div class="spinner"></div><span>正在检查参数依据与调用时机…</span></div>';
+  const stopTimer = startRunTimer($("#guard-results"));
   try {
     guardResult = await api("/api/guard", body);
     saveRun("工具调用守卫", body, guardResult, "guard");
@@ -428,6 +474,7 @@ async function runGuard() {
   } catch (e) {
     showError($("#guard-results"), e.message);
   } finally {
+    stopTimer();
     guardRunning = false;
     $$("#page-guard input, #page-guard textarea, #page-guard button").forEach(
       (el) => {
@@ -440,8 +487,8 @@ function renderGuard() {
   if (!guardResult) return;
   const p = guardResult.policy;
   $("#guard-results").innerHTML = `${sourceBanner(guardResult)}
-    ${renderAnswer("args_grounded · 参数有依据", guardResult.answers.args_grounded)}
-    ${renderAnswer("premature · 调用过早", guardResult.answers.premature)}
+    ${renderAnswer("args_grounded", guardResult.answers.args_grounded, guardResult, "args_grounded · 参数有依据")}
+    ${renderAnswer("premature", guardResult.answers.premature, guardResult, "premature · 调用过早")}
     <div class="guard-verdict ${p.action === "Proceed" ? "proceed" : ""}"><span class="verdict-label">POLICY DECISION · 阈值 ${p.threshold.toFixed(2)}</span><h3>${esc(p.action)}</h3><p>${esc(p.reason)}</p></div>
     <pre class="policy-code">if args_grounded &lt; ${p.threshold.toFixed(2)}:
     return Guide("请先向用户确认参数")
@@ -459,10 +506,19 @@ function renderHistory() {
     ? history
         .map(
           (item, i) => `<details class="history-row"><summary>
-    <span>${icon(item.kind === "guard" ? "shield" : "route")}</span><div class="history-main"><strong>${esc(item.title)}</strong><p>${esc(item.request.state || item.request.message)}</p></div>
+    <span>${icon(item.kind === "guard" ? "shield" : "route")}</span><div class="history-main"><strong>${esc(item.title)}</strong><p>${esc(item.request.state || item.request.message)}</p><small class="history-duration">总时间 ${duration(totalDuration(item.result))}</small></div>
     <span class="subtle-badge ${item.result.source === "live" ? "success" : ""}">${item.result.source === "live" ? "真实推理" : "示例回放"}</span>
     <span class="history-time">${esc(new Date(item.time).toLocaleString("zh-CN", { month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }))}</span></summary>
-    <div class="history-detail"><pre>${esc(json({ request: item.request, response: item.result }))}</pre><div class="history-actions"><button class="secondary-button" data-export="${i}">${icon("copy")}导出 JSON</button></div></div></details>`,
+    <div class="history-detail"><div class="history-timings">${Object.keys(
+      item.result.answers || {},
+    )
+      .map(
+        (key) =>
+          `<div><span>${esc(key)}</span><strong>${decisionTiming(item.result, key)}</strong></div>`,
+      )
+      .join(
+        "",
+      )}</div><pre>${esc(json({ request: item.request, response: item.result }))}</pre><div class="history-actions"><button class="secondary-button" data-export="${i}">${icon("copy")}导出 JSON</button></div></div></details>`,
         )
         .join("")
     : `<div class="empty-state history-empty"><div class="empty-icon">${icon("history")}</div><h3>还没有运行记录</h3><p>回到工作台运行你的第一个决策。</p><a class="secondary-button" href="#playground" style="margin-top:20px">前往工作台 ${icon("arrow-right")}</a></div>`;

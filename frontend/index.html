@@ -10,8 +10,8 @@
     />
     <title>Strands Decider · 决策实验室</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=auth1" />
-    <script src="/static/app.js?v=auth1" type="module"></script>
+    <link rel="stylesheet" href="/static/styles.css?v=timing1" />
+    <script src="/static/app.js?v=timing1" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -547,7 +547,7 @@ What's the weather?</textarea
               <span data-icon="zap"></span>
               <h3>同一上下文，多种问题</h3>
               <p>
-                模型可共享上下文的前缀缓存，减少多个问题的重复计算。问题之间互相独立；实际耗时取决于设备、上下文长度和问题数量。
+                模型支持共享前缀的批量推理。本演示为测量每项耗时，分别执行各个问题，因此可能更慢。总时间包含网络与排队；实际耗时取决于设备、上下文长度和问题数量。
               </p>
             </article>
           </div>

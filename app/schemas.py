@@ -39,6 +39,7 @@ Question = Annotated[NoulQuestion | ChoiceQuestion | ScoreQuestion, Field(discri
 
 class DecisionRequest(StrictModel):
     mode: Literal["example", "live"] = "example"
+    measure_decisions: bool = False
     example_id: str | None = None
     state: str = Field(max_length=12000)
     questions: dict[Label, Question] = Field(min_length=1, max_length=8)
@@ -54,6 +55,7 @@ class DecisionRequest(StrictModel):
 
 class GuardRequest(StrictModel):
     mode: Literal["example", "live"] = "example"
+    measure_decisions: bool = False
     message: Text
     location: Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=100)]
     threshold: float = Field(default=0.45, ge=0.05, le=0.95, allow_inf_nan=False)

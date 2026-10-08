@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 
 from playwright.sync_api import expect, sync_playwright
@@ -56,6 +57,14 @@ def main():
             page.locator("#run-decision").click()
             expect(page.locator("#results .answer-card")).to_have_count(count)
             expect(page.locator("#results .source-banner")).to_contain_text("非模型推理")
+            expect(page.locator("#results .answer-duration")).to_have_count(count)
+            assert all(
+                "未推理" in text
+                for text in page.locator("#results .answer-duration").all_text_contents()
+            )
+            expect(page.locator("#results .total-duration strong")).to_have_text(
+                re.compile(r"\d.*(?:ms|s)$")
+            )
 
         page.locator('[data-result-tab="json"]').click()
         expect(page.locator("#results pre")).to_contain_text('"source": "example"')
@@ -66,6 +75,7 @@ def main():
         page.locator("#state-input").fill('<img src=x onerror="window.__xss=true"> custom input')
         page.locator("#run-decision").click()
         expect(page.locator("#results .result-error")).to_contain_text("只支持原始预设")
+        expect(page.locator(".running-elapsed")).to_have_count(0)
         assert page.evaluate("window.__xss === undefined")
         page.locator('[data-example="support"]').click()
         page.locator("#add-question").click()
@@ -78,10 +88,32 @@ def main():
 
         if args.live:
             page.locator('#page-playground [data-mode="live"]').click()
-            page.locator("#run-decision").click()
+            with page.expect_response("**/api/decide", timeout=190000) as decision_response:
+                page.locator("#run-decision").click()
+                expect(page.locator("#results .running-elapsed")).to_be_visible()
             expect(page.locator("#results .source-banner.live")).to_be_visible(timeout=190000)
             expect(page.locator("#results .answer-card")).to_have_count(3)
             expect(page.locator("#results")).to_contain_text("模型处理耗时")
+            measured = decision_response.value.json()["timings"]
+            assert measured["execution"] == "individual"
+            assert len(measured["decisions_ms"]) == 3
+            assert all(value > 0 for value in measured["decisions_ms"].values())
+            assert measured["backend_total_ms"] >= sum(measured["decisions_ms"].values()) - 0.01
+            for badge in page.locator("#results .answer-duration").all_text_contents():
+                assert re.fullmatch(r"耗时 \d+\.\d+ (?:ms|s)", badge), badge
+            expect(page.locator("#results .total-duration strong")).to_have_text(
+                re.compile(r"\d.*(?:ms|s)$")
+            )
+            expect(page.locator(".running-elapsed")).to_have_count(0)
+            page.locator('[data-result-tab="json"]').click()
+            displayed = json.loads(page.locator("#results pre").inner_text())
+            assert displayed["timings"]["client_total_ms"] >= measured["backend_total_ms"] - 5
+            page.locator('[data-result-tab="visual"]').click()
+            page.screenshot(path=str(artifacts / "timing-desktop.png"), full_page=True)
+            page.set_viewport_size({"width": 390, "height": 844})
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+            page.locator("#results").screenshot(path=str(artifacts / "timing-results-mobile.png"))
+            page.set_viewport_size({"width": 1440, "height": 1050})
             page.locator('#page-playground [data-mode="example"]').click()
 
         page.locator('nav [data-page="guard"]').click()
@@ -96,16 +128,34 @@ def main():
         expect(page.locator("#threshold-value")).to_have_text("0.70")
         expect(page.locator(".guard-verdict")).to_have_count(0)
 
+        if args.live:
+            page.locator('#page-guard [data-mode="live"]').click()
+            page.locator("#run-guard").click()
+            expect(page.locator("#guard-results .running-elapsed")).to_be_visible()
+            expect(page.locator("#guard-results .source-banner.live")).to_be_visible(timeout=190000)
+            expect(page.locator("#guard-results .answer-duration")).to_have_count(2)
+            for badge in page.locator("#guard-results .answer-duration").all_text_contents():
+                assert re.fullmatch(r"耗时 \d+\.\d+ (?:ms|s)", badge), badge
+            expect(page.locator("#guard-results .total-duration strong")).to_have_text(
+                re.compile(r"\d.*(?:ms|s)$")
+            )
+            page.locator('#page-guard [data-mode="example"]').click()
+
         page.locator('nav [data-page="history"]').click()
-        expect(page.locator(".history-row")).to_have_count(7 if args.live else 6)
+        expect(page.locator(".history-row")).to_have_count(8 if args.live else 6)
         page.reload(wait_until="domcontentloaded")
-        expect(page.locator(".history-row")).to_have_count(7 if args.live else 6)
+        expect(page.locator(".history-row")).to_have_count(8 if args.live else 6)
+        expect(page.locator(".history-duration").first).to_contain_text("总时间")
         page.locator(".history-row summary").first.click()
+        expect(page.locator(".history-row").first.locator(".history-timings")).to_be_visible()
         with page.expect_download() as download_info:
             page.locator("[data-export]").first.click()
         download = download_info.value
         data = json.loads(Path(download.path()).read_text())
         assert data["result"]["source"] in ("live", "example")
+        assert data["result"]["timings"]["client_total_ms"] > 0
+        if args.live:
+            assert len(data["result"]["timings"]["decisions_ms"]) == 2
         page.locator("#clear-history").click()
         expect(page.locator(".history-empty")).to_be_visible()
 
@@ -142,7 +192,7 @@ def main():
         assert not errors, errors
         browser.close()
     print(
-        "Browser checks passed: login, password error, session refresh, logout, protected API, examples, editing, errors, guard, history, export, mobile."
+        "Browser checks passed: login, password error, session refresh, logout, protected API, examples, editing, errors, guard, per-decision and total timing, history, export, mobile."
     )
     if args.live:
         print("Real model inference through the browser passed.")

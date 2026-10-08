@@ -37,9 +37,11 @@ def main():
             headers={"Content-Type": "application/json", "X-Decider-Client": "web"} if data else {},
         )
         with opener.open(req, timeout=70) as response:
-            return response.status, response.read(), {
-                key.lower(): value for key, value in response.headers.items()
-            }
+            return (
+                response.status,
+                response.read(),
+                {key.lower(): value for key, value in response.headers.items()},
+            )
 
     stack = aws("cloudformation", "describe-stacks", "--stack-name", args.stack)["Stacks"][0]
     assert stack["StackStatus"] in ("CREATE_COMPLETE", "UPDATE_COMPLETE"), stack["StackStatus"]
@@ -140,6 +142,7 @@ def main():
             url + "/api/decide",
             {
                 "mode": "live",
+                "measure_decisions": True,
                 "state": example["state"],
                 "questions": example["questions"],
             },
@@ -147,6 +150,11 @@ def main():
     )
     assert result["source"] == "live" and len(result["answers"]) == 3
     assert result["model"] == "strands-decider-2B-hobson-v19"
+    timings = result["timings"]
+    assert timings["execution"] == "individual"
+    assert set(timings["decisions_ms"]) == set(example["questions"])
+    assert all(value > 0 for value in timings["decisions_ms"].values())
+    assert timings["backend_total_ms"] >= sum(timings["decisions_ms"].values()) - 0.01
     assert request(url + "/api/auth/logout", {})[0] == 200
     try:
         request(url + "/api/examples")

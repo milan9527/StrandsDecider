@@ -19,7 +19,7 @@ API 文档：https://d30wbetbveqce3.cloudfront.net/api/docs
 | Task | 1 个健康 ARM64 Fargate Task，4 vCPU / 16 GiB |
 | ECR API repository | `strands-decider-demo-api` |
 | ECR model repository | `strands-decider-demo-model` |
-| API 镜像 tag | `20261008-auth1` |
+| API 镜像 tag | `20261008-timing1` |
 | 模型镜像 tag | `20261008-aws1` |
 | 认证 | 自建用户名 / 密码，无 Cognito |
 | DynamoDB 认证表 | `strands-decider-demo-auth` |
@@ -36,7 +36,8 @@ API 文档：https://d30wbetbveqce3.cloudfront.net/api/docs
 - 通过 CloudFront 登录后的真实推理一次返回 Choice、Noul 和 Score 三种答案，`source: live`；客服场景选择 `billing`。认证更新验收时三问题推理观测耗时约 8.33 秒，不是性能保证。
 - 未登录及退出后访问业务 API 均返回 `401`；重放退出前的 Cookie 同样被拒绝。线上会话 Cookie 的 `Secure`、`HttpOnly` 和 `SameSite=Strict` 已验证。
 - 浏览器验证通过：用户名登录、错误密码、刷新保持登录、退出、API 访问控制、四个场景、输入修改与错误提示、真实推理、守卫分支、当前标签页运行记录、JSON 导出、390px / 320px 布局。
-- 57 项后端测试、JavaScript 语法检查、Ruff 和 CloudFormation lint 通过。
+- 67 项后端测试、JavaScript 语法检查和 Ruff 通过；基础设施沿用已通过 CloudFormation lint 的模板。
+- 工作台和工具调用守卫显示真实单项耗时与整次请求总时间，运行记录和 JSON 导出保留计时数据；示例回放不提供虚构的推理耗时。
 - 模型镜像在 Docker `--network none` 下成功执行真实推理。
 
 首次部署在 `us-east-1` 遇到 VPC / Internet Gateway 配额上限，随后改用 `us-east-2`；首次失败部署的 stack 和空资源已清理。`us-east-1` 的 VPC 配额增额申请属于账号配额管理，不承载本应用。

@@ -3,9 +3,9 @@ import copy
 import logging
 import math
 import os
-import time
 from contextlib import asynccontextmanager
 from pathlib import Path
+from time import perf_counter
 
 import httpx
 from fastapi import FastAPI, HTTPException, Request
@@ -27,8 +27,9 @@ async def lifespan(app):
     app.state.auth = Auth()
     app.state.upstream = os.getenv("STRANDS_DECIDER_URL", "http://127.0.0.1:8099").rstrip("/")
     app.state.lock = asyncio.Lock()
+    app.state.model_timeout = float(os.getenv("DECIDER_TIMEOUT", "180"))
     async with httpx.AsyncClient(
-        timeout=httpx.Timeout(float(os.getenv("DECIDER_TIMEOUT", "180")), connect=5),
+        timeout=httpx.Timeout(app.state.model_timeout, connect=5),
         trust_env=False,
     ) as client:
         app.state.client = client
@@ -153,36 +154,97 @@ def validate_response(data, questions):
         value = data["latency_ms"]
         if not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
             raise ValueError("Invalid latency")
+    if "usage" in data:
+        usage = data["usage"]
+        if not isinstance(usage, dict) or any(
+            type(usage.get(key)) is not int or usage[key] < 0
+            for key in ("input_tokens", "output_tokens")
+        ):
+            raise ValueError("Invalid usage")
 
 
-async def live_decision(request: Request, payload: dict):
-    # The upstream engine has mutable inference state; serialize requests to it.
+async def call_model(request: Request, payload: dict):
+    try:
+        response = await request.app.state.client.post(
+            request.app.state.upstream + "/v1/systemone", json=payload
+        )
+        if response.status_code == 422:
+            raise HTTPException(422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。")
+        response.raise_for_status()
+        result = response.json()
+        validate_response(result, payload["questions"])
+        return result
+    except httpx.TimeoutException as exc:
+        raise HTTPException(504, "模型响应超时。CPU 首次推理可能较慢，请稍后重试。") from exc
+    except httpx.HTTPError as exc:
+        raise HTTPException(
+            503, "无法连接 Strands Decider。请先启动模型服务，或切换到示例回放。"
+        ) from exc
+    except (ValueError, TypeError, KeyError) as exc:
+        logger.warning("Invalid Decider response: %s", exc)
+        raise HTTPException(502, "模型服务返回了不符合协议的数据，未执行后续决策。") from exc
+
+
+async def live_decision(request: Request, payload: dict, *, measure_decisions=False):
+    queued_at = perf_counter()
+    decision_ms = {}
+    # Keep the entire run in one slot; the engine owns mutable inference state.
     async with decision_slot(request.app.state.lock):
-        started = time.perf_counter()
+        started = perf_counter()
         try:
-            response = await request.app.state.client.post(
-                request.app.state.upstream + "/v1/systemone", json=payload
-            )
-            if response.status_code == 422:
-                raise HTTPException(
-                    422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。"
-                )
-            response.raise_for_status()
-            result = response.json()
-            validate_response(result, payload["questions"])
-        except httpx.TimeoutException as exc:
-            raise HTTPException(504, "模型响应超时。CPU 首次推理可能较慢，请稍后重试。") from exc
-        except httpx.HTTPError as exc:
+            # One deadline for the complete run, not a fresh timeout for every question.
+            async with asyncio.timeout(request.app.state.model_timeout):
+                if measure_decisions:
+                    replies = []
+                    answers = {}
+                    for key, question in payload["questions"].items():
+                        question_started = perf_counter()
+                        reply = await call_model(
+                            request, {"state": payload["state"], "questions": {key: question}}
+                        )
+                        decision_ms[key] = round((perf_counter() - question_started) * 1000, 3)
+                        if replies and reply["model"] != replies[0]["model"]:
+                            raise HTTPException(
+                                502, "模型标识在本次运行中发生变化，未返回部分结果。"
+                            )
+                        replies.append(reply)
+                        answers.update(reply["answers"])
+                    result = {
+                        "model": replies[0]["model"],
+                        "answers": answers,
+                        "latency_ms": (
+                            round(sum(reply["latency_ms"] for reply in replies), 3)
+                            if all("latency_ms" in reply for reply in replies)
+                            else None
+                        ),
+                        "usage": (
+                            {
+                                key: sum(reply["usage"][key] for reply in replies)
+                                for key in ("input_tokens", "output_tokens")
+                            }
+                            if all("usage" in reply for reply in replies)
+                            else None
+                        ),
+                    }
+                else:
+                    result = await call_model(request, payload)
+        except TimeoutError as exc:
             raise HTTPException(
-                503, "无法连接 Strands Decider。请先启动模型服务，或切换到示例回放。"
+                504, "本次运行超出总时间限制，请减少问题数量或缩短上下文后重试。"
             ) from exc
-        except (ValueError, TypeError, KeyError) as exc:
-            logger.warning("Invalid Decider response: %s", exc)
-            raise HTTPException(502, "模型服务返回了不符合协议的数据，未执行后续决策。") from exc
+        finished = perf_counter()
+    processing_ms = round((finished - started) * 1000, 3)
     return {
         **result,
         "source": "live",
-        "round_trip_ms": round((time.perf_counter() - started) * 1000, 2),
+        "round_trip_ms": processing_ms,
+        "timings": {
+            "execution": "individual" if measure_decisions else "batch",
+            "decisions_ms": decision_ms if measure_decisions else None,
+            "queue_ms": round((started - queued_at) * 1000, 3),
+            "processing_ms": processing_ms,
+            "backend_total_ms": round((finished - queued_at) * 1000, 3),
+        },
     }
 
 
@@ -193,6 +255,7 @@ def fixture_response(answers):
         "source": "example",
         "latency_ms": None,
         "usage": None,
+        "timings": {"execution": "example", "decisions_ms": None},
         "notice": "预设示例数据，仅用于演示交互与策略；不是模型推理结果。",
     }
 
@@ -201,7 +264,7 @@ def fixture_response(answers):
 async def decide(body: DecisionRequest, request: Request):
     payload = body.wire_payload()
     if body.mode == "live":
-        return await live_decision(request, payload)
+        return await live_decision(request, payload, measure_decisions=body.measure_decisions)
     example = next((e for e in EXAMPLES if e["id"] == body.example_id), None)
     if example is None or payload != {
         "state": example["state"],
@@ -230,7 +293,11 @@ async def guard(body: GuardRequest, request: Request):
             }
         )
     else:
-        result = await live_decision(request, {"state": state, "questions": GUARD_QUESTIONS})
+        result = await live_decision(
+            request,
+            {"state": state, "questions": GUARD_QUESTIONS},
+            measure_decisions=body.measure_decisions,
+        )
     return {
         **result,
         "policy": review(result["answers"], body.threshold),
