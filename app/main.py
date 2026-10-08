@@ -1,0 +1,239 @@
+import asyncio
+import copy
+import logging
+import math
+import os
+import time
+from contextlib import asynccontextmanager
+from pathlib import Path
+
+import httpx
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+
+from app.auth import Auth
+from app.auth import router as auth_router
+from app.examples import EXAMPLES, GUARD_QUESTIONS, public_examples
+from app.policy import review, tool_state
+from app.schemas import DecisionRequest, GuardRequest
+
+FRONTEND = Path(__file__).resolve().parent.parent / "frontend"
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app):
+    app.state.auth = Auth()
+    app.state.upstream = os.getenv("STRANDS_DECIDER_URL", "http://127.0.0.1:8099").rstrip("/")
+    app.state.lock = asyncio.Lock()
+    async with httpx.AsyncClient(
+        timeout=httpx.Timeout(float(os.getenv("DECIDER_TIMEOUT", "180")), connect=5),
+        trust_env=False,
+    ) as client:
+        app.state.client = client
+        yield
+
+
+app = FastAPI(
+    title="Strands Decider · 决策实验室",
+    version="0.1.0",
+    lifespan=lifespan,
+    docs_url="/api/docs",
+    openapi_url="/api/openapi.json",
+    redoc_url=None,
+)
+app.include_router(auth_router)
+
+
+@app.middleware("http")
+async def authenticate(request, call_next):
+    return await request.app.state.auth.middleware(request, call_next)
+
+
+if os.getenv("SERVE_FRONTEND", "true").lower() == "true":
+    app.mount("/static", StaticFiles(directory=FRONTEND / "static"), name="static")
+
+    @app.get("/", include_in_schema=False)
+    def index():
+        return FileResponse(FRONTEND / "index.html")
+
+
+@app.get("/api/live", include_in_schema=False)
+def liveness():
+    return {"status": "ok"}
+
+
+@app.get("/api/examples")
+def examples():
+    return public_examples()
+
+
+@app.get("/api/health")
+async def health(request: Request):
+    try:
+        response = await request.app.state.client.get(
+            request.app.state.upstream + "/health", timeout=3
+        )
+        response.raise_for_status()
+        data = response.json()
+        if not isinstance(data, dict) or data.get("status") != "ok" or not data.get("model"):
+            raise ValueError("Not a Decider health response")
+        return {"connected": True, "upstream": data}
+    except (httpx.HTTPError, ValueError):
+        return {"connected": False, "message": "模型服务未连接。示例回放仍可使用。"}
+
+
+@app.get("/api/ready", include_in_schema=False)
+async def readiness(request: Request):
+    status = await health(request)
+    if not status["connected"]:
+        raise HTTPException(503, "模型仍在启动")
+    return {"status": "ready", "model": status["upstream"]["model"]}
+
+
+@asynccontextmanager
+async def decision_slot(lock):
+    try:
+        await asyncio.wait_for(lock.acquire(), timeout=5)
+    except TimeoutError as exc:
+        raise HTTPException(
+            429, "模型正在处理其他请求，请稍后重试。", headers={"Retry-After": "5"}
+        ) from exc
+    try:
+        yield
+    finally:
+        lock.release()
+
+
+def probability(value):
+    return isinstance(value, (float, int)) and math.isfinite(value) and 0 <= value <= 1
+
+
+def validate_response(data, questions):
+    """Reject malformed upstream output rather than making a policy decision from it."""
+    if not isinstance(data, dict) or not isinstance(data.get("model"), str):
+        raise ValueError("Missing model")
+    answers = data.get("answers")
+    if not isinstance(answers, dict) or set(answers) != set(questions):
+        raise ValueError("Answer keys do not match questions")
+    for key, q in questions.items():
+        a = answers[key]
+        if not isinstance(a, dict) or a.get("type") != q["type"]:
+            raise ValueError("Answer type mismatch")
+        if q["type"] == "noul":
+            if not probability(a.get("noul")):
+                raise ValueError("Invalid noul")
+            continue
+        probs = a.get("probabilities")
+        keys = (
+            set(q["criteria"])
+            if q["type"] == "choice"
+            else {str(i) for i in range(len(q["criteria"]))}
+        )
+        if (
+            not isinstance(probs, dict)
+            or set(probs) != keys
+            or not all(probability(p) for p in probs.values())
+            or not math.isclose(sum(probs.values()), 1, abs_tol=0.02)
+            or not probability(a.get("confidence"))
+        ):
+            raise ValueError("Invalid distribution")
+        if q["type"] == "choice" and a.get("choice") not in keys:
+            raise ValueError("Invalid choice")
+        if q["type"] == "score":
+            score = a.get("score")
+            if not isinstance(score, (int, float)) or not math.isfinite(score):
+                raise ValueError("Invalid score")
+            if not 0 <= score <= len(keys) - 1:
+                raise ValueError("Score outside rubric")
+            if a.get("legend") != {str(i): label for i, label in enumerate(q["criteria"])}:
+                raise ValueError("Score legend mismatch")
+    if "latency_ms" in data:
+        value = data["latency_ms"]
+        if not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+            raise ValueError("Invalid latency")
+
+
+async def live_decision(request: Request, payload: dict):
+    # The upstream engine has mutable inference state; serialize requests to it.
+    async with decision_slot(request.app.state.lock):
+        started = time.perf_counter()
+        try:
+            response = await request.app.state.client.post(
+                request.app.state.upstream + "/v1/systemone", json=payload
+            )
+            if response.status_code == 422:
+                raise HTTPException(
+                    422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。"
+                )
+            response.raise_for_status()
+            result = response.json()
+            validate_response(result, payload["questions"])
+        except httpx.TimeoutException as exc:
+            raise HTTPException(504, "模型响应超时。CPU 首次推理可能较慢，请稍后重试。") from exc
+        except httpx.HTTPError as exc:
+            raise HTTPException(
+                503, "无法连接 Strands Decider。请先启动模型服务，或切换到示例回放。"
+            ) from exc
+        except (ValueError, TypeError, KeyError) as exc:
+            logger.warning("Invalid Decider response: %s", exc)
+            raise HTTPException(502, "模型服务返回了不符合协议的数据，未执行后续决策。") from exc
+    return {
+        **result,
+        "source": "live",
+        "round_trip_ms": round((time.perf_counter() - started) * 1000, 2),
+    }
+
+
+def fixture_response(answers):
+    return {
+        "model": "illustrative-fixture",
+        "answers": copy.deepcopy(answers),
+        "source": "example",
+        "latency_ms": None,
+        "usage": None,
+        "notice": "预设示例数据，仅用于演示交互与策略；不是模型推理结果。",
+    }
+
+
+@app.post("/api/decide")
+async def decide(body: DecisionRequest, request: Request):
+    payload = body.wire_payload()
+    if body.mode == "live":
+        return await live_decision(request, payload)
+    example = next((e for e in EXAMPLES if e["id"] == body.example_id), None)
+    if example is None or payload != {
+        "state": example["state"],
+        "questions": example["questions"],
+    }:
+        raise HTTPException(
+            409, "示例回放只支持原始预设。请重置示例，或切换到真实模型运行自定义输入。"
+        )
+    return fixture_response(example["answers"])
+
+
+@app.post("/api/guard")
+async def guard(body: GuardRequest, request: Request):
+    state = tool_state(f"user: {body.message}", "get_weather", {"location": body.location})
+    if body.mode == "example":
+        if body.location != "Seattle" or body.message not in (
+            "What's the weather?",
+            "What's the weather in Seattle?",
+        ):
+            raise HTTPException(409, "示例回放支持两个预设场景；自定义对话请使用真实模型。")
+        grounded = body.message == "What's the weather in Seattle?"
+        result = fixture_response(
+            {
+                "args_grounded": {"type": "noul", "noul": 0.97 if grounded else 0.08},
+                "premature": {"type": "noul", "noul": 0.04 if grounded else 0.94},
+            }
+        )
+    else:
+        result = await live_decision(request, {"state": state, "questions": GUARD_QUESTIONS})
+    return {
+        **result,
+        "policy": review(result["answers"], body.threshold),
+        "request": {"state": state, "questions": GUARD_QUESTIONS},
+        "tool_executed": False,
+    }

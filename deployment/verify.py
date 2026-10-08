@@ -1,0 +1,184 @@
+"""Verify deployed origins, bucket privacy, task networking and live inference."""
+
+import argparse
+import http.cookiejar
+import json
+import subprocess
+import urllib.error
+import urllib.request
+from http.cookies import SimpleCookie
+from pathlib import Path
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--region", default="us-east-2")
+    parser.add_argument("--stack", default="strands-decider-demo")
+    parser.add_argument("--credentials", type=Path, required=True)
+    args = parser.parse_args()
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar())
+    )
+
+    def aws(*parts):
+        result = subprocess.run(
+            ["aws", *parts, "--region", args.region, "--output", "json"],
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+        return json.loads(result.stdout)
+
+    def request(url, payload=None):
+        data = json.dumps(payload).encode() if payload is not None else None
+        req = urllib.request.Request(
+            url,
+            data=data,
+            headers={"Content-Type": "application/json", "X-Decider-Client": "web"} if data else {},
+        )
+        with opener.open(req, timeout=70) as response:
+            return response.status, response.read(), {
+                key.lower(): value for key, value in response.headers.items()
+            }
+
+    stack = aws("cloudformation", "describe-stacks", "--stack-name", args.stack)["Stacks"][0]
+    assert stack["StackStatus"] in ("CREATE_COMPLETE", "UPDATE_COMPLETE"), stack["StackStatus"]
+    outputs = {row["OutputKey"]: row["OutputValue"] for row in stack["Outputs"]}
+    bucket, url = outputs["FrontendBucketName"], outputs["WebsiteUrl"]
+    block = aws("s3api", "get-public-access-block", "--bucket", bucket)
+    assert all(block["PublicAccessBlockConfiguration"].values()), block
+    assert (
+        aws("s3api", "get-bucket-policy-status", "--bucket", bucket)["PolicyStatus"]["IsPublic"]
+        is False
+    )
+    policy = json.loads(aws("s3api", "get-bucket-policy", "--bucket", bucket)["Policy"])
+    grants = [s for s in policy["Statement"] if s["Effect"] == "Allow"]
+    assert len(grants) == 1 and grants[0]["Principal"] == {"Service": "cloudfront.amazonaws.com"}
+    assert grants[0]["Condition"]["StringEquals"]["AWS:SourceArn"].endswith(
+        "/" + outputs["DistributionId"]
+    )
+    origin_url = f"https://{bucket}.s3.{args.region}.amazonaws.com/index.html"
+    try:
+        request(origin_url)
+        raise AssertionError("Anonymous S3 read unexpectedly succeeded")
+    except urllib.error.HTTPError as error:
+        assert error.code == 403, error.code
+
+    config = aws("cloudfront", "get-distribution", "--id", outputs["DistributionId"])[
+        "Distribution"
+    ]
+    assert config["Status"] == "Deployed"
+    origins = {o["Id"]: o for o in config["DistributionConfig"]["Origins"]["Items"]}
+    assert origins["frontend"]["OriginAccessControlId"]
+    oac = aws(
+        "cloudfront",
+        "get-origin-access-control",
+        "--id",
+        origins["frontend"]["OriginAccessControlId"],
+    )["OriginAccessControl"]["OriginAccessControlConfig"]
+    assert oac["SigningBehavior"] == "always" and oac["SigningProtocol"] == "sigv4"
+    assert origins["api"]["VpcOriginConfig"]["VpcOriginId"]
+    services = aws(
+        "ecs",
+        "describe-services",
+        "--cluster",
+        outputs["ClusterName"],
+        "--services",
+        outputs["ServiceName"],
+    )["services"]
+    service = services[0]
+    assert service["runningCount"] == service["desiredCount"] == 1
+    assert service["networkConfiguration"]["awsvpcConfiguration"]["assignPublicIp"] == "DISABLED"
+    tasks = aws("ecs", "list-tasks", "--cluster", outputs["ClusterName"])["taskArns"]
+    details = aws("ecs", "describe-tasks", "--cluster", outputs["ClusterName"], "--tasks", *tasks)[
+        "tasks"
+    ]
+    assert all(t["healthStatus"] == "HEALTHY" for t in details)
+    eni_ids = [
+        item["value"]
+        for task in details
+        for attachment in task["attachments"]
+        for item in attachment["details"]
+        if item["name"] == "networkInterfaceId"
+    ]
+    enis = aws("ec2", "describe-network-interfaces", "--network-interface-ids", *eni_ids)[
+        "NetworkInterfaces"
+    ]
+    assert all("PublicIp" not in e.get("Association", {}) for e in enis)
+    load_balancers = aws("elbv2", "describe-load-balancers")["LoadBalancers"]
+    assert all(
+        lb["Scheme"] == "internal" for lb in load_balancers if lb["VpcId"] == outputs["VpcId"]
+    )
+    routes = aws(
+        "ec2", "describe-route-tables", "--filters", f"Name=vpc-id,Values={outputs['VpcId']}"
+    )["RouteTables"]
+    assert not any(
+        route.get("DestinationCidrBlock") == "0.0.0.0/0"
+        for table in routes
+        for route in table["Routes"]
+    )
+    status, page, _ = request(url)
+    assert status == 200 and b"Strands Decider" in page
+    assert request(url + "/static/app.js")[0] == 200
+    try:
+        request(url + "/api/examples")
+        raise AssertionError("Unauthenticated API access succeeded")
+    except urllib.error.HTTPError as error:
+        assert error.code == 401
+    credentials = json.loads(args.credentials.read_text())
+    _, _, headers = request(url + "/api/auth/login", credentials)
+    cookie = headers["set-cookie"]
+    assert all(flag in cookie for flag in ("HttpOnly", "Secure", "SameSite=strict"))
+    parsed = SimpleCookie(cookie)
+    replay = "; ".join(f"{key}={value.value}" for key, value in parsed.items())
+    assert request(url + "/api/auth/me")[0] == 200
+    health = json.loads(request(url + "/api/health")[1])
+    assert health["connected"] is True
+    example = json.loads(request(url + "/api/examples")[1])[0]
+    result = json.loads(
+        request(
+            url + "/api/decide",
+            {
+                "mode": "live",
+                "state": example["state"],
+                "questions": example["questions"],
+            },
+        )[1]
+    )
+    assert result["source"] == "live" and len(result["answers"]) == 3
+    assert result["model"] == "strands-decider-2B-hobson-v19"
+    assert request(url + "/api/auth/logout", {})[0] == 200
+    try:
+        request(url + "/api/examples")
+        raise AssertionError("Logged-out API access succeeded")
+    except urllib.error.HTTPError as error:
+        assert error.code == 401
+    replay_request = urllib.request.Request(url + "/api/examples", headers={"Cookie": replay})
+    try:
+        urllib.request.urlopen(replay_request, timeout=15)
+        raise AssertionError("A revoked session cookie was accepted")
+    except urllib.error.HTTPError as error:
+        assert error.code == 401
+    print(
+        json.dumps(
+            {
+                "url": url,
+                "region": args.region,
+                "s3_anonymous_access": "403 (blocked)",
+                "s3_public_access_block": "all enabled",
+                "oac": "always / sigv4 / scoped to distribution",
+                "ecs": "1 healthy ARM64 task, no public IP",
+                "alb": "internal / CloudFront VPC origin",
+                "internet_default_routes": 0,
+                "authentication": "username/password, secure HttpOnly session, protected API, logout verified",
+                "auth_store": outputs["AuthTableName"],
+                "live_result": result,
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f8fa" />
+    <meta
+      name="description"
+      content="体验 Strands Decider：一个状态，多种问题，一次决策。"
+    />
+    <title>Strands Decider · 决策实验室</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css?v=auth1" />
+    <script src="/static/app.js?v=auth1" type="module"></script>
+  </head>
+  <body class="auth-pending">
+    <section id="login-page" class="login-page" aria-label="登录决策实验室">
+      <div class="login-story">
+        <a class="brand" href="/" aria-label="Strands Decider 首页">
+          <span class="brand-mark"><i></i><i></i><i></i></span>
+          <span>strands<span class="brand-sub">DECIDER LAB</span></span>
+        </a>
+        <div class="login-story-content">
+          <div class="eyebrow"><span></span> SMALL MODEL. BIG DECISIONS.</div>
+          <h1>每一步，<br />更清晰的决策<span>。</span></h1>
+          <p>
+            为 Agent 工作流而生的决策实验室。<br />探索选择、判断与评分，让想法成为可验证的结果。
+          </p>
+          <div class="login-flow" aria-hidden="true">
+            <div class="login-flow-input">
+              <span data-icon="message"></span>上下文
+            </div>
+            <span class="login-flow-line"></span>
+            <div class="login-flow-model">
+              <span data-icon="cpu"></span><strong>Decider</strong
+              ><small>一个状态 · 多种问题</small>
+            </div>
+            <span class="login-flow-line"></span>
+            <div class="login-flow-output">
+              <span>选择 <b>choice</b></span
+              ><span>判断 <b>noul</b></span
+              ><span>评分 <b>score</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="login-story-footer">
+          <span class="status-dot"></span>STRANDS DECIDER · 2B OPEN MODEL
+        </div>
+      </div>
+      <div class="login-panel">
+        <div class="login-card">
+          <div class="login-lock" data-icon="lock"></div>
+          <span class="tiny-label">WELCOME TO DECIDER LAB</span>
+          <h2>登录决策实验室</h2>
+          <p class="login-intro">使用你的账号，继续探索每一种可能。</p>
+          <form id="login-form">
+            <label for="login-username">用户名</label>
+            <input
+              id="login-username"
+              name="username"
+              type="text"
+              autocomplete="username"
+              autocapitalize="none"
+              spellcheck="false"
+              maxlength="32"
+              placeholder="输入用户名"
+              required
+            />
+            <label for="login-password">密码</label>
+            <div class="password-field">
+              <input
+                id="login-password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                maxlength="128"
+                placeholder="输入密码"
+                required
+              />
+              <button
+                id="toggle-password"
+                type="button"
+                aria-label="显示密码"
+                aria-pressed="false"
+              >
+                显示
+              </button>
+            </div>
+            <div id="login-error" class="login-error" role="alert" hidden></div>
+            <button
+              id="login-submit"
+              class="login-submit"
+              type="submit"
+              disabled
+            >
+              <span>正在检查登录状态…</span
+              ><span data-icon="arrow-right"></span>
+            </button>
+          </form>
+          <div class="login-help">
+            <span data-icon="shield"></span>仅限已授权的账号访问
+          </div>
+          <p class="login-contact">需要账号或重置密码？请联系管理员。</p>
+        </div>
+        <span class="login-panel-footer">把复杂留给模型，把清晰留给你。</span>
+      </div>
+    </section>
+    <aside class="sidebar">
+      <a class="brand" href="#playground" aria-label="Strands Decider 首页">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span>strands<span class="brand-sub">DECIDER LAB</span></span>
+      </a>
+      <div class="workspace-label">工作空间 <span>DEMO</span></div>
+      <nav aria-label="主导航">
+        <a href="#playground" data-page="playground" class="nav-item active"
+          ><span data-icon="grid"></span>决策工作台<span class="nav-dot"></span
+        ></a>
+        <a href="#guard" data-page="guard" class="nav-item"
+          ><span data-icon="shield"></span>工具调用守卫</a
+        >
+        <a href="#history" data-page="history" class="nav-item"
+          ><span data-icon="history"></span>运行记录<span
+            class="count-badge"
+            id="history-count"
+            >0</span
+          ></a
+        >
+        <a href="#about" data-page="about" class="nav-item"
+          ><span data-icon="layers"></span>理解 Decider</a
+        >
+      </nav>
+      <div class="sidebar-note">
+        <span class="tiny-label">SMALL MODEL. BIG DECISIONS.</span>
+        <div class="mini-network" aria-hidden="true">
+          <span></span><i></i><b></b><i></i><span></span>
+        </div>
+        <h3>让每一个决策更轻盈。</h3>
+        <p>为 Agent 工作流而生的<br />小型开源决策模型。</p>
+        <a
+          href="https://strandsagents.com/blog/introducing-strands-decider/"
+          target="_blank"
+          rel="noreferrer"
+          >阅读官方介绍 <span data-icon="arrow-up-right"></span
+        ></a>
+      </div>
+      <div class="sidebar-bottom">
+        <span class="avatar">S</span>
+        <div>
+          <span id="account-name">决策演示环境</span
+          ><small>Strands Decider 2B</small>
+        </div>
+        <span class="status-dot"></span>
+      </div>
+    </aside>
+
+    <div class="shell">
+      <header class="topbar">
+        <div class="breadcrumb">
+          工作空间 <span>/</span>
+          <strong id="breadcrumb-page">决策工作台</strong>
+        </div>
+        <div class="topbar-actions">
+          <button
+            class="logout-button"
+            id="logout-button"
+            type="button"
+            title="退出当前账号"
+          >
+            退出登录
+          </button>
+          <span class="connection" id="connection"
+            ><span class="status-dot pending"></span>检查模型连接</span
+          >
+          <button
+            class="icon-button"
+            id="refresh-connection"
+            aria-label="重新检查模型连接"
+            title="重新检查连接"
+          >
+            <span data-icon="refresh"></span>
+          </button>
+          <a
+            class="github-link"
+            href="https://github.com/strands-labs/strands-decider"
+            target="_blank"
+            rel="noreferrer"
+            ><span data-icon="github"></span><span>GitHub</span
+            ><span data-icon="arrow-up-right"></span
+          ></a>
+        </div>
+      </header>
+      <main id="main">
+        <section id="page-playground" class="page">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> THE DECISION PLAYGROUND</div>
+              <h1>小模型，做出清晰决策<span class="heading-dot">。</span></h1>
+              <p>
+                输入一段上下文，提出你的问题。让 Decider 完成选择、判断与评分。
+              </p>
+            </div>
+            <div class="model-pill">
+              <span data-icon="cpu"></span>
+              <div>
+                Strands Decider <b>2B</b><small>Qwen3.5 · Pointer head</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="concept-strip">
+            <div>
+              <span class="concept-icon" data-icon="route"></span>
+              <p>
+                <strong>从选项中选择</strong><span>Choice · 动态候选项</span>
+              </p>
+            </div>
+            <div>
+              <span class="concept-icon" data-icon="check-circle"></span>
+              <p><strong>回答是或否</strong><span>Noul · 返回 P(true)</span></p>
+            </div>
+            <div>
+              <span class="concept-icon" data-icon="sliders"></span>
+              <p><strong>按量表评分</strong><span>Score · 有序等级</span></p>
+            </div>
+            <div class="concept-last">
+              <span data-icon="zap"></span>
+              <p>
+                <strong>共享上下文</strong><span>一次请求，多个独立判断</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="section-heading">
+            <h2>从一个场景开始 <span>QUICK START</span></h2>
+            <span class="muted">预设英文输入，也可用真实模型尝试中文</span>
+          </div>
+          <div class="scenario-grid" id="scenarios">
+            <div class="loading-placeholder">正在加载演示场景…</div>
+          </div>
+
+          <div class="workbench">
+            <section class="panel input-panel">
+              <div class="panel-heading">
+                <h2><span class="step-number">01</span> 配置决策</h2>
+                <button class="text-button" id="reset-example">
+                  <span data-icon="rotate"></span>重置
+                </button>
+              </div>
+              <div class="input-body">
+                <div class="field-heading">
+                  <label for="state-input">上下文 <code>STATE</code></label
+                  ><span id="char-count">0 / 12,000</span>
+                </div>
+                <textarea
+                  id="state-input"
+                  maxlength="12000"
+                  rows="5"
+                  spellcheck="false"
+                  placeholder="输入需要判断的文本、用户请求或对话上下文…"
+                ></textarea>
+                <div class="question-section-heading">
+                  <h3>决策问题 <span id="question-count">0</span></h3>
+                  <button class="text-button" id="add-question">
+                    <span data-icon="plus"></span>添加问题
+                  </button>
+                </div>
+                <div id="questions"></div>
+                <p class="input-hint">
+                  <span data-icon="info"></span
+                  >每个问题独立作答，共享同一段上下文。
+                </p>
+              </div>
+              <div class="run-footer">
+                <div class="mode-switch" role="group" aria-label="运行模式">
+                  <button data-mode="example" class="active">示例回放</button
+                  ><button data-mode="live">
+                    <span class="status-dot"></span>真实模型
+                  </button>
+                </div>
+                <button id="run-decision" class="primary-button">
+                  <span data-icon="play"></span><span>运行决策</span
+                  ><kbd>⌘ ↵</kbd>
+                </button>
+              </div>
+              <div class="mode-caption" id="mode-caption">
+                示例回放使用预设数据，不调用模型。修改输入后请切换到真实模型。
+              </div>
+            </section>
+
+            <section
+              class="panel result-panel"
+              aria-live="polite"
+              aria-busy="false"
+            >
+              <div class="panel-heading">
+                <h2><span class="step-number">02</span> 决策结果</h2>
+                <span class="subtle-badge" id="result-status">等待运行</span>
+              </div>
+              <div class="result-tabs" role="tablist" aria-label="结果视图">
+                <button
+                  role="tab"
+                  aria-selected="true"
+                  class="active"
+                  data-result-tab="visual"
+                >
+                  可视化结果
+                </button>
+                <button role="tab" aria-selected="false" data-result-tab="json">
+                  JSON 响应
+                </button>
+                <button
+                  role="tab"
+                  aria-selected="false"
+                  data-result-tab="request"
+                >
+                  请求代码
+                </button>
+                <button
+                  class="icon-button copy-result"
+                  id="copy-result"
+                  aria-label="复制当前结果"
+                  title="复制结果"
+                  disabled
+                >
+                  <span data-icon="copy"></span>
+                </button>
+              </div>
+              <div id="results">
+                <div class="empty-state">
+                  <div class="decision-illustration" aria-hidden="true">
+                    <div class="illustration-input"><i></i><i></i><i></i></div>
+                    <div class="illustration-line"></div>
+                    <div class="illustration-core">
+                      <span data-icon="sparkles"></span>
+                    </div>
+                    <div class="illustration-branches">
+                      <i></i><i></i><i></i>
+                    </div>
+                    <div class="illustration-outputs">
+                      <span>✓</span><span>—</span><span>—</span>
+                    </div>
+                  </div>
+                  <h3>下一个清晰的决策，从这里开始</h3>
+                  <p>
+                    选择一个场景，点击「运行决策」<br />查看结构化答案与概率分布。
+                  </p>
+                  <span class="empty-label"
+                    >ONE STATE. MULTIPLE DECISIONS.</span
+                  >
+                </div>
+              </div>
+              <div class="result-footer">
+                <span data-icon="lock"></span
+                ><span>示例回放无需模型 · 真实推理由模型服务处理</span>
+              </div>
+            </section>
+          </div>
+          <div class="bottom-tip">
+            <span data-icon="lightbulb"></span>
+            <p>
+              <strong>决策，而非生成。</strong> Decider
+              从你给出的选项中作答。将模型判断交给代码，就能构建可解释的工作流。
+            </p>
+            <a href="#about"
+              >了解工作原理 <span data-icon="arrow-right"></span
+            ></a>
+          </div>
+        </section>
+
+        <section id="page-guard" class="page" hidden>
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> BEFORE THE TOOL CALL</div>
+              <h1>先判断，再行动<span class="heading-dot">。</span></h1>
+              <p>
+                复现官方天气工具案例：发现被猜测的参数，让 Agent 回到澄清步骤。
+              </p>
+            </div>
+            <span class="outline-badge">INTERVENTION DEMO</span>
+          </div>
+          <div class="guard-flow">
+            <div><span data-icon="message"></span>用户请求</div>
+            <span data-icon="arrow-right"></span>
+            <div><span data-icon="wrench"></span>拟议工具调用</div>
+            <span data-icon="arrow-right"></span>
+            <div class="highlight">
+              <span data-icon="shield"></span>Decider 检查
+            </div>
+            <span data-icon="arrow-right"></span>
+            <div><span data-icon="route"></span>Guide / Proceed</div>
+          </div>
+          <div class="guard-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h2><span class="step-number">01</span> 构造工具调用</h2>
+              </div>
+              <div class="guard-body">
+                <div class="segmented-control" id="guard-presets">
+                  <button data-guard-preset="missing" class="active">
+                    缺少城市</button
+                  ><button data-guard-preset="grounded">已提供城市</button>
+                </div>
+                <label for="guard-message">用户请求</label
+                ><textarea id="guard-message" rows="3" maxlength="1000">
+What's the weather?</textarea
+                >
+                <label for="guard-location">Agent 提议的工具参数</label>
+                <div class="tool-input">
+                  <code>get_weather(location=</code
+                  ><input
+                    id="guard-location"
+                    value="Seattle"
+                    maxlength="100"
+                    aria-label="天气工具的城市参数"
+                  /><code>)</code>
+                </div>
+                <div class="field-heading threshold-heading">
+                  <label for="guard-threshold">策略阈值 <code>YES</code></label
+                  ><output id="threshold-value">0.45</output>
+                </div>
+                <input
+                  id="guard-threshold"
+                  type="range"
+                  min="0.05"
+                  max="0.95"
+                  step="0.05"
+                  value="0.45"
+                />
+                <p class="muted small">
+                  当参数依据概率 &lt; 阈值，或过早调用概率 ≥ 阈值时，返回
+                  Guide。阈值仅用于实验。
+                </p>
+                <div
+                  class="mode-switch guard-mode"
+                  role="group"
+                  aria-label="守卫运行模式"
+                >
+                  <button data-mode="example" class="active">示例回放</button
+                  ><button data-mode="live">
+                    <span class="status-dot"></span>真实模型
+                  </button>
+                </div>
+                <button id="run-guard" class="primary-button full-width">
+                  <span data-icon="shield"></span>检查这次调用
+                </button>
+                <p class="input-hint">
+                  这里只检查拟议调用，不执行天气工具或调用 Agent LLM。
+                </p>
+              </div>
+            </section>
+            <section class="panel" aria-live="polite">
+              <div class="panel-heading">
+                <h2><span class="step-number">02</span> 守卫决策</h2>
+                <span class="subtle-badge">PYTHON POLICY</span>
+              </div>
+              <div id="guard-results" class="guard-body">
+                <div class="empty-state compact">
+                  <div class="empty-icon"><span data-icon="shield"></span></div>
+                  <h3>为工具调用加一道判断</h3>
+                  <p>
+                    运行两个独立的问题，观察概率如何<br />转化为工作流中的下一步。
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="bottom-tip">
+            <span data-icon="info"></span>
+            <p>
+              模型只返回概率。<strong>Guide / Proceed 由程序策略决定</strong
+              >，不是模型生成的文本。完整 Strands Agent 接入示例见 README。
+            </p>
+          </div>
+        </section>
+
+        <section id="page-history" class="page" hidden>
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> YOUR EXPERIMENTS</div>
+              <h1>每一次判断，都有迹可循<span class="heading-dot">。</span></h1>
+              <p>
+                最近 30
+                次运行保存在当前账号的标签页中，退出后清除。可查看、导出与清空。
+              </p>
+            </div>
+            <button id="clear-history" class="secondary-button">
+              <span data-icon="trash"></span>清空记录
+            </button>
+          </div>
+          <div class="panel" id="history-list"></div>
+        </section>
+
+        <section id="page-about" class="page" hidden>
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> UNDER THE HOOD</div>
+              <h1>把智能放进决策这一刻<span class="heading-dot">。</span></h1>
+              <p>
+                Strands Decider 是一个约 2B 参数的开源决策模型，面向 Agent
+                工作流中的轻量判断。
+              </p>
+            </div>
+          </div>
+          <div class="about-hero">
+            <div>
+              <span class="tiny-label">A SMALL, FAST DECISION MODEL</span>
+              <h2>一次前向计算，<br />得到结构化答案。</h2>
+              <p>
+                基于 Qwen3.5-2B 主干，用 Pointer head
+                替换语言生成头。模型对候选选项评分，无需逐个生成输出 token。
+              </p>
+              <a
+                class="secondary-button"
+                href="https://github.com/strands-labs/strands-decider"
+                target="_blank"
+                rel="noreferrer"
+                >探索开源项目 <span data-icon="arrow-up-right"></span
+              ></a>
+            </div>
+            <div class="architecture">
+              <span>上下文 + 问题 + 候选项</span><i>↓</i
+              ><strong>Qwen3.5-2B + LoRA</strong><i>↓</i><b>Pointer head</b
+              ><i>↓</i>
+              <div><span>Choice</span><span>Noul</span><span>Score</span></div>
+            </div>
+          </div>
+          <div class="about-grid">
+            <article class="panel about-card">
+              <span data-icon="route"></span>
+              <h3>概率与 confidence 有区别</h3>
+              <p>
+                Choice 的 confidence 是归一化后的最高概率：<code
+                  >(N × p_max − 1) / (N − 1)</code
+                >。它不等于获胜选项的概率。Score 的 confidence
+                基于分布离散程度。
+              </p>
+            </article>
+            <article class="panel about-card">
+              <span data-icon="check-circle"></span>
+              <h3>Noul 返回 P(true)</h3>
+              <p>
+                越接近 1 越倾向“是”，越接近 0 越倾向“否”，接近 0.5
+                则不确定。Noul 没有单独的 confidence 字段。
+              </p>
+            </article>
+            <article class="panel about-card">
+              <span data-icon="zap"></span>
+              <h3>同一上下文，多种问题</h3>
+              <p>
+                模型可共享上下文的前缀缓存，减少多个问题的重复计算。问题之间互相独立；实际耗时取决于设备、上下文长度和问题数量。
+              </p>
+            </article>
+          </div>
+          <section class="panel setup-panel">
+            <div>
+              <h2>在本地运行真实模型</h2>
+              <p>
+                Web 演示本身不需要 API Key。真实模型首次启动会下载约 4.5 GB
+                基座权重与适配器，需要访问 Hugging Face。
+              </p>
+              <p class="muted">
+                默认复现博客中的 v19；可用 DECIDER_MODEL 指向其他官方检查点。
+              </p>
+            </div>
+            <pre><code># 终端 1：启动模型（默认 CPU）
+bash scripts/serve_model.sh
+
+# 终端 2：启动演示页面
+uv run python -m scripts.manage_users create admin
+AUTH_COOKIE_SECURE=false uv run uvicorn app.main:app --port 8000</code></pre>
+          </section>
+          <p class="source-note">
+            参考：<a
+              href="https://strandsagents.com/blog/introducing-strands-decider/"
+              target="_blank"
+              rel="noreferrer"
+              >官方介绍</a
+            >
+            ·
+            <a
+              href="https://github.com/strands-labs/strands-decider/blob/main/docs/inference.md"
+              target="_blank"
+              rel="noreferrer"
+              >推理协议与说明</a
+            >
+            ·
+            <a
+              href="https://huggingface.co/StrandsAgents/strands-decider-2B-hobson-v19"
+              target="_blank"
+              rel="noreferrer"
+              >v19 模型权重</a
+            >
+          </p>
+        </section>
+        <footer class="page-footer">
+          <span
+            ><span class="footer-mark">≋</span> Built with curiosity. Powered by
+            Strands.</span
+          ><span>交互演示 · 非官方产品</span>
+        </footer>
+      </main>
+    </div>
+    <div id="toast" role="status" hidden></div>
+  </body>
+</html>
