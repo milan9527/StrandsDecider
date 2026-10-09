@@ -35,6 +35,8 @@
 
 部署架构图使用 **AWS 官方服务图标、官方配色及 Cloud / Region / VPC / 私有子网边界**。SVG 可直接下载用于演示材料，维护方式与图标来源见 [图表说明](docs/diagrams/README.md)；GitHub 不包含 `.drawio` 文件。
 
+图中以后端直接连接 SageMaker、Bedrock 和 DynamoDB 表示服务调用，省略私有网络端点节点；实际网络配置见下表。
+
 ### AWS 部署
 
 ![AWS 部署架构](docs/diagrams/architecture.svg)

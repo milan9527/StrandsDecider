@@ -2,13 +2,15 @@
 
 仓库提供三张 SVG 图，可直接在 GitHub 或浏览器中查看、下载：
 
-1. **[AWS 部署架构](architecture.svg)**：私有 S3 + CloudFront OAC、内网 ALB / ECS、模型私有端点、DynamoDB 及 SageMaker GPU 生命周期。
+1. **[AWS 部署架构](architecture.svg)**：私有 S3 + CloudFront OAC、内网 ALB / ECS、后端对 SageMaker / Bedrock / DynamoDB 的调用及 GPU 生命周期。
 2. **[Decider vs 普通大模型](model-comparison.svg)**：同一候选决策任务的两种调用方式，以及共同的应用执行策略。
 3. **[加密支付完整流程](payment-workflow.svg)**：五步决策与沙盒执行、参考差异、资金保护、最终回复及模拟事件。
 
 SVG 文件可用于 README 或演示材料，不依赖外部图片、字体下载或脚本；显示中文需要本机支持中文字体。
 
-部署架构图采用 **AWS 官方服务 / 资源图标与架构图风格**：保留官方配色，区分 AWS Cloud、us-east-1、VPC 和私有子网边界。CloudFront 位于区域边界外，SageMaker / Bedrock 托管服务位于应用 VPC 外，通过私有端点访问；橙色虚线表示 GPU 生命周期控制。图标来源与版本见 [AWS 图标说明](aws-icons/README.md)。
+部署架构图采用 **AWS 官方服务 / 资源图标与架构图风格**：保留官方配色，区分 AWS Cloud、us-east-1、VPC 和私有子网边界。CloudFront 位于区域边界外，SageMaker / Bedrock 托管服务位于应用 VPC 外；橙色虚线表示 GPU 生命周期控制。图标来源与版本见 [AWS 图标说明](aws-icons/README.md)。
+
+图中简化了网络细节，ECS 后端直接连到 SageMaker、Bedrock 和 DynamoDB，分别表示模型调用与数据访问；不单独绘制 Runtime / DynamoDB VPC Endpoint 节点。实际部署仍使用原有私有端点，详见 [部署记录](../../deployment/DEPLOYED.md)。
 
 在仓库根目录重新生成：
 

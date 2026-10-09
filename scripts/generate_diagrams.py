@@ -420,7 +420,7 @@ def architecture():
         "vpc",
         440,
         480,
-        760,
+        440,
         620,
         "应用 VPC · 无 Internet 默认路由",
         group=True,
@@ -486,37 +486,6 @@ def architecture():
         "Amazon ECS / AWS Fargate\nFastAPI · 无公网 IP\n认证 · 构造相同输入 · 计时\n执行保护 · 沙盒业务流程",
         size=17,
         icons=("ecs", "fargate"),
-    )
-    p.box(
-        "smvpce",
-        830,
-        615,
-        340,
-        150,
-        "SageMaker Runtime\n私有 Interface Endpoint",
-        size=17,
-        icons=("endpoint",),
-    )
-    p.box(
-        "brvpce",
-        830,
-        825,
-        340,
-        150,
-        "Bedrock Runtime\n私有 Interface Endpoint",
-        size=17,
-        icons=("endpoint",),
-    )
-    p.box(
-        "ddbvpce",
-        815,
-        990,
-        365,
-        90,
-        "DynamoDB Gateway Endpoint\n账号认证 / GPU 请求与租约",
-        size=15,
-        icons=("endpoint",),
-        side=True,
     )
     p.box(
         "sm",
@@ -602,12 +571,29 @@ def architecture():
         at=(950, 450),
     )
     p.edge("alb", "api", [(625, 750), (625, 815)])
-    p.edge("api", "smvpce", [(770, 850), (810, 850), (810, 690), (830, 690)], color=TEAL)
-    p.edge("api", "brvpce", [(770, 910), (830, 910)], color=BLUE)
-    p.edge("api", "ddbvpce", [(770, 975), (800, 975), (800, 1035), (815, 1035)])
-    p.edge("smvpce", "sm", [(1170, 690), (1210, 690), (1210, 735), (1260, 735)], color=TEAL)
-    p.edge("brvpce", "br", [(1170, 910), (1260, 910)], color=BLUE)
-    p.edge("ddbvpce", "ddb", [(1000, 1080), (1000, 1120), (1440, 1120), (1440, 1150)])
+    p.edge(
+        "api",
+        "sm",
+        [(770, 850), (950, 850), (950, 735), (1260, 735)],
+        "调用 Decider",
+        color=TEAL,
+        at=(1100, 710),
+    )
+    p.edge(
+        "api",
+        "br",
+        [(770, 910), (1260, 910)],
+        "调用 GPT-6.1 Sol",
+        color=BLUE,
+        at=(1050, 885),
+    )
+    p.edge(
+        "api",
+        "ddb",
+        [(770, 975), (930, 975), (930, 1120), (1440, 1120), (1440, 1150)],
+        "账号 / 会话 / GPU 状态",
+        at=(1060, 1090),
+    )
     p.edge("timer", "lambda", [(745, 1240), (800, 1240)], color=ORANGE, dashed=True)
     p.edge(
         "lambda",
@@ -643,7 +629,7 @@ def architecture():
         1565,
         1700,
         35,
-        "Bedrock 入口在 us-east-1，推理可路由至其他美国区域。订单与账本仅在浏览器内存中模拟；辅助部署依赖与回退资源网络省略。",
+        "Bedrock 推理可路由至其他美国区域。图示省略私有网络端点、辅助部署依赖及回退资源网络；订单与账本在浏览器内存中模拟。",
         size=16,
         text=True,
     )
