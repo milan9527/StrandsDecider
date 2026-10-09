@@ -46,7 +46,7 @@ def main():
         expect(page.locator(".shell")).to_be_hidden()
         page.locator("#login-password").fill(credentials["password"])
         page.locator("#login-submit").click()
-        expect(page.locator(".scenario-card")).to_have_count(12)
+        expect(page.locator(".scenario-card")).to_have_count(16)
         expect(page.locator("#login-page")).to_be_hidden()
         expect(page.locator("#account-name")).to_have_text(credentials["username"])
         assert "decider_session" not in page.evaluate("document.cookie")
@@ -66,6 +66,10 @@ def main():
             "rag",
             "approval",
             "summary",
+            "crypto_pending",
+            "crypto_underpaid",
+            "crypto_refund",
+            "crypto_settlement",
         }
         page.locator('[data-category="Agent 流程"]').click()
         expect(page.locator(".scenario-card")).to_have_count(3)
@@ -79,7 +83,7 @@ def main():
         expect(page.locator(".scenario-card")).to_have_count(0)
         expect(page.locator(".scenario-empty")).to_contain_text("没有匹配的场景")
         page.locator("#clear-scenario-filters").click()
-        expect(page.locator(".scenario-card")).to_have_count(12)
+        expect(page.locator(".scenario-card")).to_have_count(len(catalog))
         expect(page.locator("#state-input")).to_have_value(
             "User-edited context must survive filtering."
         )
@@ -87,7 +91,18 @@ def main():
         expect(page.locator(".scenario-card")).to_have_count(1)
         expect(page.locator('[data-example="incident"]')).to_be_visible()
         page.locator("#scenario-search").fill("")
-        expect(page.locator(".scenario-card")).to_have_count(12)
+        expect(page.locator(".scenario-card")).to_have_count(len(catalog))
+        page.locator('[data-category="加密货币支付"]').click()
+        expect(page.locator(".scenario-card")).to_have_count(4)
+        page.locator("#scenario-search").fill("USDT")
+        expect(page.locator(".scenario-card")).to_have_count(1)
+        page.locator('[data-example="crypto_underpaid"]').click()
+        expect(page.locator("#selected-scenario-title")).to_have_text("USDT 少付处理")
+        expect(page.locator("#scenario-suggestion")).to_contain_text("99.80")
+        page.locator("#scenario-search").fill("")
+        page.screenshot(path=str(artifacts / "crypto-scenarios-desktop.png"), full_page=True)
+        page.locator('[data-category="all"]').click()
+        expect(page.locator(".scenario-card")).to_have_count(len(catalog))
         page.locator("#reset-example").click()
         page.screenshot(path=str(artifacts / "scenarios-desktop.png"), full_page=True)
 
@@ -130,7 +145,7 @@ def main():
         page.locator("#reset-example").click()
 
         if args.live:
-            page.locator('[data-example="rag"]').click()
+            page.locator('[data-example="crypto_pending"]').click()
             page.locator('#page-playground [data-mode="live"]').click()
             with page.expect_response("**/api/decide", timeout=190000) as decision_response:
                 page.locator("#run-decision").click()
@@ -141,9 +156,9 @@ def main():
             measured = decision_response.value.json()["timings"]
             assert measured["execution"] == "individual"
             assert set(measured["decisions_ms"]) == {
-                "can_answer",
                 "next_action",
-                "evidence_quality",
+                "needs_manual_review",
+                "support_priority",
             }
             assert all(value > 0 for value in measured["decisions_ms"].values())
             assert measured["backend_total_ms"] >= sum(measured["decisions_ms"].values()) - 0.01
@@ -229,10 +244,11 @@ def main():
             "aria-current", "page"
         )
         page.screenshot(path=str(artifacts / "mobile.png"), full_page=True, animations="disabled")
-        page.locator('[data-category="Agent 流程"]').click()
-        page.locator("#scenario-search").fill("RAG")
+        page.locator('[data-category="加密货币支付"]').click()
+        expect(page.locator(".scenario-card")).to_have_count(4)
+        page.locator("#scenario-search").fill("USDT")
         expect(page.locator(".scenario-card")).to_have_count(1)
-        page.locator('[data-example="rag"]').click()
+        page.locator('[data-example="crypto_underpaid"]').click()
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         page.screenshot(path=str(artifacts / "scenarios-mobile.png"), full_page=True)
         page.set_viewport_size({"width": 320, "height": 740})
@@ -247,7 +263,7 @@ def main():
         assert not errors, errors
         browser.close()
     print(
-        "Browser checks passed: login, 12 scenarios, category/search filters, scenario guides, editing, errors, guard, timing, history, export, mobile, logout."
+        "Browser checks passed: login, 16 scenarios, crypto category/search, scenario guides, editing, errors, guard, timing, history, export, mobile, logout."
     )
     if args.live:
         print("Real model inference through the browser passed.")

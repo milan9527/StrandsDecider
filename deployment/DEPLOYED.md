@@ -1,6 +1,6 @@
 # 已部署环境
 
-部署及验收日期：2026-10-08。
+最近应用发布及验收日期：2026-10-09；基础设施验收日期：2026-10-08。
 
 **访问地址：https://d30wbetbveqce3.cloudfront.net**
 
@@ -19,7 +19,7 @@ API 文档：https://d30wbetbveqce3.cloudfront.net/api/docs
 | Task | 1 个健康 ARM64 Fargate Task，4 vCPU / 16 GiB |
 | ECR API repository | `strands-decider-demo-api` |
 | ECR model repository | `strands-decider-demo-model` |
-| API 镜像 tag | `20261008-scenarios1` |
+| API 镜像 tag | `20261009-cryptopay1` |
 | 模型镜像 tag | `20261008-aws1` |
 | 认证 | 自建用户名 / 密码，无 Cognito |
 | DynamoDB 认证表 | `strands-decider-demo-auth` |
@@ -35,11 +35,12 @@ API 文档：https://d30wbetbveqce3.cloudfront.net/api/docs
 - 登录后 CloudFront `/api/health` 返回 `connected: true`。
 - 通过 CloudFront 登录后的真实推理一次返回 Choice、Noul 和 Score 三种答案，`source: live`；客服场景选择 `billing`。认证更新验收时三问题推理观测耗时约 8.33 秒，不是性能保证。
 - 未登录及退出后访问业务 API 均返回 `401`；重放退出前的 Cookie 同样被拒绝。线上会话 Cookie 的 `Secure`、`HttpOnly` 和 `SameSite=Strict` 已验证。
-- 浏览器验证通过：用户名登录、错误密码、刷新保持登录、退出、API 访问控制、12 个场景、分类与搜索、场景说明及修改提示、输入修改与错误提示、真实推理、守卫分支、当前标签页运行记录、JSON 导出、390px / 320px 布局。
-- 75 项后端测试、JavaScript 语法检查和 Ruff 通过；基础设施沿用已通过 CloudFormation lint 的模板。
+- 浏览器验证通过：用户名登录、错误密码、刷新保持登录、退出、API 访问控制、16 个场景、分类与搜索、场景说明及修改提示、输入修改与错误提示、真实推理、守卫分支、当前标签页运行记录、JSON 导出、390px / 320px 布局。
+- 79 项后端测试和 Ruff 通过；前端沿用已通过 JavaScript 语法检查的脚本，基础设施沿用已通过 CloudFormation lint 的模板。
 - 工作台和工具调用守卫显示真实单项耗时与整次请求总时间，运行记录和 JSON 导出保留计时数据；示例回放不提供虚构的推理耗时。
 - 模型镜像在 Docker `--network none` 下成功执行真实推理。
-- 新增退款、销售线索、内容审核、发票、告警、RAG、工具审批、摘要检查共 8 个场景；执行验证记录位于本机 `.deployment/scenarios-live.json`，检查响应结构及计时，不代表模型准确率。
+- 退款、销售线索、内容审核、发票、告警、RAG、工具审批、摘要检查共 8 个场景的执行验证记录位于本机 `.deployment/scenarios-live.json`。
+- 新增“加密货币支付”分类：USDC 未到账排查、USDT 少付处理、稳定币退款审批、商户结算延迟，每个场景 3 个决策。真实推理记录位于本机 `.deployment/crypto-scenarios-live.json`；检查响应结构及计时，不代表模型准确率。输入为模拟支付系统快照，不连接钱包、不广播交易。
 
 首次部署在 `us-east-1` 遇到 VPC / Internet Gateway 配额上限，随后改用 `us-east-2`；首次失败部署的 stack 和空资源已清理。`us-east-1` 的 VPC 配额增额申请属于账号配额管理，不承载本应用。
 

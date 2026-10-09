@@ -5,7 +5,7 @@
 支持：
 
 - **用户名登录**：自建用户名 / 密码认证，无 Cognito；支持退出、会话过期、登录限流和管理员重置密码。
-- **决策工作台**：12 个场景，覆盖业务运营、Agent 流程、内容理解、数据与运维；支持分类筛选、关键词搜索，可编辑上下文、问题类型与选项，一次最多 8 个问题。
+- **决策工作台**：16 个场景，覆盖业务运营、Agent 流程、内容理解、数据与运维、加密货币支付；支持分类筛选、关键词搜索，可编辑上下文、问题类型与选项，一次最多 8 个问题。
 - **三种官方问题类型**：`choice`、`noul`、`score`，展示结构化结果、候选项分布、confidence、JSON 和请求代码。
 - **决策计时**：每个问题显示实测耗时，运行中显示累计时间，完成后显示总时间；运行记录和 JSON 导出保留计时数据。
 - **工具调用守卫**：复现天气案例，用两个判断决定 `Guide` / `Proceed`，可调整策略阈值。
@@ -87,7 +87,7 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ## 演示路线
 
-场景支持按分类筛选，或搜索 `RAG`、`退款`、`ECS` 等关键词。选中场景后会显示用途说明和“试一试”提示；修改输入后切换到真实模型观察变化。
+场景支持按分类筛选，或搜索 `USDC`、`USDT`、`RAG`、`退款`、`ECS` 等关键词。选中场景后会显示用途说明和“试一试”提示；修改输入后切换到真实模型观察变化。
 
 | 分类 | 场景 | 演示重点 |
 | --- | --- | --- |
@@ -103,8 +103,14 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 | 内容理解 | 摘要质量检查 | 事实一致性、忠实度、重写建议 |
 | 数据与运维 | 发票字段校验 | 单据类型、采购单号要求、处理条件 |
 | 数据与运维 | 运维告警分级 | ECS / ALB 示例信号、客户影响、值班通知判断 |
+| 加密货币支付 | USDC 未到账排查 | 确认门槛、等待超时、人工介入与优先级 |
+| 加密货币支付 | USDT 少付处理 | 已计算的到账差额、容差标记、补款与审核路由 |
+| 加密货币支付 | 稳定币退款审批 | 重复付款原因、目的地验证、审批状态与队列选择 |
+| 加密货币支付 | 商户结算延迟 | 结算 SLA、影响范围、运营通知与升级 |
 
 场景输入和示例结果均为演示数据。所有场景只展示判断，不执行退款、SQL 或 AWS 操作。真实输出可能与预设分布不同；预设概率不是模型的准确率或实际运行结果。
+
+加密货币支付场景采用模拟的支付系统快照，不连接钱包或实时链上数据。金额差额、地址匹配、确认门槛与超时标记作为已知事实提供，模型选择处理流程。每个场景包含 3 个决策，并展示逐项耗时与总时间。修改示例时同步更新相关数值和标记，避免输入互相矛盾；实际支付中的金额运算、地址校验和资金执行仍由支付系统及其授权规则处理。
 
 推荐先尝试：
 
@@ -150,7 +156,7 @@ uv run --with strands-agents python -m examples.strands_agent \
 | `GET /api/auth/me` | 返回当前用户名和会话到期时间 |
 | `POST /api/auth/logout` | 服务端撤销会话并清除 Cookie |
 | `GET /api/health` | 检查真实模型连接、模型名称与设备 |
-| `GET /api/examples` | 获取 12 个场景的分类、说明、修改提示、上下文和问题 |
+| `GET /api/examples` | 获取 16 个场景的分类、说明、修改提示、上下文和问题 |
 | `POST /api/decide` | 示例回放或官方 System One 推理 |
 | `POST /api/guard` | 执行两项工具检查并返回策略结果 |
 
@@ -205,11 +211,11 @@ uv run --with playwright python scripts/check_browser.py --credentials .deployme
 # 如需使用已经安装的 Chromium：
 # CHROMIUM_PATH=/path/to/chrome uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json
 
-# 逐个验证新增场景的真实推理，保存实际输出与耗时
+# 逐个验证加密货币支付场景的真实推理，保存实际输出与耗时
 uv run python -m scripts.check_scenarios \
   --credentials .deployment/local-credentials.json \
-  --ids refund leads moderation invoice incident rag approval summary \
-  --output .deployment/scenarios-local.json
+  --ids crypto_pending crypto_underpaid crypto_refund crypto_settlement \
+  --output .deployment/crypto-scenarios-local.json
 ```
 
 `check_scenarios` 验证输入可执行、响应结构和计时完整性，不以预设答案判定模型准确率。省略 `--ids` 可运行全部场景；指定 `--url` 可验证 AWS 环境。

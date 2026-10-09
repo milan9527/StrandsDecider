@@ -552,6 +552,250 @@ EXAMPLES = [
             "next_step": choice_answer({"rewrite": 0.96, "approve": 0.02, "request_source": 0.02}),
         },
     },
+    {
+        "id": "crypto_pending",
+        "title": "USDC 未到账排查",
+        "category": "加密货币支付",
+        "description": "根据支付系统提供的交易状态与确认门槛，区分正常等待、信息不匹配和超时升级。",
+        "suggestion": "将等待时间从 3 分钟改为 20 分钟，并将超时标记改为 true，观察是否需要人工介入。",
+        "subtitle": "区分等待确认与支付异常",
+        "icon": "route",
+        "tag": "PAYMENT TRIAGE",
+        "state": (
+            "Demo payment policy: Wait for confirmation when payment details match and the finality "
+            "gate is not yet met. Escalate to payment operations when waiting exceeds 15 minutes. "
+            "Investigate mismatched payment details before proceeding.\n"
+            "Order: 100 USDC on Ethereum. The customer asks why the order is still pending.\n"
+            "Payment service snapshot (supplied facts, not a live blockchain lookup): "
+            "The transaction was included successfully. Token, network, recipient and amount all match. "
+            "Observed confirmations: 2. Merchant-required confirmations: 12. "
+            "Finality gate: not met. Waiting time: 3 minutes. Escalation timeout exceeded: false. "
+            "Only this order is affected; no wider outage is reported."
+        ),
+        "questions": {
+            "next_action": {
+                "type": "choice",
+                "instructions": "Which support action follows the payment policy and supplied snapshot?",
+                "criteria": {
+                    "wait_for_confirmations": "Matching payment is awaiting confirmations within the allowed waiting period",
+                    "investigate_mismatch": "Token, network, recipient or amount does not match the order",
+                    "escalate_payment_ops": "The confirmation wait has exceeded the escalation timeout",
+                },
+            },
+            "needs_manual_review": {
+                "type": "noul",
+                "instructions": "Do the supplied facts show a payment mismatch or an exceeded escalation timeout requiring manual intervention?",
+            },
+            "support_priority": {
+                "type": "score",
+                "instructions": "How urgent is support intervention given the waiting policy and reported customer impact?",
+                "criteria": [
+                    "Routine confirmation wait within policy",
+                    "Overdue or mismatched individual payment",
+                    "Widespread payment disruption",
+                ],
+            },
+        },
+        "answers": {
+            "next_action": choice_answer(
+                {
+                    "wait_for_confirmations": 0.95,
+                    "investigate_mismatch": 0.02,
+                    "escalate_payment_ops": 0.03,
+                }
+            ),
+            "needs_manual_review": {"type": "noul", "noul": 0.03},
+            "support_priority": score_answer(
+                [
+                    "Routine confirmation wait within policy",
+                    "Overdue or mismatched individual payment",
+                    "Widespread payment disruption",
+                ],
+                [0.94, 0.05, 0.01],
+            ),
+        },
+    },
+    {
+        "id": "crypto_underpaid",
+        "title": "USDT 少付处理",
+        "category": "加密货币支付",
+        "description": "使用对账系统已算好的到账差额与容差标记，选择补款沟通或差额审核流程。",
+        "suggestion": "把到账金额改为 99.80、差额改为 0.20、容差标记改为 within，观察是否转入差额审核。",
+        "subtitle": "从到账差额选择跟进流程",
+        "icon": "inbox",
+        "tag": "PAYMENT RECONCILIATION",
+        "state": (
+            "Demo merchant policy: For a confirmed underpayment outside the allowed tolerance, "
+            "contact the customer to request the remaining amount. A shortfall within tolerance "
+            "goes to the merchant's small-difference review queue. Disputed payment records go to "
+            "manual reconciliation. These are routing recommendations, not settlement authorization.\n"
+            "Reconciliation service snapshot: Order amount: 100.00 USDT on TRON. "
+            "Confirmed received amount: 98.00 USDT. Calculated shortfall: 2.00 USDT. "
+            "Allowed tolerance: 0.50 USDT. Tolerance result: outside. "
+            "Token, network and recipient match. Confirmation gate: met. "
+            "The customer accepts the reconciliation result and asks how to complete the order. "
+            "No payment dispute is recorded."
+        ),
+        "questions": {
+            "payment_issue": {
+                "type": "choice",
+                "instructions": "Which payment issue is established by the supplied reconciliation facts?",
+                "criteria": {
+                    "underpayment": "The confirmed received amount is lower than the order amount",
+                    "awaiting_confirmation": "The payment has not passed the confirmation gate",
+                    "network_mismatch": "The payment used a network different from the order",
+                },
+            },
+            "needs_customer_follow_up": {
+                "type": "noul",
+                "instructions": "Does the stated policy require contacting this customer to request the remaining amount?",
+            },
+            "next_action": {
+                "type": "choice",
+                "instructions": "Which workflow should handle this payment under the merchant policy?",
+                "criteria": {
+                    "request_top_up": "Contact the customer about an undisputed shortfall outside tolerance",
+                    "small_difference_review": "Review a shortfall that is within the merchant's tolerance",
+                    "manual_reconciliation": "Investigate disputed payment records",
+                },
+            },
+        },
+        "answers": {
+            "payment_issue": choice_answer(
+                {"underpayment": 0.96, "awaiting_confirmation": 0.02, "network_mismatch": 0.02}
+            ),
+            "needs_customer_follow_up": {"type": "noul", "noul": 0.97},
+            "next_action": choice_answer(
+                {
+                    "request_top_up": 0.95,
+                    "small_difference_review": 0.03,
+                    "manual_reconciliation": 0.02,
+                }
+            ),
+        },
+    },
+    {
+        "id": "crypto_refund",
+        "title": "稳定币退款审批",
+        "category": "加密货币支付",
+        "description": "识别重复付款退款，并结合目的地验证与审批状态选择审核队列；演示不发起转账。",
+        "suggestion": "将退款目的地改为已验证的原付款地址，并注明审批已通过，对比下一步建议。",
+        "subtitle": "退款原因与授权流程分流",
+        "icon": "lock",
+        "tag": "REFUND REVIEW",
+        "state": (
+            "Demo refund policy: A duplicate payment can enter refund review. "
+            "An unverified refund destination or missing approval requires manual review. "
+            "Only a verified original payment destination with recorded approval may enter the "
+            "authorized-refund queue; a separate payment system performs all execution checks.\n"
+            "Ledger snapshot: An 80 USDC order was paid twice in two distinct confirmed transactions. "
+            "The ledger verified the duplicate and shows no previous refund. "
+            "The customer requests one 80 USDC payment back, citing the duplicate charge. "
+            "Requested refund destination: a newly supplied wallet, not the original payment address. "
+            "Destination verification: unverified. Refund approval: missing. "
+            "The order and transaction records are complete."
+        ),
+        "questions": {
+            "refund_reason": {
+                "type": "choice",
+                "instructions": "What refund reason is supported by the ledger and customer request?",
+                "criteria": {
+                    "duplicate_payment": "Two distinct confirmed payments were made for one order",
+                    "order_cancellation": "The customer cancelled an order with a single payment",
+                    "payment_not_found": "No confirmed payment can be located",
+                },
+            },
+            "requires_manual_review": {
+                "type": "noul",
+                "instructions": "Does the refund policy require manual review because the destination is unverified or approval is missing?",
+            },
+            "next_action": {
+                "type": "choice",
+                "instructions": "Which queue should receive this refund request under the stated policy?",
+                "criteria": {
+                    "manual_refund_review": "Review an unverified destination or missing approval before any refund",
+                    "authorized_refund_queue": "Destination is the verified original payment address and approval is recorded",
+                    "request_order_records": "Order or transaction records needed to verify the request are missing",
+                },
+            },
+        },
+        "answers": {
+            "refund_reason": choice_answer(
+                {"duplicate_payment": 0.96, "order_cancellation": 0.02, "payment_not_found": 0.02}
+            ),
+            "requires_manual_review": {"type": "noul", "noul": 0.98},
+            "next_action": choice_answer(
+                {
+                    "manual_refund_review": 0.96,
+                    "authorized_refund_queue": 0.01,
+                    "request_order_records": 0.03,
+                }
+            ),
+        },
+    },
+    {
+        "id": "crypto_settlement",
+        "title": "商户结算延迟",
+        "category": "加密货币支付",
+        "description": "根据结算队列、延迟标记与商户影响范围，判断通知团队和处理优先级。",
+        "suggestion": "将延迟改为 5 分钟、SLA 超时标记改为 false，并注明服务正常，观察是否可以继续等待。",
+        "subtitle": "结算队列异常与运营升级",
+        "icon": "zap",
+        "tag": "SETTLEMENT OPERATIONS",
+        "state": (
+            "Demo settlement policy: Escalate to settlement operations if a merchant payout batch "
+            "is delayed more than 15 minutes beyond its scheduled time. Otherwise monitor the queue. "
+            "Checkout failures are handled separately by the checkout team.\n"
+            "Monitoring snapshot: A scheduled USDC settlement batch for 25 of 200 merchants is "
+            "45 minutes late. SLA timeout exceeded: true. The signing service is unavailable "
+            "for this batch. The payment service confirms these jobs have not been broadcast. "
+            "Other merchant batches are processing normally and customer checkout remains available. "
+            "No funds have been reported lost. The task is to recommend an operations response, "
+            "not to retry or broadcast transactions."
+        ),
+        "questions": {
+            "next_action": {
+                "type": "choice",
+                "instructions": "Which operations response follows the settlement policy for this batch?",
+                "criteria": {
+                    "escalate_settlement_ops": "Notify settlement operations because the payout batch exceeded its SLA",
+                    "monitor_queue": "Continue monitoring a batch within the allowed waiting period",
+                    "route_checkout_team": "Investigate a customer checkout failure",
+                },
+            },
+            "needs_escalation": {
+                "type": "noul",
+                "instructions": "Has this settlement batch met the stated condition for escalation to settlement operations?",
+            },
+            "merchant_impact": {
+                "type": "score",
+                "instructions": "How broad is the reported merchant impact, distinguishing settlement from checkout?",
+                "criteria": [
+                    "No overdue merchant payouts",
+                    "Payouts delayed for some merchants; checkout works",
+                    "All merchants unable to settle and customer checkout unavailable",
+                ],
+            },
+        },
+        "answers": {
+            "next_action": choice_answer(
+                {
+                    "escalate_settlement_ops": 0.96,
+                    "monitor_queue": 0.02,
+                    "route_checkout_team": 0.02,
+                }
+            ),
+            "needs_escalation": {"type": "noul", "noul": 0.98},
+            "merchant_impact": score_answer(
+                [
+                    "No overdue merchant payouts",
+                    "Payouts delayed for some merchants; checkout works",
+                    "All merchants unable to settle and customer checkout unavailable",
+                ],
+                [0.03, 0.94, 0.03],
+            ),
+        },
+    },
 ]
 
 
