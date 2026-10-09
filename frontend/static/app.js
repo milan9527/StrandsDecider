@@ -87,28 +87,29 @@ function renderGpu() {
   if (!gpuState?.enabled) return;
   const phase = gpuState.phase;
   const labels = {
-    stopped: "已释放",
+    stopped: "已停止",
     starting: "启动中",
     ready: "GPU 就绪",
-    stopping: "释放中",
+    stopping: "停止中",
     error: "启动未完成",
   };
   $("#gpu-status").textContent = labels[phase] || "检查中";
   $("#gpu-spec").textContent =
-    `${gpuState.instance_type || "g6 / g5 · NVIDIA GPU"} · Spot 最高 $0.55/小时 · 闲置 30 分钟自动释放 · 可能被回收`;
+    `${gpuState.instance_id ? `${gpuState.instance_type} · 按需约 $${gpuState.instance_usd_per_hour}/小时` : `g6 / g5 · 按需约 $0.8048–${gpuState.maximum_instance_usd_per_hour}/小时`} · 80GB 磁盘约 $${gpuState.disk_usd_per_month.toFixed(2)}/月 · 闲置 30 分钟自动停止`;
   const minutes = Math.ceil(gpuState.idle_remaining_seconds / 60);
   const messages = {
-    stopped:
-      gpuState.stop_reason === "idle"
-        ? "已因闲置自动释放 GPU。示例回放仍可使用，真实推理前请重新启动。"
-        : "示例回放可直接使用。启动 GPU 后即可运行真实模型。",
+    stopped: gpuState.disk_retained
+      ? "GPU 已停止，磁盘和模型缓存已保留。下次启动将复用同一实例；示例回放仍可使用。"
+      : "示例回放可直接使用。首次启动将创建按需 GPU 并下载模型；之后停止时保留磁盘和缓存。",
     starting:
-      "正在申请 Spot 容量并加载模型，通常需要几分钟。超过 20 分钟未就绪会自动释放。",
+      "正在启动按需 GPU 并加载模型，首次需要下载镜像。超过 20 分钟未就绪会自动停止，保留磁盘。",
     ready: gpuState.busy
-      ? "正在执行推理。释放操作会等待当前请求完成。"
-      : `真实模型已就绪。若没有新的推理请求，约 ${minutes} 分钟后自动释放。`,
-    stopping: "已停止接收新的推理请求，正在等待任务结束并终止 GPU 实例。",
-    error: "本次启动未在时限内完成，资源已释放。可重新尝试申请 Spot 容量。",
+      ? "正在执行推理。停止操作会等待当前请求完成。"
+      : `真实模型已就绪。若没有新的推理请求，约 ${minutes} 分钟后自动停止并保留磁盘。`,
+    stopping:
+      "已停止接收新的推理请求，正在等待任务结束并停止 EC2，磁盘和模型缓存会保留。",
+    error:
+      "本次启动未在时限内完成，GPU 已停止。已创建的磁盘会保留，可重新尝试启动。",
   };
   $("#gpu-message").textContent = messages[phase] || "正在检查资源状态。";
   $("#gpu-start").hidden = !gpuState.can_manage;
@@ -149,7 +150,7 @@ async function changeGpu(action) {
     toast(
       action === "start"
         ? "启动请求已提交，页面会自动更新状态。"
-        : "释放请求已提交，将等待当前推理完成。",
+        : "停止请求已提交，将等待推理完成并保留磁盘。",
     );
   } catch (error) {
     toast(error.message);

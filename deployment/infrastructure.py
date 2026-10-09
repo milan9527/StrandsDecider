@@ -479,7 +479,7 @@ def template():
         "CloudFront::VpcOrigin",
         {
             "VpcOriginEndpointConfig": {
-                "Name": sub("${AWS::StackName}-api"),
+                "Name": sub("${AWS::StackName}-${AWS::Region}-api"),
                 "Arn": ref("LoadBalancer"),
                 "HTTPPort": 80,
                 "HTTPSPort": 443,
@@ -515,7 +515,7 @@ def template():
         "CloudFront::OriginAccessControl",
         {
             "OriginAccessControlConfig": {
-                "Name": sub("${AWS::StackName}-s3-oac"),
+                "Name": sub("${AWS::StackName}-${AWS::Region}-s3-oac"),
                 "OriginAccessControlOriginType": "s3",
                 "SigningBehavior": "always",
                 "SigningProtocol": "sigv4",
@@ -527,7 +527,7 @@ def template():
         "CloudFront::CachePolicy",
         {
             "CachePolicyConfig": {
-                "Name": sub("${AWS::StackName}-static"),
+                "Name": sub("${AWS::StackName}-${AWS::Region}-static"),
                 "DefaultTTL": 300,
                 "MinTTL": 0,
                 "MaxTTL": 86400,
@@ -658,7 +658,7 @@ def template():
     }
     return {
         "AWSTemplateFormatVersion": "2010-09-09",
-        "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with separately managed Spot GPU.",
+        "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with a separately managed reusable On-Demand GPU.",
         "Parameters": {
             "ImageTag": {"Type": "String", "AllowedPattern": "[A-Za-z0-9._-]+"},
             "ApiImageTag": {"Type": "String", "Default": "", "AllowedPattern": "[A-Za-z0-9._-]*"},

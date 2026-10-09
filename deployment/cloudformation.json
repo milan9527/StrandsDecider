@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with separately managed Spot GPU.",
+  "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with a separately managed reusable On-Demand GPU.",
   "Parameters": {
     "ImageTag": {
       "Type": "String",
@@ -819,7 +819,7 @@
       "Properties": {
         "VpcOriginEndpointConfig": {
           "Name": {
-            "Fn::Sub": "${AWS::StackName}-api"
+            "Fn::Sub": "${AWS::StackName}-${AWS::Region}-api"
           },
           "Arn": {
             "Ref": "LoadBalancer"
@@ -874,7 +874,7 @@
       "Properties": {
         "OriginAccessControlConfig": {
           "Name": {
-            "Fn::Sub": "${AWS::StackName}-s3-oac"
+            "Fn::Sub": "${AWS::StackName}-${AWS::Region}-s3-oac"
           },
           "OriginAccessControlOriginType": "s3",
           "SigningBehavior": "always",
@@ -887,7 +887,7 @@
       "Properties": {
         "CachePolicyConfig": {
           "Name": {
-            "Fn::Sub": "${AWS::StackName}-static"
+            "Fn::Sub": "${AWS::StackName}-${AWS::Region}-static"
           },
           "DefaultTTL": 300,
           "MinTTL": 0,

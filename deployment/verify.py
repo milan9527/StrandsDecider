@@ -12,7 +12,7 @@ from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--region", default="us-east-2")
+    parser.add_argument("--region", default="us-east-1")
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--credentials", type=Path, required=True)
     parser.add_argument("--gpu-state", choices=["ready", "stopped"], default="stopped")
@@ -133,19 +133,18 @@ def main():
         "Stacks"
     ][0]
     gpu_outputs = {row["OutputKey"]: row["OutputValue"] for row in gpu_stack["Outputs"]}
-    group = aws(
-        "autoscaling",
-        "describe-auto-scaling-groups",
-        "--auto-scaling-group-names",
-        gpu_outputs["AsgName"],
-    )["AutoScalingGroups"][0]
-    assert group["MinSize"] == 0 and group["MaxSize"] == 1
-    distribution = group["MixedInstancesPolicy"]["InstancesDistribution"]
-    assert (
-        distribution["OnDemandBaseCapacity"]
-        == distribution["OnDemandPercentageAboveBaseCapacity"]
-        == 0
-    )
+    instances = [
+        instance
+        for reservation in aws(
+            "ec2",
+            "describe-instances",
+            "--filters",
+            f"Name=tag:DeciderGpuStack,Values={args.stack}-gpu",
+            "Name=instance-state-name,Values=pending,running,stopping,stopped",
+        )["Reservations"]
+        for instance in reservation["Instances"]
+    ]
+    assert len(instances) <= 1
     gpu_service = aws(
         "ecs",
         "describe-services",
@@ -155,7 +154,7 @@ def main():
         gpu_outputs["ServiceName"],
     )["services"][0]
     if args.gpu_state == "stopped":
-        assert group["DesiredCapacity"] == 0 and not group["Instances"]
+        assert all(instance["State"]["Name"] == "stopped" for instance in instances)
         assert (
             gpu_service["desiredCount"]
             == gpu_service["runningCount"]
@@ -163,19 +162,20 @@ def main():
             == 0
         )
     else:
-        assert group["DesiredCapacity"] == len(group["Instances"]) == 1
-        instance = aws(
-            "ec2", "describe-instances", "--instance-ids", group["Instances"][0]["InstanceId"]
-        )["Reservations"][0]["Instances"][0]
-        assert instance["InstanceLifecycle"] == "spot" and instance["InstanceType"] in (
-            "g6.xlarge",
-            "g6.2xlarge",
-            "g5.xlarge",
-        )
+        assert len(instances) == 1 and instances[0]["State"]["Name"] == "running"
+    for instance in instances:
+        assert instance.get("InstanceLifecycle") != "spot"
+        assert instance["InstanceType"] in ("g6.xlarge", "g6.2xlarge", "g5.xlarge")
         assert "PublicIpAddress" not in instance
-        assert all(
-            volume["Ebs"]["DeleteOnTermination"] for volume in instance["BlockDeviceMappings"]
-        )
+        volumes = aws(
+            "ec2",
+            "describe-volumes",
+            "--volume-ids",
+            *[mapping["Ebs"]["VolumeId"] for mapping in instance["BlockDeviceMappings"]],
+        )["Volumes"]
+        assert len(volumes) == 1 and volumes[0]["Size"] == 80
+        assert volumes[0]["Encrypted"] and volumes[0]["VolumeType"] == "gp3"
+        assert volumes[0]["Attachments"][0]["InstanceId"] == instance["InstanceId"]
     routes = aws(
         "ec2", "describe-route-tables", "--filters", f"Name=vpc-id,Values={outputs['VpcId']}"
     )["RouteTables"]
@@ -201,7 +201,7 @@ def main():
     assert request(url + "/api/auth/me")[0] == 200
     health = json.loads(request(url + "/api/health")[1])
     gpu_status = json.loads(request(url + "/api/gpu")[1])
-    assert gpu_status["phase"] == args.gpu_state and gpu_status["purchase_option"] == "spot"
+    assert gpu_status["phase"] == args.gpu_state and gpu_status["purchase_option"] == "on-demand"
     assert request(url + "/api/ready")[0] == 200
     assert health["connected"] is (args.gpu_state == "ready")
     if args.gpu_state == "ready":

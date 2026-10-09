@@ -13,8 +13,8 @@ else:
     from gpu_infrastructure import template
 
 
-def require_released(stack, autoscaling, ecs, dynamodb):
-    """Reject updates that could interrupt inference or reset a running ASG to zero."""
+def require_released(stack, autoscaling, ecs, dynamodb, ec2=None):
+    """Require stopped capacity before changing the model service or launch configuration."""
     outputs = {row["OutputKey"]: row["OutputValue"] for row in stack["Outputs"]}
     parameters = {row["ParameterKey"]: row["ParameterValue"] for row in stack["Parameters"]}
     state = dynamodb.get_item(
@@ -22,17 +22,27 @@ def require_released(stack, autoscaling, ecs, dynamodb):
         Key={"pk": {"S": "GPU"}},
         ConsistentRead=True,
     ).get("Item", {})
-    group = autoscaling.describe_auto_scaling_groups(AutoScalingGroupNames=[outputs["AsgName"]])[
-        "AutoScalingGroups"
-    ][0]
+    if "AsgName" in outputs:
+        group = autoscaling.describe_auto_scaling_groups(
+            AutoScalingGroupNames=[outputs["AsgName"]]
+        )["AutoScalingGroups"][0]
+        active_capacity = bool(group["DesiredCapacity"] or group["Instances"])
+    else:
+        active_capacity = bool(
+            ec2.describe_instances(
+                Filters=[
+                    {"Name": "tag:DeciderGpuStack", "Values": [stack["StackName"]]},
+                    {"Name": "instance-state-name", "Values": ["pending", "running", "stopping"]},
+                ]
+            )["Reservations"]
+        )
     service = ecs.describe_services(
         cluster=parameters["ClusterName"], services=[outputs["ServiceName"]]
     )["services"][0]
     if (
         state.get("desired", {}).get("S", "stopped") != "stopped"
         or state.get("phase", {}).get("S", "stopped") not in ("stopped", "error")
-        or group["DesiredCapacity"]
-        or group["Instances"]
+        or active_capacity
         or any(service[key] for key in ("desiredCount", "runningCount", "pendingCount"))
     ):
         raise RuntimeError("Release the GPU and wait for it to stop before updating its stack.")
@@ -40,11 +50,24 @@ def require_released(stack, autoscaling, ecs, dynamodb):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--region", default="us-east-2")
+    parser.add_argument("--region", default="us-east-1")
+    parser.add_argument("--availability-zone", help="A third, distinct GPU availability zone")
+    parser.add_argument(
+        "--extra-availability-zones", nargs="*", help="Up to two additional GPU AZs"
+    )
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--tag", required=True)
     args = parser.parse_args()
     cf = boto3.client("cloudformation", region_name=args.region)
+    try:
+        existing = cf.describe_stacks(StackName=args.stack + "-gpu")["Stacks"][0]
+        previous_parameters = {
+            row["ParameterKey"]: row["ParameterValue"] for row in existing["Parameters"]
+        }
+    except cf.exceptions.ClientError as error:
+        if "does not exist" not in error.response["Error"]["Message"]:
+            raise
+        previous_parameters = {}
     source = cf.describe_stacks(StackName=args.stack)["Stacks"][0]
     outputs = {row["OutputKey"]: row["OutputValue"] for row in source["Outputs"]}
     resources = {}
@@ -56,12 +79,51 @@ def main():
             }
         )
     role = boto3.client("iam").get_role(RoleName=resources["ExecutionRole"])["Role"]["Arn"]
+    ec2 = boto3.client("ec2", region_name=args.region)
+    subnet_ids = [resources[key] for key in ["Subnet1", "Subnet2"]]
+    used_zones = {
+        subnet["AvailabilityZone"]
+        for subnet in ec2.describe_subnets(SubnetIds=subnet_ids)["Subnets"]
+    }
+    available_zones = [
+        zone["ZoneName"]
+        for zone in ec2.describe_availability_zones(
+            Filters=[{"Name": "zone-type", "Values": ["availability-zone"]}]
+        )["AvailabilityZones"]
+        if zone["State"] == "available" and zone["ZoneName"] not in used_zones
+    ]
+    third_zone = (
+        args.availability_zone
+        or previous_parameters.get("GpuAvailabilityZone")
+        or next(
+            (zone for zone in available_zones if zone == args.region + "c"),
+            available_zones[0] if available_zones else None,
+        )
+    )
+    if third_zone not in available_zones:
+        parser.error("Choose an available GPU AZ distinct from the two base subnets")
+    extra_zones = args.extra_availability_zones
+    if extra_zones is None:
+        extra_zones = [
+            previous_parameters[key]
+            for key in ("GpuAvailabilityZone4", "GpuAvailabilityZone5")
+            if previous_parameters.get(key)
+        ]
+    if (
+        len(extra_zones) > 2
+        or len(set(extra_zones)) != len(extra_zones)
+        or not set(extra_zones).issubset(set(available_zones) - {third_zone})
+    ):
+        parser.error("Additional GPU AZs must be available and distinct from all other subnets")
     values = {
         "VpcId": outputs["VpcId"],
         "PrivateRouteTableId": resources["PrivateRoutes"],
         "ApiSecurityGroup": resources["TaskSecurityGroup"],
         "EndpointSecurityGroup": resources["EndpointSecurityGroup"],
-        "SubnetIds": ",".join(resources[key] for key in ["Subnet1", "Subnet2"]),
+        "SubnetIds": ",".join(subnet_ids),
+        "GpuAvailabilityZone": third_zone,
+        "GpuAvailabilityZone4": extra_zones[0] if extra_zones else "",
+        "GpuAvailabilityZone5": extra_zones[1] if len(extra_zones) > 1 else "",
         "ClusterName": outputs["ClusterName"],
         "ExecutionRoleArn": role,
         "LogGroupName": outputs["LogGroupName"],
@@ -85,6 +147,7 @@ def main():
             boto3.client("autoscaling", region_name=args.region),
             boto3.client("ecs", region_name=args.region),
             boto3.client("dynamodb", region_name=args.region),
+            ec2,
         )
         try:
             cf.update_stack(**options)

@@ -1,4 +1,4 @@
-"""Exercise the real authenticated GPU buttons, waiting for capacity to start or be released."""
+"""Exercise the real authenticated GPU buttons, waiting for capacity to start or stop with its disk retained."""
 
 import argparse
 import json
@@ -31,8 +31,9 @@ def main():
         page.locator("#login-password").fill(credentials["password"])
         page.locator("#login-submit").click()
         expect(page.locator("#gpu-panel")).to_be_visible()
-        expect(page.locator("#gpu-panel")).to_contain_text("Spot")
+        expect(page.locator("#gpu-panel")).to_contain_text("按需")
         expect(page.locator(".scenario-card")).to_have_count(16)
+        started = time.monotonic()
         if args.action != "observe-stop":
             expect(page.locator("#gpu-" + args.action)).to_be_enabled(timeout=10000)
             page.locator("#gpu-" + args.action).click()
@@ -44,7 +45,7 @@ def main():
             response = page.request.get(args.url + "/api/gpu")
             assert response.ok
             state = response.json()
-            assert state["enabled"] and state["purchase_option"] == "spot"
+            assert state["enabled"] and state["purchase_option"] == "on-demand"
             if state["phase"] != previous:
                 print(json.dumps(state, ensure_ascii=False), flush=True)
                 previous = state["phase"]
@@ -54,11 +55,14 @@ def main():
             page.wait_for_timeout(5000)
         else:
             raise TimeoutError("GPU did not reach " + target)
+        elapsed = time.monotonic() - started
         expect(page.locator("#gpu-status")).to_have_text(
-            "GPU 就绪" if target == "ready" else "已释放", timeout=15000
+            "GPU 就绪" if target == "ready" else "已停止", timeout=15000
         )
         if target == "stopped":
             assert state["instance_count"] == 0
+            if state["instance_id"]:
+                assert state["disk_retained"] and state["instance_state"] == "stopped"
             page.locator('#page-playground [data-mode="live"]').click()
             page.locator("#run-decision").click()
             expect(page.locator("#toast")).to_contain_text("GPU 尚未就绪")
@@ -76,6 +80,18 @@ def main():
         expect(page.locator("#login-page")).to_be_visible()
         assert not errors, errors
         browser.close()
+    print(
+        json.dumps(
+            {
+                "action": args.action,
+                "phase": target,
+                "elapsed_seconds": round(elapsed, 1),
+                "instance_id": state["instance_id"],
+                "disk_retained": state["disk_retained"],
+            }
+        ),
+        flush=True,
+    )
     print("GPU browser check passed: " + target, flush=True)
 
 

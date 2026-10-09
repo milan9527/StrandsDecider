@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--region", default="us-east-2")
+    parser.add_argument("--region", default="us-east-1")
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--tag", required=True)
     args = parser.parse_args()

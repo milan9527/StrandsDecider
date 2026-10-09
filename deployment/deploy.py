@@ -22,7 +22,8 @@ def run(command, **kwargs):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--region", default=os.getenv("AWS_REGION", "us-east-2"))
+    parser.add_argument("--region", default=os.getenv("AWS_REGION", "us-east-1"))
+    parser.add_argument("--availability-zones", nargs=2, help="Two distinct AZs for a new stack")
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--tag", default=datetime.now(UTC).strftime("%Y%m%d-%H%M%S"))
     parser.add_argument(
@@ -98,6 +99,12 @@ def main():
                 for z in zones
                 if z["State"] == "available" and z["ZoneId"] not in excluded
             ]
+            if args.availability_zones:
+                if len(set(args.availability_zones)) != 2 or not set(
+                    args.availability_zones
+                ).issubset(zones):
+                    parser.error("Choose two distinct, supported availability zones in this region")
+                zones = args.availability_zones
             prefix = aws(
                 "ec2",
                 "describe-managed-prefix-lists",

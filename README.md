@@ -8,14 +8,14 @@
 - **决策工作台**：16 个场景，覆盖业务运营、Agent 流程、内容理解、数据与运维、加密货币支付；支持分类筛选、关键词搜索，可编辑上下文、问题类型与选项，一次最多 8 个问题。
 - **三种官方问题类型**：`choice`、`noul`、`score`，展示结构化结果、候选项分布、confidence、JSON 和请求代码。
 - **决策计时**：每个问题显示实测耗时，运行中显示累计时间，完成后显示总时间；运行记录和 JSON 导出保留计时数据。
-- **按需 GPU Spot**：管理员从页面启动或释放 NVIDIA GPU（g6/g5 Spot，实例单价上限 $0.55/小时）；闲置 30 分钟自动释放，登录与示例回放由小规格 Fargate API 持续提供。
+- **按需 GPU，停止保留磁盘**：管理员从页面启动或停止 NVIDIA GPU；当前使用 `g5.xlarge` 按需实例（$1.006/小时），闲置 30 分钟自动停止。80GB 加密磁盘保留模型镜像与编译缓存，下次复用同一实例，磁盘约 $6.40/月。登录与示例回放由小规格 Fargate API 持续提供。
 - **工具调用守卫**：复现天气案例，用两个判断决定 `Guide` / `Proceed`，可调整策略阈值。
 - **运行记录**：按账号在当前标签页保存最近 30 次请求，刷新后保留，退出或关闭标签页后清除。
 - **两种模式**：无需下载模型的示例回放，以及连接官方服务的真实推理。
 
 AWS 部署使用独立的 `frontend/` 静态站点和 ECS API / 模型容器；架构、更新及运维步骤见 [deployment/README.md](deployment/README.md)。
 
-**在线演示：https://d30wbetbveqce3.cloudfront.net**（AWS `us-east-2`，私有 S3 + CloudFront OAC + 私网 ECS）。
+**在线演示：https://d3i7ogfx5ml7dc.cloudfront.net**（AWS `us-east-1`，私有 S3 + CloudFront OAC + 私网 ECS）。
 
 ## 快速运行
 
@@ -157,9 +157,9 @@ uv run --with strands-agents python -m examples.strands_agent \
 | `GET /api/auth/me` | 返回当前用户名和会话到期时间 |
 | `POST /api/auth/logout` | 服务端撤销会话并清除 Cookie |
 | `GET /api/health` | 检查真实模型连接、模型名称与设备 |
-| `GET /api/gpu` | 查看 Spot GPU 状态、闲置剩余时间与管理权限 |
+| `GET /api/gpu` | 查看按需 GPU 状态、实例、费用参考与管理权限 |
 | `POST /api/gpu/start` | 管理员申请启动 GPU，返回 202，后台异步执行 |
-| `POST /api/gpu/stop` | 管理员申请释放，等待已有推理完成后终止 GPU 实例 |
+| `POST /api/gpu/stop` | 管理员申请停止，等待已有推理完成后停止实例并保留磁盘 |
 | `GET /api/examples` | 获取 16 个场景的分类、说明、修改提示、上下文和问题 |
 | `POST /api/decide` | 示例回放或官方 System One 推理 |
 | `POST /api/guard` | 执行两项工具检查并返回策略结果 |

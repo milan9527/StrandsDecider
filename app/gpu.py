@@ -1,4 +1,4 @@
-"""Authenticated controls for the Spot GPU lifecycle; local CPU usage remains supported."""
+"""Authenticated controls for a reusable On-Demand GPU; local CPU usage stays supported."""
 
 import os
 import time
@@ -33,15 +33,23 @@ def can_manage(request):
 
 def public_state(state, manager):
     now = int(time.time())
+    instance_type = state.get("instance_type") or "g6.xlarge"
+    prices = {"g6.xlarge": 0.8048, "g6.2xlarge": 0.9776, "g5.xlarge": 1.006}
     return {
         "enabled": True,
         "can_manage": manager,
         "phase": state["phase"],
         "desired": state["desired"],
-        "instance_type": state.get("instance_type"),
-        "instance_options": ["g6.xlarge", "g6.2xlarge", "g5.xlarge"],
-        "spot_max_usd_per_hour": 0.55,
-        "purchase_option": "spot",
+        "instance_type": instance_type,
+        "instance_options": list(prices),
+        "maximum_instance_usd_per_hour": max(prices.values()),
+        "instance_id": state.get("instance_id"),
+        "instance_state": state.get("instance_state"),
+        "purchase_option": "on-demand",
+        "instance_usd_per_hour": prices[instance_type],
+        "disk_gib": 80,
+        "disk_usd_per_month": 6.4,
+        "disk_retained": bool(state.get("instance_id")),
         "instance_count": int(state.get("instance_count", 0)),
         "busy": int(state.get("busy_until", 0)) > now,
         "idle_minutes": 30,
@@ -62,7 +70,7 @@ async def change(request, action):
     if request.app.state.gpu is None:
         raise HTTPException(409, "当前环境未启用 GPU 按需管理。")
     if not can_manage(request):
-        raise HTTPException(403, "只有管理员可以启动或释放 GPU。")
+        raise HTTPException(403, "只有管理员可以启动或停止 GPU。")
     try:
         state = await run_in_threadpool(getattr(request.app.state.gpu, action))
     except TransitionConflict as error:

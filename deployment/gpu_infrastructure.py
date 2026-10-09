@@ -1,4 +1,4 @@
-"""Spot-only GPU capacity, private ECS connectivity and a scheduled scale-to-zero controller."""
+"""One reusable On-Demand GPU, private ECS connectivity and scheduled stop/start control."""
 
 import json
 from pathlib import Path
@@ -46,7 +46,7 @@ def template():
         "EC2::Subnet",
         {
             "VpcId": ref("VpcId"),
-            "AvailabilityZone": sub("${AWS::Region}c"),
+            "AvailabilityZone": ref("GpuAvailabilityZone"),
             "CidrBlock": "10.78.3.0/24",
             "MapPublicIpOnLaunch": False,
         },
@@ -59,6 +59,24 @@ def template():
             "RouteTableId": ref("PrivateRouteTableId"),
         },
     )
+    for index in (4, 5):
+        add(
+            f"GpuSubnet{index}",
+            "EC2::Subnet",
+            {
+                "VpcId": ref("VpcId"),
+                "AvailabilityZone": ref(f"GpuAvailabilityZone{index}"),
+                "CidrBlock": f"10.78.{index}.0/24",
+                "MapPublicIpOnLaunch": False,
+            },
+            Condition=f"HasGpuZone{index}",
+        )
+        add(
+            f"GpuSubnet{index}Route",
+            "EC2::SubnetRouteTableAssociation",
+            {"SubnetId": ref(f"GpuSubnet{index}"), "RouteTableId": ref("PrivateRouteTableId")},
+            Condition=f"HasGpuZone{index}",
+        )
     add(
         "GpuEndpointAccess",
         "EC2::SecurityGroupIngress",
@@ -135,8 +153,9 @@ def template():
                     {
                         "ResourceType": "instance",
                         "Tags": [
-                            {"Key": "Name", "Value": sub("${AWS::StackName}-spot")},
+                            {"Key": "Name", "Value": sub("${AWS::StackName}-ondemand")},
                             {"Key": "Project", "Value": "StrandsDecider"},
+                            {"Key": "DeciderGpuStack", "Value": ref("AWS::StackName")},
                         ],
                     }
                 ],
@@ -145,71 +164,13 @@ def template():
                         "#!/bin/bash\nset -eu\n"
                         "cat >> /etc/ecs/ecs.config <<'EOF'\n"
                         "ECS_CLUSTER=${ClusterName}\nECS_ENABLE_GPU_SUPPORT=true\n"
-                        "ECS_ENABLE_SPOT_INSTANCE_DRAINING=true\nECS_RESERVED_MEMORY=512\n"
+                        "ECS_RESERVED_MEMORY=512\n"
+                        'ECS_INSTANCE_ATTRIBUTES={"decider-gpu":"${AWS::StackName}"}\n'
                         "ECS_IMAGE_PULL_BEHAVIOR=prefer-cached\nEOF\n"
+                        "mkdir -p /opt/decider-cache\nchown 10001:10001 /opt/decider-cache\n"
                     )
                 },
             },
-        },
-    )
-    add(
-        "GpuAsg",
-        "AutoScaling::AutoScalingGroup",
-        {
-            "MinSize": "0",
-            "MaxSize": "1",
-            "DesiredCapacity": "0",
-            "VPCZoneIdentifier": [
-                {"Fn::Select": [0, ref("SubnetIds")]},
-                {"Fn::Select": [1, ref("SubnetIds")]},
-                ref("GpuSubnet3"),
-            ],
-            "HealthCheckGracePeriod": 600,
-            "MixedInstancesPolicy": {
-                "LaunchTemplate": {
-                    "LaunchTemplateSpecification": {
-                        "LaunchTemplateId": ref("LaunchTemplate"),
-                        "Version": attr("LaunchTemplate", "LatestVersionNumber"),
-                    },
-                    "Overrides": [
-                        {"InstanceType": name}
-                        for name in (
-                            "g6.xlarge",
-                            "g6.2xlarge",
-                            "g5.xlarge",
-                        )
-                    ],
-                },
-                "InstancesDistribution": {
-                    "OnDemandBaseCapacity": 0,
-                    "OnDemandPercentageAboveBaseCapacity": 0,
-                    "SpotAllocationStrategy": "price-capacity-optimized",
-                    "SpotMaxPrice": "0.55",
-                },
-            },
-            "Tags": [{"Key": "AmazonECSManaged", "Value": "true", "PropagateAtLaunch": True}],
-        },
-        DependsOn=["EcsEndpoint", "AgentEndpoint", "TelemetryEndpoint"],
-    )
-    add(
-        "CapacityProvider",
-        "ECS::CapacityProvider",
-        {
-            "AutoScalingGroupProvider": {
-                "AutoScalingGroupArn": ref("GpuAsg"),
-                "ManagedScaling": {"Status": "DISABLED"},
-                "ManagedTerminationProtection": "DISABLED",
-                "ManagedDraining": "ENABLED",
-            },
-        },
-    )
-    add(
-        "ClusterProviders",
-        "ECS::ClusterCapacityProviderAssociations",
-        {
-            "Cluster": ref("ClusterName"),
-            "CapacityProviders": ["FARGATE", "FARGATE_SPOT", ref("CapacityProvider")],
-            "DefaultCapacityProviderStrategy": [{"CapacityProvider": "FARGATE", "Weight": 1}],
         },
     )
     add(
@@ -221,6 +182,7 @@ def template():
             "NetworkMode": "host",
             "ExecutionRoleArn": ref("ExecutionRoleArn"),
             "RuntimePlatform": {"CpuArchitecture": "X86_64", "OperatingSystemFamily": "LINUX"},
+            "Volumes": [{"Name": "model-cache", "Host": {"SourcePath": "/opt/decider-cache"}}],
             "ContainerDefinitions": [
                 {
                     "Name": "model",
@@ -231,6 +193,18 @@ def template():
                     "User": "10001",
                     "StopTimeout": 120,
                     "ResourceRequirements": [{"Type": "GPU", "Value": "1"}],
+                    "MountPoints": [
+                        {
+                            "SourceVolume": "model-cache",
+                            "ContainerPath": "/var/cache/decider",
+                            "ReadOnly": False,
+                        }
+                    ],
+                    "Environment": [
+                        {"Name": "TRITON_CACHE_DIR", "Value": "/var/cache/decider/triton"},
+                        {"Name": "HF_HOME", "Value": "/var/cache/decider/huggingface"},
+                        {"Name": "CUDA_CACHE_PATH", "Value": "/var/cache/decider/cuda"},
+                    ],
                     "PortMappings": [{"ContainerPort": 8099, "HostPort": 8099, "Protocol": "tcp"}],
                     "LogConfiguration": {
                         "LogDriver": "awslogs",
@@ -261,15 +235,19 @@ def template():
         "ECS::Service",
         {
             "Cluster": ref("ClusterName"),
-            "ServiceName": sub("${AWS::StackName}-model"),
+            "ServiceName": sub("${AWS::StackName}-model-ondemand"),
             "TaskDefinition": ref("GpuTask"),
             "DesiredCount": 0,
-            "CapacityProviderStrategy": [
-                {"CapacityProvider": ref("CapacityProvider"), "Weight": 1}
+            "LaunchType": "EC2",
+            "PlacementConstraints": [
+                {
+                    "Type": "memberOf",
+                    "Expression": sub("attribute:decider-gpu == ${AWS::StackName}"),
+                }
             ],
             "DeploymentConfiguration": {"MinimumHealthyPercent": 0, "MaximumPercent": 100},
         },
-        DependsOn=["ClusterProviders"],
+        DependsOn=["EcsEndpoint", "AgentEndpoint", "TelemetryEndpoint"],
     )
     add(
         "ControllerRole",
@@ -323,18 +301,44 @@ def template():
                             },
                             {
                                 "Effect": "Allow",
-                                "Action": "autoscaling:SetDesiredCapacity",
-                                "Resource": sub(
-                                    "arn:${AWS::Partition}:autoscaling:${AWS::Region}:${AWS::AccountId}:autoScalingGroup:*:autoScalingGroupName/${GpuAsg}"
-                                ),
+                                "Action": "ec2:RunInstances",
+                                "Resource": "*",
+                                "Condition": {
+                                    "ArnEquals": {
+                                        "ec2:LaunchTemplate": sub(
+                                            "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:launch-template/${LaunchTemplate}"
+                                        )
+                                    }
+                                },
                             },
                             {
                                 "Effect": "Allow",
-                                "Action": [
-                                    "autoscaling:DescribeAutoScalingGroups",
-                                    "ec2:DescribeInstances",
-                                ],
-                                "Resource": "*",
+                                "Action": "ec2:CreateTags",
+                                "Resource": sub(
+                                    "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/*"
+                                ),
+                                "Condition": {"StringEquals": {"ec2:CreateAction": "RunInstances"}},
+                            },
+                            {
+                                "Effect": "Allow",
+                                "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+                                "Resource": sub(
+                                    "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/*"
+                                ),
+                                "Condition": {
+                                    "StringEquals": {
+                                        "ec2:ResourceTag/DeciderGpuStack": ref("AWS::StackName")
+                                    }
+                                },
+                            },
+                            {"Effect": "Allow", "Action": "ec2:DescribeInstances", "Resource": "*"},
+                            {
+                                "Effect": "Allow",
+                                "Action": "iam:PassRole",
+                                "Resource": attr("InstanceRole", "Arn"),
+                                "Condition": {
+                                    "StringEquals": {"iam:PassedToService": "ec2.amazonaws.com"}
+                                },
                             },
                             {
                                 "Effect": "Allow",
@@ -379,7 +383,20 @@ def template():
                     "GPU_STATE_TABLE": ref("StateTable"),
                     "GPU_CLUSTER": ref("ClusterName"),
                     "GPU_SERVICE": attr("GpuService", "Name"),
-                    "GPU_ASG": ref("GpuAsg"),
+                    "GPU_OWNER": ref("AWS::StackName"),
+                    "GPU_LAUNCH_TEMPLATE": ref("LaunchTemplate"),
+                    "GPU_SUBNETS": {
+                        "Fn::Join": [
+                            ",",
+                            [
+                                {"Fn::Select": [0, ref("SubnetIds")]},
+                                {"Fn::Select": [1, ref("SubnetIds")]},
+                                ref("GpuSubnet3"),
+                                {"Fn::If": ["HasGpuZone4", ref("GpuSubnet4"), ""]},
+                                {"Fn::If": ["HasGpuZone5", ref("GpuSubnet5"), ""]},
+                            ],
+                        ]
+                    },
                 }
             },
         },
@@ -406,7 +423,13 @@ def template():
     )
     return {
         "AWSTemplateFormatVersion": "2010-09-09",
-        "Description": "Strands Decider: private g6/g5 Spot GPU, capped hourly price and zero idle capacity.",
+        "Description": "Strands Decider: private reusable On-Demand GPU, stop when idle and preserve disk/cache.",
+        "Conditions": {
+            f"HasGpuZone{index}": {
+                "Fn::Not": [{"Fn::Equals": [ref(f"GpuAvailabilityZone{index}"), ""]}]
+            }
+            for index in (4, 5)
+        },
         "Parameters": {
             **{
                 key: {"Type": "String"}
@@ -423,6 +446,9 @@ def template():
                 ]
             },
             "SubnetIds": {"Type": "List<AWS::EC2::Subnet::Id>"},
+            "GpuAvailabilityZone": {"Type": "AWS::EC2::AvailabilityZone::Name"},
+            "GpuAvailabilityZone4": {"Type": "String", "Default": ""},
+            "GpuAvailabilityZone5": {"Type": "String", "Default": ""},
             "GpuAmiId": {
                 "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
                 "Default": "/aws/service/ecs/optimized-ami/amazon-linux-2023/gpu/recommended/image_id",
@@ -434,7 +460,7 @@ def template():
             for key, value in {
                 "StateTableName": ref("StateTable"),
                 "StateTableArn": attr("StateTable", "Arn"),
-                "AsgName": ref("GpuAsg"),
+                "LaunchTemplateId": ref("LaunchTemplate"),
                 "ServiceName": attr("GpuService", "Name"),
                 "ControllerName": ref("Controller"),
                 "GpuSecurityGroupId": ref("GpuSecurityGroup"),

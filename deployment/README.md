@@ -2,7 +2,7 @@
 
 前端和后端分别发布。浏览器只访问一个 CloudFront HTTPS 域名，`/api/*` 由 CloudFront 转发到 ECS，无需跨域配置。
 
-当前访问地址：**https://d30wbetbveqce3.cloudfront.net**。资源标识和验收记录见 [DEPLOYED.md](DEPLOYED.md)。
+当前访问地址：**https://d3i7ogfx5ml7dc.cloudfront.net**。资源标识和验收记录见 [DEPLOYED.md](DEPLOYED.md)。
 
 ```mermaid
 flowchart LR
@@ -10,29 +10,30 @@ flowchart LR
     CF -->|静态资源 / SigV4 OAC| S3[私有 S3 Bucket]
     CF -->|/api/* / VPC Origin| ALB[内网 ALB]
     ALB --> API[ECS Fargate: API]
-    API -->|私网 HTTP :8099| Model[ECS on EC2: Decider v19 / L4 或 A10G Spot]
+    API -->|私网 HTTP :8099| Model[ECS on EC2: Decider v19 / NVIDIA GPU]
     API -->|DynamoDB Gateway Endpoint| Auth[DynamoDB: 账号 / 会话 / 登录限流]
     API --> State[DynamoDB: GPU 状态 / 推理占用]
     Timer[EventBridge 每分钟] --> Controller[Lambda 控制器]
     Controller --> State
-    Controller --> ASG[Spot 专用 ASG: 0 至 1 台]
-    ASG --> Model
+    Controller --> EC2[按需 EC2: 最多 1 台，启动 / 停止]
+    EC2 --> Model
+    EC2 --- EBS[80GB 加密 gp3: 停止后保留]
     Endpoints[ECR / Logs 私网端点 + S3 Gateway] -.镜像与日志.-> API
     Endpoints -.镜像与日志.-> Model
 ```
 
 ## 部署配置
 
-- 区域：本次部署使用 `us-east-2`。首次选择的 `us-east-1` 已达到 VPC / Internet Gateway 配额；失败创建的空资源已清理。
+- 区域：所有应用区域资源使用 `us-east-1`；CloudFront 与 IAM 为 AWS 全球资源。部署脚本默认使用此区域。
 - 前端：S3 的四项 Block Public Access 全部启用，禁用 ACL（Bucket owner enforced），未开启 S3 website hosting。
 - OAC：签名行为为 `always` / SigV4；Bucket policy 仅授权本 CloudFront distribution 的 `s3:GetObject`，并拒绝明文 HTTP。
 - 后端：内网 ALB、API Task 和 GPU EC2 均处于独立 VPC 的私有子网，无公网 IP。GPU 的 8099 端口只接受 API 安全组访问。
-- 网络：ECR API / ECR Docker / CloudWatch Logs 使用两个 AZ 的 interface endpoints；ECS / ECS Agent / ECS Telemetry 各使用一个 AZ 的 endpoint ENI，并供三个私有子网访问。S3、DynamoDB 使用 gateway endpoint。没有 NAT Gateway，也没有互联网默认路由。
+- 网络：ECR API / ECR Docker / CloudWatch Logs 使用两个 AZ 的 interface endpoints；ECS / ECS Agent / ECS Telemetry 各使用一个 AZ 的 endpoint ENI，并供五个私有子网访问。S3、DynamoDB 使用 gateway endpoint。没有 NAT Gateway，也没有互联网默认路由。
 - VPC 附加了 Internet Gateway，这是 CloudFront VPC Origin 的 AWS 前置要求；它不为私有子网提供互联网路由。
 - API：Linux ARM64 Fargate，0.25 vCPU / 0.5 GiB，常驻 1 个 Task。
 - 模型：独立 ECS EC2 服务，x86_64 NVIDIA L4 / A10G 24GB，CUDA BF16 推理。模型权重随镜像发布；GPU 内核预热后才报告健康。
-- Spot：ASG 最小 0、最大 1，`OnDemandBaseCapacity=0`、`OnDemandPercentageAboveBaseCapacity=0`，不会回退到按需实例。三个 AZ 使用 `price-capacity-optimized` 策略，在 `g6.xlarge`、`g6.2xlarge`、`g5.xlarge` 中选择可用容量，实例单价上限为 $0.55/小时。Spot 容量不足时等待或超时释放，不能保证启动成功。
-- 可用性：API 使用滚动更新及失败回滚；GPU 为单实例演示配置，Spot 回收或启动期间真实推理暂不可用。
+- 购买方式：On-Demand，最多一台。首次创建按 `g6.xlarge`（$0.8048/小时）、`g6.2xlarge`（$0.9776/小时）、`g5.xlarge`（$1.006/小时）依次尝试，每种规格先遍历五个 AZ；仅明确容量不足才切换，结果不确定时用同一幂等请求重试。当前已取得 `us-east-1f` 的 `g5.xlarge`，后续直接启动这台实例。价格为 2026-10-09 us-east-1 Linux 按需实例参考价，EBS 另计。
+- 可用性：API 使用滚动更新及失败回滚；GPU 为单实例演示配置。停止和启动期间真实推理不可用，按需实例的再次启动也可能遇到容量不足，未购买容量预留。
 - 健康检查：API 的 `/api/live`、ALB 的 `/api/ready` 不依赖 GPU 在线；登录和示例回放始终可用。`/api/health` 单独检查真实模型。
 - 日志：CloudWatch `/ecs/strands-decider-demo`，保留 14 天。
 - API 不缓存。静态资源缓存 1 小时，HTML 不缓存；发布完成后创建 CloudFront invalidation。
@@ -41,16 +42,21 @@ flowchart LR
 
 访问入口是 CloudFront 默认 HTTPS 域名，使用自建用户名和密码登录，无 Cognito。S3 和 ALB 本身不提供公共访问入口。
 
-## GPU 启停与自动释放
+## GPU 启停与磁盘保留
 
-管理员 `admin` 登录后，使用页面上的「启动 GPU」和「结束演示并释放」。有 Spot 容量时预计启动需要几分钟，后台每分钟协调一次实际资源；实际启动耗时待 GPU 容量可用后验证。其他已登录用户可以查看状态和使用就绪的模型；管理用户由 API 的 `GPU_MANAGERS` 配置限定。
+管理员 `admin` 登录后，使用页面上的「启动 GPU」和「停止 GPU，保留磁盘」。后台每分钟协调一次实际资源。其他已登录用户可以查看状态和使用就绪的模型；管理用户由 API 的 `GPU_MANAGERS` 配置限定。
 
-- 启动：将控制表的目标状态设为运行；控制器把 ASG 和 GPU ECS 服务扩到 1，等模型健康后发布私网地址。
-- 释放：立即停止接收新推理，等待已有推理的占用结束，先将模型服务任务数设为 0，再把 ASG 缩到 0。实例及其 80GB 加密 gp3 根卷随之删除。
-- 闲置：最后一次推理结束 30 分钟后，在下一次后台检查时申请释放。刷新页面和查询状态不会重置闲置时间。实例终止还需要少量时间。
-- 启动失败：等待 Spot 或模型启动超过 20 分钟后自动申请释放，可重新启动。
-- 并发保护：DynamoDB 条件更新协调多 API Task 和控制器；推理占用具有过期时间，API 失败后保留缓冲期，避免网络超时立即终止仍在运行的 CUDA 工作。
-- GPU 关闭时，真实模式提示先启动 GPU，示例回放继续可用。Spot 被回收时正在执行的请求仍可能失败，需要待替代实例就绪后重试。
+- 首次启动：控制器通过 Launch Template 创建一台按需 GPU，模型权重随镜像下载到根卷。ECS 任务健康后发布私网地址。
+- 再次启动：对已保存的实例执行 `StartInstances`，复用同一实例、80GB 加密 gp3 根卷与 Docker 镜像。`ECS_IMAGE_PULL_BEHAVIOR=prefer-cached` 避免重复拉取已有镜像；`/opt/decider-cache` 持久保存 Triton、CUDA 和 Hugging Face 缓存。模型仍须加载到显存，Stop 不保留内存。
+- 停止：立即停止接收新推理，等待已有推理结束，先将模型服务任务数设为 0，确认无运行或待启动任务后执行 `StopInstances`。实例 ID 与根卷保留，控制器没有终止实例的权限。
+- 闲置：最后一次推理结束 30 分钟后，在下一次后台检查时自动停止。刷新页面和查询状态不会重置闲置时间。
+- 启动失败：等待容量或模型启动超过 20 分钟后自动停止并显示错误；已创建的磁盘继续保留，可以重新启动。
+- 并发保护：DynamoDB 条件更新协调多 API Task 和控制器；推理占用具有过期时间，API 失败后保留缓冲期，避免网络超时立即停止仍在运行的 CUDA 工作。
+- GPU 停止时不收 EC2 计算费，80GB gp3 磁盘约 $6.40/月。页面显示当前规格和计算单价；示例回放、登录及常驻 API 继续运行。
+
+启停均为异步操作。本次复用启动到页面显示就绪实测约 3 分 51 秒；正常停止也需要数分钟，页面显示「已停止」后才允许再次启动。
+
+没有使用 Auto Scaling Group。EC2 实例由控制器通过项目标签和 DynamoDB 记录管理，CloudFormation 管理其启动模板、角色、子网和服务；因此完整清理时需要显式终止保留的实例，见下文。
 
 ## 登录与账号管理
 
@@ -66,7 +72,7 @@ flowchart LR
 在项目根目录执行以下管理命令；需要访问此表的 AWS 凭据：
 
 ```bash
-export AWS_REGION=us-east-2
+export AWS_REGION=us-east-1
 export AUTH_TABLE=strands-decider-demo-auth
 
 # 创建账号，交互输入密码（至少 12 位）
@@ -90,36 +96,38 @@ uv run python -m scripts.manage_users create admin --generate-to .deployment/adm
 
 ```bash
 # 更新常驻 API 与前端，复用 GPU 状态表和模型服务
-python deployment/deploy.py --region us-east-2 --api-only --tag YOUR_UNIQUE_API_TAG
+python deployment/deploy.py --region us-east-1 --api-only --tag YOUR_UNIQUE_API_TAG
 
 # 只更新前端（不重启模型）
-python deployment/deploy.py --region us-east-2 --frontend-only
+python deployment/deploy.py --region us-east-1 --frontend-only
 
 # 已构建好本地镜像时
-python deployment/deploy.py --region us-east-2 \
+python deployment/deploy.py --region us-east-1 \
   --api-only --tag YOUR_UNIQUE_API_TAG --skip-build
 
-# 更新 GPU 镜像：先从页面释放 GPU，再构建并更新 GPU stack
+# 更新 GPU 镜像：先从页面停止 GPU，再构建并更新 GPU stack
 uv run --extra model python deployment/package_model.py
-python deployment/build_gpu.py --region us-east-2 --tag YOUR_UNIQUE_GPU_TAG
-python deployment/deploy_gpu.py --region us-east-2 --tag YOUR_UNIQUE_GPU_TAG
+python deployment/build_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG
+python deployment/deploy_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG
 ```
 
 GPU 镜像在临时 x86 CodeBuild 环境中构建，随后推送到项目 ECR；成功后删除临时 S3 数据与构建 stack。构建失败时保留资源用于排查，重试或清理前先查看 `.deployment/gpu-build.json`，避免丢失诊断信息。首次部署按以下顺序进行：
 
 ```bash
-python deployment/deploy.py --region us-east-2 --bootstrap --tag bootstrap
+python deployment/deploy.py --region us-east-1 --bootstrap --tag bootstrap \
+  --availability-zones us-east-1d us-east-1b
 uv run --extra model python deployment/package_model.py
-python deployment/build_gpu.py --region us-east-2 --tag YOUR_UNIQUE_GPU_TAG
-python deployment/deploy_gpu.py --region us-east-2 --tag YOUR_UNIQUE_GPU_TAG
+python deployment/build_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG
+python deployment/deploy_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG \
+  --availability-zone us-east-1c --extra-availability-zones us-east-1a us-east-1f
 # 将 gpu-outputs.json 中的 StateTableName 填入下方
-python deployment/deploy.py --region us-east-2 --api-only \
+python deployment/deploy.py --region us-east-1 --api-only \
   --gpu-state-table YOUR_GPU_STATE_TABLE --tag YOUR_UNIQUE_API_TAG
 ```
 
-输出分别保存在 `.deployment/outputs.json` 和 `.deployment/gpu-outputs.json`。镜像使用不可覆盖的 tag；更新时请生成新 tag。GPU 部署脚本会拒绝在启动请求、运行任务或实例尚未释放时更新 GPU stack。
+输出分别保存在 `.deployment/outputs.json` 和 `.deployment/gpu-outputs.json`。镜像使用不可覆盖的 tag；更新时请生成新 tag。GPU 部署脚本会拒绝在启动请求、运行任务或实例尚未停止时更新 GPU stack；允许保留已停止的实例和磁盘。更新模型 tag 后首次启动会下载新镜像。修改 Launch Template 不会改写已有实例的 AMI、用户数据或磁盘，涉及这些配置时需单独规划实例替换。
 
-基础设施由主 stack 和 `strands-decider-demo-gpu` stack 管理，源码为 `infrastructure.py` 和 `gpu_infrastructure.py`。GPU stack 使用主 stack 的私有子网、ECR、日志和 ECS cluster。
+基础设施由主 stack 和 `strands-decider-demo-gpu` stack 管理，源码为 `infrastructure.py` 和 `gpu_infrastructure.py`。GPU stack 使用主 stack 的私有子网、ECR、日志和 ECS cluster。当前 GPU 候选可用区为 `us-east-1d`、`us-east-1b`、`us-east-1c`、`us-east-1a`、`us-east-1f`；可用区字母映射以当前 AWS 账号为准。新建主 stack 时可用 `--availability-zones` 指定两个 AZ，GPU stack 的 `--availability-zone` 指定第三个不同的 AZ，`--extra-availability-zones` 最多增加两个。更新时省略这些参数会保留已有选择。
 
 ```bash
 python deployment/infrastructure.py
@@ -144,29 +152,29 @@ uv run --with cfn-lint cfn-lint deployment/cloudformation.json
 ```bash
 # 查看 stack 输出
 aws cloudformation describe-stacks --stack-name strands-decider-demo \
-  --region us-east-2 --query 'Stacks[0].Outputs'
+  --region us-east-1 --query 'Stacks[0].Outputs'
 
 # 查看 ECS 服务状态
 aws ecs describe-services --cluster strands-decider-demo \
-  --services strands-decider-demo --region us-east-2 \
+  --services strands-decider-demo --region us-east-1 \
   --query 'services[0].{Running:runningCount,Desired:desiredCount,Events:events[:3]}'
 
 # 查看容器日志
-aws logs tail /ecs/strands-decider-demo --region us-east-2 --since 10m
+aws logs tail /ecs/strands-decider-demo --region us-east-1 --since 10m
 
-# GPU 已释放时：验证资源归零、示例可用、访问控制及私有网络
-python deployment/verify.py --region us-east-2 \
+# GPU 已停止时：验证计算停止、磁盘保留、示例可用及私有网络
+python deployment/verify.py --region us-east-1 \
   --credentials .deployment/admin-credentials.json --gpu-state stopped
 
-# GPU 已启动时：额外验证 Spot 实例、CUDA 推理与真实计时
-python deployment/verify.py --region us-east-2 \
+# GPU 已启动时：额外验证按需实例、CUDA 推理与真实计时
+python deployment/verify.py --region us-east-1 \
   --credentials .deployment/admin-credentials.json --gpu-state ready
 
-# 通过浏览器验证真实启停按钮（会创建 / 终止 GPU Spot 实例）
+# 通过浏览器验证真实启停按钮（首次创建，后续启动 / 停止同一按需实例）
 uv run --with playwright python scripts/check_gpu_browser.py \
   --url https://YOUR_DISTRIBUTION.cloudfront.net \
   --credentials .deployment/admin-credentials.json --action start
-# 将 --action 改为 stop 验证释放
+# 将 --action 改为 stop 验证停止并保留磁盘
 
 # 对已部署页面运行完整浏览器检查，含真实模型
 uv run --with playwright python scripts/check_browser.py \
@@ -180,10 +188,17 @@ uv run python -m scripts.check_scenarios \
   --output .deployment/crypto-scenarios-live.json
 ```
 
-S3 对象的匿名直连必须返回 `403`；通过 CloudFront 则应返回 `200`。未登录访问业务 API 返回 `401`。GPU 就绪时 `/api/health` 返回 `connected: true`、`device: cuda`；释放时返回未连接，但 API readiness 和示例接口仍成功。
+S3 对象的匿名直连必须返回 `403`；通过 CloudFront 则应返回 `200`。未登录访问业务 API 返回 `401`。GPU 就绪时 `/api/health` 返回 `connected: true`、`device: cuda`；停止时返回未连接，但 API readiness 和示例接口仍成功。
 
-固定运行成本主要来自 Fargate 0.25 vCPU / 0.5 GiB、ALB 和 9 个 interface endpoint ENI；另外按用量收取 DynamoDB、Lambda、ECR、CloudFront、S3、日志及数据处理费用。DynamoDB gateway endpoint 无小时费。GPU 就绪及启动期间另收 Spot 实例与 EBS 费用，实例终止后这部分停止；常驻资源费用仍存在。
+固定运行成本主要来自 Fargate 0.25 vCPU / 0.5 GiB、ALB、9 个 interface endpoint ENI 和保留的 80GB gp3 磁盘；另外按用量收取 DynamoDB、Lambda、ECR、CloudFront、S3、日志及数据处理费用。DynamoDB gateway endpoint 无小时费。GPU 启动及运行期间另收按需计算费，当前 `g5.xlarge` 为 $1.006/小时，运行 10 分钟约 $0.168；EC2 按秒计费、每次启动最低 60 秒。停止后计算费停止，磁盘与常驻服务费用继续。
 
 ## 清理
 
-先从页面释放 GPU，确认实例数量为 0，再删除 GPU stack，最后删除主 stack。GPU 控制表与控制器随 GPU stack 删除；主 stack 的认证 DynamoDB、前端 S3、ECR 和日志采用 `Retain`，完整清理需要另行处理这些保留数据。CloudFront VPC Origin 的删除可能需要数分钟。
+日常结束演示只需点击「停止 GPU，保留磁盘」，不要执行完整清理。
+
+完整删除环境时：
+
+1. 从页面停止 GPU，确认 EC2 为 `stopped`、GPU ECS 服务任务数为 0。
+2. 通过 `DeciderGpuStack=strands-decider-demo-gpu` 标签定位该实例，记录所需数据后显式终止它，并等待终止完成。根卷设置 `DeleteOnTermination=true`，这一步会删除保留的模型和缓存；跳过会阻止子网删除。
+3. 删除 GPU stack，再删除主 stack。GPU 控制表和控制器随 GPU stack 删除。
+4. 主 stack 的认证 DynamoDB、前端 S3、ECR 和日志采用 `Retain`，完整清理需要另行删除这些数据，以及 `/strands-decider-demo/migrated-us-east-2/` 下的三个历史日志组。版本化 S3 bucket 必须先清理所有对象版本及删除标记。CloudFront VPC Origin 的删除可能需要数分钟。
