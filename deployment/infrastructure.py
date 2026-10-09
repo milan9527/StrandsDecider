@@ -215,7 +215,12 @@ def template():
                             "dynamodb:DeleteItem",
                             "dynamodb:UpdateItem",
                         ],
-                        "Resource": attr("AuthTable", "Arn"),
+                        "Resource": [
+                            attr("AuthTable", "Arn"),
+                            sub(
+                                "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${GpuStateTableName}"
+                            ),
+                        ],
                     }
                 ],
             },
@@ -299,7 +304,12 @@ def template():
                                     "dynamodb:DeleteItem",
                                     "dynamodb:UpdateItem",
                                 ],
-                                "Resource": attr("AuthTable", "Arn"),
+                                "Resource": [
+                                    attr("AuthTable", "Arn"),
+                                    sub(
+                                        "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${GpuStateTableName}"
+                                    ),
+                                ],
                             }
                         ],
                     },
@@ -338,26 +348,14 @@ def template():
         "ECS::TaskDefinition",
         {
             "Family": sub("${AWS::StackName}"),
-            "Cpu": "4096",
-            "Memory": "16384",
+            "Cpu": "256",
+            "Memory": "512",
             "RuntimePlatform": {"CpuArchitecture": "ARM64", "OperatingSystemFamily": "LINUX"},
             "RequiresCompatibilities": ["FARGATE"],
             "NetworkMode": "awsvpc",
-            "EphemeralStorage": {"SizeInGiB": 30},
             "ExecutionRoleArn": attr("ExecutionRole", "Arn"),
             "TaskRoleArn": attr("TaskRole", "Arn"),
             "ContainerDefinitions": [
-                {
-                    "Name": "model",
-                    "Image": sub("${ModelRepository.RepositoryUri}:${ImageTag}"),
-                    "Essential": True,
-                    "Cpu": 3840,
-                    "Memory": 15360,
-                    "User": "10001",
-                    "StopTimeout": 120,
-                    "LogConfiguration": logging("model"),
-                    "HealthCheck": healthcheck("http://127.0.0.1:8099/health", 300),
-                },
                 {
                     "Name": "api",
                     "Image": {
@@ -374,11 +372,12 @@ def template():
                     "ReadonlyRootFilesystem": True,
                     "StopTimeout": 60,
                     "StartTimeout": 120,
-                    "DependsOn": [{"ContainerName": "model", "Condition": "HEALTHY"}],
                     "PortMappings": [{"ContainerPort": 8000, "Protocol": "tcp"}],
                     "Environment": [
                         {"Name": "SERVE_FRONTEND", "Value": "false"},
                         {"Name": "STRANDS_DECIDER_URL", "Value": "http://127.0.0.1:8099"},
+                        {"Name": "GPU_STATE_TABLE", "Value": ref("GpuStateTableName")},
+                        {"Name": "GPU_MANAGERS", "Value": "admin"},
                         {"Name": "DECIDER_TIMEOUT", "Value": "50"},
                         {"Name": "AUTH_TABLE", "Value": ref("AuthTable")},
                         {"Name": "AWS_REGION", "Value": ref("AWS::Region")},
@@ -659,10 +658,11 @@ def template():
     }
     return {
         "AWSTemplateFormatVersion": "2010-09-09",
-        "Description": "Strands Decider: private S3 with OAC, CloudFront VPC origin, internal ALB, ARM64 ECS Fargate.",
+        "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with separately managed Spot GPU.",
         "Parameters": {
             "ImageTag": {"Type": "String", "AllowedPattern": "[A-Za-z0-9._-]+"},
             "ApiImageTag": {"Type": "String", "Default": "", "AllowedPattern": "[A-Za-z0-9._-]*"},
+            "GpuStateTableName": {"Type": "String", "AllowedPattern": "[A-Za-z0-9._-]+"},
             "DesiredCount": {"Type": "Number", "Default": 0, "MinValue": 0, "MaxValue": 4},
             "AvailabilityZone1": {"Type": "AWS::EC2::AvailabilityZone::Name"},
             "AvailabilityZone2": {"Type": "AWS::EC2::AvailabilityZone::Name"},

@@ -10,8 +10,8 @@
     />
     <title>Strands Decider · 决策实验室</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=cryptopay1" />
-    <script src="/static/app.js?v=cryptopay1" type="module"></script>
+    <link rel="stylesheet" href="/static/styles.css?v=gpu2" />
+    <script src="/static/app.js?v=gpu2" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -190,6 +190,33 @@
         </div>
       </header>
       <main id="main">
+        <section
+          id="gpu-panel"
+          class="gpu-panel"
+          aria-label="按需 GPU 管理"
+          hidden
+        >
+          <div class="gpu-copy">
+            <div class="gpu-heading">
+              <span data-icon="cpu"></span><strong>GPU Spot · 按需运行</strong>
+              <span id="gpu-status" class="subtle-badge" role="status"
+                >检查状态</span
+              >
+            </div>
+            <p id="gpu-message"></p>
+            <small id="gpu-spec"
+              >NVIDIA GPU · Spot 最高 $0.55/小时 · 闲置 30 分钟自动释放</small
+            >
+          </div>
+          <div class="gpu-actions">
+            <button type="button" id="gpu-start" class="primary-button">
+              启动 GPU
+            </button>
+            <button type="button" id="gpu-stop" class="secondary-button">
+              结束演示并释放
+            </button>
+          </div>
+        </section>
         <section id="page-playground" class="page">
           <div class="page-heading">
             <div>
@@ -437,8 +464,7 @@
                 </div>
                 <label for="guard-message">用户请求</label
                 ><textarea id="guard-message" rows="3" maxlength="1000">
-What's the weather?</textarea
-                >
+What's the weather?</textarea>
                 <label for="guard-location">Agent 提议的工具参数</label>
                 <div class="tool-input">
                   <code>get_weather(location=</code

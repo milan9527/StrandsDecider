@@ -78,6 +78,98 @@ let history = [];
 let currentUser = null;
 let historyKey = null;
 let scenarioCategory = "all";
+let gpuState = null;
+let gpuChecking = false;
+let gpuChanging = false;
+
+function renderGpu() {
+  $("#gpu-panel").hidden = !gpuState?.enabled;
+  if (!gpuState?.enabled) return;
+  const phase = gpuState.phase;
+  const labels = {
+    stopped: "已释放",
+    starting: "启动中",
+    ready: "GPU 就绪",
+    stopping: "释放中",
+    error: "启动未完成",
+  };
+  $("#gpu-status").textContent = labels[phase] || "检查中";
+  $("#gpu-spec").textContent =
+    `${gpuState.instance_type || "g6 / g5 · NVIDIA GPU"} · Spot 最高 $0.55/小时 · 闲置 30 分钟自动释放 · 可能被回收`;
+  const minutes = Math.ceil(gpuState.idle_remaining_seconds / 60);
+  const messages = {
+    stopped:
+      gpuState.stop_reason === "idle"
+        ? "已因闲置自动释放 GPU。示例回放仍可使用，真实推理前请重新启动。"
+        : "示例回放可直接使用。启动 GPU 后即可运行真实模型。",
+    starting:
+      "正在申请 Spot 容量并加载模型，通常需要几分钟。超过 20 分钟未就绪会自动释放。",
+    ready: gpuState.busy
+      ? "正在执行推理。释放操作会等待当前请求完成。"
+      : `真实模型已就绪。若没有新的推理请求，约 ${minutes} 分钟后自动释放。`,
+    stopping: "已停止接收新的推理请求，正在等待任务结束并终止 GPU 实例。",
+    error: "本次启动未在时限内完成，资源已释放。可重新尝试申请 Spot 容量。",
+  };
+  $("#gpu-message").textContent = messages[phase] || "正在检查资源状态。";
+  $("#gpu-start").hidden = !gpuState.can_manage;
+  $("#gpu-stop").hidden = !gpuState.can_manage;
+  $("#gpu-start").disabled =
+    gpuChanging || !["stopped", "error"].includes(phase);
+  $("#gpu-stop").disabled = gpuChanging || gpuState.desired !== "running";
+}
+
+async function checkGpu() {
+  if (!currentUser || gpuChecking || gpuChanging) return;
+  gpuChecking = true;
+  try {
+    const previous = gpuState?.phase;
+    gpuState = await api("/api/gpu");
+    renderGpu();
+    if (previous !== gpuState.phase) checkConnection();
+  } catch (error) {
+    if (gpuState?.enabled) {
+      $("#gpu-status").textContent = "状态暂不可用";
+      $("#gpu-message").textContent = error.message;
+      $("#gpu-start").disabled = true;
+      $("#gpu-stop").disabled = true;
+    }
+  } finally {
+    gpuChecking = false;
+  }
+}
+
+async function changeGpu(action) {
+  if (gpuChanging || !gpuState?.can_manage) return;
+  gpuChanging = true;
+  renderGpu();
+  try {
+    gpuState = await api(`/api/gpu/${action}`, {});
+    renderGpu();
+    checkConnection();
+    toast(
+      action === "start"
+        ? "启动请求已提交，页面会自动更新状态。"
+        : "释放请求已提交，将等待当前推理完成。",
+    );
+  } catch (error) {
+    toast(error.message);
+  } finally {
+    gpuChanging = false;
+    renderGpu();
+  }
+}
+
+function gpuAllowsInference() {
+  if (
+    gpuState?.enabled &&
+    (gpuState.phase !== "ready" || gpuState.desired !== "running")
+  ) {
+    toast("GPU 尚未就绪，请先启动并等待状态变为“GPU 就绪”。");
+    $("#gpu-panel").scrollIntoView({ behavior: "smooth", block: "center" });
+    return false;
+  }
+  return true;
+}
 
 function toast(message) {
   const el = $("#toast");
@@ -449,6 +541,7 @@ function saveRun(title, request, response, kind = "decision") {
 }
 async function runDecision() {
   if (!currentUser || running || guardRunning || !selected) return;
+  if (mode === "live" && !gpuAllowsInference()) return;
   let body;
   try {
     body = collectRequest();
@@ -505,6 +598,7 @@ function resetGuard() {
 }
 async function runGuard() {
   if (!currentUser || guardRunning || running) return;
+  if (mode === "live" && !gpuAllowsInference()) return;
   const body = {
     mode,
     measure_decisions: true,
@@ -704,6 +798,11 @@ $("#reset-example").addEventListener("click", () => {
 $("#run-decision").addEventListener("click", runDecision);
 $("#run-guard").addEventListener("click", runGuard);
 $("#refresh-connection").addEventListener("click", checkConnection);
+$("#gpu-start").addEventListener("click", () => changeGpu("start"));
+$("#gpu-stop").addEventListener("click", () => changeGpu("stop"));
+setInterval(() => {
+  if (!document.hidden) checkGpu();
+}, 5000);
 $("#copy-result").addEventListener("click", () => {
   if (result)
     copyText(resultTab === "request" ? requestCode(lastRequest) : json(result));
@@ -763,6 +862,7 @@ async function initializeWorkspace(user) {
   showPage();
   $("#history-count").textContent = history.length;
   checkConnection();
+  checkGpu();
   try {
     examples = await api("/api/examples");
     renderScenarios();

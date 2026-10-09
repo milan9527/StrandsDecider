@@ -11,10 +11,13 @@ import httpx
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.concurrency import run_in_threadpool
 
 from app.auth import Auth
 from app.auth import router as auth_router
 from app.examples import EXAMPLES, GUARD_QUESTIONS, public_examples
+from app.gpu import configured_gpu, inference_lease
+from app.gpu import router as gpu_router
 from app.policy import review, tool_state
 from app.schemas import DecisionRequest, GuardRequest
 
@@ -25,6 +28,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app):
     app.state.auth = Auth()
+    app.state.gpu = configured_gpu()
     app.state.upstream = os.getenv("STRANDS_DECIDER_URL", "http://127.0.0.1:8099").rstrip("/")
     app.state.lock = asyncio.Lock()
     app.state.model_timeout = float(os.getenv("DECIDER_TIMEOUT", "180"))
@@ -45,6 +49,7 @@ app = FastAPI(
     redoc_url=None,
 )
 app.include_router(auth_router)
+app.include_router(gpu_router)
 
 
 @app.middleware("http")
@@ -72,10 +77,14 @@ def examples():
 
 @app.get("/api/health")
 async def health(request: Request):
+    upstream = request.app.state.upstream
+    if request.app.state.gpu:
+        state = await run_in_threadpool(request.app.state.gpu.get)
+        if state["desired"] != "running" or state["phase"] != "ready" or not state.get("endpoint"):
+            return {"connected": False, "message": "GPU 尚未就绪。示例回放仍可使用。"}
+        upstream = state["endpoint"]
     try:
-        response = await request.app.state.client.get(
-            request.app.state.upstream + "/health", timeout=3
-        )
+        response = await request.app.state.client.get(upstream + "/health", timeout=3)
         response.raise_for_status()
         data = response.json()
         if not isinstance(data, dict) or data.get("status") != "ok" or not data.get("model"):
@@ -87,6 +96,9 @@ async def health(request: Request):
 
 @app.get("/api/ready", include_in_schema=False)
 async def readiness(request: Request):
+    if request.app.state.gpu:
+        # The API serves authentication, examples and lifecycle controls while the GPU is off.
+        return {"status": "ready", "model": "on-demand-gpu"}
     status = await health(request)
     if not status["connected"]:
         raise HTTPException(503, "模型仍在启动")
@@ -166,7 +178,7 @@ def validate_response(data, questions):
 async def call_model(request: Request, payload: dict):
     try:
         response = await request.app.state.client.post(
-            request.app.state.upstream + "/v1/systemone", json=payload
+            request.state.model_upstream + "/v1/systemone", json=payload
         )
         if response.status_code == 422:
             raise HTTPException(422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。")
@@ -175,7 +187,7 @@ async def call_model(request: Request, payload: dict):
         validate_response(result, payload["questions"])
         return result
     except httpx.TimeoutException as exc:
-        raise HTTPException(504, "模型响应超时。CPU 首次推理可能较慢，请稍后重试。") from exc
+        raise HTTPException(504, "模型响应超时，请稍后重试或缩短输入。") from exc
     except httpx.HTTPError as exc:
         raise HTTPException(
             503, "无法连接 Strands Decider。请先启动模型服务，或切换到示例回放。"
@@ -189,7 +201,7 @@ async def live_decision(request: Request, payload: dict, *, measure_decisions=Fa
     queued_at = perf_counter()
     decision_ms = {}
     # Keep the entire run in one slot; the engine owns mutable inference state.
-    async with decision_slot(request.app.state.lock):
+    async with decision_slot(request.app.state.lock), inference_lease(request):
         started = perf_counter()
         try:
             # One deadline for the complete run, not a fresh timeout for every question.

@@ -30,6 +30,10 @@ def main():
     )
     parser.add_argument("--frontend-only", action="store_true")
     parser.add_argument("--api-only", action="store_true", help="Keep the existing model image")
+    parser.add_argument("--gpu-state-table", help="GPU control table from the GPU stack")
+    parser.add_argument(
+        "--bootstrap", action="store_true", help="Create base infrastructure at zero API capacity"
+    )
     args = parser.parse_args()
     STATE.mkdir(exist_ok=True)
     template_path = ROOT / "deployment" / "cloudformation.json"
@@ -75,6 +79,10 @@ def main():
         raise TimeoutError("CloudFormation did not stabilize within 40 minutes")
 
     current = stack()
+    if not args.frontend_only and not args.api_only and not args.bootstrap:
+        parser.error(
+            "Deploy the GPU image with build_gpu.py and GPU stack first, then use --api-only."
+        )
     if args.api_only and current is None:
         parser.error("--api-only requires an existing stack")
     image_names = ("api",) if args.api_only else ("api", "model")
@@ -99,6 +107,7 @@ def main():
             values = {
                 "ImageTag": args.tag,
                 "DesiredCount": "0",
+                "GpuStateTableName": "unconfigured",
                 "AvailabilityZone1": zones[0],
                 "AvailabilityZone2": zones[1],
                 "CloudFrontPrefixListId": prefix,
@@ -123,6 +132,15 @@ def main():
             raise RuntimeError(
                 "The existing stack has rolled back; inspect its events before retrying."
             )
+
+        if args.bootstrap:
+            current = wait_stack()
+            print(
+                json.dumps(
+                    {row["OutputKey"]: row["OutputValue"] for row in current["Outputs"]}, indent=2
+                )
+            )
+            return
 
         if not args.skip_build:
             for name in image_names:
@@ -197,6 +215,11 @@ def main():
             ),
             {"ParameterKey": "ApiImageTag", "ParameterValue": args.tag},
             {"ParameterKey": "DesiredCount", "ParameterValue": "1"},
+            (
+                {"ParameterKey": "GpuStateTableName", "ParameterValue": args.gpu_state_table}
+                if args.gpu_state_table
+                else {"ParameterKey": "GpuStateTableName", "UsePreviousValue": True}
+            ),
             *[
                 {"ParameterKey": name, "UsePreviousValue": True}
                 for name in (

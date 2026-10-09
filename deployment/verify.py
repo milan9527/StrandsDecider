@@ -15,6 +15,7 @@ def main():
     parser.add_argument("--region", default="us-east-2")
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--credentials", type=Path, required=True)
+    parser.add_argument("--gpu-state", choices=["ready", "stopped"], default="stopped")
     args = parser.parse_args()
     opener = urllib.request.build_opener(
         urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar())
@@ -91,7 +92,14 @@ def main():
     service = services[0]
     assert service["runningCount"] == service["desiredCount"] == 1
     assert service["networkConfiguration"]["awsvpcConfiguration"]["assignPublicIp"] == "DISABLED"
-    tasks = aws("ecs", "list-tasks", "--cluster", outputs["ClusterName"])["taskArns"]
+    tasks = aws(
+        "ecs",
+        "list-tasks",
+        "--cluster",
+        outputs["ClusterName"],
+        "--service-name",
+        outputs["ServiceName"],
+    )["taskArns"]
     details = aws("ecs", "describe-tasks", "--cluster", outputs["ClusterName"], "--tasks", *tasks)[
         "tasks"
     ]
@@ -107,10 +115,67 @@ def main():
         "NetworkInterfaces"
     ]
     assert all("PublicIp" not in e.get("Association", {}) for e in enis)
-    load_balancers = aws("elbv2", "describe-load-balancers")["LoadBalancers"]
-    assert all(
-        lb["Scheme"] == "internal" for lb in load_balancers if lb["VpcId"] == outputs["VpcId"]
+    lb_arn = aws(
+        "cloudformation",
+        "describe-stack-resource",
+        "--stack-name",
+        args.stack,
+        "--logical-resource-id",
+        "LoadBalancer",
+    )["StackResourceDetail"]["PhysicalResourceId"]
+    assert (
+        aws("elbv2", "describe-load-balancers", "--load-balancer-arns", lb_arn)["LoadBalancers"][0][
+            "Scheme"
+        ]
+        == "internal"
     )
+    gpu_stack = aws("cloudformation", "describe-stacks", "--stack-name", args.stack + "-gpu")[
+        "Stacks"
+    ][0]
+    gpu_outputs = {row["OutputKey"]: row["OutputValue"] for row in gpu_stack["Outputs"]}
+    group = aws(
+        "autoscaling",
+        "describe-auto-scaling-groups",
+        "--auto-scaling-group-names",
+        gpu_outputs["AsgName"],
+    )["AutoScalingGroups"][0]
+    assert group["MinSize"] == 0 and group["MaxSize"] == 1
+    distribution = group["MixedInstancesPolicy"]["InstancesDistribution"]
+    assert (
+        distribution["OnDemandBaseCapacity"]
+        == distribution["OnDemandPercentageAboveBaseCapacity"]
+        == 0
+    )
+    gpu_service = aws(
+        "ecs",
+        "describe-services",
+        "--cluster",
+        outputs["ClusterName"],
+        "--services",
+        gpu_outputs["ServiceName"],
+    )["services"][0]
+    if args.gpu_state == "stopped":
+        assert group["DesiredCapacity"] == 0 and not group["Instances"]
+        assert (
+            gpu_service["desiredCount"]
+            == gpu_service["runningCount"]
+            == gpu_service["pendingCount"]
+            == 0
+        )
+    else:
+        assert group["DesiredCapacity"] == len(group["Instances"]) == 1
+        instance = aws(
+            "ec2", "describe-instances", "--instance-ids", group["Instances"][0]["InstanceId"]
+        )["Reservations"][0]["Instances"][0]
+        assert instance["InstanceLifecycle"] == "spot" and instance["InstanceType"] in (
+            "g6.xlarge",
+            "g6.2xlarge",
+            "g5.xlarge",
+        )
+        assert "PublicIpAddress" not in instance
+        assert all(
+            volume["Ebs"]["DeleteOnTermination"] for volume in instance["BlockDeviceMappings"]
+        )
     routes = aws(
         "ec2", "describe-route-tables", "--filters", f"Name=vpc-id,Values={outputs['VpcId']}"
     )["RouteTables"]
@@ -135,26 +200,44 @@ def main():
     replay = "; ".join(f"{key}={value.value}" for key, value in parsed.items())
     assert request(url + "/api/auth/me")[0] == 200
     health = json.loads(request(url + "/api/health")[1])
-    assert health["connected"] is True
+    gpu_status = json.loads(request(url + "/api/gpu")[1])
+    assert gpu_status["phase"] == args.gpu_state and gpu_status["purchase_option"] == "spot"
+    assert request(url + "/api/ready")[0] == 200
+    assert health["connected"] is (args.gpu_state == "ready")
+    if args.gpu_state == "ready":
+        assert health["upstream"]["device"] == "cuda"
     example = json.loads(request(url + "/api/examples")[1])[0]
     result = json.loads(
         request(
             url + "/api/decide",
             {
-                "mode": "live",
+                "mode": "live" if args.gpu_state == "ready" else "example",
+                "example_id": example["id"],
                 "measure_decisions": True,
                 "state": example["state"],
                 "questions": example["questions"],
             },
         )[1]
     )
-    assert result["source"] == "live" and len(result["answers"]) == 3
-    assert result["model"] == "strands-decider-2B-hobson-v19"
-    timings = result["timings"]
-    assert timings["execution"] == "individual"
-    assert set(timings["decisions_ms"]) == set(example["questions"])
-    assert all(value > 0 for value in timings["decisions_ms"].values())
-    assert timings["backend_total_ms"] >= sum(timings["decisions_ms"].values()) - 0.01
+    assert len(result["answers"]) == 3
+    if args.gpu_state == "ready":
+        assert result["source"] == "live"
+        assert result["model"] == "strands-decider-2B-hobson-v19"
+        timings = result["timings"]
+        assert timings["execution"] == "individual"
+        assert set(timings["decisions_ms"]) == set(example["questions"])
+        assert all(value > 0 for value in timings["decisions_ms"].values())
+        assert timings["backend_total_ms"] >= sum(timings["decisions_ms"].values()) - 0.01
+    else:
+        assert result["source"] == "example" and result["latency_ms"] is None
+        try:
+            request(
+                url + "/api/decide",
+                {"mode": "live", "state": example["state"], "questions": example["questions"]},
+            )
+            raise AssertionError("Live inference succeeded with GPU stopped")
+        except urllib.error.HTTPError as error:
+            assert error.code == 503
     assert request(url + "/api/auth/logout", {})[0] == 200
     try:
         request(url + "/api/examples")
@@ -175,12 +258,13 @@ def main():
                 "s3_anonymous_access": "403 (blocked)",
                 "s3_public_access_block": "all enabled",
                 "oac": "always / sigv4 / scoped to distribution",
-                "ecs": "1 healthy ARM64 task, no public IP",
+                "ecs": "1 healthy ARM64 API task, no public IP",
+                "gpu": gpu_status,
                 "alb": "internal / CloudFront VPC origin",
                 "internet_default_routes": 0,
                 "authentication": "username/password, secure HttpOnly session, protected API, logout verified",
                 "auth_store": outputs["AuthTableName"],
-                "live_result": result,
+                "result": result,
             },
             indent=2,
             ensure_ascii=False,

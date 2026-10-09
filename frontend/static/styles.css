@@ -2893,3 +2893,49 @@ select.type-badge {
     transition: none !important;
   }
 }
+.gpu-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  border: 1px solid #dce4ce;
+  border-radius: 14px;
+  background: #f7faef;
+}
+.gpu-heading,
+.gpu-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.gpu-heading svg {
+  width: 20px;
+  height: 20px;
+  color: #789054;
+}
+.gpu-copy p {
+  margin: 10px 0 6px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.gpu-copy small {
+  color: #7c8870;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.gpu-actions {
+  flex-shrink: 0;
+}
+@media (max-width: 1000px) {
+  .gpu-panel {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px;
+  }
+  .gpu-actions button {
+    flex: 1;
+  }
+}

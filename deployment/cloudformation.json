@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "Strands Decider: private S3 with OAC, CloudFront VPC origin, internal ALB, ARM64 ECS Fargate.",
+  "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with separately managed Spot GPU.",
   "Parameters": {
     "ImageTag": {
       "Type": "String",
@@ -10,6 +10,10 @@
       "Type": "String",
       "Default": "",
       "AllowedPattern": "[A-Za-z0-9._-]*"
+    },
+    "GpuStateTableName": {
+      "Type": "String",
+      "AllowedPattern": "[A-Za-z0-9._-]+"
     },
     "DesiredCount": {
       "Type": "Number",
@@ -395,12 +399,17 @@
                 "dynamodb:DeleteItem",
                 "dynamodb:UpdateItem"
               ],
-              "Resource": {
-                "Fn::GetAtt": [
-                  "AuthTable",
-                  "Arn"
-                ]
-              }
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "AuthTable",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${GpuStateTableName}"
+                }
+              ]
             }
           ]
         }
@@ -513,12 +522,17 @@
                     "dynamodb:DeleteItem",
                     "dynamodb:UpdateItem"
                   ],
-                  "Resource": {
-                    "Fn::GetAtt": [
-                      "AuthTable",
-                      "Arn"
-                    ]
-                  }
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "AuthTable",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${GpuStateTableName}"
+                    }
+                  ]
                 }
               ]
             }
@@ -540,8 +554,8 @@
         "Family": {
           "Fn::Sub": "${AWS::StackName}"
         },
-        "Cpu": "4096",
-        "Memory": "16384",
+        "Cpu": "256",
+        "Memory": "512",
         "RuntimePlatform": {
           "CpuArchitecture": "ARM64",
           "OperatingSystemFamily": "LINUX"
@@ -550,9 +564,6 @@
           "FARGATE"
         ],
         "NetworkMode": "awsvpc",
-        "EphemeralStorage": {
-          "SizeInGiB": 30
-        },
         "ExecutionRoleArn": {
           "Fn::GetAtt": [
             "ExecutionRole",
@@ -566,41 +577,6 @@
           ]
         },
         "ContainerDefinitions": [
-          {
-            "Name": "model",
-            "Image": {
-              "Fn::Sub": "${ModelRepository.RepositoryUri}:${ImageTag}"
-            },
-            "Essential": true,
-            "Cpu": 3840,
-            "Memory": 15360,
-            "User": "10001",
-            "StopTimeout": 120,
-            "LogConfiguration": {
-              "LogDriver": "awslogs",
-              "Options": {
-                "awslogs-group": {
-                  "Ref": "LogGroup"
-                },
-                "awslogs-region": {
-                  "Ref": "AWS::Region"
-                },
-                "awslogs-stream-prefix": "model",
-                "mode": "non-blocking",
-                "max-buffer-size": "5m"
-              }
-            },
-            "HealthCheck": {
-              "Command": [
-                "CMD-SHELL",
-                "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8099/health', timeout=3)\""
-              ],
-              "Interval": 30,
-              "Timeout": 5,
-              "Retries": 3,
-              "StartPeriod": 300
-            }
-          },
           {
             "Name": "api",
             "Image": {
@@ -621,12 +597,6 @@
             "ReadonlyRootFilesystem": true,
             "StopTimeout": 60,
             "StartTimeout": 120,
-            "DependsOn": [
-              {
-                "ContainerName": "model",
-                "Condition": "HEALTHY"
-              }
-            ],
             "PortMappings": [
               {
                 "ContainerPort": 8000,
@@ -641,6 +611,16 @@
               {
                 "Name": "STRANDS_DECIDER_URL",
                 "Value": "http://127.0.0.1:8099"
+              },
+              {
+                "Name": "GPU_STATE_TABLE",
+                "Value": {
+                  "Ref": "GpuStateTableName"
+                }
+              },
+              {
+                "Name": "GPU_MANAGERS",
+                "Value": "admin"
               },
               {
                 "Name": "DECIDER_TIMEOUT",

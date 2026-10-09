@@ -14,6 +14,7 @@ def password_hash():
 def auth_config(tmp_path, monkeypatch, password_hash):
     monkeypatch.delenv("AUTH_TABLE", raising=False)
     monkeypatch.delenv("AUTH_ORIGIN", raising=False)
+    monkeypatch.delenv("GPU_STATE_TABLE", raising=False)
     monkeypatch.setenv("AUTH_COOKIE_SECURE", "false")
     monkeypatch.setenv("AUTH_DB_PATH", str(tmp_path / "auth.sqlite3"))
     store = SQLiteStore(tmp_path / "auth.sqlite3")
