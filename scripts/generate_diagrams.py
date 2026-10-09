@@ -1,5 +1,7 @@
-"""Generate editable draw.io pages and matching SVG previews using only stdlib."""
+"""Generate SVG diagrams, with an optional local draw.io export, using only stdlib."""
 
+import argparse
+import base64
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
@@ -20,15 +22,63 @@ PALETTES = {
 }
 
 
+def aws_icon(name, prefix, x, y, size):
+    """Inline an official SVG with unique IDs; preserve its paths and colors."""
+    icon = ET.parse(OUT / "aws-icons" / f"{name}.svg").getroot()
+    ids = {
+        element.attrib["id"]: f"{prefix}-{index}"
+        for index, element in enumerate(icon.iter())
+        if "id" in element.attrib
+    }
+    for element in icon.iter():
+        element.tag = element.tag.removeprefix("{http://www.w3.org/2000/svg}")
+        for key, value in list(element.attrib.items()):
+            if key == "id":
+                element.set(key, ids[value])
+                continue
+            for old, new in ids.items():
+                value = value.replace(f"url(#{old})", f"url(#{new})")
+                if key.endswith("href") and value == f"#{old}":
+                    value = f"#{new}"
+            element.set(key, value)
+    icon.attrib.update(x=str(x), y=str(y), width=str(size), height=str(size))
+    icon.set("aria-hidden", "true")
+    return icon
+
+
+def icon_layout(node):
+    size = 32 if node["group"] else 56
+    width = len(node["icons"]) * (size + 12) - 12
+    x = node["x"] + 12 if node["group"] or node["side"] else node["x"] + (node["w"] - width) / 2
+    y = node["y"] + (node["h"] - size) / 2 if node["side"] else node["y"] + 10
+    return x, y, size, width
+
+
 class Page:
-    def __init__(self, name, slug, subtitle, width=1600, height=1150):
+    def __init__(self, name, slug, subtitle, width=1600, height=1150, aws_style=False):
         self.name, self.slug = name, slug
         self.width, self.height = width, height
+        self.aws_style = aws_style
         self.nodes, self.edges = [], []
         self.box("title", 40, 24, width - 80, 48, name, size=30, text=True)
         self.box("subtitle", 40, 80, width - 80, 38, subtitle, size=16, text=True)
 
-    def box(self, key, x, y, w, h, label, palette="neutral", size=18, text=False, group=False):
+    def box(
+        self,
+        key,
+        x,
+        y,
+        w,
+        h,
+        label,
+        palette="neutral",
+        size=18,
+        text=False,
+        group=False,
+        icons=(),
+        side=False,
+        boundary=None,
+    ):
         self.nodes.append(
             dict(
                 id=key,
@@ -41,6 +91,9 @@ class Page:
                 size=size,
                 text=text,
                 group=group,
+                icons=icons,
+                side=side,
+                boundary=boundary,
             )
         )
         return key
@@ -97,6 +150,19 @@ class Page:
                 style += "fillColor=none;strokeColor=none;align=left;fontStyle=1;"
             if node["group"]:
                 style += "verticalAlign=top;align=left;fontStyle=1;dashed=1;spacingTop=14;"
+            if self.aws_style:
+                style += "rounded=0;fontColor=#232f3e;fillColor=none;strokeColor=none;"
+                if node["group"]:
+                    color = node["boundary"] or "#879196"
+                    fill = "#f2faf8" if node["id"] == "subnet" else "#ffffff"
+                    dashed = int(node["id"] == "region")
+                    style += f"fillColor={fill};strokeColor={color};dashed={dashed};"
+                if node["icons"]:
+                    _, _, _, icon_width = icon_layout(node)
+                    if node["group"] or node["side"]:
+                        style += f"align=left;spacingLeft={icon_width + 14};"
+                    else:
+                        style += "verticalAlign=top;spacingTop=66;"
             cell = ET.SubElement(
                 root,
                 "mxCell",
@@ -117,6 +183,34 @@ class Page:
                     "as": "geometry",
                 },
             )
+            if node["icons"]:
+                x, y, size, _ = icon_layout(node)
+                for i, name in enumerate(node["icons"]):
+                    image = base64.b64encode(
+                        (OUT / "aws-icons" / f"{name}.svg").read_bytes()
+                    ).decode("ascii")
+                    image_cell = ET.SubElement(
+                        root,
+                        "mxCell",
+                        id=f"{node['id']}-icon-{i}",
+                        style=(
+                            "shape=image;imageAspect=1;aspect=fixed;"
+                            f"image=data:image/svg+xml,{image};"
+                        ),
+                        vertex="1",
+                        parent="1",
+                    )
+                    ET.SubElement(
+                        image_cell,
+                        "mxGeometry",
+                        {
+                            "x": str(x + i * (size + 12)),
+                            "y": str(y),
+                            "width": str(size),
+                            "height": str(size),
+                            "as": "geometry",
+                        },
+                    )
         for i, edge in enumerate(self.edges):
             a, b = lookup[edge["source"]], lookup[edge["target"]]
             start, end = edge["points"][0], edge["points"][-1]
@@ -180,7 +274,7 @@ class Page:
             role="img",
         )
         ET.SubElement(svg, "title").text = self.name
-        ET.SubElement(svg, "desc").text = "Editable source: strands-decider-demo.drawio"
+        ET.SubElement(svg, "desc").text = "Generated from scripts/generate_diagrams.py"
         defs = ET.SubElement(svg, "defs")
         for color in (MUTED, TEAL, BLUE, ORANGE):
             marker = ET.SubElement(
@@ -198,17 +292,25 @@ class Page:
         ET.SubElement(svg, "rect", width="100%", height="100%", fill="#ffffff")
         for node in self.nodes:
             fill, stroke, font = PALETTES[node["palette"]]
-            if not node["text"]:
+            if self.aws_style:
+                font = "#232f3e"
+                fill = "#ffffff"
+                stroke = node["boundary"] or "#879196"
+                if node["id"] == "subnet":
+                    fill = "#f2faf8"
+            if not node["text"] and (not self.aws_style or node["group"]):
                 attrs = dict(
                     x=str(node["x"]),
                     y=str(node["y"]),
                     width=str(node["w"]),
                     height=str(node["h"]),
-                    rx="12",
+                    rx="0" if self.aws_style else "12",
                     fill=fill,
                     stroke=stroke,
                 )
-                if node["group"]:
+                if self.aws_style:
+                    attrs["stroke-width"] = "1.5"
+                if node["group"] and (not self.aws_style or node["id"] == "region"):
                     attrs["stroke-dasharray"] = "7 5"
                 ET.SubElement(svg, "rect", attrs)
             lines = node["label"].split("\n")
@@ -222,6 +324,25 @@ class Page:
                 + (node["h"] - (len(lines) - 1) * line_height) / 2
                 + node["size"] * 0.35
             )
+            if node["icons"]:
+                icon_x, icon_y, icon_size, icon_width = icon_layout(node)
+                for i, name in enumerate(node["icons"]):
+                    svg.append(
+                        aws_icon(
+                            name,
+                            f"{node['id']}-icon-{i}",
+                            icon_x + i * (icon_size + 12),
+                            icon_y,
+                            icon_size,
+                        )
+                    )
+                if node["group"] or node["side"]:
+                    left = True
+                    x = icon_x + icon_width + 14
+                    if node["group"]:
+                        y = node["y"] + 33
+                else:
+                    y = node["y"] + icon_size + 34
             for i, line in enumerate(lines):
                 attrs = {
                     "x": str(x),
@@ -231,7 +352,7 @@ class Page:
                     "fill": font,
                     "text-anchor": "start" if left else "middle",
                 }
-                if i == 0:
+                if i == 0 and (not self.aws_style or not node["text"] or node["id"] == "title"):
                     attrs["font-weight"] = "700"
                 ET.SubElement(svg, "text", attrs).text = line
         for edge in self.edges:
@@ -276,123 +397,254 @@ def architecture():
     p = Page(
         "01  AWS 部署架构",
         "architecture",
-        "区域：us-east-1 ｜ 前后端分离 ｜ 自建账号登录 ｜ SageMaker Decider + Bedrock GPT-6.1 Sol",
-        height=1240,
+        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · SageMaker GPU 与 Bedrock 对比",
+        width=1800,
+        height=1620,
+        aws_style=True,
     )
-    p.box("aws", 40, 300, 1520, 880, "AWS · us-east-1 部署与调用入口", "gray", group=True)
-    p.box("vpc", 70, 360, 1460, 480, "应用 VPC", group=True)
-    p.box("vpc-note", 445, 365, 620, 35, "无 Internet 默认路由 · ECS 无公网 IP", size=17, text=True)
-    p.box("browser", 60, 150, 290, 105, "浏览器 / 中文演示界面\n登录 · 逐步结果 · 对比与导出")
-    p.box("cf", 470, 150, 360, 105, "Amazon CloudFront（全球）\nHTTPS · 单一访问入口", "orange")
+    p.box(
+        "aws", 360, 140, 1380, 1370, "AWS Cloud", group=True, icons=("cloud",), boundary="#232f3e"
+    )
+    p.box(
+        "region",
+        400,
+        400,
+        1300,
+        1070,
+        "AWS Region · us-east-1",
+        group=True,
+        icons=("region",),
+        boundary="#00a4a6",
+    )
+    p.box(
+        "vpc",
+        440,
+        480,
+        760,
+        620,
+        "应用 VPC · 无 Internet 默认路由",
+        group=True,
+        icons=("vpc",),
+        boundary="#8c4fff",
+    )
+    p.box(
+        "subnet",
+        465,
+        550,
+        325,
+        500,
+        "私有子网组 · 2 个 AZ",
+        group=True,
+        icons=("subnet",),
+        boundary="#00a4a6",
+    )
+    p.box(
+        "browser",
+        55,
+        215,
+        265,
+        170,
+        "浏览器 / 中文演示界面\n用户名登录 · 五步结果\n客服会话 · 模拟交易 · 对比",
+        size=17,
+        icons=("client",),
+    )
+    p.box(
+        "cf",
+        440,
+        220,
+        340,
+        150,
+        "Amazon CloudFront\n全球边缘网络 · HTTPS 入口",
+        icons=("cloudfront",),
+    )
     p.box(
         "s3",
-        1040,
-        150,
-        480,
-        105,
-        "S3 静态站点（us-east-1）\nBlock Public Access 全开 · OAC 签名访问",
-        "orange",
+        1260,
+        460,
+        350,
+        165,
+        "Amazon S3 · 静态前端\nBlock Public Access 全部开启\n仅允许 CloudFront OAC 读取",
+        size=17,
+        icons=("s3",),
     )
-    p.box("alb", 105, 435, 260, 105, "内网 ALB\n/api/* 路由")
+    p.box(
+        "alb",
+        495,
+        605,
+        265,
+        145,
+        "Application Load Balancer\n内网 ALB · /api/*",
+        size=17,
+        icons=("alb",),
+    )
     p.box(
         "api",
-        455,
-        405,
-        500,
-        165,
-        "ECS Fargate / FastAPI\n认证 · 同一输入构造 · 模型调用与计时\n参考差异提示 · 资金/结案保护 · 模拟执行",
-        "teal",
+        490,
+        815,
+        280,
+        200,
+        "Amazon ECS / AWS Fargate\nFastAPI · 无公网 IP\n认证 · 构造相同输入 · 计时\n执行保护 · 沙盒业务流程",
+        size=17,
+        icons=("ecs", "fargate"),
     )
-    p.box("smvpce", 1090, 405, 360, 85, "SageMaker Runtime\n私有 Interface Endpoint", "teal")
-    p.box("brvpce", 1090, 535, 360, 85, "Bedrock Runtime\n私有 Interface Endpoint", "blue")
-    p.box("ddbvpce", 465, 690, 480, 75, "DynamoDB Gateway Endpoint\n认证 / GPU 状态访问", "gray")
+    p.box(
+        "smvpce",
+        830,
+        615,
+        340,
+        150,
+        "SageMaker Runtime\n私有 Interface Endpoint",
+        size=17,
+        icons=("endpoint",),
+    )
+    p.box(
+        "brvpce",
+        830,
+        825,
+        340,
+        150,
+        "Bedrock Runtime\n私有 Interface Endpoint",
+        size=17,
+        icons=("endpoint",),
+    )
+    p.box(
+        "ddbvpce",
+        815,
+        990,
+        365,
+        90,
+        "DynamoDB Gateway Endpoint\n账号认证 / GPU 请求与租约",
+        size=15,
+        icons=("endpoint",),
+        side=True,
+    )
     p.box(
         "sm",
-        1010,
-        880,
-        470,
-        115,
-        "SageMaker 实时推理 Endpoint\nDecider v19 · ml.g6.xlarge · L4 / CUDA\n网络隔离 · 权重预置于镜像",
-        "teal",
+        1260,
+        645,
+        350,
+        190,
+        "Amazon SageMaker AI\nDecider v19 · 实时推理 Endpoint\nml.g6.xlarge · NVIDIA L4 / CUDA\n网络隔离 · 权重预置于镜像",
+        size=17,
+        icons=("sagemaker",),
     )
     p.box(
         "br",
-        1010,
-        1035,
-        470,
-        100,
-        "Amazon Bedrock 托管模型\nus.openai.gpt-6.1-sol · reasoning low\n美国跨区域推理配置",
-        "blue",
+        1260,
+        870,
+        350,
+        180,
+        "Amazon Bedrock\nus.openai.gpt-6.1-sol\nConverse · reasoning effort: low\n美国跨区域推理配置",
         size=17,
+        icons=("bedrock",),
     )
     p.box(
-        "ddb", 470, 900, 430, 95, "DynamoDB\n账号 / 会话 / 限流 + GPU 状态 / 租约", "gray", size=17
+        "timer",
+        445,
+        1160,
+        300,
+        145,
+        "Amazon EventBridge\n定时规则 · 每分钟触发",
+        size=17,
+        icons=("eventbridge",),
     )
     p.box(
         "lambda",
-        90,
-        1035,
-        340,
-        105,
-        "GPU 控制 Lambda\n按状态创建 / 删除固定 Endpoint\n闲置 30 分钟自动删除",
-        "orange",
+        800,
+        1150,
+        300,
+        175,
+        "AWS Lambda · GPU 控制器\n按请求创建 / 删除 Endpoint\n闲置 30 分钟自动删除",
         size=17,
+        icons=("lambda",),
     )
-    p.box("timer", 90, 880, 340, 85, "EventBridge 定时规则\n每分钟触发控制器", "orange")
+    p.box(
+        "ddb",
+        1270,
+        1150,
+        340,
+        175,
+        "Amazon DynamoDB\n账号 / 会话 / 登录限流\nGPU 状态 / 推理租约",
+        size=17,
+        icons=("dynamodb",),
+    )
     p.box(
         "retain",
-        485,
-        1035,
-        415,
-        105,
-        "保留配置与回退资源\nECR 镜像 / Model / EndpointConfig\n旧 EC2 已停止，80GB EBS 保留",
-        "gray",
-        size=17,
+        450,
+        1360,
+        640,
+        80,
+        "保留 ECR 模型镜像、SageMaker Model / EndpointConfig\n下次启动复用配置；仍需分配 GPU 并加载模型",
+        size=16,
+        icons=("ecr",),
+        side=True,
     )
-    p.edge("browser", "cf", [(350, 202), (470, 202)])
-    p.edge("cf", "s3", [(830, 202), (1040, 202)], "静态资源 · OAC", at=(935, 186))
+    p.box(
+        "fallback",
+        1120,
+        1360,
+        535,
+        80,
+        "旧 EC2 已停止 · 80GB EBS 保留\n回退资源，不参与当前推理",
+        size=16,
+        icons=("ec2", "ebs"),
+        side=True,
+    )
+    p.edge("browser", "cf", [(320, 285), (440, 285)], "HTTPS", at=(380, 262))
+    p.edge(
+        "cf", "s3", [(780, 275), (1435, 275), (1435, 460)], "静态资源 · OAC 签名", at=(1120, 254)
+    )
     p.edge(
         "cf",
         "alb",
-        [(530, 255), (530, 340), (235, 340), (235, 435)],
+        [(610, 370), (610, 380), (810, 380), (810, 580), (770, 580), (770, 675), (760, 675)],
         "VPC Origin · /api/*",
-        at=(410, 340),
+        at=(950, 450),
     )
-    p.edge("alb", "api", [(365, 487), (455, 487)])
-    p.edge("api", "smvpce", [(955, 447), (1090, 447)], color=TEAL)
-    p.edge("api", "brvpce", [(955, 530), (1020, 530), (1020, 577), (1090, 577)], color=BLUE)
-    p.edge("api", "ddbvpce", [(705, 570), (705, 690)], "账号认证 / GPU 请求与租约", at=(705, 632))
-    p.edge("ddbvpce", "ddb", [(705, 765), (705, 900)])
-    p.edge(
-        "smvpce",
-        "sm",
-        [(1450, 447), (1500, 447), (1500, 865), (1245, 865), (1245, 880)],
-        color=TEAL,
-    )
-    p.edge("brvpce", "br", [(1090, 577), (980, 577), (980, 1085), (1010, 1085)], color=BLUE)
-    p.edge("timer", "lambda", [(260, 965), (260, 1035)], color=ORANGE, dashed=True)
+    p.edge("alb", "api", [(625, 750), (625, 815)])
+    p.edge("api", "smvpce", [(770, 850), (810, 850), (810, 690), (830, 690)], color=TEAL)
+    p.edge("api", "brvpce", [(770, 910), (830, 910)], color=BLUE)
+    p.edge("api", "ddbvpce", [(770, 975), (800, 975), (800, 1035), (815, 1035)])
+    p.edge("smvpce", "sm", [(1170, 690), (1210, 690), (1210, 735), (1260, 735)], color=TEAL)
+    p.edge("brvpce", "br", [(1170, 910), (1260, 910)], color=BLUE)
+    p.edge("ddbvpce", "ddb", [(1000, 1080), (1000, 1120), (1440, 1120), (1440, 1150)])
+    p.edge("timer", "lambda", [(745, 1240), (800, 1240)], color=ORANGE, dashed=True)
     p.edge(
         "lambda",
         "ddb",
-        [(430, 1060), (450, 1060), (450, 947), (470, 947)],
+        [(1100, 1250), (1270, 1250)],
+        "状态 / 租约",
         color=ORANGE,
         dashed=True,
+        at=(1185, 1278),
     )
     p.edge(
         "lambda",
         "sm",
-        [(430, 1120), (455, 1120), (455, 1170), (1535, 1170), (1535, 937), (1480, 937)],
+        [(1100, 1190), (1230, 1190), (1230, 805), (1260, 805)],
+        "创建 / 删除推理 Endpoint",
         color=ORANGE,
         dashed=True,
+        at=(1370, 1085),
     )
     p.box(
         "legend",
         45,
-        1188,
-        1510,
-        40,
-        "实线：请求/访问方向（响应省略）   虚线：GPU 控制路径   业务订单/账本仅在浏览器内存中模拟；不接钱包、不广播链上交易。",
-        size=15,
+        1525,
+        1700,
+        35,
+        "实线：请求 / 访问方向（响应省略）   绿色：Decider 推理   蓝色：Bedrock 推理   橙色虚线：GPU 生命周期控制",
+        size=16,
+        text=True,
+    )
+    p.box(
+        "note",
+        45,
+        1565,
+        1700,
+        35,
+        "Bedrock 入口在 us-east-1，推理可路由至其他美国区域。订单与账本仅在浏览器内存中模拟；辅助部署依赖与回退资源网络省略。",
+        size=16,
         text=True,
     )
     return p
@@ -632,21 +884,32 @@ def workflow():
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--drawio", action="store_true", help="Also export an ignored local draw.io file"
+    )
+    args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
     pages = [architecture(), comparison(), workflow()]
-    document = ET.Element(
-        "mxfile", host="app.diagrams.net", type="device", version="24.7.17", pages=str(len(pages))
-    )
     for page in pages:
-        document.append(page.xml())
         svg = page.svg()
         ET.indent(svg)
         ET.ElementTree(svg).write(OUT / f"{page.slug}.svg", encoding="utf-8", xml_declaration=True)
-    ET.indent(document)
-    ET.ElementTree(document).write(
-        OUT / "strands-decider-demo.drawio", encoding="utf-8", xml_declaration=True
-    )
-    print(f"Generated {len(pages)} editable pages and SVG previews in {OUT.relative_to(ROOT)}")
+    if args.drawio:
+        document = ET.Element(
+            "mxfile",
+            host="app.diagrams.net",
+            type="device",
+            version="24.7.17",
+            pages=str(len(pages)),
+        )
+        for page in pages:
+            document.append(page.xml())
+        ET.indent(document)
+        ET.ElementTree(document).write(
+            OUT / "strands-decider-demo.drawio", encoding="utf-8", xml_declaration=True
+        )
+    print(f"Generated {len(pages)} SVG diagrams in {OUT.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

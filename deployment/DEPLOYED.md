@@ -47,7 +47,7 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 - 「推进模拟交易」按钮移到客服会话面板；成功事件立即显示系统通知、前后数值、时间和证据版本。失败事件说明原因并明确证据未改变。
 - 客户诉求、系统事件、两模型的模拟客服回复按时间保留，历史回复显示原证据版本；重新运行后追加新回复。每个案例独立保存最近 80 条，支持 JSON 导出，刷新 / 退出 / 重置时清除。
 - 新事件清除旧决策与执行结果，仍需重新运行完整流程；事件通知不冒充模型回复。
-- 同步新增三页原生 draw.io 图、SVG 预览、项目 README、开发指南与不含凭据的最新实测摘录。
+- 同步新增 AWS 架构、模型对比和支付流程三张 SVG 图、项目 README、开发指南与不含凭据的最新实测摘录；部署架构使用 AWS 官方图标及 Cloud / Region / VPC / 私有子网边界。GitHub 不包含 `.drawio` 文件，本地保留可编辑版本。
 - 本地与线上浏览器验证通过：确认数、补款、地址验证、审批及结算事件通知，失败事件、历史回复、证据版本、导出、重置和移动布局均正常。线上前端已核对为 `crypto5`，CloudFront invalidation `I9RCKRESMBOE9I8R98TW7KCUHI` 已完成；API 镜像保持 `20261009-crypto2`。
 - 本轮会话验证使用明确标记的规则回放；既有真实模型验证见下文。记录保存在 `.deployment/crypto-conversation-browser.json` 和 `.deployment/crypto-conversation-local-browser.json`。
 

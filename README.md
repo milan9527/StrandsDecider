@@ -4,7 +4,7 @@
 
 项目基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)，采用 FastAPI + 原生 HTML/CSS/JavaScript。AWS 部署使用私有 S3、CloudFront OAC、ECS Fargate 和 SageMaker GPU。
 
-**[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [打开加密支付业务台](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [下载可编辑 draw.io 图](docs/diagrams/strands-decider-demo.drawio)**
+**[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [打开加密支付业务台](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [查看架构图](docs/diagrams/architecture.svg)**
 
 在线演示需要现有用户名和密码登录，不使用 Cognito。账号密码、GitHub token 和模型权重不包含在仓库中。
 
@@ -23,9 +23,9 @@
 
 业务数据均为模拟快照。演示不连接钱包、不查询实时区块链、不广播交易。客服回复由应用模板根据实际处理结果生成，本次对比不测量自由长文本生成质量。
 
-## 2. 架构与 draw.io 文件
+## 2. 架构与流程图
 
-[strands-decider-demo.drawio](docs/diagrams/strands-decider-demo.drawio) 包含三个可编辑页面，节点、文字和连线均为原生 draw.io 元素：
+仓库包含三张 SVG 图，可直接在 GitHub 或浏览器中查看：
 
 | 页面                     | 内容                                                   | 预览                                      |
 | ------------------------ | ------------------------------------------------------ | ----------------------------------------- |
@@ -33,7 +33,7 @@
 | 02 Decider vs 普通大模型 | 相同输入、不同推理调用方式、输出校验、共同执行策略     | [SVG](docs/diagrams/model-comparison.svg) |
 | 03 加密支付完整流程      | 五步流程、参考差异、保护调整、最终结果与模拟事件       | [SVG](docs/diagrams/payment-workflow.svg) |
 
-下载 `.drawio` 文件，在 [diagrams.net](https://app.diagrams.net/) 或 draw.io 桌面版中打开，通过底部标签切换页面。维护方式见 [图表说明](docs/diagrams/README.md)。
+部署架构图使用 **AWS 官方服务图标、官方配色及 Cloud / Region / VPC / 私有子网边界**。SVG 可直接下载用于演示材料，维护方式与图标来源见 [图表说明](docs/diagrams/README.md)；GitHub 不包含 `.drawio` 文件。
 
 ### AWS 部署
 
@@ -237,7 +237,7 @@ frontend/
   static/crypto.css         # 支付工作台与移动端布局
 deployment/                # CloudFormation、镜像、控制器、部署与运维
 docs/
-  diagrams/                # 三页 draw.io 源文件与 SVG 预览
+  diagrams/                # AWS 架构、模型对比与支付流程 SVG 图
   results/                 # 本次实测摘录
   DEVELOPMENT.md           # 本地模型、基础工作台、工具守卫与详细 API
 scripts/                   # 账号管理、图表生成、浏览器与真实模型验证
