@@ -75,7 +75,8 @@ class GpuState:
             return current
         return self.update(
             "SET desired=:run, phase=:starting, requested_at=:now, starting_at=:now, "
-            "last_activity=:now, stop_reason=:empty REMOVE endpoint",
+            "last_activity=:now, stop_reason=:empty "
+            "REMOVE endpoint, startup_stage, last_error_code, last_error_at, last_error_message",
             {
                 ":run": "running",
                 ":starting": "starting",

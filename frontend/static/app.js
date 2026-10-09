@@ -1,3 +1,5 @@
+import { mountCrypto } from "/static/crypto.js?v=crypto5";
+
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -59,6 +61,7 @@ const json = (value) => JSON.stringify(value, null, 2);
 const names = {
   playground: "决策工作台",
   guard: "工具调用守卫",
+  crypto: "加密支付业务台",
   history: "运行记录",
   about: "理解 Decider",
 };
@@ -86,9 +89,17 @@ function renderGpu() {
   $("#gpu-panel").hidden = !gpuState?.enabled;
   if (!gpuState?.enabled) return;
   const phase = gpuState.phase;
+  const sageMaker = gpuState.provider === "sagemaker";
+  $("#gpu-heading-label").textContent = sageMaker
+    ? "SageMaker GPU · 按需运行"
+    : "GPU · 按需实例";
+  $("#gpu-stop").textContent = sageMaker
+    ? "停止 SageMaker GPU"
+    : "停止 GPU，保留磁盘";
+  const waitingCapacity = gpuState.startup_stage === "waiting_capacity";
   const labels = {
     stopped: "已停止",
-    starting: "启动中",
+    starting: waitingCapacity ? "等待 GPU 容量" : "启动中",
     ready: "GPU 就绪",
     stopping: "停止中",
     error: "启动未完成",
@@ -101,17 +112,45 @@ function renderGpu() {
     stopped: gpuState.disk_retained
       ? "GPU 已停止，磁盘和模型缓存已保留。下次启动将复用同一实例；示例回放仍可使用。"
       : "示例回放可直接使用。首次启动将创建按需 GPU 并下载模型；之后停止时保留磁盘和缓存。",
-    starting:
-      "正在启动按需 GPU 并加载模型，首次需要下载镜像。超过 20 分钟未就绪会自动停止，保留磁盘。",
+    starting: waitingCapacity
+      ? `AWS 当前可用区 GPU 容量不足，实例尚未启动。正在同一实例上轮换兼容规格重试，磁盘保留。已等待 ${Math.floor((gpuState.startup_elapsed_seconds || 0) / 60)} 分钟，最多再等待 ${Math.ceil((gpuState.startup_remaining_seconds || 0) / 60)} 分钟。保留磁盘不会预留 GPU 容量，可点击停止取消等待。`
+      : gpuState.startup_stage === "loading_model"
+        ? "GPU 实例已运行，正在加载模型并等待健康检查。"
+        : "正在启动按需 GPU，随后加载模型。首次需要下载镜像；超过 20 分钟未就绪会自动停止并保留磁盘。",
     ready: gpuState.busy
       ? "正在执行推理。停止操作会等待当前请求完成。"
       : `真实模型已就绪。若没有新的推理请求，约 ${minutes} 分钟后自动停止并保留磁盘。`,
     stopping:
       "已停止接收新的推理请求，正在等待任务结束并停止 EC2，磁盘和模型缓存会保留。",
-    error:
-      "本次启动未在时限内完成，GPU 已停止。已创建的磁盘会保留，可重新尝试启动。",
+    error: waitingCapacity
+      ? "等待 AWS GPU 容量已超时，实例未能启动。磁盘和缓存已保留，可稍后重试；保留磁盘不保证下次有可用 GPU。"
+      : "本次启动未在时限内完成，GPU 已停止。已创建的磁盘会保留，可重新尝试启动。",
   };
   $("#gpu-message").textContent = messages[phase] || "正在检查资源状态。";
+  if (sageMaker) {
+    $("#gpu-spec").textContent =
+      `${gpuState.instance_type} · 约 $${gpuState.instance_usd_per_hour}/小时 · 闲置 30 分钟自动停止` +
+      (gpuState.disk_retained
+        ? ` · 原 EC2 磁盘保留，约 $${gpuState.disk_usd_per_month.toFixed(2)}/月`
+        : "");
+    const sageMakerMessages = {
+      stopped:
+        "SageMaker GPU 已停止，模型镜像已保留。再次启动会创建新的推理实例；示例回放仍可使用。",
+      starting: `SageMaker 正在申请 GPU 并加载模型（${gpuState.endpoint_status || "准备中"}）。已等待 ${Math.floor((gpuState.startup_elapsed_seconds || 0) / 60)} 分钟，超过 20 分钟未就绪会自动请求停止。`,
+      ready: gpuState.busy
+        ? "正在执行真实 GPU 推理。停止操作会等待当前请求结束。"
+        : `SageMaker 模型已就绪，约 ${minutes} 分钟无推理请求后自动停止。`,
+      stopping:
+        gpuState.endpoint_status === "Creating"
+          ? "已请求停止。AWS 不支持取消正在创建的 Endpoint，正在等待创建流程结束后自动删除；清理完成前不会启动第二台 GPU。"
+          : "正在等待推理结束并删除 SageMaker 推理 Endpoint，完成后停止 GPU 计算计费。模型镜像继续保留。",
+      error: gpuState.last_error_message
+        ? `SageMaker 启动失败：${gpuState.last_error_message}`
+        : "SageMaker 未在时限内就绪，推理 Endpoint 已清理。模型镜像已保留，可重新尝试。",
+    };
+    $("#gpu-message").textContent =
+      sageMakerMessages[phase] || "正在检查 SageMaker 状态。";
+  }
   $("#gpu-start").hidden = !gpuState.can_manage;
   $("#gpu-stop").hidden = !gpuState.can_manage;
   $("#gpu-start").disabled =
@@ -150,7 +189,7 @@ async function changeGpu(action) {
     toast(
       action === "start"
         ? "启动请求已提交，页面会自动更新状态。"
-        : "停止请求已提交，将等待推理完成并保留磁盘。",
+        : "停止请求已提交，将等待当前推理完成。",
     );
   } catch (error) {
     toast(error.message);
@@ -244,6 +283,8 @@ function showPage() {
   });
   $("#breadcrumb-page").textContent = names[currentPage];
   if (currentPage === "history") renderHistory();
+  if (currentPage === "crypto" && currentUser)
+    mountCrypto({ api, esc, icon, toast });
 }
 
 async function checkConnection() {

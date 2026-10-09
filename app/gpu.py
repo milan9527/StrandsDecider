@@ -33,28 +33,43 @@ def can_manage(request):
 
 def public_state(state, manager):
     now = int(time.time())
-    instance_type = state.get("instance_type") or "g6.xlarge"
-    prices = {"g6.xlarge": 0.8048, "g6.2xlarge": 0.9776, "g5.xlarge": 1.006}
+    sagemaker = state.get("provider") == "sagemaker"
+    instance_type = "ml.g6.xlarge" if sagemaker else state.get("instance_type") or "g6.xlarge"
+    prices = (
+        {"ml.g6.xlarge": 1.1267}
+        if sagemaker
+        else {"g6.xlarge": 0.8048, "g6.2xlarge": 0.9776, "g5.xlarge": 1.006}
+    )
     return {
         "enabled": True,
         "can_manage": manager,
         "phase": state["phase"],
         "desired": state["desired"],
+        "provider": "sagemaker" if sagemaker else "ec2",
         "instance_type": instance_type,
         "instance_options": list(prices),
         "maximum_instance_usd_per_hour": max(prices.values()),
-        "instance_id": state.get("instance_id"),
-        "instance_state": state.get("instance_state"),
+        "instance_id": None if sagemaker else state.get("instance_id"),
+        "instance_state": state.get("endpoint_status")
+        if sagemaker
+        else state.get("instance_state"),
         "purchase_option": "on-demand",
         "instance_usd_per_hour": prices[instance_type],
         "disk_gib": 80,
         "disk_usd_per_month": 6.4,
         "disk_retained": bool(state.get("instance_id")),
+        "retained_ec2_instance_id": state.get("instance_id") if sagemaker else None,
         "instance_count": int(state.get("instance_count", 0)),
         "busy": int(state.get("busy_until", 0)) > now,
         "idle_minutes": 30,
         "idle_remaining_seconds": max(0, int(state.get("last_activity", now)) + 1800 - now),
         "stop_reason": state.get("stop_reason", ""),
+        "startup_stage": state.get("startup_stage", ""),
+        "last_error_code": state.get("last_error_code", ""),
+        "last_error_message": state.get("last_error_message", ""),
+        "endpoint_status": state.get("endpoint_status", ""),
+        "startup_elapsed_seconds": max(0, now - int(state.get("starting_at", now))),
+        "startup_remaining_seconds": max(0, int(state.get("starting_at", now)) + 1200 - now),
     }
 
 

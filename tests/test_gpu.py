@@ -213,6 +213,84 @@ def test_restart_reuses_stopped_instance_without_recreating_disk(store):
     assert store.get()["instance_id"] == "i-demo"
 
 
+def test_restart_capacity_error_is_visible_and_rotates_type_on_same_instance(store):
+    store.start(now=100)
+    aws = clients(instance=instance("stopped"))
+    aws[1].start_instances.side_effect = ClientError(
+        {"Error": {"Code": "InsufficientInstanceCapacity"}}, "StartInstances"
+    )
+    assert tick(store, aws, 101)["action"] == "waiting_for_capacity"
+    state = store.get()
+    assert state["startup_stage"] == "waiting_capacity"
+    assert state["last_error_code"] == "InsufficientInstanceCapacity"
+    assert state["starting_at"] == 100
+    assert state["instance_id"] == "i-demo"
+    assert state["instance_count"] == 0 and state["instance_state"] == "stopped"
+    aws[1].modify_instance_attribute.assert_called_once_with(
+        InstanceId="i-demo", InstanceType={"Value": "g6.2xlarge"}
+    )
+    aws[1].run_instances.assert_not_called()
+    aws[1].terminate_instances.assert_not_called()
+
+    next_node = {**instance("stopped"), "InstanceType": "g6.2xlarge"}
+    resumed = clients(instance=next_node)
+    assert tick(store, resumed, 160)["action"] == "resuming"
+    resumed[1].start_instances.assert_called_once_with(InstanceIds=["i-demo"])
+    assert store.get()["startup_stage"] == "booting"
+    assert "last_error_code" not in store.get()
+    assert store.get()["starting_at"] == 100
+
+
+@pytest.mark.parametrize(
+    "error",
+    [
+        TimeoutError("response lost"),
+        ClientError({"Error": {"Code": "UnauthorizedOperation"}}, "StartInstances"),
+    ],
+)
+def test_restart_does_not_change_hardware_after_ambiguous_or_permission_error(store, error):
+    store.start(now=100)
+    aws = clients(instance=instance("stopped"))
+    aws[1].start_instances.side_effect = error
+    with pytest.raises(type(error)):
+        tick(store, aws, 101)
+    aws[1].modify_instance_attribute.assert_not_called()
+    aws[1].run_instances.assert_not_called()
+
+
+def test_capacity_timeout_preserves_reason_and_new_request_clears_it(store):
+    store.start(now=100)
+    aws = clients(instance=instance("stopped"))
+    aws[1].start_instances.side_effect = ClientError(
+        {"Error": {"Code": "InsufficientInstanceCapacity"}}, "StartInstances"
+    )
+    tick(store, aws, 101)
+    assert tick(store, clients(instance=instance("stopped")), 1300)["action"] == "error"
+    state = store.get()
+    assert state["desired"] == "stopped" and state["instance_id"] == "i-demo"
+    assert state["startup_stage"] == "waiting_capacity"
+    assert state["last_error_code"] == "InsufficientInstanceCapacity"
+    state = store.start(now=1400)
+    assert "last_error_code" not in state and "startup_stage" not in state
+
+
+def test_capacity_details_are_exposed_to_the_authenticated_ui():
+    from app.gpu import public_state
+
+    status = public_state(
+        {
+            "desired": "running",
+            "phase": "starting",
+            "startup_stage": "waiting_capacity",
+            "last_error_code": "InsufficientInstanceCapacity",
+        },
+        True,
+    )
+    assert status["startup_stage"] == "waiting_capacity"
+    assert status["last_error_code"] == "InsufficientInstanceCapacity"
+    assert status["startup_remaining_seconds"] == 1200
+
+
 def test_manual_stop_drains_tasks_then_stops_without_termination(store):
     ready(store)
     store.stop(now=110)

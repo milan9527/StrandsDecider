@@ -11,11 +11,14 @@ from botocore.exceptions import ClientError
 from app.gpu_state import GpuState, TransitionConflict
 
 INSTANCE_TYPES = ("g6.xlarge", "g6.2xlarge", "g5.xlarge")
+CAPACITY_ERRORS = ("InsufficientInstanceCapacity", "InsufficientHostCapacity")
 
 
 def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subnets, now=None):
     now = int(time.time()) if now is None else now
     state = store.get()
+    if state.get("provider") == "sagemaker":
+        return {"action": "inactive"}
     generation = state["requested_at"]
 
     def update(expression, values):
@@ -26,6 +29,16 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
             condition="requested_at=:generation AND desired=:expected",
         )
         return state
+
+    def capacity_wait(error):
+        update(
+            "SET startup_stage=:stage, last_error_code=:code, last_error_at=:now",
+            {
+                ":stage": "waiting_capacity",
+                ":code": error.response["Error"]["Code"],
+                ":now": now,
+            },
+        )
 
     if state["desired"] == "running" and int(state.get("busy_until", 0)) <= now:
         idle = state["phase"] == "ready" and int(state["last_activity"]) <= now - 1800
@@ -132,11 +145,9 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
                     ClientToken=state["launch_token"],
                 )["Instances"][0]
             except ClientError as error:
-                if error.response["Error"]["Code"] not in (
-                    "InsufficientInstanceCapacity",
-                    "InsufficientHostCapacity",
-                ):
+                if error.response["Error"]["Code"] not in CAPACITY_ERRORS:
                     raise
+                capacity_wait(error)
                 # Only definite failures may move to another AZ or instance type.
                 # Ambiguous failures keep exactly the same idempotency token and request.
                 if index + 1 == len(subnets):
@@ -152,25 +163,48 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
                     update("SET launch_subnet=:next", {":next": index + 1})
                 continue
             update(
-                "SET instance_id=:id, instance_type=:type, instance_state=:status, instance_count=:one",
+                "SET instance_id=:id, instance_type=:type, instance_state=:status, "
+                "instance_count=:one, startup_stage=:stage REMOVE last_error_code, last_error_at",
                 {
                     ":id": launched["InstanceId"],
                     ":type": instance_type,
                     ":status": "pending",
                     ":one": 1,
+                    ":stage": "booting",
                 },
             )
             return {"action": "creating"}
         return {"action": "waiting_for_capacity"}
 
     if instance["State"]["Name"] == "stopped":
-        ec2.start_instances(InstanceIds=[instance["InstanceId"]])
+        try:
+            ec2.start_instances(InstanceIds=[instance["InstanceId"]])
+        except ClientError as error:
+            if error.response["Error"]["Code"] not in CAPACITY_ERRORS:
+                raise
+            capacity_wait(error)
+            # A stopped EBS-backed instance can change GPU type without replacing its disk.
+            # Only a definite capacity rejection permits this change; ambiguous errors retry
+            # the same instance/type. The next scheduled tick attempts the new type.
+            next_type = INSTANCE_TYPES[
+                (INSTANCE_TYPES.index(instance["InstanceType"]) + 1) % len(INSTANCE_TYPES)
+            ]
+            ec2.modify_instance_attribute(
+                InstanceId=instance["InstanceId"], InstanceType={"Value": next_type}
+            )
+            update("SET instance_type=:type", {":type": next_type})
+            return {"action": "waiting_for_capacity"}
         update(
-            "SET phase=:phase, instance_state=:status, instance_count=:one REMOVE endpoint",
-            {":phase": "starting", ":status": "pending", ":one": 1},
+            "SET phase=:phase, instance_state=:status, instance_count=:one, "
+            "startup_stage=:stage REMOVE endpoint, last_error_code, last_error_at",
+            {":phase": "starting", ":status": "pending", ":one": 1, ":stage": "booting"},
         )
         return {"action": "resuming"}
     if instance["State"]["Name"] != "running":
+        update(
+            "SET startup_stage=:stage REMOVE last_error_code, last_error_at",
+            {":stage": "booting"},
+        )
         return {"action": "starting"}
     if description["desiredCount"] != 1:
         ecs.update_service(cluster=cluster, service=service, desiredCount=1)
@@ -197,13 +231,15 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
         if state["phase"] != "ready":
             expression += ", last_activity=:now"
             values[":now"] = now
+        expression += " REMOVE startup_stage, last_error_code, last_error_at"
         update(expression, values)
         return {"action": "ready"}
-    expression = "SET phase=:starting REMOVE endpoint"
-    values = {":starting": "starting"}
+    expression = "SET phase=:starting, startup_stage=:stage"
+    values = {":starting": "starting", ":stage": "loading_model"}
     if state["phase"] != "starting":
-        expression = "SET phase=:starting, starting_at=:now REMOVE endpoint"
+        expression += ", starting_at=:now"
         values[":now"] = now
+    expression += " REMOVE endpoint, last_error_code, last_error_at"
     update(expression, values)
     return {"action": "starting"}
 

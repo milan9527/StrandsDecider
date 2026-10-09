@@ -57,6 +57,7 @@ def main():
     )
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--tag", required=True)
+    parser.add_argument("--disable-controller", action="store_true")
     args = parser.parse_args()
     cf = boto3.client("cloudformation", region_name=args.region)
     try:
@@ -116,6 +117,9 @@ def main():
     ):
         parser.error("Additional GPU AZs must be available and distinct from all other subnets")
     values = {
+        "ControllerState": "DISABLED"
+        if args.disable_controller
+        else previous_parameters.get("ControllerState", "ENABLED"),
         "VpcId": outputs["VpcId"],
         "PrivateRouteTableId": resources["PrivateRoutes"],
         "ApiSecurityGroup": resources["TaskSecurityGroup"],

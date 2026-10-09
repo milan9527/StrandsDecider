@@ -10,8 +10,9 @@
     />
     <title>Strands Decider · 决策实验室</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=ondemand2" />
-    <script src="/static/app.js?v=ondemand2" type="module"></script>
+    <link rel="stylesheet" href="/static/styles.css?v=crypto5" />
+    <link rel="stylesheet" href="/static/crypto.css?v=crypto5" />
+    <script src="/static/app.js?v=crypto5" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -118,6 +119,11 @@
         <a href="#guard" data-page="guard" class="nav-item"
           ><span data-icon="shield"></span>工具调用守卫</a
         >
+        <a href="#crypto" data-page="crypto" class="nav-item"
+          ><span data-icon="route"></span>加密支付<span class="count-badge"
+            >NEW</span
+          ></a
+        >
         <a href="#history" data-page="history" class="nav-item"
           ><span data-icon="history"></span>运行记录<span
             class="count-badge"
@@ -198,7 +204,8 @@
         >
           <div class="gpu-copy">
             <div class="gpu-heading">
-              <span data-icon="cpu"></span><strong>GPU · 按需实例</strong>
+              <span data-icon="cpu"></span
+              ><strong id="gpu-heading-label">GPU · 按需实例</strong>
               <span id="gpu-status" class="subtle-badge" role="status"
                 >检查状态</span
               >
@@ -531,6 +538,17 @@ What's the weather?</textarea>
               模型只返回概率。<strong>Guide / Proceed 由程序策略决定</strong
               >，不是模型生成的文本。完整 Strands Agent 接入示例见 README。
             </p>
+          </div>
+        </section>
+
+        <section
+          id="page-crypto"
+          class="page"
+          hidden
+          aria-label="加密支付业务流程与模型对比"
+        >
+          <div id="crypto-workspace">
+            <div class="loading-placeholder">正在加载支付业务工作台…</div>
           </div>
         </section>
 

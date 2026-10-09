@@ -1,255 +1,259 @@
-# Strands Decider · 决策实验室
+# Strands Decider · 决策实验室与加密支付业务台
 
-基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)的中文交互演示。FastAPI 后端 + 原生 HTML/CSS/JavaScript，无需 Node.js 构建。
+一个可以实际操作的中文演示：让 **Strands Decider** 与 **Amazon Bedrock 上的 GPT-6.1 Sol** 判断同一笔业务，观察每一步的选择、耗时、执行结果和最终客服回复。
 
-支持：
+项目基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)，采用 FastAPI + 原生 HTML/CSS/JavaScript。AWS 部署使用私有 S3、CloudFront OAC、ECS Fargate 和 SageMaker GPU。
 
-- **用户名登录**：自建用户名 / 密码认证，无 Cognito；支持退出、会话过期、登录限流和管理员重置密码。
-- **决策工作台**：16 个场景，覆盖业务运营、Agent 流程、内容理解、数据与运维、加密货币支付；支持分类筛选、关键词搜索，可编辑上下文、问题类型与选项，一次最多 8 个问题。
-- **三种官方问题类型**：`choice`、`noul`、`score`，展示结构化结果、候选项分布、confidence、JSON 和请求代码。
-- **决策计时**：每个问题显示实测耗时，运行中显示累计时间，完成后显示总时间；运行记录和 JSON 导出保留计时数据。
-- **按需 GPU，停止保留磁盘**：管理员从页面启动或停止 NVIDIA GPU；当前使用 `g5.xlarge` 按需实例（$1.006/小时），闲置 30 分钟自动停止。80GB 加密磁盘保留模型镜像与编译缓存，下次复用同一实例，磁盘约 $6.40/月。登录与示例回放由小规格 Fargate API 持续提供。
-- **工具调用守卫**：复现天气案例，用两个判断决定 `Guide` / `Proceed`，可调整策略阈值。
-- **运行记录**：按账号在当前标签页保存最近 30 次请求，刷新后保留，退出或关闭标签页后清除。
-- **两种模式**：无需下载模型的示例回放，以及连接官方服务的真实推理。
+**[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [打开加密支付业务台](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [下载可编辑 draw.io 图](docs/diagrams/strands-decider-demo.drawio)**
 
-AWS 部署使用独立的 `frontend/` 静态站点和 ECS API / 模型容器；架构、更新及运维步骤见 [deployment/README.md](deployment/README.md)。
+在线演示需要现有用户名和密码登录，不使用 Cognito。账号密码、GitHub token 和模型权重不包含在仓库中。
 
-**在线演示：https://d3i7ogfx5ml7dc.cloudfront.net**（AWS `us-east-1`，私有 S3 + CloudFront OAC + 私网 ECS）。
+## 1. 演示目的
 
-## 快速运行
+本项目回答三个问题：
 
-需要 Python 3.11+ 和 [uv](https://docs.astral.sh/uv/getting-started/installation/)。
+1. **小型专用决策模型能否承担 Agent / 业务系统中的高频判断？** 例如选择客服队列、核验下一步、决定继续跟进还是结案。
+2. **同一个有限候选决策任务，Decider 与普通生成式大模型有什么差异？** 比较原始选择、参考一致情况、每步耗时、计费方式与接入流程。
+3. **怎样把模型建议变成可解释的完整业务流程？** 分开显示模型原始建议、应用实际执行、资金保护调整和客户最终看到的结果。
+
+| 工作区         | 功能                                                                                                                  |
+| -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 决策实验室     | 16 个场景、`choice` / `noul` / `score` 三种问题类型、可编辑上下文与选项、工具调用守卫、逐项计时、运行记录及 JSON 导出 |
+| 加密支付业务台 | 四个支付案例 × 五个业务步骤，Decider / GPT 双侧对比，完整模拟订单、工单、账本与客服交互                               |
+
+业务数据均为模拟快照。演示不连接钱包、不查询实时区块链、不广播交易。客服回复由应用模板根据实际处理结果生成，本次对比不测量自由长文本生成质量。
+
+## 2. 架构与 draw.io 文件
+
+[strands-decider-demo.drawio](docs/diagrams/strands-decider-demo.drawio) 包含三个可编辑页面，节点、文字和连线均为原生 draw.io 元素：
+
+| 页面                     | 内容                                                   | 预览                                      |
+| ------------------------ | ------------------------------------------------------ | ----------------------------------------- |
+| 01 AWS 部署架构          | 网络边界、静态站点、API、两种模型、认证与 GPU 生命周期 | [SVG](docs/diagrams/architecture.svg)     |
+| 02 Decider vs 普通大模型 | 相同输入、不同推理调用方式、输出校验、共同执行策略     | [SVG](docs/diagrams/model-comparison.svg) |
+| 03 加密支付完整流程      | 五步流程、参考差异、保护调整、最终结果与模拟事件       | [SVG](docs/diagrams/payment-workflow.svg) |
+
+下载 `.drawio` 文件，在 [diagrams.net](https://app.diagrams.net/) 或 draw.io 桌面版中打开，通过底部标签切换页面。维护方式见 [图表说明](docs/diagrams/README.md)。
+
+### AWS 部署
+
+![AWS 部署架构](docs/diagrams/architecture.svg)
+
+| 组件         | 当前实现                                                                                                    |
+| ------------ | ----------------------------------------------------------------------------------------------------------- |
+| 前端         | 私有 S3 bucket，四项 Block Public Access 全部开启；CloudFront 通过 OAC 签名访问                             |
+| API 入口     | CloudFront `/api/*` → VPC Origin → 内网 ALB → ECS Fargate                                                   |
+| 业务后端     | FastAPI，1 个 ARM64 Fargate Task，0.25 vCPU / 0.5 GiB；无公网 IP                                            |
+| 身份认证     | 自建用户名 / 密码；scrypt 密码摘要、可撤销 Cookie 会话、限流；AWS 用 DynamoDB，本地用 SQLite                |
+| Decider      | 官方 `StrandsAgents/strands-decider-2B-hobson-v19`，SageMaker `ml.g6.xlarge`，NVIDIA L4 24GB / CUDA         |
+| 普通大模型   | Bedrock Converse API，`us.openai.gpt-6.1-sol`，reasoning effort 为 `low`                                    |
+| 模型网络     | ECS 经 SageMaker Runtime / Bedrock Runtime 私有 VPC endpoints 调用；权限限定到指定模型                      |
+| GPU 控制     | 页面发起启停请求 → DynamoDB 状态与推理租约 → EventBridge 每分钟触发 Lambda → 创建 / 删除 SageMaker Endpoint |
+| 业务演练状态 | 各案例、各模型的订单 / 工单 / 模拟账本保存在浏览器内存；刷新或退出清除                                      |
+
+区域资源部署于 **us-east-1**，CloudFront 和 IAM 为全球服务。Bedrock 使用美国跨区域推理配置，AWS 可以将推理路由到其他美国区域。SageMaker 模型启用网络隔离，权重预置在镜像中；应用 VPC 无 Internet 默认路由。
+
+GPU 闲置 **30 分钟**后删除推理 Endpoint，保留 ECR 镜像、SageMaker Model 和 EndpointConfig。下次启动仍需分配硬件并加载模型。原 EC2 已停止，80GB 加密磁盘保留作为回退，SageMaker 不使用该磁盘。
+
+## 3. Decider 与普通大模型的流程对比
+
+![模型调用流程对比](docs/diagrams/model-comparison.svg)
+
+### 谁提供规则，谁做决定？
+
+应用提供 **业务事实、问题、候选动作和各选项的适用条件**。Decider 在给定候选项中选择，返回原始选择、概率分布和 confidence。候选项不是 Decider 临时生成的。
+
+普通大模型可以自由生成建议和文本，但本演示为了比较同一个任务，也向 GPT 提供相同候选项，并要求仅返回 `{"choice":"candidate_id"}`。两个模型收到相同的业务 payload，GPT 适配层另加输出格式要求。
+
+| 维度               | Strands Decider                                       | Bedrock GPT-6.1 Sol                                     |
+| ------------------ | ----------------------------------------------------- | ------------------------------------------------------- |
+| 本次任务           | 有限候选动作选择                                      | 相同的有限候选动作选择                                  |
+| 请求流程           | ECS → SageMaker InvokeEndpoint → 官方 System One 服务 | ECS → Bedrock Converse → 托管生成式模型                 |
+| 输出处理           | 校验 `choice`、候选分布和 confidence                  | 解析生成的 JSON，校验唯一字段和候选 ID                  |
+| 原始输出           | 选择、概率、confidence                                | 选择、输入 / 输出 tokens；不生成虚构概率                |
+| 运行管理           | 自行部署 GPU 模型、处理启停与闲置释放                 | AWS 托管模型调用，受访问权限、限流和推理配置影响        |
+| 成本口径           | 按 GPU Endpoint 运行时间，另计基础设施                | 按模型用量；页面记录 tokens，未核实单价时不估算美元金额 |
+| 本演示未覆盖的能力 | 不承担自由长文本客服写作或自主交易                    | 未比较开放式规划、工具 Agent 循环、长文本生成质量       |
+
+**具体运行顺序：**
+
+1. 冻结本轮业务快照。对每一个步骤，同时调用 Decider 和 GPT；五个决策步骤按顺序进行。
+2. 收集两套五步建议，再分别执行各自的沙盒方案。两侧不共用已变更的订单或账本。
+3. 原始建议与演示参考不一致时只显示提示，继续流程。
+4. 资金条件不足时挂起资金动作，提前结案时改为持续跟进。记录原始动作、实际动作和保护调整原因，继续客服回复。
+5. 模型或执行请求失败会明确显示错误，不用规则回放冒充真实模型输出。
+
+这是一组受控的决策对比与沙盒业务流程；决策阶段使用固定输入，不是根据每次工具反馈反复规划的自治 Agent。
+
+### 参考策略与执行约束
+
+本演示的参考策略由开发者定义，供比较和教学使用，没有将其作为行业标准。默认的 **12 次链上确认、60 分钟结算 SLA** 也只是演示参数。
+
+- **参考差异**：模型选择与 `reference()` 的参考动作不同，仅记录差异。
+- **执行保护**：资金动作检查对应场景、到账金额、确认数、退款地址、人工审批、风险标记和待复核状态；结案还检查实际模拟订单状态。
+- **保持真实**：后端保护调整不覆盖原始模型结果，也不计作模型判断正确。挂起资金后，客服回复不会声称已收款、已退款或已对账。
+
+代码入口：[候选动作与条件](app/crypto.py)、[模型适配](app/bedrock.py)、[前端执行与结果展示](frontend/static/crypto.js)。
+
+## 4. 场景演示
+
+![加密支付五步流程](docs/diagrams/payment-workflow.svg)
+
+五个业务步骤为：**客服受理 → 交易核验 → 风控审批 → 业务处置 → 回复结案**。
+
+| 场景                    | 初始证据                                | 初始业务结果               | 推进方式                                           |
+| ----------------------- | --------------------------------------- | -------------------------- | -------------------------------------------------- |
+| USDC 已转账，订单未到账 | 应付 / 到账 129 USDC；确认数 3/12       | 资金待确认，工单持续跟进   | 点击「模拟确认数达标」，再运行完整流程             |
+| USDT 少付               | 应付 100，到账 99.80 USDT；差额 0.20    | 等待补足，不能确认足额收款 | 点击「模拟补足差额」，重新核验                     |
+| 稳定币退款              | 250 USDC；地址未验证、未审批            | 退款挂起，提示验证与审批   | 依次点击「模拟验证地址」「模拟审批通过」，重新运行 |
+| 商户结算延迟            | 4,800 USDC；120 分钟未到账，SLA 60 分钟 | 升级或跟进结算工单         | 点击「模拟结算到账」，重新对账                     |
+
+模型可能选择不同的保守处理路径，因此推进事件后仍应查看实际结果，不能把上述路线当作强制的模型答案。
+
+### 推荐的 5 分钟演示路线
+
+1. 登录并进入「加密支付」。首次体验可选择「规则回放」熟悉界面；回放不调用模型，不产生模型性能数据。
+2. 要进行真实对比，管理员启动 SageMaker GPU，等待页面显示就绪，再切换到「真实模型」。
+3. 选择 **USDC 未到账**，点击「运行完整流程并对比」。
+4. 查看两侧五步原始选择、每一步的执行输出、耗时和最终客服回复。Decider 即使选择“等待人工审批”，也不会仅因参考差异停在 2/5。
+5. 观察最终结果：可以显示 **已执行 5/5 步，同时订单待处理、工单持续跟进**。流程完成不等于资金业务完成。
+6. 点击「模拟确认数达标」，确认数从 **3/12 变为 12/12**。旧模型结果与执行状态会清除，重新运行观察变化。
+7. 切换退款案例，先看地址未验证时的挂起路径，再模拟验证和审批。查看“原始模型建议”和“保护调整”是否不同。
+8. 导出记录，复核本次输入、两侧结果、时间、参考差异、保护调整和模拟账本。
+
+**「推进模拟交易」位于客服会话面板内。** 点击事件后，会话立即显示系统通知、证据版本、时间与前后数值（如 `3/12 → 12/12`）；原有回复保留并标记为历史记录。模拟事件失败会显示原因且不改变证据。事件只更新模拟快照，需重新点击「运行完整流程并对比」获得新回复。
+
+客户消息、金额、确认数、风险标记和结算耗时均可修改；修改后重新核验。详细操作与 API 行为见 [加密支付模块说明](deployment/CRYPTO.md)。
+
+基础工作台另外提供客服分流、退款资格、销售线索、工具路由、RAG 依据、内容审核、发票校验、运维告警等 16 个场景，以及基于概率阈值的工具调用守卫，见 [开发与基础工作台指南](docs/DEVELOPMENT.md)。
+
+## 5. 实测对比与计时口径
+
+以下来自 **2026-10-09 06:25 UTC** 的线上真实调用：四个案例的初始证据，每例五步，共 **20 组配对决策**。Decider 使用 SageMaker L4 / CUDA；GPT 使用指定 Bedrock 模型。记录摘录见 [benchmark-2026-10-09.json](docs/results/benchmark-2026-10-09.json)。
+
+| 场景        | Decider 五步耗时合计 | GPT 五步耗时合计 | Decider 参考一致 | GPT 参考一致 | 两侧完成步骤             |
+| ----------- | -------------------: | ---------------: | ---------------: | -----------: | ------------------------ |
+| USDC 未到账 |             502.3 ms |       4,805.9 ms |              4/5 |          5/5 | 均为 5/5                 |
+| USDT 少付   |             470.1 ms |       4,644.4 ms |              4/5 |          5/5 | 均为 5/5                 |
+| 稳定币退款  |             484.6 ms |       4,113.9 ms |              2/5 |          5/5 | 均为 5/5                 |
+| 商户结算    |             572.8 ms |       4,443.0 ms |              4/5 |          5/5 | 均为 5/5                 |
+| **合计**    |       **2,029.9 ms** |  **18,007.2 ms** |        **14/20** |    **20/20** | **8 条沙盒流程全部完成** |
+
+本轮 GPT / Decider 的累计后端耗时比约为 **8.87×**。Decider 有 6 次参考差异，其中 4 次触发资金或结案保护调整；另外 2 次保留模型的保守审批选择并继续。GPT 本轮无保护调整。四个初始案例最终均为“订单待处理 / 工单持续跟进”，没有产生资金账本记录。
+
+**如何解读：**
+
+- 每步 `backend_total_ms` 包含后端到模型的通信、处理和排队，不能视为纯 GPU 计算时间。
+- 同一步的两模型并发运行。表中的合计是各自五步时间之和，**不是浏览器整轮等待时间**，也不能将两列相加当作端到端延迟。
+- 页面另外显示浏览器往返、五步决策经过时间、包含两侧沙盒执行的一键流程经过时间，以及沙盒请求往返合计。
+- 只对同一输入指纹、真实成功的配对决策统计速度。失败、规则回放和输入不一致的数据不进入该统计。
+- 参考一致率衡量与本演示自定义策略的相符程度，**不是通用准确率**；5/5 完成也不代表模型五次判断都正确。
+- 这是固定案例上的一次观测，未测量多轮分布、P95 / P99、并发吞吐、冷启动和开放式任务，不能作为稳定性能保证。
+- GPU 实例小时费与 Bedrock token 费用的计费基础不同。本项目没有足够依据声称哪一侧每次决策的美元成本更低。
+
+SageMaker `ml.g6.xlarge` 的计算参考价为 $1.1267/小时（2026-10-09 查询）。API、ALB、PrivateLink、ECR 与保留磁盘另计；详见 [SageMaker 运维说明](deployment/SAGEMAKER.md)。
+
+## 6. 结论
+
+1. **Decider 适合候选空间明确、需要低延迟的结构化判断。** 这次测试的累计后端耗时明显较低，但对本演示参考策略的吻合度也较低，必须保留可观察的输出与应用执行约束。
+2. **普通大模型也能承担同样的选择任务。** GPT 在本次固定案例中全部符合参考策略，但耗时较高；本演示未评估它在复杂解释、开放式规划与生成任务上的价值。
+3. **业务系统应区分模型建议、参考答案和资金执行权限。** 保守建议不应仅因不同于参考答案就中断客服流程；资金挂起后仍可完成回复和跟进。
+4. **固定的结构化条件可以直接写成代码。** 金额计算、交易状态核验和确定性的执行前置条件不必交给模型；模型更有价值的部分是理解自然语言、识别诉求并选择处理路径。
+
+当前结果支持继续评估 Decider 在高频有限候选任务中的应用，不支持据此认定它可替代所有普通大模型，或直接承担真实支付执行。
+
+## 7. 本地运行
+
+需要 Python 3.11+ 和 [uv](https://docs.astral.sh/uv/getting-started/installation/)；前端无需 Node.js 构建。
 
 ```bash
 uv sync
-uv run python -m scripts.manage_users create admin --generate-to .deployment/local-credentials.json
-export AUTH_COOKIE_SECURE=false  # 仅本地 HTTP 开发
-uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
+uv run python -m scripts.manage_users create admin \
+  --generate-to .deployment/local-credentials.json
+AUTH_COOKIE_SECURE=false uv run uvicorn app.main:app \
+  --host 127.0.0.1 --port 8000
 ```
 
-打开 **http://localhost:8000**，使用生成文件中的账号密码登录。默认是示例回放，选择场景后点击「运行决策」；快捷键 `Ctrl/⌘ + Enter`。
+打开 `http://localhost:8000`，使用本机生成的凭据登录。基础工作台可以使用示例模式；进入 `/#crypto` 后选择「规则回放」即可体验完整业务流程。
 
-示例模式的概率是为教学设置的预设数值，**不是模型输出，也不展示虚构的推理时间或 token 用量**。只允许回放未修改的预设；修改文本或问题后需切换到真实模型。真实推理失败时会直接报错，不会退回示例数据。
-
-## 时间的含义
-
-- **单项耗时**：后端发起该问题的模型请求，到收到并校验结果的实际时间，包括 API 到模型的通信开销。
-- **总时间**：浏览器发起请求，到收到并解析完整结果的实际时间，包括鉴权、排队、网络与处理开销，因此通常大于各项耗时之和。
-- **模型处理耗时合计**：模型服务返回的各项推理时间相加，不含浏览器网络与 API 排队时间。
-- **示例回放**：每项标记“未推理”，只显示实际读取示例的总时间；不伪造模型耗时。
-
-官方批处理只提供整批耗时，不能准确分摊到每个问题。界面设置 `measure_decisions: true`，在同一次浏览器请求内依次调用每个问题以获取真实计时；它可能比共享前缀的批量推理更慢。直接调用 API 时省略该参数或设置 `false`，仍使用原来的批处理，不提供单项计时。工作台和工具调用守卫使用同一规则。
-
-## 运行真实模型
-
-在另一终端运行：
+真实 Decider 服务可在另一终端启动：
 
 ```bash
+# 本地默认 CPU；NVIDIA 环境可使用 DECIDER_DEVICE=cuda
 bash scripts/serve_model.sh
 ```
 
-脚本安装可选模型依赖，启动官方 `strands-decider serve`，默认配置：
+本地 API 如需调用真实 Bedrock，启动时设置 `BEDROCK_ENABLED=true`、`AWS_REGION=us-east-1`，并提供有该模型访问权限的 AWS 凭据。模型地址、超时、CPU / GPU 配置见 [.env.example](.env.example) 与 [本地开发指南](docs/DEVELOPMENT.md)。
 
-| 配置 | 默认值 |
-| --- | --- |
-| 检查点 | `StrandsAgents/strands-decider-2B-hobson-v19` |
-| 设备 | `cpu` |
-| 模型地址 | `http://127.0.0.1:8099` |
-| 严格上下文窗口 | 开启；超长输入返回错误 |
-| CPU 线程 | `OMP_NUM_THREADS=4` |
+## 8. AWS 部署与验证
 
-首次启动需要访问 Hugging Face，下载约 4.5 GB 的 Qwen3.5-2B 基座权重以及 Decider 适配器。权重缓存在 Hugging Face 默认缓存目录，不放进项目。模型加载完成后，页面右上角点击刷新连接，再切换到「真实模型」。
+当前部署使用 `us-east-1` 的 SageMaker 实时 Endpoint。初次部署、迁移和模型镜像步骤见 [部署入口](deployment/README.md) 与 [SageMaker 部署说明](deployment/SAGEMAKER.md)，实际资源及版本记录见 [DEPLOYED.md](deployment/DEPLOYED.md)。
 
-可覆盖设备、检查点和端口：
+更新已有环境：
 
 ```bash
-# Apple silicon；需满足 PyTorch MPS 运行条件
-DECIDER_DEVICE=mps bash scripts/serve_model.sh
+# 更新 API 和前端，保留现有 SageMaker 模型
+python deployment/deploy.py --region us-east-1 --api-only \
+  --model-provider sagemaker --tag YOUR_NEW_API_TAG
 
-# NVIDIA GPU；需要相应 CUDA 运行环境
-DECIDER_DEVICE=cuda bash scripts/serve_model.sh
-
-# 官方仓库目前也发布了 v21；本演示默认保留博客里的 v19
-DECIDER_MODEL=StrandsAgents/strands-decider-2B-hobson-v21 bash scripts/serve_model.sh
+# 仅更新前端
+python deployment/deploy.py --region us-east-1 --frontend-only
 ```
 
-可连接另一台机器上的官方模型服务：
-
-```bash
-STRANDS_DECIDER_URL=http://your-model-host:8099 \
-DECIDER_TIMEOUT=180 \
-uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
-```
-
-`.env.example` 列出了配置项；通过 shell 导出，或给 uvicorn 添加 `--env-file .env`。模型脚本读取 shell 环境变量。推理请求只发往服务端配置的地址。官方模型引擎使用可变推理状态，本后端串行访问它；请保持单个 Web worker，避免多个进程同时访问同一模型服务。
-
-模型依赖固定到官方源码提交 [`63d24ae`](https://github.com/strands-labs/strands-decider/commit/63d24ae286e50105fba0bd1db15b0e243aea4650)，因为 PyPI `0.1.0` 缺少这里使用的 `--strict-window`。同时固定官方文档验证过的 Torch / Transformers / PEFT 版本，并提交 `uv.lock`。选择其他设备时可能需要额外安装相应内核；详见[官方推理说明](https://github.com/strands-labs/strands-decider/blob/main/docs/inference.md)。
-
-## 演示路线
-
-场景支持按分类筛选，或搜索 `USDC`、`USDT`、`RAG`、`退款`、`ECS` 等关键词。选中场景后会显示用途说明和“试一试”提示；修改输入后切换到真实模型观察变化。
-
-| 分类 | 场景 | 演示重点 |
-| --- | --- | --- |
-| 业务运营 | 客服工单分流 | 负责团队、紧急程度、客户情绪 |
-| 业务运营 | 退款资格审核 | 退货条件、金额审批、下一步流程 |
-| 业务运营 | 销售线索优先级 | 购买意向、上线时间、跟进方式 |
-| Agent 流程 | Agent 工具选择 | 工具路由、必要参数是否缺失 |
-| Agent 流程 | RAG 回答依据 | 现有证据是否足够、是否继续检索 |
-| Agent 流程 | 工具操作审批 | 工具与用户意图是否一致、写操作授权、只读重新规划 |
-| 内容理解 | 评论情感分析 | 情感量表、推荐意愿 |
-| 内容理解 | 多语言识别 | 在自定义语言候选项中选择 |
-| 内容理解 | 社区内容审核 | 区分正常负面评价与促销内容 |
-| 内容理解 | 摘要质量检查 | 事实一致性、忠实度、重写建议 |
-| 数据与运维 | 发票字段校验 | 单据类型、采购单号要求、处理条件 |
-| 数据与运维 | 运维告警分级 | ECS / ALB 示例信号、客户影响、值班通知判断 |
-| 加密货币支付 | USDC 未到账排查 | 确认门槛、等待超时、人工介入与优先级 |
-| 加密货币支付 | USDT 少付处理 | 已计算的到账差额、容差标记、补款与审核路由 |
-| 加密货币支付 | 稳定币退款审批 | 重复付款原因、目的地验证、审批状态与队列选择 |
-| 加密货币支付 | 商户结算延迟 | 结算 SLA、影响范围、运营通知与升级 |
-
-场景输入和示例结果均为演示数据。所有场景只展示判断，不执行退款、SQL 或 AWS 操作。真实输出可能与预设分布不同；预设概率不是模型的准确率或实际运行结果。
-
-加密货币支付场景采用模拟的支付系统快照，不连接钱包或实时链上数据。金额差额、地址匹配、确认门槛与超时标记作为已知事实提供，模型选择处理流程。每个场景包含 3 个决策，并展示逐项耗时与总时间。修改示例时同步更新相关数值和标记，避免输入互相矛盾；实际支付中的金额运算、地址校验和资金执行仍由支付系统及其授权规则处理。
-
-推荐先尝试：
-
-1. 在「客服工单分流」点击运行：同一个状态同时得到部门选择、紧急程度判断和挫败程度评分。
-2. 切换到「JSON 响应」，观察三个答案分别带有 `choice`、`noul` 和 `score` 字段。
-3. 连接模型后修改上下文，或添加自定义问题，再用真实模式运行。选项编辑区接受 JSON 对象（Choice/Noul）或从低到高的 JSON 数组（Score）。
-4. 进入「工具调用守卫」，先运行「缺少城市」：Agent 猜测 Seattle，策略应倾向 `Guide`。
-5. 切换「已提供城市」：模型重新检查，策略可能允许 `Proceed`。实际行为由返回概率和所设阈值决定。
-6. 查看「运行记录」，导出本次实验的输入和输出。
-
-**几个概念：**
-
-- `noul` 返回 `P(true)`，不是额外的 confidence。接近 0.5 表示不确定。
-- Choice confidence 使用 `(N × p_max − 1) / (N − 1)`，不等于最高选项概率。
-- Score 是有序等级索引的期望值，confidence 反映概率分布的集中程度。
-- `Guide` / `Proceed` 是 Python 策略的结果，Decider 只给出判断概率。
-- Web 守卫演示检查拟议工具调用，**不执行天气工具，也不调用 Agent LLM**。0.45 是博客案例使用的实验阈值，不是通用保证。
-
-## 可选：接入真正的 Strands Agent
-
-`examples/strands_agent.py` 将同一套问题和策略接到 `InterventionHandler.before_tool_call`。它需要已启动的 Decider，以及有 Bedrock 模型访问权限的 AWS 凭据。Agent LLM 调用可能产生 Bedrock 费用；天气工具返回的是明确标注的示例天气。
-
-```bash
-uv run --with strands-agents python -m examples.strands_agent
-
-# 可根据自己的 AWS 区域/账户修改 Bedrock 模型
-uv run --with strands-agents python -m examples.strands_agent \
-  --model us.anthropic.claude-haiku-4-5-20251001-v1:0 \
-  --message "What's the weather in Seattle?"
-```
-
-这是可选接入样例；本项目的验证覆盖了本地模型与 Web 守卫，未调用 Bedrock 来验证完整 Agent 循环。
-
-## API
-
-交互式文档：http://localhost:8000/api/docs （先在同一浏览器登录）。
-
-除登录、进程存活和就绪探针外，所有 API 都需要有效会话。POST 请求还需 `X-Decider-Client: web`；浏览器请求会校验 Origin。没有公共注册接口。
-
-| 接口 | 用途 |
-| --- | --- |
-| `POST /api/auth/login` | 校验用户名和密码，设置会话 Cookie |
-| `GET /api/auth/me` | 返回当前用户名和会话到期时间 |
-| `POST /api/auth/logout` | 服务端撤销会话并清除 Cookie |
-| `GET /api/health` | 检查真实模型连接、模型名称与设备 |
-| `GET /api/gpu` | 查看按需 GPU 状态、实例、费用参考与管理权限 |
-| `POST /api/gpu/start` | 管理员申请启动 GPU，返回 202，后台异步执行 |
-| `POST /api/gpu/stop` | 管理员申请停止，等待已有推理完成后停止实例并保留磁盘 |
-| `GET /api/examples` | 获取 16 个场景的分类、说明、修改提示、上下文和问题 |
-| `POST /api/decide` | 示例回放或官方 System One 推理 |
-| `POST /api/guard` | 执行两项工具检查并返回策略结果 |
-
-真实请求示例：
-
-```bash
-umask 077
-curl --fail http://localhost:8000/api/auth/login \
-  -c cookies.txt \
-  -H 'X-Decider-Client: web' \
-  -H 'Content-Type: application/json' \
-  --data-binary @.deployment/local-credentials.json
-
-curl http://localhost:8000/api/decide \
-  -b cookies.txt \
-  -H 'X-Decider-Client: web' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "mode": "live",
-    "measure_decisions": true,
-    "state": "Help! My payouts have been failing for 3 days!",
-    "questions": {
-      "department": {
-        "type": "choice",
-        "instructions": "Which team should handle this?",
-        "criteria": {"billing": "Payments and invoices", "sales": "New purchases"}
-      },
-      "is_urgent": {"type": "noul", "instructions": "Does this convey urgency?"}
-    }
-  }'
-```
-
-真实结果的 `timings` 包含 `execution`（`individual` / `batch`）、`decisions_ms`（按问题 ID）、`queue_ms`、`processing_ms`、`backend_total_ms`。其中后端总时间包含等待推理槽位的时间；`round_trip_ms` 保留为处理阶段的耗时。浏览器另外记录 `timings.client_total_ms`，用于界面总时间、运行记录和导出。示例及批处理的 `decisions_ms` 为 `null`，不会用平均值代替实测值。
-
-## 验证
+本版本完成 **140 项自动化测试**，线上真实双模型、四个完整业务案例、手机布局、鉴权与 AWS 部署检查均已验证。复测命令：
 
 ```bash
 uv run --extra dev pytest -q
-uv run --extra dev ruff check app tests examples scripts
-node --check frontend/static/app.js   # 可选 JavaScript 语法检查
-```
+uv run --extra dev ruff check app tests scripts deployment examples
+node --check frontend/static/crypto.js
 
-测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，以及三种协议、错误处理、守卫边界、逐项计时与排队合计、整次运行超时、并发运行保持问题连续执行。
-
-浏览器端检查（需要已启动的 Web 服务）：
-
-```bash
+# 本地已启动服务时，验证完整页面与参考差异后的继续执行
 uv run --with playwright playwright install chromium
-uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json
-# 同时验证一次真实模型推理：
-# uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json --live
-# 如需使用已经安装的 Chromium：
-# CHROMIUM_PATH=/path/to/chrome uv run --with playwright python scripts/check_browser.py --credentials .deployment/local-credentials.json
+uv run --with playwright python scripts/check_crypto_browser.py \
+  --url http://localhost:8000 \
+  --credentials .deployment/local-credentials.json
 
-# 逐个验证加密货币支付场景的真实推理，保存实际输出与耗时
-uv run python -m scripts.check_scenarios \
-  --credentials .deployment/local-credentials.json \
-  --ids crypto_pending crypto_underpaid crypto_refund crypto_settlement \
-  --output .deployment/crypto-scenarios-local.json
+# AWS 环境：GPU 就绪后复测四个真实配对案例
+uv run python scripts/check_crypto_models.py \
+  --url https://d3i7ogfx5ml7dc.cloudfront.net \
+  --credentials .deployment/admin-credentials.json \
+  --output .deployment/crypto-models-rerun.json
 ```
 
-`check_scenarios` 验证输入可执行、响应结构和计时完整性，不以预设答案判定模型准确率。省略 `--ids` 可运行全部场景；指定 `--url` 可验证 AWS 环境。
+浏览器验证添加 `--live` 可执行一次真实双模型完整流程。验证输出写入忽略的本地目录；仓库中的基准 JSON 仅保留不含凭据的实测摘录。
 
-早期批处理验证中，本机 ARM64 CPU 运行 v19 的客服样例三个问题约 4.9 秒、天气守卫约 4.8 秒。它们不代表逐项计时模式的耗时，也不是性能保证；设备、输入长度、问题数量和热身状态都会改变耗时。
-
-## 项目结构
+## 9. 项目结构与接口
 
 ```text
 app/
-  main.py            # FastAPI、协议校验、官方服务代理
-  auth.py            # scrypt 密码、可撤销会话、DynamoDB / SQLite
-  schemas.py         # 输入模型与限制
-  examples.py        # 明确标注的预设数据、守卫问题
-  policy.py          # 工具调用状态与 Guide / Proceed 策略
-frontend/            # 独立中文 Web 界面，可直接发布到 S3
-  index.html
-  static/
-deployment/          # CloudFormation、Docker、离线模型打包与部署脚本
-examples/
-  strands_agent.py   # 可选 Bedrock + Strands Agent 接入
-scripts/
-  serve_model.sh     # 启动官方模型服务
-  check_browser.py   # 浏览器交互检查
-  check_scenarios.py # 真实场景执行、结果结构与逐项计时检查
-  manage_users.py    # 创建、重置、停用账号（无公共注册接口）
-tests/
-  test_api.py        # 后端协议、错误与策略测试
-  test_auth.py       # 认证、会话、限流与 CSRF 测试
-  test_timings.py    # 逐项计时、合计、排队、超时与并发测试
+  main.py                  # FastAPI、认证集成、原有决策接口与计时
+  crypto.py                # 支付场景、演示参考、执行保护与回复模板
+  bedrock.py               # GPT-6.1 Sol Converse 适配与输出校验
+  sagemaker.py             # 签名的 SageMaker InvokeEndpoint
+  auth.py                  # 自建账号、会话、限流
+  gpu.py / gpu_state.py    # GPU 控制 API、状态与推理租约
+frontend/
+  static/crypto.js          # 两侧决策、完整沙盒执行、每步与最终结果
+  static/crypto.css         # 支付工作台与移动端布局
+deployment/                # CloudFormation、镜像、控制器、部署与运维
+docs/
+  diagrams/                # 三页 draw.io 源文件与 SVG 预览
+  results/                 # 本次实测摘录
+  DEVELOPMENT.md           # 本地模型、基础工作台、工具守卫与详细 API
+scripts/                   # 账号管理、图表生成、浏览器与真实模型验证
+tests/                     # API、认证、计时、GPU、SageMaker 与支付流程测试
 ```
 
-模型与演示面向实验用途。页面字体优先使用在线字体，无法联网时自动使用系统字体。浏览器运行记录会保存输入文本，可在「运行记录」中清空。模型说明与权重以[官方仓库](https://github.com/strands-labs/strands-decider)为准；本项目不是官方产品。
+| 接口                                                  | 用途                                              |
+| ----------------------------------------------------- | ------------------------------------------------- |
+| `/api/auth/login`、`/api/auth/me`、`/api/auth/logout` | 自建登录、会话查询与退出                          |
+| `/api/examples`、`/api/decide`、`/api/guard`          | 基础场景、Decider 推理与工具调用守卫              |
+| `/api/crypto/catalog`                                 | 支付案例、步骤与候选项                            |
+| `/api/crypto/decision`                                | 单步骤、单模型决策或明确标记的规则回放            |
+| `/api/crypto/apply`                                   | 顺序执行、参考差异提示、资金 / 结案保护与状态更新 |
+| `/api/crypto/event`                                   | 模拟确认、补款、地址验证、审批或结算到账          |
+| `/api/gpu`、`/api/gpu/start`、`/api/gpu/stop`         | GPU 状态与管理员启停                              |
+
+登录后可访问 `/api/docs`。业务 API 需要有效会话；写请求沿用 CSRF / Origin 校验。
+
+模型版本、权重许可与推理实现以 [Strands Decider 官方仓库](https://github.com/strands-labs/strands-decider)为准。本项目是独立教学演示。

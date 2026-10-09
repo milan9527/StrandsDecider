@@ -15,6 +15,14 @@
       "Type": "String",
       "AllowedPattern": "[A-Za-z0-9._-]+"
     },
+    "ModelProvider": {
+      "Type": "String",
+      "Default": "ec2",
+      "AllowedValues": [
+        "ec2",
+        "sagemaker"
+      ]
+    },
     "DesiredCount": {
       "Type": "Number",
       "Default": 0,
@@ -282,6 +290,53 @@
         ]
       }
     },
+    "BedrockRuntimeEndpoint": {
+      "Type": "AWS::EC2::VPCEndpoint",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "VpcEndpointType": "Interface",
+        "PrivateDnsEnabled": true,
+        "ServiceName": {
+          "Fn::Sub": "com.amazonaws.${AWS::Region}.bedrock-runtime"
+        },
+        "SubnetIds": [
+          {
+            "Ref": "Subnet1"
+          }
+        ],
+        "SecurityGroupIds": [
+          {
+            "Ref": "EndpointSecurityGroup"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "bedrock:InvokeModel",
+              "Resource": [
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.openai.gpt-6.1-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-1::foundation-model/openai.gpt-6.1-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-2::foundation-model/openai.gpt-6.1-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/openai.gpt-6.1-sol"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
     "S3Endpoint": {
       "Type": "AWS::EC2::VPCEndpoint",
       "Properties": {
@@ -533,6 +588,31 @@
                       "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${GpuStateTableName}"
                     }
                   ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "sagemaker:InvokeEndpoint",
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:sagemaker:${AWS::Region}:${AWS::AccountId}:endpoint/${AWS::StackName}-decider"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "bedrock:InvokeModel",
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.openai.gpt-6.1-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-1::foundation-model/openai.gpt-6.1-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-2::foundation-model/openai.gpt-6.1-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/openai.gpt-6.1-sol"
+                    }
+                  ]
                 }
               ]
             }
@@ -617,6 +697,16 @@
                 "Value": {
                   "Ref": "GpuStateTableName"
                 }
+              },
+              {
+                "Name": "GPU_PROVIDER",
+                "Value": {
+                  "Ref": "ModelProvider"
+                }
+              },
+              {
+                "Name": "BEDROCK_ENABLED",
+                "Value": "true"
               },
               {
                 "Name": "GPU_MANAGERS",

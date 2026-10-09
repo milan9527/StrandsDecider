@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img">
+  <title>03  加密支付：五步完整流程与结果</title>
+  <desc>Editable source: strands-decider-demo.drawio</desc>
+  <defs>
+    <marker id="arrow52677c" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#52677c" />
+    </marker>
+    <marker id="arrow0f766e" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#0f766e" />
+    </marker>
+    <marker id="arrow3159ac" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#3159ac" />
+    </marker>
+    <marker id="arrowb86c14" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#b86c14" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">03  加密支付：五步完整流程与结果</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">四个场景：USDC 未到账 / USDT 少付 / 稳定币退款 / 商户结算 ｜ 全部为模拟业务数据</text>
+  <rect x="70" y="145" width="1460" height="95" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
+  <text x="800.0" y="171.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle" font-weight="700">冻结本轮证据版本</text>
+  <text x="800.0" y="198.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle">客户诉求 + 到账金额 + 确认数 + 地址验证 + 人工审批 + 风险标记 + 结算状态</text>
+  <text x="800.0" y="225.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle">两模型收到同一版本；每一步并发调用两模型，五步决策按顺序进行</text>
+  <rect x="70" y="315" width="260" height="125" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="200.0" y="356.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">01 客服受理</text>
+  <text x="200.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">选择客服队列</text>
+  <text x="200.0" y="410.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">支付 / 退款 / 商户</text>
+  <rect x="370" y="315" width="260" height="125" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="500.0" y="356.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">02 交易核验</text>
+  <text x="500.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">读取金额与确认</text>
+  <text x="500.0" y="410.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">或结算进度</text>
+  <rect x="670" y="315" width="260" height="125" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="800.0" y="356.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">03 风控审批</text>
+  <text x="800.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">选择通过 / 复核</text>
+  <text x="800.0" y="410.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">验证地址 / 等待审批</text>
+  <rect x="970" y="315" width="260" height="125" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="1100.0" y="356.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">04 业务处置</text>
+  <text x="1100.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">入账 / 退款 / 对账</text>
+  <text x="1100.0" y="410.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">或挂起 / 升级</text>
+  <rect x="1270" y="315" width="260" height="125" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="1400.0" y="356.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">05 回复结案</text>
+  <text x="1400.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">选择结案或跟进</text>
+  <text x="1400.0" y="410.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">供后续选择回复模板</text>
+  <rect x="200" y="505" width="1200" height="90" rx="12" fill="#ffffff" stroke="#b9c8d5" />
+  <text x="800.0" y="542.4" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#1c3045" text-anchor="middle" font-weight="700">分别按序执行两套方案 · Decider 与 GPT 各自拥有独立模拟订单、工单、账本</text>
+  <text x="800.0" y="570.9" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#1c3045" text-anchor="middle">执行到每步时重新检查实际状态；原始模型选择与实际动作分别保存</text>
+  <rect x="80" y="675" width="420" height="130" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="290.0" y="707.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#155e55" text-anchor="middle" font-weight="700">参考差异：允许继续</text>
+  <text x="290.0" y="733.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#155e55" text-anchor="middle">例如普通支付选择「等待人工审批」</text>
+  <text x="290.0" y="758.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#155e55" text-anchor="middle">保留原始模型动作；不再卡在 2/5</text>
+  <text x="290.0" y="784.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#155e55" text-anchor="middle">后续资金可挂起，客服流程继续</text>
+  <rect x="590" y="675" width="420" height="130" rx="12" fill="#fff5e7" stroke="#ddb775" />
+  <text x="800.0" y="707.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#855116" text-anchor="middle" font-weight="700">资金 / 结案保护：调整后继续</text>
+  <text x="800.0" y="733.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#855116" text-anchor="middle">少付入账、未审批退款 → 挂起</text>
+  <text x="800.0" y="758.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#855116" text-anchor="middle">实际业务未完成却要求结案 → 跟进</text>
+  <text x="800.0" y="784.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#855116" text-anchor="middle">记录 requested_action 与实际 action</text>
+  <rect x="1100" y="675" width="420" height="130" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
+  <text x="1310.0" y="707.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle" font-weight="700">调用失败：明确显示未完成</text>
+  <text x="1310.0" y="733.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">模型 / 网络 / 响应校验失败不伪造结果</text>
+  <text x="1310.0" y="758.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">执行请求失败可重试剩余步骤</text>
+  <text x="1310.0" y="784.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">非法、乱序、重复动作仍被拒绝</text>
+  <rect x="160" y="865" width="1280" height="100" rx="12" fill="#ffffff" stroke="#b9c8d5" />
+  <text x="800.0" y="892.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle" font-weight="700">5/5 步完成 ≠ 资金业务已完成</text>
+  <text x="800.0" y="922.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle">订单：待处理 / 已收款 / 模拟退款 / 已对账     工单：持续跟进 / 已结案</text>
+  <text x="800.0" y="952.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle">客服回复依据实际执行状态；挂起不显示为已付款或已退款</text>
+  <rect x="80" y="1010" width="1440" height="75" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
+  <text x="800.0" y="1040.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle" font-weight="700">继续演示：模拟确认数达标 / 补足差额 / 验证地址 / 审批通过 / 结算到账 → 清除旧结果，重新开始</text>
+  <text x="800.0" y="1066.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">「客服会话 → 推进模拟交易」点击事件后，显示系统通知与前后数值（如 3/12 → 12/12），保留历史回复；再重新运行。</text>
+  <polyline points="330,377 370,377" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="630,377 670,377" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="930,377 970,377" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="1230,377 1270,377" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="800,240 800,280 200,280 200,315" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
+  <rect x="680" y="267" width="240" height="26" fill="#ffffff" />
+  <text x="800" y="285" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">获得两套五步建议</text>
+  <polyline points="1400,440 1400,470 800,470 800,505" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
+  <polyline points="450,595 450,635 290,635 290,675" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="800,595 800,675" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" />
+  <polyline points="1150,595 1150,635 1310,635 1310,675" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" stroke-dasharray="7 5" />
+  <polyline points="290,805 290,835 530,835 530,865" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="800,805 800,865" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" />
+</svg>

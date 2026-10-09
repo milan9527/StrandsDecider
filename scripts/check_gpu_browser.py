@@ -1,4 +1,4 @@
-"""Exercise the real authenticated GPU buttons, waiting for capacity to start or stop with its disk retained."""
+"""Exercise authenticated GPU controls and observe asynchronous startup or shutdown."""
 
 import argparse
 import json
@@ -13,7 +13,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", required=True)
     parser.add_argument("--credentials", type=Path, required=True)
-    parser.add_argument("--action", choices=["start", "stop", "observe-stop"], required=True)
+    parser.add_argument(
+        "--action", choices=["start", "stop", "observe-stop", "observe-ready"], required=True
+    )
     args = parser.parse_args()
     credentials = json.loads(args.credentials.read_text())
     artifacts = Path("artifacts")
@@ -34,11 +36,11 @@ def main():
         expect(page.locator("#gpu-panel")).to_contain_text("按需")
         expect(page.locator(".scenario-card")).to_have_count(16)
         started = time.monotonic()
-        if args.action != "observe-stop":
+        if not args.action.startswith("observe-"):
             expect(page.locator("#gpu-" + args.action)).to_be_enabled(timeout=10000)
             page.locator("#gpu-" + args.action).click()
             expect(page.locator("#gpu-" + args.action)).to_be_disabled()
-        target = "ready" if args.action == "start" else "stopped"
+        target = "ready" if args.action in ("start", "observe-ready") else "stopped"
         deadline = time.monotonic() + 1500
         previous = None
         while time.monotonic() < deadline:
@@ -59,9 +61,11 @@ def main():
         expect(page.locator("#gpu-status")).to_have_text(
             "GPU 就绪" if target == "ready" else "已停止", timeout=15000
         )
+        if state.get("provider") == "sagemaker":
+            expect(page.locator("#gpu-heading-label")).to_contain_text("SageMaker")
         if target == "stopped":
             assert state["instance_count"] == 0
-            if state["instance_id"]:
+            if state["instance_id"] and state.get("provider") != "sagemaker":
                 assert state["disk_retained"] and state["instance_state"] == "stopped"
             page.locator('#page-playground [data-mode="live"]').click()
             page.locator("#run-decision").click()

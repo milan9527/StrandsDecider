@@ -321,7 +321,11 @@ def template():
                             },
                             {
                                 "Effect": "Allow",
-                                "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+                                "Action": [
+                                    "ec2:StartInstances",
+                                    "ec2:StopInstances",
+                                    "ec2:ModifyInstanceAttribute",
+                                ],
                                 "Resource": sub(
                                     "arn:${AWS::Partition}:ec2:${AWS::Region}:${AWS::AccountId}:instance/*"
                                 ),
@@ -407,7 +411,7 @@ def template():
         "Events::Rule",
         {
             "ScheduleExpression": "rate(1 minute)",
-            "State": "ENABLED",
+            "State": ref("ControllerState"),
             "Targets": [{"Id": "GpuController", "Arn": attr("Controller", "Arn")}],
         },
     )
@@ -431,6 +435,11 @@ def template():
             for index in (4, 5)
         },
         "Parameters": {
+            "ControllerState": {
+                "Type": "String",
+                "Default": "ENABLED",
+                "AllowedValues": ["ENABLED", "DISABLED"],
+            },
             **{
                 key: {"Type": "String"}
                 for key in [

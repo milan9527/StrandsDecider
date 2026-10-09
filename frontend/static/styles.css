@@ -2872,10 +2872,10 @@ select.type-badge {
     margin-bottom: 24px;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 480px) {
   nav {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 2px;
   }
   .nav-item {
@@ -2920,6 +2920,7 @@ select.type-badge {
   margin: 10px 0 6px;
   font-size: 13px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 .gpu-copy small {
   color: #7c8870;

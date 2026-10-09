@@ -32,6 +32,7 @@ def main():
     parser.add_argument("--frontend-only", action="store_true")
     parser.add_argument("--api-only", action="store_true", help="Keep the existing model image")
     parser.add_argument("--gpu-state-table", help="GPU control table from the GPU stack")
+    parser.add_argument("--model-provider", choices=["ec2", "sagemaker"])
     parser.add_argument(
         "--bootstrap", action="store_true", help="Create base infrastructure at zero API capacity"
     )
@@ -222,6 +223,18 @@ def main():
             ),
             {"ParameterKey": "ApiImageTag", "ParameterValue": args.tag},
             {"ParameterKey": "DesiredCount", "ParameterValue": "1"},
+            {
+                "ParameterKey": "ModelProvider",
+                "ParameterValue": args.model_provider
+                or next(
+                    (
+                        p["ParameterValue"]
+                        for p in current["Parameters"]
+                        if p["ParameterKey"] == "ModelProvider"
+                    ),
+                    "ec2",
+                ),
+            },
             (
                 {"ParameterKey": "GpuStateTableName", "ParameterValue": args.gpu_state_table}
                 if args.gpu_state_table

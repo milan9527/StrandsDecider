@@ -1,0 +1,1373 @@
+{
+  "checked_at": "2026-10-09T06:25:49.093131+00:00",
+  "application_version": {
+    "frontend": "crypto4",
+    "api_image_tag": "20261009-crypto2"
+  },
+  "scope": "One observed run: four initial synthetic payment cases, five decisions per case; not a general accuracy or steady-state latency benchmark.",
+  "models": {
+    "decider": "StrandsAgents/strands-decider-2B-hobson-v19",
+    "bedrock": "us.openai.gpt-6.1-sol",
+    "bedrock_reasoning": "low"
+  },
+  "infrastructure": {
+    "region": "us-east-1",
+    "decider_instance": "ml.g6.xlarge",
+    "decider_device": "cuda"
+  },
+  "timing_note": "backend_total_ms includes API-to-provider communication and queueing. Per-step pairs run concurrently; sums are not browser workflow wall-clock time.",
+  "cases": [
+    {
+      "summary": {
+        "case": "pending",
+        "paired_steps": 5,
+        "same_choice": 4,
+        "decider_total_ms": 502.329,
+        "bedrock_total_ms": 4805.926,
+        "reference_differences": {
+          "decider": 1,
+          "bedrock": 0
+        },
+        "protection_adjustments": {
+          "decider": 0,
+          "bedrock": 0
+        }
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "48d43f5424d82e81",
+            "choice": "payment_support",
+            "reference_choice": "payment_support",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 97.51
+              },
+              "queue_ms": 8.986,
+              "processing_ms": 97.589,
+              "backend_total_ms": 106.575,
+              "model_reported_ms": 68.52
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "payment_support",
+              "action": "payment_support",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "48d43f5424d82e81",
+            "choice": "payment_support",
+            "reference_choice": "payment_support",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 937.423,
+              "processing_ms": 937.286,
+              "model_reported_ms": 729
+            },
+            "usage": {
+              "input_tokens": 317,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "payment_support",
+              "action": "payment_support",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "6a5d5396f00c76f7",
+            "choice": "await_confirmations",
+            "reference_choice": "await_confirmations",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.602
+              },
+              "queue_ms": 6.422,
+              "processing_ms": 79.679,
+              "backend_total_ms": 86.101,
+              "model_reported_ms": 68.16
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "await_confirmations",
+              "action": "await_confirmations",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "6a5d5396f00c76f7",
+            "choice": "await_confirmations",
+            "reference_choice": "await_confirmations",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 780.581,
+              "processing_ms": 780.419,
+              "model_reported_ms": 769
+            },
+            "usage": {
+              "input_tokens": 363,
+              "output_tokens": 11
+            },
+            "execution": {
+              "requested_action": "await_confirmations",
+              "action": "await_confirmations",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "b57d0d9cf45b44d9",
+            "choice": "await_approval",
+            "reference_choice": "approved",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 129.361
+              },
+              "queue_ms": 6.649,
+              "processing_ms": 129.444,
+              "backend_total_ms": 136.092,
+              "model_reported_ms": 67.9
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "await_approval",
+              "action": "await_approval",
+              "applied": true,
+              "policy_warning": "与演示参考「规则检查通过」不同，仅记录差异，不因此暂停。",
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "b57d0d9cf45b44d9",
+            "choice": "approved",
+            "reference_choice": "approved",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1235.549,
+              "processing_ms": 1235.318,
+              "model_reported_ms": 1224
+            },
+            "usage": {
+              "input_tokens": 355,
+              "output_tokens": 24
+            },
+            "execution": {
+              "requested_action": "approved",
+              "action": "approved",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "94ba3cf9d6b549d6",
+            "choice": "hold",
+            "reference_choice": "hold",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.388
+              },
+              "queue_ms": 6.329,
+              "processing_ms": 80.448,
+              "backend_total_ms": 86.777,
+              "model_reported_ms": 68.86
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "hold",
+              "action": "hold",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "94ba3cf9d6b549d6",
+            "choice": "hold",
+            "reference_choice": "hold",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 852.593,
+              "processing_ms": 852.441,
+              "model_reported_ms": 837
+            },
+            "usage": {
+              "input_tokens": 398,
+              "output_tokens": 9
+            },
+            "execution": {
+              "requested_action": "hold",
+              "action": "hold",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "8378d3afe54a43af",
+            "choice": "follow_up",
+            "reference_choice": "follow_up",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.615
+              },
+              "queue_ms": 6.101,
+              "processing_ms": 80.683,
+              "backend_total_ms": 86.784,
+              "model_reported_ms": 69.42
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "follow_up",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "8378d3afe54a43af",
+            "choice": "follow_up",
+            "reference_choice": "follow_up",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 999.78,
+              "processing_ms": 999.638,
+              "model_reported_ms": 986
+            },
+            "usage": {
+              "input_tokens": 313,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "follow_up",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        }
+      ],
+      "final_states": {
+        "decider": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        },
+        "bedrock": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        }
+      }
+    },
+    {
+      "summary": {
+        "case": "underpaid",
+        "paired_steps": 5,
+        "same_choice": 4,
+        "decider_total_ms": 470.051,
+        "bedrock_total_ms": 4644.358,
+        "reference_differences": {
+          "decider": 1,
+          "bedrock": 0
+        },
+        "protection_adjustments": {
+          "decider": 1,
+          "bedrock": 0
+        }
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "f6e00ab2d5869322",
+            "choice": "payment_support",
+            "reference_choice": "payment_support",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.279
+              },
+              "queue_ms": 8.0,
+              "processing_ms": 79.346,
+              "backend_total_ms": 87.346,
+              "model_reported_ms": 67.65
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "payment_support",
+              "action": "payment_support",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "f6e00ab2d5869322",
+            "choice": "payment_support",
+            "reference_choice": "payment_support",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1005.438,
+              "processing_ms": 1005.296,
+              "model_reported_ms": 988
+            },
+            "usage": {
+              "input_tokens": 324,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "payment_support",
+              "action": "payment_support",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "bf2081f86b4997f5",
+            "choice": "request_topup",
+            "reference_choice": "request_topup",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.092
+              },
+              "queue_ms": 6.425,
+              "processing_ms": 80.158,
+              "backend_total_ms": 86.582,
+              "model_reported_ms": 69.04
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "request_topup",
+              "action": "request_topup",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "bf2081f86b4997f5",
+            "choice": "request_topup",
+            "reference_choice": "request_topup",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 893.516,
+              "processing_ms": 893.366,
+              "model_reported_ms": 882
+            },
+            "usage": {
+              "input_tokens": 370,
+              "output_tokens": 11
+            },
+            "execution": {
+              "requested_action": "request_topup",
+              "action": "request_topup",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "733bc691f53269f4",
+            "choice": "approved",
+            "reference_choice": "approved",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 78.922
+              },
+              "queue_ms": 6.391,
+              "processing_ms": 78.988,
+              "backend_total_ms": 85.379,
+              "model_reported_ms": 68.01
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "approved",
+              "action": "approved",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "733bc691f53269f4",
+            "choice": "approved",
+            "reference_choice": "approved",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1093.532,
+              "processing_ms": 1093.392,
+              "model_reported_ms": 1083
+            },
+            "usage": {
+              "input_tokens": 362,
+              "output_tokens": 24
+            },
+            "execution": {
+              "requested_action": "approved",
+              "action": "approved",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "91e411dd4ddd2e0f",
+            "choice": "credit_order",
+            "reference_choice": "hold",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 83.685
+              },
+              "queue_ms": 6.281,
+              "processing_ms": 83.748,
+              "backend_total_ms": 90.029,
+              "model_reported_ms": 72.31
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "credit_order",
+              "action": "hold",
+              "applied": true,
+              "policy_warning": "与演示参考「挂起并跟进」不同，仅记录差异，不因此暂停。",
+              "safety_adjusted": true,
+              "safety_reason": "当前场景、到账金额或确认数不满足确认收款条件，资金动作已挂起。",
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "91e411dd4ddd2e0f",
+            "choice": "hold",
+            "reference_choice": "hold",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 866.154,
+              "processing_ms": 866.058,
+              "model_reported_ms": 853
+            },
+            "usage": {
+              "input_tokens": 405,
+              "output_tokens": 9
+            },
+            "execution": {
+              "requested_action": "hold",
+              "action": "hold",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "d5fad4a6d411415a",
+            "choice": "follow_up",
+            "reference_choice": "follow_up",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.634
+              },
+              "queue_ms": 40.013,
+              "processing_ms": 80.702,
+              "backend_total_ms": 120.715,
+              "model_reported_ms": 68.83
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "follow_up",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "d5fad4a6d411415a",
+            "choice": "follow_up",
+            "reference_choice": "follow_up",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 785.718,
+              "processing_ms": 785.569,
+              "model_reported_ms": 774
+            },
+            "usage": {
+              "input_tokens": 320,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "follow_up",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        }
+      ],
+      "final_states": {
+        "decider": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        },
+        "bedrock": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        }
+      }
+    },
+    {
+      "summary": {
+        "case": "refund",
+        "paired_steps": 5,
+        "same_choice": 2,
+        "decider_total_ms": 484.647,
+        "bedrock_total_ms": 4113.929,
+        "reference_differences": {
+          "decider": 3,
+          "bedrock": 0
+        },
+        "protection_adjustments": {
+          "decider": 2,
+          "bedrock": 0
+        }
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "5c59b6c3bf587f9a",
+            "choice": "refund_support",
+            "reference_choice": "refund_support",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 78.499
+              },
+              "queue_ms": 8.423,
+              "processing_ms": 78.565,
+              "backend_total_ms": 86.988,
+              "model_reported_ms": 67.05
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "refund_support",
+              "action": "refund_support",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "5c59b6c3bf587f9a",
+            "choice": "refund_support",
+            "reference_choice": "refund_support",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 833.179,
+              "processing_ms": 833.08,
+              "model_reported_ms": 823
+            },
+            "usage": {
+              "input_tokens": 317,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "refund_support",
+              "action": "refund_support",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "6380b7eb8940b36b",
+            "choice": "payment_verified",
+            "reference_choice": "payment_verified",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 78.433
+              },
+              "queue_ms": 6.214,
+              "processing_ms": 78.498,
+              "backend_total_ms": 84.712,
+              "model_reported_ms": 67.32
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "payment_verified",
+              "action": "payment_verified",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "6380b7eb8940b36b",
+            "choice": "payment_verified",
+            "reference_choice": "payment_verified",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 894.909,
+              "processing_ms": 894.752,
+              "model_reported_ms": 883
+            },
+            "usage": {
+              "input_tokens": 363,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "payment_verified",
+              "action": "payment_verified",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "8a9b2e716930773e",
+            "choice": "await_approval",
+            "reference_choice": "verify_destination",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 77.914
+              },
+              "queue_ms": 6.477,
+              "processing_ms": 77.988,
+              "backend_total_ms": 84.464,
+              "model_reported_ms": 66.89
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "await_approval",
+              "action": "await_approval",
+              "applied": true,
+              "policy_warning": "与演示参考「验证退款地址」不同，仅记录差异，不因此暂停。",
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "8a9b2e716930773e",
+            "choice": "verify_destination",
+            "reference_choice": "verify_destination",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 815.342,
+              "processing_ms": 815.188,
+              "model_reported_ms": 806
+            },
+            "usage": {
+              "input_tokens": 355,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "verify_destination",
+              "action": "verify_destination",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "684f4babe4550d04",
+            "choice": "refund_payment",
+            "reference_choice": "hold",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 128.932
+              },
+              "queue_ms": 9.686,
+              "processing_ms": 129.007,
+              "backend_total_ms": 138.694,
+              "model_reported_ms": 68.97
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "refund_payment",
+              "action": "hold",
+              "applied": true,
+              "policy_warning": "与演示参考「挂起并跟进」不同，仅记录差异，不因此暂停。",
+              "safety_adjusted": true,
+              "safety_reason": "风控或本次方案的人工复核尚未完成，资金动作已挂起，继续回复客户。",
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "684f4babe4550d04",
+            "choice": "hold",
+            "reference_choice": "hold",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 669.261,
+              "processing_ms": 669.086,
+              "model_reported_ms": 660
+            },
+            "usage": {
+              "input_tokens": 398,
+              "output_tokens": 9
+            },
+            "execution": {
+              "requested_action": "hold",
+              "action": "hold",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "d3ddb5870e117791",
+            "choice": "resolve",
+            "reference_choice": "follow_up",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 81.565
+              },
+              "queue_ms": 8.157,
+              "processing_ms": 81.632,
+              "backend_total_ms": 89.789,
+              "model_reported_ms": 69.65
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "resolve",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": "与演示参考「回复并持续跟进」不同，仅记录差异，不因此暂停。",
+              "safety_adjusted": true,
+              "safety_reason": "实际业务尚未完成，已改为回复并持续跟进，五步流程仍可完成。",
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "d3ddb5870e117791",
+            "choice": "follow_up",
+            "reference_choice": "follow_up",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 901.238,
+              "processing_ms": 901.063,
+              "model_reported_ms": 889
+            },
+            "usage": {
+              "input_tokens": 313,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "follow_up",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        }
+      ],
+      "final_states": {
+        "decider": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        },
+        "bedrock": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        }
+      }
+    },
+    {
+      "summary": {
+        "case": "settlement",
+        "paired_steps": 5,
+        "same_choice": 4,
+        "decider_total_ms": 572.839,
+        "bedrock_total_ms": 4442.979,
+        "reference_differences": {
+          "decider": 1,
+          "bedrock": 0
+        },
+        "protection_adjustments": {
+          "decider": 1,
+          "bedrock": 0
+        }
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "ff435892fb5e9d2b",
+            "choice": "merchant_ops",
+            "reference_choice": "merchant_ops",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 78.438
+              },
+              "queue_ms": 8.782,
+              "processing_ms": 78.506,
+              "backend_total_ms": 87.288,
+              "model_reported_ms": 67.36
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "merchant_ops",
+              "action": "merchant_ops",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "ff435892fb5e9d2b",
+            "choice": "merchant_ops",
+            "reference_choice": "merchant_ops",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 984.73,
+              "processing_ms": 984.552,
+              "model_reported_ms": 974
+            },
+            "usage": {
+              "input_tokens": 327,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "merchant_ops",
+              "action": "merchant_ops",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "55c12d1205eedbaf",
+            "choice": "settlement_delayed",
+            "reference_choice": "settlement_delayed",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 81.148
+              },
+              "queue_ms": 50.655,
+              "processing_ms": 81.241,
+              "backend_total_ms": 131.895,
+              "model_reported_ms": 67.87
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "settlement_delayed",
+              "action": "settlement_delayed",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "55c12d1205eedbaf",
+            "choice": "settlement_delayed",
+            "reference_choice": "settlement_delayed",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 947.463,
+              "processing_ms": 947.311,
+              "model_reported_ms": 860
+            },
+            "usage": {
+              "input_tokens": 373,
+              "output_tokens": 12
+            },
+            "execution": {
+              "requested_action": "settlement_delayed",
+              "action": "settlement_delayed",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "0fb85e86d37d6d18",
+            "choice": "approved",
+            "reference_choice": "approved",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 90.464
+              },
+              "queue_ms": 6.85,
+              "processing_ms": 90.539,
+              "backend_total_ms": 97.389,
+              "model_reported_ms": 68.39
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "approved",
+              "action": "approved",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "0fb85e86d37d6d18",
+            "choice": "approved",
+            "reference_choice": "approved",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 900.825,
+              "processing_ms": 900.674,
+              "model_reported_ms": 807
+            },
+            "usage": {
+              "input_tokens": 365,
+              "output_tokens": 9
+            },
+            "execution": {
+              "requested_action": "approved",
+              "action": "approved",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "6fe07fc998a85d78",
+            "choice": "escalate_settlement",
+            "reference_choice": "escalate_settlement",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.441
+              },
+              "queue_ms": 91.321,
+              "processing_ms": 79.508,
+              "backend_total_ms": 170.829,
+              "model_reported_ms": 67.85
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "escalate_settlement",
+              "action": "escalate_settlement",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "6fe07fc998a85d78",
+            "choice": "escalate_settlement",
+            "reference_choice": "escalate_settlement",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 872.989,
+              "processing_ms": 872.84,
+              "model_reported_ms": 863
+            },
+            "usage": {
+              "input_tokens": 408,
+              "output_tokens": 13
+            },
+            "execution": {
+              "requested_action": "escalate_settlement",
+              "action": "escalate_settlement",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "decider": {
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "input_hash": "8a2305931be3d1ab",
+            "choice": "resolve",
+            "reference_choice": "follow_up",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 78.799
+              },
+              "queue_ms": 6.572,
+              "processing_ms": 78.865,
+              "backend_total_ms": 85.438,
+              "model_reported_ms": 67.35
+            },
+            "usage": null,
+            "execution": {
+              "requested_action": "resolve",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": "与演示参考「回复并持续跟进」不同，仅记录差异，不因此暂停。",
+              "safety_adjusted": true,
+              "safety_reason": "实际业务尚未完成，已改为回复并持续跟进，五步流程仍可完成。",
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          },
+          "bedrock": {
+            "source": "live",
+            "model": "us.openai.gpt-6.1-sol",
+            "input_hash": "8a2305931be3d1ab",
+            "choice": "follow_up",
+            "reference_choice": "follow_up",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 736.972,
+              "processing_ms": 736.83,
+              "model_reported_ms": 729
+            },
+            "usage": {
+              "input_tokens": 323,
+              "output_tokens": 10
+            },
+            "execution": {
+              "requested_action": "follow_up",
+              "action": "follow_up",
+              "applied": true,
+              "policy_warning": null,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "external_action_executed": false
+            }
+          }
+        }
+      ],
+      "final_states": {
+        "decider": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        },
+        "bedrock": {
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ],
+          "order_status": "open",
+          "ticket_status": "waiting"
+        }
+      }
+    }
+  ]
+}

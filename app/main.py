@@ -8,6 +8,7 @@ from pathlib import Path
 from time import perf_counter
 
 import httpx
+from botocore.exceptions import BotoCoreError, ClientError
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -15,10 +16,14 @@ from starlette.concurrency import run_in_threadpool
 
 from app.auth import Auth
 from app.auth import router as auth_router
+from app.bedrock import create_client as create_bedrock
+from app.crypto import router as crypto_router
 from app.examples import EXAMPLES, GUARD_QUESTIONS, public_examples
 from app.gpu import configured_gpu, inference_lease
 from app.gpu import router as gpu_router
 from app.policy import review, tool_state
+from app.sagemaker import create_runtime
+from app.sagemaker import invoke as invoke_sagemaker
 from app.schemas import DecisionRequest, GuardRequest
 
 FRONTEND = Path(__file__).resolve().parent.parent / "frontend"
@@ -32,12 +37,21 @@ async def lifespan(app):
     app.state.upstream = os.getenv("STRANDS_DECIDER_URL", "http://127.0.0.1:8099").rstrip("/")
     app.state.lock = asyncio.Lock()
     app.state.model_timeout = float(os.getenv("DECIDER_TIMEOUT", "180"))
+    app.state.sagemaker = create_runtime() if os.getenv("GPU_PROVIDER") == "sagemaker" else None
+    app.state.bedrock = create_bedrock()
+    app.state.bedrock_slots = asyncio.Semaphore(2)
     async with httpx.AsyncClient(
         timeout=httpx.Timeout(app.state.model_timeout, connect=5),
         trust_env=False,
     ) as client:
         app.state.client = client
-        yield
+        try:
+            yield
+        finally:
+            if app.state.sagemaker:
+                app.state.sagemaker.close()
+            if app.state.bedrock:
+                app.state.bedrock.close()
 
 
 app = FastAPI(
@@ -50,6 +64,7 @@ app = FastAPI(
 )
 app.include_router(auth_router)
 app.include_router(gpu_router)
+app.include_router(crypto_router)
 
 
 @app.middleware("http")
@@ -84,13 +99,22 @@ async def health(request: Request):
             return {"connected": False, "message": "GPU 尚未就绪。示例回放仍可使用。"}
         upstream = state["endpoint"]
     try:
-        response = await request.app.state.client.get(upstream + "/health", timeout=3)
-        response.raise_for_status()
-        data = response.json()
+        if upstream.startswith("sagemaker://"):
+            async with asyncio.timeout(4):
+                data = await run_in_threadpool(
+                    invoke_sagemaker,
+                    request.app.state.sagemaker,
+                    upstream,
+                    {"operation": "health"},
+                )
+        else:
+            response = await request.app.state.client.get(upstream + "/health", timeout=3)
+            response.raise_for_status()
+            data = response.json()
         if not isinstance(data, dict) or data.get("status") != "ok" or not data.get("model"):
             raise ValueError("Not a Decider health response")
         return {"connected": True, "upstream": data}
-    except (httpx.HTTPError, ValueError):
+    except (httpx.HTTPError, ValueError, ClientError, BotoCoreError, TimeoutError):
         return {"connected": False, "message": "模型服务未连接。示例回放仍可使用。"}
 
 
@@ -177,15 +201,31 @@ def validate_response(data, questions):
 
 async def call_model(request: Request, payload: dict):
     try:
-        response = await request.app.state.client.post(
-            request.state.model_upstream + "/v1/systemone", json=payload
-        )
-        if response.status_code == 422:
-            raise HTTPException(422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。")
-        response.raise_for_status()
-        result = response.json()
+        if request.state.model_upstream.startswith("sagemaker://"):
+            result = await run_in_threadpool(
+                invoke_sagemaker,
+                request.app.state.sagemaker,
+                request.state.model_upstream,
+                payload,
+            )
+        else:
+            response = await request.app.state.client.post(
+                request.state.model_upstream + "/v1/systemone", json=payload
+            )
+            if response.status_code == 422:
+                raise HTTPException(
+                    422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。"
+                )
+            response.raise_for_status()
+            result = response.json()
         validate_response(result, payload["questions"])
         return result
+    except ClientError as exc:
+        if exc.response.get("OriginalStatusCode") == 422:
+            raise HTTPException(422, "模型拒绝了请求，请缩短输入或减少问题。") from exc
+        raise HTTPException(503, "SageMaker 模型暂不可用，请检查 GPU 状态后重试。") from exc
+    except BotoCoreError as exc:
+        raise HTTPException(503, "SageMaker 模型连接失败，请稍后重试。") from exc
     except httpx.TimeoutException as exc:
         raise HTTPException(504, "模型响应超时，请稍后重试或缩短输入。") from exc
     except httpx.HTTPError as exc:

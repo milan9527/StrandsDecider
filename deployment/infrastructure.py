@@ -138,6 +138,38 @@ def template():
                 "SecurityGroupIds": [ref("EndpointSecurityGroup")],
             },
         )
+    bedrock_resources = [
+        sub(
+            "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.openai.gpt-6.1-sol"
+        ),
+        *[
+            sub(f"arn:${{AWS::Partition}}:bedrock:{region}::foundation-model/openai.gpt-6.1-sol")
+            for region in ("us-east-1", "us-east-2", "us-west-2")
+        ],
+    ]
+    add(
+        "BedrockRuntimeEndpoint",
+        "EC2::VPCEndpoint",
+        {
+            "VpcId": ref("Vpc"),
+            "VpcEndpointType": "Interface",
+            "PrivateDnsEnabled": True,
+            "ServiceName": sub("com.amazonaws.${AWS::Region}.bedrock-runtime"),
+            "SubnetIds": [ref("Subnet1")],
+            "SecurityGroupIds": [ref("EndpointSecurityGroup")],
+            "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "bedrock:InvokeModel",
+                        "Resource": bedrock_resources,
+                    }
+                ],
+            },
+        },
+    )
     add(
         "S3Endpoint",
         "EC2::VPCEndpoint",
@@ -310,7 +342,19 @@ def template():
                                         "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${GpuStateTableName}"
                                     ),
                                 ],
-                            }
+                            },
+                            {
+                                "Effect": "Allow",
+                                "Action": "sagemaker:InvokeEndpoint",
+                                "Resource": sub(
+                                    "arn:${AWS::Partition}:sagemaker:${AWS::Region}:${AWS::AccountId}:endpoint/${AWS::StackName}-decider"
+                                ),
+                            },
+                            {
+                                "Effect": "Allow",
+                                "Action": "bedrock:InvokeModel",
+                                "Resource": bedrock_resources,
+                            },
                         ],
                     },
                 }
@@ -377,6 +421,8 @@ def template():
                         {"Name": "SERVE_FRONTEND", "Value": "false"},
                         {"Name": "STRANDS_DECIDER_URL", "Value": "http://127.0.0.1:8099"},
                         {"Name": "GPU_STATE_TABLE", "Value": ref("GpuStateTableName")},
+                        {"Name": "GPU_PROVIDER", "Value": ref("ModelProvider")},
+                        {"Name": "BEDROCK_ENABLED", "Value": "true"},
                         {"Name": "GPU_MANAGERS", "Value": "admin"},
                         {"Name": "DECIDER_TIMEOUT", "Value": "50"},
                         {"Name": "AUTH_TABLE", "Value": ref("AuthTable")},
@@ -663,6 +709,11 @@ def template():
             "ImageTag": {"Type": "String", "AllowedPattern": "[A-Za-z0-9._-]+"},
             "ApiImageTag": {"Type": "String", "Default": "", "AllowedPattern": "[A-Za-z0-9._-]*"},
             "GpuStateTableName": {"Type": "String", "AllowedPattern": "[A-Za-z0-9._-]+"},
+            "ModelProvider": {
+                "Type": "String",
+                "Default": "ec2",
+                "AllowedValues": ["ec2", "sagemaker"],
+            },
             "DesiredCount": {"Type": "Number", "Default": 0, "MinValue": 0, "MaxValue": 4},
             "AvailabilityZone1": {"Type": "AWS::EC2::AvailabilityZone::Name"},
             "AvailabilityZone2": {"Type": "AWS::EC2::AvailabilityZone::Name"},

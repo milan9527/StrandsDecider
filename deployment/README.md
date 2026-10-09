@@ -1,8 +1,12 @@
 # AWS 部署
 
+**应用使用 SageMaker GPU，真实 CUDA 推理已通过验收。** 当前架构、启停和更新步骤见 [SAGEMAKER.md](SAGEMAKER.md)，实际部署状态见 [DEPLOYED.md](DEPLOYED.md)。本文保留原 EC2 GPU 部署与回退运维说明；原 EC2 已停止，磁盘继续保留，控制器已禁用。
+
 前端和后端分别发布。浏览器只访问一个 CloudFront HTTPS 域名，`/api/*` 由 CloudFront 转发到 ECS，无需跨域配置。
 
 当前访问地址：**https://d3i7ogfx5ml7dc.cloudfront.net**。资源标识和验收记录见 [DEPLOYED.md](DEPLOYED.md)。
+
+独立的加密支付业务台及 Bedrock GPT-6.1 Sol 对比说明见 [CRYPTO.md](CRYPTO.md)。
 
 ```mermaid
 flowchart LR
