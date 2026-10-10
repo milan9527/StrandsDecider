@@ -32,6 +32,7 @@ def main():
         page.locator("#login-username").fill(credentials["username"])
         page.locator("#login-password").fill(credentials["password"])
         page.locator("#login-submit").click()
+        page.locator("#gpu-open").click()
         expect(page.locator("#gpu-panel")).to_be_visible()
         expect(page.locator("#gpu-panel")).to_contain_text("按需")
         expect(page.locator(".scenario-card")).to_have_count(16)
@@ -67,19 +68,24 @@ def main():
             assert state["instance_count"] == 0
             if state["instance_id"] and state.get("provider") != "sagemaker":
                 assert state["disk_retained"] and state["instance_state"] == "stopped"
+            page.locator("#gpu-close").click()
             page.locator('#page-playground [data-mode="live"]').click()
             page.locator("#run-decision").click()
             expect(page.locator("#toast")).to_contain_text("GPU 尚未就绪")
+            expect(page.locator("#gpu-dialog")).to_be_visible()
+            page.locator("#gpu-close").click()
             page.locator('#page-playground [data-mode="example"]').click()
             page.locator("#run-decision").click()
             expect(page.locator("#results .answer-card")).to_have_count(3)
             assert page.request.get(args.url + "/api/ready").status == 200
+            page.locator("#gpu-open").click()
         page.screenshot(path=str(artifacts / f"gpu-{target}-desktop.png"), full_page=True)
         page.set_viewport_size({"width": 390, "height": 844})
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
         page.locator("#gpu-panel").screenshot(path=str(artifacts / f"gpu-{target}-mobile.png"))
         page.set_viewport_size({"width": 320, "height": 740})
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+        page.locator("#gpu-close").click()
         page.locator("#logout-button").click()
         expect(page.locator("#login-page")).to_be_visible()
         assert not errors, errors

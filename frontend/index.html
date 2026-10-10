@@ -10,9 +10,9 @@
     />
     <title>Strands Decider · 决策实验室</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=crypto5" />
-    <link rel="stylesheet" href="/static/crypto.css?v=crypto5" />
-    <script src="/static/app.js?v=crypto5" type="module"></script>
+    <link rel="stylesheet" href="/static/styles.css?v=crypto10" />
+    <link rel="stylesheet" href="/static/crypto.css?v=crypto10" />
+    <script src="/static/app.js?v=crypto10" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -120,9 +120,7 @@
           ><span data-icon="shield"></span>工具调用守卫</a
         >
         <a href="#crypto" data-page="crypto" class="nav-item"
-          ><span data-icon="route"></span>加密支付<span class="count-badge"
-            >NEW</span
-          ></a
+          ><span data-icon="route"></span>支付流程对比</a
         >
         <a href="#history" data-page="history" class="nav-item"
           ><span data-icon="history"></span>运行记录<span
@@ -167,6 +165,18 @@
         </div>
         <div class="topbar-actions">
           <button
+            id="gpu-open"
+            class="gpu-launcher"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="gpu-dialog"
+            aria-label="GPU 管理"
+            hidden
+          >
+            <span data-icon="cpu"></span>
+            <span id="gpu-launcher-label">GPU · 检查中</span>
+          </button>
+          <button
             class="logout-button"
             id="logout-button"
             type="button"
@@ -196,34 +206,6 @@
         </div>
       </header>
       <main id="main">
-        <section
-          id="gpu-panel"
-          class="gpu-panel"
-          aria-label="按需 GPU 管理"
-          hidden
-        >
-          <div class="gpu-copy">
-            <div class="gpu-heading">
-              <span data-icon="cpu"></span
-              ><strong id="gpu-heading-label">GPU · 按需实例</strong>
-              <span id="gpu-status" class="subtle-badge" role="status"
-                >检查状态</span
-              >
-            </div>
-            <p id="gpu-message"></p>
-            <small id="gpu-spec"
-              >NVIDIA GPU · 闲置 30 分钟自动停止 · 保留磁盘和缓存</small
-            >
-          </div>
-          <div class="gpu-actions">
-            <button type="button" id="gpu-start" class="primary-button">
-              启动 GPU
-            </button>
-            <button type="button" id="gpu-stop" class="secondary-button">
-              停止 GPU，保留磁盘
-            </button>
-          </div>
-        </section>
         <section id="page-playground" class="page">
           <div class="page-heading">
             <div>
@@ -679,6 +661,57 @@ AUTH_COOKIE_SECURE=false uv run uvicorn app.main:app --port 8000</code></pre>
         </footer>
       </main>
     </div>
+    <dialog
+      id="gpu-dialog"
+      aria-labelledby="gpu-dialog-title"
+      aria-describedby="gpu-dialog-context"
+    >
+      <div class="gpu-dialog-heading">
+        <h2 id="gpu-dialog-title">GPU 管理</h2>
+        <button
+          id="gpu-close"
+          class="icon-button"
+          type="button"
+          aria-label="关闭 GPU 管理"
+          autofocus
+        >
+          ×
+        </button>
+      </div>
+      <p id="gpu-dialog-context">所有模块共用同一台 Decider GPU。</p>
+      <section id="gpu-panel" class="gpu-panel" aria-label="按需 GPU 管理">
+        <div class="gpu-copy">
+          <div class="gpu-heading">
+            <span data-icon="cpu"></span>
+            <strong id="gpu-heading-label">GPU · 按需运行</strong>
+            <span id="gpu-status" class="subtle-badge" role="status"
+              >检查状态</span
+            >
+          </div>
+          <p id="gpu-message"></p>
+          <small id="gpu-spec"></small>
+        </div>
+        <p id="gpu-access-hint" hidden>请联系管理员启动 GPU。</p>
+        <p id="gpu-action-error" role="alert" hidden></p>
+        <div class="gpu-actions">
+          <button type="button" id="gpu-start" class="primary-button">
+            启动 GPU
+          </button>
+          <button type="button" id="gpu-stop" class="secondary-button">
+            停止 GPU
+          </button>
+          <button type="button" id="gpu-refresh" class="text-button">
+            刷新状态
+          </button>
+        </div>
+      </section>
+      <div class="gpu-dialog-footer">
+        <p>GPU 就绪后，返回模块重新运行。示例／规则回放无需启动。</p>
+        <button type="button" id="gpu-return" class="secondary-button">
+          返回模块
+        </button>
+      </div>
+    </dialog>
     <div id="toast" role="status" hidden></div>
   </body>
 </html>

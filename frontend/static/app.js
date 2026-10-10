@@ -1,4 +1,4 @@
-import { mountCrypto } from "/static/crypto.js?v=crypto5";
+import { mountCrypto } from "/static/crypto.js?v=crypto10";
 
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
@@ -61,7 +61,7 @@ const json = (value) => JSON.stringify(value, null, 2);
 const names = {
   playground: "决策工作台",
   guard: "工具调用守卫",
-  crypto: "加密支付业务台",
+  crypto: "支付流程对比",
   history: "运行记录",
   about: "理解 Decider",
 };
@@ -84,10 +84,67 @@ let scenarioCategory = "all";
 let gpuState = null;
 let gpuChecking = false;
 let gpuChanging = false;
+let gpuError = "";
+let gpuActionError = "";
+let gpuRequest = null;
 
 function renderGpu() {
-  $("#gpu-panel").hidden = !gpuState?.enabled;
-  if (!gpuState?.enabled) return;
+  window.dispatchEvent(new Event("decider-gpu-state"));
+  const unavailable = !!gpuError || !gpuState;
+  const enabled = gpuState?.enabled;
+  $("#gpu-open").hidden = !currentUser || (gpuState && !enabled && !gpuError);
+  $("#gpu-launcher-label").textContent = `GPU · ${
+    gpuError
+      ? "状态未知"
+      : !gpuState
+        ? "检查中"
+        : {
+            stopped: "未启动",
+            starting: "启动中",
+            ready: gpuState.desired === "running" ? "已就绪" : "停止中",
+            stopping: "停止中",
+            error: "启动失败",
+          }[gpuState.phase] || "未启用"
+  }`;
+  $("#gpu-open").classList.toggle(
+    "ready",
+    !unavailable &&
+      gpuState?.phase === "ready" &&
+      gpuState.desired === "running",
+  );
+  $("#gpu-action-error").hidden = !gpuActionError;
+  $("#gpu-action-error").textContent = gpuActionError;
+  $("#gpu-refresh").disabled = gpuChecking || gpuChanging;
+  $("#gpu-start").hidden = !enabled || !gpuState.can_manage;
+  $("#gpu-stop").hidden =
+    !enabled ||
+    !gpuState.can_manage ||
+    (gpuState.desired !== "running" && gpuState.phase !== "stopping");
+  $("#gpu-start").disabled =
+    unavailable ||
+    gpuChecking ||
+    gpuChanging ||
+    !["stopped", "error"].includes(gpuState?.phase);
+  $("#gpu-stop").disabled =
+    unavailable ||
+    gpuChecking ||
+    gpuChanging ||
+    gpuState?.desired !== "running";
+  $("#gpu-access-hint").hidden = !enabled || gpuState.can_manage;
+  if (unavailable || !enabled) {
+    $("#gpu-status").textContent = gpuError
+      ? "状态暂不可用"
+      : !gpuState
+        ? "检查中"
+        : "未启用";
+    $("#gpu-message").textContent = gpuError
+      ? `无法确认 GPU 状态：${gpuError}。请刷新后重试。`
+      : !gpuState
+        ? "正在读取 GPU 状态…"
+        : "此环境未配置按需 GPU 管理。";
+    $("#gpu-spec").textContent = "";
+    return;
+  }
   const phase = gpuState.phase;
   const sageMaker = gpuState.provider === "sagemaker";
   $("#gpu-heading-label").textContent = sageMaker
@@ -151,39 +208,41 @@ function renderGpu() {
     $("#gpu-message").textContent =
       sageMakerMessages[phase] || "正在检查 SageMaker 状态。";
   }
-  $("#gpu-start").hidden = !gpuState.can_manage;
-  $("#gpu-stop").hidden = !gpuState.can_manage;
-  $("#gpu-start").disabled =
-    gpuChanging || !["stopped", "error"].includes(phase);
-  $("#gpu-stop").disabled = gpuChanging || gpuState.desired !== "running";
 }
 
-async function checkGpu() {
-  if (!currentUser || gpuChecking || gpuChanging) return;
+function checkGpu() {
+  if (gpuRequest) return gpuRequest;
+  if (!currentUser || gpuChanging) return Promise.resolve();
   gpuChecking = true;
-  try {
-    const previous = gpuState?.phase;
-    gpuState = await api("/api/gpu");
-    renderGpu();
-    if (previous !== gpuState.phase) checkConnection();
-  } catch (error) {
-    if (gpuState?.enabled) {
-      $("#gpu-status").textContent = "状态暂不可用";
-      $("#gpu-message").textContent = error.message;
-      $("#gpu-start").disabled = true;
-      $("#gpu-stop").disabled = true;
+  renderGpu();
+  gpuRequest = (async () => {
+    try {
+      const previous = gpuState?.phase;
+      gpuState = await api("/api/gpu");
+      gpuError = "";
+      if (previous !== gpuState.phase) checkConnection();
+    } catch (error) {
+      gpuError = error.message;
+    } finally {
+      gpuChecking = false;
+      gpuRequest = null;
+      renderGpu();
     }
-  } finally {
-    gpuChecking = false;
-  }
+  })();
+  return gpuRequest;
 }
 
 async function changeGpu(action) {
-  if (gpuChanging || !gpuState?.can_manage) return;
+  if (gpuChanging || gpuChecking || gpuError || !gpuState?.can_manage) return;
+  if (action === "start" && !["stopped", "error"].includes(gpuState.phase))
+    return;
+  if (action === "stop" && gpuState.desired !== "running") return;
   gpuChanging = true;
+  gpuActionError = "";
   renderGpu();
   try {
     gpuState = await api(`/api/gpu/${action}`, {});
+    gpuError = "";
     renderGpu();
     checkConnection();
     toast(
@@ -192,6 +251,7 @@ async function changeGpu(action) {
         : "停止请求已提交，将等待当前推理完成。",
     );
   } catch (error) {
+    gpuActionError = error.message;
     toast(error.message);
   } finally {
     gpuChanging = false;
@@ -199,16 +259,34 @@ async function changeGpu(action) {
   }
 }
 
-function gpuAllowsInference() {
+function openGpuDialog(context = "", refresh = true) {
+  if (!currentUser) return;
+  $("#gpu-dialog-context").textContent =
+    context || "所有模块共用同一台 Decider GPU。";
+  renderGpu();
+  if (!$("#gpu-dialog").open) $("#gpu-dialog").showModal();
+  if (refresh) checkGpu();
+}
+
+async function ensureGpuReady(context = "") {
+  await checkGpu();
   if (
-    gpuState?.enabled &&
-    (gpuState.phase !== "ready" || gpuState.desired !== "running")
-  ) {
-    toast("GPU 尚未就绪，请先启动并等待状态变为“GPU 就绪”。");
-    $("#gpu-panel").scrollIntoView({ behavior: "smooth", block: "center" });
-    return false;
-  }
-  return true;
+    !gpuError &&
+    !gpuChanging &&
+    gpuState &&
+    (!gpuState.enabled ||
+      (gpuState.phase === "ready" && gpuState.desired === "running"))
+  )
+    return true;
+  const message = gpuError
+    ? "无法确认 GPU 状态，请刷新后重试。"
+    : "GPU 尚未就绪，请先启动并等待状态变为“GPU 就绪”。";
+  openGpuDialog(
+    `${context || "真实推理"}需要 Decider GPU，请在下方查看状态并启动。`,
+    false,
+  );
+  toast(message);
+  return false;
 }
 
 function toast(message) {
@@ -249,6 +327,7 @@ async function api(path, body) {
   }
   if (!response.ok) {
     if (response.status === 401 && currentUser) {
+      $("#gpu-dialog").close();
       document.body.classList.add("auth-pending");
       location.reload();
     }
@@ -270,6 +349,7 @@ async function api(path, body) {
   return data;
 }
 function showPage() {
+  $("#gpu-dialog").close();
   currentPage =
     location.hash.slice(1) in names ? location.hash.slice(1) : "playground";
   $$(".page").forEach((p) => {
@@ -282,9 +362,23 @@ function showPage() {
     else el.removeAttribute("aria-current");
   });
   $("#breadcrumb-page").textContent = names[currentPage];
+  renderGpu();
   if (currentPage === "history") renderHistory();
   if (currentPage === "crypto" && currentUser)
-    mountCrypto({ api, esc, icon, toast });
+    mountCrypto({
+      api,
+      esc,
+      icon,
+      toast,
+      gpu: () => ({
+        state: gpuState,
+        checking: gpuChecking || gpuChanging,
+        error: gpuError,
+      }),
+      openGpuDialog,
+      ensureGpuReady,
+      refreshGpu: checkGpu,
+    });
 }
 
 async function checkConnection() {
@@ -582,8 +676,14 @@ function saveRun(title, request, response, kind = "decision") {
   $("#history-count").textContent = history.length;
 }
 async function runDecision() {
-  if (!currentUser || running || guardRunning || !selected) return;
-  if (mode === "live" && !gpuAllowsInference()) return;
+  if (
+    !currentUser ||
+    running ||
+    guardRunning ||
+    !selected ||
+    $("#gpu-dialog").open
+  )
+    return;
   let body;
   try {
     body = collectRequest();
@@ -592,19 +692,22 @@ async function runDecision() {
     return;
   }
   running = true;
-  result = null;
-  lastRequest = null;
   $$(
     "#page-playground input, #page-playground textarea, #page-playground select, #page-playground button",
   ).forEach((el) => {
     el.disabled = true;
   });
-  $(".result-panel").setAttribute("aria-busy", "true");
-  $("#result-status").textContent = mode === "live" ? "推理中" : "读取示例";
-  $("#results").innerHTML =
-    `<div class="result-loading"><div class="spinner"></div><span>${mode === "live" ? "Decider 正在判断…" : "正在读取示例…"}</span>${mode === "live" ? '<span class="muted">CPU 首次推理可能较慢，请稍候</span>' : ""}</div>`;
-  const stopTimer = startRunTimer($("#results"));
+  let stopTimer = () => {};
   try {
+    if (body.mode === "live" && !(await ensureGpuReady("决策工作台"))) return;
+    result = null;
+    lastRequest = null;
+    $(".result-panel").setAttribute("aria-busy", "true");
+    $("#result-status").textContent =
+      body.mode === "live" ? "推理中" : "读取示例";
+    $("#results").innerHTML =
+      `<div class="result-loading"><div class="spinner"></div><span>${body.mode === "live" ? "Decider 正在判断…" : "正在读取示例…"}</span></div>`;
+    stopTimer = startRunTimer($("#results"));
     result = await api("/api/decide", body);
     lastRequest = body;
     $("#result-status").textContent =
@@ -639,8 +742,7 @@ function resetGuard() {
     `<div class="empty-state compact"><div class="empty-icon">${icon("shield")}</div><h3>为工具调用加一道判断</h3><p>运行两个独立的问题，观察概率如何<br>转化为工作流中的下一步。</p></div>`;
 }
 async function runGuard() {
-  if (!currentUser || guardRunning || running) return;
-  if (mode === "live" && !gpuAllowsInference()) return;
+  if (!currentUser || guardRunning || running || $("#gpu-dialog").open) return;
   const body = {
     mode,
     measure_decisions: true,
@@ -658,10 +760,12 @@ async function runGuard() {
       el.disabled = true;
     },
   );
-  $("#guard-results").innerHTML =
-    '<div class="result-loading"><div class="spinner"></div><span>正在检查参数依据与调用时机…</span></div>';
-  const stopTimer = startRunTimer($("#guard-results"));
+  let stopTimer = () => {};
   try {
+    if (body.mode === "live" && !(await ensureGpuReady("工具调用守卫"))) return;
+    $("#guard-results").innerHTML =
+      '<div class="result-loading"><div class="spinner"></div><span>正在检查参数依据与调用时机…</span></div>';
+    stopTimer = startRunTimer($("#guard-results"));
     guardResult = await api("/api/guard", body);
     saveRun("工具调用守卫", body, guardResult, "guard");
     renderGuard();
@@ -840,6 +944,10 @@ $("#reset-example").addEventListener("click", () => {
 $("#run-decision").addEventListener("click", runDecision);
 $("#run-guard").addEventListener("click", runGuard);
 $("#refresh-connection").addEventListener("click", checkConnection);
+$("#gpu-open").addEventListener("click", () => openGpuDialog());
+$("#gpu-close").addEventListener("click", () => $("#gpu-dialog").close());
+$("#gpu-return").addEventListener("click", () => $("#gpu-dialog").close());
+$("#gpu-refresh").addEventListener("click", checkGpu);
 $("#gpu-start").addEventListener("click", () => changeGpu("start"));
 $("#gpu-stop").addEventListener("click", () => changeGpu("stop"));
 setInterval(() => {
@@ -876,6 +984,7 @@ window.addEventListener("hashchange", showPage);
 document.addEventListener("keydown", (e) => {
   if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {
     e.preventDefault();
+    if ($("#gpu-dialog").open) return;
     if (currentPage === "playground") runDecision();
     else if (currentPage === "guard") runGuard();
   }
@@ -960,6 +1069,7 @@ $("#login-form").addEventListener("submit", async (event) => {
   }
 });
 $("#logout-button").addEventListener("click", async () => {
+  $("#gpu-dialog").close();
   $("#logout-button").disabled = true;
   try {
     await api("/api/auth/logout", {});
@@ -978,6 +1088,7 @@ $("#logout-button").addEventListener("click", async () => {
 });
 window.addEventListener("storage", (event) => {
   if (event.key === "decider-logout" && currentUser) {
+    $("#gpu-dialog").close();
     try {
       sessionStorage.removeItem(historyKey);
     } catch {

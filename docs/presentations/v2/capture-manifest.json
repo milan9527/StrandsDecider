@@ -1,0 +1,407 @@
+{
+  "url": "https://d3i7ogfx5ml7dc.cloudfront.net",
+  "captured_at": "2026-10-10T12:26:23.405531+00:00",
+  "frontend": "crypto10",
+  "api_image_tag": "20261010-loop1",
+  "runs": [
+    {
+      "name": "pending-fixed",
+      "exported_at": "2026-10-10T12:26:34.466Z",
+      "kind": "workflow",
+      "source": "live",
+      "outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "链上确认仅 3/12，等待确认数达标。",
+            "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "链上确认仅 3/12，等待确认数达标。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        }
+      },
+      "decisions": {
+        "decider": 5,
+        "bedrock": 5
+      }
+    },
+    {
+      "name": "underpaid-fixed",
+      "exported_at": "2026-10-10T12:26:41.532Z",
+      "kind": "workflow",
+      "source": "live",
+      "outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "到账仍差 0.20 USDT，等待补款。",
+            "原建议「确认订单收款」未落实，实际改为「挂起并跟进」：当前场景、到账金额或确认数不满足确认收款条件，资金动作已挂起。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "到账仍差 0.20 USDT，等待补款。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        }
+      },
+      "decisions": {
+        "decider": 5,
+        "bedrock": 5
+      }
+    },
+    {
+      "name": "refund-fixed",
+      "exported_at": "2026-10-10T12:26:46.982Z",
+      "kind": "workflow",
+      "source": "live",
+      "outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "退款地址尚未验证。",
+            "退款尚未获得人工审批。",
+            "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+            "原建议「提交模拟退款」未落实，实际改为「挂起并跟进」：风控或本次方案的人工复核尚未完成，资金动作已挂起，继续回复客户。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "退款地址尚未验证。",
+            "退款尚未获得人工审批。",
+            "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        }
+      },
+      "decisions": {
+        "decider": 5,
+        "bedrock": 5
+      }
+    },
+    {
+      "name": "settlement-fixed",
+      "exported_at": "2026-10-10T12:27:32.714Z",
+      "kind": "workflow",
+      "source": "live",
+      "outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "结算尚未到账，暂不能完成模拟对账。",
+            "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": []
+        }
+      },
+      "decisions": {
+        "decider": 5,
+        "bedrock": 5
+      }
+    },
+    {
+      "name": "pending-loop",
+      "exported_at": "2026-10-10T12:28:55.127Z",
+      "kind": "loop",
+      "source": "live",
+      "outcomes": {
+        "decider": {
+          "fundsComplete": true,
+          "complete": true,
+          "reasons": []
+        },
+        "bedrock": {
+          "fundsComplete": true,
+          "complete": true,
+          "reasons": []
+        }
+      },
+      "decisions": {
+        "decider": 6,
+        "bedrock": 6
+      }
+    },
+    {
+      "name": "refund-loop",
+      "exported_at": "2026-10-10T12:29:07.210Z",
+      "kind": "loop",
+      "source": "live",
+      "outcomes": {
+        "decider": {
+          "fundsComplete": true,
+          "complete": true,
+          "reasons": []
+        },
+        "bedrock": {
+          "fundsComplete": true,
+          "complete": true,
+          "reasons": []
+        }
+      },
+      "decisions": {
+        "decider": 9,
+        "bedrock": 9
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "overview.png",
+      "captured_at": "2026-10-10T12:28:45.827420+00:00",
+      "description": "Current production interface before a run.",
+      "data_replaced": false,
+      "sha256": "47c7692d7834413d75e63079b3938c82a35bb1b2bf8adff44e2c95ef51620e9c",
+      "pixels": [
+        2400,
+        1620
+      ]
+    },
+    {
+      "file": "gpu-dialog.png",
+      "captured_at": "2026-10-10T12:28:45.975393+00:00",
+      "description": "Shared GPU dialog, actual ready state; no lifecycle mutation.",
+      "data_replaced": false,
+      "sha256": "a47518e843cc663592ed1d2ac962155069bf0caa12eb08b385a05c2c7c41fa9d",
+      "pixels": [
+        870,
+        570
+      ]
+    },
+    {
+      "file": "fixed-summary.png",
+      "captured_at": "2026-10-10T12:26:34.584858+00:00",
+      "description": "Live same-input paired decision timings.",
+      "data_replaced": false,
+      "sha256": "2dfb7381f6321325d9ef401c6ff2dbae5bd67dba34bae63a8f156ee0b55ae256",
+      "pixels": [
+        1950,
+        306
+      ]
+    },
+    {
+      "file": "fixed-table.png",
+      "captured_at": "2026-10-10T12:26:34.681500+00:00",
+      "description": "All five live choices and actual actions.",
+      "data_replaced": false,
+      "sha256": "e7c34f82436a0a15d78d65927259fa579eb0742907e31cc4421d6f63309902f0",
+      "pixels": [
+        1950,
+        635
+      ]
+    },
+    {
+      "file": "fixed-final.png",
+      "captured_at": "2026-10-10T12:26:34.744902+00:00",
+      "description": "Processed steps versus business completion.",
+      "data_replaced": false,
+      "sha256": "2e714668338350233891a454e56d65095ab7ca710568f80ec49c59a53f03f796",
+      "pixels": [
+        1950,
+        246
+      ]
+    },
+    {
+      "file": "fixed-turn-1.png",
+      "captured_at": "2026-10-10T12:26:34.840609+00:00",
+      "description": "Actual per-round request and both model outputs.",
+      "data_replaced": false,
+      "sha256": "693ad789cbbdf446564f5d7ad53c48c28c2369125e8c33d12c98b1310e6b0c59",
+      "pixels": [
+        1400,
+        572
+      ]
+    },
+    {
+      "file": "fixed-turn-4.png",
+      "captured_at": "2026-10-10T12:26:34.923522+00:00",
+      "description": "Actual per-round request and both model outputs.",
+      "data_replaced": false,
+      "sha256": "f7f147a2f67bc65db74bbe79028875f9af35826ef7bb89e180e5446041ee71d2",
+      "pixels": [
+        1400,
+        572
+      ]
+    },
+    {
+      "file": "customer-conversation.png",
+      "captured_at": "2026-10-10T12:26:35.003431+00:00",
+      "description": "Template customer replies driven by actual execution.",
+      "data_replaced": false,
+      "sha256": "b3cb3d81a7e1d95223bc6685dd74c166e1d9cb6ac6943a4fd39fbb0538a22684",
+      "pixels": [
+        465,
+        1080
+      ]
+    },
+    {
+      "file": "refund-execute.png",
+      "captured_at": "2026-10-10T12:26:47.077676+00:00",
+      "description": "Real refund suggestions and actual execution.",
+      "data_replaced": false,
+      "sha256": "f1bc5b0b05bc96857a6961ed46d7ba74e7284e4a864b258929deeac778396d81",
+      "pixels": [
+        1400,
+        611
+      ]
+    },
+    {
+      "file": "pending-loop-summary.png",
+      "captured_at": "2026-10-10T12:28:55.263026+00:00",
+      "description": "Live loop totals; inputs and call counts can diverge.",
+      "data_replaced": false,
+      "sha256": "432728f0268be54f6f66873ae5e29d3244534a449b49c84cf61af0318906bce0",
+      "pixels": [
+        1950,
+        305
+      ]
+    },
+    {
+      "file": "pending-loop-final.png",
+      "captured_at": "2026-10-10T12:28:55.339744+00:00",
+      "description": "Actual live loop outcome, without forcing completion.",
+      "data_replaced": false,
+      "sha256": "51d7117642eb18bd379af81e53a73c2464f29beb91a48f65b3a2934edf7e82c3",
+      "pixels": [
+        1950,
+        246
+      ]
+    },
+    {
+      "file": "pending-loop-feedback.png",
+      "captured_at": "2026-10-10T12:28:55.454432+00:00",
+      "description": "Request includes previous execution feedback.",
+      "data_replaced": false,
+      "sha256": "f301d9f336349d8601d5a76cfadefae367f605be58a690d42d79ba59121fc739",
+      "pixels": [
+        1400,
+        779
+      ]
+    },
+    {
+      "file": "pending-loop-history.png",
+      "captured_at": "2026-10-10T12:28:55.596421+00:00",
+      "description": "Every live decision, simulator event, retry and terminal state.",
+      "data_replaced": false,
+      "sha256": "77f579ca91ee39c270c5438424b0e5123ca1cccf800930dbfa1b67661cca2e88",
+      "pixels": [
+        1899,
+        1262
+      ]
+    },
+    {
+      "file": "refund-loop-summary.png",
+      "captured_at": "2026-10-10T12:29:07.346420+00:00",
+      "description": "Live loop totals; inputs and call counts can diverge.",
+      "data_replaced": false,
+      "sha256": "0a728cfd2e189dd7272185b5b5832419b2b58ffcf8d74e1d0c1b3d34a9ab6d23",
+      "pixels": [
+        1950,
+        305
+      ]
+    },
+    {
+      "file": "refund-loop-final.png",
+      "captured_at": "2026-10-10T12:29:07.423272+00:00",
+      "description": "Actual live loop outcome, without forcing completion.",
+      "data_replaced": false,
+      "sha256": "0d647a98dca69232b1f67d572c55fef5ffc32d079ad458e607eca426629c252e",
+      "pixels": [
+        1950,
+        246
+      ]
+    },
+    {
+      "file": "refund-loop-feedback.png",
+      "captured_at": "2026-10-10T12:29:07.534893+00:00",
+      "description": "Request includes previous execution feedback.",
+      "data_replaced": false,
+      "sha256": "2ba46e4092382f3fb3eb2bfefaf8748dcbaea0be7f26a68402590786b52d77b3",
+      "pixels": [
+        1400,
+        705
+      ]
+    },
+    {
+      "file": "refund-loop-history.png",
+      "captured_at": "2026-10-10T12:29:07.804979+00:00",
+      "description": "Every live decision, simulator event, retry and terminal state.",
+      "data_replaced": false,
+      "sha256": "ba39c4a6f3b4a94801718e7691b6c6f626d98f6036eb1a823b129905edc3ac98",
+      "pixels": [
+        1899,
+        1917
+      ]
+    },
+    {
+      "file": "mobile-dialogues.png",
+      "captured_at": "2026-10-10T12:29:07.922317+00:00",
+      "description": "Current mobile view after the live refund loop.",
+      "data_replaced": false,
+      "sha256": "60f82c07078b67e7066887be149606c30c2b545d1dea9b39b1a08d16d7473893",
+      "pixels": [
+        585,
+        1350
+      ]
+    },
+    {
+      "file": "customer-reply-focus.png",
+      "derived_from": "customer-conversation.png",
+      "crop_pixels": [
+        15,
+        310,
+        450,
+        540
+      ],
+      "data_replaced": false,
+      "description": "Crop only for slide readability; original screenshot preserved.",
+      "sha256": "070f69bf3cb361d1a414cdb9437ec65dd0fcf458428ff0f3fa06db5742dce599",
+      "pixels": [
+        435,
+        230
+      ]
+    },
+    {
+      "file": "customer-events-focus.png",
+      "derived_from": "customer-conversation.png",
+      "crop_pixels": [
+        15,
+        562,
+        450,
+        1020
+      ],
+      "data_replaced": false,
+      "description": "Crop only for slide readability; original screenshot preserved.",
+      "sha256": "745aa14cb7516d33cff36a6bebf57f9f6805ef62aa15545bf1369018cb18bdd7",
+      "pixels": [
+        435,
+        458
+      ]
+    }
+  ],
+  "gpu_mutations": 0,
+  "gpu_at_capture": {
+    "phase": "ready",
+    "provider": "sagemaker",
+    "instance_type": "ml.g6.xlarge"
+  },
+  "resumed_at": "2026-10-10T12:28:43.399312+00:00"
+}

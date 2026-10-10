@@ -7,9 +7,19 @@ let busy = false,
   stopRequested = false,
   mode = "live",
   selectedStage = "intake";
+let autoEvents = true;
+let testKind = "workflow";
+const expandedPanels = new Set();
+const panelOpen = (name) => (expandedPanels.has(name) ? "open" : "");
 const workspaces = new Map();
 const providers = ["decider", "bedrock"];
 const providerNames = { decider: "Strands Decider", bedrock: "GPT-6.1 Sol" };
+const caseNames = {
+  pending: "USDC 未到账",
+  underpaid: "USDT 少付",
+  refund: "稳定币退款",
+  settlement: "商户结算",
+};
 const statusNames = {
   open: "待处理",
   paid: "已收款",
@@ -56,6 +66,10 @@ function fresh(snapshot) {
     runMode: null,
     decisionElapsedMs: null,
     workflowElapsedMs: null,
+    workflowKind: "fixed",
+    dialogues: [],
+    dialogueRun: 0,
+    viewedDialogueRun: 0,
     conversation: [
       {
         kind: "customer",
@@ -75,6 +89,7 @@ export async function mountCrypto(helpers) {
     catalog = await ui.api("/api/crypto/catalog");
     catalog.cases.forEach((c) => workspaces.set(c.id, fresh(c.snapshot)));
     loaded = true;
+    window.addEventListener("decider-gpu-state", renderGpuNotice);
     const root = $("#crypto-workspace");
     root.addEventListener("click", handleClick);
     root.addEventListener("change", handleChange);
@@ -86,6 +101,52 @@ export async function mountCrypto(helpers) {
   } finally {
     loading = false;
   }
+}
+
+function renderGpuNotice() {
+  const root = $("#cx-gpu-notice");
+  if (!root || !ui?.gpu) return;
+  const { state: s, error } = ui.gpu();
+  if (s && !s.enabled && !error) {
+    root.hidden = true;
+    return;
+  }
+  root.hidden = false;
+  const ready = s?.phase === "ready" && s.desired === "running" && !error;
+  const title = error
+    ? "GPU 状态暂不可用"
+    : !s
+      ? "正在检查 Decider GPU"
+      : ready
+        ? "Decider GPU 已就绪"
+        : {
+            stopped: "Decider GPU 未启动",
+            starting: "Decider GPU 启动中",
+            stopping: "Decider GPU 正在停止",
+            error: "Decider GPU 启动未完成",
+          }[s.phase] || "Decider GPU 尚未就绪";
+  const message = error
+    ? `${error}。请刷新状态后再运行真实模型。`
+    : ready
+      ? "闲置 30 分钟自动停止"
+      : s?.phase === "starting"
+        ? "正在分配实例、加载模型，请等待就绪。"
+        : s?.phase === "stopping"
+          ? "正在停止；规则回放仍可运行。"
+          : s?.phase === "error"
+            ? `${s.last_error_message || "GPU 未在时限内就绪"}。可重新启动或使用规则回放。`
+            : s?.enabled
+              ? s.can_manage
+                ? "先启动 GPU，或选择规则回放。"
+                : "请联系管理员启动 GPU。"
+              : "正在读取状态";
+  root.className = `cx-gpu-notice ${ready ? "ready" : "pending"}`;
+  root.innerHTML = `<div><strong>${ui.esc(title)}</strong><span>${ui.esc(message)}</span></div><button data-cx-gpu-open class="text-button">GPU 管理</button>`;
+}
+
+async function gpuReady(runMode = mode) {
+  if (runMode !== "live") return true;
+  return ui.ensureGpuReady("支付流程对比");
 }
 
 function addAudit(kind, text) {
@@ -134,13 +195,12 @@ function invalidate(message, event = "evidence") {
   w.runMode = null;
   w.decisionElapsedMs = null;
   w.workflowElapsedMs = null;
+  w.workflowKind = "fixed";
   w.revision++;
   addAudit("event", message);
-  addConversation(
-    "event",
-    `${message}\n旧决策和执行结果已清除。请点击「运行完整流程并对比」，按新证据继续处理。`,
-    { event },
-  );
+  addConversation("event", `${message}\n点击「开始对比」，按新证据重新运行。`, {
+    event,
+  });
 }
 
 function pairs() {
@@ -156,47 +216,73 @@ function pairs() {
 }
 
 function summary() {
-  const matched = pairs();
-  const same = matched.filter(({ a, b }) => a.choice === b.choice).length;
-  const a = matched.reduce((n, row) => n + row.a.timings.backend_total_ms, 0);
-  const b = matched.reduce((n, row) => n + row.b.timings.backend_total_ms, 0);
-  const w = workspace();
-  const replay = w.runMode === "replay";
+  const w = workspace(),
+    loop = w.workflowKind === "loop",
+    paired = pairs();
+  const rows = Object.fromEntries(
+    providers.map((provider) => [
+      provider,
+      loop
+        ? (w.executions[provider]?.decisionHistory || []).filter(
+            (r) => r.source === "live",
+          )
+        : paired.map((row) => (provider === "decider" ? row.a : row.b)),
+    ]),
+  );
+  const totals = Object.fromEntries(
+    providers.map((p) => [
+      p,
+      rows[p].reduce((sum, r) => sum + r.timings.backend_total_ms, 0),
+    ]),
+  );
+  const largest = Math.max(totals.decider, totals.bedrock, 1);
+  const differences = paired.filter(({ a, b }) => a.choice !== b.choice).length;
   return `<div class="cx-summary">
-    <div><span>当前案例 · 完整配对</span><strong>${matched.length}<small> / 5 步</small></strong></div>
-    <div><span>两模型动作一致</span><strong>${matched.length ? `${same}/${matched.length}` : "—"}<small> 不是准确率</small></strong></div>
-    <div><span>Decider 决策耗时合计</span><strong>${matched.length ? duration(a) : "—"}</strong></div>
-    <div><span>GPT-6.1 Sol 决策耗时合计</span><strong>${matched.length ? duration(b) : "—"}</strong></div>
-    <div class="cx-summary-note">${replay ? "当前为规则回放，所有结果均不计入模型性能统计。" : matched.length ? `只统计同一输入的成功配对。${a > 0 && b > a ? `本次 Bedrock / Decider 耗时比 ${(b / a).toFixed(1)}×。` : ""}这是单次观测，包含网络与排队。` : "运行真实对比后显示观测结果。失败、回放和不匹配的输入不会进入统计。"}</div>
+    ${providers.map((p) => `<div class="cx-speed-card ${p}"><span>${providerNames[p]} <small>决策总耗时</small></span><strong>${rows[p].length ? duration(totals[p]) : "—"}</strong><div class="cx-speed-bar"><i style="width:${(totals[p] / largest) * 100}%"></i></div><small>${rows[p].length ? `${rows[p].length} 次实测决策` : w.runMode === "replay" ? "规则回放 · 不计推理耗时" : "等待真实模型结果"}</small></div>`).join("")}
+    <div class="cx-speed-ratio"><span>耗时比 <small>GPT / Decider</small></span><strong>${totals.decider > 0 && totals.bedrock > 0 ? `${(totals.bedrock / totals.decider).toFixed(1)}×` : "—"}</strong><small>${loop ? "含各自重判，调用次数可能不同" : "相同输入下的决策耗时"}</small></div>
+    <div class="cx-summary-note">${w.runMode === "replay" ? "规则回放 · 仅演示流程，不调用模型" : loop ? "自主闭环 · 两侧按各自执行结果继续判断" : `固定流程 · 已对比 ${paired.length}/5 步 · 两侧选择不同 ${differences} 步`}<span>耗时包含模型调用与通信</span></div>
   </div>`;
 }
 
+function renderLoopHistory() {
+  const w = workspace();
+  if (w.workflowKind !== "loop") return "";
+  return `<section class="cx-loop-history"><div class="cx-results-heading"><h2>自主闭环 · 每轮反馈与调整 · ${w.runMode === "replay" ? "规则回放" : "真实模型"}</h2><p>模型选择、实际动作和模拟器事件分别记录。最多 20 次决策，同一步连续两次无进展转人工；刷新页面会清除本次演练。</p></div><div class="cx-final-grid">${providers
+    .map((provider) => {
+      const e = w.executions[provider];
+      return `<article class="cx-loop-lane" data-cx-loop-history="${provider}"><h3>${providerNames[provider]}</h3>${e?.timeline.length ? e.timeline.map((r, i) => `<div class="cx-loop-entry ${r.kind}"><small>第 ${i + 1} 轮 · ${r.kind === "event" ? "模拟器更新证据" : r.kind === "error" ? "请求失败" : "判断 → 执行 → 反馈"} · ${duration(r.elapsed_ms)}</small><strong>${ui.esc(r.title)}</strong><p>${ui.esc(r.reason)}</p></div>`).join("") : "<p>等待闭环运行。</p>"}</article>`;
+    })
+    .join("")}</div></section>`;
+}
+
 function comparisonTable() {
-  const results = workspace().results;
-  const cell = (r) =>
-    r?.pending
-      ? "运行中…"
-      : r?.error
-        ? '<span class="cx-table-error">调用失败</span>'
-        : r?.choice
-          ? `<strong>${ui.esc(r.label)}</strong><small>${r.source === "live" ? duration(r.timings.backend_total_ms) : "规则回放 · 未推理"}</small>`
-          : '<span class="cx-table-empty">等待运行</span>';
-  return `<div class="cx-table-wrap"><table class="cx-compare-table"><caption>逐步动作与实测耗时 · 点击步骤查看详细输出</caption><thead><tr><th>业务步骤</th><th>Strands Decider</th><th>GPT-6.1 Sol</th><th>本步对比</th></tr></thead><tbody>${catalog.stages
-    .map((stage, index) => {
+  const w = workspace(),
+    results = w.results;
+  const cell = (provider, stage) => {
+    const r = results[provider][stage],
+      execution = w.executions[provider];
+    const record = execution?.audit.findLast((row) => row.stage === stage);
+    const running = r?.pending || execution?.runningStage === stage;
+    const outcome = stepOutcome(record);
+    const history = (execution?.decisionHistory || []).filter(
+      (d) => d.stage === stage && d.source === "live",
+    );
+    return `<td data-cx-compare="${provider}-${stage}"><div class="cx-table-choice">${ui.esc(r?.label || (r?.error ? "调用失败" : running ? "判断中…" : "等待运行"))}<b>${r?.source === "live" ? duration(r.timings.backend_total_ms) : r?.source === "rule_replay" ? "回放" : "—"}</b></div><div class="cx-table-action ${outcome?.state || ""}">${running ? "处理中…" : record?.error ? `请求失败：${ui.esc(record.error)}` : record?.applied ? `实际：${ui.esc(record.label)}${record.safety_adjusted ? " · 保护调整" : ""}` : r?.error ? ui.esc(r.error) : r?.choice ? "尚未执行" : "—"}</div>${history.length > 1 ? `<small>${history.length} 次判断合计 ${duration(history.reduce((n, d) => n + d.timings.backend_total_ms, 0))}</small>` : ""}</td>`;
+  };
+  return `<div class="cx-table-wrap"><table class="cx-compare-table"><caption>逐步流程对比${w.workflowKind === "loop" ? " · 每步最近一次结果" : ""}</caption><thead><tr><th>业务步骤</th><th>Strands Decider</th><th>GPT-6.1 Sol</th><th>选择对比</th></tr></thead><tbody>${catalog.stages
+    .map((stage, i) => {
       const a = results.decider[stage.id],
         b = results.bedrock[stage.id];
-      const paired =
-        a?.source === "live" &&
-        b?.source === "live" &&
-        a.input_hash === b.input_hash;
-      const label = paired
-        ? a.choice === b.choice
-          ? "动作一致"
-          : "动作不同"
-        : a?.source === "rule_replay" && b?.source === "rule_replay"
-          ? "规则回放"
-          : "未配对";
-      return `<tr class="${stage.id === selectedStage ? "selected" : ""}"><th><button data-cx-stage="${stage.id}"><span>0${index + 1}</span>${ui.esc(stage.label)}</button></th><td>${cell(a)}</td><td>${cell(b)}</td><td><span class="cx-pair-badge ${paired && a.choice !== b.choice ? "different" : ""}">${label}</span></td></tr>`;
+      const sameInput = a?.input_hash && a.input_hash === b?.input_hash;
+      const label =
+        a?.choice && b?.choice
+          ? sameInput
+            ? a.choice === b.choice
+              ? "相同"
+              : "不同"
+            : "不同输入"
+          : "待对比";
+      return `<tr><th><button data-cx-stage="${stage.id}"><span>0${i + 1}</span>${ui.esc(stage.label)}</button></th>${cell("decider", stage.id)}${cell("bedrock", stage.id)}<td><span class="cx-pair-badge ${label === "不同" ? "different" : ""}">${label}</span></td></tr>`;
     })
     .join("")}</tbody></table></div>`;
 }
@@ -208,7 +294,11 @@ function lane(provider) {
   const successful = catalog.stages
     .map(({ id }) => results[id])
     .filter((r) => r?.choice);
-  const live = successful.filter((r) => r.source === "live");
+  const live = (
+    w.workflowKind === "loop"
+      ? w.executions[provider]?.decisionHistory || []
+      : successful
+  ).filter((r) => r.source === "live");
   const total = live.reduce((n, r) => n + r.timings.backend_total_ms, 0);
   const tokens = live.reduce(
     (n, r) => n + (r.usage?.input_tokens || 0) + (r.usage?.output_tokens || 0),
@@ -270,17 +360,124 @@ function executionOutput(record) {
         ? `已登记模拟账本：${record.label} ${money(record.ledger_entry.amount)} ${c.asset}；订单状态：${statusNames[s.order_status]}。未发送资金。`
         : `已采用「${record.label}」；订单状态：${statusNames[s.order_status]}。未生成资金账本记录。`;
     case "close":
-      return `工单状态：${statusNames[s.ticket_status]}。客服回复：${record.customer_reply}`;
+      return `工单状态：${statusNames[s.ticket_status]}。客服回复（模板）：${record.customer_reply}`;
     default:
       return record.message;
   }
+}
+
+function businessOutcome(execution) {
+  const s = execution?.snapshot;
+  if (!s) return { fundsComplete: false, complete: false, reasons: [] };
+  const records = execution.audit.filter((r) => r.applied);
+  const target = {
+    refund: ["refunded", "refund_payment"],
+    settlement: ["settled", "reconcile_settlement"],
+  }[s.scenario] || ["paid", "credit_order"];
+  const fundsComplete =
+    s.order_status === target[0] &&
+    records.some((r) => r.ledger_entry?.type === target[1]);
+  const complete =
+    fundsComplete &&
+    s.ticket_status === "resolved" &&
+    !s.review_pending &&
+    !s.risk_flag;
+  const reasons = [];
+  if (complete) return { fundsComplete, complete, reasons };
+  if (s.risk_flag) reasons.push("存在风险标记，等待人工风控处理。");
+  if (s.scenario === "settlement") {
+    if (!s.settled) reasons.push("结算尚未到账，暂不能完成模拟对账。");
+  } else {
+    if (s.confirmations < s.required_confirmations)
+      reasons.push(
+        `链上确认仅 ${s.confirmations}/${s.required_confirmations}，等待确认数达标。`,
+      );
+    if (Number(s.received) < Number(s.expected))
+      reasons.push(
+        `到账仍差 ${money(Number(s.expected) - Number(s.received))} ${caseData().asset}，等待补款。`,
+      );
+    if (s.scenario === "refund") {
+      if (!s.address_verified) reasons.push("退款地址尚未验证。");
+      if (!s.approved) reasons.push("退款尚未获得人工审批。");
+    }
+  }
+  const approval = records.findLast((r) => r.stage === "approve");
+  if (s.review_pending && approval)
+    reasons.push(
+      `本次方案选择「${approval.label}」，待复核状态尚未解除，后续资金动作保持挂起。`,
+    );
+  const funds = records.findLast((r) => r.stage === "execute");
+  if (!fundsComplete) {
+    if (funds?.safety_adjusted)
+      reasons.push(
+        `原建议「${funds.requested_label}」未落实，实际改为「${funds.label}」：${funds.safety_reason}`,
+      );
+    else if (funds)
+      reasons.push(
+        `资金步骤仅采用「${funds.label}」，没有生成收款、退款或对账的模拟账本记录。`,
+      );
+    else reasons.push("资金步骤尚未成功处理，没有生成模拟账本记录。");
+  } else if (s.ticket_status !== "resolved") {
+    reasons.push("模拟资金动作已落实，客服工单尚未结案。");
+  }
+  return { fundsComplete, complete, reasons };
+}
+
+function stepOutcome(record) {
+  if (!record?.applied) return null;
+  let label,
+    state = "done";
+  if (record.stage === "intake") label = "已受理（模拟）";
+  if (record.stage === "verify") {
+    label = "已核验";
+    if (
+      [
+        "await_confirmations",
+        "request_topup",
+        "settlement_delayed",
+        "settlement_pending",
+      ].includes(record.action)
+    ) {
+      label = "已核验 · 条件未满足";
+      state = "pending";
+    }
+  }
+  if (record.stage === "approve") {
+    label = record.action === "approved" ? "检查通过" : record.label;
+    if (record.action !== "approved") state = "pending";
+  }
+  if (record.stage === "execute") {
+    label = record.ledger_entry
+      ? "模拟资金动作已落实"
+      : record.action === "escalate_settlement"
+        ? "已记录升级 · 待结算"
+        : record.action === "wait_settlement"
+          ? "资金未执行 · 待结算"
+          : "资金未执行 · 已挂起";
+    if (!record.ledger_entry) state = "pending";
+  }
+  if (record.stage === "close") {
+    label =
+      record.snapshot.ticket_status === "resolved"
+        ? "已回复 · 已结案"
+        : "已回复 · 未结案";
+    if (record.snapshot.ticket_status !== "resolved") state = "pending";
+  }
+  return {
+    label: `${record.safety_adjusted ? "保护调整 · " : ""}${label}`,
+    state,
+  };
 }
 
 function finalOutcome(provider) {
   const w = workspace(),
     execution = w.executions[provider];
   const records = execution?.audit || [];
-  const completed = execution?.snapshot.completed.length || 0;
+  const isLoop = execution?.kind === "loop";
+  const loop = execution?.loopState;
+  const completed = isLoop
+    ? new Set(records.filter((r) => r.applied).map((r) => r.stage)).size
+    : execution?.snapshot.completed.length || 0;
   const allDone = catalog.stages.every(
     ({ id }) => w.results[provider][id]?.choice,
   );
@@ -291,34 +488,44 @@ function finalOutcome(provider) {
   const ledger = records.filter((r) => r.ledger_entry);
   const adjustments = records.filter((r) => r.safety_adjusted).length;
   const differences = records.filter((r) => r.policy_warning).length;
+  const outcome = businessOutcome(execution);
+  const decisions = catalog.stages.filter(
+    ({ id }) => w.results[provider][id]?.choice,
+  ).length;
   const interrupted =
     execution && !execution.finished && !execution.runningStage;
-  const state = execution?.blocked
+  let state = execution?.blocked
     ? "blocked"
     : execution?.error
       ? "error"
       : execution?.finished
-        ? "finished"
+        ? outcome.complete
+          ? "finished"
+          : "pending"
         : "waiting";
-  const title = execution?.blocked
+  let title = execution?.blocked
     ? "步骤未完成 · 已暂停"
     : execution?.error
       ? "执行失败 · 未完成"
       : execution?.finished
-        ? `${statusNames[execution.snapshot.ticket_status]} · ${statusNames[execution.snapshot.order_status]}`
+        ? outcome.complete
+          ? `业务已完成（模拟）· ${statusNames[execution.snapshot.order_status]} · 已结案`
+          : "业务未完成 · 持续跟进"
         : execution?.runningStage
           ? "沙盒执行中"
           : interrupted
             ? "流程已暂停"
             : "尚未执行";
-  const description = execution?.blocked
+  let description = execution?.blocked
     ? "后端未接受当前步骤，请刷新页面后重试。"
     : execution?.error
       ? execution.error
       : execution?.finished
-        ? execution.snapshot.ticket_status === "resolved"
-          ? "五步已完成，业务已在沙盒中结案。"
-          : "五步已完成，业务仍待跟进；可补齐交易证据或完成方案要求的人工复核后重新演练。"
+        ? outcome.complete
+          ? "模拟订单、对应账本记录与工单结案均已确认。"
+          : outcome.fundsComplete
+            ? "五个步骤均已处理，模拟资金动作已落实，但工单尚未结案。"
+            : "五个步骤均已处理，收款、退款或对账动作尚未落实；5/5 不代表业务成功。"
         : interrupted
           ? "已保留完成的步骤，可继续执行剩余步骤。"
           : execution?.runningStage
@@ -327,15 +534,33 @@ function finalOutcome(provider) {
               ? "模型调用失败，尚未获得完整方案，本侧没有执行业务步骤。"
               : allDone
                 ? "已生成五步建议。点击下方按钮执行，或运行上方完整流程同时查看两侧结果。"
-                : "点击「运行完整流程并对比」，依次生成建议并执行两套独立沙盒流程。";
+                : "点击「开始对比」，依次生成建议并执行两套独立沙盒流程。";
+  if (isLoop && !execution.error) {
+    state = outcome.complete ? "finished" : "pending";
+    title = outcome.complete
+      ? "业务闭环已完成（模拟）· 已结案"
+      : loop.status === "handoff"
+        ? "闭环未完成 · 需人工处理"
+        : loop.status === "waiting"
+          ? "闭环等待外部条件"
+          : busy
+            ? "自主闭环运行中"
+            : "闭环已暂停";
+    description = loop.reason || "每次执行后读取实际结果，再判断下一步。";
+  }
   return `<article class="cx-final-card ${provider}" data-cx-final="${provider}">
-    <div class="cx-final-heading"><strong>${providerNames[provider]}</strong><span>${w.runMode === "replay" ? "规则回放 · " : ""}已执行 ${completed}/5 步</span></div>
-    <div class="cx-outcome ${state}"><strong>${ui.esc(title)}</strong><p>${ui.esc(description)}</p></div>
+    <div class="cx-final-heading"><strong>${providerNames[provider]}</strong><span>${w.runMode === "replay" ? "规则回放 · " : ""}${isLoop ? "自主闭环 · " : ""}已处理 ${completed}/5 步</span></div>
+    <div class="cx-outcome ${state}"><strong>${ui.esc(title)}</strong>${execution?.error || execution?.blocked || failed || (isLoop && loop.status === "handoff") ? `<p>${ui.esc(description)}</p>` : ""}</div>
+    <div class="cx-compact-outcome"><span data-cx-funds="${outcome.fundsComplete ? "complete" : "incomplete"}">资金动作 <b>${outcome.fundsComplete ? "已落实" : "未落实"}</b></span><span>已返回 <b>${isLoop ? execution.decisionHistory.length : decisions}</b> 次决策</span></div>
+    <details class="cx-result-details" data-cx-panel="outcome-${provider}" ${panelOpen(`outcome-${provider}`)}><summary>查看结果、客服回复${outcome.reasons.length ? "与未完成原因" : ""}</summary>
+    ${outcome.reasons.length ? `<div class="cx-blockers"><strong>业务未完成原因</strong><ul>${outcome.reasons.map((reason) => `<li>${ui.esc(reason)}</li>`).join("")}</ul><p>${isLoop ? "闭环会携带执行反馈重判；等待外部事件或需要人工处理时暂停。" : "补齐外部证据后重新运行；若证据已满足，检查模型选择和待复核状态。固定输入流程不会自动重判。"}</p></div>` : ""}
     ${differences || adjustments ? `<p class="cx-policy-summary">参考差异 ${differences} 步 · 保护调整 ${adjustments} 步。原始模型建议均保留，参考差异不暂停流程。</p>` : ""}
     <dl class="cx-final-facts"><div><dt>订单 ${ui.esc(caseData().order_id)}</dt><dd>${execution ? ui.esc(statusNames[execution.snapshot.order_status]) : "未更新"}</dd></div><div><dt>客服工单 ${ui.esc(caseData().ticket_id)}</dt><dd>${execution ? ui.esc(statusNames[execution.snapshot.ticket_status]) : "未更新"}</dd></div><div><dt>模拟账本</dt><dd>${ledger.length ? ledger.map((r) => `${ui.esc(r.label)} · ${money(r.ledger_entry.amount)} ${ui.esc(caseData().asset)}`).join("；") : "无资金记录"}</dd></div></dl>
     <div class="cx-final-reply"><span>最终客服回复</span><p>${ui.esc(reply || "尚未执行回复结案步骤，没有发送客服回复。")}</p></div>
-    <small class="cx-execution-time">沙盒执行往返合计：${duration(execution?.elapsedMs)} · 不计入模型推理时间</small>
-    <div class="cx-final-actions"><button data-cx-apply="${provider}" class="secondary-button" ${busy || !allDone || execution?.finished ? "disabled" : ""}>${execution?.finished ? "已完成沙盒流程" : execution ? "继续采用建议" : "采用此方案 · 模拟执行"}</button></div>
+    ${isLoop ? `<p class="cx-loop-evidence">本侧最新证据：确认 ${execution.snapshot.confirmations}/${execution.snapshot.required_confirmations} · 到账 ${money(execution.snapshot.received)} · ${execution.snapshot.scenario === "refund" ? `地址${execution.snapshot.address_verified ? "已验证" : "未验证"} / 审批${execution.snapshot.approved ? "已通过" : "未通过"}` : execution.snapshot.scenario === "settlement" ? `结算${execution.snapshot.settled ? "已到账" : "未到账"}` : "支付核验"}</p>` : ""}
+    <small class="cx-execution-time">${isLoop ? "闭环请求往返合计（含决策与模拟事件）" : "沙盒执行往返合计"}：${duration(execution?.elapsedMs)}${isLoop ? "" : " · 不计入模型推理时间"}</small>
+    </details>
+    ${isLoop || execution?.finished ? "" : `<div class="cx-final-actions"><button data-cx-apply="${provider}" class="secondary-button" ${busy || !allDone || execution?.finished ? "disabled" : ""}>${execution?.finished ? "本轮步骤已处理完毕" : execution ? "继续采用建议" : "采用此方案 · 模拟执行"}</button></div>`}
   </article>`;
 }
 
@@ -345,13 +570,14 @@ function stepExecution(provider, stage) {
     execution = w.executions[provider];
   const records = execution?.audit.filter((r) => r.stage === stage.id) || [];
   const latest = records.at(-1);
+  const outcome = stepOutcome(latest);
   const running = execution?.runningStage === stage.id;
   const state = running
     ? "running"
     : latest?.error
       ? "error"
       : latest?.applied
-        ? "done"
+        ? outcome.state
         : latest
           ? "blocked"
           : "waiting";
@@ -360,11 +586,7 @@ function stepExecution(provider, stage) {
     : latest?.error
       ? "执行失败"
       : latest?.applied
-        ? latest.safety_adjusted
-          ? "保护调整 · 已完成"
-          : latest.policy_warning
-            ? "已执行 · 有参考差异"
-            : "已执行"
+        ? outcome.label
         : latest
           ? "已拦截"
           : execution?.blocked || execution?.error
@@ -384,6 +606,7 @@ function stepExecution(provider, stage) {
   return `<div class="cx-step-result ${provider} ${state}" data-cx-result="${provider}-${stage.id}">
     <div class="cx-step-result-head"><strong>${providerNames[provider]}</strong><span class="cx-execution-badge">${status}</span></div>
     <p class="cx-step-choice"><span>${result?.source === "rule_replay" ? "规则回放建议" : "模型建议"}</span><b>${ui.esc(result?.label || (result?.error ? "调用失败" : result?.pending ? "判断中…" : "等待运行"))}</b></p>
+    <p class="cx-step-actual"><span>实际采用动作</span><b>${ui.esc(latest?.applied ? latest.label : latest?.error ? "请求失败，未确认动作" : "尚未执行")}</b></p>
     ${result?.choice ? `<div class="cx-step-reference ${result.matches_reference ? "" : "different"}">${result.matches_reference ? "与演示参考一致" : `与演示参考不同 · 参考建议「${ui.esc(result.reference_label)}」`}</div>` : ""}
     <p class="cx-step-output">${ui.esc(output)}</p>
     ${latest?.safety_adjusted ? `<p class="cx-step-correction">保护调整：${ui.esc(latest.requested_label)} → ${ui.esc(latest.label)}。${ui.esc(latest.safety_reason)}（原始模型建议保留，不计作模型判断正确）</p>` : latest?.policy_warning ? `<p class="cx-step-correction">${ui.esc(latest.policy_warning)}</p>` : ""}
@@ -394,18 +617,137 @@ function stepExecution(provider, stage) {
           `<p class="cx-step-attempt">此前${r.error ? "请求失败" : r.applied ? "执行" : "拦截"}：${ui.esc(r.label || "")} · ${ui.esc(r.error || r.message)}</p>`,
       )
       .join("")}
-    <div class="cx-step-timing"><span>决策：${result?.source === "live" ? duration(result.timings?.backend_total_ms) : result?.source === "rule_replay" ? "规则回放 · 未推理" : "—"}</span><span>执行往返：${duration(latest?.elapsed_ms)}</span>${latest?.completed_at ? `<time datetime="${ui.esc(latest.completed_at)}">${latest.applied ? "完成于" : "记录于"} ${new Date(latest.completed_at).toLocaleTimeString("zh-CN", { hour12: false })}</time>` : ""}</div>
+    <div class="cx-step-timing"><span>决策：${result?.source === "live" ? duration(result.timings?.backend_total_ms) : result?.source === "rule_replay" ? "规则回放 · 未推理" : "—"}</span><span>${execution?.kind === "loop" ? `本轮往返（含决策）：${duration(latest?.tick_elapsed_ms)}` : `执行往返：${duration(latest?.elapsed_ms)}`}</span>${latest?.completed_at ? `<time datetime="${ui.esc(latest.completed_at)}">记录于 ${new Date(latest.completed_at).toLocaleTimeString("zh-CN", { hour12: false })}</time>` : ""}</div>
   </div>`;
 }
 
 function renderExecutionResults() {
   const w = workspace();
+  const hasResults = providers.some(
+    (p) => Object.keys(w.results[p]).length || w.executions[p],
+  );
+  if (!hasResults) return `<div id="cx-execution-results"></div>`;
   return `<section class="cx-execution-results" id="cx-execution-results" aria-label="逐步执行结果与最终结果">
-    <div class="cx-results-heading"><h2>最终业务结果</h2><p>两侧使用独立的模拟订单与账本。完成五步后，工单可能结案，也可能持续跟进。</p></div>
+    <div class="cx-results-heading"><h2>处理结果</h2><span>${w.runMode === "replay" ? "规则回放" : "真实模型"} · ${w.workflowKind === "loop" ? "自主闭环" : "固定流程"}</span></div>
     <div class="cx-final-grid">${providers.map(finalOutcome).join("")}</div>
-    <div class="cx-workflow-timing"><span>五步决策对比 · 浏览器经过时间 <b>${duration(w.decisionElapsedMs)}</b></span><span>本轮一键流程（含决策、执行及保护调整）· 浏览器经过时间 <b>${duration(w.workflowElapsedMs)}</b></span></div>
-    <div class="cx-results-heading"><h2>每一步的执行结果</h2><p>每步展示模型建议与实际执行；参考差异仅作提示，资金保护调整会单独标注。</p></div>
-    <div class="cx-execution-steps">${catalog.stages.map((stage, i) => `<section class="cx-execution-step" aria-label="${ui.esc(stage.label)} 执行输出"><div class="cx-execution-step-heading"><h3><span>0${i + 1}</span>${ui.esc(stage.label)}</h3><code>沙盒 · ${ui.esc(stage.tool)}</code></div><div class="cx-step-pair">${providers.map((p) => stepExecution(p, stage)).join("")}</div></section>`).join("")}</div>
+    <div class="cx-workflow-timing"><span>${w.workflowKind === "loop" ? "本次闭环运行" : "本次流程对比"}总经过时间 <b>${duration(w.workflowElapsedMs ?? w.decisionElapsedMs)}</b></span><small>含通信与执行</small></div>
+    ${w.workflowKind === "loop" ? `<details class="cx-disclosure" data-cx-panel="loop-history" ${panelOpen("loop-history")}><summary>闭环轮次与重判记录</summary>${renderLoopHistory()}</details>` : ""}
+    <details class="cx-disclosure" data-cx-panel="execution" ${panelOpen("execution")}><summary>每一步的完整执行结果</summary><div class="cx-execution-steps">${catalog.stages.map((stage, i) => `<section class="cx-execution-step" aria-label="${ui.esc(stage.label)} 执行输出"><div class="cx-execution-step-heading"><h3><span>0${i + 1}</span>${ui.esc(stage.label)}</h3></div><div class="cx-step-pair">${providers.map((p) => stepExecution(p, stage)).join("")}</div></section>`).join("")}</div></details>
+  </section>`;
+}
+
+function beginDialogueRun() {
+  const w = workspace();
+  w.dialogueRun++;
+  w.viewedDialogueRun = w.dialogueRun;
+}
+
+function startDialogue(provider, number, request, kind) {
+  const w = workspace();
+  let turn = w.dialogues.find(
+    (row) => row.run === w.dialogueRun && row.number === number,
+  );
+  if (!turn) {
+    turn = {
+      run: w.dialogueRun,
+      number,
+      revision: w.revision,
+      kind,
+      mode: w.runMode,
+      sides: {},
+    };
+    w.dialogues.push(turn);
+    w.dialogues = w.dialogues.slice(-80);
+  }
+  const side = {
+    id: `${current}-${w.dialogueRun}-${number}-${provider}`,
+    request: clone(request),
+    startedAt: new Date().toISOString(),
+    pending: true,
+    executions: [],
+  };
+  turn.sides[provider] = side;
+  return side;
+}
+
+function dialogueInput(side) {
+  const request = side.request;
+  const s = request.snapshot || request.state.snapshot;
+  const stage = request.stage || request.state.next_stage;
+  const feedback = request.state?.feedback || [];
+  return `<div class="cx-turn-input"><span class="cx-io-label">输入 · ${ui.esc(stageData(stage).label)}</span>
+    <p>${ui.esc(s.message)}</p>
+    <div class="cx-turn-facts"><span>应付 ${money(s.expected)} · 到账 ${money(s.received)}</span><span>确认 ${s.confirmations}/${s.required_confirmations}</span><span>${s.risk_flag ? "有风险标记" : "无风险标记"}</span>${s.scenario === "refund" ? `<span>地址${s.address_verified ? "已验证" : "未验证"} · 审批${s.approved ? "已通过" : "未通过"}</span>` : ""}${s.scenario === "settlement" ? `<span>结算${s.settled ? "已到账" : "未到账"} · ${s.settlement_minutes}/${s.settlement_sla_minutes} min</span>` : ""}</div>
+    ${request.state ? `<p class="cx-turn-feedback">执行状态：${ui.esc(statusNames[s.order_status])} / ${ui.esc(statusNames[s.ticket_status])}${feedback.length ? `<br>上轮反馈：${ui.esc(feedback.at(-1).reason)}` : " · 尚无执行反馈"}</p>` : ""}
+  </div>`;
+}
+
+function dialogueOutput(provider, side, showInput) {
+  if (!side)
+    return `<article class="cx-turn-side ${provider}"><h4>${providerNames[provider]}</h4><p class="cx-turn-empty">本侧尚未进入此轮。</p></article>`;
+  const r = side.result;
+  const record = side.executions.at(-1);
+  const simulation = side.response?.event;
+  const pendingEvent =
+    side.request.state?.status === "waiting" && side.request.auto_events;
+  const time =
+    r?.source === "live"
+      ? `决策 ${duration(r.timings?.backend_total_ms)}`
+      : r
+        ? "规则回放 · 未调用模型"
+        : side.pending
+          ? "等待返回"
+          : simulation
+            ? "模拟事件 · 未调用模型"
+            : side.response
+              ? "流程状态 · 未调用模型"
+              : "未获得模型决策";
+  return `<article class="cx-turn-side ${provider}" data-cx-dialogue-output="${provider}">
+    <div class="cx-turn-model"><h4>${providerNames[provider]}</h4><span>${time}</span></div>
+    ${showInput ? dialogueInput(side) : ""}
+    <div class="cx-turn-output"><span class="cx-io-label">${simulation ? "模拟事件输出 · 未调用模型" : r?.source === "rule_replay" ? "回放输出" : "模型输出"}</span>
+      ${side.pending ? `<p class="cx-turn-pending">${pendingEvent ? "正在检查等待条件／推进模拟事件…" : "正在等待本轮决策…"}</p>` : side.error ? `<p class="cx-turn-error">请求失败：${ui.esc(side.error)}</p>` : r ? `<strong>${ui.esc(r.label)}</strong><code>${ui.esc(r.choice)}</code>` : simulation ? `<strong>${ui.esc(eventNames[simulation.name])}</strong><p>${ui.esc(eventChange(simulation.name, simulation.before, simulation.after))}</p>` : `<p>${ui.esc(side.response?.state.reason || "本轮未调用模型。")}</p>`}
+    </div>
+    ${record ? `<div class="cx-turn-execution"><span class="cx-io-label">实际执行${side.executions.length > 1 ? ` · 第 ${side.executions.length} 次尝试` : ""}</span><p>${ui.esc(executionOutput(record))}</p>${record.safety_reason ? `<p class="cx-turn-feedback">${ui.esc(record.safety_reason)}</p>` : ""}${record.loop_feedback ? `<p class="cx-turn-feedback">反馈：${ui.esc(record.loop_feedback.reason)}</p>` : ""}${record.customer_reply && record.stage !== "close" ? `<p class="cx-turn-reply">客服回复（模板）：${ui.esc(record.customer_reply)}</p>` : ""}</div>` : r ? `<p class="cx-turn-empty">尚未执行该建议。</p>` : ""}
+    <div class="cx-turn-time"><time>${new Date(side.startedAt).toLocaleTimeString("zh-CN", { hour12: false })}</time>${side.elapsedMs != null ? `<span>请求往返 ${duration(side.elapsedMs)}</span>` : ""}</div>
+    <details class="cx-turn-raw" data-cx-panel="turn-${side.id}" ${panelOpen(`turn-${side.id}`)}><summary>完整请求与返回</summary><pre>${ui.esc(JSON.stringify({ request: side.request, response: side.response || r || null, error: side.error || null, executions: side.executions }, null, 2))}</pre></details>
+  </article>`;
+}
+
+function renderDialogues() {
+  const w = workspace();
+  const runs = [...new Set(w.dialogues.map((row) => row.run))].reverse();
+  const rows = w.dialogues.filter((row) => row.run === w.viewedDialogueRun);
+  return `<section class="cx-dialogues" aria-label="每轮对话输入与输出">
+    <div class="cx-dialogue-heading"><h2>每轮输入 / 输出</h2><label>对比记录 <select data-cx-dialogue-run ${runs.length ? "" : "disabled"}>${runs.length ? runs.map((run) => `<option value="${run}" ${run === w.viewedDialogueRun ? "selected" : ""}>第 ${run} 次对比${run === w.dialogueRun ? " · 最近" : ""}</option>`).join("") : "<option>等待开始</option>"}</select></label></div>
+    <div class="cx-dialogue-layout"><div class="cx-dialogue-main">
+      <p class="cx-dialogue-note">${rows.length ? `${rows.length} 轮 · 滚动查看全部输入与输出` : "开始对比后逐轮显示输入与输出"} · 客服模板单独标注</p>
+      <div class="cx-dialogue-feed" tabindex="0" aria-label="逐轮输入与两侧输出记录">
+        ${
+          rows.length
+            ? rows
+                .map((row) => {
+                  const a = row.sides.decider,
+                    b = row.sides.bedrock;
+                  const sameInput =
+                    a &&
+                    b &&
+                    JSON.stringify({
+                      snapshot: a.request.snapshot || a.request.state,
+                      stage: a.request.stage,
+                    }) ===
+                      JSON.stringify({
+                        snapshot: b.request.snapshot || b.request.state,
+                        stage: b.request.stage,
+                      });
+                  return `<section class="cx-turn" data-cx-dialogue-turn="${row.number}"><header><strong>第 ${row.number} 轮</strong><span>证据 v${row.revision}${row.revision < w.revision ? " · 历史输入" : ""} · ${row.kind === "loop" ? "自主闭环 · 两侧各自推进" : "固定输入"} · ${row.mode === "replay" ? "规则回放" : "真实模型"}</span></header>${sameInput ? dialogueInput(a) : ""}<div class="cx-turn-pair">${providers.map((p) => dialogueOutput(p, row.sides[p], !sameInput)).join("")}</div></section>`;
+                })
+                .join("")
+            : `<div class="cx-dialogue-empty"><span class="cx-io-label">客户输入</span><p>${ui.esc(w.snapshot.message)}</p><div class="cx-turn-pair"><div><strong>Strands Decider</strong><p>等待开始对比</p></div><div><strong>GPT-6.1 Sol</strong><p>等待开始对比</p></div></div></div>`
+        }
+      </div>
+      <small class="cx-dialogue-retention">保留最近 80 轮，可切换对比记录或导出；刷新后清除。</small>
+    </div>${renderConversation()}</div>
   </section>`;
 }
 
@@ -429,15 +771,15 @@ function renderConversation() {
     })
     .join("");
   return `<section class="cx-card cx-conversation">
-    <div class="cx-card-heading"><h3>${ui.icon("message")}客服会话</h3><span>${ui.esc(c.ticket_id)}</span></div>
+    <div class="cx-card-heading"><h3>${ui.icon("message")}客户对话与回复</h3><span>${ui.esc(c.ticket_id)}</span></div>
     <div class="cx-chat-person"><span class="cx-avatar">${ui.esc(c.customer[0])}</span><div><strong>${ui.esc(c.customer)}</strong><small>订单 ${ui.esc(c.order_id)}</small></div><span class="cx-dot"></span></div>
     <div class="cx-chat" aria-label="客户诉求、模拟交易事件与客服回复记录">${history}
-    ${!w.conversation.some((entry) => entry.kind === "reply") ? `<p class="cx-chat-hint">模拟交易事件会立即出现在这里。运行完整流程后，继续显示两侧客服回复。</p>` : ""}
+    ${!w.conversation.some((entry) => entry.kind === "reply") ? `<p class="cx-chat-hint">运行后显示事件与两侧回复。</p>` : ""}
     </div>
-    <div class="cx-events"><strong>推进模拟交易</strong><span>点击后在上方会话查看证据变化，再重新运行流程。</span>${events.map((event) => `<button class="cx-event-button" data-cx-event="${event}" ${busy ? "disabled" : ""}>${ui.icon("plus")}${eventNames[event]}</button>`).join("")}</div>
+    <div class="cx-events"><strong>推进模拟交易</strong><span>${w.workflowKind === "loop" ? "更新等待中的证据，自动继续。" : "更新证据后重新开始对比。"}</span>${events.map((event) => `<button class="cx-event-button" data-cx-event="${event}" ${busy ? "disabled" : ""}>${ui.icon("plus")}${eventNames[event]}</button>`).join("")}</div>
     <label class="cx-field">修改客户诉求<textarea id="cx-message" maxlength="1800" rows="3" ${busy ? "disabled" : ""}>${ui.esc(w.snapshot.message)}</textarea></label>
     <button data-cx-save-message class="secondary-button" ${busy ? "disabled" : ""}>更新诉求并重新核验</button>
-    <small class="cx-note">事件为模拟系统通知，回复来自话术模板。保留最近 80 条会话；历史回复标注证据版本，刷新或退出后清除。</small>
+    <small class="cx-note">客服回复来自模板；模型决策见每轮输出。</small>
   </section>`;
 }
 
@@ -466,48 +808,67 @@ function renderAudit() {
 
 function render() {
   if (!loaded) return;
+  const root = $("#crypto-workspace");
+  const oldFeed = root.querySelector(".cx-dialogue-feed");
+  const followLatest =
+    !oldFeed ||
+    oldFeed.scrollHeight - oldFeed.scrollTop - oldFeed.clientHeight < 40;
+  const feedScroll = oldFeed?.scrollTop || 0;
+  root.querySelectorAll("details[data-cx-panel]").forEach((el) => {
+    if (el.open) expandedPanels.add(el.dataset.cxPanel);
+    else expandedPanels.delete(el.dataset.cxPanel);
+  });
   const c = caseData(),
     w = workspace(),
     s = w.snapshot,
     e = ui.esc;
   const disabled = busy ? "disabled" : "";
-  $("#crypto-workspace").innerHTML = `
-    <div class="cx-heading"><div><div class="eyebrow"><span></span> PAYMENT OPERATIONS LAB</div><h1>一笔支付，走完每一步<span class="heading-dot">。</span></h1><p>从客户消息到交易核验、审批与结案，观察两种模型如何推动同一笔业务。</p></div><span class="cx-sandbox">${ui.icon("layers")}业务沙盒 · 不发送资金</span></div>
-    <div class="cx-hero"><div><span class="cx-live-dot"></span><strong>Decider × GPT-6.1 Sol</strong><span>相同业务事实 · 相同候选动作 · 独立实测</span></div><div class="cx-hero-actions"><button class="text-button" data-cx-reset ${disabled}>重置案例</button><button class="text-button" data-cx-export ${disabled}>${ui.icon("copy")}导出记录</button></div></div>
-    <div class="cx-workspace">
-      <aside class="cx-inbox"><div class="cx-inbox-title"><h2>业务场景</h2><span>04</span></div>${catalog.cases.map((item, i) => `<button class="cx-case ${item.id === current ? "active" : ""}" data-cx-case="${item.id}" ${disabled}><div><span>${String(i + 1).padStart(2, "0")} / ${e(item.category)}</span><i>${ui.icon(item.id === "refund" ? "rotate" : item.id === "settlement" ? "layers" : "route")}</i></div><strong>${e(item.title)}</strong><small>${e(item.asset)} · ${e(item.network)}</small></button>`).join("")}<div class="cx-inbox-foot">${ui.icon("lightbulb")}改变交易证据，再观察处理路径如何变化。</div></aside>
-      <div class="cx-case-main"><section class="cx-card cx-order"><div class="cx-card-heading"><div><span class="tiny-label">${e(c.order_id)} · ${e(c.merchant)}</span><h2>${e(c.title)}</h2></div><span class="cx-state-tag">证据版本 v${w.revision}</span></div>
-        <p class="cx-case-description">${e(c.summary)}</p><div class="cx-order-metrics"><div><span>应付金额</span><strong>${money(s.expected)} <small>${e(c.asset)}</small></strong></div><div><span>实际到账</span><strong>${money(s.received)} <small>${e(c.asset)}</small></strong></div><div><span>${current === "settlement" ? "结算耗时 / SLA" : "链上确认"}</span><strong>${current === "settlement" ? `${s.settlement_minutes} / ${s.settlement_sla_minutes}` : `${s.confirmations} / ${s.required_confirmations}`}<small>${current === "settlement" ? " min" : " 次"}</small></strong></div></div>
-        <div class="cx-fact-chips"><span class="${Number(s.received) >= Number(s.expected) ? "ok" : "warn"}">差额 ${money(Math.max(0, Number(s.expected) - Number(s.received)))}</span><span class="${s.risk_flag ? "warn" : "ok"}">${s.risk_flag ? "待人工风控" : "无风险标记"}</span>${current === "refund" ? `<span class="${s.address_verified ? "ok" : "warn"}">${s.address_verified ? "地址已验证" : "地址未验证"}</span><span class="${s.approved ? "ok" : "warn"}">${s.approved ? "审批已通过" : "待人工审批"}</span>` : ""}${current === "settlement" ? `<span class="${s.settled ? "ok" : "warn"}">${s.settled ? "结算已到账" : "结算未到账"}</span>` : ""}</div>
-        <details class="cx-evidence"><summary>${ui.icon("sliders")}编辑业务证据</summary><div class="cx-evidence-fields">
-          <label>应付金额<input type="number" min="0.01" max="1000000" step="0.01" data-cx-field="expected" value="${e(s.expected)}" ${disabled}></label>
-          <label>实际到账<input type="number" min="0" max="1000000" step="0.01" data-cx-field="received" value="${e(s.received)}" ${disabled}></label>
-          <label>确认数<input type="number" min="0" max="1000" step="1" data-cx-field="confirmations" value="${s.confirmations}" ${disabled}></label>
-          <label>结算耗时（分钟）<input type="number" min="0" max="10080" step="1" data-cx-field="settlement_minutes" value="${s.settlement_minutes}" ${disabled}></label>
-          <label class="cx-check"><input type="checkbox" data-cx-field="risk_flag" ${s.risk_flag ? "checked" : ""} ${disabled}>风险标记，需要人工复核</label>
-        </div><p>金额差额与是否满足门槛由后端计算。更改证据会清除旧模型结果，重新开始审批流程。</p></details>
-      </section>
-      <section class="cx-card cx-flow"><div class="cx-card-heading"><h3>端到端业务流程</h3><span>05 STEPS</span></div><div class="cx-flow-track">${catalog.stages.map((stage, i) => `<button data-cx-stage="${stage.id}" class="${stage.id === selectedStage ? "active" : ""}"><span>${i + 1}</span><strong>${e(stage.label)}</strong><small>${e(stage.tool.split(".")[0])}</small></button>`).join("")}</div><div class="cx-stage-caption"><strong>${e(stageData(selectedStage).label)}</strong><span>${e(stageData(selectedStage).description)}</span><code>${e(stageData(selectedStage).tool)}</code></div></section></div>
-      ${renderConversation()}
-    </div>
-    <section class="cx-comparison" aria-label="Bedrock 与 Decider 对比"><div class="cx-comparison-heading"><div><h2>同案对比，看到真实差异</h2><p>参考动作只用于对比，不再因选择不同而暂停；资金条件未满足时挂起资金动作，继续完成流程。</p></div><div class="cx-controls"><div class="mode-switch" role="group" aria-label="支付模块运行模式"><button data-cx-mode="live" class="${mode === "live" ? "active" : ""}" ${disabled}>真实模型</button><button data-cx-mode="replay" class="${mode === "replay" ? "active" : ""}" ${disabled}>规则回放</button></div><button data-cx-run="step" class="secondary-button" ${disabled}>对比当前步骤</button><button data-cx-run="all" class="secondary-button" ${disabled}>仅对比 5 步决策</button><button data-cx-run="workflow" class="primary-button" ${disabled}>${ui.icon("play")}运行完整流程并对比</button>${busy ? `<button data-cx-stop class="text-button">${stopRequested ? "当前步骤后停止…" : "停止后续步骤"}</button>` : ""}</div></div>
-      <div id="cx-run-status" class="cx-run-status" role="status">${busy ? `${ui.icon("refresh")}正在处理「${e(stageData(selectedStage).label)}」，每侧结果独立返回。` : w.runMode === "replay" ? "规则回放 · 不调用模型，不展示虚构的耗时或 token。" : "真实调用 GPT-6.1 Sol（low）与 SageMaker Decider v19。客服话术与业务执行不计入模型决策耗时。"}</div>
-      ${summary()}${comparisonTable()}${renderExecutionResults()}<h2 class="cx-diagnostics-heading">决策详情 · ${e(stageData(selectedStage).label)}</h2><div class="cx-lanes">${lane("decider")}${lane("bedrock")}</div>
-      <p class="cx-comparison-foot">各步骤按顺序运行，同一步的两模型并发调用。耗时合计仅累计成功的配对决策，非整条业务流程的墙钟时间。${e(catalog.price_note)}</p>
+  const resumable =
+    testKind === "loop" &&
+    w.workflowKind === "loop" &&
+    Object.values(w.executions).some(
+      (x) => !["complete", "handoff"].includes(x.loopState.status),
+    );
+  root.innerHTML = `
+    <header class="cx-comparison-title"><div><span>加密支付测试台</span><h1>Decider <small>vs</small> GPT</h1></div><div class="cx-title-actions"><button data-cx-reset class="text-button" ${disabled}>重置</button><button data-cx-export class="text-button" ${disabled}>${ui.icon("copy")}导出结果</button></div></header>
+    <section class="cx-test-setup" aria-label="对比测试设置">
+      <nav class="cx-scenario-tabs" aria-label="选择业务场景">${catalog.cases.map((item, i) => `<button class="cx-case ${item.id === current ? "active" : ""}" data-cx-case="${item.id}" aria-pressed="${item.id === current}" ${disabled}><small>0${i + 1}</small><strong>${e(caseNames[item.id])}</strong></button>`).join("")}</nav>
+      <div class="cx-test-toolbar"><label class="cx-test-kind">测试方式<select data-cx-test-kind ${disabled}><option value="workflow" ${testKind === "workflow" ? "selected" : ""}>固定流程</option><option value="loop" ${testKind === "loop" ? "selected" : ""}>自主闭环</option><option value="all" ${testKind === "all" ? "selected" : ""}>仅比较决策</option></select></label><div class="mode-switch" role="group" aria-label="支付模块运行模式"><button data-cx-mode="live" class="${mode === "live" ? "active" : ""}" ${disabled}>真实模型</button><button data-cx-mode="replay" class="${mode === "replay" ? "active" : ""}" ${disabled}>规则回放</button></div><div class="cx-run-actions">${resumable ? `<button data-cx-loop-resume class="secondary-button" ${disabled}>继续本次对比</button>` : ""}<button data-cx-start class="primary-button" ${disabled}>${ui.icon("play")}${busy ? "对比中…" : "开始对比"}</button>${busy ? `<button data-cx-stop class="text-button">${stopRequested ? "正在暂停…" : "暂停"}</button>` : ""}</div></div>
+      ${testKind === "loop" ? `<label class="cx-auto-events"><input type="checkbox" data-cx-auto-events ${autoEvents ? "checked" : ""} ${disabled}>自动推进模拟证据 <small>确认、补款、审批等；风险需手动解除</small></label>` : ""}
+      <div class="cx-case-strip"><span>${e(c.asset)} · ${e(c.network)}</span><span>应付 <b>${money(s.expected)}</b></span><span>到账 <b>${money(s.received)}</b></span><span>${current === "settlement" ? `结算 ${s.settlement_minutes}/${s.settlement_sla_minutes} min` : `确认 ${s.confirmations}/${s.required_confirmations}`}</span><small>${w.workflowKind === "loop" ? "初始证据" : "模拟业务"}</small></div>
+      <section id="cx-gpu-notice" aria-live="polite"></section>
     </section>
-    ${renderAudit()}
-    <div class="cx-page-note">演练数据保存在当前页面内存中，刷新或退出后清除。模型结果、规则回放、参考差异与保护调整均分别标记，可导出复核。</div>`;
+    <section class="cx-comparison" aria-label="Decider 与 GPT 流程速度对比">
+      <div id="cx-run-status" class="cx-run-status" role="status">${busy ? `正在处理：${e(stageData(selectedStage).label)}` : ""}</div>
+      ${summary()}${renderDialogues()}${comparisonTable()}${renderExecutionResults()}
+    </section>
+    <details class="cx-disclosure" data-cx-panel="inputs" ${panelOpen("inputs")}><summary>场景说明与证据编辑</summary><div class="cx-workspace">
+      <section class="cx-card cx-order"><div class="cx-card-heading"><h2>${e(c.title)}</h2><span>证据 v${w.revision}</span></div><p class="cx-case-description">${e(c.summary)}</p><div class="cx-fact-chips"><span>${s.risk_flag ? "待人工风控" : "无风险标记"}</span>${current === "refund" ? `<span>${s.address_verified ? "地址已验证" : "地址未验证"}</span><span>${s.approved ? "审批已通过" : "待人工审批"}</span>` : ""}</div>
+      <details class="cx-evidence" data-cx-panel="evidence" ${panelOpen("evidence")}><summary>编辑业务证据</summary><div class="cx-evidence-fields"><label>应付金额<input type="number" min="0.01" max="1000000" step="0.01" data-cx-field="expected" value="${e(s.expected)}" ${disabled}></label><label>实际到账<input type="number" min="0" max="1000000" step="0.01" data-cx-field="received" value="${e(s.received)}" ${disabled}></label><label>确认数<input type="number" min="0" max="1000" step="1" data-cx-field="confirmations" value="${s.confirmations}" ${disabled}></label><label>结算耗时（分钟）<input type="number" min="0" max="10080" step="1" data-cx-field="settlement_minutes" value="${s.settlement_minutes}" ${disabled}></label><label class="cx-check"><input type="checkbox" data-cx-field="risk_flag" ${s.risk_flag ? "checked" : ""} ${disabled}>风险标记</label></div></details></section></div></details>
+    <details class="cx-disclosure" data-cx-panel="diagnostics" ${panelOpen("diagnostics")}><summary>决策详情与原始输出</summary><div class="cx-flow-track">${catalog.stages.map((stage, i) => `<button data-cx-stage="${stage.id}" class="${stage.id === selectedStage ? "active" : ""}"><span>${i + 1}</span><strong>${e(stage.label)}</strong></button>`).join("")}</div><div class="cx-lanes">${lane("decider")}${lane("bedrock")}</div><button data-cx-run="step" class="text-button" ${disabled}>单独对比当前步骤</button></details>
+    <details class="cx-disclosure" data-cx-panel="audit" ${panelOpen("audit")}><summary>执行日志与模拟账本</summary>${renderAudit()}</details>
+    <p class="cx-page-note">模拟业务，不发送资金。演练记录在刷新后清除。</p>`;
   const chat = $(".cx-chat");
   if (chat) chat.scrollTop = chat.scrollHeight;
+  const feed = $(".cx-dialogue-feed");
+  if (feed) feed.scrollTop = followLatest ? feed.scrollHeight : feedScroll;
+  renderGpuNotice();
 }
 
 async function run(which) {
   if (busy) return;
   busy = true;
+  render();
+  if (!(await gpuReady())) {
+    busy = false;
+    render();
+    return;
+  }
   stopRequested = false;
   const w = workspace(),
     snapshot = clone(w.snapshot),
     runMode = mode;
+  w.workflowKind = "fixed";
   const complete = which !== "step";
   const stages = complete ? catalog.stages.map((s) => s.id) : [selectedStage];
   if (w.runMode !== runMode || complete)
@@ -517,13 +878,14 @@ async function run(which) {
   w.activeExecution = null;
   w.decisionElapsedMs = null;
   w.workflowElapsedMs = null;
+  beginDialogueRun();
   const started = performance.now();
   addAudit(
     "run",
     `${runMode === "live" ? "真实模型" : "规则回放"} · 开始${complete ? "五步决策" : stageData(selectedStage).label}对比，证据 v${w.revision}。`,
   );
   try {
-    for (const stage of stages) {
+    for (const [index, stage] of stages.entries()) {
       if (stopRequested) break;
       selectedStage = stage;
       providers.forEach((p) => {
@@ -532,28 +894,37 @@ async function run(which) {
       render();
       await Promise.allSettled(
         providers.map(async (provider) => {
+          const request = {
+            snapshot,
+            stage,
+            provider,
+            mode: runMode,
+            model_id: "us.openai.gpt-6.1-sol",
+          };
+          const dialogue = startDialogue(provider, index + 1, request, "fixed");
+          render();
           const t = performance.now();
           try {
-            const result = await ui.api("/api/crypto/decision", {
-              snapshot,
-              stage,
-              provider,
-              mode: runMode,
-              model_id: "us.openai.gpt-6.1-sol",
-            });
+            const result = await ui.api("/api/crypto/decision", request);
             result.client_ms =
               runMode === "live" ? performance.now() - t : null;
             w.results[provider][stage] = result;
+            dialogue.result = result;
             addAudit(
               result.matches_reference ? "decision" : "warning",
               `${providerNames[provider]} · ${stageData(stage).label} → ${result.label}${result.source !== "live" ? "（规则回放）" : ""}${!result.matches_reference ? "；与演示参考不同（不因此暂停）" : ""}`,
             );
           } catch (error) {
+            dialogue.error = error.message;
             w.results[provider][stage] = { error: error.message };
             addAudit(
               "error",
               `${providerNames[provider]} · ${stageData(stage).label}失败：${error.message}`,
             );
+            if (provider === "decider") ui.refreshGpu();
+          } finally {
+            dialogue.pending = false;
+            dialogue.elapsedMs = performance.now() - t;
           }
           render();
         }),
@@ -578,8 +949,281 @@ async function run(which) {
     stopRequested = false;
     render();
     if (which === "workflow")
-      $("#cx-execution-results").scrollIntoView({ block: "start" });
+      $(".cx-comparison").scrollIntoView({ block: "nearest" });
   }
+}
+
+function freshLoop(snapshot) {
+  return {
+    kind: "loop",
+    snapshot: clone(snapshot),
+    audit: [],
+    finished: false,
+    blocked: false,
+    error: null,
+    runningStage: null,
+    elapsedMs: 0,
+    loopState: {
+      snapshot: clone(snapshot),
+      next_stage: "intake",
+      status: "running",
+    },
+    decisionHistory: [],
+    events: [],
+    timeline: [],
+    dialogueTicks: 0,
+  };
+}
+
+async function runLoop(resume = false) {
+  if (busy) return;
+  const w = workspace();
+  const runMode = resume ? w.runMode : mode;
+  busy = true;
+  stopRequested = false;
+  render();
+  if (!(await gpuReady(runMode))) {
+    busy = false;
+    render();
+    return;
+  }
+  if (!resume) {
+    beginDialogueRun();
+    w.workflowKind = "loop";
+    w.runMode = runMode;
+    w.results = { decider: {}, bedrock: {} };
+    w.executions = Object.fromEntries(
+      providers.map((p) => [p, freshLoop(w.snapshot)]),
+    );
+    w.decisionElapsedMs = null;
+    w.workflowElapsedMs = null;
+    addAudit(
+      "run",
+      `${runMode === "live" ? "真实模型" : "规则回放"} · 开始自主闭环；自动模拟事件${autoEvents ? "开启" : "关闭"}。`,
+    );
+  }
+  const started = performance.now();
+  render();
+  try {
+    await Promise.allSettled(
+      providers.map(async (provider) => {
+        const execution = w.executions[provider];
+        if (
+          !execution ||
+          ["complete", "handoff"].includes(execution.loopState.status)
+        )
+          return;
+        execution.error = null;
+        while (!stopRequested) {
+          const state = execution.loopState;
+          if (["complete", "handoff"].includes(state.status)) break;
+          if (
+            state.status === "waiting" &&
+            (!autoEvents || state.waiting_events.includes("clear_risk"))
+          )
+            break;
+          if (performance.now() - started > 300000) {
+            addAudit(
+              "warning",
+              `${providerNames[provider]} 本次闭环运行已达到 5 分钟，自动暂停，可检查后继续。`,
+            );
+            break;
+          }
+          selectedStage = state.next_stage;
+          execution.runningStage = state.next_stage;
+          const request = {
+            state,
+            provider,
+            mode: runMode,
+            auto_events: autoEvents,
+          };
+          const dialogue = startDialogue(
+            provider,
+            ++execution.dialogueTicks,
+            request,
+            "loop",
+          );
+          render();
+          const tickStarted = performance.now();
+          try {
+            const response = await ui.api("/api/crypto/loop/tick", request);
+            dialogue.response = clone(response);
+            dialogue.result = response.decision;
+            dialogue.pending = false;
+            const elapsed = performance.now() - tickStarted;
+            execution.elapsedMs += elapsed;
+            execution.loopState = response.state;
+            execution.snapshot = clone(response.state.snapshot);
+            execution.runningStage = null;
+            execution.finished = response.state.status === "complete";
+            if (response.decision) {
+              const d = response.decision;
+              w.results[provider][d.stage] = d;
+              execution.decisionHistory.push(d);
+            }
+            if (response.record) {
+              const record = {
+                ...response.record,
+                decision: response.decision,
+                tick_elapsed_ms: elapsed,
+                completed_at: new Date().toISOString(),
+              };
+              execution.audit.push(record);
+              dialogue.executions.push(record);
+              execution.timeline.push({
+                kind: "decision",
+                title: `${stageData(record.stage).label}：${response.decision.label} → ${record.label}`,
+                reason: record.loop_feedback.reason,
+                elapsed_ms: elapsed,
+              });
+              if (record.customer_reply)
+                addConversation("reply", record.customer_reply, {
+                  provider,
+                  mode: runMode,
+                });
+              addAudit(
+                record.loop_feedback.status === "succeeded"
+                  ? "applied"
+                  : "warning",
+                `${providerNames[provider]} · 闭环第 ${response.state.decisions} 次决策：${response.decision.label} → ${record.label}。${record.loop_feedback.reason}`,
+              );
+            }
+            if (response.event) {
+              const ev = response.event;
+              execution.events.push(ev);
+              const change = eventChange(ev.name, ev.before, ev.after);
+              execution.timeline.push({
+                kind: "event",
+                title: `模拟器：${eventNames[ev.name]}`,
+                reason: `${change}。${ev.message}`,
+                elapsed_ms: elapsed,
+              });
+              addConversation(
+                "event",
+                `${providerNames[provider]} · 模拟器更新：${change}。这是模拟证据，闭环将自动继续判断。`,
+                { event: ev.name, provider, source: "simulator" },
+              );
+              addAudit(
+                "event",
+                `${providerNames[provider]} · 模拟器：${change}。`,
+              );
+            }
+            render();
+          } catch (error) {
+            dialogue.error = error.message;
+            dialogue.pending = false;
+            const elapsed = performance.now() - tickStarted;
+            execution.elapsedMs += elapsed;
+            execution.error = error.message;
+            execution.runningStage = null;
+            execution.audit.push({
+              stage: state.next_stage,
+              error: error.message,
+              tick_elapsed_ms: elapsed,
+              completed_at: new Date().toISOString(),
+            });
+            execution.timeline.push({
+              kind: "error",
+              title: `${stageData(state.next_stage).label}：本轮请求失败`,
+              reason: error.message,
+              elapsed_ms: elapsed,
+            });
+            w.results[provider][state.next_stage] = { error: error.message };
+            addAudit(
+              "error",
+              `${providerNames[provider]} 闭环已暂停：${error.message}`,
+            );
+            if (provider === "decider") ui.refreshGpu();
+            render();
+            break;
+          } finally {
+            dialogue.elapsedMs = performance.now() - tickStarted;
+          }
+        }
+      }),
+    );
+  } finally {
+    w.workflowElapsedMs = performance.now() - started;
+    busy = false;
+    stopRequested = false;
+    render();
+    $(".cx-comparison")?.scrollIntoView({ block: "nearest" });
+  }
+}
+
+async function applyLoopEvent(name) {
+  const w = workspace();
+  const targets = providers.filter((p) => {
+    const e = w.executions[p];
+    return (
+      e?.loopState.status === "waiting" &&
+      e.loopState.waiting_events.includes(name)
+    );
+  });
+  if (!targets.length) {
+    ui.toast("当前闭环没有等待此事件；需要重新演练时请重置案例。");
+    return;
+  }
+  busy = true;
+  render();
+  let changed = false;
+  try {
+    for (const provider of targets) {
+      const e = w.executions[provider],
+        before = clone(e.snapshot);
+      const result = await ui.api("/api/crypto/event", {
+        snapshot: before,
+        event: name,
+      });
+      const s = result.snapshot;
+      s.completed = before.completed.filter((stage) => stage === "intake");
+      e.snapshot = s;
+      Object.assign(e.loopState, {
+        snapshot: clone(s),
+        next_stage: s.completed.includes("intake") ? "verify" : "intake",
+        status: "running",
+        no_progress: 0,
+        waiting_events: [],
+        reason: "已收到手动模拟事件，将按最新证据重新判断。",
+        feedback: [
+          ...e.loopState.feedback,
+          {
+            stage: "event",
+            status: "simulated_event",
+            requested_action: "",
+            actual_action: name,
+            reason: `User advanced sandbox event ${name}. Recheck the latest verified facts.`,
+          },
+        ].slice(-8),
+      });
+      const change = eventChange(name, before, s);
+      e.events.push({
+        name,
+        before,
+        after: clone(s),
+        source: "manual_simulator",
+      });
+      e.timeline.push({
+        kind: "event",
+        title: `手动模拟事件：${eventNames[name]}`,
+        reason: change,
+        elapsed_ms: null,
+      });
+      addConversation(
+        "event",
+        `${providerNames[provider]} · 手动推进模拟事件：${change}。保留历史，闭环将继续。`,
+        { event: name, provider, source: "manual_simulator" },
+      );
+      changed = true;
+    }
+  } catch (error) {
+    ui.toast(error.message);
+    addAudit("error", `模拟事件未完成：${error.message}`);
+  } finally {
+    busy = false;
+    render();
+  }
+  if (changed) await runLoop(true);
 }
 
 async function execute(provider) {
@@ -619,6 +1263,9 @@ async function executePlan(provider) {
       if (execution.snapshot.completed.includes(stage.id)) continue;
       selectedStage = stage.id;
       const result = w.results[provider][stage.id];
+      const dialogue = w.dialogues.findLast(
+        (row) => row.sides[provider]?.result === result,
+      )?.sides[provider];
       const choice = result.choice;
       execution.runningStage = stage.id;
       render();
@@ -633,24 +1280,28 @@ async function executePlan(provider) {
       } catch (error) {
         const elapsed = performance.now() - started;
         execution.elapsedMs += elapsed;
-        execution.audit.push({
+        const failed = {
           stage: stage.id,
           action: choice,
           label: catalog.options[stage.id][choice],
           error: error.message,
           elapsed_ms: elapsed,
           completed_at: new Date().toISOString(),
-        });
+        };
+        execution.audit.push(failed);
+        dialogue?.executions.push(failed);
         throw error;
       }
       const elapsed = performance.now() - started;
       execution.elapsedMs += elapsed;
-      execution.audit.push({
+      const record = {
         stage: stage.id,
         elapsed_ms: elapsed,
         completed_at: new Date().toISOString(),
         ...applied,
-      });
+      };
+      execution.audit.push(record);
+      dialogue?.executions.push(record);
       execution.runningStage = null;
       execution.snapshot = applied.snapshot;
       if (applied.applied && applied.customer_reply)
@@ -675,8 +1326,8 @@ async function executePlan(provider) {
     execution.finished = execution.snapshot.completed.length === 5;
     if (execution.finished)
       addAudit(
-        "applied",
-        `${providerNames[provider]} 沙盒流程完成：${statusNames[execution.snapshot.ticket_status]} / ${statusNames[execution.snapshot.order_status]}。`,
+        businessOutcome(execution).complete ? "applied" : "warning",
+        `${providerNames[provider]} 本轮五步已处理；${businessOutcome(execution).complete ? "业务已完成（模拟）" : "业务未完成"}：${statusNames[execution.snapshot.ticket_status]} / ${statusNames[execution.snapshot.order_status]}。`,
       );
   } catch (error) {
     execution.error = error.message;
@@ -691,6 +1342,10 @@ async function executePlan(provider) {
 async function handleClick(event) {
   const button = event.target.closest("button");
   if (!button || button.disabled) return;
+  if (button.hasAttribute("data-cx-gpu-open")) {
+    ui.openGpuDialog();
+    return;
+  }
   if (button.hasAttribute("data-cx-stop")) {
     stopRequested = true;
     button.textContent = "当前步骤后停止…";
@@ -700,10 +1355,20 @@ async function handleClick(event) {
     if (!busy) {
       selectedStage = button.dataset.cxStage;
       render();
+      $('[data-cx-panel="diagnostics"]').open = true;
     }
     return;
   }
   if (busy) return;
+  if (button.hasAttribute("data-cx-start")) {
+    if (testKind === "loop") await runLoop();
+    else await run(testKind);
+    return;
+  }
+  if (button.hasAttribute("data-cx-loop-resume")) {
+    await runLoop(true);
+    return;
+  }
   if (button.hasAttribute("data-cx-reset")) {
     workspaces.set(current, fresh(caseData().snapshot));
     selectedStage = "intake";
@@ -742,6 +1407,10 @@ async function handleClick(event) {
   }
   if (button.dataset.cxEvent) {
     const simulationEvent = button.dataset.cxEvent;
+    if (workspace().workflowKind === "loop") {
+      await applyLoopEvent(simulationEvent);
+      return;
+    }
     const before = clone(workspace().snapshot);
     busy = true;
     render();
@@ -780,7 +1449,13 @@ async function handleClick(event) {
             exported_at: new Date().toISOString(),
             case: caseData(),
             ...workspace(),
-            note: "模拟业务流程；参考一致率不是通用准确率。未执行真实资金操作。",
+            businessOutcomes: Object.fromEntries(
+              providers.map((provider) => [
+                provider,
+                businessOutcome(workspace().executions[provider]),
+              ]),
+            ),
+            note: "模拟业务流程；已处理步骤数不等于业务完成，参考一致率不是通用准确率。未执行真实资金操作。",
             models: {
               decider: "Strands Decider v19",
               bedrock: "us.openai.gpt-6.1-sol",
@@ -803,6 +1478,22 @@ async function handleClick(event) {
 }
 
 function handleChange(event) {
+  if (event.target.hasAttribute("data-cx-dialogue-run")) {
+    workspace().viewedDialogueRun = Number(event.target.value);
+    render();
+    const feed = $(".cx-dialogue-feed");
+    if (feed) feed.scrollTop = 0;
+    return;
+  }
+  if (event.target.hasAttribute("data-cx-test-kind") && !busy) {
+    testKind = event.target.value;
+    render();
+    return;
+  }
+  if (event.target.hasAttribute("data-cx-auto-events") && !busy) {
+    autoEvents = event.target.checked;
+    return;
+  }
   const field = event.target.dataset.cxField;
   if (!field || busy) return;
   if (!event.target.checkValidity() || event.target.value === "") {

@@ -1,0 +1,186 @@
+{
+  "generated_at": "2026-10-10T12:35:59.785434+00:00",
+  "slides": [
+    {
+      "title": "Strands Decider\n模型原理与支付业务演示",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "把业务流程里的“下一步选择”独立出来",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "原理：从文本生成头，切换到候选项评分头",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "一个 choice 判断，怎样从输入变成输出？",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "三种问题类型，表达三类业务判断",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "Decider 与普通大模型：能力边界不同",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "与 BERT 分类器的关键区别：标签含义放在哪里？",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "BERT 与 Decider：任务适配方式不同，需按业务实测",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "适用场景：候选清晰、调用频繁、结果可检查",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "当前演示入口：先选测试方式，再开始对比",
+      "source": "2026-10-10 UTC · 线上原始界面 · 无业务数据替换",
+      "dark": false
+    },
+    {
+      "title": "AWS 架构：后端直接调用三个业务服务",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "GPU 管理：所有模块共用一个弹窗",
+      "source": "2026-10-10 UTC · 线上原始界面 · 无业务数据替换",
+      "dark": false
+    },
+    {
+      "title": "四种支付场景，覆盖客服到交易处置",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "两种对比方式，回答不同的问题",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "什么是“演示参考”？它是开发者写出的业务基准",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "Decider 执行差异：原始选择与实际动作分别保留",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "为什么会不一致？模型评分不是执行规则代码",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "每轮输入 / 输出：默认展开，直接并排对照",
+      "source": "2026-10-10 UTC · 线上原始界面 · 无业务数据替换",
+      "dark": false
+    },
+    {
+      "title": "固定输入：同一步的选择与速度一起看",
+      "source": "2026-10-10 UTC · pending-fixed · 实际生产截图",
+      "dark": false
+    },
+    {
+      "title": "已处理 5/5 步，不等于业务成功",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "退款处置：建议与真正执行的结果分开显示",
+      "source": "2026-10-10 UTC · 线上原始界面 · 无业务数据替换",
+      "dark": false
+    },
+    {
+      "title": "客户对话与模拟事件，放在主区域",
+      "source": "2026-10-10 UTC · customer-conversation.png 局部取景",
+      "dark": false
+    },
+    {
+      "title": "自主闭环：判断 → 执行 → 读取结果 → 再判断",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "闭环输入：带着本侧执行反馈进入下一轮",
+      "source": "2026-10-10 UTC · 线上原始界面 · 无业务数据替换",
+      "dark": false
+    },
+    {
+      "title": "USDC 未到账闭环：如实展示完成或转人工",
+      "source": "2026-10-10 UTC · pending-loop · 实测原始结果",
+      "dark": false
+    },
+    {
+      "title": "稳定币退款闭环：如实展示完成或转人工",
+      "source": "2026-10-10 UTC · refund-loop · 实测原始结果",
+      "dark": false
+    },
+    {
+      "title": "闭环的停止原因，也属于演示结果",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "本次实测：19 组成功配对，累计耗时比 12.20×",
+      "source": "docs/results/benchmark-2026-10-10.json · 单次观测，不是稳定性能保证",
+      "dark": false
+    },
+    {
+      "title": "普通大模型也可能失败：结果与可用性都要记录",
+      "source": "2026-10-10 真实采集 · settlement-fixed 导出",
+      "dark": false
+    },
+    {
+      "title": "计时与成本：先说清口径，再判断收益",
+      "source": "原版 / 扩展版沿用的原理与架构；已核对当前实现",
+      "dark": false
+    },
+    {
+      "title": "原始输入输出可追溯，生产状态还需持久化",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "现场演示：先看同输入，再看执行反馈",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "结论：快的决策，需要可观察、可约束的执行",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    },
+    {
+      "title": "资料来源、截图与本次数据",
+      "source": "当前项目实现 · crypto10 / 20261010-loop1",
+      "dark": false
+    }
+  ],
+  "base_file": "Strands-Decider-模型原理与支付业务演示.pptx",
+  "base_sha256": "2cec652ba32a24853d0c4bf45b8bfae4854fb1c2bafcaf851f89140a7e624f55",
+  "supplement_file": "Strands-Decider-模型原理与支付业务演示-扩展版.pptx",
+  "supplement_sha256": "b25ba4ef279aff822688b26ed7beb819a3183c7304ad52f6fbd048479c6ab822",
+  "pptx_sha256": "2b82e58c913b6b470a8d401828beeb70b58ccc341cd3d46c83161b050a417e1e",
+  "capture_start": "2026-10-10T12:26:23.405531+00:00",
+  "successful_pairs": 19,
+  "failed_requests": {
+    "decider": 0,
+    "bedrock": 1
+  }
+}

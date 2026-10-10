@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1480" viewBox="0 0 1600 1480" role="img">
+  <title>04  自主闭环：根据实际执行结果继续判断</title>
+  <desc>Generated from scripts/generate_diagrams.py</desc>
+  <defs>
+    <marker id="arrow52677c" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#52677c" />
+    </marker>
+    <marker id="arrow0f766e" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#0f766e" />
+    </marker>
+    <marker id="arrow3159ac" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#3159ac" />
+    </marker>
+    <marker id="arrowb86c14" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#b86c14" />
+    </marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff" />
+  <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">04  自主闭环：根据实际执行结果继续判断</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">两侧从同一初始证据开始，分别维护工作流。每轮展示输入、选择、实际动作与反馈；同轮编号不代表相同输入。</text>
+  <rect x="390" y="145" width="820" height="95" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
+  <text x="800.0" y="184.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#52677c" text-anchor="middle" font-weight="700">同一初始场景 / 客户诉求</text>
+  <text x="800.0" y="214.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#52677c" text-anchor="middle">相同候选、执行保护、预算与模拟事件规则</text>
+  <rect x="55" y="305" width="710" height="880" rx="12" fill="#e9f6f2" stroke="#72b5a5" stroke-dasharray="7 5" />
+  <text x="71" y="335.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="start" font-weight="700">Strands Decider · SageMaker</text>
+  <rect x="155" y="380" width="520" height="120" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="415.0" y="419.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">输入当前事实 + 实际执行状态 + 最近反馈</text>
+  <text x="415.0" y="446.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">模型选择下一步候选动作</text>
+  <text x="415.0" y="473.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">保存原始 choice、耗时与请求快照</text>
+  <rect x="155" y="565" width="520" height="110" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="415.0" y="599.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">独立沙盒执行器</text>
+  <text x="415.0" y="626.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">核验资金与结案条件，执行或挂起</text>
+  <text x="415.0" y="653.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">保留原始建议 / 实际动作 / 保护调整</text>
+  <rect x="155" y="740" width="520" height="110" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="415.0" y="774.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">读取实际结果</text>
+  <text x="415.0" y="801.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">订单 / 工单 / 模拟账本 / 回复</text>
+  <text x="415.0" y="828.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">写入下一轮 execution_feedback</text>
+  <rect x="155" y="925" width="520" height="180" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="415.0" y="967.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">成功且未结案 → 下一业务步骤</text>
+  <text x="415.0" y="994.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">外部证据不足 → 等待事件，再核验</text>
+  <text x="415.0" y="1021.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">无效动作 → 携带失败反馈重判</text>
+  <text x="415.0" y="1048.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">连续两次无进展 → 转人工</text>
+  <text x="415.0" y="1075.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">订单 + 账本 + 结案均确认 → 完成</text>
+  <rect x="835" y="305" width="710" height="880" rx="12" fill="#edf2ff" stroke="#9aaedf" stroke-dasharray="7 5" />
+  <text x="851" y="335.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="start" font-weight="700">GPT-6.1 Sol · Bedrock</text>
+  <rect x="935" y="380" width="520" height="120" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1195.0" y="419.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">输入当前事实 + 实际执行状态 + 最近反馈</text>
+  <text x="1195.0" y="446.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">模型选择下一步候选动作</text>
+  <text x="1195.0" y="473.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">保存原始 choice、耗时与请求快照</text>
+  <rect x="935" y="565" width="520" height="110" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1195.0" y="599.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">独立沙盒执行器</text>
+  <text x="1195.0" y="626.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">核验资金与结案条件，执行或挂起</text>
+  <text x="1195.0" y="653.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">保留原始建议 / 实际动作 / 保护调整</text>
+  <rect x="935" y="740" width="520" height="110" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1195.0" y="774.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">读取实际结果</text>
+  <text x="1195.0" y="801.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">订单 / 工单 / 模拟账本 / 回复</text>
+  <text x="1195.0" y="828.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">写入下一轮 execution_feedback</text>
+  <rect x="935" y="925" width="520" height="180" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1195.0" y="967.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">成功且未结案 → 下一业务步骤</text>
+  <text x="1195.0" y="994.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">外部证据不足 → 等待事件，再核验</text>
+  <text x="1195.0" y="1021.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">无效动作 → 携带失败反馈重判</text>
+  <text x="1195.0" y="1048.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">连续两次无进展 → 转人工</text>
+  <text x="1195.0" y="1075.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">订单 + 账本 + 结案均确认 → 完成</text>
+  <rect x="100" y="1230" width="1400" height="100" rx="12" fill="#fff5e7" stroke="#ddb775" />
+  <text x="800.0" y="1258.15" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#855116" text-anchor="middle" font-weight="700">最多 20 次决策 / 32 次 tick；浏览器连续运行约 5 分钟后暂停，可继续</text>
+  <text x="800.0" y="1286.65" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#855116" text-anchor="middle">自动模拟确认、补款、地址验证、审批、结算；风险需手动解除</text>
+  <text x="800.0" y="1315.15" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#855116" text-anchor="middle">模拟事件 ≠ 模型执行交易；客服回复来自模板；无真实资金操作</text>
+  <rect x="100" y="1370" width="1400" height="70" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
+  <text x="800.0" y="1398.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle" font-weight="700">运行与最近 80 轮记录存于浏览器内存，刷新即清除；当前运行内避免重复资金步骤。</text>
+  <text x="800.0" y="1423.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">生产环境还需持久化工作流、权限校验、条件写与数据库级幂等。</text>
+  <polyline points="800,240 800,275 410,275 410,380" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="410,500 410,565" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="410,675 410,740" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="410,850 410,925" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="155,1000 100,1000 100,435 155,435" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" stroke-dasharray="7 5" />
+  <polyline points="800,240 800,275 1190,275 1190,380" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1190,500 1190,565" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1190,675 1190,740" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1190,850 1190,925" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="935,1000 880,1000 880,435 935,435" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" stroke-dasharray="7 5" />
+</svg>

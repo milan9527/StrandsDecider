@@ -1,0 +1,1592 @@
+{
+  "checked_at": "2026-10-10T12:26:23.405531+00:00",
+  "application_version": {
+    "frontend": "crypto10",
+    "api_image_tag": "20261010-loop1"
+  },
+  "scope": "One observed batch of four initial synthetic cases, five attempted decisions per side per case. Only successful same-input pairs enter timing totals; failures are retained separately.",
+  "models": {
+    "decider": "StrandsAgents/strands-decider-2B-hobson-v19",
+    "bedrock": "us.openai.gpt-6.1-sol",
+    "bedrock_reasoning": "low"
+  },
+  "timing_note": "Backend sums include communication and queueing, not browser wall-clock latency. Loops are reported separately.",
+  "cases": [
+    {
+      "summary": {
+        "case": "pending",
+        "paired_steps": 5,
+        "decider_total_ms": 458.315,
+        "decider_reference_matches": 4,
+        "decider_adjustments": 0,
+        "decider_failed_requests": 0,
+        "decider_processed_steps": 5,
+        "bedrock_total_ms": 7791.811,
+        "bedrock_reference_matches": 5,
+        "bedrock_adjustments": 0,
+        "bedrock_failed_requests": 0,
+        "bedrock_processed_steps": 5
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "paired": true,
+          "decider": {
+            "choice": "payment_support",
+            "label": "支付客服",
+            "source": "live",
+            "error": null,
+            "input_hash": "48d43f5424d82e81",
+            "reference_choice": "payment_support",
+            "reference_label": "支付客服",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 81.216
+              },
+              "queue_ms": 10.553,
+              "processing_ms": 81.278,
+              "backend_total_ms": 91.831,
+              "model_reported_ms": 68.64
+            },
+            "usage": null,
+            "confidence": 0.6292,
+            "probabilities": {
+              "payment_support": 0.7528,
+              "refund_support": 0.0251,
+              "merchant_ops": 0.2221
+            },
+            "execution": {
+              "action": "payment_support",
+              "requested_action": "payment_support",
+              "label": "支付客服",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "payment_support",
+            "label": "支付客服",
+            "source": "live",
+            "error": null,
+            "input_hash": "48d43f5424d82e81",
+            "reference_choice": "payment_support",
+            "reference_label": "支付客服",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1169.203,
+              "processing_ms": 1169.06,
+              "model_reported_ms": 1146
+            },
+            "usage": {
+              "input_tokens": 317,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "payment_support",
+              "requested_action": "payment_support",
+              "label": "支付客服",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "paired": true,
+          "decider": {
+            "choice": "await_confirmations",
+            "label": "等待链上确认",
+            "source": "live",
+            "error": null,
+            "input_hash": "6a5d5396f00c76f7",
+            "reference_choice": "await_confirmations",
+            "reference_label": "等待链上确认",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 84.238
+              },
+              "queue_ms": 10.566,
+              "processing_ms": 84.298,
+              "backend_total_ms": 94.864,
+              "model_reported_ms": 72.27
+            },
+            "usage": null,
+            "confidence": 0.874,
+            "probabilities": {
+              "await_confirmations": 0.895,
+              "request_topup": 0.0295,
+              "payment_verified": 0.0335,
+              "settlement_delayed": 0.0158,
+              "settlement_pending": 0.0227,
+              "settlement_verified": 0.0035
+            },
+            "execution": {
+              "action": "await_confirmations",
+              "requested_action": "await_confirmations",
+              "label": "等待链上确认",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "await_confirmations",
+            "label": "等待链上确认",
+            "source": "live",
+            "error": null,
+            "input_hash": "6a5d5396f00c76f7",
+            "reference_choice": "await_confirmations",
+            "reference_label": "等待链上确认",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1330.673,
+              "processing_ms": 1330.521,
+              "model_reported_ms": 1319
+            },
+            "usage": {
+              "input_tokens": 363,
+              "output_tokens": 11
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "await_confirmations",
+              "requested_action": "await_confirmations",
+              "label": "等待链上确认",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "paired": true,
+          "decider": {
+            "choice": "await_approval",
+            "label": "等待人工审批",
+            "source": "live",
+            "error": null,
+            "input_hash": "b57d0d9cf45b44d9",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.383
+              },
+              "queue_ms": 6.958,
+              "processing_ms": 80.448,
+              "backend_total_ms": 87.406,
+              "model_reported_ms": 69.26
+            },
+            "usage": null,
+            "confidence": 0.4471,
+            "probabilities": {
+              "risk_review": 0.162,
+              "verify_destination": 0.0678,
+              "await_approval": 0.5854,
+              "approved": 0.1849
+            },
+            "execution": {
+              "action": "await_approval",
+              "requested_action": "await_approval",
+              "label": "等待人工审批",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "approved",
+            "label": "规则检查通过",
+            "source": "live",
+            "error": null,
+            "input_hash": "b57d0d9cf45b44d9",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 3771.788,
+              "processing_ms": 3771.643,
+              "model_reported_ms": 3761
+            },
+            "usage": {
+              "input_tokens": 355,
+              "output_tokens": 58
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "approved",
+              "requested_action": "approved",
+              "label": "规则检查通过",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "paired": true,
+          "decider": {
+            "choice": "hold",
+            "label": "挂起并跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "94ba3cf9d6b549d6",
+            "reference_choice": "hold",
+            "reference_label": "挂起并跟进",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.31
+              },
+              "queue_ms": 10.669,
+              "processing_ms": 80.375,
+              "backend_total_ms": 91.043,
+              "model_reported_ms": 69.03
+            },
+            "usage": null,
+            "confidence": 0.2773,
+            "probabilities": {
+              "hold": 0.3978,
+              "credit_order": 0.262,
+              "refund_payment": 0.0305,
+              "escalate_settlement": 0.0161,
+              "wait_settlement": 0.2841,
+              "reconcile_settlement": 0.0096
+            },
+            "execution": {
+              "action": "hold",
+              "requested_action": "hold",
+              "label": "挂起并跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "hold",
+            "label": "挂起并跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "94ba3cf9d6b549d6",
+            "reference_choice": "hold",
+            "reference_label": "挂起并跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 703.511,
+              "processing_ms": 703.356,
+              "model_reported_ms": 693
+            },
+            "usage": {
+              "input_tokens": 398,
+              "output_tokens": 9
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "hold",
+              "requested_action": "hold",
+              "label": "挂起并跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "paired": true,
+          "decider": {
+            "choice": "follow_up",
+            "label": "回复并持续跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "8378d3afe54a43af",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 84.426
+              },
+              "queue_ms": 8.668,
+              "processing_ms": 84.504,
+              "backend_total_ms": 93.171,
+              "model_reported_ms": 73.74
+            },
+            "usage": null,
+            "confidence": 0.6027,
+            "probabilities": {
+              "resolve": 0.1986,
+              "follow_up": 0.8014
+            },
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "follow_up",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": "您好，已查到这笔转账。目前链上确认数为 3/12，达到确认门槛后再确认收款，工单将持续跟进。"
+            }
+          },
+          "bedrock": {
+            "choice": "follow_up",
+            "label": "回复并持续跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "8378d3afe54a43af",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 816.636,
+              "processing_ms": 816.505,
+              "model_reported_ms": 807
+            },
+            "usage": {
+              "input_tokens": 313,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "follow_up",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": "您好，已查到这笔转账。目前链上确认数为 3/12，达到确认门槛后再确认收款，工单将持续跟进。"
+            }
+          }
+        }
+      ],
+      "business_outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "链上确认仅 3/12，等待确认数达标。",
+            "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "链上确认仅 3/12，等待确认数达标。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        }
+      }
+    },
+    {
+      "summary": {
+        "case": "underpaid",
+        "paired_steps": 5,
+        "decider_total_ms": 452.507,
+        "decider_reference_matches": 4,
+        "decider_adjustments": 1,
+        "decider_failed_requests": 0,
+        "decider_processed_steps": 5,
+        "bedrock_total_ms": 5469.025,
+        "bedrock_reference_matches": 5,
+        "bedrock_adjustments": 0,
+        "bedrock_failed_requests": 0,
+        "bedrock_processed_steps": 5
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "paired": true,
+          "decider": {
+            "choice": "payment_support",
+            "label": "支付客服",
+            "source": "live",
+            "error": null,
+            "input_hash": "f6e00ab2d5869322",
+            "reference_choice": "payment_support",
+            "reference_label": "支付客服",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.61
+              },
+              "queue_ms": 8.343,
+              "processing_ms": 80.675,
+              "backend_total_ms": 89.018,
+              "model_reported_ms": 69.91
+            },
+            "usage": null,
+            "confidence": 0.8809,
+            "probabilities": {
+              "payment_support": 0.9206,
+              "refund_support": 0.0145,
+              "merchant_ops": 0.0649
+            },
+            "execution": {
+              "action": "payment_support",
+              "requested_action": "payment_support",
+              "label": "支付客服",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "payment_support",
+            "label": "支付客服",
+            "source": "live",
+            "error": null,
+            "input_hash": "f6e00ab2d5869322",
+            "reference_choice": "payment_support",
+            "reference_label": "支付客服",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1052.599,
+              "processing_ms": 1052.459,
+              "model_reported_ms": 1036
+            },
+            "usage": {
+              "input_tokens": 324,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "payment_support",
+              "requested_action": "payment_support",
+              "label": "支付客服",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "paired": true,
+          "decider": {
+            "choice": "request_topup",
+            "label": "请求补足差额",
+            "source": "live",
+            "error": null,
+            "input_hash": "bf2081f86b4997f5",
+            "reference_choice": "request_topup",
+            "reference_label": "请求补足差额",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 81.48
+              },
+              "queue_ms": 7.115,
+              "processing_ms": 81.541,
+              "backend_total_ms": 88.656,
+              "model_reported_ms": 68.5
+            },
+            "usage": null,
+            "confidence": 0.5995,
+            "probabilities": {
+              "await_confirmations": 0.2899,
+              "request_topup": 0.6663,
+              "payment_verified": 0.0175,
+              "settlement_delayed": 0.0105,
+              "settlement_pending": 0.0126,
+              "settlement_verified": 0.0033
+            },
+            "execution": {
+              "action": "request_topup",
+              "requested_action": "request_topup",
+              "label": "请求补足差额",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "request_topup",
+            "label": "请求补足差额",
+            "source": "live",
+            "error": null,
+            "input_hash": "bf2081f86b4997f5",
+            "reference_choice": "request_topup",
+            "reference_label": "请求补足差额",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1106.161,
+              "processing_ms": 1106.02,
+              "model_reported_ms": 1092
+            },
+            "usage": {
+              "input_tokens": 370,
+              "output_tokens": 11
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "request_topup",
+              "requested_action": "request_topup",
+              "label": "请求补足差额",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "paired": true,
+          "decider": {
+            "choice": "approved",
+            "label": "规则检查通过",
+            "source": "live",
+            "error": null,
+            "input_hash": "733bc691f53269f4",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 82.483
+              },
+              "queue_ms": 9.57,
+              "processing_ms": 82.554,
+              "backend_total_ms": 92.125,
+              "model_reported_ms": 68.37
+            },
+            "usage": null,
+            "confidence": 0.2043,
+            "probabilities": {
+              "risk_review": 0.2093,
+              "verify_destination": 0.0666,
+              "await_approval": 0.3208,
+              "approved": 0.4032
+            },
+            "execution": {
+              "action": "approved",
+              "requested_action": "approved",
+              "label": "规则检查通过",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "approved",
+            "label": "规则检查通过",
+            "source": "live",
+            "error": null,
+            "input_hash": "733bc691f53269f4",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1584.056,
+              "processing_ms": 1583.914,
+              "model_reported_ms": 1570
+            },
+            "usage": {
+              "input_tokens": 362,
+              "output_tokens": 25
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "approved",
+              "requested_action": "approved",
+              "label": "规则检查通过",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "paired": true,
+          "decider": {
+            "choice": "credit_order",
+            "label": "确认订单收款",
+            "source": "live",
+            "error": null,
+            "input_hash": "91e411dd4ddd2e0f",
+            "reference_choice": "hold",
+            "reference_label": "挂起并跟进",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 84.647
+              },
+              "queue_ms": 9.548,
+              "processing_ms": 84.709,
+              "backend_total_ms": 94.258,
+              "model_reported_ms": 70.82
+            },
+            "usage": null,
+            "confidence": 0.4444,
+            "probabilities": {
+              "hold": 0.1693,
+              "credit_order": 0.537,
+              "refund_payment": 0.0613,
+              "escalate_settlement": 0.0153,
+              "wait_settlement": 0.2036,
+              "reconcile_settlement": 0.0135
+            },
+            "execution": {
+              "action": "hold",
+              "requested_action": "credit_order",
+              "label": "挂起并跟进",
+              "applied": true,
+              "safety_adjusted": true,
+              "safety_reason": "当前场景、到账金额或确认数不满足确认收款条件，资金动作已挂起。",
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "hold",
+            "label": "挂起并跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "91e411dd4ddd2e0f",
+            "reference_choice": "hold",
+            "reference_label": "挂起并跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 635.111,
+              "processing_ms": 634.964,
+              "model_reported_ms": 620
+            },
+            "usage": {
+              "input_tokens": 405,
+              "output_tokens": 9
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "hold",
+              "requested_action": "hold",
+              "label": "挂起并跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "paired": true,
+          "decider": {
+            "choice": "follow_up",
+            "label": "回复并持续跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "d5fad4a6d411415a",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.737
+              },
+              "queue_ms": 8.63,
+              "processing_ms": 79.82,
+              "backend_total_ms": 88.45,
+              "model_reported_ms": 68.77
+            },
+            "usage": null,
+            "confidence": 0.4631,
+            "probabilities": {
+              "resolve": 0.2685,
+              "follow_up": 0.7315
+            },
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "follow_up",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": "您好，订单应付 100.00，实际到账 99.80，尚差 0.20。请补足差额，我们会在核验后更新订单。"
+            }
+          },
+          "bedrock": {
+            "choice": "follow_up",
+            "label": "回复并持续跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "d5fad4a6d411415a",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1091.098,
+              "processing_ms": 1090.958,
+              "model_reported_ms": 1079
+            },
+            "usage": {
+              "input_tokens": 320,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "follow_up",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": "您好，订单应付 100.00，实际到账 99.80，尚差 0.20。请补足差额，我们会在核验后更新订单。"
+            }
+          }
+        }
+      ],
+      "business_outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "到账仍差 0.20 USDT，等待补款。",
+            "原建议「确认订单收款」未落实，实际改为「挂起并跟进」：当前场景、到账金额或确认数不满足确认收款条件，资金动作已挂起。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "到账仍差 0.20 USDT，等待补款。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        }
+      }
+    },
+    {
+      "summary": {
+        "case": "refund",
+        "paired_steps": 5,
+        "decider_total_ms": 521.344,
+        "decider_reference_matches": 2,
+        "decider_adjustments": 2,
+        "decider_failed_requests": 0,
+        "decider_processed_steps": 5,
+        "bedrock_total_ms": 4275.738,
+        "bedrock_reference_matches": 5,
+        "bedrock_adjustments": 0,
+        "bedrock_failed_requests": 0,
+        "bedrock_processed_steps": 5
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "paired": true,
+          "decider": {
+            "choice": "refund_support",
+            "label": "退款专员",
+            "source": "live",
+            "error": null,
+            "input_hash": "5c59b6c3bf587f9a",
+            "reference_choice": "refund_support",
+            "reference_label": "退款专员",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.876
+              },
+              "queue_ms": 27.24,
+              "processing_ms": 79.941,
+              "backend_total_ms": 107.18,
+              "model_reported_ms": 68.31
+            },
+            "usage": null,
+            "confidence": 0.9127,
+            "probabilities": {
+              "payment_support": 0.0306,
+              "refund_support": 0.9418,
+              "merchant_ops": 0.0276
+            },
+            "execution": {
+              "action": "refund_support",
+              "requested_action": "refund_support",
+              "label": "退款专员",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "refund_support",
+            "label": "退款专员",
+            "source": "live",
+            "error": null,
+            "input_hash": "5c59b6c3bf587f9a",
+            "reference_choice": "refund_support",
+            "reference_label": "退款专员",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 753.523,
+              "processing_ms": 753.391,
+              "model_reported_ms": 743
+            },
+            "usage": {
+              "input_tokens": 317,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "refund_support",
+              "requested_action": "refund_support",
+              "label": "退款专员",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "verify",
+          "paired": true,
+          "decider": {
+            "choice": "payment_verified",
+            "label": "到账已核验",
+            "source": "live",
+            "error": null,
+            "input_hash": "6380b7eb8940b36b",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 80.74
+              },
+              "queue_ms": 9.025,
+              "processing_ms": 80.804,
+              "backend_total_ms": 89.829,
+              "model_reported_ms": 69.67
+            },
+            "usage": null,
+            "confidence": 0.5354,
+            "probabilities": {
+              "await_confirmations": 0.2411,
+              "request_topup": 0.0985,
+              "payment_verified": 0.6129,
+              "settlement_delayed": 0.0163,
+              "settlement_pending": 0.015,
+              "settlement_verified": 0.0162
+            },
+            "execution": {
+              "action": "payment_verified",
+              "requested_action": "payment_verified",
+              "label": "到账已核验",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "payment_verified",
+            "label": "到账已核验",
+            "source": "live",
+            "error": null,
+            "input_hash": "6380b7eb8940b36b",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 622.734,
+              "processing_ms": 622.593,
+              "model_reported_ms": 613
+            },
+            "usage": {
+              "input_tokens": 363,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "payment_verified",
+              "requested_action": "payment_verified",
+              "label": "到账已核验",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "approve",
+          "paired": true,
+          "decider": {
+            "choice": "await_approval",
+            "label": "等待人工审批",
+            "source": "live",
+            "error": null,
+            "input_hash": "8a9b2e716930773e",
+            "reference_choice": "verify_destination",
+            "reference_label": "验证退款地址",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.37
+              },
+              "queue_ms": 10.063,
+              "processing_ms": 79.425,
+              "backend_total_ms": 89.488,
+              "model_reported_ms": 68.71
+            },
+            "usage": null,
+            "confidence": 0.069,
+            "probabilities": {
+              "risk_review": 0.1426,
+              "verify_destination": 0.2751,
+              "await_approval": 0.3017,
+              "approved": 0.2806
+            },
+            "execution": {
+              "action": "await_approval",
+              "requested_action": "await_approval",
+              "label": "等待人工审批",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "verify_destination",
+            "label": "验证退款地址",
+            "source": "live",
+            "error": null,
+            "input_hash": "8a9b2e716930773e",
+            "reference_choice": "verify_destination",
+            "reference_label": "验证退款地址",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 760.677,
+              "processing_ms": 760.538,
+              "model_reported_ms": 750
+            },
+            "usage": {
+              "input_tokens": 355,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "verify_destination",
+              "requested_action": "verify_destination",
+              "label": "验证退款地址",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "execute",
+          "paired": true,
+          "decider": {
+            "choice": "refund_payment",
+            "label": "提交模拟退款",
+            "source": "live",
+            "error": null,
+            "input_hash": "684f4babe4550d04",
+            "reference_choice": "hold",
+            "reference_label": "挂起并跟进",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 117.698
+              },
+              "queue_ms": 28.098,
+              "processing_ms": 117.76,
+              "backend_total_ms": 145.857,
+              "model_reported_ms": 69.39
+            },
+            "usage": null,
+            "confidence": 0.2218,
+            "probabilities": {
+              "hold": 0.3042,
+              "credit_order": 0.2655,
+              "refund_payment": 0.3515,
+              "escalate_settlement": 0.0142,
+              "wait_settlement": 0.0293,
+              "reconcile_settlement": 0.0354
+            },
+            "execution": {
+              "action": "hold",
+              "requested_action": "refund_payment",
+              "label": "挂起并跟进",
+              "applied": true,
+              "safety_adjusted": true,
+              "safety_reason": "风控或本次方案的人工复核尚未完成，资金动作已挂起，继续回复客户。",
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "hold",
+            "label": "挂起并跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "684f4babe4550d04",
+            "reference_choice": "hold",
+            "reference_label": "挂起并跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1297.061,
+              "processing_ms": 1296.902,
+              "model_reported_ms": 1255
+            },
+            "usage": {
+              "input_tokens": 398,
+              "output_tokens": 9
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "hold",
+              "requested_action": "hold",
+              "label": "挂起并跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          }
+        },
+        {
+          "stage": "close",
+          "paired": true,
+          "decider": {
+            "choice": "resolve",
+            "label": "回复并结案",
+            "source": "live",
+            "error": null,
+            "input_hash": "d3ddb5870e117791",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 78.81
+              },
+              "queue_ms": 10.126,
+              "processing_ms": 78.864,
+              "backend_total_ms": 88.99,
+              "model_reported_ms": 68.28
+            },
+            "usage": null,
+            "confidence": 0.0117,
+            "probabilities": {
+              "resolve": 0.5058,
+              "follow_up": 0.4942
+            },
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "resolve",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": true,
+              "safety_reason": "实际业务尚未完成，已改为回复并持续跟进，五步流程仍可完成。",
+              "ledger_entry": null,
+              "customer_reply": "您好，已查到付款记录。请先完成退款地址验证，验证及审批通过后再进入退款流程。"
+            }
+          },
+          "bedrock": {
+            "choice": "follow_up",
+            "label": "回复并持续跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "d3ddb5870e117791",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 841.743,
+              "processing_ms": 841.614,
+              "model_reported_ms": 830
+            },
+            "usage": {
+              "input_tokens": 313,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "follow_up",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": "您好，已查到付款记录。请先完成退款地址验证，验证及审批通过后再进入退款流程。"
+            }
+          }
+        }
+      ],
+      "business_outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "退款地址尚未验证。",
+            "退款尚未获得人工审批。",
+            "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+            "原建议「提交模拟退款」未落实，实际改为「挂起并跟进」：风控或本次方案的人工复核尚未完成，资金动作已挂起，继续回复客户。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "退款地址尚未验证。",
+            "退款尚未获得人工审批。",
+            "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+            "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        }
+      }
+    },
+    {
+      "summary": {
+        "case": "settlement",
+        "paired_steps": 4,
+        "decider_total_ms": 377.431,
+        "decider_reference_matches": 3,
+        "decider_adjustments": 1,
+        "decider_failed_requests": 0,
+        "decider_processed_steps": 5,
+        "bedrock_total_ms": 4531.63,
+        "bedrock_reference_matches": 4,
+        "bedrock_adjustments": 0,
+        "bedrock_failed_requests": 1,
+        "bedrock_processed_steps": 0
+      },
+      "steps": [
+        {
+          "stage": "intake",
+          "paired": true,
+          "decider": {
+            "choice": "merchant_ops",
+            "label": "商户运营",
+            "source": "live",
+            "error": null,
+            "input_hash": "ff435892fb5e9d2b",
+            "reference_choice": "merchant_ops",
+            "reference_label": "商户运营",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.223
+              },
+              "queue_ms": 9.278,
+              "processing_ms": 79.289,
+              "backend_total_ms": 88.568,
+              "model_reported_ms": 68.41
+            },
+            "usage": null,
+            "confidence": 0.8609,
+            "probabilities": {
+              "payment_support": 0.0832,
+              "refund_support": 0.0096,
+              "merchant_ops": 0.9073
+            },
+            "execution": {
+              "action": "merchant_ops",
+              "requested_action": "merchant_ops",
+              "label": "商户运营",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "merchant_ops",
+            "label": "商户运营",
+            "source": "live",
+            "error": null,
+            "input_hash": "ff435892fb5e9d2b",
+            "reference_choice": "merchant_ops",
+            "reference_label": "商户运营",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 709.32,
+              "processing_ms": 709.182,
+              "model_reported_ms": 698
+            },
+            "usage": {
+              "input_tokens": 327,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": null
+          }
+        },
+        {
+          "stage": "verify",
+          "paired": true,
+          "decider": {
+            "choice": "settlement_delayed",
+            "label": "结算超时",
+            "source": "live",
+            "error": null,
+            "input_hash": "55c12d1205eedbaf",
+            "reference_choice": "settlement_delayed",
+            "reference_label": "结算超时",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 81.021
+              },
+              "queue_ms": 11.619,
+              "processing_ms": 81.087,
+              "backend_total_ms": 92.706,
+              "model_reported_ms": 69.67
+            },
+            "usage": null,
+            "confidence": 0.8654,
+            "probabilities": {
+              "await_confirmations": 0.0313,
+              "request_topup": 0.0063,
+              "payment_verified": 0.0537,
+              "settlement_delayed": 0.8878,
+              "settlement_pending": 0.0114,
+              "settlement_verified": 0.0094
+            },
+            "execution": {
+              "action": "settlement_delayed",
+              "requested_action": "settlement_delayed",
+              "label": "结算超时",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "settlement_delayed",
+            "label": "结算超时",
+            "source": "live",
+            "error": null,
+            "input_hash": "55c12d1205eedbaf",
+            "reference_choice": "settlement_delayed",
+            "reference_label": "结算超时",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 912.034,
+              "processing_ms": 911.492,
+              "model_reported_ms": 901
+            },
+            "usage": {
+              "input_tokens": 373,
+              "output_tokens": 12
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": null
+          }
+        },
+        {
+          "stage": "approve",
+          "paired": true,
+          "decider": {
+            "choice": "approved",
+            "label": "规则检查通过",
+            "source": "live",
+            "error": null,
+            "input_hash": "0fb85e86d37d6d18",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 82.337
+              },
+              "queue_ms": 6.874,
+              "processing_ms": 82.401,
+              "backend_total_ms": 89.275,
+              "model_reported_ms": 70.42
+            },
+            "usage": null,
+            "confidence": 0.2959,
+            "probabilities": {
+              "risk_review": 0.2404,
+              "verify_destination": 0.069,
+              "await_approval": 0.2186,
+              "approved": 0.4719
+            },
+            "execution": {
+              "action": "approved",
+              "requested_action": "approved",
+              "label": "规则检查通过",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": "approved",
+            "label": "规则检查通过",
+            "source": "live",
+            "error": null,
+            "input_hash": "0fb85e86d37d6d18",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1870.946,
+              "processing_ms": 1870.783,
+              "model_reported_ms": 1859
+            },
+            "usage": {
+              "input_tokens": 365,
+              "output_tokens": 57
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": null
+          }
+        },
+        {
+          "stage": "execute",
+          "paired": false,
+          "decider": {
+            "choice": "escalate_settlement",
+            "label": "升级结算工单",
+            "source": "live",
+            "error": null,
+            "input_hash": "6fe07fc998a85d78",
+            "reference_choice": "escalate_settlement",
+            "reference_label": "升级结算工单",
+            "matches_reference": true,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 82.942
+              },
+              "queue_ms": 10.336,
+              "processing_ms": 83.003,
+              "backend_total_ms": 93.338,
+              "model_reported_ms": 71.19
+            },
+            "usage": null,
+            "confidence": 0.8051,
+            "probabilities": {
+              "hold": 0.0194,
+              "credit_order": 0.079,
+              "refund_payment": 0.016,
+              "escalate_settlement": 0.8376,
+              "wait_settlement": 0.025,
+              "reconcile_settlement": 0.023
+            },
+            "execution": {
+              "action": "escalate_settlement",
+              "requested_action": "escalate_settlement",
+              "label": "升级结算工单",
+              "applied": true,
+              "safety_adjusted": false,
+              "safety_reason": null,
+              "ledger_entry": null,
+              "customer_reply": null
+            }
+          },
+          "bedrock": {
+            "choice": null,
+            "label": null,
+            "source": null,
+            "error": "Bedrock 暂不可用（ReadTimeoutError），未生成替代结果。",
+            "input_hash": null,
+            "reference_choice": null,
+            "reference_label": null,
+            "matches_reference": null,
+            "timings": null,
+            "usage": null,
+            "confidence": null,
+            "probabilities": null,
+            "execution": null
+          }
+        },
+        {
+          "stage": "close",
+          "paired": true,
+          "decider": {
+            "choice": "resolve",
+            "label": "回复并结案",
+            "source": "live",
+            "error": null,
+            "input_hash": "8a2305931be3d1ab",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": false,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 100.088
+              },
+              "queue_ms": 6.735,
+              "processing_ms": 100.147,
+              "backend_total_ms": 106.882,
+              "model_reported_ms": 68.38
+            },
+            "usage": null,
+            "confidence": 0.1467,
+            "probabilities": {
+              "resolve": 0.5734,
+              "follow_up": 0.4266
+            },
+            "execution": {
+              "action": "follow_up",
+              "requested_action": "resolve",
+              "label": "回复并持续跟进",
+              "applied": true,
+              "safety_adjusted": true,
+              "safety_reason": "实际业务尚未完成，已改为回复并持续跟进，五步流程仍可完成。",
+              "ledger_entry": null,
+              "customer_reply": "您好，已核对本批结算进度，当前尚未完成。我们已记录并跟进，确认到账后会及时通知您。"
+            }
+          },
+          "bedrock": {
+            "choice": "follow_up",
+            "label": "回复并持续跟进",
+            "source": "live",
+            "error": null,
+            "input_hash": "8a2305931be3d1ab",
+            "reference_choice": "follow_up",
+            "reference_label": "回复并持续跟进",
+            "matches_reference": true,
+            "timings": {
+              "backend_total_ms": 1039.33,
+              "processing_ms": 1039.195,
+              "model_reported_ms": 837
+            },
+            "usage": {
+              "input_tokens": 323,
+              "output_tokens": 10
+            },
+            "confidence": null,
+            "probabilities": null,
+            "execution": null
+          }
+        }
+      ],
+      "business_outcomes": {
+        "decider": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": [
+            "结算尚未到账，暂不能完成模拟对账。",
+            "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+          ]
+        },
+        "bedrock": {
+          "fundsComplete": false,
+          "complete": false,
+          "reasons": []
+        }
+      }
+    }
+  ],
+  "totals": {
+    "decider": {
+      "backend_ms": 1809.597,
+      "reference_matches": 13,
+      "adjustments": 4
+    },
+    "bedrock": {
+      "backend_ms": 22068.204,
+      "reference_matches": 19,
+      "adjustments": 0
+    },
+    "gpt_over_decider": 12.195093161626595,
+    "paired_steps": 19,
+    "failed_requests": {
+      "decider": 0,
+      "bedrock": 1
+    }
+  }
+}

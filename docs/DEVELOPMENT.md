@@ -17,6 +17,8 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 示例模式的概率是为教学设置的预设数值，**不是模型输出，也不展示虚构的推理时间或 token 用量**。只允许回放未修改的预设；修改文本或问题后需切换到真实模型。真实推理失败时会直接报错，不会退回示例数据。
 
+AWS 环境的所有模块共用顶部「GPU」管理弹窗。工作台、守卫与支付对比在真实调用前刷新 GPU 状态；未就绪或状态未知时自动弹窗并阻止推理。只有管理员能启停，就绪后返回原模块重新运行。本地未配置 GPU 管理时，继续使用配置的本地模型地址。
+
 ## 时间的含义
 
 - **单项耗时**：后端发起该问题的模型请求，到收到并校验结果的实际时间，包括 API 到模型的通信开销。
@@ -188,7 +190,9 @@ uv run --extra dev ruff check app tests examples scripts
 node --check frontend/static/app.js   # 可选 JavaScript 语法检查
 ```
 
-测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，以及三种协议、错误处理、守卫边界、逐项计时与排队合计、整次运行超时、并发运行保持问题连续执行。
+156 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。
+
+支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗且拦截真实启停与模型请求。生成演示资料的命令与依赖见 [演示材料说明](presentations/v2/README.md)。
 
 浏览器端检查（需要已启动的 Web 服务）：
 

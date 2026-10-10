@@ -18,6 +18,7 @@ from app.auth import Auth
 from app.auth import router as auth_router
 from app.bedrock import create_client as create_bedrock
 from app.crypto import router as crypto_router
+from app.crypto_loop import router as crypto_loop_router
 from app.examples import EXAMPLES, GUARD_QUESTIONS, public_examples
 from app.gpu import configured_gpu, inference_lease
 from app.gpu import router as gpu_router
@@ -65,6 +66,7 @@ app = FastAPI(
 app.include_router(auth_router)
 app.include_router(gpu_router)
 app.include_router(crypto_router)
+app.include_router(crypto_loop_router)
 
 
 @app.middleware("http")

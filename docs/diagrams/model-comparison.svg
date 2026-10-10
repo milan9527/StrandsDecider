@@ -18,7 +18,7 @@
   </defs>
   <rect width="100%" height="100%" fill="#ffffff" />
   <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">02  Decider vs 普通大模型：本演示的实际调用流程</text>
-  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">比较相同的有限候选决策任务；普通大模型本可自由生成文本，本演示将其输出约束为同样的候选 ID。</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">固定输入模式：同一步相同业务 payload；普通大模型也限定返回候选 ID。自主闭环中，后续输入可因执行结果而不同。</text>
   <rect x="340" y="140" width="920" height="95" rx="12" fill="#ffffff" stroke="#b9c8d5" />
   <text x="800.0" y="180.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle" font-weight="700">应用准备输入（候选项由开发者提供）</text>
   <text x="800.0" y="207.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle">同一业务事实 state + 问题 instructions + 候选项 criteria → 相同 input_hash</text>

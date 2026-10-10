@@ -1,6 +1,6 @@
 # 已部署环境
 
-最近发布日期：2026-10-09。
+最近发布日期：2026-10-10。
 
 **访问地址：https://d3i7ogfx5ml7dc.cloudfront.net**
 
@@ -9,6 +9,8 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 **2026-10-09：SageMaker Endpoint 已为 `InService`，真实 CUDA 推理已通过验收。独立的加密支付业务台已上线，并完成 Bedrock GPT-6.1 Sol 与 Decider 的真实对比。** 原 EC2 已停止，80GB 磁盘保留作为回退。项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
+
+**2026-10-10 文档与演示材料更新**：[新版 34 页 PPT / PDF / 讲稿与最新截图](../docs/presentations/v2/README.md) 已按 `crypto10` 实现重做演示部分。复用已经就绪的 GPU 采集四个初始场景，得到 19 组成功同输入配对，另有 1 次 Bedrock 读取超时并保留错误；没有用回放替代真实输出。USDC 与退款两个自主闭环中，两模型均完成模拟业务。本次采集未发起 GPU 启停。原始摘录见 [固定输入](../docs/results/benchmark-2026-10-10.json) 与 [闭环](../docs/presentations/v2/loop-observations.json)。单次成功观测不代表通用准确率或稳定性能。
 
 | 项目 | 当前值 |
 | --- | --- |
@@ -31,7 +33,7 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 | 原 GPU ECS service | `strands-decider-demo-gpu-model-ondemand`，任务数 0 |
 | 原 EC2 控制器 | CloudFormation `ControllerState=DISABLED` |
 | 保留磁盘 | `vol-0fe2e81ecc5bc6bad`，80GB 加密 gp3，约 $6.40/月 |
-| ECR API repository / tag | `strands-decider-demo-api:20261009-crypto2` |
+| ECR API repository / tag | `strands-decider-demo-api:20261010-loop1` |
 | ECR model repository / tag | `strands-decider-demo-model:20261009-sm1` |
 | 认证 | 自建用户名 / 密码，无 Cognito |
 | DynamoDB 认证表 | `strands-decider-demo-auth` |
@@ -40,7 +42,53 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 | 模型日志组 | `/aws/sagemaker/Endpoints/strands-decider-demo-decider` |
 | Bedrock 对比模型 | `us.openai.gpt-6.1-sol`，GPT-6.1 Sol，推理强度 `low` |
 | Bedrock Runtime 私网端点 | `vpce-0d5bced25d7fabac2`，`available`，单子网，Private DNS 开启 |
-| 前端版本 | `crypto5`，独立业务模块 `/static/crypto.js` 和 `/static/crypto.css` |
+| 前端版本 | `crypto10`，独立业务模块 `/static/crypto.js` 和 `/static/crypto.css` |
+
+## 显著展示每轮输入与输出（crypto10）
+
+- 耗时卡片下方新增默认展开的「每轮输入 / 输出」，并排显示两侧请求的客户诉求、业务证据、模型选择、实际执行结果、时间与请求往返耗时。客服对话、模板回复及模拟交易按钮移到主区域，无需展开。
+- 固定输入相同时共用一份输入展示；闭环按两侧各自轮次保留执行状态、上轮反馈与每次返回，模拟器事件明确标为未调用模型。请求失败保留输入与错误，继续运行追加新轮次，不覆盖失败记录。
+- 每个案例保留最近 80 轮，可按对比批次回看和导出；证据修改后旧输入保持不变。原始业务请求、响应与执行尝试可逐轮展开；客服模板与模型决策分别标注。
+- 本地已验证固定流程、四场景闭环、反馈传递、事件推进、失败恢复、输入快照不被改写、历史切换、JSON 导出、HTML 转义及移动布局；线上逐轮记录与公共 GPU 弹窗回归也通过。验证使用规则回放及明确注入的错误，未启动 GPU 或进行新模型测速。
+- CloudFront invalidation `I8ZMSX7THYWTBPKM7FYCQAKAEO` 已完成，线上五个前端资源与本地逐字节一致。
+- 前端独立发布，API 保持 `20261010-loop1`。核验记录：`.deployment/crypto10-verified-deployment.json`、`.deployment/crypto10-dialogue-production-browser.json`。
+
+## 全模块 GPU 管理弹窗（crypto9）
+
+- 决策工作台、工具调用守卫、支付流程对比、运行记录及说明页共用顶部「GPU」入口，实际启停按钮只保留在一个弹窗中。支付页的「GPU 管理」也打开同一窗口。
+- 三个真实推理入口均在提交前读取 GPU 状态；未启动、启动中、停止中或状态未知时弹窗提示，不提交模型请求。示例／规则回放仍可使用。
+- 管理员在弹窗中启动、停止或刷新状态；非管理员显示联系管理员提示。启动进度每 5 秒刷新，失败信息留在弹窗内，可重试。就绪后返回原模块重新运行，不自动续跑旧任务。
+- 本地验证五个模块、真实推理拦截、重复点击、启动错误、推理失败后的状态刷新、停止、状态读取失败、非管理员、Escape／焦点返回，以及 320／390／768／1024px 布局；原工作台、固定流程与四场景自主闭环回放通过回归。
+- 仅更新前端，API 保持 `20261010-loop1`。验证使用模拟 GPU 启停响应、截获的模型错误及真实规则回放接口，未启动计费 GPU；实际 SageMaker 仍为 `stopped / Absent`。
+- CloudFront invalidation `I95PM0G6PLZJ1XT3ZV4RHCF14E` 已完成，线上 HTML、主脚本、支付模块脚本与两份样式文件均与本地逐字节一致。
+- 发布核验与线上浏览器记录：`.deployment/crypto9-verified-deployment.json`、`.deployment/crypto9-gpu-production-browser.json`、`.deployment/crypto9-loop-production-browser.json`。
+
+## 流程与速度对比排版（crypto8）
+
+- 导航入口改为「支付流程对比」。顶部统一选择场景、测试方式及运行模式，只有一个「开始对比」入口；自主闭环作为测试方式选项，选中后才显示自动模拟证据开关。
+- 主区域先显示两模型决策总耗时、耗时比和逐步建议／实际动作，再显示业务处理结果。输入、会话、完整执行记录、原始输出和日志按需展开。
+- 支付页面隐藏全局 GPU 面板，使用测试设置内的一组控制；切回其他页面恢复原面板，避免重复启动按钮。
+- 本地与线上固定流程、闭环回放、失败恢复、折叠状态、页面切换以及 320px／390px 布局验证通过。有耗时数值的排版另用明确标记的历史响应测试，未进行新的模型测速。
+- 仅发布前端，API 保持 `20261010-loop1`。CloudFront invalidation `I748VJD0B2QF10R8P2CA1DE385` 已完成；线上四个前端资源逐字节一致，GPU 仍为 `stopped`。
+- 验证记录：`.deployment/crypto8-verified-deployment.json`、`.deployment/crypto8-fixed-production-browser.json`、`.deployment/crypto8-loop-production-browser.json`。
+
+## GPU 提示与自主闭环（crypto7）
+
+- 固定输入对比改为「已对比的决策步骤」「两侧选择不同的步骤」，用具体步骤数解释分歧。闭环单独统计两侧返回的决策与耗时。
+- 支付业务台显示 GPU 状态、管理员启动按钮和规则回放入口。真实运行前检查资源；未启动、启动中或状态读取失败时不提交决策请求。
+- 新增「运行自主闭环」及自动模拟事件选项，每轮判断后执行并读取真实沙盒结果，再等待事件或重判。保留逐轮历史、错误记录、模拟器事件与结果；可暂停、继续和导出。
+- 闭环最多 20 次返回决策，同一步连续两次无进展转人工；当前运行内资金步骤不会因结案重判再次执行。演练状态存于页面内存，尚不支持跨刷新恢复或生产数据库级幂等。
+- API 镜像：`20261010-loop1`，摘要 `sha256:a516ea15812fa483ff14727dfbe3653755e21307b1dc524401e6d9804a2a4362`。CloudFront invalidation `I6DV2TH45A25PXGL4K97H5V0SR` 已完成，线上四个前端资源已逐字节核对。
+- 156 项自动化测试通过；本地与线上浏览器验证四场景闭环、GPU 提示、手动事件续跑、失败恢复、账本去重、导出和手机布局；原固定输入流程回归也通过。测试使用规则回放及明确标记的错误分支，没有生成新的真实模型性能基准。线上记录为 `.deployment/crypto-loop-production-browser.json` 与 `.deployment/crypto7-fixed-production-browser.json`。
+- 发布时实际 SageMaker 状态为 `stopped / Absent`；本次没有启动 GPU。实现与生产化边界见 [CLOSED_LOOP.md](../docs/CLOSED_LOOP.md)。
+
+## 区分步骤处理与业务完成（crypto6）
+
+- 最终卡片分别显示决策返回数、步骤处理数、模拟资金动作是否落实和业务完成状态。只有目标订单状态、对应账本记录和工单结案均确认，才显示业务完成。
+- 待审批、资金挂起和未结案显示黄色待办状态；每步并列显示原始建议与实际采用动作，最终卡片列出未完成原因。JSON 导出新增 `businessOutcomes`。
+- 前端发布于 2026-10-10；CloudFront invalidation `I7BMEQGJ1RZS294BHLKT9ODRF2` 已完成，四个线上资源已逐字节核对。API 镜像仍为 `20261009-crypto2`。
+- 本地与线上浏览器已验证正常完成、模型保守选择导致两侧业务结果分歧、资金保护调整、失败重试、导出及手机布局。本轮使用规则回放和明确标记的错误选择测试，没有调用真实模型或启动 GPU；线上结果保存在 `.deployment/crypto-outcome-production-browser.json`。
+- crypto6 使用固定输入决策后执行方案；crypto7 另加自主闭环，见 [CLOSED_LOOP.md](../docs/CLOSED_LOOP.md)。
 
 ## 会话事件展示（crypto5）
 
@@ -83,7 +131,7 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 
 - 原有 CUDA 镜像增加 SageMaker `/ping` 和 `/invocations` 适配层，权重和模型逻辑保持不变。
 - 镜像摘要：`sha256:b4d81c2dac9a37cf8233b3f5cb1de9364219334a7612b6573c75ad9951767ba2`。
-- 当前 API 镜像摘要：`sha256:defe21c0a398747df17ae6dcdcd2920965c13f6ac0d548a2b5f3a5706b2b14e7`。
+- 2026-10-09 API 镜像摘要：`sha256:defe21c0a398747df17ae6dcdcd2920965c13f6ac0d548a2b5f3a5706b2b14e7`；最新版本见上方 crypto7 发布记录。
 - SageMaker 模型启用网络隔离；ECS 经 SageMaker Runtime 私有 VPC endpoint 发起签名调用，调用权限限定到上述 Endpoint。
 - 停止操作等待正在执行的推理结束，再删除 Endpoint。下次启动重新分配硬件，保留模型镜像和配置；SageMaker 不使用旧 EC2 磁盘。
 - 首次 `CreateEndpoint` 于 **2026-10-09 04:03:24 UTC** 被 AWS 接受，20 分钟内仍为 `Creating`，没有容器日志或 `FailureReason`。请求删除时 AWS 返回 `Cannot update in-progress endpoint`；控制器保留停止请求，等待 AWS 创建流程结束后删除。当前没有证据将此等待归因为特定容量或容器错误。

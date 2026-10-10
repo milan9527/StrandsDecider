@@ -483,7 +483,7 @@ def architecture():
         815,
         280,
         200,
-        "Amazon ECS / AWS Fargate\nFastAPI · 无公网 IP\n认证 · 构造相同输入 · 计时\n执行保护 · 沙盒业务流程",
+        "Amazon ECS / AWS Fargate\nFastAPI · 无公网 IP\n认证 · 构造输入 · 计时\n固定对比 / 反馈闭环 · 执行保护",
         size=17,
         icons=("ecs", "fargate"),
     )
@@ -640,7 +640,7 @@ def comparison():
     p = Page(
         "02  Decider vs 普通大模型：本演示的实际调用流程",
         "model-comparison",
-        "比较相同的有限候选决策任务；普通大模型本可自由生成文本，本演示将其输出约束为同样的候选 ID。",
+        "固定输入模式：同一步相同业务 payload；普通大模型也限定返回候选 ID。自主闭环中，后续输入可因执行结果而不同。",
         height=1330,
     )
     p.box(
@@ -766,7 +766,7 @@ def comparison():
 
 def workflow():
     p = Page(
-        "03  加密支付：五步完整流程与结果",
+        "03  加密支付：固定输入模式的五步流程",
         "payment-workflow",
         "四个场景：USDC 未到账 / USDT 少付 / 稳定币退款 / 商户结算 ｜ 全部为模拟业务数据",
         height=1120,
@@ -850,7 +850,7 @@ def workflow():
         865,
         1280,
         100,
-        "5/5 步完成 ≠ 资金业务已完成\n订单：待处理 / 已收款 / 模拟退款 / 已对账     工单：持续跟进 / 已结案\n客服回复依据实际执行状态；挂起不显示为已付款或已退款",
+        "5/5 步已处理 ≠ 业务已完成\n完成需同时确认：目标订单状态 + 对应模拟账本 + 工单结案\n客服模板依据实际结果；挂起不显示为已付款或已退款",
         "neutral",
         size=20,
     )
@@ -869,6 +869,105 @@ def workflow():
     return p
 
 
+def closed_loop():
+    p = Page(
+        "04  自主闭环：根据实际执行结果继续判断",
+        "closed-loop",
+        "两侧从同一初始证据开始，分别维护工作流。每轮展示输入、选择、实际动作与反馈；同轮编号不代表相同输入。",
+        height=1480,
+    )
+    p.box(
+        "initial",
+        390,
+        145,
+        820,
+        95,
+        "同一初始场景 / 客户诉求\n相同候选、执行保护、预算与模拟事件规则",
+        "gray",
+        size=20,
+    )
+    for key, x, title, palette, color in (
+        ("d", 55, "Strands Decider · SageMaker", "teal", TEAL),
+        ("g", 835, "GPT-6.1 Sol · Bedrock", "blue", BLUE),
+    ):
+        p.box(key, x, 305, 710, 880, title, palette, group=True)
+        mid = x + 355
+        p.box(
+            key + "model",
+            x + 100,
+            380,
+            520,
+            120,
+            "输入当前事实 + 实际执行状态 + 最近反馈\n模型选择下一步候选动作\n保存原始 choice、耗时与请求快照",
+            palette,
+            size=18,
+        )
+        p.box(
+            key + "apply",
+            x + 100,
+            565,
+            520,
+            110,
+            "独立沙盒执行器\n核验资金与结案条件，执行或挂起\n保留原始建议 / 实际动作 / 保护调整",
+            palette,
+            size=18,
+        )
+        p.box(
+            key + "feedback",
+            x + 100,
+            740,
+            520,
+            110,
+            "读取实际结果\n订单 / 工单 / 模拟账本 / 回复\n写入下一轮 execution_feedback",
+            palette,
+            size=18,
+        )
+        p.box(
+            key + "route",
+            x + 100,
+            925,
+            520,
+            180,
+            "成功且未结案 → 下一业务步骤\n外部证据不足 → 等待事件，再核验\n无效动作 → 携带失败反馈重判\n连续两次无进展 → 转人工\n订单 + 账本 + 结案均确认 → 完成",
+            palette,
+            size=18,
+        )
+        p.edge(
+            "initial", key + "model", [(800, 240), (800, 275), (mid, 275), (mid, 380)], color=color
+        )
+        p.edge(key + "model", key + "apply", [(mid, 500), (mid, 565)], color=color)
+        p.edge(key + "apply", key + "feedback", [(mid, 675), (mid, 740)], color=color)
+        p.edge(key + "feedback", key + "route", [(mid, 850), (mid, 925)], color=color)
+        p.edge(
+            key + "route",
+            key + "model",
+            [(x + 100, 1000), (x + 45, 1000), (x + 45, 435), (x + 100, 435)],
+            color=color,
+            dashed=True,
+        )
+    p.box(
+        "budget",
+        100,
+        1230,
+        1400,
+        100,
+        "最多 20 次决策 / 32 次 tick；浏览器连续运行约 5 分钟后暂停，可继续\n自动模拟确认、补款、地址验证、审批、结算；风险需手动解除\n模拟事件 ≠ 模型执行交易；客服回复来自模板；无真实资金操作",
+        "orange",
+        size=19,
+    )
+    p.box(
+        "limits",
+        100,
+        1370,
+        1400,
+        70,
+        "运行与最近 80 轮记录存于浏览器内存，刷新即清除；当前运行内避免重复资金步骤。\n生产环境还需持久化工作流、权限校验、条件写与数据库级幂等。",
+        "gray",
+        size=17,
+    )
+    return p
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -876,7 +975,7 @@ def main():
     )
     args = parser.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
-    pages = [architecture(), comparison(), workflow()]
+    pages = [architecture(), comparison(), workflow(), closed_loop()]
     for page in pages:
         svg = page.svg()
         ET.indent(svg)

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img">
-  <title>03  加密支付：五步完整流程与结果</title>
+  <title>03  加密支付：固定输入模式的五步流程</title>
   <desc>Generated from scripts/generate_diagrams.py</desc>
   <defs>
     <marker id="arrow52677c" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
@@ -17,7 +17,7 @@
     </marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff" />
-  <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">03  加密支付：五步完整流程与结果</text>
+  <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">03  加密支付：固定输入模式的五步流程</text>
   <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">四个场景：USDC 未到账 / USDT 少付 / 稳定币退款 / 商户结算 ｜ 全部为模拟业务数据</text>
   <rect x="70" y="145" width="1460" height="95" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
   <text x="800.0" y="171.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle" font-weight="700">冻结本轮证据版本</text>
@@ -62,9 +62,9 @@
   <text x="1310.0" y="758.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">执行请求失败可重试剩余步骤</text>
   <text x="1310.0" y="784.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">非法、乱序、重复动作仍被拒绝</text>
   <rect x="160" y="865" width="1280" height="100" rx="12" fill="#ffffff" stroke="#b9c8d5" />
-  <text x="800.0" y="892.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle" font-weight="700">5/5 步完成 ≠ 资金业务已完成</text>
-  <text x="800.0" y="922.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle">订单：待处理 / 已收款 / 模拟退款 / 已对账     工单：持续跟进 / 已结案</text>
-  <text x="800.0" y="952.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle">客服回复依据实际执行状态；挂起不显示为已付款或已退款</text>
+  <text x="800.0" y="892.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle" font-weight="700">5/5 步已处理 ≠ 业务已完成</text>
+  <text x="800.0" y="922.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle">完成需同时确认：目标订单状态 + 对应模拟账本 + 工单结案</text>
+  <text x="800.0" y="952.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#1c3045" text-anchor="middle">客服模板依据实际结果；挂起不显示为已付款或已退款</text>
   <rect x="80" y="1010" width="1440" height="75" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
   <text x="800.0" y="1040.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle" font-weight="700">继续演示：模拟确认数达标 / 补足差额 / 验证地址 / 审批通过 / 结算到账 → 清除旧结果，重新开始</text>
   <text x="800.0" y="1066.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#52677c" text-anchor="middle">「客服会话 → 推进模拟交易」点击事件后，显示系统通知与前后数值（如 3/12 → 12/12），保留历史回复；再重新运行。</text>

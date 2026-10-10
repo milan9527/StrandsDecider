@@ -1,0 +1,1514 @@
+{
+  "pending": {
+    "exported_at": "2026-10-10T12:28:55.127Z",
+    "business_outcomes": {
+      "decider": {
+        "fundsComplete": true,
+        "complete": true,
+        "reasons": []
+      },
+      "bedrock": {
+        "fundsComplete": true,
+        "complete": true,
+        "reasons": []
+      }
+    },
+    "providers": {
+      "decider": {
+        "status": "complete",
+        "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+        "decisions": [
+          {
+            "provider": "decider",
+            "stage": "intake",
+            "input_hash": "c8bb1c649a7a52af",
+            "reference_choice": "payment_support",
+            "reference_label": "支付客服",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "payment_support",
+            "confidence": 0.4637,
+            "probabilities": {
+              "payment_support": 0.6425,
+              "refund_support": 0.0265,
+              "merchant_ops": 0.331
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 83.972
+              },
+              "queue_ms": 10.269,
+              "processing_ms": 84.035,
+              "backend_total_ms": 94.305,
+              "model_reported_ms": 72.28
+            },
+            "label": "支付客服",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "verify",
+            "input_hash": "1ddb47606efc8125",
+            "reference_choice": "await_confirmations",
+            "reference_label": "等待链上确认",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "settlement_verified",
+            "confidence": 0.1664,
+            "probabilities": {
+              "await_confirmations": 0.2748,
+              "request_topup": 0.0239,
+              "payment_verified": 0.2875,
+              "settlement_delayed": 0.0196,
+              "settlement_pending": 0.0889,
+              "settlement_verified": 0.3053
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 83.809
+              },
+              "queue_ms": 6.161,
+              "processing_ms": 83.87,
+              "backend_total_ms": 90.031,
+              "model_reported_ms": 72.09
+            },
+            "label": "结算已完成",
+            "matches_reference": false
+          },
+          {
+            "provider": "decider",
+            "stage": "verify",
+            "input_hash": "9f841f2712b026a6",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "payment_verified",
+            "confidence": 0.493,
+            "probabilities": {
+              "await_confirmations": 0.0736,
+              "request_topup": 0.0097,
+              "payment_verified": 0.5775,
+              "settlement_delayed": 0.0121,
+              "settlement_pending": 0.0627,
+              "settlement_verified": 0.2644
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 85.15
+              },
+              "queue_ms": 6.403,
+              "processing_ms": 85.212,
+              "backend_total_ms": 91.614,
+              "model_reported_ms": 72.76
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "approve",
+            "input_hash": "e22b4c8d02784cb6",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "approved",
+            "confidence": 0.5896,
+            "probabilities": {
+              "risk_review": 0.1453,
+              "verify_destination": 0.0376,
+              "await_approval": 0.1249,
+              "approved": 0.6922
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 85.273
+              },
+              "queue_ms": 6.414,
+              "processing_ms": 85.339,
+              "backend_total_ms": 91.753,
+              "model_reported_ms": 73.26
+            },
+            "label": "规则检查通过",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "execute",
+            "input_hash": "a95b8c6f32c52176",
+            "reference_choice": "credit_order",
+            "reference_label": "确认订单收款",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "credit_order",
+            "confidence": 0.5903,
+            "probabilities": {
+              "hold": 0.0735,
+              "credit_order": 0.6586,
+              "refund_payment": 0.0275,
+              "escalate_settlement": 0.0096,
+              "wait_settlement": 0.0458,
+              "reconcile_settlement": 0.185
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 94.271
+              },
+              "queue_ms": 6.749,
+              "processing_ms": 94.337,
+              "backend_total_ms": 101.086,
+              "model_reported_ms": 82.19
+            },
+            "label": "确认订单收款",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "close",
+            "input_hash": "fdc6d691221ff93b",
+            "reference_choice": "resolve",
+            "reference_label": "回复并结案",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "resolve",
+            "confidence": 0.8521,
+            "probabilities": {
+              "resolve": 0.926,
+              "follow_up": 0.074
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 91.745
+              },
+              "queue_ms": 9.542,
+              "processing_ms": 91.809,
+              "backend_total_ms": 101.351,
+              "model_reported_ms": 79.29
+            },
+            "label": "回复并结案",
+            "matches_reference": true
+          }
+        ],
+        "events": [
+          {
+            "name": "confirm",
+            "before": {
+              "scenario": "pending",
+              "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+              "expected": "129.00",
+              "received": "129.00",
+              "confirmations": 3,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "waiting",
+              "completed": [
+                "intake"
+              ]
+            },
+            "after": {
+              "scenario": "pending",
+              "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+              "expected": "129.00",
+              "received": "129.00",
+              "confirmations": 12,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "new",
+              "completed": [
+                "intake"
+              ]
+            },
+            "message": "模拟器已推进「链上确认达标」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "source": "simulator"
+          }
+        ],
+        "timeline": [
+          {
+            "kind": "decision",
+            "title": "客服受理：支付客服 → 支付客服",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 142.30000007152557
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：结算已完成 → 结算已完成",
+            "reason": "业务条件尚未满足，等待：链上确认达标。不能通过重复调用模型补齐外部证据。",
+            "elapsed_ms": 119.19999992847443
+          },
+          {
+            "kind": "event",
+            "title": "模拟器：模拟确认数达标",
+            "reason": "链上确认数 3/12 → 12/12。模拟器已推进「链上确认达标」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "elapsed_ms": 20.899999976158142
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 118
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：规则检查通过 → 规则检查通过",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 118.20000004768372
+          },
+          {
+            "kind": "decision",
+            "title": "业务处置：确认订单收款 → 确认订单收款",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 134
+          },
+          {
+            "kind": "decision",
+            "title": "回复结案：回复并结案 → 回复并结案",
+            "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+            "elapsed_ms": 128.29999995231628
+          }
+        ],
+        "snapshot": {
+          "scenario": "pending",
+          "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+          "expected": "129.00",
+          "received": "129.00",
+          "confirmations": 12,
+          "required_confirmations": 12,
+          "address_verified": true,
+          "risk_flag": false,
+          "approved": false,
+          "review_pending": false,
+          "settlement_minutes": 0,
+          "settlement_sla_minutes": 60,
+          "settled": false,
+          "order_status": "paid",
+          "ticket_status": "resolved",
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ]
+        },
+        "error": null
+      },
+      "bedrock": {
+        "status": "complete",
+        "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+        "decisions": [
+          {
+            "provider": "bedrock",
+            "stage": "intake",
+            "input_hash": "c8bb1c649a7a52af",
+            "reference_choice": "payment_support",
+            "reference_label": "支付客服",
+            "source": "live",
+            "choice": "payment_support",
+            "usage": {
+              "input_tokens": 412,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 798,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 810.549,
+              "processing_ms": 810.375,
+              "model_reported_ms": 798
+            },
+            "label": "支付客服",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "verify",
+            "input_hash": "1ddb47606efc8125",
+            "reference_choice": "await_confirmations",
+            "reference_label": "等待链上确认",
+            "source": "live",
+            "choice": "await_confirmations",
+            "usage": {
+              "input_tokens": 507,
+              "output_tokens": 11
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1183,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1193.33,
+              "processing_ms": 1193.139,
+              "model_reported_ms": 1183
+            },
+            "label": "等待链上确认",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "verify",
+            "input_hash": "43ba9577eed6870b",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "choice": "payment_verified",
+            "usage": {
+              "input_tokens": 641,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1366,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1375.103,
+              "processing_ms": 1374.892,
+              "model_reported_ms": 1366
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "approve",
+            "input_hash": "89edddf39b2ade54",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "source": "live",
+            "choice": "approved",
+            "usage": {
+              "input_tokens": 680,
+              "output_tokens": 9
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1159,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1169.956,
+              "processing_ms": 1169.733,
+              "model_reported_ms": 1159
+            },
+            "label": "规则检查通过",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "execute",
+            "input_hash": "49636908ff7c020f",
+            "reference_choice": "credit_order",
+            "reference_label": "确认订单收款",
+            "source": "live",
+            "choice": "credit_order",
+            "usage": {
+              "input_tokens": 768,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1535,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1545.644,
+              "processing_ms": 1545.421,
+              "model_reported_ms": 1535
+            },
+            "label": "确认订单收款",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "close",
+            "input_hash": "2fde00b199df6dd4",
+            "reference_choice": "resolve",
+            "reference_label": "回复并结案",
+            "source": "live",
+            "choice": "resolve",
+            "usage": {
+              "input_tokens": 730,
+              "output_tokens": 9
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1164,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1173.954,
+              "processing_ms": 1173.73,
+              "model_reported_ms": 1164
+            },
+            "label": "回复并结案",
+            "matches_reference": true
+          }
+        ],
+        "events": [
+          {
+            "name": "confirm",
+            "before": {
+              "scenario": "pending",
+              "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+              "expected": "129.00",
+              "received": "129.00",
+              "confirmations": 3,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "waiting",
+              "completed": [
+                "intake"
+              ]
+            },
+            "after": {
+              "scenario": "pending",
+              "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+              "expected": "129.00",
+              "received": "129.00",
+              "confirmations": 12,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "new",
+              "completed": [
+                "intake"
+              ]
+            },
+            "message": "模拟器已推进「链上确认达标」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "source": "simulator"
+          }
+        ],
+        "timeline": [
+          {
+            "kind": "decision",
+            "title": "客服受理：支付客服 → 支付客服",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 851.5999999046326
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：等待链上确认 → 等待链上确认",
+            "reason": "业务条件尚未满足，等待：链上确认达标。不能通过重复调用模型补齐外部证据。",
+            "elapsed_ms": 1214.2999999523163
+          },
+          {
+            "kind": "event",
+            "title": "模拟器：模拟确认数达标",
+            "reason": "链上确认数 3/12 → 12/12。模拟器已推进「链上确认达标」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "elapsed_ms": 43
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 1396
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：规则检查通过 → 规则检查通过",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 1192.3999999761581
+          },
+          {
+            "kind": "decision",
+            "title": "业务处置：确认订单收款 → 确认订单收款",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 1567.6000000238419
+          },
+          {
+            "kind": "decision",
+            "title": "回复结案：回复并结案 → 回复并结案",
+            "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+            "elapsed_ms": 1196.3999999761581
+          }
+        ],
+        "snapshot": {
+          "scenario": "pending",
+          "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+          "expected": "129.00",
+          "received": "129.00",
+          "confirmations": 12,
+          "required_confirmations": 12,
+          "address_verified": true,
+          "risk_flag": false,
+          "approved": false,
+          "review_pending": false,
+          "settlement_minutes": 0,
+          "settlement_sla_minutes": 60,
+          "settled": false,
+          "order_status": "paid",
+          "ticket_status": "resolved",
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ]
+        },
+        "error": null
+      }
+    }
+  },
+  "refund": {
+    "exported_at": "2026-10-10T12:29:07.210Z",
+    "business_outcomes": {
+      "decider": {
+        "fundsComplete": true,
+        "complete": true,
+        "reasons": []
+      },
+      "bedrock": {
+        "fundsComplete": true,
+        "complete": true,
+        "reasons": []
+      }
+    },
+    "providers": {
+      "decider": {
+        "status": "complete",
+        "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+        "decisions": [
+          {
+            "provider": "decider",
+            "stage": "intake",
+            "input_hash": "abb5387b399aafbc",
+            "reference_choice": "refund_support",
+            "reference_label": "退款专员",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "refund_support",
+            "confidence": 0.7921,
+            "probabilities": {
+              "payment_support": 0.0544,
+              "refund_support": 0.8614,
+              "merchant_ops": 0.0842
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 81.301
+              },
+              "queue_ms": 6.612,
+              "processing_ms": 81.363,
+              "backend_total_ms": 87.975,
+              "model_reported_ms": 69.65
+            },
+            "label": "退款专员",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "verify",
+            "input_hash": "0c5ccbbfaed1ffbb",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "payment_verified",
+            "confidence": 0.5542,
+            "probabilities": {
+              "await_confirmations": 0.1142,
+              "request_topup": 0.0205,
+              "payment_verified": 0.6285,
+              "settlement_delayed": 0.0163,
+              "settlement_pending": 0.0303,
+              "settlement_verified": 0.1902
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 79.161
+              },
+              "queue_ms": 6.651,
+              "processing_ms": 79.225,
+              "backend_total_ms": 85.876,
+              "model_reported_ms": 67.98
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "approve",
+            "input_hash": "bc90744b7cbfb86a",
+            "reference_choice": "verify_destination",
+            "reference_label": "验证退款地址",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "approved",
+            "confidence": 0.3649,
+            "probabilities": {
+              "risk_review": 0.1628,
+              "verify_destination": 0.138,
+              "await_approval": 0.1755,
+              "approved": 0.5237
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 82.881
+              },
+              "queue_ms": 6.4,
+              "processing_ms": 82.944,
+              "backend_total_ms": 89.344,
+              "model_reported_ms": 70.92
+            },
+            "label": "规则检查通过",
+            "matches_reference": false
+          },
+          {
+            "provider": "decider",
+            "stage": "verify",
+            "input_hash": "258874f83a978d6d",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "payment_verified",
+            "confidence": 0.7674,
+            "probabilities": {
+              "await_confirmations": 0.083,
+              "request_topup": 0.0121,
+              "payment_verified": 0.8062,
+              "settlement_delayed": 0.0126,
+              "settlement_pending": 0.0166,
+              "settlement_verified": 0.0695
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 84.569
+              },
+              "queue_ms": 6.382,
+              "processing_ms": 84.635,
+              "backend_total_ms": 91.017,
+              "model_reported_ms": 73.01
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "approve",
+            "input_hash": "f6b6aaa687fed0f9",
+            "reference_choice": "await_approval",
+            "reference_label": "等待人工审批",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "approved",
+            "confidence": 0.32,
+            "probabilities": {
+              "risk_review": 0.1287,
+              "verify_destination": 0.1023,
+              "await_approval": 0.279,
+              "approved": 0.49
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 89.01
+              },
+              "queue_ms": 8.057,
+              "processing_ms": 89.077,
+              "backend_total_ms": 97.134,
+              "model_reported_ms": 77.55
+            },
+            "label": "规则检查通过",
+            "matches_reference": false
+          },
+          {
+            "provider": "decider",
+            "stage": "verify",
+            "input_hash": "ef8675156e11a046",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "payment_verified",
+            "confidence": 0.7547,
+            "probabilities": {
+              "await_confirmations": 0.0635,
+              "request_topup": 0.0106,
+              "payment_verified": 0.7956,
+              "settlement_delayed": 0.0109,
+              "settlement_pending": 0.0146,
+              "settlement_verified": 0.1048
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 101.72
+              },
+              "queue_ms": 6.342,
+              "processing_ms": 101.779,
+              "backend_total_ms": 108.121,
+              "model_reported_ms": 89.81
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "approve",
+            "input_hash": "440746eddd8b5eda",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "approved",
+            "confidence": 0.4715,
+            "probabilities": {
+              "risk_review": 0.0864,
+              "verify_destination": 0.0663,
+              "await_approval": 0.2436,
+              "approved": 0.6036
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 105.839
+              },
+              "queue_ms": 6.707,
+              "processing_ms": 105.905,
+              "backend_total_ms": 112.612,
+              "model_reported_ms": 93.82
+            },
+            "label": "规则检查通过",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "execute",
+            "input_hash": "9388cf2dc0ab7a5f",
+            "reference_choice": "refund_payment",
+            "reference_label": "提交模拟退款",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "refund_payment",
+            "confidence": 0.4036,
+            "probabilities": {
+              "hold": 0.0638,
+              "credit_order": 0.227,
+              "refund_payment": 0.503,
+              "escalate_settlement": 0.0056,
+              "wait_settlement": 0.0095,
+              "reconcile_settlement": 0.1911
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 109.112
+              },
+              "queue_ms": 6.624,
+              "processing_ms": 109.173,
+              "backend_total_ms": 115.797,
+              "model_reported_ms": 97.95
+            },
+            "label": "提交模拟退款",
+            "matches_reference": true
+          },
+          {
+            "provider": "decider",
+            "stage": "close",
+            "input_hash": "79b4ebc61eb76577",
+            "reference_choice": "resolve",
+            "reference_label": "回复并结案",
+            "source": "live",
+            "model": "strands-decider-2B-hobson-v19",
+            "choice": "resolve",
+            "confidence": 0.922,
+            "probabilities": {
+              "resolve": 0.961,
+              "follow_up": 0.039
+            },
+            "usage": null,
+            "estimated_request_usd": null,
+            "timings": {
+              "execution": "individual",
+              "decisions_ms": {
+                "action": 102.115
+              },
+              "queue_ms": 7.277,
+              "processing_ms": 102.179,
+              "backend_total_ms": 109.456,
+              "model_reported_ms": 90.39
+            },
+            "label": "回复并结案",
+            "matches_reference": true
+          }
+        ],
+        "events": [
+          {
+            "name": "verify_address",
+            "before": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": false,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": true,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "waiting",
+              "completed": [
+                "intake",
+                "verify"
+              ]
+            },
+            "after": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "new",
+              "completed": [
+                "intake"
+              ]
+            },
+            "message": "模拟器已推进「验证退款地址」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "source": "simulator"
+          },
+          {
+            "name": "approve",
+            "before": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": true,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "waiting",
+              "completed": [
+                "intake",
+                "verify"
+              ]
+            },
+            "after": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": true,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "new",
+              "completed": [
+                "intake"
+              ]
+            },
+            "message": "模拟器已推进「人工审批通过」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "source": "simulator"
+          }
+        ],
+        "timeline": [
+          {
+            "kind": "decision",
+            "title": "客服受理：退款专员 → 退款专员",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 116.60000002384186
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 111.79999995231628
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：规则检查通过 → 验证退款地址",
+            "reason": "业务条件尚未满足，等待：验证退款地址、人工审批通过。不能通过重复调用模型补齐外部证据。",
+            "elapsed_ms": 116.79999995231628
+          },
+          {
+            "kind": "event",
+            "title": "模拟器：模拟验证地址",
+            "reason": "退款地址 未验证 → 已验证。模拟器已推进「验证退款地址」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "elapsed_ms": 20.90000009536743
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 121.20000004768372
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：规则检查通过 → 等待人工审批",
+            "reason": "业务条件尚未满足，等待：人工审批通过。不能通过重复调用模型补齐外部证据。",
+            "elapsed_ms": 127
+          },
+          {
+            "kind": "event",
+            "title": "模拟器：模拟审批通过",
+            "reason": "人工审批 未通过 → 已通过。模拟器已推进「人工审批通过」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "elapsed_ms": 20
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 134.69999992847443
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：规则检查通过 → 规则检查通过",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 148.40000009536743
+          },
+          {
+            "kind": "decision",
+            "title": "业务处置：提交模拟退款 → 提交模拟退款",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 143.39999997615814
+          },
+          {
+            "kind": "decision",
+            "title": "回复结案：回复并结案 → 回复并结案",
+            "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+            "elapsed_ms": 138.69999992847443
+          }
+        ],
+        "snapshot": {
+          "scenario": "refund",
+          "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+          "expected": "250.00",
+          "received": "250.00",
+          "confirmations": 30,
+          "required_confirmations": 12,
+          "address_verified": true,
+          "risk_flag": false,
+          "approved": true,
+          "review_pending": false,
+          "settlement_minutes": 0,
+          "settlement_sla_minutes": 60,
+          "settled": false,
+          "order_status": "refunded",
+          "ticket_status": "resolved",
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ]
+        },
+        "error": null
+      },
+      "bedrock": {
+        "status": "complete",
+        "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+        "decisions": [
+          {
+            "provider": "bedrock",
+            "stage": "intake",
+            "input_hash": "abb5387b399aafbc",
+            "reference_choice": "refund_support",
+            "reference_label": "退款专员",
+            "source": "live",
+            "choice": "refund_support",
+            "usage": {
+              "input_tokens": 412,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1170,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1181.557,
+              "processing_ms": 1181.378,
+              "model_reported_ms": 1170
+            },
+            "label": "退款专员",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "verify",
+            "input_hash": "0c5ccbbfaed1ffbb",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "choice": "payment_verified",
+            "usage": {
+              "input_tokens": 507,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1131,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1142.217,
+              "processing_ms": 1142.001,
+              "model_reported_ms": 1131
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "approve",
+            "input_hash": "bc90744b7cbfb86a",
+            "reference_choice": "verify_destination",
+            "reference_label": "验证退款地址",
+            "source": "live",
+            "choice": "verify_destination",
+            "usage": {
+              "input_tokens": 546,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 761,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 771.634,
+              "processing_ms": 771.44,
+              "model_reported_ms": 761
+            },
+            "label": "验证退款地址",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "verify",
+            "input_hash": "95f5753e1b2eac25",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "choice": "payment_verified",
+            "usage": {
+              "input_tokens": 684,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 976,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 987.516,
+              "processing_ms": 987.385,
+              "model_reported_ms": 976
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "approve",
+            "input_hash": "5e4962ee28b9bd6a",
+            "reference_choice": "await_approval",
+            "reference_label": "等待人工审批",
+            "source": "live",
+            "choice": "await_approval",
+            "usage": {
+              "input_tokens": 723,
+              "output_tokens": 11
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1140,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1153.261,
+              "processing_ms": 1153.021,
+              "model_reported_ms": 1140
+            },
+            "label": "等待人工审批",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "verify",
+            "input_hash": "a4f5c8d9f6c361f2",
+            "reference_choice": "payment_verified",
+            "reference_label": "到账已核验",
+            "source": "live",
+            "choice": "payment_verified",
+            "usage": {
+              "input_tokens": 858,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 883,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 894.569,
+              "processing_ms": 894.31,
+              "model_reported_ms": 883
+            },
+            "label": "到账已核验",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "approve",
+            "input_hash": "326e132a74dda45a",
+            "reference_choice": "approved",
+            "reference_label": "规则检查通过",
+            "source": "live",
+            "choice": "approved",
+            "usage": {
+              "input_tokens": 897,
+              "output_tokens": 9
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 2160,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 2175.302,
+              "processing_ms": 2175.053,
+              "model_reported_ms": 2160
+            },
+            "label": "规则检查通过",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "execute",
+            "input_hash": "a637219bb9e72225",
+            "reference_choice": "refund_payment",
+            "reference_label": "提交模拟退款",
+            "source": "live",
+            "choice": "refund_payment",
+            "usage": {
+              "input_tokens": 940,
+              "output_tokens": 10
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 819,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 831.331,
+              "processing_ms": 831.081,
+              "model_reported_ms": 819
+            },
+            "label": "提交模拟退款",
+            "matches_reference": true
+          },
+          {
+            "provider": "bedrock",
+            "stage": "close",
+            "input_hash": "9e3b537d6183097f",
+            "reference_choice": "resolve",
+            "reference_label": "回复并结案",
+            "source": "live",
+            "choice": "resolve",
+            "usage": {
+              "input_tokens": 859,
+              "output_tokens": 9
+            },
+            "estimated_request_usd": null,
+            "provider_latency_ms": 1394,
+            "model": "us.openai.gpt-6.1-sol",
+            "confidence": null,
+            "probabilities": null,
+            "timings": {
+              "backend_total_ms": 1404.563,
+              "processing_ms": 1404.312,
+              "model_reported_ms": 1394
+            },
+            "label": "回复并结案",
+            "matches_reference": true
+          }
+        ],
+        "events": [
+          {
+            "name": "verify_address",
+            "before": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": false,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": true,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "waiting",
+              "completed": [
+                "intake",
+                "verify"
+              ]
+            },
+            "after": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "new",
+              "completed": [
+                "intake"
+              ]
+            },
+            "message": "模拟器已推进「验证退款地址」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "source": "simulator"
+          },
+          {
+            "name": "approve",
+            "before": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": false,
+              "review_pending": true,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "waiting",
+              "completed": [
+                "intake",
+                "verify"
+              ]
+            },
+            "after": {
+              "scenario": "refund",
+              "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+              "expected": "250.00",
+              "received": "250.00",
+              "confirmations": 30,
+              "required_confirmations": 12,
+              "address_verified": true,
+              "risk_flag": false,
+              "approved": true,
+              "review_pending": false,
+              "settlement_minutes": 0,
+              "settlement_sla_minutes": 60,
+              "settled": false,
+              "order_status": "open",
+              "ticket_status": "new",
+              "completed": [
+                "intake"
+              ]
+            },
+            "message": "模拟器已推进「人工审批通过」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "source": "simulator"
+          }
+        ],
+        "timeline": [
+          {
+            "kind": "decision",
+            "title": "客服受理：退款专员 → 退款专员",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 1206.6000000238419
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 1165.6000000238419
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：验证退款地址 → 验证退款地址",
+            "reason": "业务条件尚未满足，等待：验证退款地址、人工审批通过。不能通过重复调用模型补齐外部证据。",
+            "elapsed_ms": 792.2999999523163
+          },
+          {
+            "kind": "event",
+            "title": "模拟器：模拟验证地址",
+            "reason": "退款地址 未验证 → 已验证。模拟器已推进「验证退款地址」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "elapsed_ms": 19.700000047683716
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 1008.5999999046326
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：等待人工审批 → 等待人工审批",
+            "reason": "业务条件尚未满足，等待：人工审批通过。不能通过重复调用模型补齐外部证据。",
+            "elapsed_ms": 1182.3999999761581
+          },
+          {
+            "kind": "event",
+            "title": "模拟器：模拟审批通过",
+            "reason": "人工审批 未通过 → 已通过。模拟器已推进「人工审批通过」；这是模拟业务证据更新，不是模型执行的真实交易或审批。请按最新事实重新核验。",
+            "elapsed_ms": 20.600000023841858
+          },
+          {
+            "kind": "decision",
+            "title": "交易核验：到账已核验 → 到账已核验",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 915.1999999284744
+          },
+          {
+            "kind": "decision",
+            "title": "风控审批：规则检查通过 → 规则检查通过",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 2203.5
+          },
+          {
+            "kind": "decision",
+            "title": "业务处置：提交模拟退款 → 提交模拟退款",
+            "reason": "本步实际执行结果已记录。",
+            "elapsed_ms": 852.9000000953674
+          },
+          {
+            "kind": "decision",
+            "title": "回复结案：回复并结案 → 回复并结案",
+            "reason": "模拟订单、对应账本与工单结案均已确认，业务闭环完成。",
+            "elapsed_ms": 1425.8999999761581
+          }
+        ],
+        "snapshot": {
+          "scenario": "refund",
+          "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+          "expected": "250.00",
+          "received": "250.00",
+          "confirmations": 30,
+          "required_confirmations": 12,
+          "address_verified": true,
+          "risk_flag": false,
+          "approved": true,
+          "review_pending": false,
+          "settlement_minutes": 0,
+          "settlement_sla_minutes": 60,
+          "settled": false,
+          "order_status": "refunded",
+          "ticket_status": "resolved",
+          "completed": [
+            "intake",
+            "verify",
+            "approve",
+            "execute",
+            "close"
+          ]
+        },
+        "error": null
+      }
+    }
+  }
+}

@@ -654,6 +654,7 @@ nav {
 }
 .breadcrumb {
   display: flex;
+  white-space: nowrap;
   gap: 15px;
   color: #9b9fa7;
   font-size: 11px;
@@ -2895,10 +2896,9 @@ select.type-badge {
 }
 .gpu-panel {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 28px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
   padding: 20px 24px;
   border: 1px solid #dce4ce;
   border-radius: 14px;
@@ -2930,7 +2930,91 @@ select.type-badge {
 .gpu-actions {
   flex-shrink: 0;
 }
+.gpu-launcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 7px 10px;
+  border: 1px solid #e5d2ad;
+  border-radius: 8px;
+  background: #fffaf0;
+  color: #846126;
+  font-size: 11px;
+}
+.gpu-launcher.ready {
+  border-color: #dce4ce;
+  background: #f7faef;
+  color: #56703a;
+}
+.gpu-launcher svg {
+  width: 15px;
+  height: 15px;
+}
+#gpu-dialog {
+  width: min(580px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 24px 80px #18203033;
+}
+#gpu-dialog::backdrop {
+  background: #18203066;
+}
+body:has(#gpu-dialog[open]) {
+  overflow: hidden;
+}
+.gpu-dialog-heading,
+.gpu-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.gpu-dialog-heading h2 {
+  margin: 0;
+  font-size: 20px;
+}
+#gpu-close {
+  font-size: 24px;
+}
+#gpu-dialog-context,
+.gpu-dialog-footer p,
+#gpu-access-hint,
+#gpu-action-error {
+  font-size: 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+#gpu-dialog-context {
+  margin: 12px 0 18px;
+}
+#gpu-access-hint,
+#gpu-action-error {
+  margin: 0;
+}
+#gpu-action-error {
+  color: #a32e2e;
+}
+.gpu-dialog-footer {
+  margin-top: 18px;
+}
+.gpu-dialog-footer p {
+  color: #69737e;
+  margin: 0;
+}
+#gpu-return {
+  flex-shrink: 0;
+}
 @media (max-width: 1000px) {
+  .topbar .connection,
+  #refresh-connection {
+    display: none;
+  }
   .gpu-panel {
     flex-direction: column;
     align-items: stretch;
@@ -2938,5 +3022,28 @@ select.type-badge {
   }
   .gpu-actions button {
     flex: 1;
+  }
+}
+@media (max-width: 720px) {
+  .topbar {
+    padding-inline: 12px;
+  }
+  .breadcrumb {
+    gap: 4px;
+  }
+  .gpu-launcher {
+    padding: 6px 7px;
+    font-size: 10px;
+  }
+  .gpu-launcher > [data-icon] {
+    display: none;
+  }
+  #gpu-dialog {
+    padding: 18px;
+  }
+  .gpu-dialog-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 }

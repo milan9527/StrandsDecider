@@ -8,8 +8,7 @@ flowchart LR
     CF --> S3[私有 S3 / OAC]
     CF --> ALB[内网 ALB]
     ALB --> API[ECS Fargate API]
-    API --> VPCE[SageMaker Runtime 私有端点]
-    VPCE --> SM[SageMaker / Decider v19 / L4]
+    API --> SM[SageMaker / Decider v19 / L4]
     API --> State[DynamoDB / GPU 状态及推理占用]
     Timer[每分钟] --> Controller[Lambda]
     Controller --> State
@@ -18,6 +17,8 @@ flowchart LR
 
 ## 启动、停止和费用
 
+- 所有模块顶部都有「GPU」公共入口；支付页的「GPU 管理」打开同一个弹窗，实际启停按钮只有一组。真实推理前检查最新状态，未启动、启动中、停止中或状态未知时自动弹窗并阻止推理。管理员可启动，非管理员可查看状态并联系管理员。
+- 弹窗每 5 秒刷新；启动完成后返回原模块重新运行，不自动提交等待期间的旧输入。示例／规则回放无需 GPU。图示省略私有端点节点，网络实现仍见下文。
 - 「启动 GPU」创建固定名称 `strands-decider-demo-decider` 的 Endpoint，最多一台 GPU。模型完成加载、CUDA 预热和 SageMaker 健康检查后，界面显示就绪。
 - 「停止 SageMaker GPU」先阻止新推理，等待当前推理结束，再删除推理 Endpoint。模型镜像、SageMaker Model 和 EndpointConfig 保留，再次启动时复用这些配置。
 - 最后一次推理完成后闲置 30 分钟，自动执行同样的删除流程；刷新页面不延长运行时间。
