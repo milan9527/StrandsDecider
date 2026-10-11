@@ -1,4 +1,4 @@
-import { mountCrypto } from "/static/crypto.js?v=crypto10";
+import { mountCrypto } from "/static/crypto.js?v=direct-run1";
 
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
@@ -87,6 +87,7 @@ let gpuChanging = false;
 let gpuError = "";
 let gpuActionError = "";
 let gpuRequest = null;
+let gpuFailureCheck = null;
 
 function renderGpu() {
   window.dispatchEvent(new Event("decider-gpu-state"));
@@ -147,9 +148,16 @@ function renderGpu() {
   }
   const phase = gpuState.phase;
   const sageMaker = gpuState.provider === "sagemaker";
+  const autoStop = gpuState.idle_auto_stop !== false;
+  const idleMinutes = gpuState.idle_minutes ?? 30;
+  const lifecycle = autoStop
+    ? `闲置 ${idleMinutes} 分钟自动停止`
+    : "持续运行 · 手动停止";
   $("#gpu-heading-label").textContent = sageMaker
     ? "SageMaker GPU · 按需运行"
-    : "GPU · 按需实例";
+    : autoStop
+      ? "GPU · 按需实例"
+      : "GPU · 按需计费 · 持续运行";
   $("#gpu-stop").textContent = sageMaker
     ? "停止 SageMaker GPU"
     : "停止 GPU，保留磁盘";
@@ -163,20 +171,26 @@ function renderGpu() {
   };
   $("#gpu-status").textContent = labels[phase] || "检查中";
   $("#gpu-spec").textContent =
-    `${gpuState.instance_id ? `${gpuState.instance_type} · 按需约 $${gpuState.instance_usd_per_hour}/小时` : `g6 / g5 · 按需约 $0.8048–${gpuState.maximum_instance_usd_per_hour}/小时`} · 80GB 磁盘约 $${gpuState.disk_usd_per_month.toFixed(2)}/月 · 闲置 30 分钟自动停止`;
+    `${gpuState.instance_type} · 按需约 $${gpuState.instance_usd_per_hour}/小时 · 80GB 磁盘约 $${gpuState.disk_usd_per_month.toFixed(2)}/月 · ${lifecycle}`;
+  const capacityRetry =
+    gpuState.instance_options?.length === 1
+      ? `正在重试 ${gpuState.instance_type}，不会切换到其他规格`
+      : "正在同一实例上轮换兼容规格重试";
   const minutes = Math.ceil(gpuState.idle_remaining_seconds / 60);
   const messages = {
     stopped: gpuState.disk_retained
       ? "GPU 已停止，磁盘和模型缓存已保留。下次启动将复用同一实例；示例回放仍可使用。"
       : "示例回放可直接使用。首次启动将创建按需 GPU 并下载模型；之后停止时保留磁盘和缓存。",
     starting: waitingCapacity
-      ? `AWS 当前可用区 GPU 容量不足，实例尚未启动。正在同一实例上轮换兼容规格重试，磁盘保留。已等待 ${Math.floor((gpuState.startup_elapsed_seconds || 0) / 60)} 分钟，最多再等待 ${Math.ceil((gpuState.startup_remaining_seconds || 0) / 60)} 分钟。保留磁盘不会预留 GPU 容量，可点击停止取消等待。`
+      ? `AWS 当前可用区 GPU 容量不足，实例尚未启动。${capacityRetry}，磁盘保留。已等待 ${Math.floor((gpuState.startup_elapsed_seconds || 0) / 60)} 分钟，最多再等待 ${Math.ceil((gpuState.startup_remaining_seconds || 0) / 60)} 分钟。保留磁盘不会预留 GPU 容量，可点击停止取消等待。`
       : gpuState.startup_stage === "loading_model"
         ? "GPU 实例已运行，正在加载模型并等待健康检查。"
         : "正在启动按需 GPU，随后加载模型。首次需要下载镜像；超过 20 分钟未就绪会自动停止并保留磁盘。",
     ready: gpuState.busy
       ? "正在执行推理。停止操作会等待当前请求完成。"
-      : `真实模型已就绪。若没有新的推理请求，约 ${minutes} 分钟后自动停止并保留磁盘。`,
+      : autoStop
+        ? `真实模型已就绪。若没有新的推理请求，约 ${minutes} 分钟后自动停止并保留磁盘。`
+        : "真实模型已就绪。GPU 持续运行并按需计费，不因闲置自动停止；可手动停止并保留磁盘。",
     stopping:
       "已停止接收新的推理请求，正在等待任务结束并停止 EC2，磁盘和模型缓存会保留。",
     error: waitingCapacity
@@ -186,7 +200,7 @@ function renderGpu() {
   $("#gpu-message").textContent = messages[phase] || "正在检查资源状态。";
   if (sageMaker) {
     $("#gpu-spec").textContent =
-      `${gpuState.instance_type} · 约 $${gpuState.instance_usd_per_hour}/小时 · 闲置 30 分钟自动停止` +
+      `${gpuState.instance_type} · 约 $${gpuState.instance_usd_per_hour}/小时 · ${lifecycle}` +
       (gpuState.disk_retained
         ? ` · 原 EC2 磁盘保留，约 $${gpuState.disk_usd_per_month.toFixed(2)}/月`
         : "");
@@ -269,6 +283,9 @@ function openGpuDialog(context = "", refresh = true) {
 }
 
 async function ensureGpuReady(context = "") {
+  // Always-on inference never waits for the management API. Unknown initial
+  // state also goes directly to the backend, which enforces readiness/leases.
+  if (!gpuState || gpuState.idle_auto_stop === false) return true;
   await checkGpu();
   if (
     !gpuError &&
@@ -289,6 +306,26 @@ async function ensureGpuReady(context = "") {
   return false;
 }
 
+function diagnoseGpuFailure() {
+  if (gpuFailureCheck || !currentUser || $("#gpu-dialog").open) return;
+  gpuFailureCheck = (async () => {
+    await checkGpu();
+    if (!currentUser || gpuState?.enabled === false) return;
+    if (
+      gpuError ||
+      !gpuState ||
+      gpuState.phase !== "ready" ||
+      gpuState.desired !== "running"
+    )
+      openGpuDialog(
+        "本次模型调用失败。请查看 GPU 状态；恢复就绪后，可返回重新运行。",
+        false,
+      );
+  })().finally(() => {
+    gpuFailureCheck = null;
+  });
+}
+
 function toast(message) {
   const el = $("#toast");
   el.textContent = message;
@@ -300,6 +337,16 @@ function toast(message) {
 }
 async function api(path, body) {
   const started = performance.now();
+  const deciderRequest =
+    body?.mode === "live" &&
+    (["/api/decide", "/api/guard"].includes(path) ||
+      (["/api/crypto/decision", "/api/crypto/loop/tick"].includes(path) &&
+        body.provider === "decider"));
+  const failure = (message, status) => {
+    if (deciderRequest && (status === undefined || status >= 500))
+      diagnoseGpuFailure();
+    return Object.assign(new Error(message), { status });
+  };
   let response;
   try {
     response = await fetch(path, {
@@ -313,7 +360,7 @@ async function api(path, body) {
       signal: AbortSignal.timeout(body ? 195000 : 7000),
     });
   } catch (error) {
-    throw new Error(
+    throw failure(
       error.name === "TimeoutError"
         ? "请求超时，请检查服务状态后重试。"
         : "无法连接演示服务，请确认 Web 服务正在运行。",
@@ -323,7 +370,10 @@ async function api(path, body) {
   try {
     data = await response.json();
   } catch {
-    throw new Error("服务返回了无法读取的响应。");
+    throw failure(
+      "服务返回了无法读取的响应。",
+      response.ok ? undefined : response.status,
+    );
   }
   if (!response.ok) {
     if (response.status === 401 && currentUser) {
@@ -336,8 +386,9 @@ async function api(path, body) {
       detail = detail
         .map((x) => `${x.loc?.slice(1).join(".")}: ${x.msg}`)
         .join("；");
-    throw new Error(
+    throw failure(
       typeof detail === "string" ? detail : `请求失败 (${response.status})`,
+      response.status,
     );
   }
   if (path === "/api/decide" || path === "/api/guard") {
@@ -377,7 +428,6 @@ function showPage() {
       }),
       openGpuDialog,
       ensureGpuReady,
-      refreshGpu: checkGpu,
     });
 }
 
@@ -409,9 +459,11 @@ function selectExample(id) {
     ([id, question]) => ({ id, ...question }),
   );
   $("#state-input").value = selected.state;
+  $("#run-decision").disabled = false;
   $("#scenario-guide").hidden = false;
   $("#selected-category").textContent = selected.category || "基础场景";
   $("#selected-scenario-title").textContent = selected.title;
+  $("#run-scenario").textContent = selected.title;
   $("#selected-question-count").textContent = `${questions.length} 个决策`;
   $("#scenario-description").textContent =
     selected.description || selected.subtitle;
@@ -494,6 +546,7 @@ function criteriaFor(type) {
       : undefined;
 }
 function renderQuestions() {
+  $("#run-question-count").textContent = `${questions.length} 个问题`;
   $("#question-count").textContent = questions.length;
   $("#add-question").disabled = questions.length >= 8;
   $("#questions").innerHTML = questions
@@ -689,9 +742,11 @@ async function runDecision() {
     body = collectRequest();
   } catch (e) {
     showError($("#results"), e.message);
+    $(".result-panel").scrollIntoView({ block: "start", behavior: "smooth" });
     return;
   }
   running = true;
+  $("#run-decision-label").textContent = "运行中…";
   $$(
     "#page-playground input, #page-playground textarea, #page-playground select, #page-playground button",
   ).forEach((el) => {
@@ -707,6 +762,7 @@ async function runDecision() {
       body.mode === "live" ? "推理中" : "读取示例";
     $("#results").innerHTML =
       `<div class="result-loading"><div class="spinner"></div><span>${body.mode === "live" ? "Decider 正在判断…" : "正在读取示例…"}</span></div>`;
+    $(".result-panel").scrollIntoView({ block: "start", behavior: "smooth" });
     stopTimer = startRunTimer($("#results"));
     result = await api("/api/decide", body);
     lastRequest = body;
@@ -722,6 +778,7 @@ async function runDecision() {
   } finally {
     stopTimer();
     running = false;
+    $("#run-decision-label").textContent = "运行决策";
     $$(
       "#page-playground input, #page-playground textarea, #page-playground select, #page-playground button",
     ).forEach((el) => {
@@ -942,6 +999,10 @@ $("#reset-example").addEventListener("click", () => {
   if (selected) selectExample(selected.id);
 });
 $("#run-decision").addEventListener("click", runDecision);
+$("#edit-decision").addEventListener("click", () => {
+  $(".input-panel").scrollIntoView({ block: "start", behavior: "smooth" });
+  $("#state-input").focus({ preventScroll: true });
+});
 $("#run-guard").addEventListener("click", runGuard);
 $("#refresh-connection").addEventListener("click", checkConnection);
 $("#gpu-open").addEventListener("click", () => openGpuDialog());
@@ -951,7 +1012,12 @@ $("#gpu-refresh").addEventListener("click", checkGpu);
 $("#gpu-start").addEventListener("click", () => changeGpu("start"));
 $("#gpu-stop").addEventListener("click", () => changeGpu("stop"));
 setInterval(() => {
-  if (!document.hidden) checkGpu();
+  if (
+    !document.hidden &&
+    ($("#gpu-dialog").open ||
+      ["starting", "stopping"].includes(gpuState?.phase))
+  )
+    checkGpu();
 }, 5000);
 $("#copy-result").addEventListener("click", () => {
   if (result)

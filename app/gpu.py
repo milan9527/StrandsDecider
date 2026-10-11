@@ -40,6 +40,8 @@ def public_state(state, manager):
         if sagemaker
         else {"g6.xlarge": 0.8048, "g6.2xlarge": 0.9776, "g5.xlarge": 1.006}
     )
+    options = list(prices) if sagemaker else state.get("instance_options", list(prices))
+    idle_seconds = 1800 if sagemaker else int(state.get("idle_timeout_seconds", 1800))
     return {
         "enabled": True,
         "can_manage": manager,
@@ -47,8 +49,8 @@ def public_state(state, manager):
         "desired": state["desired"],
         "provider": "sagemaker" if sagemaker else "ec2",
         "instance_type": instance_type,
-        "instance_options": list(prices),
-        "maximum_instance_usd_per_hour": max(prices.values()),
+        "instance_options": options,
+        "maximum_instance_usd_per_hour": max(prices[kind] for kind in options),
         "instance_id": None if sagemaker else state.get("instance_id"),
         "instance_state": state.get("endpoint_status")
         if sagemaker
@@ -61,8 +63,11 @@ def public_state(state, manager):
         "retained_ec2_instance_id": state.get("instance_id") if sagemaker else None,
         "instance_count": int(state.get("instance_count", 0)),
         "busy": int(state.get("busy_until", 0)) > now,
-        "idle_minutes": 30,
-        "idle_remaining_seconds": max(0, int(state.get("last_activity", now)) + 1800 - now),
+        "idle_auto_stop": idle_seconds > 0,
+        "idle_minutes": idle_seconds // 60,
+        "idle_remaining_seconds": max(0, int(state.get("last_activity", now)) + idle_seconds - now)
+        if idle_seconds
+        else None,
         "stop_reason": state.get("stop_reason", ""),
         "startup_stage": state.get("startup_stage", ""),
         "last_error_code": state.get("last_error_code", ""),

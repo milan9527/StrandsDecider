@@ -57,8 +57,16 @@ def main():
     )
     parser.add_argument("--stack", default="strands-decider-demo")
     parser.add_argument("--tag", required=True)
-    parser.add_argument("--disable-controller", action="store_true")
+    controller = parser.add_mutually_exclusive_group()
+    controller.add_argument("--disable-controller", action="store_true")
+    controller.add_argument("--enable-controller", action="store_true")
+    parser.add_argument(
+        "--instance-types", nargs="+", choices=["g6.xlarge", "g6.2xlarge", "g5.xlarge"]
+    )
+    parser.add_argument("--idle-timeout-seconds", type=int, help="0 disables idle shutdown")
     args = parser.parse_args()
+    if args.idle_timeout_seconds is not None and args.idle_timeout_seconds < 0:
+        parser.error("--idle-timeout-seconds must be nonnegative")
     cf = boto3.client("cloudformation", region_name=args.region)
     try:
         existing = cf.describe_stacks(StackName=args.stack + "-gpu")["Stacks"][0]
@@ -119,7 +127,15 @@ def main():
     values = {
         "ControllerState": "DISABLED"
         if args.disable_controller
+        else "ENABLED"
+        if args.enable_controller
         else previous_parameters.get("ControllerState", "ENABLED"),
+        "GpuInstanceTypes": ",".join(args.instance_types)
+        if args.instance_types
+        else previous_parameters.get("GpuInstanceTypes", "g6.xlarge,g6.2xlarge,g5.xlarge"),
+        "IdleTimeoutSeconds": str(args.idle_timeout_seconds)
+        if args.idle_timeout_seconds is not None
+        else previous_parameters.get("IdleTimeoutSeconds", "1800"),
         "VpcId": outputs["VpcId"],
         "PrivateRouteTableId": resources["PrivateRoutes"],
         "ApiSecurityGroup": resources["TaskSecurityGroup"],

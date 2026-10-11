@@ -64,6 +64,11 @@ def main():
         )
         if state.get("provider") == "sagemaker":
             expect(page.locator("#gpu-heading-label")).to_contain_text("SageMaker")
+        elif state.get("idle_auto_stop") is False:
+            assert state["idle_remaining_seconds"] is None
+            expect(page.locator("#gpu-spec")).to_contain_text("持续运行")
+            expect(page.locator("#gpu-spec")).not_to_contain_text("闲置 30 分钟")
+            expect(page.locator("#gpu-stop")).to_have_text("停止 GPU，保留磁盘")
         if target == "stopped":
             assert state["instance_count"] == 0
             if state["instance_id"] and state.get("provider") != "sagemaker":

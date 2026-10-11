@@ -13,11 +13,13 @@ export AUTH_COOKIE_SECURE=false  # 仅本地 HTTP 开发
 uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-打开 **http://localhost:8000**，使用生成文件中的账号密码登录。默认是示例回放，选择场景后点击「运行决策」；快捷键 `Ctrl/⌘ + Enter`。
+打开 **http://localhost:8000**，使用生成文件中的账号密码登录。默认是示例回放，选择场景后点击工作台顶部的「运行决策」；快捷键 `Ctrl/⌘ + Enter`。运行栏显示当前场景、问题数与模式，滚动时保持可见；「编辑输入」定位到上下文，开始运行后自动定位到结果。
 
 示例模式的概率是为教学设置的预设数值，**不是模型输出，也不展示虚构的推理时间或 token 用量**。只允许回放未修改的预设；修改文本或问题后需切换到真实模型。真实推理失败时会直接报错，不会退回示例数据。
 
-AWS 环境的所有模块共用顶部「GPU」管理弹窗。工作台、守卫与支付对比在真实调用前刷新 GPU 状态；未就绪或状态未知时自动弹窗并阻止推理。只有管理员能启停，就绪后返回原模块重新运行。本地未配置 GPU 管理时，继续使用配置的本地模型地址。
+AWS 环境的所有模块共用顶部「GPU」管理弹窗。当前常驻模式直接调用模型，不在每次推理前查询 GPU；页面初始化读取一次管理状态，弹窗打开或启停过渡期间才每 5 秒刷新。真实 Decider 请求遇到连接、超时或服务端错误后异步检查状态，确认未就绪或状态不可用时才弹出恢复提示；参数错误、排队限流和 Bedrock 错误不触发 GPU 弹窗。后端 readiness、推理租约与并发控制保持有效。只有管理员能启停，恢复后手动重试，不自动续跑失败任务。历史闲置释放模式仍保留启动前检查；本地未配置 GPU 管理时使用本地模型地址。
+
+2026-10-11 起，线上使用 EC2 On-Demand `g6.xlarge` 常驻运行，`IdleTimeoutSeconds=0` 禁用闲置停机，`GpuInstanceTypes=g6.xlarge` 限定规格。GPU API 返回 `idle_auto_stop=false`、`idle_remaining_seconds=null`；前端据此显示「持续运行」，不显示闲置倒计时。手动停止仍保留磁盘，启动失败的超时保护仍有效。
 
 ## 时间的含义
 
@@ -27,6 +29,8 @@ AWS 环境的所有模块共用顶部「GPU」管理弹窗。工作台、守卫�
 - **示例回放**：每项标记“未推理”，只显示实际读取示例的总时间；不伪造模型耗时。
 
 官方批处理只提供整批耗时，不能准确分摊到每个问题。界面设置 `measure_decisions: true`，在同一次浏览器请求内依次调用每个问题以获取真实计时；它可能比共享前缀的批量推理更慢。直接调用 API 时省略该参数或设置 `false`，仍使用原来的批处理，不提供单项计时。工作台和工具调用守卫使用同一规则。
+
+界面的「共享上下文」指同一份 `state` 可供多个问题分别作答，例如对同一工单选择团队、判断是否人工介入、评估优先级。问题之间不自动传递答案，也不构成先执行后反馈的闭环。当前逐项计时模式是一条浏览器业务请求对应多次模型调用，因此页面使用「同一份信息，多个独立问题」，避免把 API 请求数和模型调用次数混淆。
 
 ## 运行真实模型
 
@@ -146,7 +150,7 @@ uv run --with strands-agents python -m examples.strands_agent \
 | `GET /api/health`       | 检查真实模型连接、模型名称与设备                                             |
 | `GET /api/gpu`          | 查看按需 GPU 状态、实例、费用参考与管理权限                                  |
 | `POST /api/gpu/start`   | 管理员申请启动 GPU，返回 202，后台异步执行                                   |
-| `POST /api/gpu/stop`    | 管理员申请停止，等待已有推理完成后删除 SageMaker 推理 Endpoint，保留模型镜像 |
+| `POST /api/gpu/stop`    | 管理员申请停止，等待已有推理完成后停止 EC2，保留磁盘与模型缓存；历史 SageMaker 模式删除 Endpoint |
 | `GET /api/examples`     | 获取 16 个场景的分类、说明、修改提示、上下文和问题                           |
 | `POST /api/decide`      | 示例回放或官方 System One 推理                                               |
 | `POST /api/guard`       | 执行两项工具检查并返回策略结果                                               |
@@ -190,9 +194,9 @@ uv run --extra dev ruff check app tests examples scripts
 node --check frontend/static/app.js   # 可选 JavaScript 语法检查
 ```
 
-156 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。
+160 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、常驻与手动停机、固定机型、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。
 
-支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗且拦截真实启停与模型请求。生成演示资料的命令与依赖见 [演示材料说明](presentations/v2/README.md)。
+支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗及历史闲置释放模式。`check_direct_run_browser.py` 验证常驻模式直接调用、失败后检查、停止常规轮询、错误分类，以及首屏与滚动时的运行栏。这两项 GPU 浏览器测试均拦截真实启停与模型请求，不作为真实性能样本。演示资料最新版本见 [25 页 v5 EC2 说明](presentations/v5/README.md)，使用 `scripts/build_presentation_v5.py` 基于 v4 重绘当前架构，保留并标注原测速环境；历史 [v4](presentations/v4/README.md)、[v3 图表构建说明](presentations/v3/README.md) 与 [v2 采集说明](presentations/v2/README.md) 保留。
 
 浏览器端检查（需要已启动的 Web 服务）：
 

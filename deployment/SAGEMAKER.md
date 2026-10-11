@@ -1,5 +1,7 @@
 # SageMaker GPU
 
+> 历史部署方案：2026-10-11 已切换到 EC2 On-Demand `g6.xlarge` 常驻运行。SageMaker Endpoint 已释放，`ControllerState=DISABLED`；Model、EndpointConfig 和镜像保留。当前运维见 [README.md](README.md)。下文的闲置释放规则仅适用于此历史 SageMaker 方案。
+
 前端仍为私有 S3 + CloudFront OAC，业务 API 仍运行于 ECS Fargate。模型改为 us-east-1 的 SageMaker 实时推理 Endpoint，使用 `ml.g6.xlarge`（L4 24GB），2026-10-09 查询的计算参考价为 **$1.1267/小时**。
 
 ```mermaid

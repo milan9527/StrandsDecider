@@ -1396,6 +1396,121 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
 }
+.decision-actions {
+  position: sticky;
+  top: 12px;
+  z-index: 8;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+  border: 1px solid #c8dba6;
+  border-radius: 12px;
+  background: #fcfef7;
+  box-shadow: 0 5px 18px #34452512;
+}
+.decision-selection,
+.decision-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.decision-selection {
+  flex: 1;
+}
+.decision-selection > div {
+  min-width: 0;
+}
+.decision-selection strong {
+  display: block;
+  font-size: 14px;
+  color: #344525;
+}
+#run-question-count {
+  display: block;
+  font-size: 11px;
+  color: #7b856e;
+  margin-top: 4px;
+}
+.decision-action-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  background: #edf4dd;
+  color: #687c49;
+  border-radius: 9px;
+}
+.decision-action-icon svg {
+  width: 20px;
+  height: 20px;
+}
+.decision-actions .mode-switch button {
+  min-height: 36px;
+  font-size: 12px;
+  padding: 7px 12px;
+}
+.decision-actions .primary-button {
+  min-height: 46px;
+  padding: 11px 20px;
+  font-size: 14px;
+}
+.decision-actions .mode-caption {
+  flex-basis: 100%;
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-size: 11px;
+  color: #7b856e;
+}
+#edit-decision {
+  margin-left: auto;
+  white-space: nowrap;
+}
+#page-playground .input-panel,
+#page-playground .result-panel {
+  scroll-margin-top: 155px;
+}
+@media (max-width: 1000px) {
+  .decision-selection,
+  .decision-controls {
+    flex-basis: 100%;
+  }
+  .decision-controls {
+    justify-content: space-between;
+  }
+  #page-playground .input-panel,
+  #page-playground .result-panel {
+    scroll-margin-top: 200px;
+  }
+}
+@media (max-width: 650px) {
+  .decision-actions {
+    top: 8px;
+    padding: 13px;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .decision-controls {
+    gap: 8px;
+  }
+  .decision-actions .mode-switch button {
+    font-size: 10px;
+    padding: 6px 8px;
+  }
+  .decision-actions .primary-button {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+  .decision-actions .mode-caption {
+    font-size: 10px;
+  }
+}
 .input-body {
   flex: 1;
 }

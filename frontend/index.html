@@ -10,9 +10,9 @@
     />
     <title>Strands Decider · 决策实验室</title>
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/static/styles.css?v=crypto10" />
+    <link rel="stylesheet" href="/static/styles.css?v=direct-run1" />
     <link rel="stylesheet" href="/static/crypto.css?v=crypto10" />
-    <script src="/static/app.js?v=crypto10" type="module"></script>
+    <script src="/static/app.js?v=direct-run1" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -223,6 +223,32 @@
             </div>
           </div>
 
+          <section class="decision-actions" aria-label="运行决策">
+            <div class="decision-selection">
+              <span class="decision-action-icon" data-icon="route"></span>
+              <div>
+                <strong id="run-scenario">选择决策场景</strong>
+                <span id="run-question-count"></span>
+              </div>
+              <button id="edit-decision" class="text-button">编辑输入</button>
+            </div>
+            <div class="decision-controls">
+              <div class="mode-switch" role="group" aria-label="运行模式">
+                <button data-mode="example" class="active">示例回放</button>
+                <button data-mode="live">
+                  <span class="status-dot"></span>真实模型
+                </button>
+              </div>
+              <button id="run-decision" class="primary-button" disabled>
+                <span data-icon="play"></span>
+                <span id="run-decision-label">运行决策</span><kbd>⌘ ↵</kbd>
+              </button>
+            </div>
+            <p class="mode-caption" id="mode-caption">
+              示例回放使用预设数据，不调用模型。修改输入后请切换到真实模型。
+            </p>
+          </section>
+
           <div class="concept-strip">
             <div>
               <span class="concept-icon" data-icon="route"></span>
@@ -241,7 +267,7 @@
             <div class="concept-last">
               <span data-icon="zap"></span>
               <p>
-                <strong>共享上下文</strong><span>一次请求，多个独立判断</span>
+                <strong>共享上下文</strong><span>同一份信息，多个独立问题</span>
               </p>
             </div>
           </div>
@@ -320,21 +346,6 @@
                   <span data-icon="info"></span
                   >每个问题独立作答，共享同一段上下文。
                 </p>
-              </div>
-              <div class="run-footer">
-                <div class="mode-switch" role="group" aria-label="运行模式">
-                  <button data-mode="example" class="active">示例回放</button
-                  ><button data-mode="live">
-                    <span class="status-dot"></span>真实模型
-                  </button>
-                </div>
-                <button id="run-decision" class="primary-button">
-                  <span data-icon="play"></span><span>运行决策</span
-                  ><kbd>⌘ ↵</kbd>
-                </button>
-              </div>
-              <div class="mode-caption" id="mode-caption">
-                示例回放使用预设数据，不调用模型。修改输入后请切换到真实模型。
               </div>
             </section>
 

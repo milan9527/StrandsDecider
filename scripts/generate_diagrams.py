@@ -397,7 +397,7 @@ def architecture():
     p = Page(
         "01  AWS 部署架构",
         "architecture",
-        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · SageMaker GPU 与 Bedrock 对比",
+        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 On-Demand GPU 与 Bedrock 对比",
         width=1800,
         height=1620,
         aws_style=True,
@@ -420,7 +420,7 @@ def architecture():
         "vpc",
         440,
         480,
-        440,
+        740,
         620,
         "应用 VPC · 无 Internet 默认路由",
         group=True,
@@ -431,7 +431,7 @@ def architecture():
         "subnet",
         465,
         550,
-        325,
+        680,
         500,
         "私有子网组 · 2 个 AZ",
         group=True,
@@ -489,13 +489,13 @@ def architecture():
     )
     p.box(
         "sm",
-        1260,
-        645,
-        350,
+        825,
+        605,
+        300,
         190,
-        "Amazon SageMaker AI\nDecider v19 · 实时推理 Endpoint\nml.g6.xlarge · NVIDIA L4 / CUDA\n网络隔离 · 权重预置于镜像",
+        "Amazon ECS / Amazon EC2\nDecider v19 · g6.xlarge / L4\nOn-Demand · GPU 持续运行\n私网 HTTP · 权重预置于镜像",
         size=17,
-        icons=("sagemaker",),
+        icons=("ecs", "ec2"),
     )
     p.box(
         "br",
@@ -523,7 +523,7 @@ def architecture():
         1150,
         300,
         175,
-        "AWS Lambda · GPU 控制器\n按请求创建 / 删除 Endpoint\n闲置 30 分钟自动删除",
+        "AWS Lambda · GPU 控制器\n手动启动 / 停止 EC2\n禁用闲置停机 · 固定 g6.xlarge",
         size=17,
         icons=("lambda",),
     )
@@ -543,7 +543,7 @@ def architecture():
         1360,
         640,
         80,
-        "保留 ECR 模型镜像、SageMaker Model / EndpointConfig\n下次启动复用配置；仍需分配 GPU 并加载模型",
+        "ECR 模型镜像 · 80GB 加密 EBS / 模型缓存\n手动停止保留磁盘；GPU 常驻运行，按小时计费",
         size=16,
         icons=("ecr",),
         side=True,
@@ -574,10 +574,10 @@ def architecture():
     p.edge(
         "api",
         "sm",
-        [(770, 850), (950, 850), (950, 735), (1260, 735)],
-        "调用 Decider",
+        [(770, 850), (800, 850), (800, 710), (825, 710)],
+        "私网调用 Decider",
         color=TEAL,
-        at=(1100, 710),
+        at=(990, 845),
     )
     p.edge(
         "api",
@@ -607,11 +607,11 @@ def architecture():
     p.edge(
         "lambda",
         "sm",
-        [(1100, 1190), (1230, 1190), (1230, 805), (1260, 805)],
-        "创建 / 删除推理 Endpoint",
+        [(1100, 1190), (1180, 1190), (1180, 815), (975, 815), (975, 795)],
+        "启停 EC2 · 保留磁盘",
         color=ORANGE,
         dashed=True,
-        at=(1370, 1085),
+        at=(1040, 1130),
     )
     p.box(
         "legend",
@@ -680,7 +680,7 @@ def comparison():
         490,
         570,
         110,
-        "SageMaker InvokeEndpoint → Decider v19\n官方 System One 模型服务 / L4 GPU\nGPU 租约与串行推理；独立测量每步",
+        "私网 HTTP → ECS on EC2 / Decider v19\n官方 System One 模型服务 / L4 GPU\nGPU 租约与串行推理；独立测量每步",
         "teal",
     )
     p.box(
@@ -887,7 +887,7 @@ def closed_loop():
         size=20,
     )
     for key, x, title, palette, color in (
-        ("d", 55, "Strands Decider · SageMaker", "teal", TEAL),
+        ("d", 55, "Strands Decider · EC2 GPU", "teal", TEAL),
         ("g", 835, "GPT-6.1 Sol · Bedrock", "blue", BLUE),
     ):
         p.box(key, x, 305, 710, 880, title, palette, group=True)

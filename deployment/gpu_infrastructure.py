@@ -389,6 +389,8 @@ def template():
                     "GPU_SERVICE": attr("GpuService", "Name"),
                     "GPU_OWNER": ref("AWS::StackName"),
                     "GPU_LAUNCH_TEMPLATE": ref("LaunchTemplate"),
+                    "GPU_INSTANCE_TYPES": ref("GpuInstanceTypes"),
+                    "GPU_IDLE_TIMEOUT_SECONDS": ref("IdleTimeoutSeconds"),
                     "GPU_SUBNETS": {
                         "Fn::Join": [
                             ",",
@@ -435,6 +437,17 @@ def template():
             for index in (4, 5)
         },
         "Parameters": {
+            "GpuInstanceTypes": {
+                "Type": "String",
+                "Default": "g6.xlarge,g6.2xlarge,g5.xlarge",
+                "AllowedPattern": "(g6\\.xlarge|g6\\.2xlarge|g5\\.xlarge)(,(g6\\.xlarge|g6\\.2xlarge|g5\\.xlarge))*",
+            },
+            "IdleTimeoutSeconds": {
+                "Type": "Number",
+                "Default": 1800,
+                "MinValue": 0,
+                "Description": "Idle stop threshold; 0 keeps the GPU running until manually stopped.",
+            },
             "ControllerState": {
                 "Type": "String",
                 "Default": "ENABLED",

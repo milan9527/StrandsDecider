@@ -1,0 +1,280 @@
+{
+  "generated_at": "2026-10-10T14:13:26.986028+00:00",
+  "slides": [
+    {
+      "title": "让小模型做好高频决策",
+      "section": "决策模型与支付业务 / v4 · 25 页",
+      "dark": true,
+      "original_narrative_pages": [
+        1
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "软件流程，需要大量小而明确的判断",
+      "section": "01 / 为什么需要决策模型",
+      "dark": false,
+      "original_narrative_pages": [
+        2
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "决策模型：状态输入，类型化答案输出",
+      "section": "01 / Decision Models · System One",
+      "dark": false,
+      "original_narrative_pages": [
+        2,
+        4
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "Jev 与 Strands Decider：同一方向，两种实现",
+      "section": "01 / 代表性模型",
+      "dark": false,
+      "original_narrative_pages": [
+        2,
+        3
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "Strands Decider：用候选评分头完成选择",
+      "section": "02 / 模型原理",
+      "dark": false,
+      "original_narrative_pages": [
+        3
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "同样的候选，走两条决策路径",
+      "section": "模型与原理",
+      "dark": false,
+      "original_narrative_pages": [
+        3,
+        5
+      ],
+      "reused_v3_slide": 3
+    },
+    {
+      "title": "BERT、Decider、GPT：适配方式一页看懂",
+      "section": "模型与原理",
+      "dark": false,
+      "original_narrative_pages": [
+        5
+      ],
+      "reused_v3_slide": 5
+    },
+    {
+      "title": "适用场景：候选清晰，结果可检查",
+      "section": "02 / 从模型走向应用",
+      "dark": false,
+      "original_narrative_pages": [
+        6
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "一套业务后端，对接两种模型",
+      "section": "项目架构",
+      "dark": false,
+      "original_narrative_pages": [
+        7,
+        8
+      ],
+      "reused_v3_slide": 6
+    },
+    {
+      "title": "四个支付场景，贯穿五个业务节点",
+      "section": "演示设计",
+      "dark": false,
+      "original_narrative_pages": [
+        10,
+        13
+      ],
+      "reused_v3_slide": 7
+    },
+    {
+      "title": "比较方法：同一业务输入，独立执行",
+      "section": "03 / 支付对比设计",
+      "dark": false,
+      "original_narrative_pages": [
+        11
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "真实界面：同一输入，输出与耗时并排看",
+      "section": "固定输入 / 过程",
+      "dark": false,
+      "original_narrative_pages": [
+        12
+      ],
+      "reused_v3_slide": 9
+    },
+    {
+      "title": "五步对照：耗时差异贯穿每次选择",
+      "section": "固定输入 / USDC",
+      "dark": false,
+      "original_narrative_pages": [
+        14
+      ],
+      "reused_v3_slide": 10
+    },
+    {
+      "title": "同一审批问题，为什么选择不一样？",
+      "section": "固定输入 / 决策差异",
+      "dark": false,
+      "original_narrative_pages": [
+        15,
+        21
+      ],
+      "reused_v3_slide": 11
+    },
+    {
+      "title": "处理 5/5 步，资金仍在等待确认",
+      "section": "固定输入 / 结果",
+      "dark": false,
+      "original_narrative_pages": [
+        13
+      ],
+      "reused_v3_slide": 12
+    },
+    {
+      "title": "退款差异：模型想执行，条件是否允许？",
+      "section": "固定输入 / 退款",
+      "dark": false,
+      "original_narrative_pages": [
+        16
+      ],
+      "reused_v3_slide": 16
+    },
+    {
+      "title": "继续推进：证据更新后，再判断与执行",
+      "section": "03 / 反馈执行 · 1 / 2",
+      "dark": false,
+      "original_narrative_pages": [
+        17,
+        18,
+        19
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "执行结果：两组业务，双方均完成",
+      "section": "03 / 反馈执行 · 2 / 2",
+      "dark": false,
+      "original_narrative_pages": [
+        18,
+        19
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "19 组成功配对，累计决策耗时相差 12.20×",
+      "section": "速度对比 / 总览",
+      "dark": true,
+      "original_narrative_pages": [
+        20
+      ],
+      "reused_v3_slide": 13
+    },
+    {
+      "title": "按场景比较：相同输入下的累计耗时",
+      "section": "速度对比 / 四类场景",
+      "dark": false,
+      "original_narrative_pages": [
+        20
+      ],
+      "reused_v3_slide": 15
+    },
+    {
+      "title": "按节点比较：每次判断平均花多久",
+      "section": "速度对比 / 业务节点",
+      "dark": false,
+      "original_narrative_pages": [
+        20,
+        22
+      ],
+      "reused_v3_slide": 14
+    },
+    {
+      "title": "本轮对比：速度、规则选择与实际执行",
+      "section": "04 / 如何理解测试结果",
+      "dark": false,
+      "original_narrative_pages": [
+        20,
+        21,
+        22
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "在支付流程中，按任务分工组合使用",
+      "section": "适用方式",
+      "dark": false,
+      "original_narrative_pages": [
+        6,
+        24
+      ],
+      "reused_v3_slide": 24
+    },
+    {
+      "title": "总结：用合适的模型，完成明确的判断",
+      "section": "05 / 结论",
+      "dark": true,
+      "original_narrative_pages": [
+        24
+      ],
+      "reused_v3_slide": null
+    },
+    {
+      "title": "打开 Demo，查看代码与实测记录",
+      "section": "05 / 演示与复现",
+      "dark": false,
+      "original_narrative_pages": [
+        23,
+        25
+      ],
+      "reused_v3_slide": null
+    }
+  ],
+  "base_file": "Strands-Decider-模型原理与支付业务演示.pptx",
+  "base_sha256": "2cec652ba32a24853d0c4bf45b8bfae4854fb1c2bafcaf851f89140a7e624f55",
+  "reused_file": "docs/presentations/v3/Strands-Decider-模型原理与支付业务演示-v3-25页-20261010.pptx",
+  "reused_sha256": "836967e2156b98364e26b7ae3a098df40b400d703309eeb825d559a0697bb2f4",
+  "pptx_sha256": "0ae56728689e6ac0f1fb9bd185710ad94d8304f4c7d43f839a8587eea9e5eb5f",
+  "benchmark_file": "docs/results/benchmark-2026-10-10.json",
+  "benchmark_sha256": "29e0d5a419035f425187bdcbf11db35be351440df1f1a203bdebe767b78d2a9f",
+  "loop_sha256": "9abb4c0ae0e6fc35ee747ba0319fc3abcd50098ba0261239f7fa33c8e94cdd5b",
+  "source_capture_manifest": "docs/presentations/v2/capture-manifest.json",
+  "source_crop_manifest": "docs/presentations/v3/build-manifest.json",
+  "capture_date": "2026-10-10",
+  "new_model_calls": false,
+  "benchmark_models": [
+    "Strands Decider v19",
+    "Bedrock GPT-6.1 Sol"
+  ],
+  "jev_benchmarked": false,
+  "bert_benchmarked": false,
+  "feedback_slides": [
+    17,
+    18
+  ],
+  "bert_slides": [
+    7
+  ],
+  "successful_pairs": 19,
+  "failed_requests": {
+    "decider": 0,
+    "bedrock": 1
+  },
+  "demo_url": "https://d3i7ogfx5ml7dc.cloudfront.net/#crypto",
+  "repo_url": "https://github.com/milan9527/StrandsDecider",
+  "qr_files": {
+    "demo-qr.png": "164a8b66fea6a74a1fa5a52e8084c3d107dab457ab2c60a38c628da7ca031a08",
+    "repo-qr.png": "f7020a757cd9974bd2f394b7094c42fc5be0e75acf3ebeb1a80db1aa67b5d2fe"
+  }
+}

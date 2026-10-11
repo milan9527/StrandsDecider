@@ -1,12 +1,14 @@
 # AWS 部署
 
-**应用使用 SageMaker GPU，真实 CUDA 推理已通过验收。** 当前架构、启停和更新步骤见 [SAGEMAKER.md](SAGEMAKER.md)，实际部署状态见 [DEPLOYED.md](DEPLOYED.md)。本文保留原 EC2 GPU 部署与回退运维说明；原 EC2 已停止，磁盘继续保留，控制器已禁用。
+**当前使用 EC2 On-Demand `g6.xlarge`，持续运行，禁用闲置自动停机。** API 仍为 ECS Fargate，模型服务运行在 ECS on EC2；实际部署状态见 [DEPLOYED.md](DEPLOYED.md)。[SAGEMAKER.md](SAGEMAKER.md) 保留此前方案，SageMaker Endpoint 已释放、控制器禁用。
 
 前端和后端分别发布。浏览器只访问一个 CloudFront HTTPS 域名，`/api/*` 由 CloudFront 转发到 ECS，无需跨域配置。
 
 当前访问地址：**https://d3i7ogfx5ml7dc.cloudfront.net**。资源标识和验收记录见 [DEPLOYED.md](DEPLOYED.md)。
 
 独立的加密支付业务台及 Bedrock GPT-6.1 Sol 对比说明见 [CRYPTO.md](CRYPTO.md)。
+
+配套演示资料见 [25 页 v5 EC2 部署版](../docs/presentations/v5/README.md)：当前架构与调用路径已同步为 ECS on EC2；历史测速图表保留原采集环境说明。
 
 ```mermaid
 flowchart LR
@@ -36,7 +38,7 @@ flowchart LR
 - VPC 附加了 Internet Gateway，这是 CloudFront VPC Origin 的 AWS 前置要求；它不为私有子网提供互联网路由。
 - API：Linux ARM64 Fargate，0.25 vCPU / 0.5 GiB，常驻 1 个 Task。
 - 模型：独立 ECS EC2 服务，x86_64 NVIDIA L4 / A10G 24GB，CUDA BF16 推理。模型权重随镜像发布；GPU 内核预热后才报告健康。
-- 购买方式：On-Demand，最多一台。首次创建按 `g6.xlarge`（$0.8048/小时）、`g6.2xlarge`（$0.9776/小时）、`g5.xlarge`（$1.006/小时）依次尝试，每种规格先遍历五个 AZ；仅明确容量不足才切换，结果不确定时用同一幂等请求重试。当前已取得 `us-east-1f` 的 `g5.xlarge`，后续直接启动这台实例。价格为 2026-10-09 us-east-1 Linux 按需实例参考价，EBS 另计。
+- 购买方式：On-Demand，最多一台活动 GPU，当前为 `us-east-1d` 的 `g6.xlarge`（$0.8048/小时，2026-10-11 查询）。`GpuInstanceTypes=g6.xlarge` 禁止自动切到更贵规格。原 `us-east-1f` 实例停止保留，标记为 `strands-decider-demo-gpu-retained`，不参与控制器调度；其 80GB 磁盘另计。
 - 可用性：API 使用滚动更新及失败回滚；GPU 为单实例演示配置。停止和启动期间真实推理不可用，按需实例的再次启动也可能遇到容量不足，未购买容量预留。
 - 健康检查：API 的 `/api/live`、ALB 的 `/api/ready` 不依赖 GPU 在线；登录和示例回放始终可用。`/api/health` 单独检查真实模型。
 - 日志：CloudWatch `/ecs/strands-decider-demo`，保留 14 天。
@@ -50,15 +52,17 @@ flowchart LR
 
 管理员 `admin` 登录后，使用页面上的「启动 GPU」和「停止 GPU，保留磁盘」。后台每分钟协调一次实际资源。其他已登录用户可以查看状态和使用就绪的模型；管理用户由 API 的 `GPU_MANAGERS` 配置限定。
 
+常驻模式的工作台、工具守卫和支付对比直接提交推理，不等待前端 GPU 状态查询。页面初始化读取一次状态，管理弹窗打开或启停期间再轮询；Decider 调用失败后才检查 GPU 并按需提示恢复。后端继续校验 readiness、推理租约与并发限制。工作台顶部固定显示场景、模式和「运行决策」，滚动编辑时仍可操作。
+
 - 首次启动：控制器通过 Launch Template 创建一台按需 GPU，模型权重随镜像下载到根卷。ECS 任务健康后发布私网地址。
 - 再次启动：对已保存的实例执行 `StartInstances`，复用同一实例、80GB 加密 gp3 根卷与 Docker 镜像。`ECS_IMAGE_PULL_BEHAVIOR=prefer-cached` 避免重复拉取已有镜像；`/opt/decider-cache` 持久保存 Triton、CUDA 和 Hugging Face 缓存。模型仍须加载到显存，Stop 不保留内存。
 - 停止：立即停止接收新推理，等待已有推理结束，先将模型服务任务数设为 0，确认无运行或待启动任务后执行 `StopInstances`。实例 ID 与根卷保留，控制器没有终止实例的权限。
-- 闲置：最后一次推理结束 30 分钟后，在下一次后台检查时自动停止。刷新页面和查询状态不会重置闲置时间。
+- 闲置：当前 `IdleTimeoutSeconds=0`，无论闲置多久都保持运行。若以后需要自动停止，可在停止 GPU 后部署 `--idle-timeout-seconds 1800`，恢复 30 分钟策略。
 - 启动失败：等待容量或模型启动超过 20 分钟后自动停止并显示错误；已创建的磁盘继续保留，可以重新启动。
 - 并发保护：DynamoDB 条件更新协调多 API Task 和控制器；推理占用具有过期时间，API 失败后保留缓冲期，避免网络超时立即停止仍在运行的 CUDA 工作。
 - GPU 停止时不收 EC2 计算费，80GB gp3 磁盘约 $6.40/月。页面显示当前规格和计算单价；示例回放、登录及常驻 API 继续运行。
 
-启停均为异步操作。本次复用启动到页面显示就绪实测约 3 分 51 秒；正常停止也需要数分钟，页面显示「已停止」后才允许再次启动。
+启停均为异步操作。历史旧 EC2 复用启动实测约 3 分 51 秒，不能当作当前新实例的启动时间；正常停止也需要数分钟，页面显示「已停止」后才允许再次启动。
 
 没有使用 Auto Scaling Group。EC2 实例由控制器通过项目标签和 DynamoDB 记录管理，CloudFormation 管理其启动模板、角色、子网和服务；因此完整清理时需要显式终止保留的实例，见下文。
 
@@ -113,6 +117,10 @@ python deployment/deploy.py --region us-east-1 \
 uv run --extra model python deployment/package_model.py
 python deployment/build_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG
 python deployment/deploy_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG
+
+# 当前固定 g6.xlarge、常驻运行的控制配置（修改前先手动停止 GPU）
+python deployment/deploy_gpu.py --region us-east-1 --tag YOUR_UNIQUE_GPU_TAG \
+  --enable-controller --instance-types g6.xlarge --idle-timeout-seconds 0
 ```
 
 GPU 镜像在临时 x86 CodeBuild 环境中构建，随后推送到项目 ECR；成功后删除临时 S3 数据与构建 stack。构建失败时保留资源用于排查，重试或清理前先查看 `.deployment/gpu-build.json`，避免丢失诊断信息。首次部署按以下顺序进行：
@@ -194,15 +202,15 @@ uv run python -m scripts.check_scenarios \
 
 S3 对象的匿名直连必须返回 `403`；通过 CloudFront 则应返回 `200`。未登录访问业务 API 返回 `401`。GPU 就绪时 `/api/health` 返回 `connected: true`、`device: cuda`；停止时返回未连接，但 API readiness 和示例接口仍成功。
 
-固定运行成本主要来自 Fargate 0.25 vCPU / 0.5 GiB、ALB、9 个 interface endpoint ENI 和保留的 80GB gp3 磁盘；另外按用量收取 DynamoDB、Lambda、ECR、CloudFront、S3、日志及数据处理费用。DynamoDB gateway endpoint 无小时费。GPU 启动及运行期间另收按需计算费，当前 `g5.xlarge` 为 $1.006/小时，运行 10 分钟约 $0.168；EC2 按秒计费、每次启动最低 60 秒。停止后计算费停止，磁盘与常驻服务费用继续。
+固定运行成本包含 GPU `g6.xlarge`、Fargate 0.25 vCPU / 0.5 GiB、ALB、VPC interface endpoints 和 EBS；另外按用量收取 DynamoDB、Lambda、ECR、CloudFront、S3、日志及数据处理费用。DynamoDB gateway endpoint 无小时费。GPU 为 $0.8048/小时，730 小时约 $587.50；EC2 按秒计费、每次启动最低 60 秒。当前实例和旧回退实例各保留一块 80GB gp3 磁盘，合计约 $12.80/月。停止后计算费停止，磁盘与常驻服务费用继续。
 
 ## 清理
 
-日常结束演示只需点击「停止 GPU，保留磁盘」，不要执行完整清理。
+当前按要求常驻运行，结束演示无需停止。如需主动停止计费，可点击「停止 GPU，保留磁盘」，不要执行完整清理。
 
 完整删除环境时：
 
 1. 从页面停止 GPU，确认 EC2 为 `stopped`、GPU ECS 服务任务数为 0。
-2. 通过 `DeciderGpuStack=strands-decider-demo-gpu` 标签定位该实例，记录所需数据后显式终止它，并等待终止完成。根卷设置 `DeleteOnTermination=true`，这一步会删除保留的模型和缓存；跳过会阻止子网删除。
+2. 通过 `DeciderGpuStack=strands-decider-demo-gpu` 和 `DeciderGpuStack=strands-decider-demo-gpu-retained` 标签定位当前实例及旧回退实例，记录所需数据后显式终止它们，并等待终止完成。根卷设置 `DeleteOnTermination=true`，这一步会删除保留的模型和缓存；跳过会阻止子网删除。
 3. 删除 GPU stack，再删除主 stack。GPU 控制表和控制器随 GPU stack 删除。
 4. 主 stack 的认证 DynamoDB、前端 S3、ECR 和日志采用 `Retain`，完整清理需要另行删除这些数据，以及 `/strands-decider-demo/migrated-us-east-2/` 下的三个历史日志组。版本化 S3 bucket 必须先清理所有对象版本及删除标记。CloudFront VPC Origin 的删除可能需要数分钟。

@@ -18,7 +18,7 @@
   </defs>
   <rect width="100%" height="100%" fill="#ffffff" />
   <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#232f3e" text-anchor="start" font-weight="700">01  AWS 部署架构</text>
-  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · SageMaker GPU 与 Bedrock 对比</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 On-Demand GPU 与 Bedrock 对比</text>
   <rect x="360" y="140" width="1380" height="1370" rx="0" fill="#ffffff" stroke="#232f3e" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 40 40" version="1.1" x="372" y="150" aria-hidden="true">
     <title>Icon-Architecture-Group/32/AWS-Cloud-logo_32</title>
@@ -37,7 +37,7 @@
     </g>
   </svg>
   <text x="458" y="433.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#232f3e" text-anchor="start" font-weight="700">AWS Region · us-east-1</text>
-  <rect x="440" y="480" width="440" height="620" rx="0" fill="#ffffff" stroke="#8c4fff" stroke-width="1.5" />
+  <rect x="440" y="480" width="740" height="620" rx="0" fill="#ffffff" stroke="#8c4fff" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 80 80" version="1.1" x="452" y="490" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-Virtual-Private-Cloud_64</title>
     <g id="vpc-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -48,7 +48,7 @@
     </g>
   </svg>
   <text x="498" y="513.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#232f3e" text-anchor="start" font-weight="700">应用 VPC · 无 Internet 默认路由</text>
-  <rect x="465" y="550" width="325" height="500" rx="0" fill="#f2faf8" stroke="#00a4a6" stroke-width="1.5" />
+  <rect x="465" y="550" width="680" height="500" rx="0" fill="#f2faf8" stroke="#00a4a6" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 40 40" version="1.1" x="477" y="560" aria-hidden="true">
     <title>Icon-Architecture-Group/32/Private-subnet_32</title>
     <g id="subnet-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -121,19 +121,28 @@
   <text x="630.0" y="930.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">FastAPI · 无公网 IP</text>
   <text x="630.0" y="956.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">认证 · 构造输入 · 计时</text>
   <text x="630.0" y="981.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">固定对比 / 反馈闭环 · 执行保护</text>
-  <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="1407.0" y="655" aria-hidden="true">
-    <title>Icon-Architecture/64/Arch_Amazon-SageMaker_64</title>
+  <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="913.0" y="615" aria-hidden="true">
+    <title>Icon-Architecture/64/Arch_Amazon-Elastic-Container-Service_64</title>
     <g id="sm-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-      <g id="sm-icon-0-3" fill="#01A88D">
+      <g id="sm-icon-0-3" fill="#ED7100">
         <rect id="sm-icon-0-4" x="0" y="0" width="80" height="80" />
       </g>
-      <path d="M54.034,26.0335731 C54.034,26.5935654 53.578,27.0495592 53.017,27.0495592 C52.458,27.0495592 52.002,26.5935654 52.002,26.0335731 C52.002,25.4735807 52.458,25.0175869 53.017,25.0175869 C53.578,25.0175869 54.034,25.4735807 54.034,26.0335731 L54.034,26.0335731 Z M48.002,36.000437 C48.002,35.4494445 48.45,35.0004506 49.002,35.0004506 C49.554,35.0004506 50.002,35.4494445 50.002,36.000437 C50.002,36.5514294 49.554,37.0004233 49.002,37.0004233 C48.45,37.0004233 48.002,36.5514294 48.002,36.000437 L48.002,36.000437 Z M48.002,55.0001775 C48.002,54.449185 48.45,54.0001912 49.002,54.0001912 C49.554,54.0001912 50.002,54.449185 50.002,55.0001775 C50.002,55.55117 49.554,56.0001639 49.002,56.0001639 C48.45,56.0001639 48.002,55.55117 48.002,55.0001775 L48.002,55.0001775 Z M58.002,42.000355 C58.002,42.5513475 57.554,43.0003414 57.002,43.0003414 C56.45,43.0003414 56.002,42.5513475 56.002,42.000355 C56.002,41.4493626 56.45,41.0003687 57.002,41.0003687 C57.554,41.0003687 58.002,41.4493626 58.002,42.000355 L58.002,42.000355 Z M65,45.2723104 L59.963,42.3823498 C59.979,42.2563515 60.002,42.1313532 60.002,42.000355 C60.002,40.3463776 58.656,39.000396 57.002,39.000396 C55.347,39.000396 54.002,40.3463776 54.002,42.000355 C54.002,43.6543324 55.347,45.0003141 57.002,45.0003141 C57.801,45.0003141 58.523,44.6813184 59.061,44.1713254 L63.886,46.9392876 L59.555,49.105258 C59.216,49.2752557 59.002,49.621251 59.002,50.0002458 L59.002,58.4411305 L46.983,65.8370295 L41.003,62.4200762 L41.003,56.0001639 L46.186,56.0001639 C46.6,57.161148 47.7,58.0001366 49.002,58.0001366 C50.656,58.0001366 52.002,56.6541549 52.002,55.0001775 C52.002,53.3452001 50.656,52.0002185 49.002,52.0002185 C47.7,52.0002185 46.6,52.838207 46.186,54.0001912 L41.003,54.0001912 L41.003,40.0003823 C41.003,39.6493871 40.818,39.3233916 40.517,39.1423941 L35.516,36.142435 L34.487,37.8574116 L39.003,40.5663746 L39.003,43.5073345 L33.002,48.1232714 L33.002,44.0003277 C33.002,43.6963319 32.864,43.4083358 32.627,43.2193384 L28.002,39.5193889 L28.002,34.535457 L33.556,30.8325075 C33.835,30.6465101 34.002,30.3345143 34.002,30.0005189 L34.002,24.0006008 L32.002,24.0006008 L32.002,29.4655262 L27.013,32.7904808 L22.002,29.4635262 L22.002,21.5746339 L27.002,18.6586738 L27.002,27.0005599 L29.002,27.0005599 L29.002,17.4916897 L33.005,15.1567216 L39.001,18.6156744 L39.002,31.0005052 C39.002,31.3595003 39.194,31.6904958 39.506,31.8684934 L46.042,35.6034424 C46.024,35.7344406 46.002,35.8644388 46.002,36.000437 C46.002,37.6544144 47.347,39.000396 49.002,39.000396 C50.656,39.000396 52.002,37.6544144 52.002,36.000437 C52.002,34.3464595 50.656,33.0004779 49.002,33.0004779 C48.208,33.0004779 47.49,33.3154736 46.953,33.8204667 L41.002,30.4195132 L41.001,18.6176743 L46.964,15.1767213 L58.002,22.5356208 L58.002,25.0005872 L55.851,25.0005872 C55.429,23.844603 54.318,23.0176142 53.017,23.0176142 C51.354,23.0176142 50.002,24.3705958 50.002,26.0335731 C50.002,27.6965504 51.354,29.0495319 53.017,29.0495319 C54.343,29.0495319 55.471,28.1905436 55.875,27.0005599 L58.002,27.0005599 L58.002,30.0005189 C58.002,30.359514 58.194,30.6905095 58.506,30.868507 L65,34.5804564 L65,45.2723104 Z M33.02,65.8370295 L29.867,63.897056 L35.583,59.8141118 L34.421,58.186134 L28.018,62.7590716 L21.002,58.4411305 L21.002,50.5662381 L25.516,47.8572751 L24.487,46.1422985 L19.958,48.8602614 L15.002,46.3822952 L15.001,40.6173739 L20.449,37.8944111 L19.555,36.1054355 L15.001,38.3814044 L15.002,34.5804564 L20.963,31.1745029 L26.002,34.5194572 L26.002,39.4803894 L20.449,43.1673391 L21.555,44.8333163 L26.958,41.2453653 L31.002,44.4803212 L31.002,49.6622504 L26.392,53.207202 L27.611,54.7921804 L39.003,46.0303 L39.003,62.4190762 L33.02,65.8370295 Z M66.496,33.1324761 L60.002,29.4205268 L60.002,22.0006281 C60.002,21.6656327 59.835,21.353637 59.556,21.1686395 L47.556,13.1687487 C47.24,12.9587516 46.832,12.9447518 46.502,13.1347492 L40.004,16.884698 L33.502,13.1347492 C33.19,12.9547517 32.807,12.9547517 32.498,13.1367492 L20.498,20.1366536 C20.19,20.3156511 20.002,20.6446466 20.002,21.0006418 L20.002,29.4205268 L13.506,33.1324761 C13.194,33.3094737 13.002,33.6414692 13.002,34.0004643 L13.002,34.4174586 C13.001,34.4384583 13,34.458458 13,34.4794577 L13,45.3633091 C13,45.3833088 13.001,45.4033086 13.002,45.4223083 L13.002,47.0002868 C13.002,47.3792816 13.216,47.7252769 13.555,47.8942745 L19.002,50.6182374 L19.002,59.0001229 C19.002,59.3471182 19.181,59.6691138 19.477,59.8511113 L32.477,67.851002 C32.638,67.9500007 32.82,68 33.002,68 C33.173,68 33.344,67.9560006 33.498,67.8680018 L40.003,64.1520525 L46.506,67.8680018 C46.821,68.0489993 47.213,68.0419994 47.526,67.851002 L60.526,59.8511113 C60.822,59.6691138 61.002,59.3471182 61.002,59.0001229 L61.002,50.6182374 L66.447,47.8942745 C66.786,47.7252769 67,47.3792816 67,47.0002868 L67,34.0004643 C67,33.6414692 66.807,33.3104737 66.496,33.1324761 L66.496,33.1324761 Z" id="sm-icon-0-5" fill="#FFFFFF" />
+      <path d="M64,48.2340095 L56,43.4330117 L56,32.0000169 C56,31.6440171 55.812,31.3150172 55.504,31.1360173 L44,24.4260204 L44,14.7520248 L64,26.5710194 L64,48.2340095 Z M65.509,25.13902 L43.509,12.139026 C43.199,11.9560261 42.818,11.9540261 42.504,12.131026 C42.193,12.3090259 42,12.6410257 42,13.0000256 L42,25.0000201 C42,25.3550199 42.189,25.6840198 42.496,25.8640197 L54,32.5740166 L54,44.0000114 C54,44.3510113 54.185,44.6770111 54.486,44.857011 L64.486,50.8570083 C64.644,50.9520082 64.822,51 65,51 C65.17,51 65.34,50.9570082 65.493,50.8700083 C65.807,50.6930084 66,50.3600085 66,50 L66,26.0000196 C66,25.6460198 65.814,25.31902 65.509,25.13902 L65.509,25.13902 Z M40.445,66.863001 L17,54.3990067 L17,26.5710194 L37,14.7520248 L37,24.4510204 L26.463,31.1560173 C26.175,31.3400172 26,31.6580171 26,32.0000169 L26,49.0000091 C26,49.373009 26.208,49.7150088 26.538,49.8870087 L39.991,56.8870055 C40.28,57.0370055 40.624,57.0380055 40.912,56.8880055 L53.964,50.1440086 L61.996,54.9640064 L40.445,66.863001 Z M64.515,54.1420068 L54.515,48.1420095 C54.217,47.9640096 53.849,47.9520096 53.541,48.1120095 L40.455,54.8730065 L28,48.3930094 L28,32.5490167 L38.537,25.8440197 C38.825,25.6600198 39,25.3420199 39,25.0000201 L39,13.0000256 C39,12.6410257 38.808,12.3090259 38.496,12.131026 C38.184,11.9540261 37.802,11.9560261 37.491,12.139026 L15.491,25.13902 C15.187,25.31902 15,25.6460198 15,26.0000196 L15,55 C15,55.3690062 15.204,55.7090061 15.53,55.883006 L39.984,68.8830001 C40.131,68.961 40.292,69 40.453,69 C40.62,69 40.786,68.958 40.937,68.8750001 L64.484,55.875006 C64.797,55.7020061 64.993,55.3750062 65.0001416,55.0180064 C65.006,54.6600066 64.821,54.3260067 64.515,54.1420068 L64.515,54.1420068 Z" id="sm-icon-0-5" fill="#FFFFFF" />
     </g>
   </svg>
-  <text x="1435.0" y="735.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle" font-weight="700">Amazon SageMaker AI</text>
-  <text x="1435.0" y="760.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">Decider v19 · 实时推理 Endpoint</text>
-  <text x="1435.0" y="786.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">ml.g6.xlarge · NVIDIA L4 / CUDA</text>
-  <text x="1435.0" y="811.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">网络隔离 · 权重预置于镜像</text>
+  <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="981.0" y="615" aria-hidden="true">
+    <title>Icon-Architecture/64/Arch_Amazon-EC2_64</title>
+    <g id="sm-icon-1-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="sm-icon-1-3" fill="#ED7100">
+        <rect id="sm-icon-1-4" x="0" y="0" width="80" height="80" />
+      </g>
+      <path d="M27,53 L52,53 L52,28 L27,28 L27,53 Z M54,28 L58,28 L58,30 L54,30 L54,34 L58,34 L58,36 L54,36 L54,39 L58,39 L58,41 L54,41 L54,45 L58,45 L58,47 L54,47 L54,51 L58,51 L58,53 L54,53 L54,53.136 C54,54.164 53.164,55 52.136,55 L52,55 L52,59 L50,59 L50,55 L46,55 L46,59 L44,59 L44,55 L41,55 L41,59 L39,59 L39,55 L35,55 L35,59 L33,59 L33,55 L29,55 L29,59 L27,59 L27,55 L26.864,55 C25.836,55 25,54.164 25,53.136 L25,53 L22,53 L22,51 L25,51 L25,47 L22,47 L22,45 L25,45 L25,41 L22,41 L22,39 L25,39 L25,36 L22,36 L22,34 L25,34 L25,30 L22,30 L22,28 L25,28 L25,27.864 C25,26.836 25.836,26 26.864,26 L27,26 L27,22 L29,22 L29,26 L33,26 L33,22 L35,22 L35,26 L39,26 L39,22 L41,22 L41,26 L44,26 L44,22 L46,22 L46,26 L50,26 L50,22 L52,22 L52,26 L52.136,26 C53.164,26 54,26.836 54,27.864 L54,28 Z M41,65.876 C41,65.944 40.944,66 40.876,66 L14.124,66 C14.056,66 14,65.944 14,65.876 L14,39.124 C14,39.056 14.056,39 14.124,39 L20,39 L20,37 L14.124,37 C12.953,37 12,37.953 12,39.124 L12,65.876 C12,67.047 12.953,68 14.124,68 L40.876,68 C42.047,68 43,67.047 43,65.876 L43,61 L41,61 L41,65.876 Z M68,14.124 L68,40.876 C68,42.047 67.047,43 65.876,43 L60,43 L60,41 L65.876,41 C65.944,41 66,40.944 66,40.876 L66,14.124 C66,14.056 65.944,14 65.876,14 L39.124,14 C39.056,14 39,14.056 39,14.124 L39,20 L37,20 L37,14.124 C37,12.953 37.953,12 39.124,12 L65.876,12 C67.047,12 68,12.953 68,14.124 L68,14.124 Z" id="sm-icon-1-5" fill="#FFFFFF" />
+    </g>
+  </svg>
+  <text x="975.0" y="695.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle" font-weight="700">Amazon ECS / Amazon EC2</text>
+  <text x="975.0" y="720.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">Decider v19 · g6.xlarge / L4</text>
+  <text x="975.0" y="746.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">On-Demand · GPU 持续运行</text>
+  <text x="975.0" y="771.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">私网 HTTP · 权重预置于镜像</text>
   <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="1407.0" y="880" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-Bedrock_64</title>
     <g id="br-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -170,8 +179,8 @@
     </g>
   </svg>
   <text x="950.0" y="1240.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle" font-weight="700">AWS Lambda · GPU 控制器</text>
-  <text x="950.0" y="1265.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">按请求创建 / 删除 Endpoint</text>
-  <text x="950.0" y="1291.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">闲置 30 分钟自动删除</text>
+  <text x="950.0" y="1265.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">手动启动 / 停止 EC2</text>
+  <text x="950.0" y="1291.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">禁用闲置停机 · 固定 g6.xlarge</text>
   <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="1412.0" y="1160" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-DynamoDB_64</title>
     <g id="ddb-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -193,8 +202,8 @@
       <path d="M38.7880741,37.5776945 C38.2933845,37.8655125 37.9855777,38.4000317 37.9855777,38.973662 L37.9855777,66.7195186 L16.9987459,54.9841655 L16.9987459,27.7076428 L40.5569643,14.0588515 L61.484833,24.4283226 L38.7880741,37.5776945 Z M63.9203049,24.4022485 C63.9203049,23.8276153 63.6134974,23.2920933 63.0598448,22.9751927 L41.3464689,12.2146099 C40.8507799,11.9287976 40.2351662,11.9277948 39.7404766,12.2156128 L15.8024965,26.0840283 C15.3078069,26.3718463 15,26.9063655 15,27.4799958 L15,55.2158239 C15,55.7894542 15.3078069,56.3239734 15.8174871,56.6198142 L37.573836,68.7853901 C37.8216805,68.9287976 38.1005056,69 38.3783312,69 C38.6551575,69 38.9339826,68.9287976 39.1808277,68.7853901 C39.6765167,68.4985749 39.9843236,67.9640557 39.9843236,67.3894226 L39.9843236,39.201309 L63.1178084,25.798216 C63.6134974,25.5114008 63.9203049,24.9768817 63.9203049,24.4022485 L63.9203049,24.4022485 Z M63.9692742,55.0473451 L44.9811883,66.6613533 L44.9811883,56.2617967 L54.881976,49.872638 L54.9499334,49.424364 C54.9679221,49.3070305 54.9749177,49.3070305 54.9749177,48.7664942 L55.0058983,36.3602344 L64.0002547,31.1484218 L63.9692742,55.0473451 Z M65.1965042,29.0715191 C64.6998158,28.7816953 64.0842021,28.7826982 63.5885131,29.0715191 L54.0135209,34.6182835 C53.713709,34.7817481 53.0081517,35.1658398 53.0081517,35.9580914 L52.9761718,48.7173546 L43.8508975,54.606091 C43.3062392,54.9310145 42.9824424,55.4454766 42.9824424,55.9890214 L42.9824424,67.3081917 C42.9824424,67.8748021 43.2872511,68.3912699 43.7979307,68.6871107 C44.0647633,68.8405468 44.361577,68.9187691 44.6573914,68.9187691 C44.948209,68.9187691 45.2390265,68.8445582 45.5018616,68.692125 L65.1675223,56.6639396 C65.6622119,56.3761216 65.9680201,55.8416024 65.9680201,55.2709807 L66,30.4664837 C66,29.8928534 65.6921931,29.3583342 65.1965042,29.0715191 L65.1965042,29.0715191 Z" id="retain-icon-0-5" fill="#FFFFFF" />
     </g>
   </svg>
-  <text x="532" y="1393.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start" font-weight="700">保留 ECR 模型镜像、SageMaker Model / EndpointConfig</text>
-  <text x="532" y="1417.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">下次启动复用配置；仍需分配 GPU 并加载模型</text>
+  <text x="532" y="1393.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start" font-weight="700">ECR 模型镜像 · 80GB 加密 EBS / 模型缓存</text>
+  <text x="532" y="1417.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">手动停止保留磁盘；GPU 常驻运行，按小时计费</text>
   <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="1132" y="1372.0" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-EC2_64</title>
     <g id="fallback-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -227,9 +236,9 @@
   <rect x="830" y="437" width="240" height="26" fill="#ffffff" />
   <text x="950" y="455" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">VPC Origin · /api/*</text>
   <polyline points="625,750 625,815" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
-  <polyline points="770,850 950,850 950,735 1260,735" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
-  <rect x="980" y="697" width="240" height="26" fill="#ffffff" />
-  <text x="1100" y="715" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#0f766e" text-anchor="middle">调用 Decider</text>
+  <polyline points="770,850 800,850 800,710 825,710" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <rect x="870" y="832" width="240" height="26" fill="#ffffff" />
+  <text x="990" y="850" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#0f766e" text-anchor="middle">私网调用 Decider</text>
   <polyline points="770,910 1260,910" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
   <rect x="930" y="872" width="240" height="26" fill="#ffffff" />
   <text x="1050" y="890" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#3159ac" text-anchor="middle">调用 GPT-6.1 Sol</text>
@@ -240,7 +249,7 @@
   <polyline points="1100,1250 1270,1250" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" stroke-dasharray="7 5" />
   <rect x="1065" y="1265" width="240" height="26" fill="#ffffff" />
   <text x="1185" y="1283" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#b86c14" text-anchor="middle">状态 / 租约</text>
-  <polyline points="1100,1190 1230,1190 1230,805 1260,805" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" stroke-dasharray="7 5" />
-  <rect x="1250" y="1072" width="240" height="26" fill="#ffffff" />
-  <text x="1370" y="1090" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#b86c14" text-anchor="middle">创建 / 删除推理 Endpoint</text>
+  <polyline points="1100,1190 1180,1190 1180,815 975,815 975,795" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" stroke-dasharray="7 5" />
+  <rect x="920" y="1117" width="240" height="26" fill="#ffffff" />
+  <text x="1040" y="1135" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#b86c14" text-anchor="middle">启停 EC2 · 保留磁盘</text>
 </svg>

@@ -6,6 +6,7 @@ from botocore.exceptions import ClientError
 from fastapi.testclient import TestClient
 from moto import mock_aws
 
+from app.gpu import public_state
 from app.gpu_state import GpuState, TransitionConflict
 from app.main import app
 from deployment.deploy_gpu import require_released
@@ -103,7 +104,7 @@ def clients(desired=0, running=0, pending=0, instance=None):
     return ecs, ec2
 
 
-def tick(store, aws, now):
+def tick(store, aws, now, **options):
     return reconcile(
         store,
         *aws,
@@ -113,6 +114,7 @@ def tick(store, aws, now):
         launch_template="lt-demo",
         subnets=["subnet-a", "subnet-b"],
         now=now,
+        **options,
     )
 
 
@@ -316,6 +318,57 @@ def test_idle_timeout_stops_instance_but_retains_its_identity(store):
     store.update("SET phase=:ready", {":ready": "ready"})
     assert tick(store, aws, 3702)["action"] == "draining_tasks"
     assert store.get()["stop_reason"] == "idle"
+
+
+def test_always_on_does_not_stop_after_idle_but_manual_stop_still_drains(store):
+    ready(store)
+    aws = clients(desired=1, running=1, instance=instance())
+    tick(store, aws, 100000, idle_timeout_seconds=0)
+    assert store.get()["desired"] == "running"
+    aws[1].stop_instances.assert_not_called()
+    state = public_state(store.get(), True)
+    assert state["idle_auto_stop"] is False
+    assert state["idle_remaining_seconds"] is None
+    store.stop(now=100001)
+    assert tick(store, aws, 100002, idle_timeout_seconds=0)["action"] == "draining_tasks"
+    aws[0].update_service.assert_called_with(cluster="cluster", service="service", desiredCount=0)
+
+
+def test_pinned_g6_never_rotates_to_a_more_expensive_type_on_capacity_failure(store):
+    store.start(now=100)
+    aws = clients(instance=instance("stopped"))
+    aws[1].start_instances.side_effect = ClientError(
+        {"Error": {"Code": "InsufficientInstanceCapacity"}}, "StartInstances"
+    )
+    assert tick(store, aws, 101, instance_types=("g6.xlarge",))["action"] == "waiting_for_capacity"
+    aws[1].modify_instance_attribute.assert_not_called()
+    aws[1].run_instances.assert_not_called()
+    state = public_state(store.get(), True)
+    assert state["instance_options"] == ["g6.xlarge"]
+    assert state["maximum_instance_usd_per_hour"] == 0.8048
+
+
+def test_pinned_g6_resizes_retained_stopped_instance_before_start(store):
+    store.start(now=100)
+    aws = clients(instance={**instance("stopped"), "InstanceType": "g6.2xlarge"})
+    assert (
+        tick(store, aws, 101, instance_types=("g6.xlarge",))["action"]
+        == "resizing_stopped_instance"
+    )
+    aws[1].modify_instance_attribute.assert_called_once_with(
+        InstanceId="i-demo", InstanceType={"Value": "g6.xlarge"}
+    )
+    aws[1].start_instances.assert_not_called()
+    aws[1].run_instances.assert_not_called()
+
+
+def test_always_on_still_stops_failed_startup(store):
+    store.start(now=100)
+    assert (
+        tick(store, clients(instance=instance()), 1300, idle_timeout_seconds=0)["action"]
+        == "stopping"
+    )
+    assert store.get()["stop_reason"] == "startup_timeout"
 
 
 def test_startup_timeout_stops_a_failed_instance_without_deleting_disk(store):

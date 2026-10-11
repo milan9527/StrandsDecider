@@ -1,18 +1,54 @@
 # 已部署环境
 
-最近发布日期：2026-10-10。
+最近发布日期：2026-10-11。
 
 **访问地址：https://d3i7ogfx5ml7dc.cloudfront.net**
 
 API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 
-**2026-10-09：SageMaker Endpoint 已为 `InService`，真实 CUDA 推理已通过验收。独立的加密支付业务台已上线，并完成 Bedrock GPT-6.1 Sol 与 Decider 的真实对比。** 原 EC2 已停止，80GB 磁盘保留作为回退。项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
+**2026-10-11：推理服务切换为 EC2 On-Demand `g6.xlarge`，持续运行，禁用闲置自动停机。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
 
+## 演示资料与文档更新（2026-10-11，v5）
+
+- [25 页 v5 EC2 部署版 PPTX / PDF / 讲稿](../docs/presentations/v5/README.md) 基于 v4 更新。第 9 页使用 AWS 图标重绘当前架构：私有 S3 + CloudFront OAC、内网 ALB、ECS Fargate API，以及私有 VPC 内的 EC2 `g6.xlarge` 常驻模型服务；后端直接调用模型、Bedrock 与 DynamoDB。
+- 第 11 页更新 EC2 私网调用路径，备注同步 On-Demand、禁用闲置停机、磁盘缓存和费用。支付对比图表与截图保留 2026-10-10 的原始数据，并明确标注为迁移前历史实测；不将旧数据改标为 EC2 测速。
+- 已验证 PPT/PDF 均为 25 页、25 页备注完整、原生文字无缺失或页面越界、历史图表文字与截图未改写、末页链接与渲染后的两个二维码可正确解析。10 份相关文档的本地链接检查通过，原 v4 文件哈希不变；结果见 [渲染检查](../docs/presentations/v5/render-audit.json)。
+- 项目 README、部署、开发、模型对比、闭环与图表说明同步链接至 v5。原 v4 PPT/PDF 保留。演示资料更新没有重新部署 AWS、启停 GPU 或调用模型；经用户确认，连同此前 EC2 常驻与界面简化改动一并提交 GitHub，具体版本以仓库提交记录为准。
+
+## 直接推理与顶部运行栏（2026-10-11，direct-run1）
+
+- 常驻模式直接提交模型请求，取消每次运行前的 GPU 状态查询。初始化仍读取一次；GPU 弹窗打开或启停过渡期间才每 5 秒刷新，正常使用时不持续轮询。
+- 真实 Decider 请求出现连接、超时或服务端错误后，异步检查 GPU；未就绪或状态不可用时打开恢复弹窗。参数校验、排队限流和 Bedrock 错误不触发 GPU 检查。保留手动启停和后端推理租约；历史闲置释放模式仍可使用启动前检查。
+- 决策工作台顶部显示当前场景、问题数、运行模式和唯一的「运行决策」按钮；桌面与手机首屏可见，滚动时固定。「编辑输入」定位上下文，开始运行后定位结果，运行中按钮显示进度并禁用重复点击。
+- 将「共享上下文：一次请求，多个独立判断」改为「共享上下文：同一份信息，多个独立问题」。当前逐项计时是一条浏览器 API 请求对应多次模型调用；独立问题不会自动接收前一问题的答案。
+- 浏览器拦截测试覆盖 36 次正常模型请求，GPU 查询为 0；验证失败后检查、错误分类、过期管理状态不阻塞推理、弹窗权限与历史模式、320px 到 1440px 布局。完整工作台回归及 JavaScript / Prettier 检查通过，拦截测试仅使用明确的回放结果。
+- 线上真实验证通过：工作台返回 3 个决策；支付固定流程完成 5 组真实双模型对话、10 个输出及对应模拟执行；运行期间 GPU 状态查询为 0，弹窗关闭后不轮询，390px / 320px 布局正常。GPU 保持 `ready` / `running`，未发起实例启停。
+- 仅发布前端，API 仍为 `20261011-ec2always1`。线上 HTML、app.js、crypto.js、styles.css 已逐字节核对。最后一次文案发布的 CloudFront invalidation `IEZDSY7J38CMJ5P7FELJ3YXDMX` 已完成。
+- 记录：`.deployment/direct-run-browser.json`、`.deployment/direct-run-gpu-dialog.json`、`.deployment/direct-run-regression.log`、`.deployment/direct-run-production-20261011.json`；截图位于 `artifacts/direct-run-production-*.png`。未推送 GitHub。
+
+## EC2 On-Demand 常驻运行（2026-10-11）
+
+- 新实例：`i-0daca64f56056aa1c`，`us-east-1d`，`g6.xlarge`，1× NVIDIA L4 / 24GB 标称显存，On-Demand，非 Spot，无公网 IP。ECS 模型服务通过私网 8099 端口供 API 调用。
+- 原实例 `i-01bd22555b6f48d61` 在 `us-east-1f` 改为 `g6.xlarge` 后仍返回 `InsufficientInstanceCapacity`，因此转到另一可用区创建相同规格。原实例保持停止，80GB 加密磁盘保留；所有权标签改为 `DeciderGpuStack=strands-decider-demo-gpu-retained`，不参与当前控制器调度。
+- 当前运行实例另有 80GB 加密 gp3 磁盘，缓存镜像、模型和编译结果。两块磁盘合计约 $12.80/月；GPU 计算费为 $0.8048/小时，730 小时约 $587.50，其他服务另计。
+- GPU stack 参数：`ControllerState=ENABLED`、`GpuInstanceTypes=g6.xlarge`、`IdleTimeoutSeconds=0`。仅允许此规格，不因闲置停止，不因容量不足切到更贵机型；手动停止等待推理结束并保留磁盘。启动失败的 20 分钟超时保护仍有效。
+- SageMaker Endpoint 不存在，SageMaker stack 参数 `ControllerState=DISABLED`；Model、EndpointConfig、ECR 镜像保留。共享状态表 `provider=ec2`，主 stack `ModelProvider=ec2`。
+- API 镜像：`20261011-ec2always1`，摘要 `sha256:03fdf1da80f82d0c64eff9991399f0d4e0385ff739f79fe8d6a681567f8bf817`；模型继续使用已固定权重的 `20261009-gpu1`。
+- GPU API 返回 `idle_auto_stop=false`、`idle_remaining_seconds=null`。公共管理弹窗与支付模块显示持续运行，保留手动停止入口。
+- 160 项自动化测试通过，涵盖常驻模式不闲置停机、手动停止、启动失败保护、固定机型容量错误和已停止实例改规格；Ruff、JavaScript 语法及 CloudFormation 模板检查通过。
+- 真实 CUDA 健康检查和四个支付场景的 20 组同输入配对决策、双侧模拟执行通过。Decider 累计后端耗时 1,651.831 ms（均值 82.59 ms），GPT 为 20,249.118 ms（均值 1,012.46 ms）；两侧各 20 次成功，无调用失败。这是本轮固定样本的观测，不是稳定延迟或通用准确率保证。
+- 线上浏览器验证通过：EC2 常驻状态、手动停止入口、一次真实支付流程的五轮对话 / 十个模型输出 / 实际执行结果，以及 390px / 320px 布局。只执行观察与推理，验收后保持 GPU 运行。
+- 部署核验通过：S3 匿名访问 403、四项公共访问阻止、CloudFront OAC、内网 ALB、无公网 IP 的健康 Fargate API、单台活动 On-Demand GPU、80GB 加密磁盘。CloudFront invalidation `I8E0IKN8EHZ5MPPLNA7S2H3QPU` 已完成，线上 HTML / app.js / crypto.js 与本地逐字节一致。
+- 本机验收记录：`.deployment/ec2-g6-crypto-live-20261011.json`、`.deployment/ec2-g6-payment-browser-20261011.json`、`.deployment/ec2-g6-verified-20261011.json` 和 `.deployment/ec2-always-on-tests-20261011.log`。
+- v5 演示 PPT 已同步当前 EC2 架构；历史性能图表仍对应采集时的 SageMaker 部署，未改写为 EC2 实测。代码和文档尚未推送 GitHub。
+
+以下为此前功能与 SageMaker 部署的历史记录。
+
 **2026-10-10 文档与演示材料更新**：[新版 34 页 PPT / PDF / 讲稿与最新截图](../docs/presentations/v2/README.md) 已按 `crypto10` 实现重做演示部分。复用已经就绪的 GPU 采集四个初始场景，得到 19 组成功同输入配对，另有 1 次 Bedrock 读取超时并保留错误；没有用回放替代真实输出。USDC 与退款两个自主闭环中，两模型均完成模拟业务。本次采集未发起 GPU 启停。原始摘录见 [固定输入](../docs/results/benchmark-2026-10-10.json) 与 [闭环](../docs/presentations/v2/loop-observations.json)。单次成功观测不代表通用准确率或稳定性能。
 
-| 项目 | 当前值 |
+| 项目 | 2026-10-10 历史配置（当前状态见本文顶部） |
 | --- | --- |
 | AWS Region | `us-east-1` |
 | CloudFormation stacks | `strands-decider-demo`、`strands-decider-demo-gpu`、`strands-decider-demo-sagemaker` |
@@ -160,7 +196,7 @@ Endpoint 删除后停止 SageMaker GPU 计算计费；ECS API、ALB、VPC interf
 
 切换 SageMaker 前，官方 v19 模型曾在 `g5.xlarge` A10G 24GB 上通过 CUDA 推理；4 个加密货币支付场景每场景 3 个决策，总耗时约 227–237 ms。复用已停止实例和缓存磁盘启动实测 231.3 秒。
 
-这些是 **EC2 历史结果，不能作为 SageMaker 性能结果**。随后原可用区出现 `InsufficientInstanceCapacity`，同一停止实例尝试 `g6.xlarge` 和 `g6.2xlarge` 仍无法启动。当前保留实例规格为 `g6.2xlarge`，处于停止状态，磁盘未删除。保留磁盘不会预留 GPU 容量。
+这些是 **EC2 历史结果，不能作为 SageMaker 性能结果**。随后原可用区出现 `InsufficientInstanceCapacity`，同一停止实例尝试 `g6.xlarge` 和 `g6.2xlarge` 仍无法启动。切换 SageMaker 时保留实例规格为 `g6.2xlarge`，处于停止状态，磁盘未删除；2026-10-11 的最新迁移见上文。保留磁盘不会预留 GPU 容量。
 
 ## 区域迁移历史
 

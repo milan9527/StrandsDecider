@@ -128,7 +128,9 @@ function renderGpuNotice() {
   const message = error
     ? `${error}。请刷新状态后再运行真实模型。`
     : ready
-      ? "闲置 30 分钟自动停止"
+      ? s.idle_auto_stop === false
+        ? "GPU 持续运行"
+        : `闲置 ${s.idle_minutes ?? 30} 分钟自动停止`
       : s?.phase === "starting"
         ? "正在分配实例、加载模型，请等待就绪。"
         : s?.phase === "stopping"
@@ -921,7 +923,6 @@ async function run(which) {
               "error",
               `${providerNames[provider]} · ${stageData(stage).label}失败：${error.message}`,
             );
-            if (provider === "decider") ui.refreshGpu();
           } finally {
             dialogue.pending = false;
             dialogue.elapsedMs = performance.now() - t;
@@ -1133,7 +1134,6 @@ async function runLoop(resume = false) {
               "error",
               `${providerNames[provider]} 闭环已暂停：${error.message}`,
             );
-            if (provider === "decider") ui.refreshGpu();
             render();
             break;
           } finally {

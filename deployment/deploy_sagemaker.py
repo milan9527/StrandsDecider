@@ -61,6 +61,7 @@ def main():
     parser.add_argument("--tag", required=True)
     parser.add_argument("--base-tag", default="20261009-gpu1")
     parser.add_argument("--skip-build", action="store_true")
+    parser.add_argument("--controller-state", choices=["ENABLED", "DISABLED"])
     parser.add_argument(
         "--activate",
         action="store_true",
@@ -96,6 +97,15 @@ def main():
                     raise
             else:
                 raise RuntimeError("Stop the SageMaker GPU before changing its model image")
+    if (
+        args.activate
+        and (
+            args.controller_state
+            or (previous.get("ControllerState", "ENABLED") if existing else "ENABLED")
+        )
+        != "ENABLED"
+    ):
+        parser.error("--activate requires an enabled controller")
     if not args.skip_build:
         subprocess.run(
             [
@@ -126,6 +136,8 @@ def main():
         subprocess.run(["docker", "push", image], check=True)
     account = session.client("sts").get_caller_identity()["Account"]
     values = {
+        "ControllerState": args.controller_state
+        or (previous.get("ControllerState", "ENABLED") if existing else "ENABLED"),
         "VpcId": outputs["VpcId"],
         "SubnetId": resources["Subnet1"],
         "EndpointSecurityGroup": resources["EndpointSecurityGroup"],

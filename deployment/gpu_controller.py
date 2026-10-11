@@ -14,11 +14,28 @@ INSTANCE_TYPES = ("g6.xlarge", "g6.2xlarge", "g5.xlarge")
 CAPACITY_ERRORS = ("InsufficientInstanceCapacity", "InsufficientHostCapacity")
 
 
-def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subnets, now=None):
+def reconcile(
+    store,
+    ecs,
+    ec2,
+    *,
+    cluster,
+    service,
+    owner,
+    launch_template,
+    subnets,
+    instance_types=INSTANCE_TYPES,
+    idle_timeout_seconds=1800,
+    now=None,
+):
     now = int(time.time()) if now is None else now
     state = store.get()
     if state.get("provider") == "sagemaker":
         return {"action": "inactive"}
+    if not instance_types or any(kind not in INSTANCE_TYPES for kind in instance_types):
+        raise ValueError("Unsupported GPU instance types")
+    if idle_timeout_seconds < 0:
+        raise ValueError("Idle timeout must be nonnegative")
     generation = state["requested_at"]
 
     def update(expression, values):
@@ -40,8 +57,21 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
             },
         )
 
+    if (
+        state.get("instance_options") != list(instance_types)
+        or state.get("idle_timeout_seconds") != idle_timeout_seconds
+    ):
+        update(
+            "SET instance_options=:types, idle_timeout_seconds=:idle",
+            {":types": list(instance_types), ":idle": idle_timeout_seconds},
+        )
+
     if state["desired"] == "running" and int(state.get("busy_until", 0)) <= now:
-        idle = state["phase"] == "ready" and int(state["last_activity"]) <= now - 1800
+        idle = (
+            idle_timeout_seconds > 0
+            and state["phase"] == "ready"
+            and int(state["last_activity"]) <= now - idle_timeout_seconds
+        )
         timed_out = (
             state["phase"] == "starting" and int(state.get("starting_at", now)) <= now - 1200
         )
@@ -133,8 +163,8 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
         # Bound each invocation; the next scheduled tick resumes from the saved choice.
         for _ in range(3):
             index = int(state["launch_subnet"]) % len(subnets)
-            type_index = int(state["launch_type"]) % len(INSTANCE_TYPES)
-            instance_type = INSTANCE_TYPES[type_index]
+            type_index = int(state["launch_type"]) % len(instance_types)
+            instance_type = instance_types[type_index]
             try:
                 launched = ec2.run_instances(
                     LaunchTemplate={"LaunchTemplateId": launch_template, "Version": "$Latest"},
@@ -155,7 +185,7 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
                         "SET launch_subnet=:first, launch_type=:type, launch_token=:token",
                         {
                             ":first": 0,
-                            ":type": (type_index + 1) % len(INSTANCE_TYPES),
+                            ":type": (type_index + 1) % len(instance_types),
                             ":token": uuid.uuid4().hex,
                         },
                     )
@@ -177,6 +207,12 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
         return {"action": "waiting_for_capacity"}
 
     if instance["State"]["Name"] == "stopped":
+        if instance["InstanceType"] not in instance_types:
+            ec2.modify_instance_attribute(
+                InstanceId=instance["InstanceId"], InstanceType={"Value": instance_types[0]}
+            )
+            update("SET instance_type=:type", {":type": instance_types[0]})
+            return {"action": "resizing_stopped_instance"}
         try:
             ec2.start_instances(InstanceIds=[instance["InstanceId"]])
         except ClientError as error:
@@ -186,12 +222,13 @@ def reconcile(store, ecs, ec2, *, cluster, service, owner, launch_template, subn
             # A stopped EBS-backed instance can change GPU type without replacing its disk.
             # Only a definite capacity rejection permits this change; ambiguous errors retry
             # the same instance/type. The next scheduled tick attempts the new type.
-            next_type = INSTANCE_TYPES[
-                (INSTANCE_TYPES.index(instance["InstanceType"]) + 1) % len(INSTANCE_TYPES)
+            next_type = instance_types[
+                (instance_types.index(instance["InstanceType"]) + 1) % len(instance_types)
             ]
-            ec2.modify_instance_attribute(
-                InstanceId=instance["InstanceId"], InstanceType={"Value": next_type}
-            )
+            if next_type != instance["InstanceType"]:
+                ec2.modify_instance_attribute(
+                    InstanceId=instance["InstanceId"], InstanceType={"Value": next_type}
+                )
             update("SET instance_type=:type", {":type": next_type})
             return {"action": "waiting_for_capacity"}
         update(
@@ -257,6 +294,10 @@ def handler(event, context):
             owner=os.environ["GPU_OWNER"],
             launch_template=os.environ["GPU_LAUNCH_TEMPLATE"],
             subnets=[subnet for subnet in os.environ["GPU_SUBNETS"].split(",") if subnet],
+            instance_types=tuple(
+                os.getenv("GPU_INSTANCE_TYPES", ",".join(INSTANCE_TYPES)).split(",")
+            ),
+            idle_timeout_seconds=int(os.getenv("GPU_IDLE_TIMEOUT_SECONDS", "1800")),
         )
     except TransitionConflict:
         return {"action": "state_changed"}

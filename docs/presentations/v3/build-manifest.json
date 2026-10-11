@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-10-10T12:58:07.952550+00:00",
+  "slides": [
+    {
+      "title": "Strands Decider × GPT",
+      "section": "支付业务对比 / v3 · 25 页",
+      "dark": true,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "把业务中的「下一步选择」交给模型",
+      "section": "模型与原理",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "同样的候选，走两条决策路径",
+      "section": "模型与原理",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "可观察的决策过程：输入 → 输出 → 执行",
+      "section": "模型与原理",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "BERT、Decider、GPT：适配方式一页看懂",
+      "section": "模型与原理",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "一套业务后端，对接两种模型",
+      "section": "项目架构",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "四个支付场景，贯穿五个业务节点",
+      "section": "演示设计",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "两种对比：决策速度与业务完成",
+      "section": "演示设计",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "真实界面：同一输入，输出与耗时并排看",
+      "section": "固定输入 / 过程",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "五步对照：耗时差异贯穿每次选择",
+      "section": "固定输入 / USDC",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "同一审批问题，为什么选择不一样？",
+      "section": "固定输入 / 决策差异",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "处理 5/5 步，资金仍在等待确认",
+      "section": "固定输入 / 结果",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "19 组成功配对，累计决策耗时相差 12.20×",
+      "section": "速度对比 / 总览",
+      "dark": true,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "按节点比较：每次判断平均花多久",
+      "section": "速度对比 / 业务节点",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "按场景比较：相同输入下的累计耗时",
+      "section": "速度对比 / 四类场景",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "退款差异：模型想执行，条件是否允许？",
+      "section": "固定输入 / 退款",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "闭环把执行结果带回下一次判断",
+      "section": "自主闭环 / 原理",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "USDC 闭环：一次证据更新，六次模型判断",
+      "section": "自主闭环 / 决策过程",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "真实反馈：选择不同，执行都等待证据",
+      "section": "自主闭环 / 实际过程",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "退款闭环：两次事件补齐执行前提",
+      "section": "自主闭环 / 决策过程",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "退款结果：订单、账本与结案全部确认",
+      "section": "自主闭环 / 结果",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "两组闭环：业务都完成，累计决策时间不同",
+      "section": "自主闭环 / 对比结果",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "速度之外，同时看选择差异与调用失败",
+      "section": "对比解读",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "在支付流程中，按任务分工组合使用",
+      "section": "适用方式",
+      "dark": false,
+      "evidence": "2026-10-10 实测与项目实现"
+    },
+    {
+      "title": "看清选择，量出速度，核实结果",
+      "section": "结论",
+      "dark": true,
+      "evidence": "2026-10-10 实测与项目实现"
+    }
+  ],
+  "base_file": "docs/presentations/v2/Strands-Decider-模型原理与支付业务演示-v2-20261010.pptx",
+  "base_sha256": "2b82e58c913b6b470a8d401828beeb70b58ccc341cd3d46c83161b050a417e1e",
+  "pptx_sha256": "836967e2156b98364e26b7ae3a098df40b400d703309eeb825d559a0697bb2f4",
+  "benchmark_file": "docs/results/benchmark-2026-10-10.json",
+  "benchmark_sha256": "29e0d5a419035f425187bdcbf11db35be351440df1f1a203bdebe767b78d2a9f",
+  "loop_sha256": "9abb4c0ae0e6fc35ee747ba0319fc3abcd50098ba0261239f7fa33c8e94cdd5b",
+  "capture_date": "2026-10-10",
+  "new_model_calls": false,
+  "source_capture_manifest": "docs/presentations/v2/capture-manifest.json",
+  "crops": [
+    {
+      "file": "screenshots/fixed-turn-1-crop.png",
+      "source": "docs/presentations/v2/screenshots/fixed-turn-1.png",
+      "source_sha256": "693ad789cbbdf446564f5d7ad53c48c28c2369125e8c33d12c98b1310e6b0c59",
+      "crop_pixels": [
+        0,
+        65,
+        1400,
+        482
+      ],
+      "sha256": "817a88cdabcc5921d1cea7cf05e7bc5c38a967a39f92fa78cd7467ef7d315ece",
+      "data_replaced": false
+    },
+    {
+      "file": "screenshots/refund-execute-crop.png",
+      "source": "docs/presentations/v2/screenshots/refund-execute.png",
+      "source_sha256": "f1bc5b0b05bc96857a6961ed46d7ba74e7284e4a864b258929deeac778396d81",
+      "crop_pixels": [
+        0,
+        65,
+        1400,
+        520
+      ],
+      "sha256": "59a0443cb61bf759b246a2b3bdee8223836a8c752c8a56c5731cc93d346ee139",
+      "data_replaced": false
+    },
+    {
+      "file": "screenshots/pending-loop-feedback-crop.png",
+      "source": "docs/presentations/v2/screenshots/pending-loop-feedback.png",
+      "source_sha256": "f301d9f336349d8601d5a76cfadefae367f605be58a690d42d79ba59121fc739",
+      "crop_pixels": [
+        0,
+        65,
+        1400,
+        610
+      ],
+      "sha256": "dee6861b41fd986857bad6be0823c3481c9fb5833be7da517afaa5570efa2749",
+      "data_replaced": false
+    }
+  ],
+  "icon_sources": [
+    "Lucide 0.468.0 (ISC)",
+    "AWS official architecture icons"
+  ],
+  "successful_pairs": 19,
+  "failed_requests": {
+    "decider": 0,
+    "bedrock": 1
+  }
+}

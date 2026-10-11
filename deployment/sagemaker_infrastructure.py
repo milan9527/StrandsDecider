@@ -220,7 +220,7 @@ def template():
         "Events::Rule",
         {
             "ScheduleExpression": "rate(1 minute)",
-            "State": "ENABLED",
+            "State": ref("ControllerState"),
             "Targets": [{"Id": "Controller", "Arn": attr("Controller", "Arn")}],
         },
     )
@@ -238,17 +238,24 @@ def template():
         "AWSTemplateFormatVersion": "2010-09-09",
         "Description": "Decider SageMaker GPU, private runtime endpoint and idle deletion.",
         "Parameters": {
-            k: {"Type": "String"}
-            for k in [
-                "VpcId",
-                "SubnetId",
-                "EndpointSecurityGroup",
-                "ModelRepositoryArn",
-                "ModelImage",
-                "StateTableName",
-                "EndpointName",
-                "ModelRevision",
-            ]
+            "ControllerState": {
+                "Type": "String",
+                "Default": "ENABLED",
+                "AllowedValues": ["ENABLED", "DISABLED"],
+            },
+            **{
+                k: {"Type": "String"}
+                for k in [
+                    "VpcId",
+                    "SubnetId",
+                    "EndpointSecurityGroup",
+                    "ModelRepositoryArn",
+                    "ModelImage",
+                    "StateTableName",
+                    "EndpointName",
+                    "ModelRevision",
+                ]
+            },
         },
         "Resources": resources,
         "Outputs": {
