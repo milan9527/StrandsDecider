@@ -13,7 +13,7 @@ SVG 文件可用于 README 或演示材料，不依赖外部图片、字体下�
 
 图中简化了网络细节，ECS 后端直接连到 EC2 模型服务、Bedrock 和 DynamoDB，分别表示模型调用与数据访问；不单独绘制 Runtime / DynamoDB VPC Endpoint 节点。2026-10-11 起 GPU 使用 `g6.xlarge` 常驻运行，手动停止保留磁盘。v4 及更早 PPT 保留采集时的 SageMaker 架构，详见 [部署记录](../../deployment/DEPLOYED.md)。
 
-最新 [v5 PPT](../presentations/v5/README.md) 第 9 页已同步为 EC2 当前架构，使用可编辑图形和相同的 AWS 图标；v4 及更早文稿保留历史架构。v5 的测速图与截图仍明确标注其历史采集环境。
+最新 [v6 PPT](../presentations/v6/README.md) 第 9 页沿用 EC2 当前架构，使用可编辑图形和相同的 AWS 图标；新增第 23–24 页展示输入优化与四场景实测。v4 及更早文稿保留历史架构，各批测速数据在讲稿中注明采集环境。
 
 在仓库根目录重新生成：
 

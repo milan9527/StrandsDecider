@@ -33,9 +33,9 @@ def main():
         page.locator('[data-cx-panel="diagnostics"] > summary').click()
         page.locator(".cx-workspace").screenshot(path="artifacts/crypto-workspace-desktop.png")
 
-        def run(mode="replay", workflow=False):
+        def run(mode="replay"):
             page.locator(f'[data-cx-mode="{mode}"]').click()
-            page.locator("[data-cx-test-kind]").select_option("workflow" if workflow else "all")
+            page.locator("[data-cx-test-kind]").select_option("workflow")
             page.locator("[data-cx-start]").click()
             for provider in ["decider", "bedrock"]:
                 expect(page.locator(f".cx-lane.{provider} .cx-model-count")).to_have_text(
@@ -50,16 +50,14 @@ def main():
 
         def apply(provider="decider"):
             button = page.locator(f'[data-cx-apply="{provider}"]')
-            if button.is_enabled():
+            if button.count() and button.is_enabled():
                 button.click()
             expect(page.locator("[data-cx-start]")).to_be_enabled(timeout=30000)
 
         run()
         expect(page.locator(".cx-summary-note")).to_contain_text("规则回放")
-        expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("尚未执行")
-        expect(page.locator('[data-cx-result="decider-verify"]')).to_contain_text(
-            "已获得建议，尚未执行"
-        )
+        expect(page.locator('[data-cx-final="decider"]')).to_contain_text("已处理 5/5 步")
+        expect(page.locator('[data-cx-result="decider-verify"]')).to_contain_text("等待链上确认")
         apply()
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("持续跟进")
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_have_class(
@@ -67,7 +65,7 @@ def main():
         )
         expect(page.locator('[data-cx-final="decider"] .cx-blockers')).to_contain_text("3/12")
         expect(page.locator('[data-cx-final="decider"] [data-cx-funds]')).to_contain_text("未落实")
-        expect(page.locator(".cx-bubble.agent")).to_contain_text("3/12")
+        expect(page.locator(".cx-bubble.agent").first).to_contain_text("3/12")
         assert page.locator(".cx-ledger").count() == 0
 
         # Reproduce the original 2/5 interruption with a conservative REPLAY
@@ -81,7 +79,7 @@ def main():
             route.fulfill(response=response, json=data)
 
         page.route("**/api/crypto/decision", conservative_replay)
-        run(workflow=True)
+        run()
         expect(page.locator('[data-cx-final="decider"]')).to_contain_text("已处理 5/5 步")
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("持续跟进")
         expect(page.locator('[data-cx-result="decider-approve"]')).to_contain_text("等待人工审批")
@@ -110,7 +108,7 @@ def main():
         # With all external payment evidence satisfied, a wrong approval choice
         # must visibly block only that provider's funds, even though both process 5/5.
         page.route("**/api/crypto/decision", conservative_replay)
-        run(workflow=True)
+        run()
         expect(page.locator('[data-cx-final="decider"]')).to_contain_text("已处理 5/5 步")
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("业务未完成")
         expect(page.locator('[data-cx-final="decider"] .cx-blockers')).to_contain_text(
@@ -133,7 +131,7 @@ def main():
         assert outcomes["decider"]["fundsComplete"] is False
         assert outcomes["bedrock"]["complete"] is True
         page.unroute("**/api/crypto/decision", conservative_replay)
-        run(workflow=True)
+        run()
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("已结案")
         expect(page.locator('[data-cx-final="bedrock"] .cx-outcome')).to_contain_text("已结案")
         expect(page.locator(".cx-ledger")).to_contain_text("129.00 USDC")
@@ -184,7 +182,7 @@ def main():
             route.fulfill(response=response, json=data)
 
         page.route("**/api/crypto/decision", wrong_replay)
-        run(workflow=True)
+        run()
         expect(page.locator('[data-cx-final="decider"]')).to_contain_text("已处理 5/5 步")
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("持续跟进")
         expect(page.locator('[data-cx-final="bedrock"] .cx-outcome')).to_contain_text("持续跟进")
@@ -221,7 +219,7 @@ def main():
                 route.continue_()
 
         page.route("**/api/crypto/apply", failed_execution)
-        run(workflow=True)
+        run()
         for provider in ("decider", "bedrock"):
             expect(page.locator(f'[data-cx-final="{provider}"] .cx-outcome')).to_contain_text(
                 "执行失败"
@@ -267,7 +265,7 @@ def main():
             expect(page.locator(f'[data-cx-event-notice="{event}"]').last).to_contain_text(
                 "模拟交易已推进"
             )
-        run("live" if args.live else "replay", workflow=args.live)
+        run("live" if args.live else "replay")
         if args.live:
             expect(page.locator(".cx-summary-note")).to_contain_text("已对比 5/5")
             for provider in ("decider", "bedrock"):
@@ -278,7 +276,7 @@ def main():
         page.locator(".cx-comparison").screenshot(path="artifacts/crypto-comparison-desktop.png")
         apply()
         expect(page.locator('[data-cx-final="decider"] .cx-outcome')).to_contain_text("已结案")
-        expect(page.locator(".cx-ledger")).to_contain_text("250.00 USDC")
+        expect(page.locator(".cx-ledger").first).to_contain_text("250.00 USDC")
         expect(page.locator(".cx-bubble.agent").last).to_contain_text("没有广播链上交易")
         page.locator(".cx-workspace").screenshot(
             path="artifacts/crypto-refund-completed-desktop.png"
@@ -324,7 +322,7 @@ def main():
             ("settlement", "settle", "耗时 120 分钟 / SLA 60 分钟", "4,800.00 USDC"),
         ]:
             page.locator(f'[data-cx-case="{scenario}"]').click()
-            run(workflow=True)
+            run()
             for provider in ("decider", "bedrock"):
                 expect(page.locator(f'[data-cx-result="{provider}-verify"]')).to_contain_text(
                     evidence
@@ -337,7 +335,7 @@ def main():
             expect(page.locator(f'[data-cx-event-notice="{event}"]')).to_contain_text(
                 "99.80 → 100.00 USDT" if event == "topup" else "未到账 → 已到账"
             )
-            run(workflow=True)
+            run()
             for provider in ("decider", "bedrock"):
                 expect(page.locator(f'[data-cx-final="{provider}"] .cx-outcome')).to_contain_text(
                     "已结案"

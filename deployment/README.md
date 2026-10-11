@@ -8,7 +8,7 @@
 
 独立的加密支付业务台及 Bedrock GPT-6.1 Sol 对比说明见 [CRYPTO.md](CRYPTO.md)。
 
-配套演示资料见 [25 页 v5 EC2 部署版](../docs/presentations/v5/README.md)：当前架构与调用路径已同步为 ECS on EC2；历史测速图表保留原采集环境说明。
+配套演示资料见 [27 页 v6 优化流程实测版](../docs/presentations/v6/README.md)：当前架构与调用路径为 ECS on EC2；新增两页真实输入优化演示，历史测速图表与新批次分别说明来源。
 
 ```mermaid
 flowchart LR

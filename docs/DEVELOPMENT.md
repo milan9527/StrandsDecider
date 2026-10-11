@@ -194,9 +194,17 @@ uv run --extra dev ruff check app tests examples scripts
 node --check frontend/static/app.js   # 可选 JavaScript 语法检查
 ```
 
-160 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、常驻与手动停机、固定机型、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。
+171 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、常驻与手动停机、固定机型、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。优化模式另验证四场景字段适用范围、候选集合不变、两模型实际输入一致、基线指纹兼容、非法配置拒绝及错误选择仍受到执行保护。
 
-支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗及历史闲置释放模式。`check_direct_run_browser.py` 验证常驻模式直接调用、失败后检查、停止常规轮询、错误分类，以及首屏与滚动时的运行栏。这两项 GPU 浏览器测试均拦截真实启停与模型请求，不作为真实性能样本。演示资料最新版本见 [25 页 v5 EC2 说明](presentations/v5/README.md)，使用 `scripts/build_presentation_v5.py` 基于 v4 重绘当前架构，保留并标注原测速环境；历史 [v4](presentations/v4/README.md)、[v3 图表构建说明](presentations/v3/README.md) 与 [v2 采集说明](presentations/v2/README.md) 保留。
+支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗及历史闲置释放模式。`check_direct_run_browser.py` 验证常驻模式直接调用、失败后检查、停止常规轮询、错误分类，以及首屏与滚动时的运行栏。这两项 GPU 浏览器测试均拦截真实启停与模型请求，不作为真实性能样本。演示资料最新版本见 [27 页 v6 优化实测说明](presentations/v6/README.md)，使用 `scripts/build_presentation_v6.py` 基于 v5 增加两页真实输入优化演示，保留原测速环境说明；历史 [v5](presentations/v5/README.md)、[v4](presentations/v4/README.md)、[v3 图表构建说明](presentations/v3/README.md) 与 [v2 采集说明](presentations/v2/README.md) 保留。
+
+支付决策接口支持 `input_profile: "baseline" | "optimized"`，默认 `baseline`；响应返回 `model_input`、`input_profile`、`input_note`。`app/crypto_profiles.py` 只负责筛选模型输入字段、明确场景条件；资金执行仍读取完整快照。`check_optimized_crypto_browser.py` 覆盖四场景两种输入配置、每轮输入输出、实际模拟执行、历史模式标签、导出、单步切换不混合结果与移动布局；默认规则回放，`--live` 才调用两模型。
+
+```bash
+uv run --with playwright python scripts/check_optimized_crypto_browser.py \
+  --credentials .deployment/local-credentials.json \
+  --output .deployment/optimized-browser.json
+```
 
 浏览器端检查（需要已启动的 Web 服务）：
 

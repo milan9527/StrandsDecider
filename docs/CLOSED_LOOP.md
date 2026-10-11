@@ -8,7 +8,7 @@
 
 ![两侧独立的反馈闭环](diagrams/closed-loop.svg)
 
-2026-10-10 已完成 USDC 未到账与退款两组真实闭环观测，两模型均完成模拟订单、账本与结案；每侧分别返回 6 / 9 次决策、推进 1 / 2 个模拟事件。这是两例成功观测，不是通用完成保证，且不混入固定输入配对速度统计。见 [原始观测](presentations/v2/loop-observations.json) 与 [最新 v5 文稿](presentations/v5/README.md)。当前部署已改为 EC2 `g6.xlarge` 常驻服务；上述观测仍标注为迁移前 SageMaker 环境的历史实测。
+2026-10-10 已完成 USDC 未到账与退款两组真实闭环观测，两模型均完成模拟订单、账本与结案；每侧分别返回 6 / 9 次决策、推进 1 / 2 个模拟事件。这是两例成功观测，不是通用完成保证，且不混入固定输入配对速度统计。见 [原始观测](presentations/v2/loop-observations.json) 与 [最新 v6 文稿](presentations/v6/README.md)。当前部署已改为 EC2 `g6.xlarge` 常驻服务；上述观测仍标注为迁移前 SageMaker 环境的历史实测。v6 新增的优化流程是固定五步的输入优化，未自动补齐证据，与本页反馈闭环分开演示。
 
 ## 如何演示
 

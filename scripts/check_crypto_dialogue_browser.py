@@ -65,9 +65,10 @@ def main():
         expect(first_turn).to_contain_text(original_message)
         expect(first_turn).to_contain_text("回放输出")
         expect(first_turn).to_contain_text("实际执行")
-        first_turn.locator("details").first.locator("summary").click()
-        expect(first_turn.locator("pre").first).to_contain_text('"snapshot"')
-        first_turn.locator("details").first.locator("summary").click()
+        raw = first_turn.locator(".cx-turn-side.decider .cx-turn-raw")
+        raw.locator("summary").click()
+        expect(raw.locator("pre")).to_contain_text('"snapshot"')
+        raw.locator("summary").click()
         page.screenshot(path="artifacts/crypto10-dialogue-desktop.png")
 
         # Old inputs are immutable when evidence or customer text changes.

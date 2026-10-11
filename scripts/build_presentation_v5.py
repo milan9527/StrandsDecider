@@ -22,7 +22,6 @@ BASE = SOURCE / "Strands-Decider-模型原理与支付业务演示-v4-决策模�
 NAME = "Strands-Decider-模型原理与支付业务演示-v5-EC2部署版-25页-20261011"
 DEMO = "https://d3i7ogfx5ml7dc.cloudfront.net/#crypto"
 REPO = "https://github.com/milan9527/StrandsDecider"
-HISTORY = "历史实测：2026-10-10 · 迁移前的托管部署；当前 EC2 架构见第 9 页"
 
 
 def digest(path):
@@ -142,6 +141,127 @@ def architecture(slide):
     L.text(slide, "09 / 25", 11.76, 7.14, 0.92, 0.23, 10, L.MUTED, align=PP_ALIGN.RIGHT)
 
 
+def approval_comparison(slide):
+    """Explain the observed conditional-choice error without inventing model reasoning."""
+    for shape in list(slide.shapes):
+        shape._element.getparent().remove(shape._element)
+    for rel in list(slide.part.rels.values()):
+        if rel.reltype == RT.IMAGE:
+            slide.part.drop_rel(rel.rId)
+    slide.background.fill.solid()
+    slide.background.fill.fore_color.rgb = L.rgb(L.BG)
+    benchmark = json.loads((ROOT / "docs/results/benchmark-2026-10-10.json").read_text())
+    case = next(c for c in benchmark["cases"] if c["summary"]["case"] == "pending")
+    step = next(s for s in case["steps"] if s["stage"] == "approve")
+    decider, gpt = step["decider"], step["bedrock"]
+    assert decider["input_hash"] == gpt["input_hash"]
+    assert decider["choice"] == "await_approval" and gpt["choice"] == "approved"
+    probabilities = decider["probabilities"]
+
+    def icon(name, x, y, color):
+        path = ROOT / "docs/presentations/v3/icons" / f"{name}.svg"
+        svg = path.read_text().replace("currentColor", f"#{color}")
+        bitmap = cairosvg.svg2png(bytestring=svg.encode(), output_width=96, output_height=96)
+        shape = slide.shapes.add_picture(
+            io.BytesIO(bitmap), Inches(x), Inches(y), Inches(0.34), Inches(0.34)
+        )
+        shape.name = "ICON: Lucide " + name
+
+    L.text(
+        slide, "STRANDS DECIDER   /   固定输入 · 决策差异", 0.6, 0.27, 12, 0.25, 10, L.TEAL, True
+    )
+    L.text(slide, "同一审批问题，为什么选择不一样？", 0.6, 0.79, 12.1, 0.69, 30, L.INK, True)
+    L.text(
+        slide, "关键条件：这是收款场景，只有退款才需要退款审批。", 0.62, 1.56, 12, 0.4, 17, L.MUTED
+    )
+
+    L.rect(slide, 0.65, 2.16, 12.02, 0.55, L.WHITE, L.LINE, True)
+    L.text(slide, "相同业务输入", 0.84, 2.3, 1.55, 0.27, 14, L.INK, True)
+    L.text(
+        slide,
+        "收款未到账  ·  无风险标记  ·  确认数 3/12  ·  refund_approved=false",
+        2.43,
+        2.3,
+        10,
+        0.28,
+        14,
+        L.MUTED,
+    )
+    L.rect(slide, 0.65, 2.84, 12.02, 0.43, L.PALE_TEAL, radius=True)
+    L.text(
+        slide,
+        "候选条件：普通收款无风险 → 检查通过；退款才检查地址与人工审批。",
+        0.84,
+        2.92,
+        11.62,
+        0.28,
+        15,
+        L.TEAL,
+        True,
+    )
+
+    for x, label, result, color, fill, glyph in [
+        (0.65, "Decider", decider, L.TEAL, L.PALE_TEAL, "list-filter"),
+        (6.79, "GPT", gpt, L.BLUE, L.PALE_BLUE, "code-xml"),
+    ]:
+        L.rect(slide, x, 3.45, 5.84, 2.1, fill, L.LINE, True)
+        icon(glyph, x + 0.2, 3.64, color)
+        timing = result["timings"]["backend_total_ms"]
+        L.text(slide, f"{label} · {timing:,.1f} ms", x + 0.7, 3.6, 4.91, 0.42, 21, color, True)
+    L.text(slide, "候选评分 → 取最高分", 0.9, 4.1, 5.3, 0.3, 16, L.INK)
+    L.text(slide, "选择「等待人工审批」", 0.9, 4.5, 5.3, 0.34, 19, L.TEAL, True)
+    L.text(
+        slide,
+        f"等待审批 {probabilities['await_approval']:.2%}  >  检查通过 {probabilities['approved']:.2%}",
+        0.9,
+        4.94,
+        5.3,
+        0.28,
+        13,
+        L.MUTED,
+    )
+    L.text(slide, "本例增加了不需要的审批。", 0.9, 5.25, 5.3, 0.27, 14, L.ORANGE, True)
+    L.text(slide, "按候选条件生成 JSON", 7.04, 4.1, 5.3, 0.3, 16, L.INK)
+    L.text(slide, '{"choice": "approved"}', 7.04, 4.5, 5.3, 0.34, 19, L.BLUE, True)
+    L.text(slide, "界面标签：「规则检查通过」", 7.04, 4.94, 5.3, 0.28, 13, L.MUTED)
+    L.text(slide, "本次选择符合“非退款无需退款审批”。", 7.04, 5.25, 5.3, 0.27, 14, L.BLUE, True)
+
+    L.text(
+        slide,
+        "为何会不同？自然语言条件由模型判断，并非程序 if/else。",
+        0.65,
+        5.79,
+        12,
+        0.33,
+        16,
+        L.INK,
+        True,
+    )
+    L.text(
+        slide,
+        "可能干扰：退款审批字段在本例不适用；内部原因尚不能确认。候选概率表示偏向，不是正确率。",
+        0.65,
+        6.22,
+        12,
+        0.34,
+        13.5,
+        L.MUTED,
+    )
+    L.text(
+        slide,
+        "业务结果：检查通过 ≠ 已到账；两侧仍等待确认达标，Decider 另有待审批状态。",
+        0.65,
+        6.65,
+        12,
+        0.31,
+        14,
+        L.TEAL,
+        True,
+    )
+    L.line(slide, [(0.62, 7.04), (12.68, 7.04)], L.LINE, 0.6)
+    L.text(slide, "14 / 25", 11.76, 7.14, 0.92, 0.23, 10, L.MUTED, align=PP_ALIGN.RIGHT)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "assets").mkdir(exist_ok=True)
@@ -183,7 +303,8 @@ def main():
                     L.INK,
                 )
             if number in [*range(12, 23), 24] and shape.text == "决策模型 → 支付对比 → 应用结论":
-                replace_text(shape, shape.text, HISTORY)
+                # Keep capture provenance in the notes, without a repeated visible footer.
+                shape._element.getparent().remove(shape._element)
                 changed.append(number)
             if number == 24 and shape.text == "本次实测":
                 replace_text(shape, "本次实测", "历史实测")
@@ -224,6 +345,36 @@ def main():
             )
             metadata[number - 1]["title"] = "一套业务后端，对接 EC2 与 Bedrock"
             metadata[number - 1]["section"] = "当前项目架构"
+            changed.append(number)
+        if number == 14:
+            approval_comparison(slide)
+            notes = (
+                "本页解释收款场景中同一审批问题的选择差异。\n"
+                "1. 两侧业务输入指纹均为b57d0d9cf45b44d9：USDC收款未到账、无风险标记、"
+                "确认数3/12。输入包含refund_approved=false，但退款审批只适用于退款场景。\n"
+                "2. OPTIONS['approve']明确规定：普通收款没有风险标记即可选择approved；"
+                "退款才需要验证目的地并获得审批。因此本例参考选择是规则检查通过，"
+                "后续资金处置仍须等待链上确认。参考答案没有作为答案输入给模型。\n"
+                "3. Decider通过候选评分取最高项：await_approval 58.54%、approved 18.49%、"
+                "risk_review 16.20%、verify_destination 6.78%；后端总耗时87.406ms。"
+                "58.54%是候选概率，不是业务正确率。该次输出增加了本例不需要的审批。\n"
+                "4. GPT使用相同业务事实、问题和候选条件，适配层另加只输出候选ID JSON的"
+                '系统提示；生成{"choice":"approved"}，后端总耗时3771.788ms。'
+                "界面将approved映射为规则检查通过，这个标签不表示GPT执行了规则引擎。\n"
+                "5. 两者均为学习得到的模型判断，自然语言候选条件不等于强制执行的if/else。"
+                "refund_approved=false可能干扰了Decider对条件适用范围的判断，但这只是"
+                "待验证的假设；现有概率与输出不能揭示内部原因。可用删除无关退款字段、"
+                "强调case_type或重写候选条件的受控重复实验检验，当前没有执行这些实验。"
+                "GPT这次符合条件不代表以后总能正确。\n"
+                "6. 审批通过不等于到账或业务完成。双方实际资金动作均挂起，等待3/12达标；"
+                "Decider还记录了review_pending，后续需重新判断或解除待复核状态。"
+                "这些耗时包括后端通信与排队，不是模型纯计算时间。\n\n"
+                "实现依据：app/crypto.py::OPTIONS、facts、payload_for、reference、"
+                "execution_action；app/bedrock.py::decide。\n\n来源与口径：\n"
+                + notes.split("来源与口径：", 1)[1]
+            )
+            metadata[number - 1]["section"] = "固定输入 / 决策差异"
+            metadata[number - 1]["reused_v3_slide"] = None
             changed.append(number)
         slide.notes_slide.notes_text_frame.text = notes
         for effect in slide._element.xpath(".//a:effectRef"):
@@ -275,7 +426,9 @@ def main():
                 "loop_sha256": digest(ROOT / "docs/presentations/v2/loop-observations.json"),
                 "source_capture_manifest": "docs/presentations/v2/capture-manifest.json",
                 "new_model_calls": False,
-                "historical_charts_and_screenshots_unchanged": True,
+                "historical_measurement_values_unchanged": True,
+                "historical_screenshots_unchanged": True,
+                "reformatted_comparison_slides": [14],
                 "demo_url": DEMO,
                 "repo_url": REPO,
                 "documentation": [

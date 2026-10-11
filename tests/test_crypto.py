@@ -8,7 +8,7 @@ from fastapi.testclient import TestClient
 
 from app import main as main_module
 from app.bedrock import MODELS, decide
-from app.crypto import Snapshot, facts, payload_for, reference
+from app.crypto import OPTIONS, Snapshot, facts, fingerprint, payload_for, reference
 from app.main import app
 from deployment.infrastructure import template
 
@@ -127,7 +127,10 @@ def test_replay_has_no_fake_model_timings_or_tokens(client):
         assert result["probabilities"] is None
 
 
-def test_actual_providers_receive_identical_payload_and_keep_distinct_metrics(client, monkeypatch):
+@pytest.mark.parametrize("input_profile", ["baseline", "optimized"])
+def test_actual_providers_receive_identical_payload_and_keep_distinct_metrics(
+    client, monkeypatch, input_profile
+):
     raw = snapshot(client, "pending")
     runtime = MagicMock()
     runtime.converse.return_value = bedrock_reply("await_confirmations")
@@ -157,12 +160,14 @@ def test_actual_providers_receive_identical_payload_and_keep_distinct_metrics(cl
                 "snapshot": raw,
                 "stage": "verify",
                 "provider": p,
+                "input_profile": input_profile,
             },
         ).json()
         for p in ("decider", "bedrock")
     ]
     sent = json.loads(runtime.converse.call_args.kwargs["messages"][0]["content"][0]["text"])
     assert seen == [sent]
+    assert all(r["model_input"] == sent and r["input_profile"] == input_profile for r in responses)
     assert responses[0]["input_hash"] == responses[1]["input_hash"]
     assert responses[0]["confidence"] == 0.91
     assert responses[0]["usage"] is None
@@ -182,10 +187,110 @@ def test_actual_providers_receive_identical_payload_and_keep_distinct_metrics(cl
             "snapshot": raw,
             "stage": "verify",
             "provider": "bedrock",
+            "input_profile": input_profile,
         },
     ).json()
     assert changed["input_hash"] != responses[1]["input_hash"]
     assert changed["matches_reference"] is False
+
+
+@pytest.mark.parametrize("case", ["pending", "underpaid", "refund", "settlement"])
+def test_optimized_inputs_scope_fields_without_changing_candidates_or_business_facts(client, case):
+    raw = Snapshot(**snapshot(client, case))
+    before = raw.model_dump(mode="json")
+    for stage in OPTIONS:
+        original = payload_for(raw, stage)
+        optimized = payload_for(raw, stage, input_profile="optimized")
+        state = json.loads(optimized["state"])
+        all_facts = facts(raw)
+        assert state == {key: all_facts[key] for key in state}
+        assert "risk_flag" in state and "case_type" in state
+        assert ("refund_approved" in state) == (case == "refund")
+        assert ("refund_destination_verified" in state) == (case == "refund")
+        assert ("settled" in state) == (case == "settlement")
+        assert ("confirmed" in state) == (case != "settlement")
+        assert ("shortfall" in state) == (case != "settlement")
+        assert list(optimized["questions"]["action"]["criteria"]) == list(OPTIONS[stage])
+        assert "reference" not in json.dumps(optimized)
+        assert fingerprint(original) != fingerprint(optimized)
+        results = [
+            client.post(
+                "/api/crypto/decision",
+                json={
+                    "snapshot": before,
+                    "stage": stage,
+                    "provider": p,
+                    "mode": "replay",
+                    "input_profile": "optimized",
+                },
+            ).json()
+            for p in ("decider", "bedrock")
+        ]
+        assert results[0]["input_hash"] == results[1]["input_hash"] == fingerprint(optimized)
+        assert all(r["choice"] == reference(raw, stage) and r["timings"] is None for r in results)
+    assert raw.model_dump(mode="json") == before
+
+
+def test_baseline_remains_compatible_and_profile_is_validated(client):
+    raw = snapshot(client, "pending")
+    assert fingerprint(payload_for(Snapshot(**raw), "approve")) == "b57d0d9cf45b44d9"
+    response = client.post(
+        "/api/crypto/decision",
+        json={
+            "snapshot": raw,
+            "stage": "approve",
+            "provider": "decider",
+            "mode": "replay",
+            "input_profile": "force_pass",
+        },
+    )
+    assert response.status_code == 422
+
+
+@pytest.mark.parametrize(
+    ("case", "overrides", "stage", "choice", "actual"),
+    [
+        ("pending", {}, "execute", "credit_order", "hold"),
+        ("underpaid", {}, "execute", "credit_order", "hold"),
+        ("refund", {}, "approve", "approved", "verify_destination"),
+        ("refund", {"address_verified": True}, "approve", "approved", "await_approval"),
+        ("settlement", {"risk_flag": True}, "approve", "approved", "risk_review"),
+    ],
+)
+def test_optimized_model_mistakes_still_reach_same_execution_guards(
+    client, monkeypatch, case, overrides, stage, choice, actual
+):
+    raw = snapshot(client, case)
+    raw.update(overrides)
+    raw["completed"] = list(OPTIONS)[: list(OPTIONS).index(stage)]
+
+    async def wrong_choice(*args, **kwargs):
+        return {
+            "model": "test-model",
+            "answers": {
+                "action": {"choice": choice, "confidence": 1, "probabilities": {choice: 1}}
+            },
+            "timings": {"backend_total_ms": 1},
+        }
+
+    monkeypatch.setattr(main_module, "live_decision", wrong_choice)
+    response = client.post(
+        "/api/crypto/decision",
+        json={
+            "snapshot": raw,
+            "stage": stage,
+            "provider": "decider",
+            "input_profile": "optimized",
+        },
+    )
+    assert response.status_code == 200
+    assert response.json()["choice"] == choice
+    applied = client.post(
+        "/api/crypto/apply", json={"snapshot": raw, "stage": stage, "choice": choice}
+    )
+    assert applied.status_code == 200
+    assert applied.json()["action"] == actual
+    assert applied.json()["ledger_entry"] is None
 
 
 def test_bedrock_failure_never_falls_back_to_replay(client):
