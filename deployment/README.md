@@ -6,7 +6,9 @@
 
 当前访问地址：**https://d3i7ogfx5ml7dc.cloudfront.net**。资源标识和验收记录见 [DEPLOYED.md](DEPLOYED.md)。
 
-独立的加密支付业务台及 Bedrock GPT-6.1 Sol 对比说明见 [CRYPTO.md](CRYPTO.md)。
+独立的加密支付业务台同时比较 Strands Decider / Jev / Bedrock GPT-6.1 Sol，操作说明见 [CRYPTO.md](CRYPTO.md)，当前性能及业务结果见 [模型比较](../docs/MODEL_COMPARISON.md#当前三模型性能)。
+
+Jev 对比通过单 AZ Lambda 私有端点 → IAM-only Lambda → Typesafe HTTPS API 接入，密钥存储于 Secrets Manager；API、GPU 和 S3 保持私有。启用、轮换和新增费用见 [Jev 部署说明](../docs/JEV.md#aws-调用路径)。
 
 配套演示资料见 [27 页 v6 优化流程实测版](../docs/presentations/v6/README.md)：当前架构与调用路径为 ECS on EC2；新增两页真实输入优化演示，历史测速图表与新批次分别说明来源。
 
@@ -17,6 +19,10 @@ flowchart LR
     CF -->|/api/* / VPC Origin| ALB[内网 ALB]
     ALB --> API[ECS Fargate: API]
     API -->|私网 HTTP :8099| Model[ECS on EC2: Decider v19 / NVIDIA GPU]
+    API -->|Converse| Bedrock[Amazon Bedrock: GPT-6.1 Sol]
+    API -->|IAM Invoke| JevBridge[Lambda: Jev 转发]
+    JevBridge -->|HTTPS| Jev[Typesafe: Jev API]
+    JevBridge --> Secret[Secrets Manager: Jev 密钥]
     API -->|DynamoDB Gateway Endpoint| Auth[DynamoDB: 账号 / 会话 / 登录限流]
     API --> State[DynamoDB: GPU 状态 / 推理占用]
     Timer[EventBridge 每分钟] --> Controller[Lambda 控制器]
@@ -43,7 +49,7 @@ flowchart LR
 - 健康检查：API 的 `/api/live`、ALB 的 `/api/ready` 不依赖 GPU 在线；登录和示例回放始终可用。`/api/health` 单独检查真实模型。
 - 日志：CloudWatch `/ecs/strands-decider-demo`，保留 14 天。
 - API 不缓存。静态资源缓存 1 小时，HTML 不缓存；发布完成后创建 CloudFront invalidation。
-- API 序列化整次运行；等待槽位超过 5 秒返回 `429`。所有问题共用 50 秒执行预算，CloudFront origin timeout 为 60 秒；任一问题失败或整次执行超时都不返回部分答案。
+- Decider 工作台 API 序列化整次推理；等待槽位超过 5 秒返回 `429`。所有问题共用 50 秒执行预算，CloudFront origin timeout 为 60 秒；任一问题失败或整次执行超时都不返回该请求的部分答案。支付对比每步另行并发请求三个模型，各自保留成功或失败结果，不因一个模型失败隐藏其他结果。
 - 界面为逐项实测设置 `measure_decisions: true`，在一次 API 请求中依次执行问题，显示每项时间和浏览器总时间。省略此参数的 API 请求仍使用原来的批处理。计时定义见 [开发指南](../docs/DEVELOPMENT.md#时间的含义)。
 
 访问入口是 CloudFront 默认 HTTPS 域名，使用自建用户名和密码登录，无 Cognito。S3 和 ALB 本身不提供公共访问入口。

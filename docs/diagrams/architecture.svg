@@ -15,10 +15,13 @@
     <marker id="arrowb86c14" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M 0 0 L 10 5 L 0 10 Z" fill="#b86c14" />
     </marker>
+    <marker id="arrow8056b3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#8056b3" />
+    </marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff" />
   <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#232f3e" text-anchor="start" font-weight="700">01  AWS 部署架构</text>
-  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 On-Demand GPU 与 Bedrock 对比</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 / Jev / Bedrock 三模型同时对比</text>
   <rect x="360" y="140" width="1380" height="1370" rx="0" fill="#ffffff" stroke="#232f3e" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 40 40" version="1.1" x="372" y="150" aria-hidden="true">
     <title>Icon-Architecture-Group/32/AWS-Cloud-logo_32</title>
@@ -158,6 +161,23 @@
   <text x="1435.0" y="985.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">us.openai.gpt-6.1-sol</text>
   <text x="1435.0" y="1011.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">Converse · reasoning effort: low</text>
   <text x="1435.0" y="1036.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">美国跨区域推理配置</text>
+  <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="1407.0" y="670" aria-hidden="true">
+    <title>Icon-Architecture/64/Arch_AWS-Lambda_64</title>
+    <g id="jev_bridge-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="jev_bridge-icon-0-3" fill="#ED7100">
+        <rect id="jev_bridge-icon-0-4" x="0" y="0" width="80" height="80" />
+      </g>
+      <path d="M28.0075352,66 L15.5907274,66 L29.3235885,37.296 L35.5460249,50.106 L28.0075352,66 Z M30.2196674,34.553 C30.0512768,34.208 29.7004629,33.989 29.3175745,33.989 L29.3145676,33.989 C28.9286723,33.99 28.5778583,34.211 28.4124746,34.558 L13.097944,66.569 C12.9495999,66.879 12.9706487,67.243 13.1550766,67.534 C13.3374998,67.824 13.6582439,68 14.0020416,68 L28.6420072,68 C29.0299071,68 29.3817234,67.777 29.5481094,67.428 L37.563706,50.528 C37.693006,50.254 37.6920037,49.937 37.5586944,49.665 L30.2196674,34.553 Z M64.9953491,66 L52.6587274,66 L32.866809,24.57 C32.7014253,24.222 32.3486067,24 31.9617091,24 L23.8899822,24 L23.8990031,14 L39.7197081,14 L59.4204149,55.429 C59.5857986,55.777 59.9386172,56 60.3255148,56 L64.9953491,56 L64.9953491,66 Z M65.9976745,54 L60.9599868,54 L41.25928,12.571 C41.0938963,12.223 40.7410777,12 40.3531778,12 L22.89768,12 C22.3453987,12 21.8963569,12.447 21.8953545,12.999 L21.884329,24.999 C21.884329,25.265 21.9885708,25.519 22.1780103,25.707 C22.3654452,25.895 22.6200358,26 22.8866544,26 L31.3292417,26 L51.1221625,67.43 C51.2885485,67.778 51.6393624,68 52.02626,68 L65.9976745,68 C66.5519605,68 67,67.552 67,67 L67,55 C67,54.448 66.5519605,54 65.9976745,54 L65.9976745,54 Z" id="jev_bridge-icon-0-5" fill="#FFFFFF" />
+    </g>
+  </svg>
+  <text x="1435.0" y="750.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle" font-weight="700">AWS Lambda · Jev 转发</text>
+  <text x="1435.0" y="774.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle">仅 IAM 调用 · 固定 HTTPS 地址</text>
+  <text x="1435.0" y="798.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle">Secrets Manager 保存密钥</text>
+  <text x="1435.0" y="822.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle">托管网络出口，无 Function URL</text>
+  <text x="185.0" y="925.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle" font-weight="700">Typesafe Jev API</text>
+  <text x="185.0" y="950.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">AWS 账户外部托管服务</text>
+  <text x="185.0" y="976.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">System One · jev-latest</text>
+  <text x="185.0" y="1001.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">返回实际模型版本与概率</text>
   <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="567.0" y="1170" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-EventBridge_64</title>
     <g id="timer-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -224,7 +244,7 @@
   </svg>
   <text x="1270" y="1393.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start" font-weight="700">旧 EC2 已停止 · 80GB EBS 保留</text>
   <text x="1270" y="1417.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">回退资源，不参与当前推理</text>
-  <text x="61" y="1548.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">实线：请求 / 访问方向（响应省略）   绿色：Decider 推理   蓝色：Bedrock 推理   橙色虚线：GPU 生命周期控制</text>
+  <text x="61" y="1548.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">实线：请求 / 访问方向（响应省略）   绿色：Decider   蓝色：Bedrock   紫色：Jev   橙色虚线：GPU 生命周期</text>
   <text x="61" y="1588.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Bedrock 推理可路由至其他美国区域。图示省略私有网络端点、辅助部署依赖及回退资源网络；订单与账本在浏览器内存中模拟。</text>
   <polyline points="320,285 440,285" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
   <rect x="260" y="249" width="240" height="26" fill="#ffffff" />
@@ -242,6 +262,10 @@
   <polyline points="770,910 1260,910" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
   <rect x="930" y="872" width="240" height="26" fill="#ffffff" />
   <text x="1050" y="890" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#3159ac" text-anchor="middle">调用 GPT-6.1 Sol</text>
+  <polyline points="770,865 1200,865 1200,745 1260,745" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <polyline points="1260,775 1220,775 1220,455 380,455 380,960 325,960" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <rect x="70" y="837" width="240" height="26" fill="#ffffff" />
+  <text x="190" y="855" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#8056b3" text-anchor="middle">HTTPS · Jev API</text>
   <polyline points="770,975 930,975 930,1120 1440,1120 1440,1150" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
   <rect x="940" y="1077" width="240" height="26" fill="#ffffff" />
   <text x="1060" y="1095" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">账号 / 会话 / GPU 状态</text>

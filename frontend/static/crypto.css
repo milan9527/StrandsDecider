@@ -42,7 +42,7 @@
 }
 .cx-dialogue-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 310px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0;
   align-items: start;
 }
@@ -115,7 +115,7 @@
 }
 .cx-turn-pair {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .cx-turn-side.decider {
   background: #f5faf6;
@@ -217,7 +217,7 @@
   grid-column: auto;
   display: block;
   border: 0;
-  border-left: 1px solid var(--cx-border);
+  border-top: 1px solid var(--cx-border);
   border-radius: 0;
   min-width: 0;
   width: auto;
@@ -2065,7 +2065,7 @@
 }
 .cx-comparison .cx-summary {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(150px, 0.65fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   padding: 0;
   background: #fff;
@@ -2085,6 +2085,22 @@
 }
 .cx-speed-card.bedrock {
   background: linear-gradient(120deg, #f0f3ff, #fff);
+}
+.cx-speed-card.jev,
+.cx-lane.jev .cx-lane-head,
+.cx-turn-side.jev,
+.cx-final-card.jev {
+  background: #faf5ff;
+}
+.jev .cx-turn-model h4,
+.jev .cx-model-mark,
+.cx-summary .cx-speed-card.jev > span,
+.cx-summary .cx-speed-card.jev strong,
+.cx-step-result.jev .cx-step-result-head {
+  color: #8056b3;
+}
+.jev .cx-speed-bar i {
+  background: #9768cc;
 }
 .cx-summary .cx-speed-card > span,
 .cx-speed-ratio > span {
@@ -2154,7 +2170,7 @@
 }
 .cx-compare-table {
   font-size: 12px;
-  min-width: 680px;
+  min-width: 900px;
 }
 .cx-compare-table caption {
   padding: 12px 16px;
@@ -2171,6 +2187,10 @@
   background: #f3f9f5;
 }
 .cx-compare-table thead th:nth-child(3) {
+  color: #8056b3;
+  background: #faf5ff;
+}
+.cx-compare-table thead th:nth-child(4) {
   color: var(--cx-blue);
   background: #f5f6fc;
 }
@@ -2179,10 +2199,10 @@
   padding: 12px 16px;
 }
 .cx-compare-table tbody th {
-  width: 18%;
+  width: 15%;
 }
 .cx-compare-table tbody td:not(:last-child) {
-  width: 34%;
+  width: 25%;
 }
 .cx-table-choice {
   display: flex;
@@ -2446,5 +2466,57 @@
   .cx-final-grid,
   .cx-step-pair {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Keep the three providers in the same order throughout the comparison. */
+.cx-lanes,
+.cx-final-grid,
+.cx-step-pair {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cx-relative-time {
+  margin-top: 7px;
+  line-height: 1.6;
+}
+.cx-comparison-title h1 {
+  font-size: clamp(23px, 2.5vw, 32px);
+  line-height: 1.5;
+}
+.cx-dialogue-heading select {
+  max-width: min(380px, 65vw);
+}
+@media (max-width: 1000px) {
+  .cx-lanes,
+  .cx-final-grid,
+  .cx-step-pair,
+  .cx-turn-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 650px) {
+  .cx-comparison .cx-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cx-summary > .cx-speed-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--cx-border);
+  }
+  .cx-summary .cx-speed-card strong {
+    margin: 0;
+    align-self: center;
+  }
+  .cx-speed-bar,
+  .cx-speed-card > small {
+    grid-column: 1 / -1;
+  }
+  .cx-speed-bar {
+    margin: 5px 0 2px;
+  }
+  .cx-comparison-title h1 {
+    padding-top: 8px;
   }
 }

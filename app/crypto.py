@@ -21,6 +21,8 @@ from app.crypto_profiles import (
     InputProfile,
     scoped_state,
 )
+from app.jev import MODEL as JEV_MODEL
+from app.jev import JevError
 from app.schemas import StrictModel
 
 router = APIRouter(prefix="/api/crypto", tags=["Payment sandbox"])
@@ -59,7 +61,7 @@ class ExecutionFeedback(StrictModel):
 class Decision(StrictModel):
     snapshot: Snapshot
     stage: Stage
-    provider: Literal["decider", "bedrock"]
+    provider: Literal["decider", "bedrock", "jev"]
     mode: Literal["live", "replay"] = "live"
     model_id: Literal["us.openai.gpt-6.1-sol"] = "us.openai.gpt-6.1-sol"
     input_profile: InputProfile = "baseline"
@@ -465,6 +467,8 @@ def catalog(request: Request):
         },
         "bedrock_models": [{"id": k, **v} for k, v in MODELS.items()],
         "bedrock_configured": request.app.state.bedrock is not None,
+        "jev_configured": request.app.state.jev is not None,
+        "jev_model": JEV_MODEL,
         "optimized_profile_notes": PROFILE_NOTES,
         "price_note": "Bedrock 展示实际 token 用量；未配置已核实的单价，不估算美元金额。Decider 按实例小时计费，不能与 token 直接等同。",
     }
@@ -516,6 +520,31 @@ async def decision(body: Decision, request: Request):
             "estimated_request_usd": None,
             "timings": {**result["timings"], "model_reported_ms": result.get("latency_ms")},
         }
+    elif body.provider == "jev":
+        if request.app.state.jev is None:
+            raise HTTPException(503, "Jev 尚未配置，请管理员配置服务端密钥；规则回放仍可使用。")
+        try:
+            async with asyncio.timeout(50):
+                async with request.app.state.jev_slots:
+                    model_start = perf_counter()
+                    result = await run_in_threadpool(request.app.state.jev.decide, payload)
+            model_reported_ms = result.pop("model_reported_ms", None)
+            extra = {
+                **result,
+                "timings": {
+                    "backend_total_ms": round((perf_counter() - started) * 1000, 3),
+                    "processing_ms": round((perf_counter() - model_start) * 1000, 3),
+                    "model_reported_ms": model_reported_ms,
+                },
+            }
+        except TimeoutError as exc:
+            raise HTTPException(504, "Jev 本次决策超时，未生成替代结果。") from exc
+        except JevError as exc:
+            raise HTTPException(
+                exc.status_code,
+                exc.detail,
+                headers={"Retry-After": "5"} if exc.status_code == 429 else None,
+            ) from exc
     else:
         if request.app.state.bedrock is None:
             raise HTTPException(503, "Bedrock 尚未配置；可以运行规则回放，不能将其视作模型对比。")

@@ -22,6 +22,7 @@ from app.crypto_loop import router as crypto_loop_router
 from app.examples import EXAMPLES, GUARD_QUESTIONS, public_examples
 from app.gpu import configured_gpu, inference_lease
 from app.gpu import router as gpu_router
+from app.jev import create_client as create_jev
 from app.policy import review, tool_state
 from app.sagemaker import create_runtime
 from app.sagemaker import invoke as invoke_sagemaker
@@ -41,6 +42,8 @@ async def lifespan(app):
     app.state.sagemaker = create_runtime() if os.getenv("GPU_PROVIDER") == "sagemaker" else None
     app.state.bedrock = create_bedrock()
     app.state.bedrock_slots = asyncio.Semaphore(2)
+    app.state.jev = create_jev()
+    app.state.jev_slots = asyncio.Semaphore(2)
     async with httpx.AsyncClient(
         timeout=httpx.Timeout(app.state.model_timeout, connect=5),
         trust_env=False,
@@ -53,6 +56,8 @@ async def lifespan(app):
                 app.state.sagemaker.close()
             if app.state.bedrock:
                 app.state.bedrock.close()
+            if app.state.jev:
+                app.state.jev.close()
 
 
 app = FastAPI(

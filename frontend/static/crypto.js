@@ -17,8 +17,15 @@ const workflowNames = {
 const expandedPanels = new Set();
 const panelOpen = (name) => (expandedPanels.has(name) ? "open" : "");
 const workspaces = new Map();
-const providers = ["decider", "bedrock"];
-const providerNames = { decider: "Strands Decider", bedrock: "GPT-6.1 Sol" };
+const providers = ["decider", "jev", "bedrock"];
+const providerNames = {
+  decider: "Strands Decider",
+  bedrock: "GPT-6.1 Sol",
+  jev: "Jev",
+};
+const shortNames = { decider: "Decider", bedrock: "GPT", jev: "Jev" };
+const comparisonName = (ids) => ids.map((id) => shortNames[id]).join(" / ");
+const emptyResults = () => ({ decider: {}, bedrock: {}, jev: {} });
 const caseNames = {
   pending: "USDC 未到账",
   underpaid: "USDT 少付",
@@ -63,7 +70,8 @@ const money = (value) =>
 function fresh(snapshot) {
   return {
     snapshot: clone(snapshot),
-    results: { decider: {}, bedrock: {} },
+    comparisonProviders: [...providers],
+    results: emptyResults(),
     audit: [],
     executions: {},
     activeExecution: null,
@@ -112,7 +120,7 @@ function renderGpuNotice() {
   const root = $("#cx-gpu-notice");
   if (!root || !ui?.gpu) return;
   const { state: s, error } = ui.gpu();
-  if (s && !s.enabled && !error) {
+  if (!providers.includes("decider") || (s && !s.enabled && !error)) {
     root.hidden = true;
     return;
   }
@@ -152,7 +160,7 @@ function renderGpuNotice() {
 }
 
 async function gpuReady(runMode = mode) {
-  if (runMode !== "live") return true;
+  if (runMode !== "live" || !providers.includes("decider")) return true;
   return ui.ensureGpuReady("支付流程对比");
 }
 
@@ -192,7 +200,7 @@ function eventChange(event, before, after) {
 
 function invalidate(message, event = "evidence") {
   const w = workspace();
-  w.results = { decider: {}, bedrock: {} };
+  w.results = emptyResults();
   w.executions = {};
   w.activeExecution = null;
   w.snapshot.completed = [];
@@ -210,23 +218,24 @@ function invalidate(message, event = "evidence") {
   });
 }
 
-function pairs() {
-  const r = workspace().results;
+function comparableStages(ids = providers) {
+  const results = workspace().results;
   return catalog.stages
-    .map(({ id }) => ({ id, a: r.decider[id], b: r.bedrock[id] }))
-    .filter(
-      ({ a, b }) =>
-        a?.source === "live" &&
-        b?.source === "live" &&
-        a.input_profile === b.input_profile &&
-        a.input_hash === b.input_hash,
+    .map(({ id }) => ids.map((p) => results[p][id]))
+    .filter((rows) =>
+      rows.every(
+        (r) =>
+          r?.source === "live" &&
+          r.input_profile === rows[0].input_profile &&
+          r.input_hash === rows[0].input_hash,
+      ),
     );
 }
 
 function summary() {
   const w = workspace(),
     loop = w.workflowKind === "loop",
-    paired = pairs();
+    comparable = comparableStages();
   const rows = Object.fromEntries(
     providers.map((provider) => [
       provider,
@@ -234,7 +243,7 @@ function summary() {
         ? (w.executions[provider]?.decisionHistory || []).filter(
             (r) => r.source === "live",
           )
-        : paired.map((row) => (provider === "decider" ? row.a : row.b)),
+        : Object.values(w.results[provider]).filter((r) => r.source === "live"),
     ]),
   );
   const totals = Object.fromEntries(
@@ -243,12 +252,27 @@ function summary() {
       rows[p].reduce((sum, r) => sum + r.timings.backend_total_ms, 0),
     ]),
   );
-  const largest = Math.max(totals.decider, totals.bedrock, 1);
-  const differences = paired.filter(({ a, b }) => a.choice !== b.choice).length;
+  const largest = Math.max(...Object.values(totals), 1);
+  const differences = comparable.filter(
+    (rows) => new Set(rows.map((r) => r.choice)).size > 1,
+  ).length;
+  const relativeTime = (provider) => {
+    if (w.runMode === "replay") return "规则回放 · 不计推理耗时";
+    if (loop) return "含本模型重判，调用次数可能不同";
+    if (provider === "decider") return "耗时比较基准";
+    const matched = comparableStages(["decider", provider]);
+    const base = matched.reduce((n, r) => n + r[0].timings.backend_total_ms, 0);
+    const compared = matched.reduce(
+      (n, r) => n + r[1].timings.backend_total_ms,
+      0,
+    );
+    return base > 0
+      ? `同输入 ${matched.length} 步 · 耗时为 Decider 的 ${(compared / base).toFixed(1)}×`
+      : "等待与 Decider 的同输入结果";
+  };
   return `<div class="cx-summary">
-    ${providers.map((p) => `<div class="cx-speed-card ${p}"><span>${providerNames[p]} <small>决策总耗时</small></span><strong>${rows[p].length ? duration(totals[p]) : "—"}</strong><div class="cx-speed-bar"><i style="width:${(totals[p] / largest) * 100}%"></i></div><small>${rows[p].length ? `${rows[p].length} 次实测决策` : w.runMode === "replay" ? "规则回放 · 不计推理耗时" : "等待真实模型结果"}</small></div>`).join("")}
-    <div class="cx-speed-ratio"><span>耗时比 <small>GPT / Decider</small></span><strong>${totals.decider > 0 && totals.bedrock > 0 ? `${(totals.bedrock / totals.decider).toFixed(1)}×` : "—"}</strong><small>${loop ? "含各自重判，调用次数可能不同" : "相同输入下的决策耗时"}</small></div>
-    <div class="cx-summary-note">${w.runMode === "replay" ? `${workflowNames[w.workflowKind]} · 规则回放 · 不调用模型` : loop ? "自主闭环 · 两侧按各自执行结果继续判断" : `${workflowNames[w.workflowKind]} · 已对比 ${paired.length}/5 步 · 两侧选择不同 ${differences} 步`}<span>耗时包含模型调用与通信</span></div>
+    ${providers.map((p) => `<div class="cx-speed-card ${p}"><span>${providerNames[p]} <small>成功决策累计耗时</small></span><strong>${rows[p].length ? duration(totals[p]) : "—"}</strong><div class="cx-speed-bar"><i style="width:${(totals[p] / largest) * 100}%"></i></div><small>${w.runMode === "replay" ? `${Object.values(w.results[p]).filter((r) => r.source === "rule_replay").length} 步规则回放` : `${rows[p].length} 次成功${loop ? "" : " / 5 步"}`}${Object.values(w.results[p]).some((r) => r.error) ? " · 有调用失败" : ""}</small><small class="cx-relative-time">${relativeTime(p)}</small></div>`).join("")}
+    <div class="cx-summary-note">${w.runMode === "replay" ? `${workflowNames[w.workflowKind]} · 规则回放 · 不调用模型` : loop ? "自主闭环 · 三个模型按各自执行结果继续判断" : `${workflowNames[w.workflowKind]} · 三模型同输入对比 ${comparable.length}/5 步 · 存在选择差异 ${differences} 步`}<span>耗时含通信；总经过时间见处理结果</span></div>
   </div>`;
 }
 
@@ -277,20 +301,25 @@ function comparisonTable() {
     );
     return `<td data-cx-compare="${provider}-${stage}"><div class="cx-table-choice">${ui.esc(r?.label || (r?.error ? "调用失败" : running ? "判断中…" : "等待运行"))}<b>${r?.source === "live" ? duration(r.timings.backend_total_ms) : r?.source === "rule_replay" ? "回放" : "—"}</b></div><div class="cx-table-action ${outcome?.state || ""}">${running ? "处理中…" : record?.error ? `请求失败：${ui.esc(record.error)}` : record?.applied ? `实际：${ui.esc(record.label)}${record.safety_adjusted ? " · 保护调整" : ""}` : r?.error ? ui.esc(r.error) : r?.choice ? "尚未执行" : "—"}</div>${history.length > 1 ? `<small>${history.length} 次判断合计 ${duration(history.reduce((n, d) => n + d.timings.backend_total_ms, 0))}</small>` : ""}</td>`;
   };
-  return `<div class="cx-table-wrap"><table class="cx-compare-table"><caption>逐步流程对比${w.workflowKind === "loop" ? " · 每步最近一次结果" : ""}</caption><thead><tr><th>业务步骤</th><th>Strands Decider</th><th>GPT-6.1 Sol</th><th>选择对比</th></tr></thead><tbody>${catalog.stages
+  return `<div class="cx-table-wrap"><table class="cx-compare-table"><caption>逐步流程对比${w.workflowKind === "loop" ? " · 每步最近一次结果" : ""}</caption><thead><tr><th>业务步骤</th>${providers.map((p) => `<th>${providerNames[p]}</th>`).join("")}<th>选择对比</th></tr></thead><tbody>${catalog.stages
     .map((stage, i) => {
-      const a = results.decider[stage.id],
-        b = results.bedrock[stage.id];
-      const sameInput = a?.input_hash && a.input_hash === b?.input_hash;
-      const label =
-        a?.choice && b?.choice
-          ? sameInput
-            ? a.choice === b.choice
-              ? "相同"
-              : "不同"
-            : "不同输入"
+      const rows = providers.map((p) => results[p][stage.id]);
+      const sameInput = rows.every(
+        (r) =>
+          r?.input_hash &&
+          r.input_hash === rows[0].input_hash &&
+          r.source === rows[0].source,
+      );
+      const label = rows.every((r) => r?.choice)
+        ? sameInput
+          ? new Set(rows.map((r) => r.choice)).size === 1
+            ? "全部相同"
+            : "存在差异"
+          : "不同输入"
+        : rows.some((r) => r?.error)
+          ? "有调用失败"
           : "待对比";
-      return `<tr><th><button data-cx-stage="${stage.id}"><span>0${i + 1}</span>${ui.esc(stage.label)}</button></th>${cell("decider", stage.id)}${cell("bedrock", stage.id)}<td><span class="cx-pair-badge ${label === "不同" ? "different" : ""}">${label}</span></td></tr>`;
+      return `<tr><th><button data-cx-stage="${stage.id}"><span>0${i + 1}</span>${ui.esc(stage.label)}</button></th>${providers.map((p) => cell(p, stage.id)).join("")}<td><span class="cx-pair-badge ${["存在差异", "有调用失败"].includes(label) ? "different" : ""}">${label}</span></td></tr>`;
     })
     .join("")}</tbody></table></div>`;
 }
@@ -315,10 +344,12 @@ function lane(provider) {
   const title =
     provider === "decider"
       ? "专用决策模型 · 2B / CUDA"
-      : "Bedrock · 美国推理配置 / low";
-  let detail = `<div class="cx-result-empty">${ui.icon("route")}<strong>等待当前步骤的判断</strong><p>两侧收到相同证据与候选动作。</p></div>`;
+      : provider === "jev"
+        ? "Typesafe · 托管决策模型"
+        : "Bedrock · 美国推理配置 / low";
+  let detail = `<div class="cx-result-empty">${ui.icon("route")}<strong>等待当前步骤的判断</strong><p>三侧收到相同证据与候选动作。</p></div>`;
   if (result?.pending)
-    detail = `<div class="cx-result-empty cx-pending"><span class="cx-spinner"></span><strong>正在执行真实决策…</strong><p>结果会独立返回，另一侧无需等待。</p></div>`;
+    detail = `<div class="cx-result-empty cx-pending"><span class="cx-spinner"></span><strong>正在执行真实决策…</strong><p>结果会独立返回，其他模型独立返回。</p></div>`;
   else if (result?.error)
     detail = `<div class="cx-model-error"><strong>本步未获得模型结果</strong><p>${ui.esc(result.error)}</p><small>未用规则数据替代；本步不参与性能统计。</small></div>`;
   else if (result?.choice) {
@@ -332,12 +363,12 @@ function lane(provider) {
           .join("")}</div>`
       : `<p class="cx-model-note">${result.source === "live" ? "GPT 返回候选动作 JSON，不提供可与 Decider 比较的校准概率。" : "确定性规则回放，没有模型概率或推理时间。"}</p>`;
     detail = `<div class="cx-decision ${result.matches_reference ? "match" : "mismatch"}"><span>${result.source === "live" ? "真实模型建议" : "规则回放 · 非模型输出"}</span><h3>${ui.esc(result.label)}</h3><p>${result.matches_reference ? "与演示参考一致" : `与演示参考不同：${ui.esc(result.reference_label)}`}</p></div>
-      <div class="cx-detail-metrics"><div><span>本步后端总耗时</span><b>${duration(result.timings?.backend_total_ms)}</b></div><div><span>浏览器往返</span><b>${result.source === "live" ? duration(result.client_ms) : "未推理"}</b></div><div><span>${provider === "decider" ? "归一化 confidence" : "输入 / 输出 tokens"}</span><b>${provider === "decider" ? (result.confidence == null ? "—" : result.confidence.toFixed(3)) : result.usage ? `${result.usage.input_tokens} / ${result.usage.output_tokens}` : "—"}</b></div></div>
-      ${distribution}<details class="cx-raw"><summary>查看原始响应与输入指纹</summary><pre>${ui.esc(JSON.stringify(result, null, 2))}</pre></details>`;
+      <div class="cx-detail-metrics"><div><span>本步后端总耗时</span><b>${duration(result.timings?.backend_total_ms)}</b></div><div><span>浏览器往返</span><b>${result.source === "live" ? duration(result.client_ms) : "未推理"}</b></div><div><span>${provider === "decider" ? "归一化 confidence" : provider === "jev" ? "Jev confidence" : "输入 / 输出 tokens"}</span><b>${provider !== "bedrock" ? (result.confidence == null ? "—" : result.confidence.toFixed(3)) : result.usage ? `${result.usage.input_tokens} / ${result.usage.output_tokens}` : "—"}</b></div></div>
+      ${result.source === "live" ? `<p class="cx-model-note">模型版本：${ui.esc(result.model)}${provider === "jev" ? " · 概率与 confidence 来自 Jev，不视作与 Decider 相同的校准尺度。" : ""}</p>` : ""}${distribution}<details class="cx-raw"><summary>查看原始响应与输入指纹</summary><pre>${ui.esc(JSON.stringify(result, null, 2))}</pre></details>`;
   }
   return `<section class="cx-lane ${provider}" aria-label="${providerNames[provider]} 对比结果">
-    <div class="cx-lane-head"><div class="cx-model-mark">${provider === "decider" ? "D" : "G"}</div><div><h3>${providerNames[provider]}</h3><span>${title}</span></div><b class="cx-model-count">${successful.length}/5</b></div>
-    <div class="cx-lane-totals"><span>实测合计 <b>${live.length ? duration(total) : "—"}</b></span><span>参考一致 <b>${live.length ? `${live.filter((r) => r.matches_reference).length}/${live.length}` : "—"}</b></span><span>${provider === "bedrock" ? `tokens <b>${live.length ? tokens : "—"}</b>` : "GPU 按运行小时计费"}</span></div>
+    <div class="cx-lane-head"><div class="cx-model-mark">${provider === "decider" ? "D" : provider === "jev" ? "J" : "G"}</div><div><h3>${providerNames[provider]}</h3><span>${title}</span></div><b class="cx-model-count">${successful.length}/5</b></div>
+    <div class="cx-lane-totals"><span>实测合计 <b>${live.length ? duration(total) : "—"}</b></span><span>参考一致 <b>${live.length ? `${live.filter((r) => r.matches_reference).length}/${live.length}` : "—"}</b></span><span>${provider !== "decider" ? `tokens <b>${live.length ? tokens : "—"}</b>` : "GPU 按运行小时计费"}</span></div>
     <div class="cx-lane-steps">${catalog.stages
       .map((stage, i) => {
         const r = results[stage.id];
@@ -541,8 +572,8 @@ function finalOutcome(provider) {
             : failed
               ? "模型调用失败，尚未获得完整方案，本侧没有执行业务步骤。"
               : allDone
-                ? "已生成五步建议。点击下方按钮执行，或运行上方完整流程同时查看两侧结果。"
-                : "点击「开始对比」，依次生成建议并执行两套独立沙盒流程。";
+                ? "已生成五步建议。点击下方按钮执行，或运行上方完整流程同时查看三侧结果。"
+                : "点击「开始对比」，依次生成建议并执行三套独立沙盒流程。";
   if (isLoop && !execution.error) {
     state = outcome.complete ? "finished" : "pending";
     title = outcome.complete
@@ -662,6 +693,7 @@ function startDialogue(provider, number, request, kind) {
       revision: w.revision,
       kind,
       mode: w.runMode,
+      providers: [...providers],
       sides: {},
     };
     w.dialogues.push(turn);
@@ -731,33 +763,32 @@ function renderDialogues() {
   const runs = [...new Set(w.dialogues.map((row) => row.run))].reverse();
   const rows = w.dialogues.filter((row) => row.run === w.viewedDialogueRun);
   return `<section class="cx-dialogues" aria-label="每轮对话输入与输出">
-    <div class="cx-dialogue-heading"><h2>每轮输入 / 输出</h2><label>对比记录 <select data-cx-dialogue-run ${runs.length ? "" : "disabled"}>${runs.length ? runs.map((run) => `<option value="${run}" ${run === w.viewedDialogueRun ? "selected" : ""}>第 ${run} 次 · ${workflowNames[w.dialogues.find((row) => row.run === run).kind]}${run === w.dialogueRun ? " · 最近" : ""}</option>`).join("") : "<option>等待开始</option>"}</select></label></div>
+    <div class="cx-dialogue-heading"><h2>每轮输入 / 输出</h2><label>对比记录 <select data-cx-dialogue-run ${runs.length ? "" : "disabled"}>${runs.length && w.viewedDialogueRun === 0 ? '<option value="0" selected>等待当前组合运行</option>' : ""}${runs.length ? runs.map((run) => `<option value="${run}" ${run === w.viewedDialogueRun ? "selected" : ""}>第 ${run} 次 · ${workflowNames[w.dialogues.find((row) => row.run === run).kind]} · ${comparisonName(w.dialogues.find((row) => row.run === run).providers || providers)}${run === w.dialogueRun ? " · 最近" : ""}</option>`).join("") : "<option>等待开始</option>"}</select></label></div>
     <div class="cx-dialogue-layout"><div class="cx-dialogue-main">
       <p class="cx-dialogue-note">${rows.length ? `${rows.length} 轮 · 滚动查看全部输入与输出` : "开始对比后逐轮显示输入与输出"} · 客服模板单独标注</p>
-      <div class="cx-dialogue-feed" tabindex="0" aria-label="逐轮输入与两侧输出记录">
+      <div class="cx-dialogue-feed" tabindex="0" aria-label="逐轮输入与三侧输出记录">
         ${
           rows.length
             ? rows
                 .map((row) => {
-                  const a = row.sides.decider,
-                    b = row.sides.bedrock;
-                  const sameInput =
-                    a &&
-                    b &&
+                  const rowProviders = row.providers || providers;
+                  const sides = rowProviders.map((p) => row.sides[p]);
+                  const inputSignature = (side) =>
                     JSON.stringify({
-                      snapshot: a.request.snapshot || a.request.state,
-                      stage: a.request.stage,
-                      input_profile: a.request.input_profile,
-                    }) ===
-                      JSON.stringify({
-                        snapshot: b.request.snapshot || b.request.state,
-                        stage: b.request.stage,
-                        input_profile: b.request.input_profile,
-                      });
-                  return `<section class="cx-turn" data-cx-dialogue-turn="${row.number}"><header><strong>第 ${row.number} 轮</strong><span>证据 v${row.revision}${row.revision < w.revision ? " · 历史输入" : ""} · ${workflowNames[row.kind]}${row.kind === "loop" ? " · 两侧各自推进" : ""} · ${row.mode === "replay" ? "规则回放" : "真实模型"}</span></header>${sameInput ? dialogueInput(a.result ? a : b) : ""}<div class="cx-turn-pair">${providers.map((p) => dialogueOutput(p, row.sides[p], !sameInput)).join("")}</div></section>`;
+                      snapshot: side.request.snapshot || side.request.state,
+                      stage: side.request.stage,
+                      input_profile: side.request.input_profile,
+                    });
+                  const sameInput = sides.every(
+                    (side) =>
+                      side && inputSignature(side) === inputSignature(sides[0]),
+                  );
+                  const shared =
+                    sides.find((side) => side?.result?.model_input) || sides[0];
+                  return `<section class="cx-turn" data-cx-dialogue-turn="${row.number}"><header><strong>第 ${row.number} 轮</strong><span>证据 v${row.revision}${row.revision < w.revision ? " · 历史输入" : ""} · ${workflowNames[row.kind]}${row.kind === "loop" ? " · 各模型独立推进" : ""} · ${row.mode === "replay" ? "规则回放" : "真实模型"}</span></header>${sameInput ? dialogueInput(shared) : ""}<div class="cx-turn-pair">${rowProviders.map((p) => dialogueOutput(p, row.sides[p], !sameInput)).join("")}</div></section>`;
                 })
                 .join("")
-            : `<div class="cx-dialogue-empty"><span class="cx-io-label">客户输入</span><p>${ui.esc(w.snapshot.message)}</p><div class="cx-turn-pair"><div><strong>Strands Decider</strong><p>等待开始对比</p></div><div><strong>GPT-6.1 Sol</strong><p>等待开始对比</p></div></div></div>`
+            : `<div class="cx-dialogue-empty"><span class="cx-io-label">客户输入</span><p>${ui.esc(w.snapshot.message)}</p><div class="cx-turn-pair">${providers.map((p) => `<div><strong>${providerNames[p]}</strong><p>等待开始对比</p></div>`).join("")}</div></div>`
         }
       </div>
       <small class="cx-dialogue-retention">保留最近 80 轮，可切换对比记录或导出；刷新后清除。</small>
@@ -788,7 +819,7 @@ function renderConversation() {
     <div class="cx-card-heading"><h3>${ui.icon("message")}客户对话与回复</h3><span>${ui.esc(c.ticket_id)}</span></div>
     <div class="cx-chat-person"><span class="cx-avatar">${ui.esc(c.customer[0])}</span><div><strong>${ui.esc(c.customer)}</strong><small>订单 ${ui.esc(c.order_id)}</small></div><span class="cx-dot"></span></div>
     <div class="cx-chat" aria-label="客户诉求、模拟交易事件与客服回复记录">${history}
-    ${!w.conversation.some((entry) => entry.kind === "reply") ? `<p class="cx-chat-hint">运行后显示事件与两侧回复。</p>` : ""}
+    ${!w.conversation.some((entry) => entry.kind === "reply") ? `<p class="cx-chat-hint">运行后显示事件与三侧回复。</p>` : ""}
     </div>
     <div class="cx-events"><strong>推进模拟交易</strong><span>${w.workflowKind === "loop" ? "更新等待中的证据，自动继续。" : "更新证据后重新开始对比。"}</span>${events.map((event) => `<button class="cx-event-button" data-cx-event="${event}" ${busy ? "disabled" : ""}>${ui.icon("plus")}${eventNames[event]}</button>`).join("")}</div>
     <label class="cx-field">修改客户诉求<textarea id="cx-message" maxlength="1800" rows="3" ${busy ? "disabled" : ""}>${ui.esc(w.snapshot.message)}</textarea></label>
@@ -844,23 +875,24 @@ function render() {
       (x) => !["complete", "handoff"].includes(x.loopState.status),
     );
   root.innerHTML = `
-    <header class="cx-comparison-title"><div><span>加密支付测试台</span><h1>Decider <small>vs</small> GPT</h1></div><div class="cx-title-actions"><button data-cx-reset class="text-button" ${disabled}>重置</button><button data-cx-export class="text-button" ${disabled}>${ui.icon("copy")}导出结果</button></div></header>
+    <header class="cx-comparison-title"><div><span>加密支付测试台</span><h1>${providers.map((p) => (p === "decider" ? "Strands Decider" : shortNames[p])).join(" <small>vs</small> ")}</h1></div><div class="cx-title-actions"><button data-cx-reset class="text-button" ${disabled}>重置</button><button data-cx-export class="text-button" ${disabled}>${ui.icon("copy")}导出结果</button></div></header>
     <section class="cx-test-setup" aria-label="对比测试设置">
       <nav class="cx-scenario-tabs" aria-label="选择业务场景">${catalog.cases.map((item, i) => `<button class="cx-case ${item.id === current ? "active" : ""}" data-cx-case="${item.id}" aria-pressed="${item.id === current}" ${disabled}><small>0${i + 1}</small><strong>${e(caseNames[item.id])}</strong></button>`).join("")}</nav>
       <div class="cx-test-toolbar"><label class="cx-test-kind">测试方式<select data-cx-test-kind ${disabled}><option value="workflow" ${testKind === "workflow" ? "selected" : ""}>固定流程</option><option value="optimized" ${testKind === "optimized" ? "selected" : ""}>优化流程</option><option value="loop" ${testKind === "loop" ? "selected" : ""}>自主闭环</option></select></label><div class="mode-switch" role="group" aria-label="支付模块运行模式"><button data-cx-mode="live" class="${mode === "live" ? "active" : ""}" ${disabled}>真实模型</button><button data-cx-mode="replay" class="${mode === "replay" ? "active" : ""}" ${disabled}>规则回放</button></div><div class="cx-run-actions">${resumable ? `<button data-cx-loop-resume class="secondary-button" ${disabled}>继续本次对比</button>` : ""}<button data-cx-start class="primary-button" ${disabled}>${ui.icon("play")}${busy ? "对比中…" : "开始对比"}</button>${busy ? `<button data-cx-stop class="text-button">${stopRequested ? "正在暂停…" : "暂停"}</button>` : ""}</div></div>
-      ${testKind === "optimized" ? `<p class="cx-profile-note">${e(catalog.optimized_profile_notes?.[current] || "按场景精简输入、明确候选适用条件。")} 两侧均完成五步判断与模拟执行。</p>` : ""}
+      ${providers.includes("jev") && !catalog.jev_configured && mode === "live" ? `<p class="cx-profile-note cx-jev-unconfigured">Jev 尚未配置服务端密钥，可先使用规则回放。</p>` : ""}
+      ${testKind === "optimized" ? `<p class="cx-profile-note">${e(catalog.optimized_profile_notes?.[current] || "按场景精简输入、明确候选适用条件。")} 三侧均完成五步判断与模拟执行。</p>` : ""}
       ${testKind === "loop" ? `<label class="cx-auto-events"><input type="checkbox" data-cx-auto-events ${autoEvents ? "checked" : ""} ${disabled}>自动推进模拟证据 <small>确认、补款、审批等；风险需手动解除</small></label>` : ""}
       <div class="cx-case-strip"><span>${e(c.asset)} · ${e(c.network)}</span><span>应付 <b>${money(s.expected)}</b></span><span>到账 <b>${money(s.received)}</b></span><span>${current === "settlement" ? `结算 ${s.settlement_minutes}/${s.settlement_sla_minutes} min` : `确认 ${s.confirmations}/${s.required_confirmations}`}</span><small>${w.workflowKind === "loop" ? "初始证据" : "模拟业务"}</small></div>
       <section id="cx-gpu-notice" aria-live="polite"></section>
     </section>
-    <section class="cx-comparison" aria-label="Decider 与 GPT 流程速度对比">
+    <section class="cx-comparison" aria-label="${comparisonName(providers)} 流程速度对比">
       <div id="cx-run-status" class="cx-run-status" role="status">${busy ? `正在处理：${e(stageData(selectedStage).label)}` : ""}</div>
       ${summary()}${renderDialogues()}${comparisonTable()}${renderExecutionResults()}
     </section>
     <details class="cx-disclosure" data-cx-panel="inputs" ${panelOpen("inputs")}><summary>场景说明与证据编辑</summary><div class="cx-workspace">
       <section class="cx-card cx-order"><div class="cx-card-heading"><h2>${e(c.title)}</h2><span>证据 v${w.revision}</span></div><p class="cx-case-description">${e(c.summary)}</p><div class="cx-fact-chips"><span>${s.risk_flag ? "待人工风控" : "无风险标记"}</span>${current === "refund" ? `<span>${s.address_verified ? "地址已验证" : "地址未验证"}</span><span>${s.approved ? "审批已通过" : "待人工审批"}</span>` : ""}</div>
       <details class="cx-evidence" data-cx-panel="evidence" ${panelOpen("evidence")}><summary>编辑业务证据</summary><div class="cx-evidence-fields"><label>应付金额<input type="number" min="0.01" max="1000000" step="0.01" data-cx-field="expected" value="${e(s.expected)}" ${disabled}></label><label>实际到账<input type="number" min="0" max="1000000" step="0.01" data-cx-field="received" value="${e(s.received)}" ${disabled}></label><label>确认数<input type="number" min="0" max="1000" step="1" data-cx-field="confirmations" value="${s.confirmations}" ${disabled}></label><label>结算耗时（分钟）<input type="number" min="0" max="10080" step="1" data-cx-field="settlement_minutes" value="${s.settlement_minutes}" ${disabled}></label><label class="cx-check"><input type="checkbox" data-cx-field="risk_flag" ${s.risk_flag ? "checked" : ""} ${disabled}>风险标记</label></div></details></section></div></details>
-    <details class="cx-disclosure" data-cx-panel="diagnostics" ${panelOpen("diagnostics")}><summary>决策详情与原始输出</summary><div class="cx-flow-track">${catalog.stages.map((stage, i) => `<button data-cx-stage="${stage.id}" class="${stage.id === selectedStage ? "active" : ""}"><span>${i + 1}</span><strong>${e(stage.label)}</strong></button>`).join("")}</div><div class="cx-lanes">${lane("decider")}${lane("bedrock")}</div><button data-cx-run="step" class="text-button" ${disabled}>单独对比当前步骤</button></details>
+    <details class="cx-disclosure" data-cx-panel="diagnostics" ${panelOpen("diagnostics")}><summary>决策详情与原始输出</summary><div class="cx-flow-track">${catalog.stages.map((stage, i) => `<button data-cx-stage="${stage.id}" class="${stage.id === selectedStage ? "active" : ""}"><span>${i + 1}</span><strong>${e(stage.label)}</strong></button>`).join("")}</div><div class="cx-lanes">${providers.map(lane).join("")}</div><button data-cx-run="step" class="text-button" ${disabled}>单独对比当前步骤</button></details>
     <details class="cx-disclosure" data-cx-panel="audit" ${panelOpen("audit")}><summary>执行日志与模拟账本</summary>${renderAudit()}</details>
     <p class="cx-page-note">模拟业务，不发送资金。演练记录在刷新后清除。</p>`;
   const chat = $(".cx-chat");
@@ -889,7 +921,7 @@ async function run(which) {
   const complete = which !== "step";
   const stages = complete ? catalog.stages.map((s) => s.id) : [selectedStage];
   if (w.runMode !== runMode || complete || profileChanged)
-    w.results = { decider: {}, bedrock: {} };
+    w.results = emptyResults();
   w.runMode = runMode;
   w.executions = {};
   w.activeExecution = null;
@@ -916,7 +948,9 @@ async function run(which) {
             stage,
             provider,
             mode: runMode,
-            model_id: "us.openai.gpt-6.1-sol",
+            ...(provider === "bedrock"
+              ? { model_id: "us.openai.gpt-6.1-sol" }
+              : {}),
             input_profile: runKind === "optimized" ? "optimized" : "baseline",
           };
           const dialogue = startDialogue(provider, index + 1, request, runKind);
@@ -1008,7 +1042,7 @@ async function runLoop(resume = false) {
     beginDialogueRun();
     w.workflowKind = "loop";
     w.runMode = runMode;
-    w.results = { decider: {}, bedrock: {} };
+    w.results = emptyResults();
     w.executions = Object.fromEntries(
       providers.map((p) => [p, freshLoop(w.snapshot)]),
     );
@@ -1476,6 +1510,7 @@ async function handleClick(event) {
               decider: "Strands Decider v19",
               bedrock: "us.openai.gpt-6.1-sol",
               reasoning: "low",
+              jev: catalog.jev_model || "jev-latest",
             },
           },
           null,

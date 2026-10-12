@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1330" viewBox="0 0 1600 1330" role="img">
-  <title>02  Decider vs 普通大模型：本演示的实际调用流程</title>
+  <title>02  Strands Decider vs Jev vs GPT：同一输入，三条决策路径</title>
   <desc>Generated from scripts/generate_diagrams.py</desc>
   <defs>
     <marker id="arrow52677c" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
@@ -15,63 +15,83 @@
     <marker id="arrowb86c14" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
       <path d="M 0 0 L 10 5 L 0 10 Z" fill="#b86c14" />
     </marker>
+    <marker id="arrow8056b3" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#8056b3" />
+    </marker>
   </defs>
   <rect width="100%" height="100%" fill="#ffffff" />
-  <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">02  Decider vs 普通大模型：本演示的实际调用流程</text>
-  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">固定输入模式：同一步相同业务 payload；普通大模型也限定返回候选 ID。自主闭环中，后续输入可因执行结果而不同。</text>
+  <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#1c3045" text-anchor="start" font-weight="700">02  Strands Decider vs Jev vs GPT：同一输入，三条决策路径</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#1c3045" text-anchor="start" font-weight="700">固定／优化流程每步并发调用三个模型；闭环各自读取执行反馈，后续输入可能不同。</text>
   <rect x="340" y="140" width="920" height="95" rx="12" fill="#ffffff" stroke="#b9c8d5" />
-  <text x="800.0" y="180.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle" font-weight="700">应用准备输入（候选项由开发者提供）</text>
-  <text x="800.0" y="207.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle">同一业务事实 state + 问题 instructions + 候选项 criteria → 相同 input_hash</text>
-  <rect x="60" y="285" width="710" height="655" rx="12" fill="#e9f6f2" stroke="#72b5a5" stroke-dasharray="7 5" />
-  <text x="76" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="start" font-weight="700">A  Strands Decider · 专用决策模型</text>
-  <rect x="830" y="285" width="710" height="655" rx="12" fill="#edf2ff" stroke="#9aaedf" stroke-dasharray="7 5" />
-  <text x="846" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="start" font-weight="700">B  普通生成式大模型 · Bedrock GPT-6.1 Sol</text>
-  <rect x="130" y="350" width="570" height="85" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
-  <text x="415.0" y="385.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">应用构造 choice 请求</text>
-  <text x="415.0" y="412.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">给定业务事实与候选动作，要求选一项</text>
-  <rect x="900" y="350" width="570" height="85" rx="12" fill="#edf2ff" stroke="#9aaedf" />
-  <text x="1185.0" y="385.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">应用构造 Converse 请求</text>
-  <text x="1185.0" y="412.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">相同业务 payload + 仅输出候选 ID JSON 的要求</text>
-  <rect x="130" y="490" width="570" height="110" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
-  <text x="415.0" y="524.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">私网 HTTP → ECS on EC2 / Decider v19</text>
-  <text x="415.0" y="551.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">官方 System One 模型服务 / L4 GPU</text>
-  <text x="415.0" y="578.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">GPU 租约与串行推理；独立测量每步</text>
-  <rect x="900" y="490" width="570" height="110" rx="12" fill="#edf2ff" stroke="#9aaedf" />
-  <text x="1185.0" y="524.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">Bedrock Converse → GPT-6.1 Sol</text>
-  <text x="1185.0" y="551.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">reasoning effort = low / maxTokens = 1024</text>
-  <text x="1185.0" y="578.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">生成文本形式的决策 JSON</text>
-  <rect x="130" y="655" width="570" height="100" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
-  <text x="415.0" y="684.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">读取结构化模型响应</text>
-  <text x="415.0" y="711.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">choice + probabilities + confidence</text>
-  <text x="415.0" y="738.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">验证候选 ID、分布与响应字段</text>
-  <rect x="900" y="655" width="570" height="100" rx="12" fill="#edf2ff" stroke="#9aaedf" />
-  <text x="1185.0" y="684.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle" font-weight="700">解析生成的 JSON 并验证</text>
-  <text x="1185.0" y="711.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">仅允许 choice，且必须属于候选列表</text>
-  <text x="1185.0" y="738.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="middle">记录输入/输出 tokens，不伪造概率</text>
-  <rect x="130" y="815" width="570" height="85" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
-  <text x="415.0" y="850.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">保留原始选择与概率</text>
-  <text x="415.0" y="877.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">记录每步耗时；GPU 按运行时间计费</text>
-  <rect x="900" y="815" width="570" height="85" rx="12" fill="#edf2ff" stroke="#9aaedf" />
-  <text x="1185.0" y="850.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#3159ac" text-anchor="middle" font-weight="700">保留原始选择与 token 使用量</text>
-  <text x="1185.0" y="876.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#3159ac" text-anchor="middle">记录每步耗时；未核实单价，不估算美元成本</text>
+  <text x="800.0" y="180.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle" font-weight="700">应用准备相同输入（候选项由开发者提供）</text>
+  <text x="800.0" y="207.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle">业务事实 state + 问题 instructions + 候选项 criteria → 相同 input_hash</text>
+  <rect x="55" y="285" width="470" height="655" rx="12" fill="#e9f6f2" stroke="#72b5a5" stroke-dasharray="7 5" />
+  <text x="71" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="start" font-weight="700">Strands Decider · EC2 GPU</text>
+  <rect x="95" y="350" width="390" height="85" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="290.0" y="386.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">System One choice 请求</text>
+  <text x="290.0" y="410.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">业务事实 + 问题 + 候选条件</text>
+  <rect x="95" y="490" width="390" height="110" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="290.0" y="526.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">私网 HTTP → ECS on EC2</text>
+  <text x="290.0" y="550.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">Decider v19 / L4 GPU</text>
+  <text x="290.0" y="574.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">官方 System One 推理服务</text>
+  <rect x="95" y="655" width="390" height="100" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="290.0" y="698.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">choice + probabilities + confidence</text>
+  <text x="290.0" y="722.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">校验候选 ID、分布与响应字段</text>
+  <rect x="95" y="815" width="390" height="85" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
+  <text x="290.0" y="851.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">每步耗时与成功决策累计时间</text>
+  <text x="290.0" y="875.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">GPU 按运行时间计费</text>
+  <rect x="565" y="285" width="470" height="655" rx="12" fill="#faf5ff" stroke="#ba9cdb" stroke-dasharray="7 5" />
+  <text x="581" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#8056b3" text-anchor="start" font-weight="700">Jev · Typesafe 托管 API</text>
+  <rect x="605" y="350" width="390" height="85" rx="12" fill="#faf5ff" stroke="#ba9cdb" />
+  <text x="800.0" y="386.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle" font-weight="700">相同 System One choice 请求</text>
+  <text x="800.0" y="410.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle">业务事实 + 问题 + 候选条件</text>
+  <rect x="605" y="490" width="390" height="110" rx="12" fill="#faf5ff" stroke="#ba9cdb" />
+  <text x="800.0" y="526.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle" font-weight="700">ECS → IAM Lambda → Jev HTTPS</text>
+  <text x="800.0" y="550.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle">服务端密钥 / jev-latest</text>
+  <text x="800.0" y="574.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle">保留实际返回的模型版本</text>
+  <rect x="605" y="655" width="390" height="100" rx="12" fill="#faf5ff" stroke="#ba9cdb" />
+  <text x="800.0" y="698.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle" font-weight="700">choice + probabilities + confidence</text>
+  <text x="800.0" y="722.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle">保留 token，不混同概率校准尺度</text>
+  <rect x="605" y="815" width="390" height="85" rx="12" fill="#faf5ff" stroke="#ba9cdb" />
+  <text x="800.0" y="851.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle" font-weight="700">后端耗时含 Lambda 与 HTTPS 往返</text>
+  <text x="800.0" y="875.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#8056b3" text-anchor="middle">未报告纯推理时间则保留为空</text>
+  <rect x="1075" y="285" width="470" height="655" rx="12" fill="#edf2ff" stroke="#9aaedf" stroke-dasharray="7 5" />
+  <text x="1091" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#3159ac" text-anchor="start" font-weight="700">GPT-6.1 Sol · Bedrock</text>
+  <rect x="1115" y="350" width="390" height="85" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1310.0" y="386.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle" font-weight="700">Converse 请求使用相同业务输入</text>
+  <text x="1310.0" y="410.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle">要求仅返回候选 ID JSON</text>
+  <rect x="1115" y="490" width="390" height="110" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1310.0" y="526.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle" font-weight="700">Bedrock Converse → GPT-6.1 Sol</text>
+  <text x="1310.0" y="550.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle">reasoning effort = low</text>
+  <text x="1310.0" y="574.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle">生成文本形式的决策 JSON</text>
+  <rect x="1115" y="655" width="390" height="100" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1310.0" y="698.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle" font-weight="700">解析 JSON，校验 choice 属于候选</text>
+  <text x="1310.0" y="722.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle">记录 token，不伪造候选概率</text>
+  <rect x="1115" y="815" width="390" height="85" rx="12" fill="#edf2ff" stroke="#9aaedf" />
+  <text x="1310.0" y="851.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle" font-weight="700">每步耗时与成功决策累计时间</text>
+  <text x="1310.0" y="875.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#3159ac" text-anchor="middle">未核实单价，不估算美元成本</text>
   <rect x="320" y="995" width="960" height="125" rx="12" fill="#fff5e7" stroke="#ddb775" />
-  <text x="800.0" y="1036.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#855116" text-anchor="middle" font-weight="700">相同的应用执行策略 · 两侧各有独立沙盒状态</text>
-  <text x="800.0" y="1063.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#855116" text-anchor="middle">参考选择不同 → 仅提示，继续流程</text>
-  <text x="800.0" y="1090.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#855116" text-anchor="middle">资金/结案条件不足 → 挂起或持续跟进，记录保护调整并继续</text>
+  <text x="800.0" y="1036.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#855116" text-anchor="middle" font-weight="700">相同执行保护 · 三个模型各有独立沙盒状态</text>
+  <text x="800.0" y="1063.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#855116" text-anchor="middle">参考差异仅提示，继续流程；资金／结案条件不足时挂起或跟进</text>
+  <text x="800.0" y="1090.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#855116" text-anchor="middle">原始模型选择、实际动作及保护调整分别保留</text>
   <rect x="320" y="1170" width="960" height="100" rx="12" fill="#ffffff" stroke="#b9c8d5" />
-  <text x="800.0" y="1200.45" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#1c3045" text-anchor="middle" font-weight="700">最终结果：五步执行记录 + 订单/工单状态 + 模拟账本 + 模板客服回复</text>
-  <text x="800.0" y="1225.95" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#1c3045" text-anchor="middle">对比：同输入动作、参考一致、保护调整、每步/合计时间</text>
-  <text x="800.0" y="1251.45" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#1c3045" text-anchor="middle">真实请求失败明确显示；不会用规则回放替代模型输出</text>
-  <text x="71" y="1302.75" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#1c3045" text-anchor="start" font-weight="700">范围：客服文字理解与动作选择；不比较自由长文本生成、不调用真实交易工具。后端保护调整不会计作模型正确输出。</text>
-  <polyline points="570,235 570,260 415,260 415,350" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
-  <polyline points="1030,235 1030,260 1185,260 1185,350" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
-  <polyline points="415,435 415,490" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
-  <polyline points="415,600 415,655" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
-  <polyline points="415,755 415,815" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
-  <polyline points="1185,435 1185,490" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
-  <polyline points="1185,600 1185,655" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
-  <polyline points="1185,755 1185,815" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
-  <polyline points="415,900 415,970 570,970 570,995" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
-  <polyline points="1185,900 1185,970 1030,970 1030,995" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <text x="800.0" y="1200.45" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#1c3045" text-anchor="middle" font-weight="700">三列结果：逐轮输入输出 + 每步耗时 + 实际执行 + 最终订单／工单／模拟账本</text>
+  <text x="800.0" y="1225.95" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#1c3045" text-anchor="middle">一个模型失败，其他模型仍可完成；失败不计作零耗时成功</text>
+  <text x="800.0" y="1251.45" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#1c3045" text-anchor="middle">相对 Decider 的耗时倍数只使用对应模型同输入且成功的步骤</text>
+  <polyline points="800,235 800,260 290,260 290,350" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="290,435 290,490" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="290,600 290,655" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="290,755 290,815" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="290,900 290,970 800,970 800,995" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
+  <polyline points="800,235 800,260 800,260 800,350" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <polyline points="800,435 800,490" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <polyline points="800,600 800,655" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <polyline points="800,755 800,815" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <polyline points="800,900 800,970 800,970 800,995" fill="none" stroke="#8056b3" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow8056b3)" />
+  <polyline points="800,235 800,260 1310,260 1310,350" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1310,435 1310,490" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1310,600 1310,655" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1310,755 1310,815" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
+  <polyline points="1310,900 1310,970 800,970 800,995" fill="none" stroke="#3159ac" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow3159ac)" />
   <polyline points="800,1120 800,1170" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" />
 </svg>

@@ -22,7 +22,7 @@
   <rect x="70" y="145" width="1460" height="95" rx="12" fill="#f2f5f8" stroke="#c5cfda" />
   <text x="800.0" y="171.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle" font-weight="700">冻结本轮证据版本</text>
   <text x="800.0" y="198.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle">客户诉求 + 到账金额 + 确认数 + 地址验证 + 人工审批 + 风险标记 + 结算状态</text>
-  <text x="800.0" y="225.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle">两模型收到同一版本；每一步并发调用两模型，五步决策按顺序进行</text>
+  <text x="800.0" y="225.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#52677c" text-anchor="middle">三模型收到同一版本；每一步并发调用三模型，五步决策按顺序进行</text>
   <rect x="70" y="315" width="260" height="125" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
   <text x="200.0" y="356.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle" font-weight="700">01 客服受理</text>
   <text x="200.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">选择客服队列</text>
@@ -44,7 +44,7 @@
   <text x="1400.0" y="383.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">选择结案或跟进</text>
   <text x="1400.0" y="410.8" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="middle">供后续选择回复模板</text>
   <rect x="200" y="505" width="1200" height="90" rx="12" fill="#ffffff" stroke="#b9c8d5" />
-  <text x="800.0" y="542.4" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#1c3045" text-anchor="middle" font-weight="700">分别按序执行两套方案 · Decider 与 GPT 各自拥有独立模拟订单、工单、账本</text>
+  <text x="800.0" y="542.4" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#1c3045" text-anchor="middle" font-weight="700">分别按序执行三套方案 · Decider、Jev 与 GPT 各自拥有独立模拟订单、工单、账本</text>
   <text x="800.0" y="570.9" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#1c3045" text-anchor="middle">执行到每步时重新检查实际状态；原始模型选择与实际动作分别保存</text>
   <rect x="80" y="675" width="420" height="130" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
   <text x="290.0" y="707.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#155e55" text-anchor="middle" font-weight="700">参考差异：允许继续</text>
@@ -74,7 +74,7 @@
   <polyline points="1230,377 1270,377" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
   <polyline points="800,240 800,280 200,280 200,315" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
   <rect x="680" y="267" width="240" height="26" fill="#ffffff" />
-  <text x="800" y="285" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">获得两套五步建议</text>
+  <text x="800" y="285" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">获得三套五步建议</text>
   <polyline points="1400,440 1400,470 800,470 800,505" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
   <polyline points="450,595 450,635 290,635 290,675" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
   <polyline points="800,595 800,675" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" />

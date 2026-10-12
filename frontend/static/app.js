@@ -1,4 +1,4 @@
-import { mountCrypto } from "/static/crypto.js?v=optimized1";
+import { mountCrypto } from "/static/crypto.js?v=triple1";
 
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',

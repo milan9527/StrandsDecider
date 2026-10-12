@@ -61,7 +61,7 @@ class LoopState(StrictModel):
 
 class LoopRequest(StrictModel):
     state: LoopState
-    provider: Literal["decider", "bedrock"]
+    provider: Literal["decider", "bedrock", "jev"]
     mode: Literal["live", "replay"] = "live"
     auto_events: bool = False
 

@@ -363,6 +363,110 @@ def template():
     )
     add("Cluster", "ECS::Cluster", {"ClusterName": sub("${AWS::StackName}")})
 
+    add(
+        "JevLogGroup",
+        "Logs::LogGroup",
+        {"LogGroupName": sub("/aws/lambda/${AWS::StackName}-jev"), "RetentionInDays": 14},
+        Condition="HasJev",
+    )
+    add(
+        "JevRole",
+        "IAM::Role",
+        {
+            "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Principal": {"Service": "lambda.amazonaws.com"},
+                        "Action": "sts:AssumeRole",
+                    }
+                ],
+            },
+            "Policies": [
+                {
+                    "PolicyName": "JevSecretAndLogs",
+                    "PolicyDocument": {
+                        "Version": "2012-10-17",
+                        "Statement": [
+                            {
+                                "Effect": "Allow",
+                                "Action": "secretsmanager:GetSecretValue",
+                                "Resource": ref("JevSecretArn"),
+                            },
+                            {
+                                "Effect": "Allow",
+                                "Action": ["logs:CreateLogStream", "logs:PutLogEvents"],
+                                "Resource": attr("JevLogGroup", "Arn"),
+                            },
+                        ],
+                    },
+                }
+            ],
+        },
+        Condition="HasJev",
+    )
+    add(
+        "JevFunction",
+        "Lambda::Function",
+        {
+            "FunctionName": sub("${AWS::StackName}-jev"),
+            "Runtime": "python3.12",
+            "Handler": "index.handler",
+            "Architectures": ["arm64"],
+            "MemorySize": 256,
+            "Timeout": 40,
+            "Role": attr("JevRole", "Arn"),
+            "Environment": {"Variables": {"JEV_SECRET_ARN": ref("JevSecretArn")}},
+            "Code": {"ZipFile": Path(__file__).with_name("jev_proxy.py").read_text()},
+        },
+        Condition="HasJev",
+    )
+    add(
+        "JevInvokePolicy",
+        "IAM::Policy",
+        {
+            "PolicyName": "InvokeJevBridge",
+            "Roles": [ref("TaskRole")],
+            "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Action": "lambda:InvokeFunction",
+                        "Resource": attr("JevFunction", "Arn"),
+                    }
+                ],
+            },
+        },
+        Condition="HasJev",
+    )
+    add(
+        "LambdaEndpoint",
+        "EC2::VPCEndpoint",
+        {
+            "VpcId": ref("Vpc"),
+            "VpcEndpointType": "Interface",
+            "PrivateDnsEnabled": True,
+            "ServiceName": sub("com.amazonaws.${AWS::Region}.lambda"),
+            "SubnetIds": [ref("Subnet1")],
+            "SecurityGroupIds": [ref("EndpointSecurityGroup")],
+            "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "lambda:InvokeFunction",
+                        "Resource": attr("JevFunction", "Arn"),
+                        "Condition": {"ArnEquals": {"aws:PrincipalArn": attr("TaskRole", "Arn")}},
+                    }
+                ],
+            },
+        },
+        Condition="HasJev",
+    )
+
     def logging(prefix):
         return {
             "LogDriver": "awslogs",
@@ -423,6 +527,10 @@ def template():
                         {"Name": "GPU_STATE_TABLE", "Value": ref("GpuStateTableName")},
                         {"Name": "GPU_PROVIDER", "Value": ref("ModelProvider")},
                         {"Name": "BEDROCK_ENABLED", "Value": "true"},
+                        {
+                            "Name": "JEV_FUNCTION_NAME",
+                            "Value": {"Fn::If": ["HasJev", attr("JevFunction", "Arn"), ""]},
+                        },
                         {"Name": "GPU_MANAGERS", "Value": "admin"},
                         {"Name": "DECIDER_TIMEOUT", "Value": "50"},
                         {"Name": "AUTH_TABLE", "Value": ref("AuthTable")},
@@ -714,12 +822,20 @@ def template():
                 "Default": "ec2",
                 "AllowedValues": ["ec2", "sagemaker"],
             },
+            "JevSecretArn": {
+                "Type": "String",
+                "Default": "",
+                "Description": "Optional Secrets Manager ARN containing the Jev API key (not the key itself).",
+            },
             "DesiredCount": {"Type": "Number", "Default": 0, "MinValue": 0, "MaxValue": 4},
             "AvailabilityZone1": {"Type": "AWS::EC2::AvailabilityZone::Name"},
             "AvailabilityZone2": {"Type": "AWS::EC2::AvailabilityZone::Name"},
             "CloudFrontPrefixListId": {"Type": "String"},
         },
-        "Conditions": {"HasApiImageTag": {"Fn::Not": [{"Fn::Equals": [ref("ApiImageTag"), ""]}]}},
+        "Conditions": {
+            "HasApiImageTag": {"Fn::Not": [{"Fn::Equals": [ref("ApiImageTag"), ""]}]},
+            "HasJev": {"Fn::Not": [{"Fn::Equals": [ref("JevSecretArn"), ""]}]},
+        },
         "Resources": resources,
         "Outputs": {key: {"Value": value} for key, value in outputs.items()},
     }

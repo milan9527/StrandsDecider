@@ -1,6 +1,6 @@
 # 已部署环境
 
-最近发布日期：2026-10-11。
+最近发布日期：2026-10-12。
 
 **访问地址：https://d3i7ogfx5ml7dc.cloudfront.net**
 
@@ -9,6 +9,45 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 **2026-10-11：推理服务切换为 EC2 On-Demand `g6.xlarge`，持续运行，禁用闲置自动停机。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
+
+## 文档与 GitHub 同步（2026-10-12）
+
+- README 以四场景三模型性能和业务结果为主，补充均值、中位数、成功次数、保护调整及两处选择差异；原双模型四场景表移入 [项目历史](../docs/HISTORY.md)，数据保持原值。
+- [模型比较](../docs/MODEL_COMPARISON.md) 解释参考差异、实际动作与初始业务未完成；[Jev 指南](../docs/JEV.md) 对照官方 70–500 ms 端到端及高倍数宣传的条件，明确本批次 GPT / Jev 为 2.12×，没有纯 Jev 推理时间。
+- 本次文档更新使用已采集数据，没有重新调用模型、部署 AWS 或启停 GPU。此前已部署的三模型代码、文档、SVG 和公开实测记录一并按用户授权提交 GitHub；PPT/PDF 保留原内容，提交以仓库记录为准。
+
+## 统一三模型对比（2026-10-12，triple1）
+
+- 支付流程固定为 **Strands Decider / Jev / GPT** 同时对比，移除配对选择器。四场景的固定流程、优化流程和自主闭环均使用三套独立结果及执行状态；桌面三列、手机纵向排列。每轮输入输出、步骤表、最终结果、客服记录和 JSON 导出包含三个模型。
+- 每个模型保留自己的成功耗时、次数及错误。Jev、GPT 相对 Decider 的耗时倍数分别计算同输入成功配对，并显示有效步骤数；三模型均成功且输入相同才统计选择差异。闭环不显示固定输入耗时倍数，按各自全部成功调用计时。
+- 首轮真实三模型测试在 USDC 受理阶段捕获 Jev `ConnectionClosedError`，该批 15 次调用中 14 次成功、1 次失败。其他两个模型仍完成模拟执行。随后改为每次 Jev 请求独立创建和关闭 Lambda SDK 客户端，读取完返回流后关闭连接，避免复用空闲连接及并发互相关闭连接；连接中断不自动重复提交模型请求。失败样本单独保留，未替换成回放。
+- 199 项自动化测试通过；本地及线上四场景 × 三种方式的三模型规则回放通过。合成响应另验证第三模型单独选择不同、Jev 失败时其他模型继续执行、部分失败的合计与耗时倍数；公共 GPU 弹窗及 320–1440px 布局验证通过。
+- 修复后的真实优化流程共 60 次调用全部成功，三个模型各 20 次。累计后端耗时分别为 Decider **2.157 秒**、Jev **9.143 秒**、GPT **19.423 秒**；与演示参考一致 **18/20、20/20、20/20**。每个场景仅测一次，计时包含各自部署与通信开销，不是通用准确率或纯模型推理速度。详见 [完整三模型记录](../docs/results/triple-2026-10-12.json)。
+- API 镜像 `20261012-triple1`，摘要 `sha256:1d2b06ec20d8632841f627e5f5ff3c3706068c592c706086c060d72c63f878af`；ECS revision 14 完成滚动更新，主 stack 为 `UPDATE_COMPLETE`。前端版本 `triple1`，四个线上资源与本地逐字节一致，最终 CloudFront invalidation `IBTK161FANA3F1CKERD9XFSB96` 已完成。
+- GPU 保持 `g6.xlarge` / `ready` / 常驻，本次未启停；S3 四项公共访问阻止开启、匿名访问 403，未登录业务 API 返回 401。README、Jev 指南、支付及闭环说明、四张 SVG 同步更新；PPT/PDF 未修改，GitHub 同步见本文顶部记录。
+- 本地记录：`.deployment/triple-browser-local.json`、`.deployment/triple-browser-production-replay.json`、`.deployment/triple-browser-live-20261012.json`、`.deployment/triple-browser-live-20261012-first-failed.json`、`.deployment/triple-gpu-dialog-local.json`、`.deployment/triple-verified-20261012.json`。
+
+## Jev 连接恢复与排查（2026-10-12，jev-connectfix1）
+
+- 收到 Jev 失败反馈后，固定流程四场景及自主闭环接口复测均能返回真实结果，没有复现持续调用失败。此前部署日志存在 ECS 连接 Lambda 超时；由于缺少此次页面的具体错误，不能断定为同一原因。
+- ECS → Lambda 仅在 TCP 连接超时、尚未提交请求时重连一次；两次失败明确提示「本步未提交模型请求」。读取超时返回 504，HTTP 错误、限流及可能已经提交的调用均不自动重试。启用 TCP keepalive，总等待上限为 50 秒。
+- 增加不含密钥、业务输入或原始异常内容的错误日志，区分连接、读取、上游状态及响应格式。197 项自动化测试通过，包含重连恢复、两次连接失败、读取超时和上游错误不重复提交的回归。
+- API 镜像 `20261012-jev-connectfix1`，摘要 `sha256:205e9ba68309ca876001db2b7697f0b6a3603778b3a57db342c457ef1d76e436`。ECS revision 13 完成滚动更新，旧任务退出；前端功能版本仍为 `jev1`。
+- 新后端四场景 20 次 Jev 真实决策全部成功；浏览器 Jev / GPT 优化流程的五步对比、十个真实输出和两侧执行结果验证通过。记录见本地 `.deployment/jev-connectfix-verified.json`；独立网络诊断的十次新连接 DryRun 均成功，临时诊断任务已停止。
+- 排查中的自主闭环观测单独保留：退款和结算完成；两个收款场景因 Jev 连续选择跟进而转人工，调用本身成功。没有用规则替换模型选择，也没有改写先前优化流程的实测表。
+- 本次未启停 GPU、未轮换 Jev 密钥、未推送 GitHub。
+
+## Jev 配对对比（2026-10-12，jev1）
+
+- 支付流程对比新增「对比模型」选择：Decider / GPT、Decider / Jev、Jev / GPT。四场景均支持固定流程、优化流程和自主闭环，逐轮保留输入输出、实际模型版本、耗时、执行结果及历史组合；Jev / GPT 无需 Decider GPU。
+- Jev 使用 Typesafe System One API，服务端别名 `jev-latest`，本批次实际版本 `jev-1.13.0`。输入问题及候选与同组模型一致；超时、限流、认证或格式失败明确显示，不替换为规则答案。
+- 私有 ECS 通过单 AZ Lambda interface endpoint 调用 IAM 限定的转发函数 `strands-decider-demo-jev`，函数在 VPC 外访问固定 Jev HTTPS 地址。密钥由 Secrets Manager 保存，只有函数角色可读；前端、代码和实测导出不包含密钥。没有 Function URL，没有增加 NAT Gateway。配置、权限及新增计费项目见 [Jev 说明](../docs/JEV.md)。
+- 192 项自动化测试通过；本地和线上分别验证两种新组合 × 四场景 × 三种测试方式，共 24 条规则回放流程，另验证错误分支、历史标识、JSON 导出及移动布局。原 Decider / GPT 固定、优化流程回归通过。
+- 线上优化流程实测完成 80 次真实调用，全部成功。Decider / Jev 配对：累计后端耗时 1.558 / 5.674 秒，参考一致 18/20 / 20/20；Jev / GPT 配对：5.591 / 27.199 秒，参考一致均为 20/20。这是两组独立的单次观测，Jev 计时包含 Lambda 和 HTTPS 往返，不改写此前测速数据。完整结果见 [Jev 实测](../docs/results/jev-2026-10-12.json)。
+- 新端点刚创建后，两次 API 冒烟请求出现连接超时；后续冒烟及上述 80 次实测成功。初期失败不计入成功实测批次，也未替换为回放结果。
+- API 镜像 `20261012-jev1`，摘要 `sha256:f6e6c6146cb572afb16cc0d79fe1758fdaeef7f1fda06aa23d53aad121b5226e`；前端版本 `jev1`。主 stack 为 `UPDATE_COMPLETE`，CloudFront invalidation `I96ACEO3ORB64I1V1X1CFPMYZ4` 已完成，四个更新的线上前端资源与本地逐字节一致。
+- GPU 保持 On-Demand `g6.xlarge` / `ready` / 持续运行，本次未启停 GPU。S3 四项公共访问阻止开启，匿名访问为 403；未登录访问业务 API 为 401。AWS 架构 SVG 已更新，已有 v6 PPT/PDF 保留原内容。
+- 本地记录：`.deployment/jev-browser-live-20261012.json`、`.deployment/jev-browser-production-replay.json`、`.deployment/jev-original-regression.json`、`.deployment/jev-verified-20261012.json`。本次功能尚未推送 GitHub。
 
 ## 优化演示文稿与 GitHub 更新（2026-10-11，v6）
 

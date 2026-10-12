@@ -33,10 +33,15 @@ def main():
     parser.add_argument("--api-only", action="store_true", help="Keep the existing model image")
     parser.add_argument("--gpu-state-table", help="GPU control table from the GPU stack")
     parser.add_argument("--model-provider", choices=["ec2", "sagemaker"])
+    jev = parser.add_mutually_exclusive_group()
+    jev.add_argument("--jev-key-file", type=Path, help="Store a local Jev key in Secrets Manager")
+    jev.add_argument("--jev-secret-arn", help="Use an existing Secrets Manager Jev credential")
     parser.add_argument(
         "--bootstrap", action="store_true", help="Create base infrastructure at zero API capacity"
     )
     args = parser.parse_args()
+    if args.frontend_only and (args.jev_key_file or args.jev_secret_arn):
+        parser.error("Jev configuration requires --api-only")
     STATE.mkdir(exist_ok=True)
     template_path = ROOT / "deployment" / "cloudformation.json"
     template_path.write_text(json.dumps(template(), indent=2) + "\n")
@@ -87,6 +92,26 @@ def main():
         )
     if args.api_only and current is None:
         parser.error("--api-only requires an existing stack")
+    jev_secret_arn = args.jev_secret_arn
+    if args.jev_key_file:
+        import boto3
+
+        key = args.jev_key_file.expanduser().read_text().strip()
+        if not key or len(key) > 8192 or any(c.isspace() for c in key):
+            parser.error("Jev key file must contain one nonempty token")
+        secrets = boto3.client("secretsmanager", region_name=args.region)
+        name = f"{args.stack}/jev-api-key"
+        try:
+            secret = secrets.create_secret(
+                Name=name,
+                SecretString=key,
+                Tags=[{"Key": "Project", "Value": "StrandsDecider"}],
+            )
+        except secrets.exceptions.ResourceExistsException:
+            secret = secrets.put_secret_value(SecretId=name, SecretString=key)
+        jev_secret_arn = secret["ARN"]
+        del key
+        print("Jev credential stored in Secrets Manager; value is not logged.", flush=True)
     image_names = ("api",) if args.api_only else ("api", "model")
     if args.frontend_only:
         if current is None or current["StackStatus"] not in ("CREATE_COMPLETE", "UPDATE_COMPLETE"):
@@ -223,6 +248,18 @@ def main():
             ),
             {"ParameterKey": "ApiImageTag", "ParameterValue": args.tag},
             {"ParameterKey": "DesiredCount", "ParameterValue": "1"},
+            {
+                "ParameterKey": "JevSecretArn",
+                "ParameterValue": jev_secret_arn
+                or next(
+                    (
+                        p["ParameterValue"]
+                        for p in current["Parameters"]
+                        if p["ParameterKey"] == "JevSecretArn"
+                    ),
+                    "",
+                ),
+            },
             {
                 "ParameterKey": "ModelProvider",
                 "ParameterValue": args.model_provider

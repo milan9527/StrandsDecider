@@ -94,7 +94,7 @@ def main():
             expect(page.locator(trigger)).to_be_enabled()
             page.locator("#gpu-return").click()
         page.evaluate("location.hash = 'crypto'")
-        for kind in ("workflow", "loop", "all"):
+        for kind in ("workflow", "loop", "optimized"):
             page.locator("[data-cx-test-kind]").select_option(kind)
             page.locator("[data-cx-start]").click()
             expect(page.locator("#gpu-dialog")).to_be_visible()
@@ -133,7 +133,7 @@ def main():
 
         # A model error after a successful preflight still refreshes GPU state.
         page.evaluate("location.hash = 'crypto'")
-        for kind, count in (("workflow", 10), ("loop", 2)):
+        for kind, count in (("workflow", 15), ("loop", 3)):
             before = len(inference)
             page.locator("[data-cx-test-kind]").select_option(kind)
             page.locator("[data-cx-start]").click()

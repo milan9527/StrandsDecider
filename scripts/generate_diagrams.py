@@ -17,6 +17,7 @@ PALETTES = {
     "neutral": ("#ffffff", "#b9c8d5", INK),
     "teal": ("#e9f6f2", "#72b5a5", "#155e55"),
     "blue": ("#edf2ff", "#9aaedf", BLUE),
+    "purple": ("#faf5ff", "#ba9cdb", "#8056b3"),
     "orange": ("#fff5e7", "#ddb775", "#855116"),
     "gray": ("#f2f5f8", "#c5cfda", MUTED),
 }
@@ -276,7 +277,7 @@ class Page:
         ET.SubElement(svg, "title").text = self.name
         ET.SubElement(svg, "desc").text = "Generated from scripts/generate_diagrams.py"
         defs = ET.SubElement(svg, "defs")
-        for color in (MUTED, TEAL, BLUE, ORANGE):
+        for color in dict.fromkeys([MUTED, TEAL, BLUE, ORANGE, *(e["color"] for e in self.edges)]):
             marker = ET.SubElement(
                 defs,
                 "marker",
@@ -397,7 +398,7 @@ def architecture():
     p = Page(
         "01  AWS 部署架构",
         "architecture",
-        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 On-Demand GPU 与 Bedrock 对比",
+        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 / Jev / Bedrock 三模型同时对比",
         width=1800,
         height=1620,
         aws_style=True,
@@ -508,6 +509,25 @@ def architecture():
         icons=("bedrock",),
     )
     p.box(
+        "jev_bridge",
+        1260,
+        660,
+        350,
+        180,
+        "AWS Lambda · Jev 转发\n仅 IAM 调用 · 固定 HTTPS 地址\nSecrets Manager 保存密钥\n托管网络出口，无 Function URL",
+        size=16,
+        icons=("lambda",),
+    )
+    p.box(
+        "jev",
+        45,
+        880,
+        280,
+        155,
+        "Typesafe Jev API\nAWS 账户外部托管服务\nSystem One · jev-latest\n返回实际模型版本与概率",
+        size=17,
+    )
+    p.box(
         "timer",
         445,
         1160,
@@ -589,6 +609,20 @@ def architecture():
     )
     p.edge(
         "api",
+        "jev_bridge",
+        [(770, 865), (1200, 865), (1200, 745), (1260, 745)],
+        color="#8056b3",
+    )
+    p.edge(
+        "jev_bridge",
+        "jev",
+        [(1260, 775), (1220, 775), (1220, 455), (380, 455), (380, 960), (325, 960)],
+        "HTTPS · Jev API",
+        color="#8056b3",
+        at=(190, 850),
+    )
+    p.edge(
+        "api",
         "ddb",
         [(770, 975), (930, 975), (930, 1120), (1440, 1120), (1440, 1150)],
         "账号 / 会话 / GPU 状态",
@@ -619,7 +653,7 @@ def architecture():
         1525,
         1700,
         35,
-        "实线：请求 / 访问方向（响应省略）   绿色：Decider 推理   蓝色：Bedrock 推理   橙色虚线：GPU 生命周期控制",
+        "实线：请求 / 访问方向（响应省略）   绿色：Decider   蓝色：Bedrock   紫色：Jev   橙色虚线：GPU 生命周期",
         size=16,
         text=True,
     )
@@ -638,9 +672,9 @@ def architecture():
 
 def comparison():
     p = Page(
-        "02  Decider vs 普通大模型：本演示的实际调用流程",
+        "02  Strands Decider vs Jev vs GPT：同一输入，三条决策路径",
         "model-comparison",
-        "固定输入模式：同一步相同业务 payload；普通大模型也限定返回候选 ID。自主闭环中，后续输入可因执行结果而不同。",
+        "固定／优化流程每步并发调用三个模型；闭环各自读取执行反馈，后续输入可能不同。",
         height=1330,
     )
     p.box(
@@ -649,118 +683,87 @@ def comparison():
         140,
         920,
         95,
-        "应用准备输入（候选项由开发者提供）\n同一业务事实 state + 问题 instructions + 候选项 criteria → 相同 input_hash",
-        "neutral",
+        "应用准备相同输入（候选项由开发者提供）\n业务事实 state + 问题 instructions + 候选项 criteria → 相同 input_hash",
     )
-    p.box("left", 60, 285, 710, 655, "A  Strands Decider · 专用决策模型", "teal", group=True)
-    p.box(
-        "right", 830, 285, 710, 655, "B  普通生成式大模型 · Bedrock GPT-6.1 Sol", "blue", group=True
-    )
-    p.box(
-        "drequest",
-        130,
-        350,
-        570,
-        85,
-        "应用构造 choice 请求\n给定业务事实与候选动作，要求选一项",
-        "teal",
-    )
-    p.box(
-        "grequest",
-        900,
-        350,
-        570,
-        85,
-        "应用构造 Converse 请求\n相同业务 payload + 仅输出候选 ID JSON 的要求",
-        "blue",
-    )
-    p.box(
-        "dinfer",
-        130,
-        490,
-        570,
-        110,
-        "私网 HTTP → ECS on EC2 / Decider v19\n官方 System One 模型服务 / L4 GPU\nGPU 租约与串行推理；独立测量每步",
-        "teal",
-    )
-    p.box(
-        "ginfer",
-        900,
-        490,
-        570,
-        110,
-        "Bedrock Converse → GPT-6.1 Sol\nreasoning effort = low / maxTokens = 1024\n生成文本形式的决策 JSON",
-        "blue",
-    )
-    p.box(
-        "dresult",
-        130,
-        655,
-        570,
-        100,
-        "读取结构化模型响应\nchoice + probabilities + confidence\n验证候选 ID、分布与响应字段",
-        "teal",
-    )
-    p.box(
-        "gresult",
-        900,
-        655,
-        570,
-        100,
-        "解析生成的 JSON 并验证\n仅允许 choice，且必须属于候选列表\n记录输入/输出 tokens，不伪造概率",
-        "blue",
-    )
-    p.box(
-        "dmetric", 130, 815, 570, 85, "保留原始选择与概率\n记录每步耗时；GPU 按运行时间计费", "teal"
-    )
-    p.box(
-        "gmetric",
-        900,
-        815,
-        570,
-        85,
-        "保留原始选择与 token 使用量\n记录每步耗时；未核实单价，不估算美元成本",
-        "blue",
-        size=17,
-    )
-    p.edge("input", "drequest", [(570, 235), (570, 260), (415, 260), (415, 350)], color=TEAL)
-    p.edge("input", "grequest", [(1030, 235), (1030, 260), (1185, 260), (1185, 350)], color=BLUE)
-    for prefix, x, color in [("d", 415, TEAL), ("g", 1185, BLUE)]:
-        p.edge(prefix + "request", prefix + "infer", [(x, 435), (x, 490)], color=color)
-        p.edge(prefix + "infer", prefix + "result", [(x, 600), (x, 655)], color=color)
-        p.edge(prefix + "result", prefix + "metric", [(x, 755), (x, 815)], color=color)
+    columns = [
+        (
+            "d",
+            55,
+            "Strands Decider · EC2 GPU",
+            "teal",
+            TEAL,
+            "System One choice 请求\n业务事实 + 问题 + 候选条件",
+            "私网 HTTP → ECS on EC2\nDecider v19 / L4 GPU\n官方 System One 推理服务",
+            "choice + probabilities + confidence\n校验候选 ID、分布与响应字段",
+            "每步耗时与成功决策累计时间\nGPU 按运行时间计费",
+        ),
+        (
+            "j",
+            565,
+            "Jev · Typesafe 托管 API",
+            "purple",
+            "#8056b3",
+            "相同 System One choice 请求\n业务事实 + 问题 + 候选条件",
+            "ECS → IAM Lambda → Jev HTTPS\n服务端密钥 / jev-latest\n保留实际返回的模型版本",
+            "choice + probabilities + confidence\n保留 token，不混同概率校准尺度",
+            "后端耗时含 Lambda 与 HTTPS 往返\n未报告纯推理时间则保留为空",
+        ),
+        (
+            "g",
+            1075,
+            "GPT-6.1 Sol · Bedrock",
+            "blue",
+            BLUE,
+            "Converse 请求使用相同业务输入\n要求仅返回候选 ID JSON",
+            "Bedrock Converse → GPT-6.1 Sol\nreasoning effort = low\n生成文本形式的决策 JSON",
+            "解析 JSON，校验 choice 属于候选\n记录 token，不伪造候选概率",
+            "每步耗时与成功决策累计时间\n未核实单价，不估算美元成本",
+        ),
+    ]
+    for key, x, title, palette, color, request, infer, result, metric in columns:
+        mid = x + 235
+        p.box(key, x, 285, 470, 655, title, palette, group=True)
+        for suffix, y, height, label in [
+            ("request", 350, 85, request),
+            ("infer", 490, 110, infer),
+            ("result", 655, 100, result),
+            ("metric", 815, 85, metric),
+        ]:
+            p.box(key + suffix, x + 40, y, 390, height, label, palette, size=16)
+        p.edge(
+            "input", key + "request", [(800, 235), (800, 260), (mid, 260), (mid, 350)], color=color
+        )
+        for start, end, top, bottom in [
+            ("request", "infer", 435, 490),
+            ("infer", "result", 600, 655),
+            ("result", "metric", 755, 815),
+        ]:
+            p.edge(key + start, key + end, [(mid, top), (mid, bottom)], color=color)
+        p.edge(
+            key + "metric",
+            "execution",
+            [(mid, 900), (mid, 970), (800, 970), (800, 995)],
+            color=color,
+        )
     p.box(
         "execution",
         320,
         995,
         960,
         125,
-        "相同的应用执行策略 · 两侧各有独立沙盒状态\n参考选择不同 → 仅提示，继续流程\n资金/结案条件不足 → 挂起或持续跟进，记录保护调整并继续",
+        "相同执行保护 · 三个模型各有独立沙盒状态\n参考差异仅提示，继续流程；资金／结案条件不足时挂起或跟进\n原始模型选择、实际动作及保护调整分别保留",
         "orange",
     )
-    p.edge("dmetric", "execution", [(415, 900), (415, 970), (570, 970), (570, 995)], color=TEAL)
-    p.edge("gmetric", "execution", [(1185, 900), (1185, 970), (1030, 970), (1030, 995)], color=BLUE)
     p.box(
         "outcome",
         320,
         1170,
         960,
         100,
-        "最终结果：五步执行记录 + 订单/工单状态 + 模拟账本 + 模板客服回复\n对比：同输入动作、参考一致、保护调整、每步/合计时间\n真实请求失败明确显示；不会用规则回放替代模型输出",
-        "neutral",
+        "三列结果：逐轮输入输出 + 每步耗时 + 实际执行 + 最终订单／工单／模拟账本\n一个模型失败，其他模型仍可完成；失败不计作零耗时成功\n相对 Decider 的耗时倍数只使用对应模型同输入且成功的步骤",
         size=17,
     )
     p.edge("execution", "outcome", [(800, 1120), (800, 1170)], color=ORANGE)
-    p.box(
-        "note",
-        55,
-        1280,
-        1490,
-        35,
-        "范围：客服文字理解与动作选择；不比较自由长文本生成、不调用真实交易工具。后端保护调整不会计作模型正确输出。",
-        size=15,
-        text=True,
-    )
     return p
 
 
@@ -777,7 +780,7 @@ def workflow():
         145,
         1460,
         95,
-        "冻结本轮证据版本\n客户诉求 + 到账金额 + 确认数 + 地址验证 + 人工审批 + 风险标记 + 结算状态\n两模型收到同一版本；每一步并发调用两模型，五步决策按顺序进行",
+        "冻结本轮证据版本\n客户诉求 + 到账金额 + 确认数 + 地址验证 + 人工审批 + 风险标记 + 结算状态\n三模型收到同一版本；每一步并发调用三模型，五步决策按顺序进行",
         "gray",
         size=18,
     )
@@ -797,7 +800,7 @@ def workflow():
         "evidence",
         "intake",
         [(800, 240), (800, 280), (200, 280), (200, 315)],
-        "获得两套五步建议",
+        "获得三套五步建议",
         at=(800, 280),
     )
     p.box(
@@ -806,7 +809,7 @@ def workflow():
         505,
         1200,
         90,
-        "分别按序执行两套方案 · Decider 与 GPT 各自拥有独立模拟订单、工单、账本\n执行到每步时重新检查实际状态；原始模型选择与实际动作分别保存",
+        "分别按序执行三套方案 · Decider、Jev 与 GPT 各自拥有独立模拟订单、工单、账本\n执行到每步时重新检查实际状态；原始模型选择与实际动作分别保存",
         "neutral",
         size=19,
     )
@@ -873,7 +876,7 @@ def closed_loop():
     p = Page(
         "04  自主闭环：根据实际执行结果继续判断",
         "closed-loop",
-        "两侧从同一初始证据开始，分别维护工作流。每轮展示输入、选择、实际动作与反馈；同轮编号不代表相同输入。",
+        "三侧从同一初始证据开始，分别维护工作流。每轮展示输入、选择、实际动作与反馈；同轮编号不代表相同输入。",
         height=1480,
     )
     p.box(
@@ -888,49 +891,50 @@ def closed_loop():
     )
     for key, x, title, palette, color in (
         ("d", 55, "Strands Decider · EC2 GPU", "teal", TEAL),
-        ("g", 835, "GPT-6.1 Sol · Bedrock", "blue", BLUE),
+        ("j", 565, "Jev · Typesafe API", "purple", "#8056b3"),
+        ("g", 1075, "GPT-6.1 Sol · Bedrock", "blue", BLUE),
     ):
-        p.box(key, x, 305, 710, 880, title, palette, group=True)
-        mid = x + 355
+        p.box(key, x, 305, 470, 880, title, palette, group=True)
+        mid = x + 235
         p.box(
             key + "model",
-            x + 100,
+            x + 50,
             380,
-            520,
+            370,
             120,
             "输入当前事实 + 实际执行状态 + 最近反馈\n模型选择下一步候选动作\n保存原始 choice、耗时与请求快照",
             palette,
-            size=18,
+            size=16,
         )
         p.box(
             key + "apply",
-            x + 100,
+            x + 50,
             565,
-            520,
+            370,
             110,
             "独立沙盒执行器\n核验资金与结案条件，执行或挂起\n保留原始建议 / 实际动作 / 保护调整",
             palette,
-            size=18,
+            size=16,
         )
         p.box(
             key + "feedback",
-            x + 100,
+            x + 50,
             740,
-            520,
+            370,
             110,
             "读取实际结果\n订单 / 工单 / 模拟账本 / 回复\n写入下一轮 execution_feedback",
             palette,
-            size=18,
+            size=16,
         )
         p.box(
             key + "route",
-            x + 100,
+            x + 50,
             925,
-            520,
+            370,
             180,
             "成功且未结案 → 下一业务步骤\n外部证据不足 → 等待事件，再核验\n无效动作 → 携带失败反馈重判\n连续两次无进展 → 转人工\n订单 + 账本 + 结案均确认 → 完成",
             palette,
-            size=18,
+            size=16,
         )
         p.edge(
             "initial", key + "model", [(800, 240), (800, 275), (mid, 275), (mid, 380)], color=color
@@ -941,7 +945,7 @@ def closed_loop():
         p.edge(
             key + "route",
             key + "model",
-            [(x + 100, 1000), (x + 45, 1000), (x + 45, 435), (x + 100, 435)],
+            [(x + 50, 1000), (x + 20, 1000), (x + 20, 435), (x + 50, 435)],
             color=color,
             dashed=True,
         )

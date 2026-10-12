@@ -23,6 +23,11 @@
         "sagemaker"
       ]
     },
+    "JevSecretArn": {
+      "Type": "String",
+      "Default": "",
+      "Description": "Optional Secrets Manager ARN containing the Jev API key (not the key itself)."
+    },
     "DesiredCount": {
       "Type": "Number",
       "Default": 0,
@@ -46,6 +51,18 @@
           "Fn::Equals": [
             {
               "Ref": "ApiImageTag"
+            },
+            ""
+          ]
+        }
+      ]
+    },
+    "HasJev": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            {
+              "Ref": "JevSecretArn"
             },
             ""
           ]
@@ -628,6 +645,173 @@
         }
       }
     },
+    "JevLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Sub": "/aws/lambda/${AWS::StackName}-jev"
+        },
+        "RetentionInDays": 14
+      },
+      "Condition": "HasJev"
+    },
+    "JevRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "JevSecretAndLogs",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "secretsmanager:GetSecretValue",
+                  "Resource": {
+                    "Ref": "JevSecretArn"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "JevLogGroup",
+                      "Arn"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "Condition": "HasJev"
+    },
+    "JevFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": {
+          "Fn::Sub": "${AWS::StackName}-jev"
+        },
+        "Runtime": "python3.12",
+        "Handler": "index.handler",
+        "Architectures": [
+          "arm64"
+        ],
+        "MemorySize": 256,
+        "Timeout": 40,
+        "Role": {
+          "Fn::GetAtt": [
+            "JevRole",
+            "Arn"
+          ]
+        },
+        "Environment": {
+          "Variables": {
+            "JEV_SECRET_ARN": {
+              "Ref": "JevSecretArn"
+            }
+          }
+        },
+        "Code": {
+          "ZipFile": "\"\"\"IAM-only Lambda bridge to Jev; no function URL, arbitrary URL or credential in responses.\"\"\"\n\nimport http.client\nimport json\nimport os\n\nimport boto3\nfrom botocore.exceptions import BotoCoreError, ClientError\n\n_key = None\n\n\ndef handler(event, context):\n    global _key\n    connection = None\n    try:\n        if (\n            not isinstance(event, dict)\n            or set(event) != {\"model\", \"state\", \"questions\"}\n            or event[\"model\"] != \"jev-latest\"\n            or not isinstance(event[\"state\"], str)\n            or not isinstance(event[\"questions\"], dict)\n            or set(event[\"questions\"]) != {\"action\"}\n        ):\n            return {\"status\": 422}\n        question = event[\"questions\"][\"action\"]\n        if (\n            not isinstance(question, dict)\n            or set(question) != {\"type\", \"instructions\", \"criteria\"}\n            or question[\"type\"] != \"choice\"\n            or not isinstance(question[\"instructions\"], str)\n            or not isinstance(question[\"criteria\"], dict)\n            or not 2 <= len(question[\"criteria\"]) <= 24\n            or any(\n                not isinstance(k, str) or not isinstance(v, str)\n                for k, v in question[\"criteria\"].items()\n            )\n        ):\n            return {\"status\": 422}\n        body = json.dumps(event, ensure_ascii=False).encode()\n        if len(body) > 65_536:\n            return {\"status\": 413}\n        if _key is None:\n            _key = (\n                boto3.client(\"secretsmanager\")\n                .get_secret_value(SecretId=os.environ[\"JEV_SECRET_ARN\"])[\"SecretString\"]\n                .strip()\n            )\n        if not _key:\n            return {\"status\": 503}\n        connection = http.client.HTTPSConnection(\"api.typesafe.ai\", timeout=30)\n        connection.request(\n            \"POST\",\n            \"/v1/systemone\",\n            body=body,\n            headers={\"Authorization\": f\"Bearer {_key}\", \"Content-Type\": \"application/json\"},\n        )\n        response = connection.getresponse()\n        if response.status != 200:\n            if response.status in (401, 403):\n                _key = None  # Pick up a rotated credential on the next request.\n            return {\"status\": response.status}\n        raw = response.read(1_048_577)\n        if len(raw) > 1_048_576:\n            return {\"status\": 502}\n        data = json.loads(raw)\n        if not isinstance(data, dict):\n            return {\"status\": 502}\n        # Don't forward arbitrary provider metadata; the API validates the answer.\n        return {\n            \"status\": 200,\n            \"data\": {k: data[k] for k in (\"model\", \"answers\", \"usage\", \"latency_ms\") if k in data},\n        }\n    except TimeoutError:\n        return {\"status\": 504}\n    except (OSError, ValueError, KeyError, TypeError, ClientError, BotoCoreError):\n        return {\"status\": 503}\n    finally:\n        if connection:\n            connection.close()\n"
+        }
+      },
+      "Condition": "HasJev"
+    },
+    "JevInvokePolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "InvokeJevBridge",
+        "Roles": [
+          {
+            "Ref": "TaskRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "lambda:InvokeFunction",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "JevFunction",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "Condition": "HasJev"
+    },
+    "LambdaEndpoint": {
+      "Type": "AWS::EC2::VPCEndpoint",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "VpcEndpointType": "Interface",
+        "PrivateDnsEnabled": true,
+        "ServiceName": {
+          "Fn::Sub": "com.amazonaws.${AWS::Region}.lambda"
+        },
+        "SubnetIds": [
+          {
+            "Ref": "Subnet1"
+          }
+        ],
+        "SecurityGroupIds": [
+          {
+            "Ref": "EndpointSecurityGroup"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "lambda:InvokeFunction",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "JevFunction",
+                  "Arn"
+                ]
+              },
+              "Condition": {
+                "ArnEquals": {
+                  "aws:PrincipalArn": {
+                    "Fn::GetAtt": [
+                      "TaskRole",
+                      "Arn"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "Condition": "HasJev"
+    },
     "TaskDefinition": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
@@ -707,6 +891,21 @@
               {
                 "Name": "BEDROCK_ENABLED",
                 "Value": "true"
+              },
+              {
+                "Name": "JEV_FUNCTION_NAME",
+                "Value": {
+                  "Fn::If": [
+                    "HasJev",
+                    {
+                      "Fn::GetAtt": [
+                        "JevFunction",
+                        "Arn"
+                      ]
+                    },
+                    ""
+                  ]
+                }
               },
               {
                 "Name": "GPU_MANAGERS",
