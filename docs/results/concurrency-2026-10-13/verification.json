@@ -1,0 +1,38 @@
+{
+  "verified_at": "2026-10-13T04:57:24.849980+00:00",
+  "measured_calls": 1440,
+  "warmup_calls": 120,
+  "cells": 18,
+  "balanced_corpus_all_cells": true,
+  "dispatch_order_identical_all_cells": true,
+  "all_successful_inputs_match_corpus": true,
+  "all_statistics_recomputed_from_rows": true,
+  "max_inflight_matches_requested_all_cells": true,
+  "files_sha256": {
+    "manifest.json": "31637d0850db2c90264cb0724b9bd7946136a42222fdbd0510709d71bbb91d55",
+    "corpus.json": "d72dbca1acfa57f638c108f197a2d3da63264bce67b7e6e05625f8a9a95c44e3",
+    "requests.jsonl": "458b415f648bb91e78e3e7ff3574e13c2c2da243d92b72eb26a4038d8955760d",
+    "warmups.jsonl": "c0255399dd81e6d9e248e1b688cbe0611bca3e6207c71c05dc3616e876b10fc3",
+    "deployment-snapshot.json": "1cc2354e5978589963b17a226a47a06aa8c6f626278b4ee14ebba22af4fc9023",
+    "infrastructure-metrics.json": "f8b8319eabea9c9201f91f45596bc852ec70f1ec8238bafe8b1161adccc1cc0c"
+  },
+  "source_files_sha256": {
+    "scripts/benchmark_concurrency.py": "2d1ac1fff495a7ef93126164dc9bf882fcee65fa07a54ab75eb0264d938274aa",
+    "app/main.py": "522ee03eb5e00cf00e43ed62aa2ad179385f0a2c19b39cfbc652eb569d94a166",
+    "app/crypto.py": "7ab660cf5aa942b304f15a1997ef9f5718712b206d3ad41f4826ef75e7fd6799",
+    "app/gpu_state.py": "d3589f539f1441c3b6601722dab4384e2e54101853f15696ddebc02466f21526",
+    "deployment/model_server.py": "546e61588d4418468a1cf6cce710f47ba2d42e2c74818c4206750a5469684776",
+    "deployment/api.Dockerfile": "eea6f50db8d8a641109183bbe6ca988f332a7aa3d18de4d3484a80b6fd1d60e2"
+  },
+  "independent_numpy_quantiles_verified": true,
+  "inflight_verified_from_request_timestamps": true,
+  "configured_credentials_absent_from_results": true,
+  "documentation_links_valid": true,
+  "charts_visually_reviewed": true,
+  "post_test_api_health": "ok",
+  "post_test_ecs": {
+    "desired_count": 1,
+    "running_count": 1,
+    "task_definition_revision": 14
+  }
+}

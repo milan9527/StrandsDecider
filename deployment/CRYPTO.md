@@ -92,7 +92,7 @@ USDC 收款的 Decider 审批改为规则检查通过；少付核验仍误选等
 
 ## 当前三模型性能与业务结果（2026-10-12）
 
-四场景优化流程共 60 次真实调用全部成功，每个模型各 20 次。Decider / Jev / GPT 的平均后端耗时分别为 **107.8 / 457.2 / 971.1 ms**，参考一致为 **18/20、20/20、20/20**，执行保护调整为 **1 / 0 / 0 次**。每个案例都处理五步，但初始资金条件尚未满足，三模型均未结案。
+三模型各预热一次后，四场景优化流程共 60 次正式调用全部成功，每个模型各 20 次。CloudWatch 确认正式 Jev 调用均复用预热环境，见 [日志验证](../docs/presentations/v8/lambda-warm-verification.json)。Decider / Jev / GPT 的平均后端耗时分别为 **102.2 / 416.5 / 1116.7 ms**，参考一致为 **18/20、20/20、20/20**，执行保护调整为 **1 / 0 / 0 次**。每个案例都处理五步，但初始资金条件尚未满足，三模型均未结案。
 
 少付核验时 Decider 选择等待确认，Jev / GPT 选择补款；退款审批时 Decider 过早选择通过，后端调整为验证地址。其余 18 个步骤选择相同。完整分场景数据、时间定义、失败批次与官方 Jev 倍数的区别见 [结果分析](../docs/MODEL_COMPARISON.md#当前三模型性能) 和 [Jev 测速解释](../docs/JEV.md#为什么没有官方宣传中的加速倍数)。
 
@@ -100,7 +100,7 @@ USDC 收款的 Decider 审批改为规则检查通过；少付核验仍误选等
 
 当前 Decider 使用 EC2 `g6.xlarge` 常驻服务。迁移验收完成四个场景、20 组同输入配对：两侧各 20 次成功；Decider 累计后端耗时 1,651.831 ms，GPT 为 20,249.118 ms。这是一次固定样本验收，不代表稳定性能；详情见 [部署记录](DEPLOYED.md)。
 
-最新 [27 页 v6 PPT / PDF / 讲稿](../docs/presentations/v6/README.md) 包含 EC2 架构和调用路径，第 23–24 页新增 2026-10-11 的输入优化方法与真实结果。原有速度图表及截图保留下述 2026-10-10 历史采集口径，两批结果不混合统计。
+当前 [30 页 v8 PPT / PDF / 讲稿](../docs/presentations/v8/README.md) 包含 EC2 三模型架构、预热后的最新数据与真实截图，以及 JevBench 和 Decider 优化案例。以下保留迁移前历史观测。
 
 ## 历史真实观测（2026-10-10）
 
@@ -152,7 +152,7 @@ flowchart LR
 
 项目资源与 Bedrock API 调用入口位于 `us-east-1`。GPT-6.1 Sol 使用美国跨区域推理配置，AWS 可以将推理路由到 `us-east-1`、`us-east-2`、`us-west-2`。这不创建其他区域的项目资源。
 
-新增一个单子网 Bedrock Runtime interface VPC endpoint；IAM 和 endpoint policy 仅允许此 GPT-6.1 Sol 推理配置及其三个对应基础模型 ARN 的 `bedrock:InvokeModel`。ECS 无公网 IP、VPC 无互联网默认路由，前端保持私有 S3 + CloudFront OAC。
+共享单子网 Bedrock Runtime interface VPC endpoint。支付模块在应用层仍只允许 GPT-6.1 Sol；新增的 [模型路由模块](../docs/MODEL_ROUTING.md) 使用 GPT-6 Sol，并可调用区域目录中的目标模型，因此共享 IAM 与 endpoint policy 也允许相应基础模型和推理配置。ECS 无公网 IP、VPC 无互联网默认路由，前端保持私有 S3 + CloudFront OAC。
 
 这个私网端点有独立的 AWS PrivateLink 小时费与数据处理费，另计 Bedrock 实际 token 费用。GPU 的闲置删除不删除 API 所需的私网端点。
 

@@ -1,0 +1,52 @@
+{
+  "captured_at": "2026-10-13T04:45:50.908081+00:00",
+  "region": "us-east-1",
+  "api": {
+    "service": "strands-decider-demo",
+    "desired_count": 1,
+    "running_count": 1,
+    "task_definition_revision": 14,
+    "cpu_units": "256",
+    "memory_mib": "512",
+    "architecture": {
+      "cpuArchitecture": "ARM64",
+      "operatingSystemFamily": "LINUX"
+    },
+    "containers": [
+      {
+        "name": "api",
+        "image": "strands-decider-demo-api:20261012-triple1",
+        "command": []
+      }
+    ]
+  },
+  "code_limits": {
+    "decider_slots_per_api_process": 1,
+    "decider_queue_timeout_seconds": 5,
+    "decider_model_service_slots": 1,
+    "jev_slots_per_api_process": 2,
+    "jev_total_deadline_seconds": 50,
+    "bedrock_slots_per_api_process": 2,
+    "bedrock_total_deadline_seconds": 45,
+    "no_deployment_or_limits_changed": true,
+    "gpu_global_exclusive_lease": true,
+    "api_uvicorn_workers": 1
+  },
+  "gpu_instances": [
+    {
+      "instance_type": "g6.xlarge",
+      "availability_zone": "us-east-1d",
+      "state": "running",
+      "lifecycle": "on-demand",
+      "launch_time": "2026-10-11T01:22:54+00:00"
+    }
+  ],
+  "capture_phase": "during_initial_warmup",
+  "source_files_sha256": {
+    "app/main.py": "522ee03eb5e00cf00e43ed62aa2ad179385f0a2c19b39cfbc652eb569d94a166",
+    "app/crypto.py": "7ab660cf5aa942b304f15a1997ef9f5718712b206d3ad41f4826ef75e7fd6799",
+    "app/gpu_state.py": "d3589f539f1441c3b6601722dab4384e2e54101853f15696ddebc02466f21526",
+    "deployment/model_server.py": "546e61588d4418468a1cf6cce710f47ba2d42e2c74818c4206750a5469684776",
+    "deployment/api.Dockerfile": "eea6f50db8d8a641109183bbe6ca988f332a7aa3d18de4d3484a80b6fd1d60e2"
+  }
+}

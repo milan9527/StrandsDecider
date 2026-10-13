@@ -24,6 +24,7 @@ from app.gpu import configured_gpu, inference_lease
 from app.gpu import router as gpu_router
 from app.jev import create_client as create_jev
 from app.policy import review, tool_state
+from app.routing import router as routing_router
 from app.sagemaker import create_runtime
 from app.sagemaker import invoke as invoke_sagemaker
 from app.schemas import DecisionRequest, GuardRequest
@@ -72,6 +73,7 @@ app.include_router(auth_router)
 app.include_router(gpu_router)
 app.include_router(crypto_router)
 app.include_router(crypto_loop_router)
+app.include_router(routing_router)
 
 
 @app.middleware("http")

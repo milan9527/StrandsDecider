@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "result": {
+    "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+    "has_final_text": false,
+    "usage": {
+      "inputTokens": 97,
+      "outputTokens": 4096,
+      "totalTokens": 4193,
+      "cacheReadInputTokens": 0,
+      "cacheWriteInputTokens": 0
+    },
+    "stop_reason": "max_tokens",
+    "complete": false,
+    "model_id": "anthropic.claude-sonnet-5-5",
+    "invoke_id": "us.anthropic.claude-sonnet-5-5",
+    "backend_total_ms": 31515.781,
+    "source": "live",
+    "ranking_version": "464c0dbfb01b8c9a",
+    "request_fields": {
+      "thinking": {
+        "type": "adaptive"
+      },
+      "output_config": {
+        "effort": "max"
+      }
+    }
+  },
+  "note": "Supplemental UI validation after budget/timeout reporting fix. Excluded from formal classification timings."
+}

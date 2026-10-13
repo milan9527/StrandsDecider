@@ -176,6 +176,14 @@ def main():
             return
 
         if not args.skip_build:
+            run(
+                [
+                    sys.executable,
+                    "scripts/refresh_routing_catalog.py",
+                    "--region",
+                    args.region,
+                ]
+            )
             for name in image_names:
                 extra = ["--extra", "model"] if name == "model" else []
                 run(

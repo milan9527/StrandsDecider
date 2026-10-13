@@ -8,9 +8,11 @@
 
 独立的加密支付业务台同时比较 Strands Decider / Jev / Bedrock GPT-6.1 Sol，操作说明见 [CRYPTO.md](CRYPTO.md)，当前性能及业务结果见 [模型比较](../docs/MODEL_COMPARISON.md#当前三模型性能)。
 
+「模型路由对比」新增四个任务场景，比较 Decider / Jev / GPT-6 Sol（low）的处理流程选择与目标型号选择，两步均实际调用决策模型；第三方评测只提供候选依据。LiveBench + MTEB 评测快照随 API 镜像发布，刷新命令及 Artificial Analysis API 接入见模块说明。API 镜像构建前自动刷新当前区域 Bedrock 完整目录，页面显示目录版本与排除原因。目标模型可选执行，IAM 与私网端点已加入基础模型/推理配置调用权限；应用仍限制到当前目录与任务约束。详见 [模块说明](../docs/MODEL_ROUTING.md)。
+
 Jev 对比通过单 AZ Lambda 私有端点 → IAM-only Lambda → Typesafe HTTPS API 接入，密钥存储于 Secrets Manager；API、GPU 和 S3 保持私有。启用、轮换和新增费用见 [Jev 部署说明](../docs/JEV.md#aws-调用路径)。
 
-配套演示资料见 [27 页 v6 优化流程实测版](../docs/presentations/v6/README.md)：当前架构与调用路径为 ECS on EC2；新增两页真实输入优化演示，历史测速图表与新批次分别说明来源。
+配套演示资料见 [30 页 v8 三模型对比](../docs/presentations/v8/README.md)：包含 ECS Fargate、EC2 GPU、Bedrock 与 Jev 架构，预热后的四场景实测、真实截图、JevBench 和输入优化案例。
 
 ```mermaid
 flowchart LR

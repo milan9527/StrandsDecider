@@ -1,0 +1,134 @@
+{
+  "recorded_at": "2026-10-13T12:20:44.189Z",
+  "catalog_version": "34ec203d9142af53",
+  "ranking_version": "464c0dbfb01b8c9a",
+  "classification_calls": 12,
+  "warmups_excluded": 3,
+  "same_input_cases": 4,
+  "cases": {
+    "support": {
+      "decider": {
+        "task_type": "customer_support",
+        "target": "GPT-6 Luna",
+        "classification_ms": 138.421,
+        "ranking_ms": 0.174,
+        "route_total_ms": 145.272,
+        "sort_value": 0.00015
+      },
+      "jev": {
+        "task_type": "customer_support",
+        "target": "GPT-6 Luna",
+        "classification_ms": 536.578,
+        "ranking_ms": 0.174,
+        "route_total_ms": 539.299,
+        "sort_value": 0.00015
+      },
+      "bedrock": {
+        "task_type": "customer_support",
+        "target": "GPT-6 Luna",
+        "classification_ms": 454.826,
+        "ranking_ms": 0.233,
+        "route_total_ms": 456.252,
+        "sort_value": 0.00015
+      }
+    },
+    "code": {
+      "decider": {
+        "task_type": "coding",
+        "target": "Claude Sonnet 5.5",
+        "classification_ms": 147.853,
+        "ranking_ms": 0.196,
+        "route_total_ms": 165.607,
+        "sort_value": 91.366
+      },
+      "jev": {
+        "task_type": "coding",
+        "target": "Claude Sonnet 5.5",
+        "classification_ms": 441.08,
+        "ranking_ms": 0.229,
+        "route_total_ms": 442.491,
+        "sort_value": 91.366
+      },
+      "bedrock": {
+        "task_type": "coding",
+        "target": "Claude Sonnet 5.5",
+        "classification_ms": 4232.046,
+        "ranking_ms": 0.202,
+        "route_total_ms": 4233.747,
+        "sort_value": 91.366
+      }
+    },
+    "analysis": {
+      "decider": {
+        "task_type": "reasoning",
+        "target": "Claude Opus 5.5",
+        "classification_ms": 80.234,
+        "ranking_ms": 0.19,
+        "route_total_ms": 161.856,
+        "sort_value": 83.21657142857143
+      },
+      "jev": {
+        "task_type": "reasoning",
+        "target": "Claude Opus 5.5",
+        "classification_ms": 443.379,
+        "ranking_ms": 0.211,
+        "route_total_ms": 444.638,
+        "sort_value": 83.21657142857143
+      },
+      "bedrock": {
+        "task_type": "reasoning",
+        "target": "Claude Opus 5.5",
+        "classification_ms": 1727.34,
+        "ranking_ms": 0.229,
+        "route_total_ms": 1729.428,
+        "sort_value": 83.21657142857143
+      }
+    },
+    "retrieval": {
+      "decider": {
+        "task_type": "embedding",
+        "target": "Embed Multilingual",
+        "classification_ms": 78.845,
+        "ranking_ms": 0.165,
+        "route_total_ms": 85.563,
+        "sort_value": 59.224999999999994
+      },
+      "jev": {
+        "task_type": "embedding",
+        "target": "Embed Multilingual",
+        "classification_ms": 528.719,
+        "ranking_ms": 0.169,
+        "route_total_ms": 530.467,
+        "sort_value": 59.224999999999994
+      },
+      "bedrock": {
+        "task_type": "embedding",
+        "target": "Embed Multilingual",
+        "classification_ms": 474.673,
+        "ranking_ms": 0.149,
+        "route_total_ms": 476.052,
+        "sort_value": 59.224999999999994
+      }
+    }
+  },
+  "timings": {
+    "decider": {
+      "samples": 4,
+      "mean_ms": 111.33825,
+      "min_ms": 78.845,
+      "max_ms": 147.853
+    },
+    "jev": {
+      "samples": 4,
+      "mean_ms": 487.439,
+      "min_ms": 441.08,
+      "max_ms": 536.578
+    },
+    "bedrock": {
+      "samples": 4,
+      "mean_ms": 1722.22125,
+      "min_ms": 454.826,
+      "max_ms": 4232.046
+    }
+  }
+}

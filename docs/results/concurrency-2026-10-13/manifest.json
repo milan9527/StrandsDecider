@@ -1,0 +1,1266 @@
+{
+  "started_at": "2026-10-13T04:45:35.400191+00:00",
+  "url": "https://d3i7ogfx5ml7dc.cloudfront.net",
+  "endpoint": "/api/crypto/decision",
+  "design": {
+    "providers": [
+      "decider",
+      "jev",
+      "bedrock"
+    ],
+    "client_concurrency_levels": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "requests_per_cell": 80,
+    "distinct_inputs": 20,
+    "repetitions_per_input_per_cell": 4,
+    "seed": 20261013,
+    "input_profile": "optimized",
+    "load_model": "Closed loop: C asynchronous workers, immediate replacement after completion, no think time. Providers tested separately; provider order rotates between levels.",
+    "warmup": "All 20 tasks once per provider before testing; before each cell, 2 requests per supported model slot (1 Decider slot, 2 Jev/GPT slots). All warmups excluded.",
+    "retries": "No load-client retries. Existing backend connection policy unchanged.",
+    "transport": "HTTPS/HTTP1.1 via CloudFront, persistent httpx client, connection pool >= max concurrency; includes authentication, network, queue and processing.",
+    "safety_bound": "At most 80 requests per cell by default; stop higher levels for a provider if cell failure rate reaches 25%. No execution, GPU lifecycle or deployment API calls.",
+    "quantiles": "Nearest rank on successful client latencies; all-attempt and failed latency distributions also retained. No P99 claim with n=80."
+  },
+  "runner": {
+    "platform": "Linux",
+    "machine": "aarch64",
+    "python": "3.11.14",
+    "logical_cpus": 8
+  },
+  "cells": [
+    {
+      "provider": "decider",
+      "concurrency": 1,
+      "started_at": "2026-10-13T04:46:14.221736+00:00",
+      "finished_at": "2026-10-13T04:46:21.949284+00:00",
+      "max_observed_inflight": 1,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 7.727069996006321,
+      "successful_requests_per_second": 10.353212801404336,
+      "all_attempts_per_second": 10.353212801404336,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 96.506620375294,
+        "p50": 94.28144199773669,
+        "p95": 106.99294501682743,
+        "min": 89.56233100616373,
+        "max": 166.82370100170374
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 96.506620375294,
+        "p50": 94.28144199773669,
+        "p95": 106.99294501682743,
+        "min": 89.56233100616373,
+        "max": 166.82370100170374
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 74.347275,
+        "p50": 73.751,
+        "p95": 76.165,
+        "min": 71.815,
+        "max": 96.842
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 69.332125,
+        "p50": 69.156,
+        "p95": 71.376,
+        "min": 67.526,
+        "max": 71.776
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 5.01515,
+        "p50": 4.450999999999993,
+        "p95": 5.331999999999994,
+        "min": 4.036000000000001,
+        "max": 26.992000000000004
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 65.710375,
+        "p50": 65.62,
+        "p95": 67.61,
+        "min": 64.1,
+        "max": 68.0
+      },
+      "reference_matches": 72,
+      "models": {
+        "strands-decider-2B-hobson-v19": 80
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 1,
+      "started_at": "2026-10-13T04:46:24.389969+00:00",
+      "finished_at": "2026-10-13T04:46:54.859735+00:00",
+      "max_observed_inflight": 1,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 30.469362258008914,
+      "successful_requests_per_second": 2.625588265437748,
+      "all_attempts_per_second": 2.625588265437748,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 380.7817136992526,
+        "p50": 346.31256401189603,
+        "p95": 617.4785910116043,
+        "min": 263.73126698308624,
+        "max": 825.2793469873723
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 380.7817136992526,
+        "p50": 346.31256401189603,
+        "p95": 617.4785910116043,
+        "min": 263.73126698308624,
+        "max": 825.2793469873723
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 361.0207125,
+        "p50": 325.311,
+        "p95": 600.764,
+        "min": 248.694,
+        "max": 802.915
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 360.917625,
+        "p50": 325.208,
+        "p95": 600.659,
+        "min": 248.593,
+        "max": 802.815
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 0.10308749999999947,
+        "p50": 0.10300000000000864,
+        "p95": 0.117999999999995,
+        "min": 0.05500000000000682,
+        "max": 0.13199999999994816
+      },
+      "model_reported_ms": null,
+      "reference_matches": 80,
+      "models": {
+        "jev-1.13.0": 80
+      }
+    },
+    {
+      "provider": "bedrock",
+      "concurrency": 1,
+      "started_at": "2026-10-13T04:46:58.906243+00:00",
+      "finished_at": "2026-10-13T04:48:37.080940+00:00",
+      "max_observed_inflight": 1,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 98.1742751209822,
+      "successful_requests_per_second": 0.8148774197865412,
+      "all_attempts_per_second": 0.8148774197865412,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 1227.0940952497767,
+        "p50": 951.2536140100565,
+        "p95": 2773.937792982906,
+        "min": 711.8970360024832,
+        "max": 5581.917959003476
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 1227.0940952497767,
+        "p50": 951.2536140100565,
+        "p95": 2773.937792982906,
+        "min": 711.8970360024832,
+        "max": 5581.917959003476
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 1206.8747875,
+        "p50": 935.936,
+        "p95": 2728.137,
+        "min": 697.102,
+        "max": 5562.544
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 1206.7712375,
+        "p50": 935.829,
+        "p95": 2728.031,
+        "min": 696.994,
+        "max": 5562.447
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 0.10354999999999706,
+        "p50": 0.10099999999999909,
+        "p95": 0.12000000000000455,
+        "min": 0.08999999999991815,
+        "max": 0.18700000000001182
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 1194.55,
+        "p50": 924,
+        "p95": 2717,
+        "min": 687,
+        "max": 5556
+      },
+      "reference_matches": 80,
+      "models": {
+        "us.openai.gpt-6.1-sol": 80
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 2,
+      "started_at": "2026-10-13T04:48:38.242638+00:00",
+      "finished_at": "2026-10-13T04:48:55.000338+00:00",
+      "max_observed_inflight": 2,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 16.75729277697974,
+      "successful_requests_per_second": 4.7740408349193295,
+      "all_attempts_per_second": 4.7740408349193295,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 416.0355617732421,
+        "p50": 385.87090000510216,
+        "p95": 536.4879769913387,
+        "min": 288.308835006319,
+        "max": 1783.0384180124383
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 416.0355617732421,
+        "p50": 385.87090000510216,
+        "p95": 536.4879769913387,
+        "min": 288.308835006319,
+        "max": 1783.0384180124383
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 397.39565,
+        "p50": 366.556,
+        "p95": 517.291,
+        "min": 273.266,
+        "max": 1695.65
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 397.2904125,
+        "p50": 366.444,
+        "p95": 517.191,
+        "min": 273.163,
+        "max": 1695.544
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 0.10523749999999836,
+        "p50": 0.10300000000000864,
+        "p95": 0.12999999999999545,
+        "min": 0.08199999999999363,
+        "max": 0.15200000000004366
+      },
+      "model_reported_ms": null,
+      "reference_matches": 80,
+      "models": {
+        "jev-1.13.0": 80
+      }
+    },
+    {
+      "provider": "bedrock",
+      "concurrency": 2,
+      "started_at": "2026-10-13T04:48:56.821019+00:00",
+      "finished_at": "2026-10-13T04:49:47.446615+00:00",
+      "max_observed_inflight": 2,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 50.6251767030044,
+      "successful_requests_per_second": 1.5802413978587124,
+      "all_attempts_per_second": 1.5802413978587124,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 1261.0262228881766,
+        "p50": 922.9937850032002,
+        "p95": 3802.88162198849,
+        "min": 642.1385100111365,
+        "max": 6631.714390998241
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 1261.0262228881766,
+        "p50": 922.9937850032002,
+        "p95": 3802.88162198849,
+        "min": 642.1385100111365,
+        "max": 6631.714390998241
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 1244.35715,
+        "p50": 906.866,
+        "p95": 3787.415,
+        "min": 626.908,
+        "max": 6616.282
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 1244.2461625,
+        "p50": 906.763,
+        "p95": 3787.305,
+        "min": 626.794,
+        "max": 6616.17
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 0.1109875000000045,
+        "p50": 0.10400000000004184,
+        "p95": 0.1329999999999245,
+        "min": 0.08899999999994179,
+        "max": 0.45699999999999363
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 1234.3,
+        "p50": 896,
+        "p95": 3777,
+        "min": 620,
+        "max": 6609
+      },
+      "reference_matches": 80,
+      "models": {
+        "us.openai.gpt-6.1-sol": 80
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 2,
+      "started_at": "2026-10-13T04:49:47.737972+00:00",
+      "finished_at": "2026-10-13T04:49:54.357540+00:00",
+      "max_observed_inflight": 2,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 6.619117930997163,
+      "successful_requests_per_second": 12.086202547527067,
+      "all_attempts_per_second": 12.086202547527067,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 164.40730658760003,
+        "p50": 154.84948898665607,
+        "p95": 164.23972698976286,
+        "min": 94.65384599752724,
+        "max": 543.9535120094661
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 164.40730658760003,
+        "p50": 154.84948898665607,
+        "p95": 164.23972698976286,
+        "min": 94.65384599752724,
+        "max": 543.9535120094661
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 138.0262625,
+        "p50": 134.077,
+        "p95": 141.23,
+        "min": 75.176,
+        "max": 476.922
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 68.169225,
+        "p50": 67.913,
+        "p95": 70.199,
+        "min": 66.416,
+        "max": 73.49
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 69.8570375,
+        "p50": 66.153,
+        "p95": 73.22300000000001,
+        "min": 5.680999999999997,
+        "max": 406.723
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 64.495125,
+        "p50": 64.28,
+        "p95": 66.51,
+        "min": 62.89,
+        "max": 68.67
+      },
+      "reference_matches": 72,
+      "models": {
+        "strands-decider-2B-hobson-v19": 80
+      }
+    },
+    {
+      "provider": "bedrock",
+      "concurrency": 4,
+      "started_at": "2026-10-13T04:49:56.421193+00:00",
+      "finished_at": "2026-10-13T04:50:42.545080+00:00",
+      "max_observed_inflight": 4,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 46.12346966698533,
+      "successful_requests_per_second": 1.7344748904973017,
+      "all_attempts_per_second": 1.7344748904973017,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 2277.640527561016,
+        "p50": 1863.8697819842491,
+        "p95": 4442.109809984686,
+        "min": 1004.4223610020708,
+        "max": 8389.99004100333
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 2277.640527561016,
+        "p50": 1863.8697819842491,
+        "p95": 4442.109809984686,
+        "min": 1004.4223610020708,
+        "max": 8389.99004100333
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 2254.5600125,
+        "p50": 1839.983,
+        "p95": 4412.285,
+        "min": 986.135,
+        "max": 8373.076
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 1146.33315,
+        "p50": 913.205,
+        "p95": 1951.949,
+        "min": 658.323,
+        "max": 7585.165
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 1108.2268625,
+        "p50": 897.33,
+        "p95": 1935.1169999999997,
+        "min": 0.10000000000013642,
+        "max": 6710.313
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 1134.3125,
+        "p50": 903,
+        "p95": 1942,
+        "min": 652,
+        "max": 7574
+      },
+      "reference_matches": 80,
+      "models": {
+        "us.openai.gpt-6.1-sol": 80
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 4,
+      "started_at": "2026-10-13T04:50:42.737915+00:00",
+      "finished_at": "2026-10-13T04:50:49.184798+00:00",
+      "max_observed_inflight": 4,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 6.4464191799925175,
+      "successful_requests_per_second": 12.40999037857989,
+      "all_attempts_per_second": 12.40999037857989,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 316.2397820135084,
+        "p50": 313.2968610152602,
+        "p95": 359.6036529925186,
+        "min": 183.92869498347864,
+        "max": 493.9818159909919
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 316.2397820135084,
+        "p50": 313.2968610152602,
+        "p95": 359.6036529925186,
+        "min": 183.92869498347864,
+        "max": 493.9818159909919
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 289.9536,
+        "p50": 292.104,
+        "p95": 311.343,
+        "min": 75.756,
+        "max": 343.084
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 69.477825,
+        "p50": 69.097,
+        "p95": 71.584,
+        "min": 67.727,
+        "max": 85.279
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 220.475775,
+        "p50": 222.854,
+        "p95": 242.57600000000002,
+        "min": 5.439999999999998,
+        "max": 273.663
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 65.913375,
+        "p50": 65.44,
+        "p95": 68.05,
+        "min": 64.1,
+        "max": 81.53
+      },
+      "reference_matches": 72,
+      "models": {
+        "strands-decider-2B-hobson-v19": 80
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 4,
+      "started_at": "2026-10-13T04:50:50.199902+00:00",
+      "finished_at": "2026-10-13T04:51:07.889485+00:00",
+      "max_observed_inflight": 4,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 17.68917184098973,
+      "successful_requests_per_second": 4.522540722603094,
+      "all_attempts_per_second": 4.522540722603094,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 871.4064441872324,
+        "p50": 804.7789059928618,
+        "p95": 1278.3145569846965,
+        "min": 646.2421460018959,
+        "max": 1875.5673189880326
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 871.4064441872324,
+        "p50": 804.7789059928618,
+        "p95": 1278.3145569846965,
+        "min": 646.2421460018959,
+        "max": 1875.5673189880326
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 829.4585375,
+        "p50": 776.865,
+        "p95": 1237.387,
+        "min": 612.17,
+        "max": 1856.54
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 438.970725,
+        "p50": 402.557,
+        "p95": 693.119,
+        "min": 292.124,
+        "max": 1199.793
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 390.4878125,
+        "p50": 369.625,
+        "p95": 566.393,
+        "min": 0.09400000000005093,
+        "max": 981.063
+      },
+      "model_reported_ms": null,
+      "reference_matches": 80,
+      "models": {
+        "jev-1.13.0": 80
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 8,
+      "started_at": "2026-10-13T04:51:08.096887+00:00",
+      "finished_at": "2026-10-13T04:51:14.431286+00:00",
+      "max_observed_inflight": 8,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 6.333955745009007,
+      "successful_requests_per_second": 12.630337694266009,
+      "all_attempts_per_second": 12.630337694266009,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 605.9215651239356,
+        "p50": 624.8322609753814,
+        "p95": 680.0358619948383,
+        "min": 99.6823659806978,
+        "max": 684.0932630002499
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 605.9215651239356,
+        "p50": 624.8322609753814,
+        "p95": 680.0358619948383,
+        "min": 99.6823659806978,
+        "max": 684.0932630002499
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 580.2854,
+        "p50": 602.637,
+        "p95": 654.936,
+        "min": 74.294,
+        "max": 663.726
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 69.424525,
+        "p50": 68.696,
+        "p95": 70.303,
+        "min": 67.576,
+        "max": 118.436
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 510.860875,
+        "p50": 533.4449999999999,
+        "p95": 585.753,
+        "min": 5.715999999999994,
+        "max": 593.423
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 65.34275,
+        "p50": 65.15,
+        "p95": 66.62,
+        "min": 64.41,
+        "max": 67.19
+      },
+      "reference_matches": 72,
+      "models": {
+        "strands-decider-2B-hobson-v19": 80
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 8,
+      "started_at": "2026-10-13T04:51:15.572671+00:00",
+      "finished_at": "2026-10-13T04:51:32.905207+00:00",
+      "max_observed_inflight": 8,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 17.332124150998425,
+      "successful_requests_per_second": 4.615706609474729,
+      "all_attempts_per_second": 4.615706609474729,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 1673.246119662872,
+        "p50": 1600.3198949911166,
+        "p95": 2304.798386991024,
+        "min": 482.50450199702755,
+        "max": 2644.3326699954923
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 1673.246119662872,
+        "p50": 1600.3198949911166,
+        "p95": 2304.798386991024,
+        "min": 482.50450199702755,
+        "max": 2644.3326699954923
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 1639.0718625,
+        "p50": 1575.776,
+        "p95": 2283.77,
+        "min": 448.87,
+        "max": 2626.13
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 430.3592625,
+        "p50": 408.677,
+        "p95": 710.32,
+        "min": 270.872,
+        "max": 751.18
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 1208.7126,
+        "p50": 1179.644,
+        "p95": 1791.509,
+        "min": 0.06700000000000728,
+        "max": 2041.79
+      },
+      "model_reported_ms": null,
+      "reference_matches": 80,
+      "models": {
+        "jev-1.13.0": 80
+      }
+    },
+    {
+      "provider": "bedrock",
+      "concurrency": 8,
+      "started_at": "2026-10-13T04:51:35.024533+00:00",
+      "finished_at": "2026-10-13T04:52:24.493272+00:00",
+      "max_observed_inflight": 8,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 49.46829739000532,
+      "successful_requests_per_second": 1.6171973611560637,
+      "all_attempts_per_second": 1.6171973611560637,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 4786.385332626378,
+        "p50": 3606.2132679799106,
+        "p95": 10684.125455998583,
+        "min": 815.1031589950435,
+        "max": 14398.274742998183
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 4786.385332626378,
+        "p50": 3606.2132679799106,
+        "p95": 10684.125455998583,
+        "min": 815.1031589950435,
+        "max": 14398.274742998183
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 4761.19805,
+        "p50": 3588.378,
+        "p95": 10666.524,
+        "min": 779.554,
+        "max": 14381.521
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 1232.6881625,
+        "p50": 872.086,
+        "p95": 4402.187,
+        "min": 678.411,
+        "max": 7458.612
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 3528.5098875,
+        "p50": 2618.373,
+        "p95": 9371.189,
+        "min": 0.09600000000000364,
+        "max": 12452.362000000001
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 1220.0125,
+        "p50": 861,
+        "p95": 4392,
+        "min": 670,
+        "max": 7453
+      },
+      "reference_matches": 80,
+      "models": {
+        "us.openai.gpt-6.1-sol": 80
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 16,
+      "started_at": "2026-10-13T04:52:25.602486+00:00",
+      "finished_at": "2026-10-13T04:52:43.201028+00:00",
+      "max_observed_inflight": 16,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 17.59811767700012,
+      "successful_requests_per_second": 4.545940734590956,
+      "all_attempts_per_second": 4.545940734590956,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 3252.876760748768,
+        "p50": 3162.1970479900483,
+        "p95": 4191.157093999209,
+        "min": 1219.8064500116743,
+        "max": 5000.026222987799
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 3252.876760748768,
+        "p50": 3162.1970479900483,
+        "p95": 4191.157093999209,
+        "min": 1219.8064500116743,
+        "max": 5000.026222987799
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 3135.5150625,
+        "p50": 3022.746,
+        "p95": 3885.82,
+        "min": 1189.911,
+        "max": 4055.415
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 435.7226,
+        "p50": 391.998,
+        "p95": 722.581,
+        "min": 271.183,
+        "max": 1202.894
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 2699.7924625,
+        "p50": 2660.833,
+        "p95": 3471.754,
+        "min": 0.07999999999992724,
+        "max": 3675.543
+      },
+      "model_reported_ms": null,
+      "reference_matches": 80,
+      "models": {
+        "jev-1.13.0": 80
+      }
+    },
+    {
+      "provider": "bedrock",
+      "concurrency": 16,
+      "started_at": "2026-10-13T04:52:45.506013+00:00",
+      "finished_at": "2026-10-13T04:53:38.430500+00:00",
+      "max_observed_inflight": 16,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 52.92405017800047,
+      "successful_requests_per_second": 1.511600108663915,
+      "all_attempts_per_second": 1.511600108663915,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 9498.409422975601,
+        "p50": 7607.988406991353,
+        "p95": 20422.75517899543,
+        "min": 1163.2596700219437,
+        "max": 20782.389428000897
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 9498.409422975601,
+        "p50": 7607.988406991353,
+        "p95": 20422.75517899543,
+        "min": 1163.2596700219437,
+        "max": 20782.389428000897
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 9444.4749375,
+        "p50": 7591.121,
+        "p95": 20408.526,
+        "min": 1036.17,
+        "max": 20766.073
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 1316.5950125,
+        "p50": 904.294,
+        "p95": 3891.952,
+        "min": 581.527,
+        "max": 7137.387
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 8127.879925,
+        "p50": 6666.452,
+        "p95": 19226.414,
+        "min": 0.06600000000003092,
+        "max": 19684.588
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 1303.6875,
+        "p50": 887,
+        "p95": 3883,
+        "min": 574,
+        "max": 7128
+      },
+      "reference_matches": 80,
+      "models": {
+        "us.openai.gpt-6.1-sol": 80
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 16,
+      "started_at": "2026-10-13T04:53:38.740283+00:00",
+      "finished_at": "2026-10-13T04:53:45.119301+00:00",
+      "max_observed_inflight": 16,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 6.37854243098991,
+      "successful_requests_per_second": 12.542050298407203,
+      "all_attempts_per_second": 12.542050298407203,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 1158.828049747899,
+        "p50": 1239.887975010788,
+        "p95": 1245.0041219999548,
+        "min": 259.5398249977734,
+        "max": 1422.9233330115676
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 1158.828049747899,
+        "p50": 1239.887975010788,
+        "p95": 1245.0041219999548,
+        "min": 259.5398249977734,
+        "max": 1422.9233330115676
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 1111.848375,
+        "p50": 1216.51,
+        "p95": 1221.818,
+        "min": 214.255,
+        "max": 1229.326
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 68.251325,
+        "p50": 67.136,
+        "p95": 68.67,
+        "min": 65.747,
+        "max": 148.372
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 1043.59705,
+        "p50": 1148.925,
+        "p95": 1154.31,
+        "min": 65.88299999999998,
+        "max": 1162.583
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 63.747,
+        "p50": 63.58,
+        "p95": 65.19,
+        "min": 62.69,
+        "max": 66.01
+      },
+      "reference_matches": 72,
+      "models": {
+        "strands-decider-2B-hobson-v19": 80
+      }
+    },
+    {
+      "provider": "bedrock",
+      "concurrency": 32,
+      "started_at": "2026-10-13T04:53:49.310732+00:00",
+      "finished_at": "2026-10-13T04:54:40.941187+00:00",
+      "max_observed_inflight": 32,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 51.62998895801138,
+      "successful_requests_per_second": 1.5494870639050653,
+      "all_attempts_per_second": 1.5494870639050653,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 17325.501339501716,
+        "p50": 17882.663813012186,
+        "p95": 26446.068521996494,
+        "min": 987.655195989646,
+        "max": 26888.495596998837
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 17325.501339501716,
+        "p50": 17882.663813012186,
+        "p95": 26446.068521996494,
+        "min": 987.655195989646,
+        "max": 26888.495596998837
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 17167.5482375,
+        "p50": 17864.596,
+        "p95": 26124.529,
+        "min": 940.897,
+        "max": 26867.186
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 1276.922875,
+        "p50": 918.37,
+        "p95": 3757.42,
+        "min": 605.198,
+        "max": 7428.892
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 15890.6253625,
+        "p50": 16757.69,
+        "p95": 25292.597,
+        "min": 0.08199999999999363,
+        "max": 25970.537
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 1264.5375,
+        "p50": 903,
+        "p95": 3750,
+        "min": 598,
+        "max": 7423
+      },
+      "reference_matches": 80,
+      "models": {
+        "us.openai.gpt-6.1-sol": 80
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 32,
+      "started_at": "2026-10-13T04:54:41.144817+00:00",
+      "finished_at": "2026-10-13T04:54:48.027229+00:00",
+      "max_observed_inflight": 32,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 6.881938210019143,
+      "successful_requests_per_second": 11.624632125224714,
+      "all_attempts_per_second": 11.624632125224714,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 2254.9789409495133,
+        "p50": 2533.9488190074917,
+        "p95": 2719.1528499824926,
+        "min": 582.1798790129833,
+        "max": 3039.4810869765934
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 2254.9789409495133,
+        "p50": 2533.9488190074917,
+        "p95": 2719.1528499824926,
+        "min": 582.1798790129833,
+        "max": 3039.4810869765934
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 2065.4912875,
+        "p50": 2511.298,
+        "p95": 2549.466,
+        "min": 452.852,
+        "max": 2555.805
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 71.9253375,
+        "p50": 69.02,
+        "p95": 71.948,
+        "min": 67.194,
+        "max": 286.068
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 1993.56595,
+        "p50": 2441.6910000000003,
+        "p95": 2480.0860000000002,
+        "min": 258.432,
+        "max": 2486.455
+      },
+      "model_reported_ms": {
+        "n": 80,
+        "mean": 65.780625,
+        "p50": 65.57,
+        "p95": 67.44,
+        "min": 64.05,
+        "max": 73.87
+      },
+      "reference_matches": 72,
+      "models": {
+        "strands-decider-2B-hobson-v19": 80
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 32,
+      "started_at": "2026-10-13T04:54:49.137004+00:00",
+      "finished_at": "2026-10-13T04:55:06.088892+00:00",
+      "max_observed_inflight": 32,
+      "attempts": 80,
+      "successes": 80,
+      "failures": 0,
+      "status_counts": {
+        "200": 80
+      },
+      "success_rate": 1.0,
+      "wall_seconds": 16.951449030981166,
+      "successful_requests_per_second": 4.719360560491832,
+      "all_attempts_per_second": 4.719360560491832,
+      "client_latency_ms_all": {
+        "n": 80,
+        "mean": 5731.545162238399,
+        "p50": 6108.034829987446,
+        "p95": 7105.419814004563,
+        "min": 1660.2084650075994,
+        "max": 7564.66586899478
+      },
+      "client_latency_ms_success": {
+        "n": 80,
+        "mean": 5731.545162238399,
+        "p50": 6108.034829987446,
+        "p95": 7105.419814004563,
+        "min": 1660.2084650075994,
+        "max": 7564.66586899478
+      },
+      "client_latency_ms_failure": null,
+      "backend_total_ms": {
+        "n": 80,
+        "mean": 5369.135375,
+        "p50": 5553.64,
+        "p95": 7072.748,
+        "min": 1612.017,
+        "max": 7081.769
+      },
+      "processing_ms": {
+        "n": 80,
+        "mean": 419.8286125,
+        "p50": 360.859,
+        "p95": 718.26,
+        "min": 267.45,
+        "max": 1695.028
+      },
+      "backend_wait_and_preamble_ms": {
+        "n": 80,
+        "mean": 4949.3067625,
+        "p50": 5193.896000000001,
+        "p95": 6711.731,
+        "min": 0.11100000000010368,
+        "max": 6745.755999999999
+      },
+      "model_reported_ms": null,
+      "reference_matches": 80,
+      "models": {
+        "jev-1.13.0": 80
+      }
+    }
+  ],
+  "skipped": [],
+  "gpu": {
+    "phase": "ready",
+    "provider": "ec2",
+    "instance_type": "g6.xlarge",
+    "idle_auto_stop": false
+  },
+  "finished_at": "2026-10-13T04:55:06.090177+00:00",
+  "status": "complete"
+}

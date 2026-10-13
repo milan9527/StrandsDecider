@@ -1,0 +1,608 @@
+How it works
+One merged board: how newer draws join it
+Each system appears once, with its latest valid measurement; earlier systems are not re-measured. The reference scale is
+v1.6.1
+(draw
+v1.6.0
+).
+Every draw shares the same 300 public items (P, manifest 6b2321f8...). A fresh draw is equated to the reference draw with fixed anchor systems measured on both draws: offset = median over anchors of (metric on the reference S u P) - (metric on the new draw S u P), for Intelligence and Calibration, with a bootstrap 95% interval over anchors and items. A row from that draw is shown as published plus the offset; Capability and Composite follow from the equated axes. Until the anchor runs of a draw are complete its offset is 0 and the draw is marked 'anchor runs pending'.
+Draw
+Drawn
+Releases
+Anchor offset (Intelligence / Calibration)
+Status
+v1.6.0
+(reference)
+2026-10-01
+v1.6.0, v1.6.1
+0 / 0
+reference scale · G_med
+2.57
+Fast-lane draw
+·
+v1.6-fastlane-20261009
+2026-10-09
+v1.6.2, v1.6.3, v1.6.4
++0.00
+/
++0.00
+anchor runs pending: shown as published
+Regular draw
+·
+v1.6-regular-20261010-a2
+2026-10-10
+v1.6.5, v1.6.6, v1.6.7, v1.6.8, v1.6.9
++0.00
+/
++0.00
+anchor runs pending: shown as published
+Second regular draw
+·
+v1.6-regular-20261012
+2026-10-12
+v1.6.10
++0.00
+/
++0.00
+anchor runs pending: shown as published
+Anchor pool:
+hopper, kev-0.6b, kev-4b, kev-8b, localjev-qwen3.5-4b, malkuth-4b, metask-jev-4b, raw-phi-4-mini, raw-qwen3-1.7b, raw-qwen3-4b-instruct-2507, raw-qwen3-8b, typecastlm
+.
+The same 12 anchors answered two sealed draws of v1.6.0 (S and the A2 supplement): median difference -0.29 Intelligence and +1.56 Calibration points (v1.6.1 results, v16.equating_A2).
+On the shared public items, systems on both new draws score 6 to 13 sealed points below the reference field's sealed-vs-public line (reference residual SD 3.8). Either the new sealed draws are harder or their cohorts are tuned on the public items; only anchor runs can separate the two. Until then their rows are, if anything, understated.
+Rows from a newer draw keep the gap-penalty reference (G_med) their release was scored with; the row tooltip and tag name the draw and date. Their topic, use-case and language cells use their own draw’s item set and labels, so they are shown on their release page (linked from the draw tag in Release history), not in the radars and language table here.
+Open weights and API offerings (board
+v1.7.46
+)
+Why open weights and APIs are compared in separate groups
+Fair cost and speed.
+We run every open-weights model on hardware we rent and operate, so cost and latency compare on the same terms. The GPU cost calculator prices your own setup: own hardware, on-demand or long-term rental.
+API prices can change.
+An API price is the vendor's decision. It can be subsidised (for example on top-end GPUs) and raised later, and readers cannot reproduce it.
+Different fairness needs.
+A hosted endpoint chooses its own hardware and sees the benchmark inputs, so API offerings are compared with each other.
+Open-source focus.
+JevBench exists to make open decision models comparable and reproducible. Every score and the method are identical in every view; the All view ranks both groups together by Capability.
+The main board at /jev-models
+ranks
+open-weights systems
+: published weights that we ran ourselves, on GPU or CPU machines we rent and operate. A system we measured through an endpoint we do not run (vendor API, author-hosted or third-party-hosted endpoint, for example Qwen3.8 27B via Chutes) is an
+API offering
+, even when its base weights are open; API offerings are ranked on
+this board
+.
+Why separate boards: open weights can be compared on equal hosting terms, while an API price is a vendor decision that can be subsidised or raised later and is not reproducible by readers. Every score and measurement is the same on both boards; only the set of ranked rows differs, and ranks are the published order filtered to that set.
+Jev 1.13.0 is a hosted API. It stays on the open-weights board as the
+reference row
+(it defines the Jev-class cost and latency caps) and is not ranked there; it is ranked on the API leaderboard.
+Official cost basis is unchanged: the Cost axis keeps each row's documented reference price (see the cost notes below; APIs with a known base model are priced at the developer's own list price). The base-model reference price only applies to open-weights rows; API offerings are ranked at their own list price
+on this board
+.
+The GPU cost calculator on the main board
+is a What-If for your own hosting and never changes a score or rank.
+Full API re-run (A4, v1.7.7).
+Most offerings on this board
+were measured on 6 Oct 2026 on a fresh sealed API set A4 (300 never-used sealed items) plus the same 300 public items every system answers, and equated to the v1.6.1 S ∪ P scale with the published A2/A3 supplement method (offset
++
+2.57
+Intelligence, +
+3.35
+Calibration; pool of
+8
+ranked self-hosted systems re-run on A4 ∪ P). Jev, Sage, wity-1 and Fastino GLiNER-2.5-Decide keep their full-set S ∪ P scores; Liquid AI d1 answered the full S ∪ P set on 6 Oct 2026 (v1.7.8) and is scored like them, without equating. The pool is mid-strength, so for the strongest LLM rows the offset is an extrapolation (likely within ±2 Intelligence points; the 95% intervals include it). Nine A4 ∪ P items of about 77,000–82,000 input tokens, beyond the Jev reference's accepted input range, count against Intelligence when refused but are left out of cost. Rows without a public tariff keep their documented v1.5 cost estimate. A4 is now retired for everyone.
+OpenAI Decisions (gpt-6-luna) ran later on the fresh sealed API set A5 ∪ P (600 items; A4 had already been sent to that provider) and is equated the same way with A5's own offsets (+5.78 Intelligence, +6.15 Calibration, same pool).
+Language and use-case cells (v1.7.12).
+These breakdowns add two sealed supplements (354 language items, 33 use-case items, drawn and reviewed on 6 Oct 2026), so every language and use case has at least 30 items. Headline scores are unchanged; rows not yet run on the supplements are tagged S+P in the language table.
+Every API offering we reached is measured on v1.6.1: either on the full 1,500-item set or on A4 ∪ P (600 items, equated). No preliminary public-set rows remain.
+Revision history
+v1.7.46
+(
+2026-10-11
+):
+Display: the measured value of self-hosted rows is now tagged “on-GPU, no network” (or CPU) and marked as not directly comparable with API latency, which is timed end to end from our measuring host. The method notes describe a planned calibration of the 2× + 150 ms assumption against real end-to-end timings. No score or rank changed.
+v1.7.45
+(
+2026-10-11
+):
+Display: self-hosted rows now show the measured p50 next to the network-including estimate (2× measured + 150 ms), which the ranking continues to use. No score or rank changed.
+v1.7.44
+(
+2026-10-10
+):
+Display only: the Pareto charts get the same “Show models that don’t qualify as Jev-class” switch as the scatter charts (off by default, so the frontier is drawn over Jev-class systems), expand to fullscreen, and share the highlighted system with the scatter charts (hover or tap one system and it is marked in all four charts). No score or rank changed.
+v1.7.43
+(
+2026-10-10
+):
+Display only: a Pareto frontier section after the two scatter charts on both boards — Capability against cost per 1,000 decisions and against median latency (log axes; list price and measured endpoint latency on the API board). The red line joins the systems no other system beats on both axes. No score or rank changed.
+v1.7.42
+(
+2026-10-10
+):
+One merged board. The version tabs are gone: /jev-models is always the current board with every system’s latest measurement, and releases are listed under Release history (old version pages keep their URLs). The 16 systems measured on the two fresh draws after v1.6.1 (fast-lane draw v1.6.2–v1.6.4, regular draw v1.6.5–v1.6.7) join the boards with their published scores and a draw tag; each draw is put on the v1.6.1 scale by an anchor offset that stays 0 until the anchor systems have run on it (see How it works). A filter on top switches between Open weights, API and All (both groups, ranked by Capability). Header text is shortened; the details moved into How it works. Jeff 1.0 Large (fast-lane draw) enters the open-weights Capability top 5 at #2.
+v1.7.41
+(
+2026-10-10
+):
+Needle 3 now has language and category cells on the current pools. It keeps its published v1.5 headline. With the benchmark owner's approval its closed engine was sent all supplement items (L1, L2, L3) once more on an isolated machine, plus 128 never-asked S+P items chosen by their use-case label to complete the last radar spoke (these also count in the other cells, so its S+P part is not a random sample); together with an earlier partial run both radars reach at least 30 answered items per spoke (52 per subject topic, 43 per use case). The engine abstains on about 30 % of items and returns invalid UTF-8 on about 7 %; both count as unanswered, so 22 languages stay below the 60-item target (19 to 59 answered items). Its answers to the same public items differ between machines on about 10 %. Its chance-corrected competence is below zero in every cell, shown as 0. The v1.7.40 note for Needle 3 (options as tools) is corrected the same way. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.40
+(
+2026-10-10
+):
+Needle 3, options as tools, now has language and category cells on the current pools. It keeps its published v1.5 headline. With the benchmark owner's approval its closed engine ran once more on an isolated machine; the run covered most of L3 and half of L1 before the machine's time limit and is combined with an earlier partial run. Both radars are complete (at least 58 per subject topic and 43 per use case). The engine abstains on about 9 % of items and returns invalid UTF-8 on about 7 % (mostly non-Latin scripts); both count as unanswered, so 18 languages stay below the 60-item target (24 to 59 answered items; columns under 30 carry the low-n mark). Its chance-corrected competence is below zero in every cell, shown as 0. ClassOne Gemma 4 E2B keeps its exception with a corrected reason: its weights were identical, but its server gives different answers after each restart. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.39
+(
+2026-10-10
+):
+GLiNER2 large now has language and category cells on the current pools: at least 62 completed responses in every language, 98 in every subject topic and 80 in every use case. It keeps its published v1.5 headline; the cells come from a new run with the original pinned model on an isolated machine. GLiNER2 gained 180 more answered items that had been reserved earlier but never sent: its languages now rest on 50 to 59 answered items where they are below the 60-item target (17 of 23), and its radars on at least 69 per topic and 56 per use case. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.38
+(
+2026-10-10
+):
+Three more historical rows now have language and category cells on the current pools: reflex-27b, Surogate Rune 26B-A4B v3 (RTX PRO 6000) and jeff. They keep their published v1.5 headlines. reflex-27b completed its partly answered S+P set and the supplements; Surogate Rune adds the supplements to its 6 October S+P run; jeff (CPU) answered all pools. Their repeated answers to the 300 public items agree 100 %. Each row has at least 65 completed responses in every language, 109 in every subject topic and 83 in every use case. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.37
+(
+2026-10-10
+):
+Three more historical rows now have language and category cells on the current pools: Von, GLiNER2 and GLiNER2.5 multi. They keep their published v1.5 headlines; the cells come from new runs with the original pinned model and setup on isolated machines. Von and GLiNER2.5 multi reach at least 61 completed responses in every language, 100 in every subject topic and 80 in every use case. GLiNER2 fills both radars (at least 57 per topic, 45 per use case) and every language column, but about 1,000 of its issued items were lost to out-of-memory kills and a machine shutdown; they stay counted as spent, so 22 languages rest on 42 to 59 answered items, below the 60-item target. Three rows that cannot be measured now give the concrete reason: Aplomb 1 (pinned revision deleted upstream), ClassOne Gemma 4 E2B (re-run did not reproduce its original answers) and swanOne (weights return HTTP 401). L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.36
+(
+2026-10-10
+):
+Nine more rows now cover S+P+L1+L2+L3 in the language table and both radars: Diffusion Jev, SPX-CD-Omni, Seb-9B, APUS-OpenJev-v1-9B, APUS-OpenJev-v1-35B-A3B, Jobe Qwen3.5-4B, AutoJev-27B (RTX PRO 6000), NInfer Qwen3.8-27B NVFP4 (T=1.5) and OpenJev (DiffusionGemma 26B-A4B NVFP4, razorback16). The last four are historical rows: they keep their published v1.5 headlines, and their language and category cells come from a new run on the current pools with the original pinned model and serving setup. Diffusion Jev, SPX-CD-Omni, Seb-9B and both APUS rows match their original public answers on at least 97 %. The razorback16 OpenJev model samples stochastically, so its repeated passes agree on 86 to 89 % of the public items; its note says so. Every row has at least 65 completed responses in every language, 109 in every subject topic and 83 in every use case. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.35
+(
+2026-10-10
+):
+Seven more rows now cover S+P+L1+L2+L3 in the language table and both radars: René-1 31B FP8, decisio v0.8.0 on gemma-4-12B-it, Hopper 12B trained, decider-12b v2, decider-12b v1, Bobcat Flash 1.2 and Mica v0.1 4B. Each answered all 1,505 supplemental items with its original pinned model and serving setup on an isolated machine; answers to the 300 public items match the original runs (at least 99 %). Mica keeps its published v1.5 headline; its language and category cells come from a new run on the current pools. Every row has at least 65 completed responses in every language, 109 in every subject topic and 83 in every use case. The language table now lists the mixed-language group first. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.34
+(
+2026-10-10
+):
+Seven more self-hosted rows now cover S+P+L1+L2+L3 in the language table and both radars: TypeCastLM 1.4.0, CoCo-Decision-4B, ClassOne Qwen 3.5 9B, EXAONE-4.0-1.2B-JEV v0.3, jul fast, WaterSheep and Tacet Sonata. Each answered all 1,505 supplemental items with its original pinned model and serving setup on an isolated machine; their answers to the 300 public items match the original runs (at least 97 %). Every row has at least 65 completed responses in every language, 109 in every subject topic and 83 in every use case. Long-input refusals stay scored as before. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and pricing are unchanged.
+v1.7.33
+(
+2026-10-10
+):
+Messier One v0.2 now covers S+P+L1+L2+L3, with all 1,505 supplemental items answered natively on the original image with the network disabled: at least 65 completed responses in every language, 109 in every subject topic and 83 in every use case. The original P300 answers recur in each supplement and count once; the original S+P measurement had no HTTP errors. L3 items were reviewed by an OpenAI model, so cells based on L3 carry that exposure; headline scores do not use L3. Headline scores, Capability, Composite, ranks and original row pricing are unchanged.
+v1.7.31
+(
+2026-10-10
+):
+Microsoft-Decision-1 joins the hosted API board after a native Azure Foundry measurement on 1,200 sealed plus 300 public observations: Capability 70.78, Calibration 84.40 and Composite A 69.11. Its 21 context-limit failures remain in the scored denominator. Native median latency is 459 ms on the 124-request speed subset. This new full-set O1S run uses its completed-field median gap reference of 7.088 score points; historical rows retain their own dates, pools and references rather than being remeasured or converted. The existing top five on Composite A and capped Capability are unchanged. All 50 topic/use-case/language cells are recorded; thin cells stay suppressed or table-only, and qualified supplemental coverage remains pending.
+v1.7.30
+(
+2026-10-10
+):
+decisio v0.8.0 on gemma-4-31B-it now covers S+P+L1+L2+L3, with all 1,505 supplemental items answered natively: at least 65 completed responses in every language, 109 in every subject topic and 83 in every use case. The original P300 answers recur in each supplement and count once. The original 23 HTTP 500 errors remain operational non-answers and are not imputed. L3 items were reviewed by an OpenAI model, so its cells based on L3 carry that exposure; this row is the original locally served Gemma offering. Headline scores, Composite, ranks and original row pricing are unchanged.
+v1.7.29
+(
+2026-10-09
+):
+Mercury Decide now has at least 64 completed observations in every language, 109 in every subject topic and 83 in every use case, using S+P+L1+L2+L3. L3 retains 1,416 records on its full 1,418-item denominator, including original refusals and operational failures; two spent failures remain missing. Paid supplemental decisions use the currently declared Inception 2026-09-30 offering and the original native protocol. Public top labels agree on 96.63%, with differing probabilities and unproven historical weights/calibrator equality; the row coverage note gives the comparison. Headline scores, Composite, ranks and original row pricing are unchanged.
+v1.7.28
+(
+2026-10-09
+):
+GLiNER 2.5 Small now covers P300 + L1 + L2 + L3 with 1,802 completed native responses: at least 60 in each of 23 languages, 78 in every subject topic and 52 in every use case. Its original offline CPU/fp32 profile is unchanged. Three earlier public-item OOM outcomes remain missing and contribute no completed coverage; no requests were replayed. These cells exclude historical S answers and stay outside headline scores. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.27
+(
+2026-10-09
+):
+OpenJev DeBERTa v3 Large adds 60 new L5 items: 20 each in Arabic, Hindi and Greek. It now has at least 63 completed responses in every language (Arabic 70, Hindi 73, Greek 69). The original native context was checked before keeper selection; all 60 requests succeeded, and earlier failures remain scored. Other rows and category views retain their existing measurements. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.26
+(
+2026-10-08
+):
+BB-Qwen3.5-4B-LoRA now covers S+P+L1+L2+L3, with at least 65 completed responses in each of 23 languages and at least 83 on every capability and use-case spoke. Two DNS failures remain scored and do not count toward completed coverage. Its reference cost stays unknown; these view values do not impute a price. OpenJev DeBERTa v3 Large now includes its completed L1/L2 runs; Arabic (50), Hindi (53) and Greek (49) still need more completed responses. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.25
+(
+2026-10-08
+):
+Watt Flash 0.1 and OpenJev Verdict completed their language supplements. Both now cover S+P+L1+L2+L3, with at least 65 completed responses in each of 23 languages and at least 83 in each capability and use-case category. Other rows retain their existing measurements, including Fastino’s Hindi L4 supplement. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.24
+(
+2026-10-08
+):
+Fastino GLiNER 2.5 Decide now has 69 completed Hindi responses after a new 20-item Hindi supplement. Seventeen requests succeeded; three HTTP 400 failures remain scored and do not count toward completed coverage. L4 is used only for this offering’s Hindi language cell, with OpenAI author and independent Anthropic reviewer provenance disclosed. The mghafiri Qwen3.5 0.8B row also completed L3, expanding its language and category cells. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.23
+(
+2026-10-08
+):
+The Languages table includes every listed model, including historical and catalogue entries. These rows use their stored language measurements where available and show pending cells where measurements are unfinished. Historical headline scores are not used as language values. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.22
+(
+2026-10-08
+):
+Languages and radars now include completed L1/L2/L3 runs for SPX CD Flash, SPX CD Pro and Decisio Gemma 4 12B v0.9. Coverage counts completed supported responses and recorded input refusals; authentication, rate-limit, service and transport errors do not satisfy reporting thresholds. Competence keeps its original scored observations. 3 listed rows still have incomplete radar coverage and show the reason. Every listed row remains in the completion check. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.21
+(
+2026-10-08
+):
+Languages and radars: more rows completed their L1/L2/L3 supplement runs, among them Instinct (its API is back), Surogate Rune 26B-A4B v3, Xor 26B-A4B, JADE, Jebadiah 27B, Kev 27B, Decision 2.0 Vega 27B and the self-hosted SimpleJev Qwen3.8-27B. 3 rows still show a reason instead of a full radar: newly listed rows whose supplement runs are not done yet, rows not measured on this item pool, and one model whose pinned weights could not be accessed. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.20
+(
+2026-10-08
+):
+Correction and progress for the language and radar views. The self-hosted row SimpleJev Qwen3.8-27B wrongly counted the hosted SimpleJev API row's L1/L2/L3 supplement answers in its language and category cells (v1.7.18 and v1.7.19), because both share a file name. Its cells now use only its own S + P answers until its own supplement runs finish, and the cell builder no longer lets a hosted-API run count for a self-hosted row. More open-weights rows completed their L1/L2/L3 runs. 3 rows still show a reason instead of a full radar. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.19
+(
+2026-10-08
+):
+Languages and radars: the open-weights rows were run on the L3 supplement overnight, and most rows that still lacked the earlier L1/L2 supplements got them too. Their language cells and topic/use-case radars now count every item they answered (S + P + L1 + L2 + L3), and Qwen3.8 27B (Chutes) finished its L3 run. L3 items were reviewed by an OpenAI model, so the L3-based language and category cells of OpenAI rows carry that exposure; a note next to those rows says so, and headline scores do not use L3. 3 rows still show a reason instead of a full radar, for example runs still in progress, a provider that is down, withdrawn weights or rows not measured on this pool. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.18
+(
+2026-10-08
+):
+Languages and radars for every row. A new sealed supplement, L3 (1,118 items drawn on 7 Oct 2026: items written natively in 21 languages plus a mixed-language group, and English items for thin radar categories such as everyday language, safety and the "other" use case), gives every language at least 60 items on P ∪ L1 ∪ L2 ∪ L3 (before: as few as 4). The hosted API rows answered it: their language cells and their use-case and topic radars now rest on about 2,100 answered items (3,000 for rows that answered the full sealed set), with at least 69 on every spoke. Open-weights rows are being run on it in the current GPU wave and update as they finish. 3 rows that do not reach 30 items on every spoke yet show the reason next to the row. Headline scores, Capability, Composite and every rank are unchanged.
+v1.7.17
+(
+2026-10-07
+):
+Languages now includes every measured row on both boards, with wrappers listed below the models. Self-hosted rows use S 1,200 + P 300 + L1 (354 items) + L2 (33 items) + L3 (1,118 items), where answered. API rows re-run on A4/A5 use their 300/300-item sealed subset instead of S. Every row’s tag lists the pools it actually answered. L3 is a sealed language supplement (1,118 items), drawn 2026-10-07. Every language has at least 60 items in P ∪ L1 ∪ L2 ∪ L3. Header counts show the full S + P + L1 + L2 + L3 pool. Headline scores are unchanged; these raw cells are unequated, scored for language/category views only and outside the Composite. L3 items were written natively by Claude Sonnet 5.5, each solved blind and language-checked by GPT-6.1 Sol, with gold kept only when both agree or a second review confirms; no gold comes from Jev or any measured API. L3 is API-facing by design and is excluded from future headline draws. Rows with unfinished runs retain their actual coverage tags. L3 items were reviewed by an OpenAI model, so the L3-based language and category cells of OpenAI rows (OpenAI Decisions, GPT-6 Luna, GPT-5.6 Luna) carry that exposure; headline scores do not use L3. C1 adds English items for thin radar categories (everyday language, safety and the other use case). L4 adds 20 new Hindi items for Fastino GLiNER 2.5 Decide only. They were authored with OpenAI and independently solved and language-reviewed with Anthropic before sealing. Seventeen L4 requests succeeded; three HTTP 400 failures remain in the scored observations and do not count as completed coverage. L4 is outside headline and category scores and the common header counts. L5 adds 60 new items for OpenJev DeBERTa v3 Large only: 20 each in Arabic, Hindi and Greek. They were authored with OpenAI and independently solved and language-reviewed with Anthropic before sealing, then checked against the original 512-token native context before keeper selection. All 60 native requests succeeded. Previous failures remain scored and do not count as completed coverage. L5 is outside headline and category scores and the common header counts. 19 API rows re-run on A4/A5 have answered L1/L2 supplements; their category radars count those items too. L3 coverage will follow when measured.
+v1.7.16
+(
+2026-10-07
+):
+Compare view, API board: subject-topic and use-case radars for OpenAI Decisions, the 17 API offerings re-run on A4 ∪ P and the classifier.dev wrapper. Their 600 new sealed items were labelled with the same recipe as every other item (Winnow-12B Q8 on our own GPU pod; uc1 items keep their authoring use case); values are raw and rest on 600 items (300 sealed), so more categories fall under the 30-item spoke minimum and are listed below the radar. Each of these rows also gets a breakdown section on its own page. Every live row now has all breakdown views, and a release check keeps it that way. No score, axis, cost or rank changed.
+v1.7.15
+(
+2026-10-07
+):
+Compare view, API board: OpenAI Decisions, the 17 API offerings re-run on A4 ∪ P and the classifier.dev wrapper now show competence per request type and per tier on the open and sealed items they answered (300 open + 300 sealed: fewer sealed items than the full set, so wider uncertainty; the view note says so), and Liquid AI d1 shows its subject-topic and use-case radars. Values are raw, computed from the stored per-item results with the same scorer as every other row. Subject-topic and use-case radars for the 600-item rows follow once their 600 new sealed items are labelled. No score, axis, cost or rank changed.
+v1.7.14
+(
+2026-10-07
+):
+Open-weights board: H2O-Lightning-4B v1.1 (H2O.ai) and Kahn1 4B (Okura66), two Qwen3.5-4B fine-tunes submitted as JevBench add-requests, measured on the same sealed v1.6 pool with the same scorer, G_med and cost basis as every other row (addendum a8 of v1.6.1). Both are priced with labelled cost estimates like every other Qwen3.5-4B row; Kahn1's server reports no token usage, so its estimate is our own count of its input tokens (three passes per decision, its server default). Both rank inside the Jev-class caps: H2O-Lightning-4B at #3 of the Capability Score and #1 of the Composite, Kahn1 at #23 of the Capability Score. No published score, axis or cost changed.
+v1.7.13
+(
+2026-10-07
+):
+Open-weights board: Surogate Rune 26B-A4B v3 (measured on the v1.6 pool for the first time; its dated v1.5 row stays in the carried list) and Xor 26B-A4B (Juspay), both from the top 20 of the community Jev Decision Index on Hugging Face, measured on the same sealed v1.6 pool with the same scorer, G_med and cost basis as every other row (addendum a7 of v1.6.1). Both rank inside the Jev-class caps, at #3 and #4 of the Capability Score. No published score, axis or cost changed.
+v1.7.12
+(
+2026-10-07
+):
+Languages and use cases: the per-language and per-use-case cells now also count two sealed supplements, a language supplement L1 (354 items) and a use-case supplement L2 (33 items), drawn and reviewed on 6 Oct 2026. Every one of the 22 languages (plus the mixed-language group) and every one of the 20 use cases now has at least 30 items (before: as few as 5). 82 rows answered both supplements; rows not run on them yet keep their S + P cells and are tagged S+P (or S+P+L1). Headline scores, Capability, Composite and every rank are unchanged on both boards.
+v1.7.11
+(
+2026-10-07
+):
+Open-weights board: 12 new self-hosted Jev-compatible rows from the top 20 of the community Jev Decision Index on Hugging Face (Perplexity Decider v1.1 27B, torchcast-decision-27b, Kev 27B, decider chat on Gemma-4-31B-it, GEV-26B-Decide, Decision 2.0 Vega 27B, JEV-27B, Jebadiah 27B, JADE, Bespoke Nimble 9B v3, SimpleJev Qwen3.8-27B self-hosted, JPT-35B-A3B), measured on the same sealed v1.6 pool with the same scorer, G_med and cost basis as every other row (addendum a6 of v1.6.1). No published score, axis or cost changed; ranks move only where a new row places above. Rows priced above the Jev-class cost or latency caps are listed under the limits section, not in the Capability ranking.
+v1.7.10
+(
+2026-10-06
+):
+API board: OpenAI Decisions (POST /v1/decisions with gpt-6-luna) replaces its preliminary public-set row with its official result. It answered a fresh sealed API set A5 (300 never-used sealed items, since A4 had already been sent to OpenAI) plus the 300 public items (598 of 600 answered) and is equated to the v1.6.1 scale with the same method and pool as the A4 rows (offsets +5.78 Intelligence, +6.15 Calibration). It is ranked on the API board: Composite 62.5 (95% interval 51.6–64.6), Capability 73.5; list price USD 0.10 per 1M input tokens as of 6 Oct 2026 (launch day), re-checked at each revision. It enters the API Composite top 5 at #5, statistically tied with Instinct (62.2, now #6), and the Jev-class Capability top 5 at #4 (Instinct moves to #5, Vansa-3.4 to #6). Every other score is unchanged; the open-weights board is unchanged.
+v1.7.9
+(
+2026-10-06
+):
+API board: the OpenAI Decisions API (POST /v1/decisions with gpt-6-luna, opened on 6 Oct 2026) is added as a preliminary, unranked row from the 300 public v1.6 items (298 answered; Capability 68.8, Composite 37.2 on that set; list price USD 0.10 per 1M input tokens). Its official sealed run waits for the next fresh sealed API draw. No score or rank changed on either board.
+v1.7.8
+(
+2026-10-06
+):
+API board: Liquid AI d1 is added as a ranked API offering. It answered the full v1.6.1 set (1,200 sealed + 300 public items, all 1,500 answered) on 6 Oct 2026 and is scored exactly like the other full-set API rows, without equating (Composite 73.0, Capability 74.4; tariff USD 0.04 per 1M input tokens). It enters the API board top 5 in Composite and in Jev-class Capability. Every other score is unchanged; the open-weights board is unchanged.
+v1.7.7
+(
+2026-10-06
+):
+API board: 17 API offerings re-measured in full on a fresh sealed API set (A4, 300 never-used sealed items plus the 300 public items, 6 Oct 2026) and equated to the v1.6.1 scale with the published A2/A3 supplement method. They replace the hatched preliminary rows and are ranked on the API board: Instinct and Vansa-3.4 enter its Composite top 5, and Instinct, Vansa-3.4 and Instinct Dual 4B join Sage and Jev in its Jev-class Capability top 5; GPT-6 Luna, Qwen3.8 27B, GPT-6 Luna low, DeepSeek Flash and GPT-5.6 Luna have the highest raw Capability (98.4, 98.2, 97.8, 97.4 and 94.5) but sit outside the Jev-class caps. Qwen3.8 27B (Chutes) is ranked as well (Composite 0.0: no published tariff, so its documented USD 2.18 estimate per 1,000 decisions gives Cost 0). Instinct and Instinct Dual 4B are now treated as production APIs (public tariff), so no demo-endpoint latency adjustment applies to them. classifier.dev (fast tier) is listed as a wrapper, not ranked. No preliminary rows remain. The open-weights board is unchanged.
+v1.7.6
+(
+2026-10-06
+):
+API board: Vansa-3.4 and Instinct Dual 4B now have v1.6 public-set figures and appear as preliminary rows; Autoloops stays pending while its full run on the fresh sealed set is in progress. Very long items that exceed a provider’s context window count as wrong without ending the run. No rank changed.
+v1.7.5
+(
+2026-10-06
+):
+API board: every API offering with a v1.6 public-set figure is drawn in the Composite and Capability charts as a hatched, unranked “preliminary” row at its score position (public set of 300 items; full sealed re-evaluation running); offerings without any v1.6 figure are greyed “pending” rows. Adds Qwen3.8 27B (Chutes) and Fastino GLiDE to the public-set table. The four ranked rows and every rank are unchanged; the open-weights board is unchanged.
+v1.7.4
+(
+2026-10-06
+):
+API board: every reachable API offering that was not yet re-measured on v1.6 now has a dated public-set figure (the 300 public v1.6 items, no sealed items), shown next to its older v1.5 score with Jev and other ranked APIs on the same 300 items as anchors. Not ranked and not comparable with the 1,500-item headline; no score or rank of either board changed.
+v1.7.3
+(
+2026-10-06
+):
+Display only, no score or rank changed. The API board ranks every offering at its own list price and no longer shows a base-model reference price (that comparison only matters against open weights). The Jev reference row and, with “Show API offerings” on, every API offering now sit at their score position in each ranking section (Composite and Capability) instead of the folded end of the list.
+v1.7.2
+(
+2026-10-06
+):
+Display only. The API roster says why carried API rows were not re-run on v1.6 yet (exposure cadence, retired v1.6.0 sealed set) and that no v1.5 to v1.6 conversion is applied.
+v1.7.1
+(
+2026-10-06
+):
+Display only, no score or rank changed. Headings name the board (open weights / API offerings); the API board leads with the Composite Score and lists every API offering we measured, including mode variants, carried v1.5.x rows and wrappers; the Jev reference row reads “Not ranked, only shown as a reference to compare with” on the open-weights board; long base-model notes became numbered footnotes under the ranking; a short expandable note explains the split.
+v1.7.0
+(
+2026-10-06
+):
+Leaderboard split. /jev-models ranks open-weights systems we ran on our own hardware, with Jev 1.13.0 as an unranked reference row and a “Show API offerings” switch; hosted API offerings are ranked on the new /jev-models/api board. No score was recomputed: ranks are the published order filtered to each board. Adds the GPU cost What-If.
+v1.6.1
+(
+2026-10-05
+):
+Hosted APIs (fastino-gliner-2-5-decide, jev-1.13.0, sage-1.3.0, wity-1, wity-1-always, wity-1-off) answer the full 1,500-item set instead of the 600-item API subset and are no longer equated; self-hosted rows unchanged; whole v1.6.0 sealed draw retired. Cost per 1,000 decisions is measured on one common item set (all items except the 23 outside the Jev reference input range) for every token-priced row.
+v1.6.0
+(
+2026-10-05
+):
+Rotating item draw (1,200 sealed + 300 public); hosted APIs on API subsets equated to the self-hosted scale; /jev-models/v1.6.0 stays available unchanged.
+Earlier releases:
+v1.5.7
+,
+v1.5.6
+,
+v1.5.5
+and the historical boards below.
+System types (colours)
+Jev — reference (TypeSafe, closed)
+—
+The closed system JevBench is named after, shown as the reference.
+Closed API (weights not public)
+—
+Available through a hosted API; the weights cannot be downloaded.
+Open weights · LLM decoder
+—
+An autoregressive language model with public weights, including fine-tunes, merges and Jev rebuilds.
+Open weights · diffusion LM
+—
+A language model that generates by iterative denoising instead of token by token.
+Open weights · encoder / classifier
+—
+BERT-style encoders, NLI zero-shot classifiers and GLiNER-type models.
+Open weights · reranker
+—
+A cross-encoder or LLM reranker that scores options against the input.
+Base model control (no decision fine-tune, raw logits)
+—
+An official open checkpoint without any decision fine-tune, read out from raw logits, used as a floor.
+System (router / cascade / ensemble)
+—
+Several models combined at inference time.
+Colours show architecture only; they never change a score or rank. Each class is assigned from cited evidence (config.json, model card, provider docs, or our own run record for hosted APIs).
+Self-hosted rows use S 1,200 + P 300 + L1 (354 items) + L2 (33 items) + L3 (1,118 items), where answered. API rows re-run on A4/A5 use their 300/300-item sealed subset instead of S. Every row’s tag lists the pools it actually answered. L3 is a sealed language supplement (1,118 items), drawn 2026-10-07. Every language has at least 60 items in P ∪ L1 ∪ L2 ∪ L3. Header counts show the full S + P + L1 + L2 + L3 pool. Headline scores are unchanged; these raw cells are unequated, scored for language/category views only and outside the Composite. L3 items were written natively by Claude Sonnet 5.5, each solved blind and language-checked by GPT-6.1 Sol, with gold kept only when both agree or a second review confirms; no gold comes from Jev or any measured API. L3 is API-facing by design and is excluded from future headline draws. Rows with unfinished runs retain their actual coverage tags. L3 items were reviewed by an OpenAI model, so the L3-based language and category cells of OpenAI rows (OpenAI Decisions, GPT-6 Luna, GPT-5.6 Luna) carry that exposure; headline scores do not use L3. C1 adds English items for thin radar categories (everyday language, safety and the other use case). L4 adds 20 new Hindi items for Fastino GLiNER 2.5 Decide only. They were authored with OpenAI and independently solved and language-reviewed with Anthropic before sealing. Seventeen L4 requests succeeded; three HTTP 400 failures remain in the scored observations and do not count as completed coverage. L4 is outside headline and category scores and the common header counts. L5 adds 60 new items for OpenJev DeBERTa v3 Large only: 20 each in Arabic, Hindi and Greek. They were authored with OpenAI and independently solved and language-reviewed with Anthropic before sealing, then checked against the original 512-token native context before keeper selection. All 60 native requests succeeded. Previous failures remain scored and do not count as completed coverage. L5 is outside headline and category scores and the common header counts.
+Method amendments
+5 Oct 2026, v1.6.1 (Florian's decision): hosted/API systems now answer the same full item set as self-hosted systems (1,200 sealed + 300 public). Their earlier answers on the API subsets were reused and only the missing sealed items were sent; every item was logged in the exposure ledger before it was sent. API rows are no longer equated. Consequence: every v1.6.0 sealed item has now been seen by at least two providers, so the whole v1.6.0 sealed draw is retired for future releases; v1.6.2 onward draws fresh items from the reserve.
+5 Oct 2026, v1.6.1 cost rule (Florian's decision): cost per 1,000 decisions is now measured on one common item set for every system: all items except the 23 very long items that lie outside the Jev reference's accepted input range. Before, a system that processed those items paid for their tokens while a system that refused them did not. Refusals still count against Intelligence exactly as before. Hosted APIs with a per-token tariff are priced from their measured tokens on this common set; carried per-decision prices of self-hosted systems are unchanged. Effect: Sage 1.3.0 USD 0.0247 per 1,000 decisions on the common set (0.0650 on all 1,500 items); Jev 1.13.0 0.0323 (unchanged).
+The v1.6.1 amendments above say hosted APIs are no longer equated.
+Exception since v1.7.7: the 17 API rows re-run on A4 ∪ P (600 items) are equated (+2.57 Intelligence, +3.35 Calibration); see “Full API re-run (A4, v1.7.7)” under Open weights and API offerings. Full-set API rows (Jev, Sage, wity-1, Fastino GLiNER-2.5-Decide, d1 (Liquid AI)) are not equated. OpenAI Decisions (gpt-6-luna) ran later on the fresh sealed API set A5 ∪ P (600 items; A4 had already been sent to that provider) and is equated the same way with A5's own offsets (+5.78 Intelligence, +6.15 Calibration, same pool).
+Rotating item sets
+Each release draws fresh sealed decisions from a larger reserve. Self-hosted open-weights models (run offline on our own GPU pods or Sandy) answer S and P;
+externally hosted models answer the same full set (S and P) as the self-hosted systems since v1.6.1, so hosted APIs are no longer equated.
+Set
+Items
+Choice
+Noul
+Score
+Answered by
+S
+·
+Sealed release draw
+1,200
+600
+300
+300
+self-hosted systems (run offline on our own GPU pods or Sandy) and, from v1.6.1, externally hosted APIs
+A
+·
+API subset (part of S; used by the v1.6.0 hosted-API measurements)
+300
+150
+75
+75
+every system (inside S since v1.6.1); retired for future draws
+P
+·
+Public set
+300
+150
+75
+75
+every system
+Not in the table above (frozen release data): API set A4 · 300 never-used sealed items, answered together with P by the
+18
+API endpoints re-run on 6 Oct 2026 (the
+17
+ranked offerings and the classifier.dev wrapper); retired after that run.
+Self-hosted systems:
+1,500
+items (S
+1,200
++ P
+300
+).
+Hosted APIs: 1,500 items (S 1,200 + P 300), the same as self-hosted systems; A (300) is the part of S that earlier API measurements used.
+Exception since v1.7.7: the 17 API rows re-run on A4 ∪ P (600 items) are equated (+2.57 Intelligence, +3.35 Calibration); see “Full API re-run (A4, v1.7.7)” under Open weights and API offerings. Full-set API rows (Jev, Sage, wity-1, Fastino GLiNER-2.5-Decide, d1 (Liquid AI)) are not equated. OpenAI Decisions (gpt-6-luna) ran later on the fresh sealed API set A5 ∪ P (600 items; A4 had already been sent to that provider) and is equated the same way with A5's own offsets (+5.78 Intelligence, +6.15 Calibration, same pool).
+A sealed item is scored in at most three releases, then retired. An item used in one release is not drawn again in the next. If coverage minimums cannot be met, the release waits for newly reviewed items.
+The selection seed is committed (SHA-256) before any inference, and the draw is a deterministic function of policy, seed and item id.
+API-exposure rule
+An external exposure is any sealed item sent to an endpoint we do not control: closed APIs, and open-weights models reached through third-party hosts, routers or a submitter's endpoint. Timeouts count as exposure.
+From v1.6.1 hosted models receive the full item set (S plus P); items they had already answered were reused and only the missing sealed items were sent. Hosted models are
+re-measured at most once every three refresh releases unless a verified new model version ships. Between measurements they keep their last score with its measurement date.
+Every externally sent sealed item is logged before dispatch. An item exposed to a provider is never scored again for that provider; once two different providers have received it, it retires for everyone. In v1.6.0 Jev 1.13.0 and Fastino GLiNER-2.5-Decide both received the same A, so A retires globally.
+With the v1.6.1 amendment every v1.6.0 sealed item has been seen by at least two providers, so the whole v1.6.0 sealed draw is retired for future releases.
+Public-versus-sealed gap penalty
+Intelligence is half public, half sealed. A system whose public score exceeds its sealed score by more than the field-median gap (G_med =
+2.6
+points
+) plus 8 points loses one Intelligence point per excess point. Hosted APIs are compared on P versus A against the same self-hosted systems' P-versus-A gap (
+-1.2
+points).
+Hosted APIs (not equated since v1.6.1)
+Hosted APIs that answered the full set are scored exactly like self-hosted systems; no equating offset is applied to them. Category and language values stay raw.
+Exception on the live boards: API rows re-run on the fresh API set A4 (v1.7.7) answered A4 ∪ P (600 items) and are equated with the A2/A3 supplement method; OpenAI Decisions the same way on A5 ∪ P (v1.7.10; see Open weights and API offerings above).
+Headline and Composite
+Capability = mean(Intelligence, Calibration) for systems within twice the Jev 1.13.0 cost and median latency (the official caps; the sliders change only your view).
+Composite (option A): Weighted harmonic mean of Intelligence, Calibration, Speed and Cost, multiplied by squared penalties when Intelligence is below its configured floor, or Speed or Cost is below 50. Equal 25% weights do not mean an arithmetic average. It leads the API board and is secondary on open weights.
+Request types Choice, Noul and Score weigh equally; tiers weigh easy
+0.1
+, standard
+0.2
+, hard
+0.4
+, judge
+0.3
+.
+Latency.
+API models are timed end to end from our measuring host, network included. Self-hosted models are timed on our own hardware over loopback (on-GPU, no network), so their measured value is not directly comparable with API latency. The ranking and the latency cap use the same estimate for every self-hosted row: 2 × measured p50 + 150 ms (
+est. incl. network (2x + 150 ms)
+). Tables show the measured value first, tagged “on-GPU, no network”, and the estimate second. A model author can provide a hosted endpoint; we then time it exactly like an API, network included, with no assumption (on request: info@productivity-boost.com, or note it in your
+submission
+).
+Jev-class caps use a fixed reference: Jev 1.13.0 as measured in v1.5 (p50 0.62 s, USD 0.0323 per 1,000 decisions); caps = 2x (1.23 s, USD 0.0646). Jev's own v1.6 p50 is 0.24 s.
+Costs of v1.6-measured systems carry each system's published v1.5.4 cost per 1,000 decisions (pricing rules unchanged; v1.6 item lengths differ) unless the row says otherwise; Fastino's is an estimate from its published tariff and measured tokens.
+Noul decisiveness and Score baseline (addendum B)
+Scored with method option B (scorer setting
+O1S
+), selected on 3 Oct 2026 after the v1.6 scores were known and disclosed as a post-results change. Each split × type competence is clipped at 0 before the type weighting, so a type answered no better than chance counts as chance instead of negative. The Score chance baseline is the error of always predicting the mid-scale level, so a flat know-nothing distribution earns about 0. A Score cell whose golds all sit at mid-scale keeps the v1.5 random-level baseline; this only occurs in small breakdown and bootstrap cells. Calibration is unchanged. This run: G_med =
+2.57
+points
+.
+Failed requests and very long items
+23 items of this draw are very long (about 77,000 to 81,000 input tokens). Systems with a shorter context window refuse them; Jev-Omni runs out of GPU memory on them on its listed RTX 6000 (48 GB) recipe; decider-4b v2's server truncates them to about 32,800 tokens and answers; Plumb-4B reads them in full. Each outcome is the system's own recipe and is scored as such.
+A failed, refused or unparseable answer counts as wrong for Intelligence and stays in the denominator; it does not enter Calibration (the v1.5 rule, applied to every system).
+Failed answers per system:
+Sage 1.3.0 0/1500 · Mercury Decide 23/1500 · Jev 1.13.0 23/1500 · wity-1 (Wity, reasoning auto) 0/1500 · SPX-CD Flash 23/1500 · SPX-CD Pro 23/1500 · Fastino GLiNER-2.5-Decide 31/1500 · BB-Qwen3.5-4B-LoRA 0/1500 · wity-1 (Wity, reasoning always) 0/1500 · wity-1 (Wity, reasoning off) 0/1500 · classifier.dev 9/600 · Instinct 9/600 · Vansa-3.4 9/600 · GPT-6 Luna (low reasoning effort) 0/600 · Autoloops – Gemma 4 31B IT 9/600 · GPT-6 Luna (default medium reasoning effort) 4/600 · Fastino GLiDE 9/600 · SimpleJev Qwen3.6-35B-A3B 9/600 · GPT-5.6 Luna 0/600 · Instinct Dual 4B 0/600 · Gemini 3.1 Flash-Lite 1/600 · system-one-open 0/600 · openjev-sglang 9/600 · DeepSeek V4.1 Flash 5/600 · SimpleJev Qwen3.8-27B 9/600 · decision-machine-1 9/600 · JevAct 21/600 · Qwen3.8 27B 8/600 · OpenAI Decisions 2/600 · d1 0/1500 · Microsoft-Decision-1 0/0
+.
+Calibration basis
+Systems that return a full probability distribution are calibrated on all components (top-label error, plus distribution distance for Choice and ranked-probability error for Score).
+Fastino GLiNER-2.5-Decide returns a single confidence value, so its Calibration is the top-label error only and is not like-for-like with full-distribution systems.
+Overnight full re-measure (4–5 Oct 2026)
+Every system with a reproducible recipe was re-run on the v1.6.0 pool overnight with the same pinned inputs and scorer (method option B / O1S). This page uses scoring round
+score-v161-3 (v1.6.1)
+(
+2026-10-06 00:39:36 UTC
+). Only complete runs (1,500 items self-hosted, the full API input for hosted APIs) are ranked; partial runs are never ranked, and systems not yet re-measured keep their dated v1.5.x score in the separate table.
+Scores are the official v1.6.0 scorer (score_v16.py, method option B / O1S, bootstrap B = 1,000) over complete outputs only; each scoring round is kept separately.
+Hosted APIs are scored on the same full item set as self-hosted systems (S 1,200 + P 300, v1.6.1) and are not equated.
+GPU-class deviations: reproducible recipes used the hardware listed per row, including H100 for large fast-lane decoders and RTX 6000 for the baseline; hardware differences remain in measured latency. The standard x2 + 0.15 s self-hosted adjustment is an assumption, not a hardware normalization.
+Wity auto remains outside the latency cap and stays ranked in Composite A. OFF and ALWAYS are unranked variants of the AUTO main row.
+6 further measured candidates await a separate publication decision.
+Sage 1.3.0 (Levanto Labs) was measured on 5 Oct from Sandy (Helsinki), text only. Cost uses the Levanto list tariff (USD 0.05/M input, USD 10/M output; levanto.ai/pricing, read 5 Oct) over all 600 answered rows: USD 0.0766/1,000 decisions. Superseded by the v1.6.1 cost rule (common item set): USD 0.0247/1,000 decisions, inside the Jev-class cost cap.
+A fresh Monday Jev 1.13.0 re-check on A3 measured p50 0.239 s and equated Capability 77.5 versus the official 76.5, within the confidence interval; the official v1.6.0 Jev row is retained.
+Display note on the overnight text above (frozen release data).
+Exception since v1.7.7: the 17 API rows re-run on A4 ∪ P (600 items) are equated (+2.57 Intelligence, +3.35 Calibration); see “Full API re-run (A4, v1.7.7)” under Open weights and API offerings. Full-set API rows (Jev, Sage, wity-1, Fastino GLiNER-2.5-Decide, d1 (Liquid AI)) are not equated. OpenAI Decisions (gpt-6-luna) ran later on the fresh sealed API set A5 ∪ P (600 items; A4 had already been sent to that provider) and is equated the same way with A5's own offsets (+5.78 Intelligence, +6.15 Calibration, same pool).
+Supplementary API draws A2 and A3
+History: hosted APIs were first measured on API subsets (A, then A2 and A3) and equated to the self-hosted scale in v1.6.0. From v1.6.1 they answer the same full set as self-hosted systems, so no equating is applied; the earlier subsets A, A2 and A3 are retired.
+Per-model exposure counts (hosted and author-hosted endpoints)
+System (provider)
+v1.6 sealed items sent
+Scored sealed set
+Status
+wity-1-auto (wity via railway)
+1200
+S (1,200 sealed) + P (300 public)
+full set since v1.6.1 (5 Oct 2026); earlier API-subset answers reused, only missing sealed items sent; whole v1.6.0 sealed draw retired
+wity-1-off (wity via railway)
+1200
+S (1,200 sealed) + P (300 public)
+full set since v1.6.1 (5 Oct 2026); earlier API-subset answers reused, only missing sealed items sent; whole v1.6.0 sealed draw retired
+wity-1-always (wity via railway)
+1200
+S (1,200 sealed) + P (300 public)
+full set since v1.6.1 (5 Oct 2026); earlier API-subset answers reused, only missing sealed items sent; whole v1.6.0 sealed draw retired
+jev-1.13.0 (typesafe)
+1200
+S (1,200 sealed) + P (300 public)
+full set since v1.6.1 (5 Oct 2026); earlier API-subset answers reused, only missing sealed items sent; whole v1.6.0 sealed draw retired
+fastino-gliner-2-5-decide (fastino)
+1200
+S (1,200 sealed) + P (300 public)
+full set since v1.6.1 (5 Oct 2026); earlier API-subset answers reused, only missing sealed items sent; whole v1.6.0 sealed draw retired
+gpt-6-luna (openai)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+gpt-6-luna-low (openai)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+gpt-5.6-luna (openai)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+gemini-3.1-flash-lite (google)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+deepseek-flash (deepseek)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+qwen3.8-27b (chutes)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+decision-machine-1 (milliseconds.ai)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+classifier-dev-fast (classifier.dev)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+vansa-3.4 (vansa)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+kushal-gemma4-31b-it-autoloops (autoloops)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+system-one-open (modal via modal)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+openjev-sglang (modal via modal)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+instinct (zoowork)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+instinct-dual-4b (zoowork)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+simplejev-qwen3.8-27b (featherless)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+simplejev-qwen3.6-35b-a3b (featherless)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+jevact (jevact)
+300
+A4 (retired after this run)
+measured 6 Oct 2026 on A4 ∪ P (v1.7.7)
+Sage 1.3.0 (Levanto Labs)
+1200
+S (1,200 sealed) + P (300 public)
+full set since v1.6.1 (5 Oct 2026); earlier API-subset answers reused, only missing sealed items sent; whole v1.6.0 sealed draw retired
+Provenance
+Measured on the v1.6 pool (run completion day, UTC):
+2026-10-05: Sage 1.3.0, Jev 1.13.0, Fastino GLiNER-2.5-Decide · 2026-10-06: wity-1 (Wity, reasoning auto), SPX-CD Flash, SPX-CD Pro, wity-1 (Wity, reasoning always), wity-1 (Wity, reasoning off), classifier.dev, Instinct, Vansa-3.4, GPT-6 Luna (low reasoning effort), Autoloops – Gemma 4 31B IT, GPT-6 Luna (default medium reasoning effort), Fastino GLiDE, SimpleJev Qwen3.6-35B-A3B, GPT-5.6 Luna, Instinct Dual 4B, Gemini 3.1 Flash-Lite, system-one-open, openjev-sglang, DeepSeek V4.1 Flash, SimpleJev Qwen3.8-27B, decision-machine-1, JevAct, Qwen3.8 27B, OpenAI Decisions, d1 · 2026-10-07: Mercury Decide, BB-Qwen3.5-4B-LoRA · 2026-10-10: Microsoft-Decision-1
+.
+Aggregate files: results sha256
+5cd8c1332226ea9c179883d2285c0d8b8cc593ae38f2645197364a7ddd9c83c1
+· categories sha256
+0159c4828b3e8620148af06848ef0a5ccfc7d7f0c11aec02460d844dc0c62689
+· dated carry sha256
+334e851944e92383ab3071e52b3012040c7023d0fe236395953169ebee8f0459
+· live category union (
+data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.1-category-cells.json
+) sha256
+3b491b5c29d9480cc11c12486c7f507140582f2445e23abcf236a33baa5d7eae
+. Scoring source sha256
+e15347783b8bedeeddd9017a831608a957f5bf0386f05902c50161ce0468f911
+. The method, release data and carry artifact are independently hashable.

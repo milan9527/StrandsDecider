@@ -10,7 +10,9 @@
 
 ![三侧独立的反馈闭环](diagrams/closed-loop.svg)
 
-2026-10-10 已完成 USDC 未到账与退款两组真实闭环观测，两模型均完成模拟订单、账本与结案；每侧分别返回 6 / 9 次决策、推进 1 / 2 个模拟事件。这是两例成功观测，不是通用完成保证，且不混入固定输入配对速度统计。见 [原始观测](presentations/v2/loop-observations.json) 与 [最新 v6 文稿](presentations/v6/README.md)。当前部署已改为 EC2 `g6.xlarge` 常驻服务；上述观测仍标注为迁移前 SageMaker 环境的历史实测。v6 新增的优化流程是固定五步的输入优化，未自动补齐证据，与本页反馈闭环分开演示。
+2026-10-12 的三模型 USDC 闭环中，Decider / Jev / GPT 各六次真实决策、一次模拟确认事件后，都完成 129 USDC 模拟收款及结案。Decider 首次核验误选 `settlement_verified`，执行检查仍等待确认；模拟器将确认数从 3 推进到 12，再携带新事实与执行反馈重新判断，最终入账。中途错误保留，完成闭环不表示每次选择都正确。见 [原始观测中的 loops](presentations/v7/live-observations.json) 与 [v8 第 23 页](presentations/v8/README.md)。
+
+这 18 次闭环决策与 v8 预热后的固定输入 60 次测试分开统计。优化流程只调整固定五步的输入，不自动补齐证据；闭环允许每侧状态独立演进，后续输入可能不同。此前两模型 USDC / 退款的 SageMaker 历史观测保留于 [原始记录](presentations/v2/loop-observations.json)，不用于当前 EC2 性能结论。
 
 ## 如何演示
 

@@ -559,7 +559,7 @@ def test_risk_override_and_approval_prerequisites(client):
     )
 
 
-def test_private_bedrock_runtime_and_iam_are_scoped_to_gpt61():
+def test_payment_bedrock_scope_preserved_and_routing_invocation_added():
     resources = template()["Resources"]
     endpoint = resources["BedrockRuntimeEndpoint"]["Properties"]
     assert endpoint["PrivateDnsEnabled"] and endpoint["SubnetIds"] == [{"Ref": "Subnet1"}]
@@ -569,3 +569,7 @@ def test_private_bedrock_runtime_and_iam_are_scoped_to_gpt61():
     assert "nova" not in json.dumps(allowed).lower()
     task = resources["TaskRole"]["Properties"]["Policies"][0]["PolicyDocument"]["Statement"]
     assert next(s for s in task if s["Action"] == "bedrock:InvokeModel")["Resource"] == allowed
+    routing = endpoint["PolicyDocument"]["Statement"][1]
+    assert routing["Action"] == "bedrock:InvokeModel"
+    assert routing["Resource"] == task[-1]["Resource"]
+    assert all("bedrock:" in json.dumps(arn) for arn in routing["Resource"])

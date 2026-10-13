@@ -147,6 +147,22 @@ def template():
             for region in ("us-east-1", "us-east-2", "us-west-2")
         ],
     ]
+    # The routing module validates targets against the regional catalog before invocation.
+    # Profiles can route to the US destinations advertised by that catalog.
+    routing_resources = [
+        sub(
+            "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.openai.gpt-6-sol"
+        ),
+        *[
+            sub(f"arn:${{AWS::Partition}}:bedrock:{region}::foundation-model/openai.gpt-6-sol")
+            for region in ("us-east-1", "us-east-2", "us-west-2")
+        ],
+        sub("arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*"),
+        *[
+            sub(f"arn:${{AWS::Partition}}:bedrock:{region}::foundation-model/*")
+            for region in ("us-east-1", "us-east-2", "us-west-1", "us-west-2", "")
+        ],
+    ]
     add(
         "BedrockRuntimeEndpoint",
         "EC2::VPCEndpoint",
@@ -165,7 +181,13 @@ def template():
                         "Principal": "*",
                         "Action": "bedrock:InvokeModel",
                         "Resource": bedrock_resources,
-                    }
+                    },
+                    {
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "bedrock:InvokeModel",
+                        "Resource": routing_resources,
+                    },
                 ],
             },
         },
@@ -354,6 +376,11 @@ def template():
                                 "Effect": "Allow",
                                 "Action": "bedrock:InvokeModel",
                                 "Resource": bedrock_resources,
+                            },
+                            {
+                                "Effect": "Allow",
+                                "Action": "bedrock:InvokeModel",
+                                "Resource": routing_resources,
                             },
                         ],
                     },

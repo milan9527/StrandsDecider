@@ -15,7 +15,7 @@ SVG 文件可用于 README 或演示材料，不依赖外部图片、字体下�
 
 Jev 在 AWS 账户边界外，紫色连线表示 ECS 通过 IAM 调用 Lambda，再访问 Typesafe HTTPS API。Lambda 使用托管网络出口，从 Secrets Manager 取密钥；图中省略其私有调用端点节点。具体权限与网络见 [Jev 指南](../JEV.md)。
 
-最新 [v6 PPT](../presentations/v6/README.md) 第 9 页展示 Jev 接入前的 EC2 架构，使用可编辑图形和相同的 AWS 图标；第 23–24 页展示输入优化与四场景实测。PPT 未加入本次 Jev 接入，各批测速数据在讲稿中注明采集环境。
+最新 [v8 PPT](../presentations/v8/README.md) 第 11 页展示当前三模型架构，使用可编辑图形和相同的 AWS 图标：ECS Fargate 后端调用 EC2 Decider、Bedrock 和 Jev 转发服务。第 14–19 页展示预热后的四场景性能与实际界面，第 24–25 页展示输入优化。来源和测量方法保存在备注与配套文档。
 
 在仓库根目录重新生成：
 

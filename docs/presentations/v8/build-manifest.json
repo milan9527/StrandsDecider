@@ -1,0 +1,309 @@
+{
+  "generated_at": "2026-10-12T07:12:09.713849+00:00",
+  "base_file": "docs/presentations/v7/Strands-Decider-模型原理与支付业务演示-v7-三模型与JevBench对比-30页-20261012.pptx",
+  "base_sha256": "046c1bbd3a7b07e1a372d30ca4aa15f4dd126a2bade0595a0ec9d3323f7454aa",
+  "pptx_file": "docs/presentations/v8/Strands-Decider-模型原理与支付业务演示-v8-三模型预热性能对比-30页-20261012.pptx",
+  "pptx_sha256": "5f44245fd6ed0d1b3b116dc4e177fd9d8eed1b29ff6f1721ae3884f12809b99e",
+  "slides": [
+    {
+      "title": "让小模型做好高频决策",
+      "section": "v8 · 三模型与 JevBench · 30 页",
+      "dark": true,
+      "reused_v6_pages": [
+        1
+      ]
+    },
+    {
+      "title": "软件流程，需要大量小而明确的判断",
+      "section": "复用 v7",
+      "dark": false,
+      "reused_v7_pages": [
+        2
+      ]
+    },
+    {
+      "title": "决策模型：状态输入，类型化答案输出",
+      "section": "复用 v7",
+      "dark": false,
+      "reused_v7_pages": [
+        3
+      ]
+    },
+    {
+      "title": "三个模型，同一个候选动作任务",
+      "section": "01 / 模型定位",
+      "dark": false,
+      "reused_v6_pages": [
+        4,
+        25
+      ]
+    },
+    {
+      "title": "Strands Decider：用候选评分头完成选择",
+      "section": "复用 v7",
+      "dark": false,
+      "reused_v7_pages": [
+        5
+      ]
+    },
+    {
+      "title": "相同业务问题，三条调用路径",
+      "section": "02 / 决策如何产生",
+      "dark": false,
+      "reused_v6_pages": [
+        6,
+        11
+      ]
+    },
+    {
+      "title": "BERT、Decider、GPT：适配方式一页看懂",
+      "section": "复用 v7",
+      "dark": false,
+      "reused_v7_pages": [
+        7
+      ]
+    },
+    {
+      "title": "JevBench：同时衡量能力、校准、速度与成本",
+      "section": "03 / 公开基准",
+      "dark": false,
+      "reused_v6_pages": []
+    },
+    {
+      "title": "公开结果：Jev 与主流开源、闭源模型",
+      "section": "03 / JevBench API 实际结果",
+      "dark": false,
+      "reused_v6_pages": []
+    },
+    {
+      "title": "综合排名高，不等于复杂问题答得更准",
+      "section": "03 / 如何解读基准",
+      "dark": false,
+      "reused_v6_pages": []
+    },
+    {
+      "title": "一套业务后端，连接三个模型",
+      "section": "04 / 当前项目架构",
+      "dark": false,
+      "reused_v6_pages": [
+        9
+      ]
+    },
+    {
+      "title": "四个支付场景，贯穿五个业务节点",
+      "section": "复用 v7",
+      "dark": false,
+      "reused_v7_pages": [
+        12
+      ]
+    },
+    {
+      "title": "真实界面：同一输入，三模型输出并排看",
+      "section": "04 / 演示方法",
+      "dark": false,
+      "reused_v6_pages": [
+        11,
+        12
+      ]
+    },
+    {
+      "title": "四场景总览：Decider 最快，两处选择仍有差异",
+      "section": "05 / 项目实测",
+      "dark": false,
+      "reused_v6_pages": [
+        19,
+        20,
+        22
+      ]
+    },
+    {
+      "title": "逐节点看速度：受理、核验、审批、处置、回复",
+      "section": "05 / 性能细节",
+      "dark": false,
+      "reused_v6_pages": [
+        21
+      ]
+    },
+    {
+      "title": "USDC 未到账：三模型都等待确认",
+      "section": "05 / 四场景 · USDC 未到账",
+      "dark": false,
+      "reused_v6_pages": [
+        13,
+        14,
+        16
+      ]
+    },
+    {
+      "title": "USDT 少付：确认已够，仍需补款",
+      "section": "05 / 四场景 · USDT 少付",
+      "dark": false,
+      "reused_v6_pages": [
+        13,
+        14,
+        16
+      ]
+    },
+    {
+      "title": "退款审批：原始建议与实际采用动作不同",
+      "section": "05 / 四场景 · 稳定币退款",
+      "dark": false,
+      "reused_v6_pages": [
+        13,
+        14,
+        16
+      ]
+    },
+    {
+      "title": "商户结算：先升级工单，再等待到账",
+      "section": "05 / 四场景 · 商户结算",
+      "dark": false,
+      "reused_v6_pages": [
+        20
+      ]
+    },
+    {
+      "title": "为什么选择不同？先分清观察与解释",
+      "section": "06 / 行为差异",
+      "dark": false,
+      "reused_v6_pages": [
+        14,
+        22
+      ]
+    },
+    {
+      "title": "五步已处理，为什么三个模型都没有结案？",
+      "section": "06 / 从选择到业务结果",
+      "dark": false,
+      "reused_v6_pages": [
+        15,
+        22
+      ]
+    },
+    {
+      "title": "Jev 为什么没有宣传中的几十倍加速？",
+      "section": "06 / 速度差异",
+      "dark": false,
+      "reused_v6_pages": []
+    },
+    {
+      "title": "闭环做了什么：等待证据、重新核验、完成入账",
+      "section": "06 / 独立闭环实测",
+      "dark": false,
+      "reused_v6_pages": [
+        17,
+        18
+      ]
+    },
+    {
+      "title": "优化示例：让退款审批只作用于退款",
+      "section": "复用 v7",
+      "dark": false,
+      "reused_v7_pages": [
+        24
+      ]
+    },
+    {
+      "title": "已验证的优化：Decider 参考一致 14/20 → 18/20",
+      "section": "07 / 优化证据",
+      "dark": false,
+      "reused_v6_pages": [
+        24
+      ]
+    },
+    {
+      "title": "下一步优化：把剩余错误变成可重复的测试",
+      "section": "07 / Decider 优化路线",
+      "dark": false,
+      "reused_v6_pages": []
+    },
+    {
+      "title": "需要微调时：训练决策能力，不只训练 JSON 外形",
+      "section": "07 / 领域微调方案",
+      "dark": false,
+      "reused_v6_pages": []
+    },
+    {
+      "title": "落地方式：常见判断用小模型，复杂异常升级",
+      "section": "08 / 应用建议",
+      "dark": false,
+      "reused_v6_pages": [
+        25
+      ]
+    },
+    {
+      "title": "总结：同时看速度、选择和真实业务结果",
+      "section": "08 / 结论",
+      "dark": false,
+      "reused_v6_pages": [
+        26
+      ]
+    },
+    {
+      "title": "打开 Demo，查看三模型过程与原始记录",
+      "section": "08 / 演示与复现",
+      "dark": false,
+      "reused_v6_pages": [
+        27
+      ]
+    }
+  ],
+  "live_data_sha256": "aa7d18fa8ae2c8b38887e4578738a7b0effd47f4de91a3a3246701d39b462087",
+  "jevbench_snapshot_sha256": "e1f524e49068447b187997a3f1eac672a2bb69a0c30b1f82824c1e12d2ba86fa",
+  "same_input_live_decisions": 60,
+  "excluded_warmup_calls": 3,
+  "lambda_verification_sha256": "2252271cbde97fee4429c0c03ec9ff05310cb052d7f5be427b828ca4c5e804f4",
+  "feedback_evidence_reused_from": "docs/presentations/v7/live-observations.json",
+  "separate_feedback_live_decisions": 18,
+  "models_fine_tuned": false,
+  "crops": [
+    {
+      "source": "screenshots/pending-outcomes.png",
+      "source_sha256": "315e0f1dfd5554c440645c82a395066940df197caddc3742aa7fc0b98d9c4d39",
+      "crop": [
+        0,
+        0,
+        1950,
+        200
+      ],
+      "file": "assets/pending-outcomes-status.png",
+      "sha256": "ef62a4c1f219d2f7ca10fb53e0f3d189dc42c853a324bb86eef2c0a55a014089"
+    },
+    {
+      "source": "screenshots/pending-loop-outcomes.png",
+      "source_sha256": "99b7eda9308f876a016505ba1bdf84820a843538e8b3e897b4f62f6568731381",
+      "crop": [
+        0,
+        0,
+        1950,
+        200
+      ],
+      "file": "assets/pending-loop-status.png",
+      "sha256": "8a8439107c85be9fc1e721861209a3832ffcef5474f65a20cf6414b67711aeec"
+    }
+  ],
+  "metrics": {
+    "means_ms": {
+      "decider": 102.16544999999999,
+      "jev": 416.45275,
+      "bedrock": 1116.72895
+    },
+    "medians_ms": {
+      "decider": 81.344,
+      "jev": 397.65999999999997,
+      "bedrock": 863.404
+    },
+    "totals_ms": {
+      "decider": 2043.309,
+      "jev": 8329.055,
+      "bedrock": 22334.578999999998
+    },
+    "reference_matches": {
+      "decider": 18,
+      "jev": 20,
+      "bedrock": 20
+    }
+  },
+  "demo_url": "https://d3i7ogfx5ml7dc.cloudfront.net/#crypto",
+  "repo_url": "https://github.com/milan9527/StrandsDecider"
+}

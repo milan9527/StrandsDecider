@@ -1,0 +1,21 @@
+{
+  "catalog_version": "34ec203d9142af53",
+  "router_model": "us.openai.gpt-6-sol",
+  "reasoning_effort": "low",
+  "cases": 4,
+  "successful_model_decisions": 36,
+  "failed_model_decisions": 0,
+  "excluded_warmups": 3,
+  "backend_total_ms": {
+    "decider": 1589.214,
+    "jev": 5317.173,
+    "bedrock": 9167.232
+  },
+  "identical_input_steps": 8,
+  "identical_input_total_ms": {
+    "decider": 1020.69,
+    "jev": 3562.119,
+    "bedrock": 5969.039
+  },
+  "note": "Single four-case observation; different choices lead to different subsequent inputs. Target execution times excluded."
+}

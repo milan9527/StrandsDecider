@@ -1,0 +1,68 @@
+[
+  {
+    "case": "support",
+    "router": "bedrock",
+    "task": {
+      "text": "你是支付平台客服。用户问：USDC 已转出，订单为何待支付？已知链上确认 3/12，请用两句话解释下一步，不要声称已到账。每天大量同类请求，优先速度与资源效率。",
+      "capability": "text",
+      "priority": "speed",
+      "allow_cross_region": true,
+      "include_legacy": false
+    },
+    "selected_model": "amazon.nova-micro-v1:0",
+    "execution": {
+      "text": "订单显示待支付，可能是系统未同步链上确认。请稍等片刻，我们将尽快处理。",
+      "usage": {
+        "inputTokens": 80,
+        "outputTokens": 37,
+        "totalTokens": 117
+      },
+      "stop_reason": "end_turn",
+      "complete": true,
+      "model_id": "amazon.nova-micro-v1:0",
+      "invoke_id": "amazon.nova-micro-v1:0",
+      "backend_total_ms": 365.655,
+      "source": "live"
+    },
+    "excluded_from_routing_benchmark": true
+  },
+  {
+    "case": "retrieval",
+    "router": "decider",
+    "task": {
+      "text": "为中英文支付工单生成检索向量，查询内容：USDC 已转账但商户订单仍显示待支付。用于语义召回，不需要生成客服回复。选择支持文本 embedding 的模型。",
+      "capability": "embedding",
+      "priority": "balanced",
+      "allow_cross_region": true,
+      "include_legacy": false
+    },
+    "selected_model": "cohere.embed-multilingual-v3",
+    "execution": {
+      "dimensions": 1024,
+      "vector_preview": [
+        0.0003914833,
+        0.023040771,
+        -0.0022125244,
+        -0.0146865845,
+        -0.0058631897,
+        0.0042495728,
+        -0.014816284,
+        -0.052581787,
+        -0.03677368,
+        -0.017211914,
+        0.07702637,
+        0.057281494
+      ],
+      "complete": true,
+      "text": "已生成 1024 维检索向量；预览前 12 维。",
+      "usage": {
+        "input_tokens": null
+      },
+      "model_id": "cohere.embed-multilingual-v3",
+      "invoke_id": "cohere.embed-multilingual-v3",
+      "backend_total_ms": 142.239,
+      "source": "live"
+    },
+    "excluded_from_routing_benchmark": true
+  }
+]

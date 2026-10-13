@@ -1,0 +1,78 @@
+{
+  "support": {
+    "selected_by": "decider",
+    "classification": "customer_support",
+    "status": 200,
+    "result": {
+      "text": "链上当前确认进度为 3/12，尚未达到所需确认数，因此订单仍显示待支付。请等待确认数达标后刷新订单；若仍未更新，请提供交易哈希联系客服核查，勿重复转账。",
+      "usage": {
+        "inputTokens": 62,
+        "outputTokens": 680,
+        "totalTokens": 742,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "stop_reason": "end_turn",
+      "complete": true,
+      "model_id": "openai.gpt-6-luna",
+      "invoke_id": "us.openai.gpt-6-luna",
+      "backend_total_ms": 6222.12,
+      "source": "live",
+      "ranking_version": "464c0dbfb01b8c9a",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      }
+    }
+  },
+  "code": {
+    "selected_by": "decider",
+    "classification": "coding",
+    "status": 502,
+    "result": {
+      "detail": "目标模型没有返回当前适配器支持的结果。"
+    }
+  },
+  "analysis": {
+    "selected_by": "decider",
+    "classification": "reasoning",
+    "status": 503,
+    "result": {
+      "detail": "目标模型调用失败（ReadTimeoutError）："
+    }
+  },
+  "retrieval": {
+    "selected_by": "decider",
+    "classification": "embedding",
+    "status": 200,
+    "result": {
+      "dimensions": 1024,
+      "vector_preview": [
+        0.0005259514,
+        0.0231781,
+        -0.0018863678,
+        -0.014923096,
+        -0.0057754517,
+        0.0042686462,
+        -0.014915466,
+        -0.052520752,
+        -0.03665161,
+        -0.017166138,
+        0.07702637,
+        0.05682373
+      ],
+      "complete": true,
+      "text": "已生成 1024 维检索向量；预览前 12 维。",
+      "usage": {
+        "input_tokens": null
+      },
+      "model_id": "cohere.embed-multilingual-v3",
+      "invoke_id": "cohere.embed-multilingual-v3",
+      "backend_total_ms": 274.51,
+      "source": "live",
+      "ranking_version": "464c0dbfb01b8c9a",
+      "request_fields": {}
+    }
+  }
+}

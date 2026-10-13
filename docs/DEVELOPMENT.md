@@ -2,6 +2,8 @@
 
 本页说明基础决策工作台、工具守卫和本地模型接入。命令均在仓库根目录执行。加密支付业务台见 [项目 README](../README.md) 和 [支付模块说明](../deployment/CRYPTO.md)。
 
+「模型路由对比」复用相同登录与三模型接入，新增四个任务场景、完整 Bedrock 区域目录及「纯业务任务 → 模型选流程 → 模型选型号」路由。GPT 比较器使用 `us.openai.gpt-6-sol` / low；支付模块继续使用 GPT-6.1。流程、约束、计时和复现见 [模型路由说明](MODEL_ROUTING.md)。
+
 支付模块支持 Jev 托管模型对比：本地通过 `JEV_API_KEY_FILE` 读取密钥，AWS 通过 IAM-only Lambda 与 Secrets Manager 接入。三模型并发对比、计时边界及验证命令见 [Jev 指南](JEV.md)。
 
 ## 快速运行
@@ -198,7 +200,11 @@ node --check frontend/static/app.js   # 可选 JavaScript 语法检查
 
 199 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、常驻与手动停机、固定机型、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。优化模式另验证四场景字段适用范围、候选集合不变、两模型实际输入一致、基线指纹兼容、非法配置拒绝及错误选择仍受到执行保护。Jev 连接失败测试验证仅在尚未建立连接时重连一次，读取超时及上游错误不会重复提交模型请求。
 
-支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗及历史闲置释放模式。`check_direct_run_browser.py` 验证常驻模式直接调用、失败后检查、停止常规轮询、错误分类，以及首屏与滚动时的运行栏。这两项 GPU 浏览器测试均拦截真实启停与模型请求，不作为真实性能样本。演示资料最新版本见 [27 页 v6 优化实测说明](presentations/v6/README.md)，使用 `scripts/build_presentation_v6.py` 基于 v5 增加两页真实输入优化演示，保留原测速环境说明；历史 [v5](presentations/v5/README.md)、[v4](presentations/v4/README.md)、[v3 图表构建说明](presentations/v3/README.md) 与 [v2 采集说明](presentations/v2/README.md) 保留。
+支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗及历史闲置释放模式。`check_direct_run_browser.py` 验证常驻模式直接调用、失败后检查、停止常规轮询、错误分类，以及首屏与滚动时的运行栏。这两项 GPU 浏览器测试均拦截真实启停与模型请求，不作为真实性能样本。
+
+最新演示资料见 [30 页 v8 说明](presentations/v8/README.md)。`capture_presentation_v8.py` 先向三个模型各发起一次预热，再采集四场景 60 次正式请求和实际截图；已有记录时拒绝覆盖。`verify_presentation_v8_warm.py` 通过 CloudWatch 时间窗关联验证 20 次 Jev 请求均复用预热 Lambda 环境；`build_presentation_v8.py` 从保存数据生成图表、PPT 与逐页讲稿，不再调用模型。独立闭环、公开基准和优化前后对照保留各自来源。历史版本见 [项目历史](HISTORY.md)。
+
+并发测试使用 `scripts/benchmark_concurrency.py`：通过已登录的 HTTP 客户端对真实支付决策 API 施压，默认 1–32 并发、每档每模型 80 次，另行预热。它不会请求业务执行或 GPU 启停接口，失败请求不自动重试；输出目录存在时拒绝覆盖。`collect_concurrency_metrics.py` 读取 Lambda / ECS 观测，`report_concurrency.py` 校验原始记录、生成图表与报告。完整结果、计时口径和复现命令见 [并发测试说明](CONCURRENCY.md)。
 
 支付决策接口支持 `input_profile: "baseline" | "optimized"`，默认 `baseline`；响应返回 `model_input`、`input_profile`、`input_note`。`app/crypto_profiles.py` 只负责筛选模型输入字段、明确场景条件；资金执行仍读取完整快照。`check_jev_browser.py` 覆盖四场景三种测试方式、每轮输入输出、实际模拟执行、历史模式标签、导出、单步切换不混合结果与移动布局；默认规则回放，`--live` 才调用三模型。
 

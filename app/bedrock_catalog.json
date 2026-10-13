@@ -1,0 +1,4033 @@
+{
+  "region": "us-east-1",
+  "models": [
+    {
+      "id": "ai21.jamba-1-5-large-v1:0",
+      "name": "Jamba 1.5 Large",
+      "provider": "AI21 Labs",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "LEGACY",
+      "streaming": true,
+      "availability": {
+        "modelId": "ai21.jamba-1-5-large-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "ai21.jamba-1-5-large-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "ai21.jamba-1-5-mini-v1:0",
+      "name": "Jamba 1.5 Mini",
+      "provider": "AI21 Labs",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "LEGACY",
+      "streaming": true,
+      "availability": {
+        "modelId": "ai21.jamba-1-5-mini-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "ai21.jamba-1-5-mini-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-2-5-sonic",
+      "name": "Nova 2.5 Sonic",
+      "provider": "Amazon",
+      "input_modalities": [
+        "SPEECH",
+        "TEXT"
+      ],
+      "output_modalities": [
+        "SPEECH",
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-2-5-sonic",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.nova-2-5-sonic",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-2-lite-v1:0",
+      "name": "Nova 2 Lite",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-2-lite-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.amazon.nova-2-lite-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "amazon.nova-2-lite-v1:0:256k",
+      "name": "Nova 2 Lite",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-2-lite-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.nova-2-multimodal-embeddings-v1:0",
+      "name": "Amazon Nova Multimodal Embeddings",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "AUDIO",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.nova-2-multimodal-embeddings-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.nova-2-multimodal-embeddings-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-2-sonic-v1:0",
+      "name": "Nova 2 Sonic",
+      "provider": "Amazon",
+      "input_modalities": [
+        "SPEECH"
+      ],
+      "output_modalities": [
+        "SPEECH",
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-2-sonic-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.nova-2-sonic-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-lite-v1:0",
+      "name": "Nova Lite",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND",
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-lite-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.nova-lite-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-lite-v1:0:24k",
+      "name": "Nova Lite",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-lite-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.nova-lite-v1:0:300k",
+      "name": "Nova Lite",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-lite-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.nova-micro-v1:0",
+      "name": "Nova Micro",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND",
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-micro-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.nova-micro-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-micro-v1:0:128k",
+      "name": "Nova Micro",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-micro-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.nova-micro-v1:0:24k",
+      "name": "Nova Micro",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-micro-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.nova-pro-v1:0",
+      "name": "Nova Pro",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND",
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-pro-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.nova-pro-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.nova-pro-v1:0:24k",
+      "name": "Nova Pro",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-pro-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.nova-pro-v1:0:300k",
+      "name": "Nova Pro",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "amazon.nova-pro-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.titan-embed-g1-text-02",
+      "name": "Titan Text Embeddings v2",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-g1-text-02",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "NOT_AVAILABLE"
+      },
+      "account_available": false,
+      "invoke_id": "amazon.titan-embed-g1-text-02",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.titan-embed-image-v1",
+      "name": "Titan Multimodal Embeddings G1",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-image-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.titan-embed-image-v1",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.titan-embed-image-v1:0",
+      "name": "Titan Multimodal Embeddings G1",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-image-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.titan-embed-text-v1",
+      "name": "Titan Embeddings G1 - Text",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-text-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.titan-embed-text-v1",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.titan-embed-text-v1:2:8k",
+      "name": "Titan Embeddings G1 - Text",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-text-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "amazon.titan-embed-text-v2:0",
+      "name": "Titan Text Embeddings V2",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-text-v2",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "amazon.titan-embed-text-v2:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "amazon.titan-embed-text-v2:0:8k",
+      "name": "Titan Text Embeddings V2",
+      "provider": "Amazon",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "amazon.titan-embed-text-v2",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "anthropic.claude-fable-5",
+      "name": "Claude Fable 5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-fable-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-fable-5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-fable-5-1",
+      "name": "Claude Fable 5.1",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-fable-5-1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-fable-5-1",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-haiku-4-5-20251001-v1:0",
+      "name": "Claude Haiku 4.5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-haiku-4-5-20251001-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-haiku-5-5",
+      "name": "Claude Haiku 5.5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-haiku-5-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-haiku-5-5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-4-1-20250805-v1:0",
+      "name": "Claude Opus 4.1",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "LEGACY",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-4-1-20250805-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-4-1-20250805-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-4-5-20251101-v1:0",
+      "name": "Claude Opus 4.5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-4-5-20251101-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-4-5-20251101-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-4-6-v1",
+      "name": "Claude Opus 4.6",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-4-6-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-4-6-v1",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-4-7",
+      "name": "Claude Opus 4.7",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-4-7",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-4-7",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-4-8",
+      "name": "Claude Opus 4.8",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-4-8",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-4-8",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-5",
+      "name": "Claude Opus 5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-opus-5-5",
+      "name": "Claude Opus 5.5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-opus-5-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-opus-5-5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-sonnet-4-20250514-v1:0",
+      "name": "Claude Sonnet 4",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "LEGACY",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-sonnet-4-20250514-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-sonnet-4-20250514-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "name": "Claude Sonnet 4.5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "LEGACY",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-sonnet-4-5-20250929-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-sonnet-4-6",
+      "name": "Claude Sonnet 4.6",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-sonnet-4-6",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-sonnet-4-6",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-sonnet-5",
+      "name": "Claude Sonnet 5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-sonnet-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-sonnet-5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "anthropic.claude-sonnet-5-5",
+      "name": "Claude Sonnet 5.5",
+      "provider": "Anthropic",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "anthropic.claude-sonnet-5-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.anthropic.claude-sonnet-5-5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "cohere.embed-english-v3",
+      "name": "Embed English",
+      "provider": "Cohere",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "cohere.embed-english-v3",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "cohere.embed-english-v3",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "cohere.embed-english-v3:0:512",
+      "name": "Embed English",
+      "provider": "Cohere",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "cohere.embed-english-v3",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "cohere.embed-multilingual-v3",
+      "name": "Embed Multilingual",
+      "provider": "Cohere",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "cohere.embed-multilingual-v3",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "cohere.embed-multilingual-v3",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "cohere.embed-multilingual-v3:0:512",
+      "name": "Embed Multilingual",
+      "provider": "Cohere",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "PROVISIONED"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "cohere.embed-multilingual-v3",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": null,
+      "invocation": "requires_capacity",
+      "destination_regions": []
+    },
+    {
+      "id": "cohere.embed-v4:0",
+      "name": "Embed v4",
+      "provider": "Cohere",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "ON_DEMAND",
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "cohere.embed-v4",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "cohere.embed-v4:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "cohere.rerank-v3-5:0",
+      "name": "Rerank 3.5",
+      "provider": "Cohere",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "cohere.rerank-v3-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "cohere.rerank-v3-5:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "deepseek.r1-v1:0",
+      "name": "DeepSeek-R1",
+      "provider": "DeepSeek",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "deepseek.r1-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.deepseek.r1-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "deepseek.v3.2",
+      "name": "DeepSeek V3.2",
+      "provider": "DeepSeek",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "deepseek.v3.2",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "deepseek.v3.2",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "google.gemma-3-12b-it",
+      "name": "Gemma 3 12B IT",
+      "provider": "Google",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "google.gemma-3-12b-it",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "google.gemma-3-12b-it",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "google.gemma-3-27b-it",
+      "name": "Gemma 3 27B PT",
+      "provider": "Google",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "google.gemma-3-27b-it",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "google.gemma-3-27b-it",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "google.gemma-3-4b-it",
+      "name": "Gemma 3 4B IT",
+      "provider": "Google",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "google.gemma-3-4b-it",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "google.gemma-3-4b-it",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "meta.llama3-1-70b-instruct-v1:0",
+      "name": "Llama 3.1 70B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama3-1-70b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.meta.llama3-1-70b-instruct-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "meta.llama3-1-8b-instruct-v1:0",
+      "name": "Llama 3.1 8B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama3-1-8b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.meta.llama3-1-8b-instruct-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "meta.llama3-3-70b-instruct-v1:0",
+      "name": "Llama 3.3 70B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama3-3-70b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.meta.llama3-3-70b-instruct-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "meta.llama3-70b-instruct-v1:0",
+      "name": "Llama 3 70B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama3-70b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "meta.llama3-70b-instruct-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "meta.llama3-8b-instruct-v1:0",
+      "name": "Llama 3 8B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama3-8b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "meta.llama3-8b-instruct-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "meta.llama4-maverick-17b-instruct-v1:0",
+      "name": "Llama 4 Maverick 17B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama4-maverick-17b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.meta.llama4-maverick-17b-instruct-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "meta.llama4-scout-17b-instruct-v1:0",
+      "name": "Llama 4 Scout 17B Instruct",
+      "provider": "Meta",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "meta.llama4-scout-17b-instruct-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.meta.llama4-scout-17b-instruct-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "minimax.minimax-m2",
+      "name": "MiniMax M2",
+      "provider": "MiniMax",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "minimax.minimax-m2",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "minimax.minimax-m2",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "minimax.minimax-m2.1",
+      "name": "MiniMax M2.1",
+      "provider": "MiniMax",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "minimax.minimax-m2.1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "minimax.minimax-m2.1",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "minimax.minimax-m2.5",
+      "name": "MiniMax M2.5",
+      "provider": "MiniMax",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "minimax.minimax-m2.5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "minimax.minimax-m2.5",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.devstral-2-123b",
+      "name": "Devstral 2 123B",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.devstral-2-123b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.devstral-2-123b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.magistral-small-2509",
+      "name": "Magistral Small 2509",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.magistral-small-2509",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.magistral-small-2509",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.ministral-3-14b-instruct",
+      "name": "Ministral 14B 3.0",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.ministral-3-14b-instruct",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.ministral-3-14b-instruct",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.ministral-3-3b-instruct",
+      "name": "Ministral 3B",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.ministral-3-3b-instruct",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.ministral-3-3b-instruct",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.ministral-3-8b-instruct",
+      "name": "Ministral 3 8B",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.ministral-3-8b-instruct",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.ministral-3-8b-instruct",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.mistral-7b-instruct-v0:2",
+      "name": "Mistral 7B Instruct",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.mistral-7b-instruct-v0",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.mistral-7b-instruct-v0:2",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.mistral-large-2402-v1:0",
+      "name": "Mistral Large (24.02)",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.mistral-large-2402-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.mistral-large-2402-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.mistral-large-3-675b-instruct",
+      "name": "Mistral Large 3",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.mistral-large-3-675b-instruct",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.mistral-large-3-675b-instruct",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.mistral-small-2402-v1:0",
+      "name": "Mistral Small (24.02)",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.mistral-small-2402-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.mistral-small-2402-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.mixtral-8x7b-instruct-v0:1",
+      "name": "Mixtral 8x7B Instruct",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.mixtral-8x7b-instruct-v0",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.mixtral-8x7b-instruct-v0:1",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.pixtral-large-2502-v1:0",
+      "name": "Pixtral Large (25.02)",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.pixtral-large-2502-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.mistral.pixtral-large-2502-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "mistral.voxtral-mini-3b-2507",
+      "name": "Voxtral Mini 3B 2507",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "SPEECH",
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.voxtral-mini-3b-2507",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.voxtral-mini-3b-2507",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "mistral.voxtral-small-24b-2507",
+      "name": "Voxtral Small 24B 2507",
+      "provider": "Mistral AI",
+      "input_modalities": [
+        "SPEECH",
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "mistral.voxtral-small-24b-2507",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "mistral.voxtral-small-24b-2507",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "moonshot.kimi-k2-thinking",
+      "name": "Kimi K2 Thinking",
+      "provider": "Moonshot AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "moonshot.kimi-k2-thinking",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "moonshot.kimi-k2-thinking",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "moonshotai.kimi-k2.5",
+      "name": "Kimi K2.5",
+      "provider": "Moonshot AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "moonshotai.kimi-k2.5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "moonshotai.kimi-k2.5",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "moonshotai.kimi-k3",
+      "name": "Kimi K3",
+      "provider": "Moonshot AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "moonshotai.kimi-k3",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.moonshotai.kimi-k3",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "nvidia.nemotron-nano-12b-v2",
+      "name": "NVIDIA Nemotron Nano 12B v2 VL BF16",
+      "provider": "NVIDIA",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "nvidia.nemotron-nano-12b-v2",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "nvidia.nemotron-nano-12b-v2",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "nvidia.nemotron-nano-3-30b",
+      "name": "Nemotron Nano 3 30B",
+      "provider": "NVIDIA",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "nvidia.nemotron-nano-3-30b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "nvidia.nemotron-nano-3-30b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "nvidia.nemotron-nano-9b-v2",
+      "name": "NVIDIA Nemotron Nano 9B v2",
+      "provider": "NVIDIA",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "nvidia.nemotron-nano-9b-v2",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "nvidia.nemotron-nano-9b-v2",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "nvidia.nemotron-super-3-120b",
+      "name": "NVIDIA Nemotron 3 Super 120B A12B",
+      "provider": "NVIDIA",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "nvidia.nemotron-super-3-120b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "nvidia.nemotron-super-3-120b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "openai.gpt-5.4",
+      "name": "GPT 5.4",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-5.4",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-5.4",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-5.5",
+      "name": "GPT 5.5",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-5.5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-5.5",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-5.6-luna",
+      "name": "GPT-5.6 Luna",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-5.6-luna",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-5.6-luna",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-5.6-sol",
+      "name": "GPT-5.6 Sol",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-5.6-sol",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-5.6-sol",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-5.6-terra",
+      "name": "GPT-5.6 Terra",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-5.6-terra",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-5.6-terra",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-6-astra",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-6-astra",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-6-luna",
+      "name": "GPT-6 Luna",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-6-luna",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-6-luna",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-6-sol",
+      "name": "GPT-6 Sol",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-6-sol",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-6-sol",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-6.1-sol",
+      "name": "GPT-6.1 Sol",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-6.1-sol",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.openai.gpt-6.1-sol",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "openai.gpt-oss-120b-1:0",
+      "name": "gpt-oss-120b",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-oss-120b-1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "openai.gpt-oss-120b-1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "openai.gpt-oss-20b-1:0",
+      "name": "gpt-oss-20b",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-oss-20b-1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "openai.gpt-oss-20b-1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "openai.gpt-oss-safeguard-120b",
+      "name": "GPT OSS Safeguard 120B",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-oss-safeguard-120b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "openai.gpt-oss-safeguard-120b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "openai.gpt-oss-safeguard-20b",
+      "name": "GPT OSS Safeguard 20B",
+      "provider": "OpenAI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "openai.gpt-oss-safeguard-20b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "openai.gpt-oss-safeguard-20b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "qwen.qwen3-32b-v1:0",
+      "name": "Qwen3 32B (dense)",
+      "provider": "Qwen",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "qwen.qwen3-32b-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "qwen.qwen3-32b-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "qwen.qwen3-coder-30b-a3b-v1:0",
+      "name": "Qwen3-Coder-30B-A3B-Instruct",
+      "provider": "Qwen",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "qwen.qwen3-coder-30b-a3b-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "qwen.qwen3-coder-30b-a3b-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "qwen.qwen3-coder-next",
+      "name": "Qwen3 Coder Next",
+      "provider": "Qwen",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "qwen.qwen3-coder-next",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "qwen.qwen3-coder-next",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "qwen.qwen3-next-80b-a3b",
+      "name": "Qwen3 Next 80B A3B",
+      "provider": "Qwen",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "qwen.qwen3-next-80b-a3b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "qwen.qwen3-next-80b-a3b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "qwen.qwen3-vl-235b-a22b",
+      "name": "Qwen3 VL 235B A22B",
+      "provider": "Qwen",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "qwen.qwen3-vl-235b-a22b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "qwen.qwen3-vl-235b-a22b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "stability.stable-conservative-upscale-v1:0",
+      "name": "Stable Image Conservative Upscale",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-conservative-upscale-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-conservative-upscale-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-creative-upscale-v1:0",
+      "name": "Stable Image Creative Upscale",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-creative-upscale-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-creative-upscale-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-fast-upscale-v1:0",
+      "name": "Stable Image Fast Upscale",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-fast-upscale-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-fast-upscale-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-control-sketch-v1:0",
+      "name": "Stable Image Control Sketch",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-control-sketch-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-control-sketch-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-control-structure-v1:0",
+      "name": "Stable Image Control Structure",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-control-structure-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-control-structure-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-erase-object-v1:0",
+      "name": "Stable Image Erase Object",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-erase-object-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-erase-object-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-inpaint-v1:0",
+      "name": "Stable Image Inpaint",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-inpaint-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-inpaint-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-remove-background-v1:0",
+      "name": "Stable Image Remove Background",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-remove-background-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-remove-background-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-search-recolor-v1:0",
+      "name": "Stable Image Search and Recolor",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-search-recolor-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-search-recolor-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-search-replace-v1:0",
+      "name": "Stable Image Search and Replace",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-search-replace-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-search-replace-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-image-style-guide-v1:0",
+      "name": "Stable Image Style Guide",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-image-style-guide-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-image-style-guide-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-outpaint-v1:0",
+      "name": "Stable Image Outpaint",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-outpaint-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-outpaint-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "stability.stable-style-transfer-v1:0",
+      "name": "Stable Image Style Transfer",
+      "provider": "Stability AI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "IMAGE"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "stability.stable-style-transfer-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.stability.stable-style-transfer-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "twelvelabs.marengo-embed-2-7-v1:0",
+      "name": "Marengo Embed v2.7",
+      "provider": "TwelveLabs",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "SPEECH",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "LEGACY",
+      "streaming": false,
+      "availability": {
+        "modelId": "twelvelabs.marengo-embed-2-7-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.twelvelabs.marengo-embed-2-7-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "twelvelabs.marengo-embed-3-0-v1:0",
+      "name": "Marengo Embed 3.0",
+      "provider": "TwelveLabs",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE",
+        "SPEECH",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "EMBEDDING"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE",
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": false,
+      "availability": {
+        "modelId": "twelvelabs.marengo-embed-3-0-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "twelvelabs.marengo-embed-3-0-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "twelvelabs.pegasus-1-2-v1:0",
+      "name": "Pegasus v1.2",
+      "provider": "TwelveLabs",
+      "input_modalities": [
+        "TEXT",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE",
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "twelvelabs.pegasus-1-2-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "twelvelabs.pegasus-1-2-v1:0",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "twelvelabs.pegasus-1-5-v1:0",
+      "name": "Pegasus v1.5",
+      "provider": "TwelveLabs",
+      "input_modalities": [
+        "TEXT",
+        "VIDEO"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "twelvelabs.pegasus-1-5-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.twelvelabs.pegasus-1-5-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "writer.palmyra-vision-7b",
+      "name": "Writer Palmyra Vision 7B",
+      "provider": "Writer",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "writer.palmyra-vision-7b",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "writer.palmyra-vision-7b",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "writer.palmyra-x4-v1:0",
+      "name": "Palmyra X4",
+      "provider": "Writer",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "writer.palmyra-x4-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.writer.palmyra-x4-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "writer.palmyra-x5-v1:0",
+      "name": "Palmyra X5",
+      "provider": "Writer",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "writer.palmyra-x5-v1",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.writer.palmyra-x5-v1:0",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "zai.glm-4.7",
+      "name": "GLM 4.7",
+      "provider": "Z.AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "zai.glm-4.7",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "zai.glm-4.7",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "zai.glm-4.7-flash",
+      "name": "GLM 4.7 Flash",
+      "provider": "Z.AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "zai.glm-4.7-flash",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "zai.glm-4.7-flash",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "zai.glm-5",
+      "name": "GLM 5",
+      "provider": "Z.AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "ON_DEMAND"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "zai.glm-5",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "zai.glm-5",
+      "invocation": "regional",
+      "destination_regions": [
+        "us-east-1"
+      ]
+    },
+    {
+      "id": "zai.glm-5.3",
+      "name": "GLM 5.3",
+      "provider": "Z.AI",
+      "input_modalities": [
+        "TEXT"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "zai.glm-5.3",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.zai.glm-5.3",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "xai.grok-4.6",
+      "name": "Grok 4.6",
+      "provider": "xAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "xai.grok-4.6",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.xai.grok-4.6",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    },
+    {
+      "id": "xai.grok-4.7",
+      "name": "Grok 4.7",
+      "provider": "xAI",
+      "input_modalities": [
+        "TEXT",
+        "IMAGE"
+      ],
+      "output_modalities": [
+        "TEXT"
+      ],
+      "inference_types": [
+        "INFERENCE_PROFILE"
+      ],
+      "lifecycle": "ACTIVE",
+      "streaming": true,
+      "availability": {
+        "modelId": "xai.grok-4.7",
+        "agreementAvailability": {
+          "status": "AVAILABLE"
+        },
+        "authorizationStatus": "AUTHORIZED",
+        "entitlementAvailability": "AVAILABLE",
+        "regionAvailability": "AVAILABLE"
+      },
+      "account_available": true,
+      "invoke_id": "us.xai.grok-4.7",
+      "invocation": "inference_profile",
+      "destination_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ]
+    }
+  ],
+  "captured_at": "2026-10-13T12:39:46.589669+00:00",
+  "version": "34ec203d9142af53",
+  "source": "Bedrock ListFoundationModels + ListInferenceProfiles + GetFoundationModelAvailability",
+  "note": "Availability is a dated account/region snapshot, not a runtime IAM or quota guarantee."
+}

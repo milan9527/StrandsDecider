@@ -1,4 +1,5 @@
 import { mountCrypto } from "/static/crypto.js?v=triple1";
+import { mountRouting } from "/static/routing.js?v=workflow-routing1";
 
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
@@ -62,6 +63,7 @@ const names = {
   playground: "决策工作台",
   guard: "工具调用守卫",
   crypto: "支付流程对比",
+  routing: "模型路由对比",
   history: "运行记录",
   about: "理解 Decider",
 };
@@ -340,7 +342,11 @@ async function api(path, body) {
   const deciderRequest =
     body?.mode === "live" &&
     (["/api/decide", "/api/guard"].includes(path) ||
-      (["/api/crypto/decision", "/api/crypto/loop/tick"].includes(path) &&
+      ([
+        "/api/crypto/decision",
+        "/api/crypto/loop/tick",
+        "/api/routing/decision",
+      ].includes(path) &&
         body.provider === "decider"));
   const failure = (message, status) => {
     if (deciderRequest && (status === undefined || status >= 500))
@@ -415,6 +421,8 @@ function showPage() {
   $("#breadcrumb-page").textContent = names[currentPage];
   renderGpu();
   if (currentPage === "history") renderHistory();
+  if (currentPage === "routing" && currentUser)
+    mountRouting({ api, esc, icon, toast, openGpuDialog, ensureGpuReady });
   if (currentPage === "crypto" && currentUser)
     mountCrypto({
       api,

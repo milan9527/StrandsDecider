@@ -12,7 +12,8 @@
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/static/styles.css?v=direct-run1" />
     <link rel="stylesheet" href="/static/crypto.css?v=triple1" />
-    <script src="/static/app.js?v=triple1" type="module"></script>
+    <link rel="stylesheet" href="/static/routing.css?v=workflow-routing1" />
+    <script src="/static/app.js?v=workflow-routing1" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -121,6 +122,9 @@
         >
         <a href="#crypto" data-page="crypto" class="nav-item"
           ><span data-icon="route"></span>支付流程对比</a
+        >
+        <a href="#routing" data-page="routing" class="nav-item"
+          ><span data-icon="layers"></span>模型路由对比</a
         >
         <a href="#history" data-page="history" class="nav-item"
           ><span data-icon="history"></span>运行记录<span
@@ -542,6 +546,17 @@ What's the weather?</textarea>
         >
           <div id="crypto-workspace">
             <div class="loading-placeholder">正在加载支付业务工作台…</div>
+          </div>
+        </section>
+
+        <section
+          id="page-routing"
+          class="page"
+          hidden
+          aria-label="模型路由与三模型对比"
+        >
+          <div id="routing-workspace">
+            <div class="loading-placeholder">正在加载模型路由工作台…</div>
           </div>
         </section>
 

@@ -1,0 +1,2235 @@
+{
+  "captured_at": "2026-10-12T06:19:54.407105+00:00",
+  "url": "https://benchmarkheaven.com/jev-models/api",
+  "board_version": "v1.7.46",
+  "html_sha256": "f82dbb44346b79e68d3c174e2425f77d1059a0640f37aa16aa95411630a06d23",
+  "ranked_rows": 27,
+  "rows": [
+    {
+      "ci": [
+        71.70514550946575,
+        75.17412681523324
+      ],
+      "key": "sage-1.3.0",
+      "display": "Sage 1.3.0 (Levanto Labs)",
+      "author": "Levanto Labs",
+      "repo": "https://levanto.ai",
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-results.json",
+          "kind": "artifact",
+          "fact": "Artifact key sage-1.3.0 records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 1,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": "API measurement: the operator's endpoint received the full sealed set (1,200 items) and the public set, without answers. Earlier API-subset answers were reused; only the missing sealed items were sent (v1.6.1).",
+      "draw_tag": null,
+      "jevbench_score": 74.04992179175468,
+      "axes": {
+        "calibration": 91.59817606608073,
+        "cost": 58.231203787388296,
+        "intelligence": 65.59290944525489,
+        "speed": 93.61638181239104
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "Levanto list tariff, top tier: USD 0.05 per 1M input tokens, USD 10 per 1M output tokens (https://levanto.ai/pricing, read 5 Oct 2026)",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.06497606666666667
+        },
+        "kind": "estimate",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.024677048070413
+      },
+      "speed": {
+        "p50_s_raw": 0.15245595201849937,
+        "p50_s_adjusted": 0.15245595201849937,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "Levanto hosted API, text only, measured from Sandy (Helsinki) on 5 Oct 2026; full set 1,200 sealed + P300 (v1.6.1); not evaluated on ImageJevBench.",
+      "note": null,
+      "openSource": false,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "sage-1.3.0",
+        "display": "Sage 1.3.0 (Levanto Labs)",
+        "provider": "Levanto Labs",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": "proprietary hosted API",
+        "developerPrice": 0.024677048070413,
+        "basePrice": null,
+        "officialCost": 0.024677048070413,
+        "alternativePrice": null,
+        "p50": 0.15245595201849937,
+        "p95": 0.2852446019649505,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 78.59554275566781
+    },
+    {
+      "ci": [
+        70.61498257469916,
+        74.29509345786346
+      ],
+      "key": "liquid-d1",
+      "display": "d1 (Liquid AI)",
+      "author": "Liquid AI",
+      "repo": "https://www.liquid.ai/blog/d1-decision-model",
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://www.liquid.ai/blog/d1-decision-model",
+          "kind": "provider-docs",
+          "fact": "Liquid AI serves d1 as a hosted decision API; no evaluated weights are published."
+        }
+      ],
+      "rank": 2,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 73.0491258431614,
+      "axes": {
+        "calibration": 86.78599512136702,
+        "cost": 62.84038569943876,
+        "intelligence": 62.05738930369758,
+        "speed": 89.22497122158413
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "Liquid AI d1 public API tariff USD 0.04 per 1M input tokens, no output tokens (Vercel AI Gateway listing https://vercel.com/ai-gateway/models/d1, read 6 Oct 2026; equals Liquid API usage.cost); measured on the v1.6.1 common cost basis from this run's token usage",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.050374800000000004
+        },
+        "kind": "tariff",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.017324224779959378
+      },
+      "speed": {
+        "p50_s_raw": 0.26846902817487717,
+        "p50_s_adjusted": 0.26846902817487717,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "Liquid AI hosted API, text only, measured from Sandy (Helsinki) on 6 Oct 2026; full set 1,200 sealed + P300 (v1.6.1), not equated.",
+      "note": null,
+      "openSource": false,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "liquid-d1",
+        "display": "d1 (Liquid AI)",
+        "provider": "Liquid AI",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": "proprietary hosted API",
+        "developerPrice": 0.017324224779959378,
+        "basePrice": null,
+        "officialCost": 0.017324224779959378,
+        "alternativePrice": null,
+        "p50": 0.26846902817487717,
+        "p95": 0.44525487907230826,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 74.4216922125323
+    },
+    {
+      "ci": [
+        69.93954261051735,
+        73.87316393178861
+      ],
+      "key": "mercury-decide",
+      "display": "Mercury Decide (Inception; System One decisions API, served free on OpenRouter as inception/mercury-decide:free)",
+      "author": "Inception (API, free on OpenRouter) - Florian work order, 6 Oct 2026",
+      "repo": "https://openrouter.ai/inception/mercury-decide:free",
+      "class": "Hosted decision API",
+      "arch": "system",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://openrouter.ai/inception/mercury-decide:free",
+          "kind": "provider-docs",
+          "fact": "Hosted decision API; underlying weights undisclosed in measurement record."
+        }
+      ],
+      "rank": 3,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 72.36824049637728,
+      "axes": {
+        "calibration": 81.34341651168008,
+        "cost": 62.08313746631354,
+        "intelligence": 65.90701345473542,
+        "speed": 85.47752366478576
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "$2a",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.01807942666666667
+        },
+        "kind": "estimate",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.018360961408259987
+      },
+      "speed": {
+        "p50_s_raw": 0.33213604614138603,
+        "p50_s_adjusted": 0.33213604614138603,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$2b",
+      "note": null,
+      "openSource": true,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "mercury-decide",
+        "display": "Mercury Decide (Inception; System One decisions API, served free on OpenRouter as inception/mercury-decide:free)",
+        "provider": "Inception (API, free on OpenRouter) - Florian work order, 6 Oct 2026",
+        "family": null,
+        "modelClass": "system",
+        "open": "unknown",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": null,
+        "developerPrice": 0.018360961408259987,
+        "basePrice": null,
+        "officialCost": 0.018360961408259987,
+        "alternativePrice": null,
+        "p50": 0.33213604614138603,
+        "p95": 0.8529658075422044,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 73.62521498320774
+    },
+    {
+      "ci": [
+        69.1394876572671,
+        72.39570149403289
+      ],
+      "key": "jev-1.13.0",
+      "display": "Jev 1.13.0 (TypeSafe AI)",
+      "author": "TypeSafe AI",
+      "repo": "https://docs.typesafe.ai",
+      "class": "jev",
+      "arch": "jev-reference",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-results.json",
+          "kind": "artifact",
+          "fact": "Artifact key jev-1.13.0 records the TypeSafe Jev reference API."
+        }
+      ],
+      "rank": 4,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": "API measurement: the operator's endpoint received the full sealed set (1,200 items) and the public set, without answers. Earlier API-subset answers were reused; only the missing sealed items were sent (v1.6.1).",
+      "draw_tag": null,
+      "jevbench_score": 71.49118639284514,
+      "axes": {
+        "calibration": 90.63220203152369,
+        "cost": 54.733842199536014,
+        "intelligence": 63.62075784024779,
+        "speed": 91.49989299046987
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "TypeSafe list tariff USD 0.042 per 1M input tokens, output free; measured on the v1.6.1 common cost basis (all items except those outside the Jev reference input range) from this run's token usage",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.031780532
+        },
+        "kind": "tariff",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.03227542180094787
+      },
+      "speed": {
+        "p50_s_raw": 0.23910215869545937,
+        "p50_s_adjusted": 0.23910215869545937,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "the operator's hosted API",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "jev-1.13.0",
+        "display": "Jev 1.13.0 (TypeSafe AI)",
+        "provider": "TypeSafe AI",
+        "family": null,
+        "modelClass": "jev-reference",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary API",
+        "developerPrice": 0.03227542180094787,
+        "basePrice": null,
+        "officialCost": 0.03227542180094787,
+        "alternativePrice": null,
+        "p50": 0.23910215869545937,
+        "p95": 0.29609236158430574,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 77.12647993588574
+    },
+    {
+      "ci": [
+        68.86577835236345,
+        71.94201428005243
+      ],
+      "key": "wity-1",
+      "display": "wity-1 (Wity, reasoning auto)",
+      "author": "Wity (alphanimble)",
+      "repo": "https://wity.alphanimble.com/",
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-results.json",
+          "kind": "artifact",
+          "fact": "Artifact key wity-1 records api_flag: true; endpoint is a closed hosted decision API."
+        }
+      ],
+      "rank": 5,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": "API measurement: the operator's endpoint received the full sealed set (1,200 items) and the public set, without answers. Earlier API-subset answers were reused; only the missing sealed items were sent (v1.6.1).",
+      "draw_tag": null,
+      "jevbench_score": 70.76534010331063,
+      "axes": {
+        "calibration": 87.9497550095679,
+        "cost": 58.8349720563948,
+        "intelligence": 70.28143483604077,
+        "speed": 71.79000307789984
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "Wity's stated API tariff USD 0.042 per 1M input tokens, output free; measured on the v1.6.1 common cost basis (all items except those outside the Jev reference input range) from this run's token usage",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.074026736
+        },
+        "kind": "tariff",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.023559582938388626
+      },
+      "speed": {
+        "p50_s_raw": 1.5746641159057617,
+        "p50_s_adjusted": 1.5746641159057617,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "operator's hosted production API, measured as is; API default is off, our request sets reasoning=auto as the operator asked for their main row.",
+      "note": null,
+      "openSource": false,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "wity-1",
+        "display": "wity-1 (Wity, reasoning auto)",
+        "provider": "Wity (alphanimble)",
+        "family": "undisclosed",
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": "proprietary hosted API",
+        "developerPrice": 0.023559582938388626,
+        "basePrice": null,
+        "officialCost": 0.023559582938388626,
+        "alternativePrice": null,
+        "p50": 1.5746641159057617,
+        "p95": 4.205443101748823,
+        "jevClass": {
+          "status": "outside",
+          "reason": "latency 2.6× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 79.11559492280433
+    },
+    {
+      "ci": [
+        66.02436050159598,
+        70.40957825472715
+      ],
+      "key": "microsoft-decision-1",
+      "display": "Microsoft-Decision-1 (Azure Foundry)",
+      "author": "Microsoft",
+      "repo": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
+      "class": "$undefined",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [],
+      "rank": 6,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 69.11289175277149,
+      "axes": {
+        "calibration": 84.39873071167106,
+        "cost": 61.452075716621465,
+        "intelligence": 57.16958510591244,
+        "speed": 81.54517543213291
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "Advertised Azure Foundry tariff .042/M input, output free; genuine native usage, billed invoice unknown",
+        "common_basis": "{\"n_items\": 1479, \"rule\": \"common\", \"usd_per_1000_all_items\": 0.019002368000000002}",
+        "kind": "tariff",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.0192721784989858
+      },
+      "speed": {
+        "p50_s_raw": 0.45925578847527504,
+        "p50_s_adjusted": 0.45925578847527504,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": true,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "microsoft-decision-1",
+        "display": "Microsoft-Decision-1 (Azure Foundry)",
+        "provider": "Microsoft",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "unknown",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": null,
+        "developerPrice": 0.0192721784989858,
+        "basePrice": null,
+        "officialCost": 0.0192721784989858,
+        "alternativePrice": null,
+        "p50": 0.45925578847527504,
+        "p95": 1.5255548182874916,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 70.78415790879176
+    },
+    {
+      "ci": [
+        64.36187068361473,
+        67.93122351228547
+      ],
+      "key": "spx-cd-flash",
+      "display": "SPX-CD Flash (SurdAI, hosted /v1/systemone, Oct-4 checkpoint)",
+      "author": "SPX AI team (SurdAI, formerly Simplex AI)",
+      "repo": "https://surd.ai",
+      "class": "Hosted decision API",
+      "arch": "system",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://surd.ai",
+          "kind": "provider-docs",
+          "fact": "Hosted decision API; underlying weights undisclosed in measurement record."
+        }
+      ],
+      "rank": 7,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 66.68017155386212,
+      "axes": {
+        "calibration": 90.20036269195566,
+        "cost": 52.107175358413464,
+        "intelligence": 58.43051843707937,
+        "speed": 79.39117060033084
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "$2c",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.03887914666666666
+        },
+        "kind": "estimate",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.039484576844955994
+      },
+      "speed": {
+        "p50_s_raw": 0.9804960675537586,
+        "p50_s_adjusted": 0.9804960675537586,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "measured 2026-10-06 on the live v1.6.0 S u P (1,500 rows) under Florian's 5 Oct 2026 full-set amendment, through the release lane's own full-set API lane (run_api_full_v161.py, rotation.py expose --full-set logged 1,200 sealed items to provider 'surd' before the first request); stock jevbench.adapters.typesafe with an endpoint override only, reasoning at the provider default, one request at a time, no retries; add-requests run 53, benchmarkheaven.com/submit ref 3FF00545",
+      "note": null,
+      "openSource": true,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "spx-cd-flash",
+        "display": "SPX-CD Flash (SurdAI, hosted /v1/systemone, Oct-4 checkpoint)",
+        "provider": "SPX AI team (SurdAI, formerly Simplex AI)",
+        "family": null,
+        "modelClass": "system",
+        "open": "unknown",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": null,
+        "developerPrice": 0.039484576844955994,
+        "basePrice": null,
+        "officialCost": 0.039484576844955994,
+        "alternativePrice": null,
+        "p50": 0.9804960675537586,
+        "p95": 1.1733756832778452,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 74.31544056451752
+    },
+    {
+      "ci": [
+        51.61,
+        64.57
+      ],
+      "key": "openai-decisions",
+      "display": "OpenAI Decisions (gpt-6-luna)",
+      "author": "OpenAI",
+      "repo": null,
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://developers.openai.com/api/docs/guides/decisions",
+          "kind": "provider-docs",
+          "fact": "OpenAI serves Decisions as a hosted API (POST /v1/decisions, model gpt-6-luna); no weights are published."
+        }
+      ],
+      "rank": 8,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 62.5,
+      "axes": {
+        "intelligence": 56.9,
+        "calibration": 90.1,
+        "speed": 89.25,
+        "cost": 48.6
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.0517,
+        "basis": "measured: token usage of the 6 Oct 2026 A5 u P run x tariff USD 0.1/M input, 0.0/M output (spec openai-decisions.json; OpenAI Decisions API (POST /v1/decisions, gpt-6-luna) list price USD 0.10 per 1M input tokens, no output/cache charges; source https://developers.openai.com/api/docs/guides/decisions (checked 2026-10-06); actual usage), per 1,000 decisions on the v1.6.1 common cost basis (592 of 600 items; the 8 A5 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a5.json). List price as of 6 Oct 2026 (launch day); re-checked at each revision."
+      },
+      "speed": {
+        "p50_s_raw": 0.298,
+        "p50_s_adjusted": 0.298,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "openai-decisions",
+        "display": "OpenAI Decisions (gpt-6-luna)",
+        "provider": "OpenAI",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": "hosted API",
+        "developerPrice": 0.0517,
+        "basePrice": null,
+        "officialCost": 0.0517,
+        "alternativePrice": null,
+        "p50": 0.298,
+        "p95": 0.399,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 73.5
+    },
+    {
+      "ci": [
+        39.54,
+        72.12
+      ],
+      "key": "instinct",
+      "display": "Instinct (ZooWork, Qwen3.8-27B)",
+      "author": "rayrain-srp (ZooWork)",
+      "repo": "https://github.com/fstandhartinger/jevbench/issues/69",
+      "class": "jev-rebuild",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key instinct records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 9,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 62.24,
+      "axes": {
+        "intelligence": 47.77,
+        "calibration": 93.17,
+        "speed": 87.2,
+        "cost": 64.41
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.015355329949238578,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.03/M input, 0/M output (spec instinct.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.292,
+        "p50_s_adjusted": 0.292,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "instinct",
+        "display": "Instinct (ZooWork, Qwen3.8-27B)",
+        "provider": "rayrain-srp (ZooWork)",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary service over Apache-2.0 base weights (Qwen3.8-27B)",
+        "developerPrice": 0.015355329949238578,
+        "basePrice": null,
+        "officialCost": 0.015355329949238578,
+        "alternativePrice": null,
+        "p50": 0.292,
+        "p95": 0.652,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 70.47
+    },
+    {
+      "ci": [
+        46.40578610997944,
+        48.21089390268207
+      ],
+      "key": "spx-cd-pro",
+      "display": "SPX-CD Pro (SurdAI, hosted /v1/systemone, Oct-4 checkpoint)",
+      "author": "SPX AI team (SurdAI, formerly Simplex AI)",
+      "repo": "https://surd.ai",
+      "class": "Hosted decision API",
+      "arch": "system",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://surd.ai",
+          "kind": "provider-docs",
+          "fact": "Hosted decision API; underlying weights undisclosed in measurement record."
+        }
+      ],
+      "rank": 10,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 47.66970820706367,
+      "axes": {
+        "calibration": 92.41334857032513,
+        "cost": 43.076275488494026,
+        "intelligence": 64.85693822910903,
+        "speed": 77.96292698098645
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "$2d",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.07775829333333333
+        },
+        "kind": "estimate",
+        "usage_estimated_rows": 0,
+        "usd_per_1000": 0.07896915368991199
+      },
+      "speed": {
+        "p50_s_raw": 1.1281277425587177,
+        "p50_s_adjusted": 1.1281277425587177,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "measured 2026-10-06 on the live v1.6.0 S u P (1,500 rows) under Florian's 5 Oct 2026 full-set amendment, same lane, same adapter and same provider default as spx-cd-flash; add-requests run 53, benchmarkheaven.com/submit ref 3FF00545",
+      "note": null,
+      "openSource": true,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "spx-cd-pro",
+        "display": "SPX-CD Pro (SurdAI, hosted /v1/systemone, Oct-4 checkpoint)",
+        "provider": "SPX AI team (SurdAI, formerly Simplex AI)",
+        "family": null,
+        "modelClass": "system",
+        "open": "unknown",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": null,
+        "developerPrice": 0.07896915368991199,
+        "basePrice": null,
+        "officialCost": 0.07896915368991199,
+        "alternativePrice": null,
+        "p50": 1.1281277425587177,
+        "p95": 1.4169320456683636,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 2.4× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 78.63514339971708
+    },
+    {
+      "ci": [
+        25.32,
+        69.03
+      ],
+      "key": "vansa-3.4",
+      "display": "Vansa-3.4 (Vansa, hosted System One API)",
+      "author": "Vansa",
+      "repo": "https://vansa.org",
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key vansa-3.4 records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 11,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 42.6,
+      "axes": {
+        "intelligence": 40.85,
+        "calibration": 86.52,
+        "speed": 95.49,
+        "cost": 61.92
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.018590751269035533,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.034/M input, 0/M output (spec vansa-3.4.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.15,
+        "p50_s_adjusted": 0.15,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "vansa-3.4",
+        "display": "Vansa-3.4 (Vansa, hosted System One API)",
+        "provider": "Vansa",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary hosted API",
+        "developerPrice": 0.018590751269035533,
+        "basePrice": null,
+        "officialCost": 0.018590751269035533,
+        "alternativePrice": null,
+        "p50": 0.15,
+        "p95": 0.189,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 63.685
+    },
+    {
+      "ci": [
+        39.96,
+        40.78
+      ],
+      "key": "gpt-6-luna-low",
+      "display": "GPT-6 Luna (low reasoning effort)",
+      "author": "OpenAI",
+      "repo": "https://benchmarkheaven.com/jev-models/gpt-6-luna-low",
+      "class": "llm-baseline",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key gpt-6-luna-low records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 12,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 40.48,
+      "axes": {
+        "intelligence": 96.62,
+        "calibration": 99.02,
+        "speed": 71.66,
+        "cost": 38.98
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.10814365482233503,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.1/M input, 0.5/M output (spec gpt-6-luna-low.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 1.854,
+        "p50_s_adjusted": 1.854,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "gpt-6-luna-low",
+        "display": "GPT-6 Luna (low reasoning effort)",
+        "provider": "OpenAI",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "unknown",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary API",
+        "developerPrice": 0.10814365482233503,
+        "basePrice": null,
+        "officialCost": 0.10814365482233503,
+        "alternativePrice": null,
+        "p50": 1.854,
+        "p95": 3.683,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 3.3× Jev (v1.5 reference); latency 3.0× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 97.82
+    },
+    {
+      "ci": [
+        38.21,
+        41.78
+      ],
+      "key": "kushal-gemma4-31b-it-autoloops",
+      "display": "Autoloops – Gemma 4 31B IT",
+      "author": "Autoloops",
+      "repo": "https://benchmarkheaven.com/jev-models/kushal-gemma4-31b-it-autoloops",
+      "class": "jev",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key kushal-gemma4-31b-it-autoloops records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 13,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 40.18,
+      "axes": {
+        "intelligence": 58.1,
+        "calibration": 87.31,
+        "speed": 84.51,
+        "cost": 40.47
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.09648663282571913,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.2/M input, 0.45/M output (spec kushal-gemma4-31b-it-autoloops.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.584,
+        "p50_s_adjusted": 0.584,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "kushal-gemma4-31b-it-autoloops",
+        "display": "Autoloops – Gemma 4 31B IT",
+        "provider": "Autoloops",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "Gemma terms of use (Google) for the base weights; hosted Autoloops service",
+        "developerPrice": 0.09648663282571913,
+        "basePrice": null,
+        "officialCost": 0.09648663282571913,
+        "alternativePrice": null,
+        "p50": 0.584,
+        "p95": 0.606,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 3.0× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 72.705
+    },
+    {
+      "ci": [
+        38.68,
+        39.37
+      ],
+      "key": "gpt-6-luna",
+      "display": "GPT-6 Luna (default medium reasoning effort)",
+      "author": "OpenAI",
+      "repo": "https://benchmarkheaven.com/jev-models/gpt-6-luna",
+      "class": "llm-baseline",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key gpt-6-luna records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 14,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 39.16,
+      "axes": {
+        "intelligence": 96.88,
+        "calibration": 100,
+        "speed": 71.77,
+        "cost": 38.41
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.1129575296108291,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.1/M input, 0.5/M output (spec gpt-6-luna.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 1.824,
+        "p50_s_adjusted": 1.824,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "gpt-6-luna",
+        "display": "GPT-6 Luna (default medium reasoning effort)",
+        "provider": "OpenAI",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "unknown",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary API",
+        "developerPrice": 0.1129575296108291,
+        "basePrice": null,
+        "officialCost": 0.1129575296108291,
+        "alternativePrice": null,
+        "p50": 1.824,
+        "p95": 3.646,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 3.5× Jev (v1.5 reference); latency 3.0× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 98.44
+    },
+    {
+      "ci": [
+        29.48,
+        31.58
+      ],
+      "key": "fastino-glide",
+      "display": "Fastino GLiDE",
+      "author": "Fastino",
+      "repo": null,
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://docs.fastino.ai/llms-full.txt",
+          "kind": "provider-docs",
+          "fact": "Fastino documents fastino/GLiDE as a hosted decision model behind POST /v1/systemone (40,000-token context, USD 0.15 per 1M input); no evaluated weights are published."
+        }
+      ],
+      "rank": 15,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 30.59,
+      "axes": {
+        "intelligence": 66.1,
+        "calibration": 87.95,
+        "speed": 77.48,
+        "cost": 35.86
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.13735482233502538,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.15/M input, 0/M output (spec fastino-glide.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.743,
+        "p50_s_adjusted": 0.743,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "fastino-glide",
+        "display": "Fastino GLiDE",
+        "provider": "Fastino",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": "hosted API",
+        "developerPrice": 0.13735482233502538,
+        "basePrice": null,
+        "officialCost": 0.13735482233502538,
+        "alternativePrice": null,
+        "p50": 0.743,
+        "p95": 2.405,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 4.3× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 77.025
+    },
+    {
+      "ci": [
+        22.78,
+        28.87
+      ],
+      "key": "simplejev-qwen3.6-35b-a3b",
+      "display": "SimpleJev Qwen3.6-35B-A3B",
+      "author": "Featherless AI",
+      "repo": "https://github.com/featherless-ai/simple-jev",
+      "class": "jev-rebuild",
+      "arch": "open-llm-decoder",
+      "archBadges": {
+        "derivation": null,
+        "params": "35B-A3B",
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/featherless-ai/simple-jev/main/README.md",
+          "kind": "repo-readme",
+          "fact": "Author README describes local language-model inference and candidate-token decision scoring."
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/main/config.json",
+          "kind": "config.json",
+          "fact": "Disclosed base config: architectures: [\"Qwen3_5MoeForConditionalGeneration\"]; model_type: qwen3_5_moe"
+        }
+      ],
+      "rank": 16,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 27.57,
+      "axes": {
+        "intelligence": 56.29,
+        "calibration": 80.3,
+        "speed": 76.7,
+        "cost": 35.15
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "estimate",
+        "usd_per_1000": 0.1451164454277286,
+        "basis": "v1.5.4 published cost per 1,000 decisions carried (pricing rules unchanged; v1.6 item lengths differ): ESTIMATE: exact base-model market reference (operator tariff excluded by 30-day rule)"
+      },
+      "speed": {
+        "p50_s_raw": 0.625,
+        "p50_s_adjusted": 1.25,
+        "adjustment": "x2 (demo)"
+      },
+      "endpoint_kind": "demo",
+      "endpoint_condition": "the author's public demo endpoint",
+      "note": null,
+      "openSource": true,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "simplejev-qwen3.6-35b-a3b",
+        "display": "SimpleJev Qwen3.6-35B-A3B",
+        "provider": "Featherless AI",
+        "family": null,
+        "modelClass": "open-llm-decoder",
+        "open": "yes",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "Apache-2.0 (Qwen weights); repository licence not stated",
+        "developerPrice": 0.1451164454277286,
+        "basePrice": null,
+        "officialCost": 0.1451164454277286,
+        "alternativePrice": null,
+        "p50": 1.25,
+        "p95": 1.709,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 4.5× Jev (v1.5 reference); latency 2.03× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 68.295
+    },
+    {
+      "ci": [
+        21.08,
+        21.77
+      ],
+      "key": "gpt-5.6-luna",
+      "display": "GPT-5.6 Luna (low reasoning effort)",
+      "author": "OpenAI",
+      "repo": "https://benchmarkheaven.com/jev-models/gpt-5.6-luna",
+      "class": "llm-baseline",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key gpt-5.6-luna records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 17,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 21.41,
+      "axes": {
+        "intelligence": 94.07,
+        "calibration": 94.91,
+        "speed": 73.12,
+        "cost": 30.16
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.2127451776649746,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.2/M input, 1.2/M output (spec gpt-5.6-luna.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 1.588,
+        "p50_s_adjusted": 1.588,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "gpt-5.6-luna",
+        "display": "GPT-5.6 Luna (low reasoning effort)",
+        "provider": "OpenAI",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary API",
+        "developerPrice": 0.2127451776649746,
+        "basePrice": null,
+        "officialCost": 0.2127451776649746,
+        "alternativePrice": null,
+        "p50": 1.588,
+        "p95": 3.067,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 6.6× Jev (v1.5 reference); latency 2.6× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 94.49
+    },
+    {
+      "ci": [
+        10.92,
+        37.04
+      ],
+      "key": "instinct-dual-4b",
+      "display": "Instinct Dual 4B",
+      "author": "ZooWork / pierre-srp",
+      "repo": "https://github.com/fstandhartinger/jevbench/issues/123",
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key instinct-dual-4b records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 18,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 17.97,
+      "axes": {
+        "intelligence": 28.34,
+        "calibration": 86.08,
+        "speed": 88.6,
+        "cost": 75.03
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.006799306260575296,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.01/M input, 0/M output (spec instinct-dual-4b.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.231,
+        "p50_s_adjusted": 0.231,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "instinct-dual-4b",
+        "display": "Instinct Dual 4B",
+        "provider": "ZooWork / pierre-srp",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "Not independently recorded",
+        "developerPrice": 0.006799306260575296,
+        "basePrice": null,
+        "officialCost": 0.006799306260575296,
+        "alternativePrice": null,
+        "p50": 0.231,
+        "p95": 0.598,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 57.21
+    },
+    {
+      "ci": [
+        15.19,
+        17.77
+      ],
+      "key": "gemini-3.1-flash-lite",
+      "display": "Gemini 3.1 Flash-Lite",
+      "author": "Google",
+      "repo": "https://benchmarkheaven.com/jev-models/gemini-3.1-flash-lite",
+      "class": "llm-baseline",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key gemini-3.1-flash-lite records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 19,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 16.94,
+      "axes": {
+        "intelligence": 58.57,
+        "calibration": 60.93,
+        "speed": 79.03,
+        "cost": 29.17
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.22953722504230117,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.25/M input, 1.5/M output (spec gemini-3.1-flash-lite.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.957,
+        "p50_s_adjusted": 0.957,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "gemini-3.1-flash-lite",
+        "display": "Gemini 3.1 Flash-Lite",
+        "provider": "Google",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary API",
+        "developerPrice": 0.22953722504230117,
+        "basePrice": null,
+        "officialCost": 0.22953722504230117,
+        "alternativePrice": null,
+        "p50": 0.957,
+        "p95": 1.306,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 7.1× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 59.75
+    },
+    {
+      "ci": [
+        7.72,
+        36.09
+      ],
+      "key": "system-one-open",
+      "display": "system-one-open (Gemma 4 E2B LoRA on an L4)",
+      "author": "mithalouni",
+      "repo": "https://github.com/mithalouni/system-one-open",
+      "class": "jev-rebuild",
+      "arch": "open-llm-decoder",
+      "archBadges": {
+        "derivation": "adapter",
+        "params": "2B",
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/mithalouni/system-one-open/HEAD/README.md",
+          "kind": "repo-readme",
+          "fact": "Author documentation identifies Gemma 4 E2B as the evaluated backbone. Author describes LoRA adaptation."
+        },
+        {
+          "url": "https://huggingface.co/google/gemma-4-E2B-it/raw/main/config.json",
+          "kind": "config.json",
+          "fact": "architectures: [\"Gemma4ForConditionalGeneration\"]; model_type: \"gemma4\"; text_config.model_type: \"gemma4_text\""
+        }
+      ],
+      "rank": 20,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 16.39,
+      "axes": {
+        "intelligence": 27.94,
+        "calibration": 75.94,
+        "speed": 79.32,
+        "cost": 68.33
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "estimate",
+        "usd_per_1000": 0.011367487684729064,
+        "basis": "v1.5.4 published cost per 1,000 decisions carried (pricing rules unchanged; v1.6 item lengths differ): ESTIMATE: v1.5 measured-input proxy; no exact base-model floor applies"
+      },
+      "speed": {
+        "p50_s_raw": 0.51,
+        "p50_s_adjusted": 1.02,
+        "adjustment": "x2 (demo)"
+      },
+      "endpoint_kind": "demo",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": true,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "system-one-open",
+        "display": "system-one-open (Gemma 4 E2B LoRA on an L4)",
+        "provider": "mithalouni",
+        "family": null,
+        "modelClass": "open-llm-decoder",
+        "open": "yes",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "MIT (repository LICENSE; Gemma weights keep Google’s terms)",
+        "developerPrice": 0.011367487684729064,
+        "basePrice": null,
+        "officialCost": 0.011367487684729064,
+        "alternativePrice": null,
+        "p50": 1.02,
+        "p95": 1.146,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 51.94
+    },
+    {
+      "ci": [
+        8.74,
+        26.17
+      ],
+      "key": "openjev-sglang",
+      "display": "openjev-sglang (Qwen3.6-35B-A3B on SGLang)",
+      "author": "ekzhang",
+      "repo": "https://github.com/ekzhang/openjev-sglang",
+      "class": "jev-rebuild",
+      "arch": "open-llm-decoder",
+      "archBadges": {
+        "derivation": null,
+        "params": "35B-A3B",
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/ekzhang/openjev-sglang/main/README.md",
+          "kind": "repo-readme",
+          "fact": "Author documentation identifies Qwen/Qwen3.6-35B-A3B as the evaluated backbone."
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/blob/995ad96eacd98c81ed38be0c5b274b04031597b0/config.json",
+          "kind": "config.json",
+          "fact": "architectures: [\"Qwen3_5MoeForConditionalGeneration\"]; model_type: \"qwen3_5_moe\"; text_config.model_type: \"qwen3_5_moe_text\""
+        }
+      ],
+      "rank": 21,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 15.38,
+      "axes": {
+        "intelligence": 38.77,
+        "calibration": 78.57,
+        "speed": 77.71,
+        "cost": 35.63
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "estimate",
+        "usd_per_1000": 0.13981028325123152,
+        "basis": "v1.5.4 published cost per 1,000 decisions carried (pricing rules unchanged; v1.6 item lengths differ): ESTIMATE: exact base-model market reference (operator tariff excluded by 30-day rule)"
+      },
+      "speed": {
+        "p50_s_raw": 0.6325,
+        "p50_s_adjusted": 1.265,
+        "adjustment": "x2 (demo)"
+      },
+      "endpoint_kind": "demo",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": true,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "openjev-sglang",
+        "display": "openjev-sglang (Qwen3.6-35B-A3B on SGLang)",
+        "provider": "ekzhang",
+        "family": null,
+        "modelClass": "open-llm-decoder",
+        "open": "yes",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "no licence file in the repository as of 2026-09-19; Qwen3.6 weights keep their own terms",
+        "developerPrice": 0.13981028325123152,
+        "basePrice": null,
+        "officialCost": 0.13981028325123152,
+        "alternativePrice": null,
+        "p50": 1.265,
+        "p95": 1.339,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 4.3× Jev (v1.5 reference); latency 2.1× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 58.67
+    },
+    {
+      "ci": [
+        7.02,
+        7.13
+      ],
+      "key": "deepseek-flash",
+      "display": "DeepSeek V4.1 Flash (thinking default)",
+      "author": "DeepSeek",
+      "repo": "https://benchmarkheaven.com/jev-models/deepseek-flash",
+      "class": "llm-baseline",
+      "arch": "open-llm-decoder",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/2cba9e42aa026125f3ed06c6d98c1db82f7ca027/config.json",
+          "kind": "config.json",
+          "fact": "architectures: [\"DeepseekV41ForCausalLM\"]; model_type: \"deepseek_v41\"; text_config.model_type: \"deepseek_v41_text\""
+        },
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key deepseek-flash identifies the evaluated model as: DeepSeek-V4.1-Flash"
+        }
+      ],
+      "rank": 22,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 7.09,
+      "axes": {
+        "intelligence": 94.71,
+        "calibration": 100,
+        "speed": 68.07,
+        "cost": 19.56
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.480105076142132,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.15/M input, 0.6/M output (spec deepseek-flash.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 2.038,
+        "p50_s_adjusted": 2.038,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": true,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "deepseek-flash",
+        "display": "DeepSeek V4.1 Flash (thinking default)",
+        "provider": "DeepSeek",
+        "family": null,
+        "modelClass": "open-llm-decoder",
+        "open": "weights",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "open weights, proprietary API route",
+        "developerPrice": 0.480105076142132,
+        "basePrice": null,
+        "officialCost": 0.480105076142132,
+        "alternativePrice": null,
+        "p50": 2.038,
+        "p95": 7.648,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 14.9× Jev (v1.5 reference); latency 3.3× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 97.35499999999999
+    },
+    {
+      "ci": [
+        2.11,
+        3.31
+      ],
+      "key": "simplejev-qwen3.8-27b",
+      "display": "SimpleJev Qwen3.8-27B",
+      "author": "Featherless AI",
+      "repo": "https://github.com/featherless-ai/simple-jev",
+      "class": "jev-rebuild",
+      "arch": "open-llm-decoder",
+      "archBadges": {
+        "derivation": null,
+        "params": "27B",
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/featherless-ai/simple-jev/HEAD/README.md",
+          "kind": "repo-readme",
+          "fact": "Author documentation identifies Qwen/Qwen3.8-27B as the evaluated backbone."
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+          "kind": "config.json",
+          "fact": "architectures: [\"Qwen3_5ForConditionalGeneration\"]; model_type: \"qwen3_5\"; text_config.model_type: \"qwen3_5_text\""
+        }
+      ],
+      "rank": 23,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 3.22,
+      "axes": {
+        "intelligence": 52.88,
+        "calibration": 90.33,
+        "speed": 76.93,
+        "cost": 14.9
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "estimate",
+        "usd_per_1000": 0.686803448275862,
+        "basis": "v1.5.4 published cost per 1,000 decisions carried (pricing rules unchanged; v1.6 item lengths differ): ESTIMATE: exact base-model market reference (operator tariff excluded by 30-day rule)"
+      },
+      "speed": {
+        "p50_s_raw": 0.606,
+        "p50_s_adjusted": 1.212,
+        "adjustment": "x2 (demo)"
+      },
+      "endpoint_kind": "demo",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": true,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "simplejev-qwen3.8-27b",
+        "display": "SimpleJev Qwen3.8-27B",
+        "provider": "Featherless AI",
+        "family": null,
+        "modelClass": "open-llm-decoder",
+        "open": "yes",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "Apache-2.0 (Qwen weights); repository licence not stated",
+        "developerPrice": 0.686803448275862,
+        "basePrice": null,
+        "officialCost": 0.686803448275862,
+        "alternativePrice": null,
+        "p50": 1.212,
+        "p95": 1.675,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 21.3× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 71.605
+    },
+    {
+      "ci": [
+        0.89,
+        8.58
+      ],
+      "key": "decision-machine-1",
+      "display": "decision-machine-1 (milliseconds.ai)",
+      "author": "milliseconds.ai (Baptiste Laget)",
+      "repo": "https://www.milliseconds.ai",
+      "class": "decision-api",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key decision-machine-1 records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 24,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 2.35,
+      "axes": {
+        "intelligence": 13.11,
+        "calibration": 79.15,
+        "speed": 92.97,
+        "cost": 58.33
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "tariff",
+        "usd_per_1000": 0.02449299492385787,
+        "basis": "measured: token usage of the 6 Oct 2026 A4 u P run x tariff USD 0.04/M input, 0/M output (spec decision-machine-1.json), per 1,000 decisions on the v1.6.1 common cost basis (591 of 600 items; the 9 A4 u P items outside the Jev reference's accepted input range are excluded, cost-basis-a4.json)"
+      },
+      "speed": {
+        "p50_s_raw": 0.167,
+        "p50_s_adjusted": 0.167,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "decision-machine-1",
+        "display": "decision-machine-1 (milliseconds.ai)",
+        "provider": "milliseconds.ai (Baptiste Laget)",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "proprietary API, closed weights",
+        "developerPrice": 0.02449299492385787,
+        "basePrice": null,
+        "officialCost": 0.02449299492385787,
+        "alternativePrice": null,
+        "p50": 0.167,
+        "p95": 0.303,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 46.13
+    },
+    {
+      "ci": [
+        0.3,
+        5.7
+      ],
+      "key": "jevact",
+      "display": "JevAct (einptein, jev1-2b-v2)",
+      "author": "einptein",
+      "repo": "https://github.com/fstandhartinger/jevbench/issues/66",
+      "class": "jev-rebuild",
+      "arch": "closed-api",
+      "archBadges": {
+        "derivation": null,
+        "params": null,
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key jevact records a hosted API with no public evaluated weights."
+        }
+      ],
+      "rank": 25,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 1.11,
+      "axes": {
+        "intelligence": 10.1,
+        "calibration": 47.44,
+        "speed": 76.45,
+        "cost": 68.56
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "estimate",
+        "usd_per_1000": 0.011167487684729064,
+        "basis": "v1.5.4 published cost per 1,000 decisions carried (pricing rules unchanged; v1.6 item lengths differ): ESTIMATE: v1.5 measured-input proxy; no exact base-model floor applies"
+      },
+      "speed": {
+        "p50_s_raw": 0.4005,
+        "p50_s_adjusted": 0.801,
+        "adjustment": "x2 (demo)"
+      },
+      "endpoint_kind": "demo",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": false,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "jevact",
+        "display": "JevAct (einptein, jev1-2b-v2)",
+        "provider": "einptein",
+        "family": null,
+        "modelClass": "closed-api",
+        "open": "no",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "not stated (the author published only an endpoint and the evaluation client)",
+        "developerPrice": 0.011167487684729064,
+        "basePrice": null,
+        "officialCost": 0.011167487684729064,
+        "alternativePrice": null,
+        "p50": 0.801,
+        "p95": 2.829,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 28.77
+    },
+    {
+      "ci": [
+        0.10777031922591683,
+        1.0393833813480395
+      ],
+      "key": "fastino-gliner-2-5-decide",
+      "display": "Fastino GLiNER-2.5-Decide (hosted API)",
+      "author": "Fastino",
+      "repo": "https://fastino.ai/",
+      "class": "decision-api",
+      "arch": "open-encoder",
+      "archBadges": {
+        "derivation": "fine-tune",
+        "params": "340M",
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/blob/5a7adf72a23b4d311abae6ce050d7f0012bb3416/README.md",
+          "kind": "model-card",
+          "fact": "Apache-2.0 open weights; base_model fastino/gliner2-large-v1; encoder DeBERTa-v3-large (GLiNER2 family classifier)."
+        },
+        {
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/blob/5a7adf72a23b4d311abae6ce050d7f0012bb3416/config.json",
+          "kind": "config.json",
+          "fact": "model_name microsoft/deberta-v3-large."
+        },
+        {
+          "url": "https://docs.fastino.ai/concepts/gliner-2-5-decide.md",
+          "kind": "provider-docs",
+          "fact": "Fastino documents the hosted fastino/GLiNER-2.5-Decide (340M) as 'Open and deployable - Apache 2.0 open weights'. Measured here through Fastino's hosted endpoint, so the row stays an API offering."
+        }
+      ],
+      "rank": 26,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": "API measurement: the operator's endpoint received the full sealed set (1,200 items) and the public set, without answers. Earlier API-subset answers were reused; only the missing sealed items were sent (v1.6.1).",
+      "draw_tag": null,
+      "jevbench_score": 0.34332996901846624,
+      "axes": {
+        "calibration": 62.13288114639033,
+        "cost": 45.81558630529788,
+        "intelligence": 7.011351364482595,
+        "speed": 84.7052606179839
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "basis": "ESTIMATE: published Fastino sources conflict (USD 0.03/M vs 0.15/M input); conservative higher USD 0.15/M input, 0/M output x measured tokens; no invoice",
+        "common_basis": {
+          "n_items": 1477,
+          "rule": "common",
+          "usd_per_1000_all_items": 0.07366349999999999
+        },
+        "kind": "mixed",
+        "usage_estimated_rows": 15,
+        "usd_per_1000": 0.06399515910629654
+      },
+      "speed": {
+        "p50_s_raw": 0.4409300498664379,
+        "p50_s_adjusted": 0.4409300498664379,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "external hosted API (Fastino); received the full set: 1,200 sealed + 300 public items (v1.6.1)",
+      "note": null,
+      "openSource": false,
+      "isNew": true,
+      "offering_metadata": {
+        "key": "fastino-gliner-2-5-decide",
+        "display": "Fastino GLiNER-2.5-Decide (hosted API)",
+        "provider": "Fastino",
+        "family": null,
+        "modelClass": "open-encoder",
+        "open": "no",
+        "api": true,
+        "newInVersion": true,
+        "parameters": null,
+        "licence": "proprietary hosted API",
+        "developerPrice": 0.06399515910629654,
+        "basePrice": null,
+        "officialCost": 0.06399515910629654,
+        "alternativePrice": null,
+        "p50": 0.4409300498664379,
+        "p95": 0.7675456959754229,
+        "jevClass": {
+          "status": "eligible",
+          "reason": "within the official Jev-class caps"
+        }
+      },
+      "capability_derived": 34.57211625543646
+    },
+    {
+      "ci": [
+        0,
+        0
+      ],
+      "key": "qwen3.8-27b",
+      "display": "Qwen3.8 27B (Chutes TEE)",
+      "author": "Qwen / Chutes",
+      "repo": "https://benchmarkheaven.com/jev-models/qwen3.8-27b",
+      "class": "llm-baseline",
+      "arch": "open-llm-decoder",
+      "archBadges": {
+        "derivation": null,
+        "params": "27B",
+        "quant": null
+      },
+      "archEvidence": [
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/blob/1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0/config.json",
+          "kind": "config.json",
+          "fact": "architectures: [\"Qwen3_5ForConditionalGeneration\"]; model_type: \"qwen3_5\"; text_config.model_type: \"qwen3_5_text\""
+        },
+        {
+          "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/main/data/raw/benchmarks/jevbench/v1.6/jevbench-v1.6.0-dated-carry.json",
+          "kind": "artifact",
+          "fact": "Artifact key qwen3.8-27b identifies the evaluated model as: Qwen3.8-27B"
+        }
+      ],
+      "rank": 27,
+      "ranked": true,
+      "listing": "ranked",
+      "not_ranked_because": null,
+      "api_flag": true,
+      "api_exposure_note": null,
+      "draw_tag": null,
+      "jevbench_score": 0,
+      "axes": {
+        "intelligence": 96.38,
+        "calibration": 100,
+        "speed": 57.43,
+        "cost": 0
+      },
+      "public_accuracy": null,
+      "sealed_accuracy": null,
+      "public_minus_sealed_gap_pp": null,
+      "cost": {
+        "kind": "estimate",
+        "usd_per_1000": 2.1783887438423646,
+        "basis": "v1.5.4 published cost per 1,000 decisions carried (pricing rules unchanged; v1.6 item lengths differ): ESTIMATE: exact base-model market reference (operator tariff excluded by 30-day rule)"
+      },
+      "speed": {
+        "p50_s_raw": 7.095,
+        "p50_s_adjusted": 7.095,
+        "adjustment": "none (API)"
+      },
+      "endpoint_kind": "api",
+      "endpoint_condition": "$undefined",
+      "note": null,
+      "openSource": true,
+      "isNew": false,
+      "offering_metadata": {
+        "key": "qwen3.8-27b",
+        "display": "Qwen3.8 27B (Chutes TEE)",
+        "provider": "Qwen / Chutes",
+        "family": null,
+        "modelClass": "open-llm-decoder",
+        "open": "weights",
+        "api": true,
+        "newInVersion": false,
+        "parameters": null,
+        "licence": "open weights",
+        "developerPrice": 2.1783887438423646,
+        "basePrice": null,
+        "officialCost": 2.1783887438423646,
+        "alternativePrice": null,
+        "p50": 7.095,
+        "p95": 25.469,
+        "jevClass": {
+          "status": "outside",
+          "reason": "cost 67.4× Jev (v1.5 reference); latency 11.5× Jev (v1.5 reference)"
+        }
+      },
+      "capability_derived": 98.19
+    }
+  ],
+  "interpretation": [
+    "Public third-party observations, not new measurements by this project.",
+    "API offerings include hosted open-weight models; this is not the self-hosted board.",
+    "Intelligence and Calibration are normalized scores, not raw accuracy percentages.",
+    "Composite is the equal-weight harmonic mean with low-axis gates.",
+    "Cost is modeled list-price cost or an explicitly marked estimate, not an invoice.",
+    "The board combines full-set and equated API subsets, with historical measurement dates.",
+    "GPT-6.1 Sol and Strands Decider v19 are not ranked entries on this API board."
+  ]
+}

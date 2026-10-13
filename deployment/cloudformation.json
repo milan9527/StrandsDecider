@@ -349,6 +349,43 @@
                   "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/openai.gpt-6.1-sol"
                 }
               ]
+            },
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "bedrock:InvokeModel",
+              "Resource": [
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.openai.gpt-6-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-1::foundation-model/openai.gpt-6-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-2::foundation-model/openai.gpt-6-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/openai.gpt-6-sol"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-1::foundation-model/*"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-2::foundation-model/*"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-1::foundation-model/*"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/*"
+                },
+                {
+                  "Fn::Sub": "arn:${AWS::Partition}:bedrock:::foundation-model/*"
+                }
+              ]
             }
           ]
         }
@@ -628,6 +665,42 @@
                     },
                     {
                       "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/openai.gpt-6.1-sol"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "bedrock:InvokeModel",
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/us.openai.gpt-6-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-1::foundation-model/openai.gpt-6-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-2::foundation-model/openai.gpt-6-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/openai.gpt-6-sol"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-1::foundation-model/*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-east-2::foundation-model/*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-1::foundation-model/*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:us-west-2::foundation-model/*"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:::foundation-model/*"
                     }
                   ]
                 }

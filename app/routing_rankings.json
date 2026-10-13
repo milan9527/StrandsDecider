@@ -1,0 +1,791 @@
+{
+  "schema_version": 1,
+  "profile": {
+    "id": "livebench",
+    "name": "LiveBench",
+    "url": "https://livebench.ai/",
+    "release": "2026-06-25",
+    "quality_label": "LiveBench 各类别均分",
+    "coding_label": "LiveBench Coding",
+    "speed_available": false,
+    "note": "分数按官方类别分组计算；价格来自同批次 cost CSV，是外部参考价，非 Bedrock 报价。"
+  },
+  "embedding_source": {
+    "name": "MTEB",
+    "url": "https://huggingface.co/spaces/mteb/leaderboard",
+    "revision": "34a4409680a1deeb9ffc06942be546c6bed6a3e8",
+    "metric": "MIRACL hard negatives dev · en/zh mean nDCG@10 × 100",
+    "note": "本项目取中英文两个子集均分，不是 MTEB 总榜；CC0 结果，提交结果可来自模型提供方。"
+  },
+  "entries": {
+    "openai.gpt-5.4": {
+      "source": "livebench",
+      "source_id": "gpt-5.4-xhigh",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-5.4-xhigh",
+      "request_fields": {
+        "reasoning": {
+          "effort": "xhigh"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 77.97244047619047,
+        "coding": 77.5415,
+        "reasoning": 88.1155,
+        "language": 82.63366666666667,
+        "input_price": 2.5,
+        "output_price": 15.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 88.1155,
+        "Coding": 77.5415,
+        "Agentic Coding": 53.83833333333333,
+        "Mathematics": 94.148,
+        "Data Analysis": 79.31333333333333,
+        "Language": 82.63366666666667,
+        "IF": 70.21675
+      }
+    },
+    "openai.gpt-5.5": {
+      "source": "livebench",
+      "source_id": "gpt-5.5-xhigh",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-5.5-xhigh",
+      "request_fields": {
+        "reasoning": {
+          "effort": "xhigh"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 80.18829761904762,
+        "coding": 82.14949999999999,
+        "reasoning": 89.65375,
+        "language": 87.363,
+        "input_price": 5.0,
+        "output_price": 30.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 89.65375,
+        "Coding": 82.14949999999999,
+        "Agentic Coding": 53.989666666666665,
+        "Mathematics": 95.85725,
+        "Data Analysis": 81.57566666666666,
+        "Language": 87.363,
+        "IF": 70.72925
+      }
+    },
+    "openai.gpt-5.6-sol": {
+      "source": "livebench",
+      "source_id": "gpt-5.6-sol-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-5.6-sol-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 81.05354761904762,
+        "coding": 83.941,
+        "reasoning": 91.65375,
+        "language": 87.68366666666667,
+        "input_price": 5.0,
+        "output_price": 30.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 91.65375,
+        "Coding": 83.941,
+        "Agentic Coding": 56.212,
+        "Mathematics": 96.19775,
+        "Data Analysis": 79.84066666666666,
+        "Language": 87.68366666666667,
+        "IF": 71.846
+      }
+    },
+    "openai.gpt-5.6-terra": {
+      "source": "livebench",
+      "source_id": "gpt-5.6-terra-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-5.6-terra-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 77.93625,
+        "coding": 78.24549999999999,
+        "reasoning": 90.6345,
+        "language": 82.89266666666667,
+        "input_price": 2.5,
+        "output_price": 15.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 90.6345,
+        "Coding": 78.24549999999999,
+        "Agentic Coding": 54.949666666666666,
+        "Mathematics": 94.90825,
+        "Data Analysis": 79.30666666666667,
+        "Language": 82.89266666666667,
+        "IF": 64.6165
+      }
+    },
+    "openai.gpt-5.6-luna": {
+      "source": "livebench",
+      "source_id": "gpt-5.6-luna-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-5.6-luna-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 73.55938095238095,
+        "coding": 82.91499999999999,
+        "reasoning": 85.64425,
+        "language": 72.56700000000001,
+        "input_price": 1.0,
+        "output_price": 6.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 85.64425,
+        "Coding": 82.91499999999999,
+        "Agentic Coding": 48.434333333333335,
+        "Mathematics": 87.20075,
+        "Data Analysis": 78.03333333333333,
+        "Language": 72.56700000000001,
+        "IF": 60.121
+      }
+    },
+    "openai.gpt-6-sol": {
+      "source": "livebench",
+      "source_id": "gpt-6-sol-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-6-sol-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 79.24545238095237,
+        "coding": 81.767,
+        "reasoning": 88.65375,
+        "language": 85.29866666666666,
+        "input_price": 2.0,
+        "output_price": 10.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 88.65375,
+        "Coding": 81.767,
+        "Agentic Coding": 52.87866666666667,
+        "Mathematics": 96.356,
+        "Data Analysis": 81.18933333333334,
+        "Language": 85.29866666666666,
+        "IF": 68.57475
+      }
+    },
+    "openai.gpt-6-luna": {
+      "source": "livebench",
+      "source_id": "gpt-6-luna-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-6-luna-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 72.02647619047619,
+        "coding": 78.95,
+        "reasoning": 81.76925,
+        "language": 73.82766666666666,
+        "input_price": 0.1,
+        "output_price": 0.5,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 81.76925,
+        "Coding": 78.95,
+        "Agentic Coding": 51.212,
+        "Mathematics": 89.1235,
+        "Data Analysis": 73.36966666666666,
+        "Language": 73.82766666666666,
+        "IF": 55.93325
+      }
+    },
+    "openai.gpt-6-astra": {
+      "source": "livebench",
+      "source_id": "gpt-6-astra-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-6-astra-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 82.16064285714286,
+        "coding": 80.35849999999999,
+        "reasoning": 92.65375,
+        "language": 89.43066666666667,
+        "input_price": 10.0,
+        "output_price": 50.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 92.65375,
+        "Coding": 80.35849999999999,
+        "Agentic Coding": 57.323,
+        "Mathematics": 96.80625,
+        "Data Analysis": 82.97333333333333,
+        "Language": 89.43066666666667,
+        "IF": 75.57900000000001
+      }
+    },
+    "openai.gpt-6.1-sol": {
+      "source": "livebench",
+      "source_id": "gpt-6.1-sol-max",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "gpt-6.1-sol-max",
+      "request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 81.61566666666667,
+        "coding": 80.35849999999999,
+        "reasoning": 92.6345,
+        "language": 90.126,
+        "input_price": 2.0,
+        "output_price": 10.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 92.6345,
+        "Coding": 80.35849999999999,
+        "Agentic Coding": 54.54533333333333,
+        "Mathematics": 96.83175,
+        "Data Analysis": 82.65933333333334,
+        "Language": 90.126,
+        "IF": 74.15424999999999
+      }
+    },
+    "anthropic.claude-opus-4-6-v1": {
+      "source": "livebench",
+      "source_id": "claude-opus-4-6-thinking-auto-high-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-opus-4-6-thinking-auto-high-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "high"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 74.51990476190477,
+        "coding": 78.1845,
+        "reasoning": 88.673,
+        "language": 83.26966666666667,
+        "input_price": 5.0,
+        "output_price": 25.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 88.673,
+        "Coding": 78.1845,
+        "Agentic Coding": 48.989666666666665,
+        "Mathematics": 89.31700000000001,
+        "Data Analysis": 69.893,
+        "Language": 83.26966666666667,
+        "IF": 63.3125
+      }
+    },
+    "anthropic.claude-opus-4-7": {
+      "source": "livebench",
+      "source_id": "claude-opus-4-7-xhigh-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-opus-4-7-xhigh-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "xhigh"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 76.52935714285714,
+        "coding": 82.088,
+        "reasoning": 87.19225,
+        "language": 77.914,
+        "input_price": 5.0,
+        "output_price": 25.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 87.19225,
+        "Coding": 82.088,
+        "Agentic Coding": 50.656333333333336,
+        "Mathematics": 92.85375,
+        "Data Analysis": 78.26366666666667,
+        "Language": 77.914,
+        "IF": 66.7375
+      }
+    },
+    "anthropic.claude-opus-4-8": {
+      "source": "livebench",
+      "source_id": "claude-opus-4-8-max-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-opus-4-8-max-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 76.2239880952381,
+        "coding": 81.828,
+        "reasoning": 89.19225,
+        "language": 79.65933333333334,
+        "input_price": 5.0,
+        "output_price": 25.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 89.19225,
+        "Coding": 81.828,
+        "Agentic Coding": 50.505,
+        "Mathematics": 94.3165,
+        "Data Analysis": 66.03333333333333,
+        "Language": 79.65933333333334,
+        "IF": 72.0335
+      }
+    },
+    "anthropic.claude-opus-5": {
+      "source": "livebench",
+      "source_id": "claude-opus-5-max-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-opus-5-max-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 80.08497619047618,
+        "coding": 81.4455,
+        "reasoning": 91.2115,
+        "language": 88.688,
+        "input_price": 5.0,
+        "output_price": 25.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 91.2115,
+        "Coding": 81.4455,
+        "Agentic Coding": 65.202,
+        "Mathematics": 95.731,
+        "Data Analysis": 74.55033333333333,
+        "Language": 88.688,
+        "IF": 63.7665
+      }
+    },
+    "anthropic.claude-opus-5-5": {
+      "source": "livebench",
+      "source_id": "claude-opus-5-5-max-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-opus-5-5-max-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 83.21657142857143,
+        "coding": 89.253,
+        "reasoning": 92.15375,
+        "language": 86.27,
+        "input_price": 4.0,
+        "output_price": 20.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 92.15375,
+        "Coding": 89.253,
+        "Agentic Coding": 71.717,
+        "Mathematics": 97.0775,
+        "Data Analysis": 80.307,
+        "Language": 86.27,
+        "IF": 65.73775
+      }
+    },
+    "anthropic.claude-sonnet-4-6": {
+      "source": "livebench",
+      "source_id": "claude-sonnet-4-6-thinking-auto-medium-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-sonnet-4-6-thinking-auto-medium-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "medium"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 72.9900238095238,
+        "coding": 79.2715,
+        "reasoning": 84.76925,
+        "language": 76.10266666666666,
+        "input_price": 3.0,
+        "output_price": 15.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 84.76925,
+        "Coding": 79.2715,
+        "Agentic Coding": 42.626,
+        "Mathematics": 86.994,
+        "Data Analysis": 77.946,
+        "Language": 76.10266666666666,
+        "IF": 63.22075
+      }
+    },
+    "anthropic.claude-sonnet-5": {
+      "source": "livebench",
+      "source_id": "claude-sonnet-5-xhigh-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-sonnet-5-xhigh-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "xhigh"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 76.03971428571428,
+        "coding": 80.68,
+        "reasoning": 88.69225,
+        "language": 74.97033333333333,
+        "input_price": 3.0,
+        "output_price": 15.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 88.69225,
+        "Coding": 80.68,
+        "Agentic Coding": 59.394,
+        "Mathematics": 92.94225,
+        "Data Analysis": 71.74066666666667,
+        "Language": 74.97033333333333,
+        "IF": 63.8585
+      }
+    },
+    "anthropic.claude-sonnet-5-5": {
+      "source": "livebench",
+      "source_id": "claude-sonnet-5-5-max-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-sonnet-5-5-max-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 75.67214285714286,
+        "coding": 91.366,
+        "reasoning": 91.6345,
+        "language": 77.984,
+        "input_price": 2.0,
+        "output_price": 10.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 91.6345,
+        "Coding": 91.366,
+        "Agentic Coding": 56.31333333333333,
+        "Mathematics": 96.13175,
+        "Data Analysis": 59.48766666666667,
+        "Language": 77.984,
+        "IF": 56.78775
+      }
+    },
+    "anthropic.claude-haiku-5-5": {
+      "source": "livebench",
+      "source_id": "claude-haiku-5-5-max-effort",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "claude-haiku-5-5-max-effort",
+      "request_fields": {
+        "thinking": {
+          "type": "adaptive"
+        },
+        "output_config": {
+          "effort": "max"
+        }
+      },
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 67.88196428571429,
+        "coding": 77.863,
+        "reasoning": 84.6345,
+        "language": 62.628,
+        "input_price": 0.1,
+        "output_price": 0.5,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 84.6345,
+        "Coding": 77.863,
+        "Agentic Coding": 57.17166666666667,
+        "Mathematics": 86.435,
+        "Data Analysis": 51.78333333333333,
+        "Language": 62.628,
+        "IF": 54.65825
+      }
+    },
+    "moonshotai.kimi-k3": {
+      "source": "livebench",
+      "source_id": "kimi-k3",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "kimi-k3",
+      "request_fields": {},
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 79.19304761904762,
+        "coding": 81.4455,
+        "reasoning": 90.673,
+        "language": 85.528,
+        "input_price": 3.0,
+        "output_price": 15.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 90.673,
+        "Coding": 81.4455,
+        "Agentic Coding": 62.17166666666667,
+        "Mathematics": 84.43675,
+        "Data Analysis": 78.73366666666666,
+        "Language": 85.528,
+        "IF": 71.36275
+      }
+    },
+    "zai.glm-5.3": {
+      "source": "livebench",
+      "source_id": "glm-5.3",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "glm-5.3",
+      "request_fields": {},
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 76.13780952380952,
+        "coding": 78.95,
+        "reasoning": 85.803,
+        "language": 79.85633333333334,
+        "input_price": 1.4,
+        "output_price": 4.4,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 85.803,
+        "Coding": 78.95,
+        "Agentic Coding": 60.909,
+        "Mathematics": 87.898,
+        "Data Analysis": 70.24433333333333,
+        "Language": 79.85633333333334,
+        "IF": 69.304
+      }
+    },
+    "xai.grok-4.6": {
+      "source": "livebench",
+      "source_id": "grok-4.6",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "grok-4.6",
+      "request_fields": {},
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 78.042,
+        "coding": 76.77600000000001,
+        "reasoning": 90.5095,
+        "language": 83.697,
+        "input_price": 2.0,
+        "output_price": 6.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 90.5095,
+        "Coding": 76.77600000000001,
+        "Agentic Coding": 57.02,
+        "Mathematics": 92.568,
+        "Data Analysis": 73.857,
+        "Language": 83.697,
+        "IF": 71.8665
+      }
+    },
+    "xai.grok-4.7": {
+      "source": "livebench",
+      "source_id": "grok-4.7-xhigh",
+      "source_url": "https://livebench.ai/",
+      "benchmark_configuration": "grok-4.7-xhigh",
+      "request_fields": {},
+      "configuration_note": "按映射请求推理配置；token 上限及运行环境与基准测试不完全相同。",
+      "metrics": {
+        "quality": 77.39673809523809,
+        "coding": 77.1585,
+        "reasoning": 82.65375,
+        "language": 80.13866666666667,
+        "input_price": 2.0,
+        "output_price": 6.0,
+        "output_tps": null,
+        "ttft_seconds": null
+      },
+      "category_scores": {
+        "Reasoning": 82.65375,
+        "Coding": 77.1585,
+        "Agentic Coding": 53.989666666666665,
+        "Mathematics": 95.678,
+        "Data Analysis": 76.88333333333334,
+        "Language": 80.13866666666667,
+        "IF": 75.27525
+      }
+    },
+    "cohere.embed-english-v3": {
+      "source": "mteb",
+      "source_id": "Cohere__Cohere-embed-english-v3.0",
+      "source_url": "https://raw.githubusercontent.com/embeddings-benchmark/results/34a4409680a1deeb9ffc06942be546c6bed6a3e8/results/Cohere__Cohere-embed-english-v3.0/1/MIRACLRetrievalHardNegatives.json",
+      "benchmark_configuration": "MIRACLRetrievalHardNegatives · dev · en/zh · float",
+      "request_fields": {},
+      "metrics": {
+        "retrieval": 30.651
+      },
+      "subsets": {
+        "en": 0.57124,
+        "zh": 0.04178
+      },
+      "dataset_revision": "95c8db7d4a6e9c1d8a60601afd63d553ae20a2eb",
+      "mteb_version": "1.18.0"
+    },
+    "cohere.embed-multilingual-v3": {
+      "source": "mteb",
+      "source_id": "Cohere__Cohere-embed-multilingual-v3.0",
+      "source_url": "https://raw.githubusercontent.com/embeddings-benchmark/results/34a4409680a1deeb9ffc06942be546c6bed6a3e8/results/Cohere__Cohere-embed-multilingual-v3.0/1/MIRACLRetrievalHardNegatives.json",
+      "benchmark_configuration": "MIRACLRetrievalHardNegatives · dev · en/zh · float",
+      "request_fields": {},
+      "metrics": {
+        "retrieval": 59.224999999999994
+      },
+      "subsets": {
+        "en": 0.57802,
+        "zh": 0.60648
+      },
+      "dataset_revision": "95c8db7d4a6e9c1d8a60601afd63d553ae20a2eb",
+      "mteb_version": "1.18.0"
+    },
+    "cohere.embed-v4:0": {
+      "source": "mteb",
+      "source_id": "Cohere__Cohere-embed-v4.0",
+      "source_url": "https://raw.githubusercontent.com/embeddings-benchmark/results/34a4409680a1deeb9ffc06942be546c6bed6a3e8/results/Cohere__Cohere-embed-v4.0/1/MIRACLRetrievalHardNegatives.json",
+      "benchmark_configuration": "MIRACLRetrievalHardNegatives · dev · en/zh · float",
+      "request_fields": {},
+      "metrics": {
+        "retrieval": 50.663500000000006
+      },
+      "subsets": {
+        "en": 0.46532,
+        "zh": 0.54795
+      },
+      "dataset_revision": "95c8db7d4a6e9c1d8a60601afd63d553ae20a2eb",
+      "mteb_version": "1.38.54"
+    }
+  },
+  "evidence": [
+    {
+      "url": "https://livebench.ai/table_2026_06_25.csv",
+      "sha256": "bf9ce6130134893d61157c214865de13d265a5e30790ff6cd4e3142a25113799"
+    },
+    {
+      "url": "https://livebench.ai/categories_2026_06_25.json",
+      "sha256": "dad300ad18655b69db720e1b88fc5a5eac06c5b2f0e52c2bf50f10ff057674f3"
+    },
+    {
+      "url": "https://livebench.ai/cost_2026_06_25.csv",
+      "sha256": "97b94c053871780242f941b04c5a08e297efc02c364913562140d048629ef7e5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/embeddings-benchmark/results/34a4409680a1deeb9ffc06942be546c6bed6a3e8/results/Cohere__Cohere-embed-english-v3.0/1/MIRACLRetrievalHardNegatives.json",
+      "sha256": "23c3b10e0452b1ff3be5353ea01bb3f255d013c8d56d4ecafb3216dd8c0dfbfc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/embeddings-benchmark/results/34a4409680a1deeb9ffc06942be546c6bed6a3e8/results/Cohere__Cohere-embed-multilingual-v3.0/1/MIRACLRetrievalHardNegatives.json",
+      "sha256": "570c9435ca1f5d7f4700b3023b49b3367c892d81351c629e96e0b7979adbc322"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/embeddings-benchmark/results/34a4409680a1deeb9ffc06942be546c6bed6a3e8/results/Cohere__Cohere-embed-v4.0/1/MIRACLRetrievalHardNegatives.json",
+      "sha256": "f5998f14b80182f6a36b2878f8a20d2ced344abe6f95f3d63da2408f2526a234"
+    }
+  ],
+  "version": "75d59020478318df",
+  "captured_at": "2026-10-13T12:12:29.210512+00:00"
+}
