@@ -243,8 +243,8 @@ Decider 数字二选一在较优项排第一时 3/3，交换顺序后 0/3。自�
 | [Skills 按业务分组](../jev_skills/SCENARIO_SUMMARY.zh.md) | 六类能力、逐题映射；其“尚未运行浏览器/游戏”为当时状态 |
 | [支付业务解释](../../docs/MODEL_COMPARISON.md) | 原始选择、执行保护、完成口径 |
 | [支付真实回执](../../docs/results/triple-2026-10-12.json) | 主要批次与连接修复前失败 |
-| [俄罗斯方块主比较](https://github.com/milan9527/StrandsDeciderTetris/blob/main/docs/JEV_DECIDER.zh.md) | 两版本、固定棋盘、选项顺序诊断；[本仓库数据副本与来源映射](sources/manifest.json) |
-| [游戏显示修复核验](https://github.com/milan9527/StrandsDeciderTetris/blob/main/docs/PLAYBACK_FIX.zh.md) | 区分决策、执行和页面显示 |
+| [俄罗斯方块主比较数据](sources/tetris/docs/results/jev-decider-quality/summary.json) | 两版本、固定棋盘、选项顺序诊断；[数据副本与来源映射](sources/manifest.json) |
+| 游戏显示修复核验〔独立项目本地记录〕 | 区分决策、执行和页面显示；不参与模型成绩统计，显示核验完整轨迹未收录于本次公开副本 |
 | [浏览器与金融完整报告](../browser_finance/README.zh.md) | 网站、原始金融来源、评分修正与复现 |
 | [浏览器截图及金融逐题对比](../browser_finance/report.html) | 可切换任务与重复轮次 |
 | [类 OpenRouter 模型选择实测](../model_routing/README.zh.md) | 224 次调用、两种表达、约束与预算错误、分层路由建议 |

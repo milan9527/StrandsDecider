@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-10-15T02:40:37.353788+00:00",
+  "created_at": "2026-10-15T02:42:43.249000+00:00",
   "source_checkout": "StrandsDeciderSkill",
   "target_repository": "milan9527/StrandsDecider",
   "summary": "README.md",
@@ -350,7 +350,7 @@
     "jev_skills/source.json": "5597d1a7c425cbeddbc76ae7b02eec5528c5a67135babc57c815ca6b132c8b74",
     "jev_skills/test_run.py": "c51ff5912ff55d74bf2277a4cf1d7d18b467b5faa8f9c597b6fc35082f256ec5",
     "jev_skills/verification.json": "bafb76cf5d96d424bccd8ddd78f1b03d77621a97b2e9510b3effa7a9fd7570d8",
-    "model_comparison/README.zh.md": "c6f37d4ffe0aa3d1dc0baca9507cf17447ebd11e2bf73fe946bff10d89e00028",
+    "model_comparison/README.zh.md": "31f9ac460ba9535d347cb2b8f571096af218a481e18dcbcec649b8c3f20c4e9b",
     "model_comparison/sources/manifest.json": "72cec82cf8a76bad8941b052edf762feba75a870a319f82dd39cc363178e90ae",
     "model_comparison/sources/tetris/docs/results/jev-decider-quality/probe-summary.json": "3af3c40239e4c94021135bcd4b7045370525671d6df93e271abe8420f94569d1",
     "model_comparison/sources/tetris/docs/results/jev-decider-quality/summary.json": "ea0c05805894fa9d466f7324b59f7a4b230909763f6a678bfd6b1a1fd8adee04",
@@ -368,7 +368,7 @@
     "model_comparison/sources/tetris/docs/results/policy/plain-seed-42-summary.json": "7ebc797528bb52e7620e3b672d435b80de4f441fc00ab3caaa0529a0f0ca3de3",
     "model_comparison/sources/tetris/docs/results/policy/plain-seed-7-summary.json": "c8ad5816ad9d340cd18f66f2e9cdb31560795b5c966412fa13fa8ef3aba9ce13",
     "model_comparison/summary.json": "37df96234e8b147c238702b143d4c5746a219238e80a0d28799c9263b6c2d925",
-    "model_comparison/verification.json": "16c261b90f2f785b22f3b514ed8a9ebc6d7dccc44761bea78df7ae53add57330",
+    "model_comparison/verification.json": "e33d6f2a35b7b95f87b3a1ab3ed6ba55d623f1eb6a81f01e387f65655e6e4b83",
     "model_routing/.gitignore": "7503c4aa8efb0fa789d79a4ca20ff862c42608b959f9af9d3a4806a397561aed",
     "model_routing/README.zh.md": "6f7f41ab812bb53369c84531f0425c6a8c67e7e0add8e835c7880f2649e60c34",
     "model_routing/audit.py": "9855789bb9d79cc98bcfc8a0563275a0a152eb51ad0c22284936263ca2fae654",
@@ -402,5 +402,15 @@
   "preserved_original_whitespace": [
     "browser_finance/sources/news-dataset-README.md: upstream trailing spaces kept to preserve source hash",
     "jev_skills/research/SCENARIO_SOURCES.zh.md: original final blank line kept to preserve historical audit hash"
-  ]
+  ],
+  "external_report_checks": {
+    "JEV_DECIDER.zh.md": {
+      "anonymous_status": 404,
+      "publication_action": "Use bundled game result evidence; do not link this unavailable report."
+    },
+    "PLAYBACK_FIX.zh.md": {
+      "anonymous_status": 404,
+      "publication_action": "Use bundled game result evidence; do not link this unavailable report."
+    }
+  }
 }
