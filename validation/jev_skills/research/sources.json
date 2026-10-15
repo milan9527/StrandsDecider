@@ -1,0 +1,2494 @@
+{
+  "researched_at": "2026-10-12T07:34:53.618900+00:00",
+  "upstream": {
+    "url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md",
+    "commit": "48ba080ab973f11247d6686dc2e3c1d117d76ca3",
+    "sha256": "9b96778a00b6162a3863e6731169223f41a69bca560860263cf9b0d1540751ba",
+    "line_count": 3131
+  },
+  "scope": {
+    "project_table_entries": 66,
+    "other_projects_and_credited_directories": 8,
+    "scenario_count": 108,
+    "additional_scenario_urls": 34,
+    "implementations_followed_from_posts": 3,
+    "new_live_application_runs": 0,
+    "recursive_catalog_audit": false
+  },
+  "hash_note": "sha256 records downloaded source bytes/text encoding, not our summary. text_path points into the ignored local cache; use fetched_url/commit for retrieval.",
+  "local_cache_root": ".deployment/jev-skills-research",
+  "primary_sources": [
+    {
+      "id": "P01",
+      "group": "应用",
+      "type": "Browser",
+      "name": "Jev Ultrafast",
+      "url": "https://github.com/browser-use/jev-ultrafast",
+      "description": "DOM 动作选择，小模型补输入",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.437630+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/browser-use/jev-ultrafast/1231850a0bf1a0c0341fe408ef1668dbbfdfac46/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "browser-use/jev-ultrafast",
+      "commit": "1231850a0bf1a0c0341fe408ef1668dbbfdfac46",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/browser-use/jev-ultrafast/1231850a0bf1a0c0341fe408ef1668dbbfdfac46/README.md",
+      "text_path": "sources/P01.txt",
+      "sha256": "29f5276b3e6295cabe322cda598e354a9e053dbfd9d831d20f09d0cca279a379",
+      "text_chars": 8448
+    },
+    {
+      "id": "P02",
+      "group": "应用",
+      "type": "Browser",
+      "name": "WebMCP / WindTunnel",
+      "url": "https://github.com/nekuda-ai/WindTunnel",
+      "description": "网站工具选择与浏览器评测",
+      "source_label": "报告",
+      "observed_at": "2026-10-12T07:22:58.438036+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/nekuda-ai/WindTunnel/5ca8644e23826ebb30108e7bad240b61043bfe67/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "nekuda-ai/WindTunnel",
+      "commit": "5ca8644e23826ebb30108e7bad240b61043bfe67",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/nekuda-ai/WindTunnel/5ca8644e23826ebb30108e7bad240b61043bfe67/README.md",
+      "text_path": "sources/P02.txt",
+      "sha256": "3ad0e26260ce814a1ff5909b6f02eb006beb05ea45f5e4a02f2851bf539effff",
+      "text_chars": 20674
+    },
+    {
+      "id": "P03",
+      "group": "应用",
+      "type": "Browser",
+      "name": "Stagehand + Jev",
+      "url": "https://x.com/kylejeong/status/2101046888468553855",
+      "description": "接进 act / observe / extract",
+      "source_label": "作者原帖",
+      "observed_at": "2026-10-12T07:22:58.438338+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/kylejeong/status/2101046888468553855",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/kylejeong/status/2101046888468553855",
+      "text_path": "sources/P03.txt",
+      "sha256": "45822a1178f38dbd19ff84e40f054f235698a06c7e01575180fc04ad4fab778e",
+      "text_chars": 4604
+    },
+    {
+      "id": "P04",
+      "group": "应用",
+      "type": "Browser",
+      "name": "Jev Browser Use",
+      "url": "https://github.com/wy-coliney/jev-browser-use",
+      "description": "Codex 输入并验证，Jev 选控件",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.438633+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/wy-coliney/jev-browser-use/cf7e76607d4ec70592b24becadd0296dcda8177a/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "wy-coliney/jev-browser-use",
+      "commit": "cf7e76607d4ec70592b24becadd0296dcda8177a",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/wy-coliney/jev-browser-use/cf7e76607d4ec70592b24becadd0296dcda8177a/README.md",
+      "text_path": "sources/P04.txt",
+      "sha256": "fa4c5cdf0df8ee7a24a9f8fbc56e0c500a86aefdc6a5bfe9f1b583347ff25b5c",
+      "text_chars": 9208
+    },
+    {
+      "id": "P05",
+      "group": "应用",
+      "type": "调研",
+      "name": "Jev Social",
+      "url": "https://github.com/socai-io/jev-social",
+      "description": "Jev 选择受限的社交浏览器动作，socai CLI 在用户已登录的 Chrome 中执行并保留来源链接证据",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.439007+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/socai-io/jev-social/2776b1827e6037354e2f8b772aac689f0779bb43/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "socai-io/jev-social",
+      "commit": "2776b1827e6037354e2f8b772aac689f0779bb43",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/socai-io/jev-social/2776b1827e6037354e2f8b772aac689f0779bb43/README.md",
+      "text_path": "sources/P05.txt",
+      "sha256": "81c1469a3f68a0ca0718b28b2d5134783b0131b9ab7584edf8b050ea08cd2ae6",
+      "text_chars": 17023
+    },
+    {
+      "id": "P06",
+      "group": "应用",
+      "type": "Desktop",
+      "name": "Jev Desktop",
+      "url": "https://github.com/yikangy873-gif/jev-desktop",
+      "description": "已有 Codex CUA 环境里的受限控件选择",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.440161+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/yikangy873-gif/jev-desktop/9b02783ed96a81f2529827492de708ca1956c265/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "yikangy873-gif/jev-desktop",
+      "commit": "9b02783ed96a81f2529827492de708ca1956c265",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/yikangy873-gif/jev-desktop/9b02783ed96a81f2529827492de708ca1956c265/README.md",
+      "text_path": "sources/P06.txt",
+      "sha256": "1b27c53b05893fa952306f05a6879be4c480167ec2f4f01c3cde9faa0d982261",
+      "text_chars": 8471
+    },
+    {
+      "id": "P07",
+      "group": "应用",
+      "type": "Agent",
+      "name": "Jev Codex Router",
+      "url": "https://github.com/0xNatoshi/jev-codex-router",
+      "description": "逐轮选模型档位，先看影子模式",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.440469+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/0xNatoshi/jev-codex-router/8701ef788aa8cb0948f299538747fb01029d32b8/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "0xNatoshi/jev-codex-router",
+      "commit": "8701ef788aa8cb0948f299538747fb01029d32b8",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/0xNatoshi/jev-codex-router/8701ef788aa8cb0948f299538747fb01029d32b8/README.md",
+      "text_path": "sources/P07.txt",
+      "sha256": "064bd1347ed441cc7eae6e6f164ed4b0165191a134ef619cb54514d144576d77",
+      "text_chars": 24222
+    },
+    {
+      "id": "P08",
+      "group": "应用",
+      "type": "Agent",
+      "name": "Codex Jev Router (suenot)",
+      "url": "https://github.com/suenot/codex-jev-router",
+      "description": "根据任务摘要选择 Codex 子代理模型与推理档位；本地置信度门槛未通过时回退到 Sol",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.440738+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/suenot/codex-jev-router/1d4790bbd70413bca476c65070c26a1ee88888f9/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "suenot/codex-jev-router",
+      "commit": "1d4790bbd70413bca476c65070c26a1ee88888f9",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/suenot/codex-jev-router/1d4790bbd70413bca476c65070c26a1ee88888f9/README.md",
+      "text_path": "sources/P08.txt",
+      "sha256": "9c61f3d8a3f51e9b6fb89dee7e13bbf81ffdd7bc96887eb993cc14e884ab2c4f",
+      "text_chars": 7785
+    },
+    {
+      "id": "P09",
+      "group": "应用",
+      "type": "Context",
+      "name": "winnow",
+      "url": "https://github.com/GhalebDweikat/winnow",
+      "description": "可恢复的工具结果裁剪",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.606058+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/GhalebDweikat/winnow/4547a81b88ac59a902bad7b0006137c7d4147aeb/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "GhalebDweikat/winnow",
+      "commit": "4547a81b88ac59a902bad7b0006137c7d4147aeb",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/GhalebDweikat/winnow/4547a81b88ac59a902bad7b0006137c7d4147aeb/README.md",
+      "text_path": "sources/P09.txt",
+      "sha256": "c914d34decb4ef6722cb31b53d4942ffd688f3afc8a5e465dbee8ca352c3520a",
+      "text_chars": 26274
+    },
+    {
+      "id": "P10",
+      "group": "应用",
+      "type": "Review",
+      "name": "Jev Review",
+      "url": "https://github.com/devagrawal09/jev-review",
+      "description": "分阶段代码审查与面板",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.608843+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/devagrawal09/jev-review/31f89602797fb7bea007f8a480bf368bf564954e/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "devagrawal09/jev-review",
+      "commit": "31f89602797fb7bea007f8a480bf368bf564954e",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/devagrawal09/jev-review/31f89602797fb7bea007f8a480bf368bf564954e/README.md",
+      "text_path": "sources/P10.txt",
+      "sha256": "d8d98618015949ce1ab1c820d28d84ed64601fa7dd81c4bdbfde2fb9e30a9afe",
+      "text_chars": 3371
+    },
+    {
+      "id": "P11",
+      "group": "应用",
+      "type": "Search",
+      "name": "Blink (ellipsis-dev)",
+      "url": "https://github.com/ellipsis-dev/blink",
+      "description": "按文件和目录名找代码，不等于完整审查",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.616861+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/ellipsis-dev/blink/a621ede75649303a933828c18c27ad800bb43ef0/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "ellipsis-dev/blink",
+      "commit": "a621ede75649303a933828c18c27ad800bb43ef0",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/ellipsis-dev/blink/a621ede75649303a933828c18c27ad800bb43ef0/README.md",
+      "text_path": "sources/P11.txt",
+      "sha256": "168cf8958a9c569df45a586438099e2774b5b96e4ede7665d1008eaefbd20a44",
+      "text_chars": 4112
+    },
+    {
+      "id": "P12",
+      "group": "应用",
+      "type": "Context",
+      "name": "fast-jev-compaction",
+      "url": "https://github.com/tamaratran/fast-jev-compaction",
+      "description": "选择保留历史，注意缓存和删除风险",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.619836+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/tamaratran/fast-jev-compaction/e3f262a7f4d42bd8dd32ced30d26176f7cb545b0/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "tamaratran/fast-jev-compaction",
+      "commit": "e3f262a7f4d42bd8dd32ced30d26176f7cb545b0",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/tamaratran/fast-jev-compaction/e3f262a7f4d42bd8dd32ced30d26176f7cb545b0/README.md",
+      "text_path": "sources/P12.txt",
+      "sha256": "5499bdb4f3ec13ac9e228cb09ab2894fd1a4e3128db04722735dbfc794f27299",
+      "text_chars": 8660
+    },
+    {
+      "id": "P13",
+      "group": "应用",
+      "type": "Context",
+      "name": "compact-adviser",
+      "url": "https://github.com/kunchenguid/compact-adviser",
+      "description": "判断压缩时机，不是删哪些内容",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.621147+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/kunchenguid/compact-adviser/7dc0693ea7f209067453f2874d02afc2fe83b128/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "kunchenguid/compact-adviser",
+      "commit": "7dc0693ea7f209067453f2874d02afc2fe83b128",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/kunchenguid/compact-adviser/7dc0693ea7f209067453f2874d02afc2fe83b128/README.md",
+      "text_path": "sources/P13.txt",
+      "sha256": "d0063834ecab7533560f157700cd2523cf84ffe24916ca92b4e4c0b5af787bc1",
+      "text_chars": 14796
+    },
+    {
+      "id": "P14",
+      "group": "应用",
+      "type": "Agent",
+      "name": "pi-warden",
+      "url": "https://github.com/DevMortimer/pi-warden",
+      "description": "检查跑偏、循环与无证据的完成声明",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.668775+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/DevMortimer/pi-warden/74989d5adf091c9cb5651450917d9f110e3fba2d/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "DevMortimer/pi-warden",
+      "commit": "74989d5adf091c9cb5651450917d9f110e3fba2d",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/DevMortimer/pi-warden/74989d5adf091c9cb5651450917d9f110e3fba2d/README.md",
+      "text_path": "sources/P14.txt",
+      "sha256": "e85b1e3c48f9862ec0b0f3b1ee06473c74d2c93d2fa6096f3ae57d29cbd5a806",
+      "text_chars": 17429
+    },
+    {
+      "id": "P15",
+      "group": "应用",
+      "type": "Security",
+      "name": "jev-shield (caiovicentino)",
+      "url": "https://github.com/caiovicentino/jev-shield",
+      "description": "MCP 语义筛查，不是安全边界",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.680721+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/caiovicentino/jev-shield/ea13a3be94c6af4ace7912de5909678e5e24941f/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "caiovicentino/jev-shield",
+      "commit": "ea13a3be94c6af4ace7912de5909678e5e24941f",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/caiovicentino/jev-shield/ea13a3be94c6af4ace7912de5909678e5e24941f/README.md",
+      "text_path": "sources/P15.txt",
+      "sha256": "90dc0dc68a8386ae0144eee0f52cb6ccdee83b4df4aae306947b6ec00ce3f47f",
+      "text_chars": 6787
+    },
+    {
+      "id": "P16",
+      "group": "应用",
+      "type": "Data",
+      "name": "pg-jev",
+      "url": "https://github.com/realZachi/pg-jev",
+      "description": "语义 SQL 扩展，需要 plpython3u / 超级用户",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.745991+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/realZachi/pg-jev/e3450d44f7f6745aa2d728c9289b9ca4a6feda9a/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "realZachi/pg-jev",
+      "commit": "e3450d44f7f6745aa2d728c9289b9ca4a6feda9a",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/realZachi/pg-jev/e3450d44f7f6745aa2d728c9289b9ca4a6feda9a/README.md",
+      "text_path": "sources/P16.txt",
+      "sha256": "e98b6dfe50b695b02ddf4331171e2563a58271d4e383bf39f1365e0fb8c2318d",
+      "text_chars": 13373
+    },
+    {
+      "id": "P17",
+      "group": "应用",
+      "type": "Data",
+      "name": "jevql",
+      "url": "https://github.com/kylemclaren/jevql",
+      "description": "CLI 语义判断加普通 Postgres 查询",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.770004+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/kylemclaren/jevql/274532af852e8edfb7715ec6dca1113e589cb191/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "kylemclaren/jevql",
+      "commit": "274532af852e8edfb7715ec6dca1113e589cb191",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/kylemclaren/jevql/274532af852e8edfb7715ec6dca1113e589cb191/README.md",
+      "text_path": "sources/P17.txt",
+      "sha256": "a1333f459a42a610b9ee37d10bc47b5177414587f432cd7e8f6a9b371545c008",
+      "text_chars": 15229
+    },
+    {
+      "id": "P18",
+      "group": "应用",
+      "type": "Search",
+      "name": "jevsearch",
+      "url": "https://github.com/kylemclaren/jevsearch",
+      "description": "shadcn ⌘K 站内搜索：先出关键词结果，再用一次 Jev 调用重排前 20 条",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.778274+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/kylemclaren/jevsearch/1df37decb960b3c4826c71b41d3393c15a8f28d3/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "kylemclaren/jevsearch",
+      "commit": "1df37decb960b3c4826c71b41d3393c15a8f28d3",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/kylemclaren/jevsearch/1df37decb960b3c4826c71b41d3393c15a8f28d3/README.md",
+      "text_path": "sources/P18.txt",
+      "sha256": "65aef37ad69294c8233a52a6c9f4f6f8b61329fa2a50a4b351d6dfb582aa8c46",
+      "text_chars": 7605
+    },
+    {
+      "id": "P19",
+      "group": "应用",
+      "type": "Search",
+      "name": "JevPDF",
+      "url": "https://github.com/kylemclaren/jevpdf",
+      "description": "用自己的话问 PDF，每行一个 Noul，高亮匹配的行",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.788238+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/kylemclaren/jevpdf/7f230370961c4a8e2f8b19c1729085b852124448/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "kylemclaren/jevpdf",
+      "commit": "7f230370961c4a8e2f8b19c1729085b852124448",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/kylemclaren/jevpdf/7f230370961c4a8e2f8b19c1729085b852124448/README.md",
+      "text_path": "sources/P19.txt",
+      "sha256": "67f9e82980330fbb9c2c0df15d854f154d6ed9ec89dfa3732a0ee2b766a7bde7",
+      "text_chars": 5355
+    },
+    {
+      "id": "P20",
+      "group": "应用",
+      "type": "Research",
+      "name": "1kpapers",
+      "url": "https://www.1kpapers.com/",
+      "description": "论文浏览：生成模型写摘要，Jev 选主题",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:58.807996+00:00",
+      "attempts": [
+        {
+          "url": "https://www.1kpapers.com/",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://www.1kpapers.com/",
+      "text_path": "sources/P20.txt",
+      "sha256": "754aab3f4f17b408bc9f8ea934d2ae79a78df3754e724182e2c6a64b0dd39730",
+      "text_chars": 4561
+    },
+    {
+      "id": "P21",
+      "group": "应用",
+      "type": "Inbox",
+      "name": "500 / 1,500-email demos",
+      "url": "https://madewithjev.com/builds/inbox-triage-1500-emails",
+      "description": "批量邮件分类，吞吐量不代表准确率",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:58.860642+00:00",
+      "attempts": [
+        {
+          "url": "https://madewithjev.com/builds/inbox-triage-1500-emails",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://madewithjev.com/builds/inbox-triage-1500-emails",
+      "text_path": "sources/P21.txt",
+      "sha256": "a36f40b6b72433c4e33ec6b5736a49726cd419fb9c0c29227a226ad61d04f927",
+      "text_chars": 10720
+    },
+    {
+      "id": "P22",
+      "group": "应用",
+      "type": "Messaging",
+      "name": "Jev Chat Assistant",
+      "url": "https://github.com/jev-chat/jev-chat-jarvis",
+      "description": "安卓悬浮窗：Jev 判断 QQ / X / 飞书当前对话的意图、危险等级和下一步动作，并给 3 条起草好的候选回复排序；应用只填入、不代发",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.869919+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/README.md",
+          "status": 404
+        },
+        {
+          "url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/readme.md",
+          "status": 404
+        },
+        {
+          "url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/README.rst",
+          "status": 404
+        },
+        {
+          "url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/README",
+          "status": 404
+        }
+      ],
+      "repo": "jev-chat/jev-chat-jarvis",
+      "commit": "fdf8d28c811b0b67016d815df674cc61603c33c8",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/.github/README.zh-CN.md",
+      "text_path": "sources/P22--.github--README.zh-CN.md",
+      "sha256": "d172f076d9381ec4d95c1778eac257a3668d04b5fdb4db96ec52290758eed653",
+      "text_chars": 7834
+    },
+    {
+      "id": "P23",
+      "group": "应用",
+      "type": "Content",
+      "name": "724-ad teardown",
+      "url": "https://x.com/TheMattBerman/status/2100654891756589230",
+      "description": "每条广告多维判断，再汇总对比",
+      "source_label": "作者原帖",
+      "observed_at": "2026-10-12T07:22:58.891179+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/TheMattBerman/status/2100654891756589230",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/TheMattBerman/status/2100654891756589230",
+      "text_path": "sources/P23.txt",
+      "sha256": "4db76fe53185ccc2f165b12f2a3e16282583adf38f75f23c3619da58b78307a4",
+      "text_chars": 2753
+    },
+    {
+      "id": "P24",
+      "group": "应用",
+      "type": "Content",
+      "name": "SuperX draft scoring",
+      "url": "https://x.com/robj3d3/status/2100722975645598191",
+      "description": "用标准审稿，不保证传播效果",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:58.940294+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/robj3d3/status/2100722975645598191",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/robj3d3/status/2100722975645598191",
+      "text_path": "sources/P24.txt",
+      "sha256": "613420ef5fb1c34d0c6733fa5e9d7d46db14b6bd0e34633c08eb050cafc03e4a",
+      "text_chars": 4548
+    },
+    {
+      "id": "P25",
+      "group": "应用",
+      "type": "Video",
+      "name": "Sponsor Skipper",
+      "url": "https://github.com/trungdq88/youtube-sponsor-detection",
+      "description": "把转写窗口变成赞助口播时间段",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.942861+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/trungdq88/youtube-sponsor-detection/de01f0568d043035889a296a61ce21e0accc8b16/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "trungdq88/youtube-sponsor-detection",
+      "commit": "de01f0568d043035889a296a61ce21e0accc8b16",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/trungdq88/youtube-sponsor-detection/de01f0568d043035889a296a61ce21e0accc8b16/README.md",
+      "text_path": "sources/P25.txt",
+      "sha256": "095eed873cf27de241b683ea9dc83ffbff064545917c18e18fa5367231a70080",
+      "text_chars": 7747
+    },
+    {
+      "id": "P26",
+      "group": "应用",
+      "type": "UI",
+      "name": "jev-ui (etweisberg)",
+      "url": "https://github.com/etweisberg/jev-ui",
+      "description": "选择已有 React 视图与可选提示",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.962030+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/etweisberg/jev-ui/42984d88e20aeb4b17af645c893c22fd71414f05/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "etweisberg/jev-ui",
+      "commit": "42984d88e20aeb4b17af645c893c22fd71414f05",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/etweisberg/jev-ui/42984d88e20aeb4b17af645c893c22fd71414f05/README.md",
+      "text_path": "sources/P26.txt",
+      "sha256": "cbebe83bf31ce5416d0cef26ee611de332ae1db7a5ec3dad2383cb4fd8382fc0",
+      "text_chars": 6776
+    },
+    {
+      "id": "P27",
+      "group": "应用",
+      "type": "Music",
+      "name": "Jevthoven",
+      "url": "https://github.com/cocktailpeanut/jevthoven",
+      "description": "选择音乐部件，代码生成可编辑 MIDI",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.981039+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/cocktailpeanut/jevthoven/e5e0c67d8bae92f96c9ce05138f55c3ab72c6aac/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "cocktailpeanut/jevthoven",
+      "commit": "e5e0c67d8bae92f96c9ce05138f55c3ab72c6aac",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/cocktailpeanut/jevthoven/e5e0c67d8bae92f96c9ce05138f55c3ab72c6aac/README.md",
+      "text_path": "sources/P27.txt",
+      "sha256": "e2ad0f23f0bab4abe0121eafd91bf9d9b7b0bc076c489ac950c43bef6d94820f",
+      "text_chars": 6512
+    },
+    {
+      "id": "P28",
+      "group": "应用",
+      "type": "Game",
+      "name": "Jev Tetris",
+      "url": "https://github.com/thelau/jev-tetris",
+      "description": "合法落点与简单基线对照",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:58.991314+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/thelau/jev-tetris/9869b602965cf002afff766013f8c068846d36aa/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "thelau/jev-tetris",
+      "commit": "9869b602965cf002afff766013f8c068846d36aa",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/thelau/jev-tetris/9869b602965cf002afff766013f8c068846d36aa/README.md",
+      "text_path": "sources/P28.txt",
+      "sha256": "3fea94145dcd52b18e47ca3f8671d83cf89cdf8819d659cf413df0068c264a55",
+      "text_chars": 7187
+    },
+    {
+      "id": "P29",
+      "group": "应用",
+      "type": "Game",
+      "name": "typesafe-mario",
+      "url": "https://github.com/fhshaik/typesafe-mario",
+      "description": "从结构化模拟器状态里选控制动作",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.075292+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/fhshaik/typesafe-mario/ca22449ed187118d19326d1f54b01b6636578aa4/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "fhshaik/typesafe-mario",
+      "commit": "ca22449ed187118d19326d1f54b01b6636578aa4",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/fhshaik/typesafe-mario/ca22449ed187118d19326d1f54b01b6636578aa4/README.md",
+      "text_path": "sources/P29.txt",
+      "sha256": "c489f93504144937f7c8088f681d0d6370d46114ca6d09987f405b120a357504",
+      "text_chars": 4356
+    },
+    {
+      "id": "P30",
+      "group": "应用",
+      "type": "Language",
+      "name": "Probably",
+      "url": "https://x.com/southpolesteve/status/2100767781868150938",
+      "description": "语义控制流玩具，每个循环要设上限",
+      "source_label": "作者原帖",
+      "observed_at": "2026-10-12T07:22:59.111014+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/southpolesteve/status/2100767781868150938",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/southpolesteve/status/2100767781868150938",
+      "text_path": "sources/P30.txt",
+      "sha256": "f2ab060bb76c05fcb064826e763cc10cbc4972b504adfd01509e76c2c6ddfcd4",
+      "text_chars": 3485
+    },
+    {
+      "id": "P31",
+      "group": "应用",
+      "type": "应用",
+      "name": "Doom & Wikiracing",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "description": "官方游戏演示；该页面未给出独立源码仓库。",
+      "source_label": "Author demo",
+      "observed_at": "2026-10-12T07:22:59.144893+00:00",
+      "attempts": [
+        {
+          "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "text_path": "sources/P31.txt",
+      "sha256": "41c2973ba8f5d993ac36eee7444b7fc222cbd782dbb07e3cf788d0f73e5d2665",
+      "text_chars": 14243
+    },
+    {
+      "id": "P32",
+      "group": "本地模型",
+      "type": "Alternative",
+      "name": "OpenJev (DiffusionGemma)",
+      "url": "https://github.com/razorback16/openjev",
+      "description": "另一种开放模型的类型化决策服务",
+      "source_label": "其他模型 README",
+      "observed_at": "2026-10-12T07:22:59.145752+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/razorback16/openjev/dba783d9ce5327c1f97932a3074fd0c5bf5cb0d1/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "razorback16/openjev",
+      "commit": "dba783d9ce5327c1f97932a3074fd0c5bf5cb0d1",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/razorback16/openjev/dba783d9ce5327c1f97932a3074fd0c5bf5cb0d1/README.md",
+      "text_path": "sources/P32.txt",
+      "sha256": "4a624e4f5579bfbaccee12617aa07569221ebc10f61466fa852b8ea292f8b8d4",
+      "text_chars": 38977
+    },
+    {
+      "id": "P33",
+      "group": "本地模型",
+      "type": "Alternative",
+      "name": "OpenJev SGLang",
+      "url": "https://github.com/ekzhang/openjev-sglang",
+      "description": "基于开放模型 prefill / logits 的决策",
+      "source_label": "其他模型 README",
+      "observed_at": "2026-10-12T07:22:59.151319+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/ekzhang/openjev-sglang/bf6a53bbb1f75040b06de39abff1230524553ab5/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "ekzhang/openjev-sglang",
+      "commit": "bf6a53bbb1f75040b06de39abff1230524553ab5",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/ekzhang/openjev-sglang/bf6a53bbb1f75040b06de39abff1230524553ab5/README.md",
+      "text_path": "sources/P33.txt",
+      "sha256": "b4e6b3c8a28691fd219d7c6cb9302af7cb2b10d6dbbe3db51fbee474ee9a2321",
+      "text_chars": 12051
+    },
+    {
+      "id": "P34",
+      "group": "本地模型",
+      "type": "Alternative",
+      "name": "Jevify",
+      "url": "https://github.com/fidecastro/jevify",
+      "description": "本地模型适配器，应用相同留出集比较",
+      "source_label": "其他模型 README",
+      "observed_at": "2026-10-12T07:22:59.176980+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/fidecastro/jevify/2eace0905a883f6eff9bb5796a67b3be895eafa0/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "fidecastro/jevify",
+      "commit": "2eace0905a883f6eff9bb5796a67b3be895eafa0",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/fidecastro/jevify/2eace0905a883f6eff9bb5796a67b3be895eafa0/README.md",
+      "text_path": "sources/P34.txt",
+      "sha256": "3b61bd9182af248c4cf709341725f6790a28e10880cc7b9b36fd2fbe0fce1aec",
+      "text_chars": 15817
+    },
+    {
+      "id": "P35",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "jevlike",
+      "url": "https://github.com/vinnylarouge/jevlike",
+      "description": "训练小型选项评分模型，带 Doom 和国际象棋示例。",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.187173+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/vinnylarouge/jevlike/94f5fd1b0b11d52bbdfdf4e0ee6aa96b568f8452/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "vinnylarouge/jevlike",
+      "commit": "94f5fd1b0b11d52bbdfdf4e0ee6aa96b568f8452",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/vinnylarouge/jevlike/94f5fd1b0b11d52bbdfdf4e0ee6aa96b568f8452/README.md",
+      "text_path": "sources/P35.txt",
+      "sha256": "c1d7fd31d3cf95565ba7ec6190d8c01fcbf92ec6f24c4d67f733d59e742a40c5",
+      "text_chars": 7706
+    },
+    {
+      "id": "P36",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "Jev on a laptop",
+      "url": "https://github.com/rorshopping/jev-on-a-laptop",
+      "description": "在 Apple Silicon 上试用结构化决策、对比本地模型。",
+      "source_label": "Report",
+      "observed_at": "2026-10-12T07:22:59.253828+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/rorshopping/jev-on-a-laptop/5821d910610331a695f5185a6ad1d6b514e8a62f/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "rorshopping/jev-on-a-laptop",
+      "commit": "5821d910610331a695f5185a6ad1d6b514e8a62f",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/rorshopping/jev-on-a-laptop/5821d910610331a695f5185a6ad1d6b514e8a62f/README.md",
+      "text_path": "sources/P36.txt",
+      "sha256": "d24df25b79d5161f1f9236845cd2327a193d610dedad6947e2d4246436f341f0",
+      "text_chars": 9093
+    },
+    {
+      "id": "P37",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "Qwen-2.5-1B-RLCD",
+      "url": "https://huggingface.co/harshatheg/Qwen-2.5-1B-RLCD",
+      "description": "MLX 并行决策引擎；本次核查的版本不含权重文件。",
+      "source_label": "Model card",
+      "observed_at": "2026-10-12T07:22:59.321706+00:00",
+      "attempts": [
+        {
+          "url": "https://huggingface.co/api/models/harshatheg/Qwen-2.5-1B-RLCD",
+          "status": 200
+        },
+        {
+          "url": "https://huggingface.co/harshatheg/Qwen-2.5-1B-RLCD/raw/2af86848be75847ccb3553b0941cc51d6ef7e4e9/README.md",
+          "status": 200
+        }
+      ],
+      "commit": "2af86848be75847ccb3553b0941cc51d6ef7e4e9",
+      "model_id": "harshatheg/Qwen-2.5-1B-RLCD",
+      "status": "source_fetched",
+      "fetched_url": "https://huggingface.co/harshatheg/Qwen-2.5-1B-RLCD/raw/2af86848be75847ccb3553b0941cc51d6ef7e4e9/README.md",
+      "text_path": "sources/P37.txt",
+      "sha256": "7b785f1ca1c8951465631ed90ea99f543ee0f0b553b5826df06f36cb7334894a",
+      "text_chars": 11968
+    },
+    {
+      "id": "P38",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "SemIf",
+      "url": "https://github.com/TheoLeeCJ/SemIf",
+      "description": "用开放模型给选项评分，旧名 OpenJev。",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.341512+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/TheoLeeCJ/SemIf/23cf1f39fc9534fe81437200959b6dfc7106e45a/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "TheoLeeCJ/SemIf",
+      "commit": "23cf1f39fc9534fe81437200959b6dfc7106e45a",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/TheoLeeCJ/SemIf/23cf1f39fc9534fe81437200959b6dfc7106e45a/README.md",
+      "text_path": "sources/P38.txt",
+      "sha256": "89f00284285ea0dac7b0e10ff04ebe643e37fb1a3165ab7dbd13686e97d65f62",
+      "text_chars": 11658
+    },
+    {
+      "id": "P39",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "LitJev",
+      "url": "https://github.com/zhengxuyu/litjev",
+      "description": "无需训练，从 Qwen 模型读取选项分数。",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.358185+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/zhengxuyu/litjev/2cd915aff989b37bb1c46ef5ae480c4a01501404/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "zhengxuyu/litjev",
+      "commit": "2cd915aff989b37bb1c46ef5ae480c4a01501404",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/zhengxuyu/litjev/2cd915aff989b37bb1c46ef5ae480c4a01501404/README.md",
+      "text_path": "sources/P39.txt",
+      "sha256": "527833036f5c1be9faa671f2b811d46f37e45c5673282a7917481a35eb153a92",
+      "text_chars": 10189
+    },
+    {
+      "id": "P40",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "Laya",
+      "url": "https://huggingface.co/convaiinnovations/laya",
+      "description": "基于 ModernBERT 的选择、评分和判断模型。",
+      "source_label": "Model card",
+      "observed_at": "2026-10-12T07:22:59.377895+00:00",
+      "attempts": [
+        {
+          "url": "https://huggingface.co/api/models/convaiinnovations/laya",
+          "status": 200
+        },
+        {
+          "url": "https://huggingface.co/convaiinnovations/laya/raw/7b928d828b7b0e022f929d9bd2e44165aa270148/README.md",
+          "status": 200
+        }
+      ],
+      "commit": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+      "model_id": "convaiinnovations/laya",
+      "status": "source_fetched",
+      "fetched_url": "https://huggingface.co/convaiinnovations/laya/raw/7b928d828b7b0e022f929d9bd2e44165aa270148/README.md",
+      "text_path": "sources/P40.txt",
+      "sha256": "00355613796b3f5860b0d5b20392381d26580ec242e04a1fd150c7f116858602",
+      "text_chars": 22960
+    },
+    {
+      "id": "P41",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "LFM2.5-350M-RLCD",
+      "url": "https://huggingface.co/notnotsamuel/LFM2.5-350M-RLCD",
+      "description": "小型 Liquid 决策模型变体，使用前查看模型许可。",
+      "source_label": "Model card",
+      "observed_at": "2026-10-12T07:22:59.379799+00:00",
+      "attempts": [
+        {
+          "url": "https://huggingface.co/api/models/notnotsamuel/LFM2.5-350M-RLCD",
+          "status": 200
+        },
+        {
+          "url": "https://huggingface.co/notnotsamuel/LFM2.5-350M-RLCD/raw/deb589d803d141cabd158ef55f6617b128529f36/README.md",
+          "status": 200
+        }
+      ],
+      "commit": "deb589d803d141cabd158ef55f6617b128529f36",
+      "model_id": "notnotsamuel/LFM2.5-350M-RLCD",
+      "status": "source_fetched",
+      "fetched_url": "https://huggingface.co/notnotsamuel/LFM2.5-350M-RLCD/raw/deb589d803d141cabd158ef55f6617b128529f36/README.md",
+      "text_path": "sources/P41.txt",
+      "sha256": "ff299e25ff6de1f35e55145fc9342d24191f5926e81799384c48638a33a1316d",
+      "text_chars": 6860
+    },
+    {
+      "id": "P42",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "LFM2.5-2.6B-RLCD",
+      "url": "https://huggingface.co/monotykamary/LFM2.5-2.6B-RLCD",
+      "description": "较大的 Liquid 决策模型变体，使用前查看模型许可。",
+      "source_label": "Model card",
+      "observed_at": "2026-10-12T07:22:59.423603+00:00",
+      "attempts": [
+        {
+          "url": "https://huggingface.co/api/models/monotykamary/LFM2.5-2.6B-RLCD",
+          "status": 200
+        },
+        {
+          "url": "https://huggingface.co/monotykamary/LFM2.5-2.6B-RLCD/raw/31455458983bdbdc41b69ebbcedabd0d5de299c9/README.md",
+          "status": 200
+        }
+      ],
+      "commit": "31455458983bdbdc41b69ebbcedabd0d5de299c9",
+      "model_id": "monotykamary/LFM2.5-2.6B-RLCD",
+      "status": "source_fetched",
+      "fetched_url": "https://huggingface.co/monotykamary/LFM2.5-2.6B-RLCD/raw/31455458983bdbdc41b69ebbcedabd0d5de299c9/README.md",
+      "text_path": "sources/P42.txt",
+      "sha256": "b9d86e296390931ea5ac23848f232218469a18f9ed9f357a91ef8ddd685fa57a",
+      "text_chars": 29369
+    },
+    {
+      "id": "P43",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "Verdict / rlcd-modernbert-151m",
+      "url": "https://github.com/Heman10x-NGU/Verdict-open-jev",
+      "description": "ModernBERT 决策模型，带评测和浏览器示例。",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.424381+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/Heman10x-NGU/Verdict-open-jev/30f15564821626ca5c1ad5b2638c4eb7078787dd/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "Heman10x-NGU/Verdict-open-jev",
+      "commit": "30f15564821626ca5c1ad5b2638c4eb7078787dd",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/Heman10x-NGU/Verdict-open-jev/30f15564821626ca5c1ad5b2638c4eb7078787dd/README.md",
+      "text_path": "sources/P43.txt",
+      "sha256": "ebeb7410f73fdaa0b661580b044b08db6e4fe2e39fccfd48b70514714f826600",
+      "text_chars": 29249
+    },
+    {
+      "id": "P44",
+      "group": "本地模型",
+      "type": "本地模型",
+      "name": "jevos",
+      "url": "https://github.com/feder-cr/jev",
+      "description": "只支持是非判断，兼容 Jev API；一个 1B 模型（MiniCPM）裁剪至 17 层，纯 CPU GGUF，619 MB。",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.446815+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/feder-cr/jev/a8c2eff26c964724013b409e0e2def002111671d/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "feder-cr/jev",
+      "commit": "a8c2eff26c964724013b409e0e2def002111671d",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/feder-cr/jev/a8c2eff26c964724013b409e0e2def002111671d/README.md",
+      "text_path": "sources/P44.txt",
+      "sha256": "b81208589b510f59845850fce0397f60374ce9e4f70a5f42aca3436c634c922f",
+      "text_chars": 5943
+    },
+    {
+      "id": "P45",
+      "group": "工具与资源",
+      "type": "MCP",
+      "name": "TypeSafe MCP",
+      "url": "https://github.com/itsmostafa/typesafe-mcp",
+      "description": "通用 evaluate 工具，支持两种供应商",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.480396+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/itsmostafa/typesafe-mcp/87ee58a62be235e8d5ec02a448c3c8c64e5562dd/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "itsmostafa/typesafe-mcp",
+      "commit": "87ee58a62be235e8d5ec02a448c3c8c64e5562dd",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/itsmostafa/typesafe-mcp/87ee58a62be235e8d5ec02a448c3c8c64e5562dd/README.md",
+      "text_path": "sources/P45.txt",
+      "sha256": "130c6f1dc616c88dc7cc03fe04287ec29185fa4f73051542684ee9ad87d02d04",
+      "text_chars": 7834
+    },
+    {
+      "id": "P46",
+      "group": "工具与资源",
+      "type": "MCP",
+      "name": "Jev MCP (jkudish)",
+      "url": "https://github.com/jkudish/jev-mcp",
+      "description": "分类、重排、审查等命名工具",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.513179+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/jkudish/jev-mcp/86eae7861c60ea99a1b2eab2881db0fb1164fcc0/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "jkudish/jev-mcp",
+      "commit": "86eae7861c60ea99a1b2eab2881db0fb1164fcc0",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/jkudish/jev-mcp/86eae7861c60ea99a1b2eab2881db0fb1164fcc0/README.md",
+      "text_path": "sources/P46.txt",
+      "sha256": "c59e3d968d39b26d7e8015024166e2d8de4485bf527f23e2fe2ed0ccd0dca605",
+      "text_chars": 58540
+    },
+    {
+      "id": "P47",
+      "group": "工具与资源",
+      "type": "CLI",
+      "name": "SemDecide",
+      "url": "https://github.com/sharziki/semdecide",
+      "description": "语义谓词与 JSONL 管道",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.530861+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/sharziki/semdecide/33cf5c03c50e02e59df3f3ea81f0650f6b791545/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "sharziki/semdecide",
+      "commit": "33cf5c03c50e02e59df3f3ea81f0650f6b791545",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/sharziki/semdecide/33cf5c03c50e02e59df3f3ea81f0650f6b791545/README.md",
+      "text_path": "sources/P47.txt",
+      "sha256": "26559f1a7445c1da2bbffb65d7f1adfcaf0bd2092b3b45caa2c8b6f72d8f792e",
+      "text_chars": 6972
+    },
+    {
+      "id": "P48",
+      "group": "工具与资源",
+      "type": "CLI",
+      "name": "Supercov",
+      "url": "https://github.com/supercorp-ai/supercov",
+      "description": "给编程 Agent 的测试覆盖率、安全与代码质量：Jev 检查每个源文件，Agent 就知道先修什么",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.543659+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/supercorp-ai/supercov/ebf637118fae3d6c218d730835d1088efe59460e/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "supercorp-ai/supercov",
+      "commit": "ebf637118fae3d6c218d730835d1088efe59460e",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/supercorp-ai/supercov/ebf637118fae3d6c218d730835d1088efe59460e/README.md",
+      "text_path": "sources/P48.txt",
+      "sha256": "dd486e99e28a3df8aecafbbcd03bd5789aca6d96d8e79f42ef802fa60c1e25db",
+      "text_chars": 19144
+    },
+    {
+      "id": "P49",
+      "group": "工具与资源",
+      "type": "Skills",
+      "name": "jev-skill-gate",
+      "url": "https://github.com/ShivamPansuriya/jev-skill-gate",
+      "description": "筛相关技能，检查被隐藏的能力",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.605244+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/ShivamPansuriya/jev-skill-gate/6468fa596be757e7f700dd8bb3bd88ddc66ad397/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "ShivamPansuriya/jev-skill-gate",
+      "commit": "6468fa596be757e7f700dd8bb3bd88ddc66ad397",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/ShivamPansuriya/jev-skill-gate/6468fa596be757e7f700dd8bb3bd88ddc66ad397/README.md",
+      "text_path": "sources/P49.txt",
+      "sha256": "9e6e075af1a8537fa4978312aca5bedc2ce2fa29d089cc956d5a9da2c44238d6",
+      "text_chars": 20846
+    },
+    {
+      "id": "P50",
+      "group": "工具与资源",
+      "type": "Cascade",
+      "name": "Jev + Kimi fraud experiment",
+      "url": "https://madewithjev.com/",
+      "description": "先快速筛查，再复核不确定邮件",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:59.625302+00:00",
+      "attempts": [
+        {
+          "url": "https://madewithjev.com/",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://madewithjev.com/",
+      "text_path": "sources/P50.txt",
+      "sha256": "149d2f254a93d761bf8c5e248226f1e147f0ea7ac2377908b55fa21bed17dac6",
+      "text_chars": 37695
+    },
+    {
+      "id": "P51",
+      "group": "工具与资源",
+      "type": "Learn",
+      "name": "TypeSafe AI Playground",
+      "url": "https://github.com/TypeSafeAI/typesafe-playground",
+      "description": "社区 Playground，区分模拟和真实调用",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.656441+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/TypeSafeAI/typesafe-playground/f524842a88fa4df323d3a65b48e49fb43df92e53/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "TypeSafeAI/typesafe-playground",
+      "commit": "f524842a88fa4df323d3a65b48e49fb43df92e53",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/TypeSafeAI/typesafe-playground/f524842a88fa4df323d3a65b48e49fb43df92e53/README.md",
+      "text_path": "sources/P51.txt",
+      "sha256": "80e174dcbe4c01d5d905396f6538cfa810aff3c0ad5545b919d54d46f6250801",
+      "text_chars": 24187
+    },
+    {
+      "id": "P52",
+      "group": "工具与资源",
+      "type": "Learn",
+      "name": "Jev Explained",
+      "url": "https://github.com/davila7/jev-explained",
+      "description": "让 Agent 改写的小例子",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.675614+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/davila7/jev-explained/5cbe35e04609112be77b1bd447bd79b3bde7980b/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "davila7/jev-explained",
+      "commit": "5cbe35e04609112be77b1bd447bd79b3bde7980b",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/davila7/jev-explained/5cbe35e04609112be77b1bd447bd79b3bde7980b/README.md",
+      "text_path": "sources/P52.txt",
+      "sha256": "973a5336aa5b1de9668b2a055fc1586977fc62748673e1dfe8b57966b818f10d",
+      "text_chars": 5509
+    },
+    {
+      "id": "P53",
+      "group": "工具与资源",
+      "type": "Report",
+      "name": "jev-evaluation",
+      "url": "https://github.com/willkelly/jev-evaluation",
+      "description": "对抗样例、校准和批量判断实验",
+      "source_label": "报告",
+      "observed_at": "2026-10-12T07:22:59.700167+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/willkelly/jev-evaluation/d80f375621ad4b9306c6dff6941242925d7e2386/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "willkelly/jev-evaluation",
+      "commit": "d80f375621ad4b9306c6dff6941242925d7e2386",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/willkelly/jev-evaluation/d80f375621ad4b9306c6dff6941242925d7e2386/README.md",
+      "text_path": "sources/P53.txt",
+      "sha256": "ecdcd76c1fb51cb505b9180529a640630c956204984af91e9f54ad106a1536bc",
+      "text_chars": 12855
+    },
+    {
+      "id": "P54",
+      "group": "工具与资源",
+      "type": "Report",
+      "name": "PrimeLine comparison",
+      "url": "https://primeline.cc/blog/typesafe-jev-pre-registered-test",
+      "description": "任务依赖的结果，注意标签来源限制",
+      "source_label": "报告",
+      "observed_at": "2026-10-12T07:22:59.701195+00:00",
+      "attempts": [
+        {
+          "url": "https://primeline.cc/blog/typesafe-jev-pre-registered-test",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://primeline.cc/blog/typesafe-jev-pre-registered-test",
+      "text_path": "sources/P54.txt",
+      "sha256": "ee78e90e761bae01c247caeb000ee6a2453d2b96a8662d4ef5ced7db1fc90be1",
+      "text_chars": 65085
+    },
+    {
+      "id": "P55",
+      "group": "工具与资源",
+      "type": "Report",
+      "name": "LangChain Jev-as-a-Judge",
+      "url": "https://www.langchain.com/blog/jev-agent-evals-langsmith",
+      "description": "比较判分一致性、质量、延迟和成本",
+      "source_label": "报告",
+      "observed_at": "2026-10-12T07:22:59.741951+00:00",
+      "attempts": [
+        {
+          "url": "https://www.langchain.com/blog/jev-agent-evals-langsmith",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://www.langchain.com/blog/jev-agent-evals-langsmith",
+      "text_path": "sources/P55.txt",
+      "sha256": "25ed9ac9ff438e903e0a3fb2276b05b49b68a7ba9e6850d517866de9e7b7f12e",
+      "text_chars": 13979
+    },
+    {
+      "id": "P56",
+      "group": "工具与资源",
+      "type": "Report",
+      "name": "Jev in the Wild: A Data-Driven Analysis of the Jev Model's Functionality, Applications and Ecosystem",
+      "url": "https://arxiv.org/abs/2609.30216",
+      "description": "首个基于数据的 Jev 应用生态综述与分析：覆盖 2,170 个公开 GitHub 项目，记录早期增长、应用领域与决策用途分布。",
+      "source_label": "论文",
+      "observed_at": "2026-10-12T07:22:59.749470+00:00",
+      "attempts": [
+        {
+          "url": "https://arxiv.org/abs/2609.30216",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://arxiv.org/abs/2609.30216",
+      "text_path": "sources/P56.txt",
+      "sha256": "12aa410de653db075b729817a576d0c5b2f0b09fb9aa0daad031302a17a39da7",
+      "text_chars": 6271
+    },
+    {
+      "id": "P57",
+      "group": "工具与资源",
+      "type": "Methods",
+      "name": "HarmBench",
+      "url": "https://github.com/centerforaisafety/HarmBench",
+      "description": "分离样例生成、目标输出与评测",
+      "source_label": "方法参考",
+      "observed_at": "2026-10-12T07:22:59.765588+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/centerforaisafety/HarmBench/8e1604d1171fe8a48d8febecd22f600e462bdcdd/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "centerforaisafety/HarmBench",
+      "commit": "8e1604d1171fe8a48d8febecd22f600e462bdcdd",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/centerforaisafety/HarmBench/8e1604d1171fe8a48d8febecd22f600e462bdcdd/README.md",
+      "text_path": "sources/P57.txt",
+      "sha256": "baae4a0b64b61812e61a162eafb2ed344edbc151f57dd99c4af063e3d0efec5d",
+      "text_chars": 10329
+    },
+    {
+      "id": "P58",
+      "group": "工具与资源",
+      "type": "Methods",
+      "name": "PAIR",
+      "url": "https://github.com/patrickrchao/JailbreakingLLMs",
+      "description": "授权迭代红队方法，不是 Jev 应用",
+      "source_label": "方法参考",
+      "observed_at": "2026-10-12T07:22:59.817338+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/patrickrchao/JailbreakingLLMs/6379ef705a0fc745530f7d895963510c021b496a/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "patrickrchao/JailbreakingLLMs",
+      "commit": "6379ef705a0fc745530f7d895963510c021b496a",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/patrickrchao/JailbreakingLLMs/6379ef705a0fc745530f7d895963510c021b496a/README.md",
+      "text_path": "sources/P58.txt",
+      "sha256": "a191b3a0fb31adc056a02d708e939b3dc0425f7c6f10ea397497a0007a46cf22",
+      "text_chars": 4650
+    },
+    {
+      "id": "P59",
+      "group": "工具与资源",
+      "type": "Methods",
+      "name": "AgentDojo",
+      "url": "https://github.com/ethz-spylab/agentdojo",
+      "description": "结合任务结果的 Agent 注入评测",
+      "source_label": "方法参考",
+      "observed_at": "2026-10-12T07:22:59.838758+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/ethz-spylab/agentdojo/089ed468cf3ed0322acc66b0211f26d9d90dbf60/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "ethz-spylab/agentdojo",
+      "commit": "089ed468cf3ed0322acc66b0211f26d9d90dbf60",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/ethz-spylab/agentdojo/089ed468cf3ed0322acc66b0211f26d9d90dbf60/README.md",
+      "text_path": "sources/P59.txt",
+      "sha256": "d8c6460ecce9bbf59ed300fbc74b4440188f74cd147a7611836270be49e7660e",
+      "text_chars": 3182
+    },
+    {
+      "id": "P60",
+      "group": "工具与资源",
+      "type": "Directory",
+      "name": "Made with Jev",
+      "url": "https://madewithjev.com/",
+      "description": "项目、App、文章和作者演示索引",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:59.841561+00:00",
+      "attempts": [
+        {
+          "url": "https://madewithjev.com/",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://madewithjev.com/",
+      "text_path": "sources/P60.txt",
+      "sha256": "149d2f254a93d761bf8c5e248226f1e147f0ea7ac2377908b55fa21bed17dac6",
+      "text_chars": 37695
+    },
+    {
+      "id": "P61",
+      "group": "工具与资源",
+      "type": "Directory",
+      "name": "Awesome Jev (kraayenjon)",
+      "url": "https://github.com/kraayenjon/awesome-jev",
+      "description": "项目与实现方式的配套合集",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:22:59.849972+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/kraayenjon/awesome-jev/ea358b03743c8c7a26ff4467fc8fc99516a67c46/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "kraayenjon/awesome-jev",
+      "commit": "ea358b03743c8c7a26ff4467fc8fc99516a67c46",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/kraayenjon/awesome-jev/ea358b03743c8c7a26ff4467fc8fc99516a67c46/README.md",
+      "text_path": "sources/P61.txt",
+      "sha256": "c2367cc831ddbd689be3a4a18d50a740ef951a63cae4dea247cc3abbd981a8a6",
+      "text_chars": 79497
+    },
+    {
+      "id": "P62",
+      "group": "工具与资源",
+      "type": "Directory",
+      "name": "Awesome Jev (Anil-matcha)",
+      "url": "https://github.com/Anil-matcha/awesome-jev-by-typesafe",
+      "description": "更多项目与社区线索",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:59.876085+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/Anil-matcha/awesome-jev-by-typesafe/74c766198ff5c75feecadaeef0829808b9039288/README.md",
+          "status": 200
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Anil-matcha/awesome-jev-by-typesafe/74c766198ff5c75feecadaeef0829808b9039288/readme.md",
+          "status": 404
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Anil-matcha/awesome-jev-by-typesafe/74c766198ff5c75feecadaeef0829808b9039288/README.rst",
+          "status": 404
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Anil-matcha/awesome-jev-by-typesafe/74c766198ff5c75feecadaeef0829808b9039288/README",
+          "status": 404
+        }
+      ],
+      "repo": "Anil-matcha/awesome-jev-by-typesafe",
+      "commit": "74c766198ff5c75feecadaeef0829808b9039288",
+      "status": "empty_readme"
+    },
+    {
+      "id": "P63",
+      "group": "工具与资源",
+      "type": "Directory",
+      "name": "LINUX DO / QianCheng",
+      "url": "https://linux.do/t/topic/2919004",
+      "description": "带原帖链接的 39 项用途汇总",
+      "source_label": "汇总原文",
+      "observed_at": "2026-10-12T07:22:59.910142+00:00",
+      "attempts": [
+        {
+          "url": "https://linux.do/t/topic/2919004",
+          "status": 403
+        }
+      ],
+      "status": "source_unavailable"
+    },
+    {
+      "id": "P64",
+      "group": "工具与资源",
+      "type": "Directory",
+      "name": "laya.tools",
+      "url": "https://laya.tools",
+      "description": "基于开源 Jev 替代模型 Laya 的项目目录，按平台和用途浏览，附 Laya 与 Jev 对比",
+      "source_label": "目录线索",
+      "observed_at": "2026-10-12T07:22:59.926297+00:00",
+      "attempts": [
+        {
+          "url": "https://laya.tools",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://laya.tools",
+      "text_path": "sources/P64.txt",
+      "sha256": "5d83787b80f5e58fd3d0afe74dab3f7e6dfe764b869d03d33493e497ca357f27",
+      "text_chars": 10015
+    },
+    {
+      "id": "P65",
+      "group": "工具与资源",
+      "type": "工具与资源",
+      "name": "Awesome Jev (OmniJev)",
+      "url": "https://github.com/OmniJev/awesome-jev-gallery",
+      "description": "浏览开放模型、项目和独立评测。",
+      "source_label": "Directory",
+      "observed_at": "2026-10-12T07:22:59.943114+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/OmniJev/awesome-jev-gallery/15a61c0209d699bc9350d5585ff767d0c1077e2d/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "OmniJev/awesome-jev-gallery",
+      "commit": "15a61c0209d699bc9350d5585ff767d0c1077e2d",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/OmniJev/awesome-jev-gallery/15a61c0209d699bc9350d5585ff767d0c1077e2d/README.md",
+      "text_path": "sources/P65.txt",
+      "sha256": "7107a8458f058bdf7fcefe00256e936c40580ef6b781a13f4324dda11cc40787",
+      "text_chars": 84098
+    },
+    {
+      "id": "P66",
+      "group": "工具与资源",
+      "type": "工具与资源",
+      "name": "prompt2jev",
+      "url": "https://github.com/sumleo/prompt2jev",
+      "description": "把 Prompt 转成结构化问题和调用代码。",
+      "source_label": "README",
+      "observed_at": "2026-10-12T07:23:00.001873+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/sumleo/prompt2jev/f3b6bc763b742b9f489bf0fa0c9514e334996283/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "sumleo/prompt2jev",
+      "commit": "f3b6bc763b742b9f489bf0fa0c9514e334996283",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/sumleo/prompt2jev/f3b6bc763b742b9f489bf0fa0c9514e334996283/README.md",
+      "text_path": "sources/P66.txt",
+      "sha256": "8ef85d8dd1885733f70b6b1bb9541638d3fdb510d4394632f0c7b55c35243e8f",
+      "text_chars": 24304
+    },
+    {
+      "id": "X01",
+      "name": "Whale city",
+      "url": "https://x.com/gokayfem/status/2101022590722810271",
+      "group": "额外演示",
+      "observed_at": "2026-10-12T07:23:00.011719+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/gokayfem/status/2101022590722810271",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/gokayfem/status/2101022590722810271",
+      "text_path": "sources/X01.txt",
+      "sha256": "691257c822d204acddfd94ee5ced9f02a167cf24bf23324f45e6ef08b54567d1",
+      "text_chars": 2908
+    },
+    {
+      "id": "X02",
+      "name": "jev-trader",
+      "url": "https://github.com/jarrodwatts/jev-trader",
+      "group": "场景额外项目",
+      "observed_at": "2026-10-12T07:23:00.026323+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/jarrodwatts/jev-trader/b587759e459ea049590102e54a0b07800864cdc3/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "jarrodwatts/jev-trader",
+      "commit": "b587759e459ea049590102e54a0b07800864cdc3",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/jarrodwatts/jev-trader/b587759e459ea049590102e54a0b07800864cdc3/README.md",
+      "text_path": "sources/X02.txt",
+      "sha256": "f84691a188a7380ed35ae315b7ab18ff4a19c9408de1f6b755f6690296091861",
+      "text_chars": 5558
+    },
+    {
+      "id": "X03",
+      "name": "ST-jeved",
+      "url": "https://github.com/mossyfield/ST-jeved",
+      "group": "场景额外项目",
+      "observed_at": "2026-10-12T07:23:00.048653+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/mossyfield/ST-jeved/fec4a2d7edc3471d6860d438a7e4133b55d47c2d/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "mossyfield/ST-jeved",
+      "commit": "fec4a2d7edc3471d6860d438a7e4133b55d47c2d",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/mossyfield/ST-jeved/fec4a2d7edc3471d6860d438a7e4133b55d47c2d/README.md",
+      "text_path": "sources/X03.txt",
+      "sha256": "552305738b4beee8dbe0c642559801b7e8e3b3d32738e18723c5eb41152ee8d4",
+      "text_chars": 14250
+    },
+    {
+      "id": "X04",
+      "group": "致谢中的其他目录",
+      "name": "cobanov/awesome-jev",
+      "repo": "cobanov/awesome-jev",
+      "url": "https://github.com/cobanov/awesome-jev",
+      "status": "source_fetched",
+      "commit": "fd1dae00a49ce8b8bbe8b02e2f909f26c2243838",
+      "text_path": "sources/X04.txt",
+      "fetched_url": "https://raw.githubusercontent.com/cobanov/awesome-jev/fd1dae00a49ce8b8bbe8b02e2f909f26c2243838/README.md",
+      "sha256": "c104d29ae2368462654d0b4dd176e2f23ef891b61302953b3af8febff43a7891",
+      "text_chars": 76587
+    },
+    {
+      "id": "X05",
+      "group": "致谢中的其他目录",
+      "name": "yibie/awesome-jev",
+      "repo": "yibie/awesome-jev",
+      "url": "https://github.com/yibie/awesome-jev",
+      "status": "source_fetched",
+      "commit": "7afe0e1680cecee1e5942b7ed6949c9283eaec53",
+      "text_path": "sources/X05.txt",
+      "fetched_url": "https://raw.githubusercontent.com/yibie/awesome-jev/7afe0e1680cecee1e5942b7ed6949c9283eaec53/README.md",
+      "sha256": "3c46e2c81a3457698da56dc084e52b36d42b7b48d3609b6babdc10462eb99444",
+      "text_chars": 256256
+    },
+    {
+      "id": "X06",
+      "group": "致谢中的其他目录",
+      "name": "yzfly/awesome-jev-zh",
+      "repo": "yzfly/awesome-jev-zh",
+      "url": "https://github.com/yzfly/awesome-jev-zh",
+      "status": "source_fetched",
+      "commit": "d93ebcbc7f08c34c0c017e91eab80144cddde3ed",
+      "text_path": "sources/X06.txt",
+      "fetched_url": "https://raw.githubusercontent.com/yzfly/awesome-jev-zh/d93ebcbc7f08c34c0c017e91eab80144cddde3ed/README.md",
+      "sha256": "0c3eaabba408950c6a658f6f68d80d2826e9d35d93b6af2b638917f6c49775aa",
+      "text_chars": 82663
+    },
+    {
+      "id": "X07",
+      "group": "致谢中的其他目录",
+      "name": "hellogumbo/awesome-jev",
+      "repo": "hellogumbo/awesome-jev",
+      "url": "https://github.com/hellogumbo/awesome-jev",
+      "status": "source_fetched",
+      "commit": "4e0d0a9f3c09b0b81f89b654a287488f8feea1e5",
+      "text_path": "sources/X07.txt",
+      "fetched_url": "https://raw.githubusercontent.com/hellogumbo/awesome-jev/4e0d0a9f3c09b0b81f89b654a287488f8feea1e5/README.md",
+      "sha256": "11111da9eb5e44346314f297784481d535aee6fbdf62f41d461d45223ed9ccbc",
+      "text_chars": 286229
+    },
+    {
+      "id": "X08",
+      "group": "致谢中的其他目录",
+      "name": "logicrw/awesome-jev-projects",
+      "repo": "logicrw/awesome-jev-projects",
+      "url": "https://github.com/logicrw/awesome-jev-projects",
+      "status": "source_fetched",
+      "commit": "a7119a88aed5d3b3251b118e73478d2532f1258a",
+      "text_path": "sources/X08.txt",
+      "fetched_url": "https://raw.githubusercontent.com/logicrw/awesome-jev-projects/a7119a88aed5d3b3251b118e73478d2532f1258a/README.md",
+      "sha256": "fc665a7a31fae17a66b24d9553df81803c41e23fafec8b844be1d00b63c28a7a",
+      "text_chars": 564998
+    }
+  ],
+  "scenario_sources": [
+    {
+      "id": "S01",
+      "url": "https://blink.review/",
+      "name": "11. 给代码审查排优先级",
+      "scenario_ids": [
+        "sc-a12"
+      ],
+      "observed_at": "2026-10-12T07:28:37.026357+00:00",
+      "attempts": [
+        {
+          "url": "https://blink.review/",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://blink.review/",
+      "text_path": "sources/S01.txt",
+      "sha256": "60d6c52c852bfbcda82de1fdd005c521f6ea0ccd57570d55782c4b6aec9a41d5",
+      "text_chars": 1275,
+      "research_note": "Blink 官网是编辑后检查团队约定的产品；不要与文件导航实验的功能混为一谈。首页所称半秒内反馈没有配套质量基准。"
+    },
+    {
+      "id": "S02",
+      "url": "https://x.com/OpenRouter/status/2101412965765529853",
+      "name": "14. 把 Jev 用作可重复的评测裁判",
+      "scenario_ids": [
+        "sc-judge"
+      ],
+      "observed_at": "2026-10-12T07:28:37.026704+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/OpenRouter/status/2101412965765529853",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/OpenRouter/status/2101412965765529853",
+      "text_path": "sources/S02.txt",
+      "sha256": "2016b43593e9cff876914de898d99e562f04084a7c77ac68b322b6d5bf00878b",
+      "text_chars": 5142,
+      "research_note": "OpenRouter Ori Eval 原帖报告裁判延迟优势；速度不等于正确率，不能把不同评测来源直接合并。"
+    },
+    {
+      "id": "S03",
+      "url": "https://x.com/moritzkremb/status/2100566009312940457",
+      "name": "22. 给搜索或 RAG 结果重新排序",
+      "scenario_ids": [
+        "sc-a19"
+      ],
+      "observed_at": "2026-10-12T07:28:37.026935+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/moritzkremb/status/2100566009312940457",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/moritzkremb/status/2100566009312940457",
+      "text_path": "sources/S03.txt",
+      "sha256": "1edcc73945e12ac227abc72fbf57c80256b9217c00c594953f4f6f111bb84437",
+      "text_chars": 2598,
+      "research_note": "记忆检索的快速个人实验，原帖称减少 94% tokens、快 2–3 倍；没有证明长期任务效果不下降。"
+    },
+    {
+      "id": "S04",
+      "url": "https://x.com/camsoft2000/status/2100648648434434298",
+      "name": "37. 在桌面应用里选择下一步控件",
+      "scenario_ids": [
+        "sc-desktop"
+      ],
+      "observed_at": "2026-10-12T07:28:37.027123+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/camsoft2000/status/2100648648434434298",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/camsoft2000/status/2100648648434434298",
+      "text_path": "sources/S04.txt",
+      "sha256": "4bad13d9e9757effc5301f4885e293df73008478cb8dd9729b438881f0427123",
+      "text_chars": 2639,
+      "research_note": "Jev + AXe 操作 iOS 模拟器，支持“可接动作循环”的演示；原帖没有可核验的准确率或倍数表。"
+    },
+    {
+      "id": "S05",
+      "url": "https://x.com/Saboo_Shubham_/status/2101576462042366114",
+      "name": "38. 在网页里按意思找，而不只是匹配关键词",
+      "scenario_ids": [
+        "sc-semantic-find"
+      ],
+      "observed_at": "2026-10-12T07:28:37.027365+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/Saboo_Shubham_/status/2101576462042366114",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/Saboo_Shubham_/status/2101576462042366114",
+      "text_path": "sources/S05.txt",
+      "sha256": "f63f908b316a2d53057f2e79585de197224a3825720ec9366dc446bd36f33121",
+      "text_chars": 2818,
+      "research_note": "网页语义查找演示；进一步找到 Needle 的项目说明，见 S37。"
+    },
+    {
+      "id": "S06",
+      "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
+      "name": "57. 选出正确的原始字段值",
+      "scenario_ids": [
+        "sc-spans"
+      ],
+      "observed_at": "2026-10-12T07:28:37.027553+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
+      "text_path": "sources/S06.txt",
+      "sha256": "14a0810c2c86f742eb53e0f474c1a013ff4ca26253d901dbecea1121a0c5928f",
+      "text_chars": 14532,
+      "research_note": "官方原文字段抽取：正则找候选、模型选候选、代码复制并标准化；候选遗漏仍会造成漏提取。"
+    },
+    {
+      "id": "S07",
+      "url": "https://docs.typesafe.ai/cookbooks/semantic_find",
+      "name": "58. 别把“最像”当成“真的有答案”",
+      "scenario_ids": [
+        "sc-suitability"
+      ],
+      "observed_at": "2026-10-12T07:28:37.027789+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/semantic_find",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/semantic_find",
+      "text_path": "sources/S07.txt",
+      "sha256": "85bd2f23a0351990aabe7b4ac10550eb7554c5fd59c8b24fab37aa176a35cd26",
+      "text_chars": 12470,
+      "research_note": "官方 semantic find：Choice 对 218 个行 ID 排序，同时用 Noul 检查存在答案；最高排名不自动代表适用。"
+    },
+    {
+      "id": "S08",
+      "url": "https://docs.typesafe.ai/cookbooks/autoformat",
+      "name": "59. 把散乱文本恢复成标题、列表和段落",
+      "scenario_ids": [
+        "sc-structure"
+      ],
+      "observed_at": "2026-10-12T07:28:37.027929+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/autoformat",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/autoformat",
+      "text_path": "sources/S08.txt",
+      "sha256": "680f41550853743b9617581176d6f7c163c1a99576d1e2ad5fd322d7244bf2f9",
+      "text_chars": 33079,
+      "research_note": "官方格式恢复：先判断断行合并，再判块类型，两阶段有依赖；代码渲染 Markdown，避免改写原文。"
+    },
+    {
+      "id": "S09",
+      "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
+      "name": "60. 理解日期表达，再交给代码算日期",
+      "scenario_ids": [
+        "sc-dates"
+      ],
+      "observed_at": "2026-10-12T07:28:37.260314+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook",
+      "text_path": "sources/S09.txt",
+      "sha256": "7ef6d1dec275476ee7ed1ae7155d6114809f3e143dd6dac4200de256867ffecf",
+      "text_chars": 21053,
+      "research_note": "官方日期抽取：模型识别日期组成，代码完成日历运算和合法性检查；仅格式合法仍不能证明取对业务日期。"
+    },
+    {
+      "id": "S10",
+      "url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
+      "name": "61. 复核小模型提取的结构化数据",
+      "scenario_ids": [
+        "sc-extraction-cascade"
+      ],
+      "observed_at": "2026-10-12T07:28:37.306617+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/sde_cascade",
+      "text_path": "sources/S10.txt",
+      "sha256": "d1ba20b414a64988680dfc36492e7f9d46a7562ac163d8dde4af7e066ae7f7c9",
+      "text_chars": 29295,
+      "research_note": "官方提取级联：小模型先提取，Jev 逐字段核验，触发后交强模型；报告同时需要错误漏放与升级比例。"
+    },
+    {
+      "id": "S11",
+      "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+      "name": "68. 沿知识图谱或大分类树逐步寻找",
+      "scenario_ids": [
+        "sc-graph"
+      ],
+      "observed_at": "2026-10-12T07:28:37.306976+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+      "text_path": "sources/S11.txt",
+      "sha256": "5c2d65b3c7a3ed00e15376a3cd4bc5824205ce2e0bff5987dd7ac2f68d09ba1f",
+      "text_chars": 42640,
+      "research_note": "官方层次分类：树节点上的 Choice 配合 greedy/beam search，代码做路径搜索与长度归一化；要比较叶子正确率和总调用。"
+    },
+    {
+      "id": "S12",
+      "url": "https://x.com/yoheinakajima/status/2100674306405814568",
+      "name": "68. 沿知识图谱或大分类树逐步寻找",
+      "scenario_ids": [
+        "sc-graph"
+      ],
+      "observed_at": "2026-10-12T07:28:37.324837+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/yoheinakajima/status/2100674306405814568",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/yoheinakajima/status/2100674306405814568",
+      "text_path": "sources/S12.txt",
+      "sha256": "212cc27f4a1f421572882bc4e18a371aa370451bc78e5746cb8d1bf61b07ff67",
+      "text_chars": 2962,
+      "research_note": "知识图谱原帖实际演示词语语义重要性评分和图构造；与“在既有图上搜索”相关但不是同一个任务。"
+    },
+    {
+      "id": "S13",
+      "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
+      "name": "69. 给传统机器学习模型制作语义特征",
+      "scenario_ids": [
+        "sc-features"
+      ],
+      "observed_at": "2026-10-12T07:28:37.325171+00:00",
+      "attempts": [
+        {
+          "url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery",
+      "text_path": "sources/S13.txt",
+      "sha256": "886706f309fa69135d2be284dd4a69e2265e5cf2fe4e2958acef7962e326a3db",
+      "text_chars": 74470,
+      "research_note": "官方语义特征：LLM 提问题，Jev 转数值列，CatBoost 做监督学习；示例为 2,000 条酒评，需保持训练/留出分离。"
+    },
+    {
+      "id": "S14",
+      "url": "https://x.com/daniel_mac8/status/2100335929273524541",
+      "name": "80. 大模型定策略，Jev 高频选局部动作",
+      "scenario_ids": [
+        "sc-strategy"
+      ],
+      "observed_at": "2026-10-12T07:28:37.370489+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/daniel_mac8/status/2100335929273524541",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/daniel_mac8/status/2100335929273524541",
+      "text_path": "sources/S14.txt",
+      "sha256": "b6f2dc1bc459de4e8097de36d19a9f75f6d7f453b0a4756e5f96db16622894c1",
+      "text_chars": 2504,
+      "research_note": "Pac-Man 由 Astra 定策略、Jev 选动作；原帖强调早期实验，没有稳定游戏成绩。"
+    },
+    {
+      "id": "S15",
+      "url": "https://x.com/greenhill_pharm/status/2101492328137711891",
+      "name": "81. 给多个聊天角色排发言顺序",
+      "scenario_ids": [
+        "sc-speakers",
+        "sc-tts"
+      ],
+      "observed_at": "2026-10-12T07:28:37.370944+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/greenhill_pharm/status/2101492328137711891",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/greenhill_pharm/status/2101492328137711891",
+      "text_path": "sources/S15.txt",
+      "sha256": "85d2228258d654e8cac692105fd59b08cc407f51bcefef7ed249ef9ba89e021f",
+      "text_chars": 2635,
+      "research_note": "日文原帖讨论聊天轮次、七种 TTS 情绪、状态与审核等用法，包含拟实现表述；不能全部算作已运行应用。"
+    },
+    {
+      "id": "S16",
+      "url": "https://www.reddit.com/r/SillyTavernAI/comments/1wl7uje/jev_might_be_the_next_frontier_for_improving/",
+      "name": "85. 持续检查角色扮演有没有偏离人设和世界观",
+      "scenario_ids": [
+        "sc-story-sensors"
+      ],
+      "observed_at": "2026-10-12T07:28:37.394532+00:00",
+      "attempts": [
+        {
+          "url": "https://www.reddit.com/r/SillyTavernAI/comments/1wl7uje/jev_might_be_the_next_frontier_for_improving/",
+          "status": 403
+        }
+      ],
+      "status": "source_unavailable",
+      "research_note": "Reddit 入口本次未能读取；同一主题的 ST-jeved 已按 X03 独立研究。"
+    },
+    {
+      "id": "S17",
+      "url": "https://github.com/user-attachments/assets/176c69e4-501e-4b71-8517-957cc692882a",
+      "name": "86. 通过选择音乐部件，编排可编辑的 MIDI",
+      "scenario_ids": [
+        "sc-midi"
+      ],
+      "status": "video_not_transcribed",
+      "research_note": "Jevthoven 的视频附件未逐帧分析；音乐实现与实验材料按 P27 和此前 DEMO_PROJECTS 研究。"
+    },
+    {
+      "id": "S18",
+      "url": "https://openrouter.ai/labs/jev/compile",
+      "name": "87. 用一句需求生成可编辑的判断问题",
+      "scenario_ids": [
+        "sc-compile"
+      ],
+      "observed_at": "2026-10-12T07:28:37.419791+00:00",
+      "attempts": [
+        {
+          "url": "https://openrouter.ai/labs/jev/compile",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://openrouter.ai/labs/jev/compile",
+      "text_path": "sources/S18.txt",
+      "sha256": "5c866eef7c211873e1809e27fa5c8b8a6b6a765fbf0af9edf8ee60d51ce2ab4d",
+      "text_chars": 1795,
+      "research_note": "OpenRouter Prompt to questions：Claude 转写问题，Jev 对每行判断；未登录页面只有初始零计数，不是性能结果。"
+    },
+    {
+      "id": "S19",
+      "url": "https://www.reddit.com/r/OpenSourceeAI/comments/1wl9m9n/jevify_super_simple_way_to_serve_llms_as_a/",
+      "name": "90. 拿本地模型做同题决策对照",
+      "scenario_ids": [
+        "sc-local-comparison"
+      ],
+      "observed_at": "2026-10-12T07:28:37.482988+00:00",
+      "attempts": [
+        {
+          "url": "https://www.reddit.com/r/OpenSourceeAI/comments/1wl9m9n/jevify_super_simple_way_to_serve_llms_as_a/",
+          "status": 403
+        }
+      ],
+      "status": "source_unavailable",
+      "research_note": "Reddit 入口本次未能读取；jevify 原仓库已按 P34 研究。"
+    },
+    {
+      "id": "S20",
+      "url": "https://x.com/brainstormity/status/2100471987860553931",
+      "name": "91. 给社区审核队列分类",
+      "scenario_ids": [
+        "sc-moderation"
+      ],
+      "observed_at": "2026-10-12T07:28:37.499972+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/brainstormity/status/2100471987860553931",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/brainstormity/status/2100471987860553931",
+      "text_path": "sources/S20.txt",
+      "sha256": "ffc4e5ea5e2de98d0237ac9eb1cc99a496b2c22d8273ca412b5b5e5224a84cca",
+      "text_chars": 4523,
+      "research_note": "Discord 审核原帖带开源链接，进一步核对 S35；一键赦免是上下文示例反馈，不保证绝不误判。"
+    },
+    {
+      "id": "S21",
+      "url": "https://x.com/imarikchakma/status/2100587614927741435",
+      "name": "92. 给代码做语义高亮",
+      "scenario_ids": [
+        "sc-syntax"
+      ],
+      "observed_at": "2026-10-12T07:28:37.774419+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/imarikchakma/status/2100587614927741435",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/imarikchakma/status/2100587614927741435",
+      "text_path": "sources/S21.txt",
+      "sha256": "210758ab7ff5430e1bc77d959057ed3dd212d794e885627a54f080983aee751c",
+      "text_chars": 2008,
+      "research_note": "任意语言语义高亮演示；适合教学原型，颜色可显示不等于语法解析正确。"
+    },
+    {
+      "id": "S22",
+      "url": "https://x.com/Totzenberger/status/2100575503061004579",
+      "name": "93. 研究 AI 文本风格信号",
+      "scenario_ids": [
+        "sc-ai-text"
+      ],
+      "observed_at": "2026-10-12T07:28:37.839642+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/Totzenberger/status/2100575503061004579",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/Totzenberger/status/2100575503061004579",
+      "text_path": "sources/S22.txt",
+      "sha256": "bf55cc19af4f3e009880578a5b6ea6a6f1871033e87152e8358764876e145683",
+      "text_chars": 3264,
+      "research_note": "AI 文本检测原帖称大幅节费但缺少误报集与可复算比较；不能据此判断作者身份或不端。"
+    },
+    {
+      "id": "S23",
+      "url": "https://x.com/Sybuilds/status/2100417692096459074",
+      "name": "94. 给麦克风提供暂停建议",
+      "scenario_ids": [
+        "sc-mute"
+      ],
+      "observed_at": "2026-10-12T07:28:37.931866+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/Sybuilds/status/2100417692096459074",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/Sybuilds/status/2100417692096459074",
+      "text_path": "sources/S23.txt",
+      "sha256": "750fd6ee31d1686fc118fb18a3c719af30c195128191f08b86a79ba04b525da3",
+      "text_chars": 1951,
+      "research_note": "麦克风自动静音的概念演示；原帖没有说明转写、判断准确率和延迟链路。原页改编成建议提示更易评估。"
+    },
+    {
+      "id": "S24",
+      "url": "https://x.com/dabit3/status/2100756930054504776",
+      "name": "95. 根据意图排列启动器结果",
+      "scenario_ids": [
+        "sc-launcher"
+      ],
+      "observed_at": "2026-10-12T07:28:37.932456+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/dabit3/status/2100756930054504776",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/dabit3/status/2100756930054504776",
+      "text_path": "sources/S24.txt",
+      "sha256": "360a61bc18be33daeb09fec7e829c7268496f8618cd1ed23c50dfc4a16d5cb64",
+      "text_chars": 3433,
+      "research_note": "意图启动器据任务和最近文件排序，原帖称约 100ms；需要与普通文件排序比较，并丢弃旧输入的响应。"
+    },
+    {
+      "id": "S25",
+      "url": "https://x.com/miiura/status/2100615772053877164",
+      "name": "95. 根据意图排列启动器结果",
+      "scenario_ids": [
+        "sc-launcher"
+      ],
+      "observed_at": "2026-10-12T07:28:38.075873+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/miiura/status/2100615772053877164",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/miiura/status/2100615772053877164",
+      "text_path": "sources/S25.txt",
+      "sha256": "960380682f3ebb386998bd9938264dfe62897dede9f71e76dd238c8c10beeb1f",
+      "text_chars": 2262,
+      "research_note": "原帖实际是输入期间判断意图和参数、提前触发函数；原页的自动补全属于改编，不能写成同一实现。"
+    },
+    {
+      "id": "S26",
+      "url": "https://x.com/VladTerin/status/2100762694223618177",
+      "name": "97. 在画布里选择绘图动作",
+      "scenario_ids": [
+        "sc-drawing"
+      ],
+      "observed_at": "2026-10-12T07:28:38.406435+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/VladTerin/status/2100762694223618177",
+          "status": 404
+        },
+        {
+          "url": "https://api.fxtwitter.com/VladTerin/status/2100762694223618177",
+          "status": 404
+        }
+      ],
+      "status": "source_unavailable",
+      "research_note": "绘图动作原帖本次未能读取；只保留原页线索，不补造工具链或效果。"
+    },
+    {
+      "id": "S27",
+      "url": "https://x.com/riku720720/status/2100705558512963602",
+      "name": "98. 从固定候选里推荐 Emoji",
+      "scenario_ids": [
+        "sc-emoji"
+      ],
+      "observed_at": "2026-10-12T07:28:38.424094+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/riku720720/status/2100705558512963602",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/riku720720/status/2100705558512963602",
+      "text_path": "sources/S27.txt",
+      "sha256": "ca66b0c28ad92022f0d73d69a943e1efcbe585144aa345f7e4aa765b3a936ab9",
+      "text_chars": 1755,
+      "research_note": "Emoji 候选选择原帖称 100–200ms，3 与 200 个候选速度相近；只是作者演示，未证选择质量不变。"
+    },
+    {
+      "id": "S28",
+      "url": "https://x.com/CoooolXyh/status/2101284346640654362",
+      "name": "99. 给剪贴板历史提供相关建议",
+      "scenario_ids": [
+        "sc-clipboard"
+      ],
+      "observed_at": "2026-10-12T07:28:38.651753+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/CoooolXyh/status/2101284346640654362",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/CoooolXyh/status/2101284346640654362",
+      "text_path": "sources/S28.txt",
+      "sha256": "eb6099ee49919f6d9cda2eb807323b90a6a3e16bde852661cba6285e569f0a84",
+      "text_chars": 1710,
+      "research_note": "剪贴板历史结合当前应用/输入框上下文的个人玩具；“挺准”是主观描述，没有标注结果。"
+    },
+    {
+      "id": "S29",
+      "url": "https://x.com/roiyaruRIZ/status/2101130711067431018",
+      "name": "100. 在模拟器里研究合成监测信号",
+      "scenario_ids": [
+        "sc-vitals-demo"
+      ],
+      "observed_at": "2026-10-12T07:28:38.808611+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/roiyaruRIZ/status/2101130711067431018",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/roiyaruRIZ/status/2101130711067431018",
+      "text_path": "sources/S29.txt",
+      "sha256": "62f7e8076f398a5c6c28950462baf0151280be242d4dc10e158b5e8ae6ffda32",
+      "text_chars": 3031,
+      "research_note": "生命体征模拟的两种状态演示；没有临床测试，也没有完整灵敏度/特异度数据。"
+    },
+    {
+      "id": "S30",
+      "url": "https://x.com/ponyo877/status/2101139914419290345",
+      "name": "101. 实时选择视频特效",
+      "scenario_ids": [
+        "sc-video-effects"
+      ],
+      "observed_at": "2026-10-12T07:28:38.967187+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/ponyo877/status/2101139914419290345",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/ponyo877/status/2101139914419290345",
+      "text_path": "sources/S30.txt",
+      "sha256": "5b261c9938b590c424b5675148a1fef99fd65f616c318908cda5d517c9b64055",
+      "text_chars": 1556,
+      "research_note": "明确以文字转写选择预设视频特效；模型不直接处理像素，渲染与时间同步另有组件。"
+    },
+    {
+      "id": "S31",
+      "url": "https://x.com/anshuc/status/2101040309522121072",
+      "name": "102. 通过颜色选择逐像素绘画",
+      "scenario_ids": [
+        "sc-pixels"
+      ],
+      "observed_at": "2026-10-12T07:28:39.018800+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/anshuc/status/2101040309522121072",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/anshuc/status/2101040309522121072",
+      "text_path": "sources/S31.txt",
+      "sha256": "4e91b65643dd5f3277b4659e7428bc3566823440cc3288673b1ccf06e5ea30d6",
+      "text_chars": 3038,
+      "research_note": "Jevinci 原帖明确 JavaScript 绘画、逐像素选色且视频 4 倍速；当前实现说明见 S36。"
+    },
+    {
+      "id": "S32",
+      "url": "https://x.com/GeekCatX/status/2101223068580643172",
+      "name": "103. 给可编辑视频挑选片段",
+      "scenario_ids": [
+        "sc-video-edit"
+      ],
+      "observed_at": "2026-10-12T07:28:39.161710+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/GeekCatX/status/2101223068580643172",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/GeekCatX/status/2101223068580643172",
+      "text_path": "sources/S32.txt",
+      "sha256": "1c7ec352171278d56ff247e70f6deaf5b7ededefc80f979e334cb58b1dfb222c",
+      "text_chars": 3602,
+      "research_note": "作者用 16 条滑雪素材的抽帧描述选择片段，再用 Computer Use 操作 CapCut，做出 16 秒混剪，称不到 5 分钟；额度变化非精确 token。"
+    },
+    {
+      "id": "S33",
+      "url": "https://x.com/HugoDuprez/status/2100953089003921543",
+      "name": "104. 选择下一个合法关卡片段",
+      "scenario_ids": [
+        "sc-levels"
+      ],
+      "observed_at": "2026-10-12T07:28:39.260740+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/HugoDuprez/status/2100953089003921543",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/HugoDuprez/status/2100953089003921543",
+      "text_path": "sources/S33.txt",
+      "sha256": "9c9a0b81a4180b2a558cee486d7afa16c3c49fd3b4bf733bcd907c2dfdf72495",
+      "text_chars": 1992,
+      "research_note": "实时游戏关卡演示；没有证明所有关卡可达、可解，应由引擎独立校验。"
+    },
+    {
+      "id": "S34",
+      "url": "https://x.com/jpschroeder/status/2100347770867458384",
+      "name": "106. 在物理仿真里选择受限动作",
+      "scenario_ids": [
+        "sc-physics"
+      ],
+      "observed_at": "2026-10-12T07:28:39.335022+00:00",
+      "attempts": [
+        {
+          "url": "https://x.com/jpschroeder/status/2100347770867458384",
+          "status": 200
+        }
+      ],
+      "status": "source_fetched",
+      "fetched_url": "https://x.com/jpschroeder/status/2100347770867458384",
+      "text_path": "sources/S34.txt",
+      "sha256": "63715350af1a04b83de6d998f94d60800f0014c8c4f086d7b7a41ac39a48179f",
+      "text_chars": 2192,
+      "research_note": "驾驶模拟原帖称一小时搭建；是开发演示，不是自动驾驶能力或车辆安全实测。"
+    },
+    {
+      "id": "S35",
+      "name": "Discord moderation bot",
+      "url": "https://github.com/brainstormity/Jev-Moderation-Bot",
+      "scenario_ids": [
+        "sc-moderation"
+      ],
+      "observed_at": "2026-10-12T07:31:29.483631+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/brainstormity/Jev-Moderation-Bot/325ea7f4ae889b666ca6133ddac0efcf2f1e7afc/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "brainstormity/Jev-Moderation-Bot",
+      "commit": "325ea7f4ae889b666ca6133ddac0efcf2f1e7afc",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/brainstormity/Jev-Moderation-Bot/325ea7f4ae889b666ca6133ddac0efcf2f1e7afc/README.md",
+      "text_path": "sources/S35.txt",
+      "sha256": "28637728ead1447d470f60f82df7e16028a91728af14b18cb55b2b583627b157",
+      "text_chars": 7977,
+      "research_note": "Discord Bot 有真实删除/超时动作、审计、反馈和故障放行设计；README 无误判率基准。赦免案例进上下文并非权重更新。"
+    },
+    {
+      "id": "S36",
+      "name": "Jevinci",
+      "url": "https://github.com/achimala/jevinci",
+      "scenario_ids": [
+        "sc-pixels"
+      ],
+      "observed_at": "2026-10-12T07:31:29.483980+00:00",
+      "attempts": [
+        {
+          "url": "https://raw.githubusercontent.com/achimala/jevinci/ecf9c48d290e086bde790d6e24b93324667155e9/README.md",
+          "status": 200
+        }
+      ],
+      "repo": "achimala/jevinci",
+      "commit": "ecf9c48d290e086bde790d6e24b93324667155e9",
+      "status": "source_fetched",
+      "fetched_url": "https://raw.githubusercontent.com/achimala/jevinci/ecf9c48d290e086bde790d6e24b93324667155e9/README.md",
+      "text_path": "sources/S36.txt",
+      "sha256": "6c4485aa67eed121b6f28a5335fb088294663dec0e71b46cd768a11f19804def",
+      "text_chars": 3716,
+      "research_note": "Jevinci 当前 README 标题为 jev-paint：概率到颜色，再由确定性纹理算法绘制；HSL/RGB 通道组合假设独立，模型不提供联合分布。"
+    },
+    {
+      "id": "S37",
+      "name": "Needle semantic find",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps/tree/4bf51ab704fb2c5b3803cd5191b30d7dcdb51dc2/advanced_llm_apps/needle",
+      "commit": "4bf51ab704fb2c5b3803cd5191b30d7dcdb51dc2",
+      "fetched_url": "https://raw.githubusercontent.com/Shubhamsaboo/awesome-llm-apps/4bf51ab704fb2c5b3803cd5191b30d7dcdb51dc2/advanced_llm_apps/needle/README.md",
+      "scenario_ids": [
+        "sc-semantic-find"
+      ],
+      "status": "source_fetched",
+      "text_path": "sources/S37.txt",
+      "sha256": "d1ab98ac6584a96c130cc38af57c751fa0f8db430675387955c38843ef6c1da9",
+      "text_chars": 12232,
+      "research_note": "Needle 在网页原文中高亮语义相关句，使用 Vercel Gateway；0.58 为默认相关性阈值，未证明完整召回。不能直接搜索 Chrome 内置 PDF 阅读器。"
+    }
+  ],
+  "supplemental_files": [
+    {
+      "id": "P22",
+      "path": ".github/README.zh-CN.md",
+      "url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/.github/README.zh-CN.md",
+      "http_status": 200,
+      "text_path": "sources/P22--.github--README.zh-CN.md",
+      "sha256": "d172f076d9381ec4d95c1778eac257a3668d04b5fdb4db96ec52290758eed653"
+    },
+    {
+      "id": "P22",
+      "path": "cn/README.md",
+      "url": "https://raw.githubusercontent.com/jev-chat/jev-chat-jarvis/fdf8d28c811b0b67016d815df674cc61603c33c8/cn/README.md",
+      "http_status": 200,
+      "text_path": "sources/P22--cn--README.md",
+      "sha256": "85f7d2509ea64d827c63e5e6ea6a4141959d7e27faabdaee548233a5017b6e76"
+    },
+    {
+      "id": "P02",
+      "path": "results/canonical/results.csv",
+      "url": "https://raw.githubusercontent.com/nekuda-ai/WindTunnel/5ca8644e23826ebb30108e7bad240b61043bfe67/results/canonical/results.csv",
+      "http_status": 200,
+      "text_path": "sources/P02--results--canonical--results.csv",
+      "sha256": "3745babe0ecd55abe391a38e95fc80eb09326ae1e3a6a118ce6f8688d0174cc7"
+    },
+    {
+      "id": "P07",
+      "path": "BACKTEST.md",
+      "url": "https://raw.githubusercontent.com/0xNatoshi/jev-codex-router/8701ef788aa8cb0948f299538747fb01029d32b8/BACKTEST.md",
+      "http_status": 200,
+      "text_path": "sources/P07--BACKTEST.md",
+      "sha256": "da98df084ecc87a05ced1f541a3f4c80bfdbbbc49e15e8fb5c08a6bca7031788"
+    },
+    {
+      "id": "P09",
+      "path": "docs/calibration.md",
+      "url": "https://raw.githubusercontent.com/GhalebDweikat/winnow/4547a81b88ac59a902bad7b0006137c7d4147aeb/docs/calibration.md",
+      "http_status": 404
+    },
+    {
+      "id": "P14",
+      "path": "eval/reports/2026-10-01-field-usage/README.md",
+      "url": "https://raw.githubusercontent.com/DevMortimer/pi-warden/74989d5adf091c9cb5651450917d9f110e3fba2d/eval/reports/2026-10-01-field-usage/README.md",
+      "http_status": 200,
+      "text_path": "sources/P14--eval--reports--2026-10-01-field-usage--README.md",
+      "sha256": "6bee5da93b7d4ea9718b8d4d4b759fa1334ba32e5f4428954f137d5f87bb4a92"
+    },
+    {
+      "id": "P25",
+      "path": "eval/README.md",
+      "url": "https://raw.githubusercontent.com/trungdq88/youtube-sponsor-detection/de01f0568d043035889a296a61ce21e0accc8b16/eval/README.md",
+      "http_status": 404
+    },
+    {
+      "id": "P29",
+      "path": "src/server.ts",
+      "url": "https://raw.githubusercontent.com/fhshaik/typesafe-mario/ca22449ed187118d19326d1f54b01b6636578aa4/src/server.ts",
+      "http_status": 404
+    },
+    {
+      "id": "P05",
+      "path": "docs/example-report.md",
+      "url": "https://raw.githubusercontent.com/socai-io/jev-social/2776b1827e6037354e2f8b772aac689f0779bb43/docs/example-report.md",
+      "http_status": 200,
+      "text_path": "sources/P05--docs--example-report.md",
+      "sha256": "5390a0a3725136ff479e4528cef99cd9d981d5d8448ac488c9d7a9b65b65cd6f"
+    }
+  ]
+}

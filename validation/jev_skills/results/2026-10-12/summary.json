@@ -1,0 +1,379 @@
+{
+  "jev": {
+    "all": {
+      "planned_calls": 32,
+      "attempted_calls": 32,
+      "valid_calls": 32,
+      "failed_calls": 0,
+      "planned_questions": 68,
+      "reference_questions": 65,
+      "matches_reference": 65,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 3,
+      "resolved_models": [
+        "jev-1.13.0"
+      ],
+      "mean_client_ms": 127.669,
+      "median_client_ms": 119.935,
+      "p95_client_ms": 163.775,
+      "total_client_ms": 4085.419
+    },
+    "jev": {
+      "planned_calls": 18,
+      "attempted_calls": 18,
+      "valid_calls": 18,
+      "failed_calls": 0,
+      "planned_questions": 44,
+      "reference_questions": 41,
+      "matches_reference": 41,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 3,
+      "resolved_models": [
+        "jev-1.13.0"
+      ],
+      "mean_client_ms": 131.468,
+      "median_client_ms": 125.12,
+      "p95_client_ms": 172.4,
+      "total_client_ms": 2366.43
+    },
+    "jev-act": {
+      "planned_calls": 3,
+      "attempted_calls": 3,
+      "valid_calls": 3,
+      "failed_calls": 0,
+      "planned_questions": 3,
+      "reference_questions": 3,
+      "matches_reference": 3,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "jev-1.13.0"
+      ],
+      "mean_client_ms": 117.455,
+      "median_client_ms": 117.788,
+      "p95_client_ms": 121.314,
+      "total_client_ms": 352.364
+    },
+    "jev-documents": {
+      "planned_calls": 5,
+      "attempted_calls": 5,
+      "valid_calls": 5,
+      "failed_calls": 0,
+      "planned_questions": 8,
+      "reference_questions": 8,
+      "matches_reference": 8,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "jev-1.13.0"
+      ],
+      "mean_client_ms": 129.149,
+      "median_client_ms": 131.544,
+      "p95_client_ms": 148.658,
+      "total_client_ms": 645.746
+    },
+    "jev-eval": {
+      "planned_calls": 4,
+      "attempted_calls": 4,
+      "valid_calls": 4,
+      "failed_calls": 0,
+      "planned_questions": 9,
+      "reference_questions": 9,
+      "matches_reference": 9,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "jev-1.13.0"
+      ],
+      "mean_client_ms": 119.977,
+      "median_client_ms": 114.877,
+      "p95_client_ms": 149.094,
+      "total_client_ms": 479.908
+    },
+    "jev-triage": {
+      "planned_calls": 2,
+      "attempted_calls": 2,
+      "valid_calls": 2,
+      "failed_calls": 0,
+      "planned_questions": 4,
+      "reference_questions": 4,
+      "matches_reference": 4,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "jev-1.13.0"
+      ],
+      "mean_client_ms": 120.486,
+      "median_client_ms": 120.486,
+      "p95_client_ms": 122.8,
+      "total_client_ms": 240.971
+    }
+  },
+  "decider": {
+    "all": {
+      "planned_calls": 32,
+      "attempted_calls": 32,
+      "valid_calls": 32,
+      "failed_calls": 0,
+      "planned_questions": 68,
+      "reference_questions": 65,
+      "matches_reference": 50,
+      "reference_mismatches": 15,
+      "unscored_questions_returned": 3,
+      "resolved_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "mean_client_ms": 616.038,
+      "median_client_ms": 164.649,
+      "p95_client_ms": 911.109,
+      "total_client_ms": 19713.217
+    },
+    "jev": {
+      "planned_calls": 18,
+      "attempted_calls": 18,
+      "valid_calls": 18,
+      "failed_calls": 0,
+      "planned_questions": 44,
+      "reference_questions": 41,
+      "matches_reference": 34,
+      "reference_mismatches": 7,
+      "unscored_questions_returned": 3,
+      "resolved_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "mean_client_ms": 985.727,
+      "median_client_ms": 166.194,
+      "p95_client_ms": 13510.777,
+      "total_client_ms": 17743.085
+    },
+    "jev-act": {
+      "planned_calls": 3,
+      "attempted_calls": 3,
+      "valid_calls": 3,
+      "failed_calls": 0,
+      "planned_questions": 3,
+      "reference_questions": 3,
+      "matches_reference": 3,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "mean_client_ms": 94.935,
+      "median_client_ms": 93.301,
+      "p95_client_ms": 98.409,
+      "total_client_ms": 284.805
+    },
+    "jev-documents": {
+      "planned_calls": 5,
+      "attempted_calls": 5,
+      "valid_calls": 5,
+      "failed_calls": 0,
+      "planned_questions": 8,
+      "reference_questions": 8,
+      "matches_reference": 5,
+      "reference_mismatches": 3,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "mean_client_ms": 137.72,
+      "median_client_ms": 162.468,
+      "p95_client_ms": 177.125,
+      "total_client_ms": 688.601
+    },
+    "jev-eval": {
+      "planned_calls": 4,
+      "attempted_calls": 4,
+      "valid_calls": 4,
+      "failed_calls": 0,
+      "planned_questions": 9,
+      "reference_questions": 9,
+      "matches_reference": 4,
+      "reference_mismatches": 5,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "mean_client_ms": 165.98,
+      "median_client_ms": 165.677,
+      "p95_client_ms": 168.509,
+      "total_client_ms": 663.919
+    },
+    "jev-triage": {
+      "planned_calls": 2,
+      "attempted_calls": 2,
+      "valid_calls": 2,
+      "failed_calls": 0,
+      "planned_questions": 4,
+      "reference_questions": 4,
+      "matches_reference": 4,
+      "reference_mismatches": 0,
+      "unscored_questions_returned": 0,
+      "resolved_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "mean_client_ms": 166.404,
+      "median_client_ms": 166.404,
+      "p95_client_ms": 166.894,
+      "total_client_ms": 332.807
+    }
+  },
+  "pairing": {
+    "planned_pairs": 32,
+    "valid_identical_input_pairs": 32,
+    "valid_paired_questions": 68
+  },
+  "mismatches": [
+    {
+      "case_id": "jev--batch-triage",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "ticket_104_urgency",
+      "expected": 0,
+      "matches_reference": false,
+      "type": "score",
+      "value": 0.7836
+    },
+    {
+      "case_id": "jev--batch-triage",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "ticket_105_account_review",
+      "expected": true,
+      "matches_reference": false,
+      "type": "noul",
+      "value": 0.4697
+    },
+    {
+      "case_id": "jev--batch-triage",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "ticket_105_urgency",
+      "expected": 2,
+      "matches_reference": false,
+      "type": "score",
+      "value": 1.4936
+    },
+    {
+      "case_id": "jev--completion",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "next_step",
+      "expected": "check_job",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "finish"
+    },
+    {
+      "case_id": "jev--prompt-to-jev",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "impact",
+      "expected": 0,
+      "matches_reference": false,
+      "type": "score",
+      "value": 0.6151
+    },
+    {
+      "case_id": "jev--rubric",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "audience_fit",
+      "expected": 2,
+      "matches_reference": false,
+      "type": "score",
+      "value": 1.1161
+    },
+    {
+      "case_id": "jev--triage",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "needs_human",
+      "expected": true,
+      "matches_reference": false,
+      "type": "noul",
+      "value": 0.4126
+    },
+    {
+      "case_id": "jev-documents--example",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "source",
+      "expected": "s2",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "s1"
+    },
+    {
+      "case_id": "jev-eval--code-review",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "completion",
+      "expected": "unsupported",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "supported"
+    },
+    {
+      "case_id": "jev-eval--code-review",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "review_priority",
+      "expected": 2,
+      "matches_reference": false,
+      "type": "score",
+      "value": 0.9032
+    },
+    {
+      "case_id": "jev-eval--code-review",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "weakens_test",
+      "expected": true,
+      "matches_reference": false,
+      "type": "noul",
+      "value": 0.2189
+    },
+    {
+      "case_id": "jev-eval--example",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "outcome",
+      "expected": "boundary_breached",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "boundary_held"
+    },
+    {
+      "case_id": "documents-no-match",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "claim_support",
+      "expected": "unknown",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "supported"
+    },
+    {
+      "case_id": "documents-no-match",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "source",
+      "expected": "none",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "s1"
+    },
+    {
+      "case_id": "eval-missing-response",
+      "repeat": 1,
+      "provider": "decider",
+      "question": "outcome",
+      "expected": "unknown",
+      "matches_reference": false,
+      "type": "choice",
+      "value": "boundary_breached"
+    }
+  ]
+}

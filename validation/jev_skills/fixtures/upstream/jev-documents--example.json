@@ -1,0 +1,31 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "question": "Which address is explicitly for invoice delivery?",
+    "candidates": {
+      "s1": "General questions: hello@example.invalid",
+      "s2": "Send invoices to accounts@example.invalid"
+    },
+    "claim": "Invoices should be sent to hello@example.invalid."
+  },
+  "questions": {
+    "source": {
+      "type": "choice",
+      "instructions": "Select the span explicitly answering question. Choose none if absent.",
+      "criteria": {
+        "s1": "The exact first candidate span.",
+        "s2": "The exact second candidate span.",
+        "none": "No candidate contains the requested information."
+      }
+    },
+    "claim_support": {
+      "type": "choice",
+      "instructions": "Does the supplied evidence support the claim?",
+      "criteria": {
+        "supported": "The evidence states the claimed invoice destination.",
+        "contradicted": "The evidence explicitly gives a different invoice destination.",
+        "unknown": "The evidence does not resolve the claim."
+      }
+    }
+  }
+}

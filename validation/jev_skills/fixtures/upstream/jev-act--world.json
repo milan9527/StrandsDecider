@@ -1,0 +1,29 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "world": "Fictional island town",
+    "goal": "Keep residents supplied while avoiding unsafe crossings.",
+    "state": {
+      "food_days": 2,
+      "bridge": "closed after storm",
+      "warehouse": "on this side of river"
+    },
+    "legal_actions": [
+      "inspect_warehouse",
+      "wait",
+      "ask_planner"
+    ],
+    "strategy": "Look for a safe local food source before considering travel."
+  },
+  "questions": {
+    "action": {
+      "type": "choice",
+      "instructions": "Choose a legal next action consistent with strategy and current state.",
+      "criteria": {
+        "inspect_warehouse": "Inspect the accessible local warehouse for supplies.",
+        "wait": "No justified safe information-gathering action is available.",
+        "ask_planner": "Current strategy conflicts with observations or needs revision."
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "task": "Explain why two observed implementations disagree on concurrent writes.",
+    "requirements": [
+      "Inspect both implementations",
+      "Reason about interleavings"
+    ],
+    "candidates": {
+      "quick": "Low-cost text transformation helper; not concurrency reasoning.",
+      "reasoning": "Available reasoning helper with code analysis.",
+      "human": "Domain owner can clarify missing requirements."
+    }
+  },
+  "questions": {
+    "route": {
+      "type": "choice",
+      "instructions": "Which available candidate best fits the requirements? Do not infer capabilities beyond the descriptions.",
+      "criteria": {
+        "quick": "Mechanical transformation supported by the quick helper.",
+        "reasoning": "Code reasoning requiring analysis of multiple interleavings.",
+        "human": "Missing requirements require the domain owner.",
+        "none": "No candidate has the necessary capability or availability."
+      }
+    }
+  }
+}

@@ -1,0 +1,844 @@
+{
+  "created_at": "2026-10-13T02:41:41.030923+00:00",
+  "model_inference_started": false,
+  "browser": {
+    "tasks": [
+      {
+        "id": "wikipedia-search",
+        "goal": "Use Wikipedia search to open the English article titled Basel III. Finish only once the article is open, not on search suggestions or the home page.",
+        "start_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "allowed_domains": [
+          "wikipedia.org"
+        ],
+        "input_values": {
+          "search": "Basel III"
+        },
+        "expected": {
+          "url_contains": "/wiki/Basel_III",
+          "heading": "Basel III",
+          "body_terms": [
+            "capital",
+            "liquidity"
+          ]
+        }
+      },
+      {
+        "id": "cfpb-dispute",
+        "goal": "From CFPB's credit-card guidance, find and open the official instructions for disputing a charge on a credit-card bill. The final page should explain the written-notice deadline.",
+        "start_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "allowed_domains": [
+          "consumerfinance.gov"
+        ],
+        "input_values": {
+          "search": "dispute charge credit card bill"
+        },
+        "expected": {
+          "url_contains": "/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61",
+          "heading": "How do I dispute a charge on my credit card bill?",
+          "body_terms": [
+            "60 days",
+            "written"
+          ]
+        }
+      },
+      {
+        "id": "ecb-usd",
+        "goal": "On the ECB euro foreign exchange reference rates website, open the US dollar currency detail/chart page. Verify that it is USD quoted against the euro, not another currency or the general index.",
+        "start_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+        "allowed_domains": [
+          "ecb.europa.eu"
+        ],
+        "input_values": {},
+        "expected": {
+          "url_contains": "eurofxref-graph-usd.en.html",
+          "heading": "US dollar (USD)",
+          "body_terms": [
+            "euro",
+            "dollar"
+          ]
+        }
+      },
+      {
+        "id": "fdic-faq",
+        "goal": "From the FDIC Understanding Deposit Insurance overview, open the official Deposit Insurance FAQs page. Finish on the FAQ page containing the standard insurance amount and coverage guidance, not the overview or a contact form.",
+        "start_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "allowed_domains": [
+          "fdic.gov"
+        ],
+        "input_values": {},
+        "expected": {
+          "url_contains": "/deposit-insurance/faq",
+          "heading": "Deposit Insurance FAQs",
+          "body_terms": [
+            "250,000",
+            "insured"
+          ]
+        }
+      },
+      {
+        "id": "fdic-bank-search",
+        "goal": "Use the BankFind institution search form to search for JPMorgan Chase Bank. Finish when actual matching institution results show JPMorgan Chase Bank, National Association and its FDIC certificate number. Do not finish on an unsubmitted form.",
+        "start_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "allowed_domains": [
+          "fdic.gov"
+        ],
+        "input_values": {
+          "bank_name": "JPMorgan Chase Bank"
+        },
+        "expected": {
+          "url_contains": "name=JPMorgan",
+          "heading": "Matching Results",
+          "body_terms": [
+            "JPMorgan Chase Bank, National Association",
+            "628",
+            "FDIC-Insured"
+          ],
+          "bank_detail_link": "/details/628"
+        }
+      }
+    ],
+    "repeats": 2,
+    "max_steps": 12,
+    "max_seconds": 150,
+    "max_candidates": 12,
+    "controls_per_page": 7,
+    "evaluation": "Model must choose finish AND independent URL, heading and body checks must pass. Reached-but-not-finished is reported separately.",
+    "timing": "Wall time includes initial navigation, model calls, browser actions, observations and screenshot evidence; model RTT is separate.",
+    "isolation": "Fresh browser context per provider/task/repeat. Model calls serialized per provider; task order alternates providers. No generated text model is used; search strings come from task inputs."
+  },
+  "finance": {
+    "cases": [
+      {
+        "id": "news-815",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Finnish Vacon has signed significant deals with Norwegian Scandinavian Electric Systems ( SES ) on the supply of AC drives ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "positive",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 815
+        }
+      },
+      {
+        "id": "news-204",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "The operating profit for Grain Trading increased to EUR 2.0 mn from EUR 1.4 mn in 2005 ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "positive",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 204
+        }
+      },
+      {
+        "id": "news-401",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Combining this deep domain expertise with our Application Service Management ASM and outsourcing service offerings has now proved to be a winning combination ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "positive",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 401
+        }
+      },
+      {
+        "id": "news-831",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Last week , the Finnish metals and technology group announced plans to sell more than 80 percent of its technology unit to further the company 's strategic goal of becoming the world 's largest stainless steel maker ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "positive",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 831
+        }
+      },
+      {
+        "id": "news-1878",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "In Q1 of 2009 , the company 's operating loss totalled EUR 0.3 mn , compared to a profit of EUR 3.6 mn in Q1 of 2008 ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "negative",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 1878
+        }
+      },
+      {
+        "id": "news-2168",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Pretax profit totaled EUR 9.0 mn , down from EUR 36.3 mn in 2007 ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "negative",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 2168
+        }
+      },
+      {
+        "id": "news-727",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "JP Morgan expects that Scala will lower Nobel Biocare 's growth forecast for 2007 from the current guidance of 23-25 pct , as well as the operating margin target from the current 34-35 pct ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "negative",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 727
+        }
+      },
+      {
+        "id": "news-2050",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Cash flow from operations in January-December 2008 was a negative EUR 18.1 mn compared to EUR 39.0 mn in the corresponding period in 2007 ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "negative",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 2050
+        }
+      },
+      {
+        "id": "news-1779",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "The expanded company will continue to be called NewPage ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "neutral",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 1779
+        }
+      },
+      {
+        "id": "news-594",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Shuweihat 2 got under way in July 2008 when the project was awarded to desalination and power contractors ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "neutral",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 594
+        }
+      },
+      {
+        "id": "news-393",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "Shareholder 's full name and ID code : - Petri Ailus , born 15.9.1966 For further information , please contact Isto Hantila , CEO , tel. +358 9 591 8342 ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "neutral",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 393
+        }
+      },
+      {
+        "id": "news-1030",
+        "category": "financial_news",
+        "source": "FinancialPhraseBank Sentences_AllAgree",
+        "state": {
+          "task": "Classify the financial impact of this news sentence from an investor's perspective, using only this sentence. Do not predict future returns.",
+          "news_sentence": "STOCKMANN plc COMPANY ANNOUNCEMENT February 20 , 2007 , at 13.40 An annual summary of Stockmann 's stock exchange and financial press releases in 2006 is available on the company 's website at the address www.stockmann.com ."
+        },
+        "criteria": {
+          "positive": "Favorable financial or economic implications for the company/investor.",
+          "negative": "Unfavorable financial or economic implications for the company/investor.",
+          "neutral": "No clear positive or negative financial implication is stated."
+        },
+        "expected": "neutral",
+        "reference_basis": {
+          "kind": "existing_unanimous_human_label",
+          "line_number": 1030
+        }
+      },
+      {
+        "id": "report-revenue-correct",
+        "category": "annual_report_evidence",
+        "source": "https://www.microsoft.com/investor/reports/ar25/index.html",
+        "state": {
+          "task": "Audit the claim against ONLY the supplied official annual-report excerpt. Respect fiscal year, units and metric names. Missing evidence is not a contradiction.",
+          "source_excerpt": "SUMMARY RESULTS OF OPERATIONS\n(In millions, except percentages and per share amounts)\t2025\t2024\tPercentage\nChange\nRevenue\t\n$\n281,724\t\n$\n245,122\t15%\nGross margin\t193,893\t171,008\t13%\nOperating income\t128,528\t109,433\t17%\nNet income\t101,832\t88,136\t16%\nDiluted earnings per share\t13.64\t11.80\t16%\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nRevenue increased $36.6 billion or 15% with growth across each of our segments. Intelligent Cloud revenue increased driven by Azure. Productivity and Business Processes revenue increased driven by Microsoft 365 Commercial cloud. More Personal Computing revenue increased driven by Gaming and Search and news advertising.\n\n",
+          "claim": "Microsoft FY2025 revenue was $281.724 billion, up about 15% from FY2024."
+        },
+        "criteria": {
+          "supported": "The supplied excerpt supports the entire claim.",
+          "contradicted": "The supplied excerpt states facts that contradict the claim.",
+          "insufficient": "The excerpt does not provide enough evidence to establish the claim."
+        },
+        "expected": "supported",
+        "reference_basis": {
+          "kind": "authored_reference_from_official_table",
+          "table_units": "USD millions except per-share amounts"
+        }
+      },
+      {
+        "id": "report-wrong-year",
+        "category": "annual_report_evidence",
+        "source": "https://www.microsoft.com/investor/reports/ar25/index.html",
+        "state": {
+          "task": "Audit the claim against ONLY the supplied official annual-report excerpt. Respect fiscal year, units and metric names. Missing evidence is not a contradiction.",
+          "source_excerpt": "SUMMARY RESULTS OF OPERATIONS\n(In millions, except percentages and per share amounts)\t2025\t2024\tPercentage\nChange\nRevenue\t\n$\n281,724\t\n$\n245,122\t15%\nGross margin\t193,893\t171,008\t13%\nOperating income\t128,528\t109,433\t17%\nNet income\t101,832\t88,136\t16%\nDiluted earnings per share\t13.64\t11.80\t16%\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nRevenue increased $36.6 billion or 15% with growth across each of our segments. Intelligent Cloud revenue increased driven by Azure. Productivity and Business Processes revenue increased driven by Microsoft 365 Commercial cloud. More Personal Computing revenue increased driven by Gaming and Search and news advertising.\n\n",
+          "claim": "Microsoft FY2025 revenue was $245.122 billion."
+        },
+        "criteria": {
+          "supported": "The supplied excerpt supports the entire claim.",
+          "contradicted": "The supplied excerpt states facts that contradict the claim.",
+          "insufficient": "The excerpt does not provide enough evidence to establish the claim."
+        },
+        "expected": "contradicted",
+        "reference_basis": {
+          "kind": "authored_reference_from_official_table",
+          "table_units": "USD millions except per-share amounts"
+        }
+      },
+      {
+        "id": "report-unit-error",
+        "category": "annual_report_evidence",
+        "source": "https://www.microsoft.com/investor/reports/ar25/index.html",
+        "state": {
+          "task": "Audit the claim against ONLY the supplied official annual-report excerpt. Respect fiscal year, units and metric names. Missing evidence is not a contradiction.",
+          "source_excerpt": "SUMMARY RESULTS OF OPERATIONS\n(In millions, except percentages and per share amounts)\t2025\t2024\tPercentage\nChange\nRevenue\t\n$\n281,724\t\n$\n245,122\t15%\nGross margin\t193,893\t171,008\t13%\nOperating income\t128,528\t109,433\t17%\nNet income\t101,832\t88,136\t16%\nDiluted earnings per share\t13.64\t11.80\t16%\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nRevenue increased $36.6 billion or 15% with growth across each of our segments. Intelligent Cloud revenue increased driven by Azure. Productivity and Business Processes revenue increased driven by Microsoft 365 Commercial cloud. More Personal Computing revenue increased driven by Gaming and Search and news advertising.\n\n",
+          "claim": "Microsoft FY2025 revenue was $281.724 million."
+        },
+        "criteria": {
+          "supported": "The supplied excerpt supports the entire claim.",
+          "contradicted": "The supplied excerpt states facts that contradict the claim.",
+          "insufficient": "The excerpt does not provide enough evidence to establish the claim."
+        },
+        "expected": "contradicted",
+        "reference_basis": {
+          "kind": "authored_reference_from_official_table",
+          "table_units": "USD millions except per-share amounts"
+        }
+      },
+      {
+        "id": "report-net-income",
+        "category": "annual_report_evidence",
+        "source": "https://www.microsoft.com/investor/reports/ar25/index.html",
+        "state": {
+          "task": "Audit the claim against ONLY the supplied official annual-report excerpt. Respect fiscal year, units and metric names. Missing evidence is not a contradiction.",
+          "source_excerpt": "SUMMARY RESULTS OF OPERATIONS\n(In millions, except percentages and per share amounts)\t2025\t2024\tPercentage\nChange\nRevenue\t\n$\n281,724\t\n$\n245,122\t15%\nGross margin\t193,893\t171,008\t13%\nOperating income\t128,528\t109,433\t17%\nNet income\t101,832\t88,136\t16%\nDiluted earnings per share\t13.64\t11.80\t16%\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nRevenue increased $36.6 billion or 15% with growth across each of our segments. Intelligent Cloud revenue increased driven by Azure. Productivity and Business Processes revenue increased driven by Microsoft 365 Commercial cloud. More Personal Computing revenue increased driven by Gaming and Search and news advertising.\n\n",
+          "claim": "Microsoft FY2025 net income was $101.832 billion, higher than FY2024's $88.136 billion."
+        },
+        "criteria": {
+          "supported": "The supplied excerpt supports the entire claim.",
+          "contradicted": "The supplied excerpt states facts that contradict the claim.",
+          "insufficient": "The excerpt does not provide enough evidence to establish the claim."
+        },
+        "expected": "supported",
+        "reference_basis": {
+          "kind": "authored_reference_from_official_table",
+          "table_units": "USD millions except per-share amounts"
+        }
+      },
+      {
+        "id": "report-future-quarter",
+        "category": "annual_report_evidence",
+        "source": "https://www.microsoft.com/investor/reports/ar25/index.html",
+        "state": {
+          "task": "Audit the claim against ONLY the supplied official annual-report excerpt. Respect fiscal year, units and metric names. Missing evidence is not a contradiction.",
+          "source_excerpt": "SUMMARY RESULTS OF OPERATIONS\n(In millions, except percentages and per share amounts)\t2025\t2024\tPercentage\nChange\nRevenue\t\n$\n281,724\t\n$\n245,122\t15%\nGross margin\t193,893\t171,008\t13%\nOperating income\t128,528\t109,433\t17%\nNet income\t101,832\t88,136\t16%\nDiluted earnings per share\t13.64\t11.80\t16%\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nRevenue increased $36.6 billion or 15% with growth across each of our segments. Intelligent Cloud revenue increased driven by Azure. Productivity and Business Processes revenue increased driven by Microsoft 365 Commercial cloud. More Personal Computing revenue increased driven by Gaming and Search and news advertising.\n\n",
+          "claim": "The excerpt proves that revenue in the next fiscal quarter will grow by at least 15%."
+        },
+        "criteria": {
+          "supported": "The supplied excerpt supports the entire claim.",
+          "contradicted": "The supplied excerpt states facts that contradict the claim.",
+          "insufficient": "The excerpt does not provide enough evidence to establish the claim."
+        },
+        "expected": "insufficient",
+        "reference_basis": {
+          "kind": "authored_reference_from_official_table",
+          "table_units": "USD millions except per-share amounts"
+        }
+      },
+      {
+        "id": "report-undisclosed-item",
+        "category": "annual_report_evidence",
+        "source": "https://www.microsoft.com/investor/reports/ar25/index.html",
+        "state": {
+          "task": "Audit the claim against ONLY the supplied official annual-report excerpt. Respect fiscal year, units and metric names. Missing evidence is not a contradiction.",
+          "source_excerpt": "SUMMARY RESULTS OF OPERATIONS\n(In millions, except percentages and per share amounts)\t2025\t2024\tPercentage\nChange\nRevenue\t\n$\n281,724\t\n$\n245,122\t15%\nGross margin\t193,893\t171,008\t13%\nOperating income\t128,528\t109,433\t17%\nNet income\t101,832\t88,136\t16%\nDiluted earnings per share\t13.64\t11.80\t16%\n\nFiscal Year 2025 Compared with Fiscal Year 2024\n\nRevenue increased $36.6 billion or 15% with growth across each of our segments. Intelligent Cloud revenue increased driven by Azure. Productivity and Business Processes revenue increased driven by Microsoft 365 Commercial cloud. More Personal Computing revenue increased driven by Gaming and Search and news advertising.\n\n",
+          "claim": "The excerpt establishes Microsoft's cash and cash equivalents balance at June 30, 2025."
+        },
+        "criteria": {
+          "supported": "The supplied excerpt supports the entire claim.",
+          "contradicted": "The supplied excerpt states facts that contradict the claim.",
+          "insufficient": "The excerpt does not provide enough evidence to establish the claim."
+        },
+        "expected": "insufficient",
+        "reference_basis": {
+          "kind": "authored_reference_from_official_table",
+          "table_units": "USD millions except per-share amounts"
+        }
+      },
+      {
+        "id": "deposit-single",
+        "category": "deposit_insurance_triage",
+        "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "state": {
+          "task": "Triage FDIC coverage using only the supplied policy and hypothetical customer facts. Do not assume missing insurance status or apply protection for non-deposit investments.",
+          "policy_excerpt": "How FDIC Deposit Insurance Works\n\nThe FDIC helps maintain stability and public confidence in the U.S. financial system. One way we do this is by insuring deposits to at least $250,000 per depositor, per ownership category at each FDIC-insured bank.\n\nThe FDIC maintains the Deposit Insurance Fund (DIF), which:\n\nInsures deposits and protects depositors of FDIC-insured banks and\nHelps fund our resolution activities when banks fail.\n\nThe DIF is backed by the full faith and credit of the United States government, and it has two sources of funds:\n\nAssessments (insurance premiums) that FDIC-insured institutions pay and\nInterest earned on funds invested in U.S. government obligations. The FDIC buys Treasury notes, and the interest on those notes helps the DIF grow.\n\nFDIC deposit insurance only covers deposits, and only if your bank is FDIC-insured.\n\nMake sure your bank is FDIC-insured, using the BankFind Suite search tool.\n\nHow to Know If Your Account is Covered\n\nFDIC insurance covers deposits in all types of accounts at FDIC-insured banks, but it does not cover non-deposit investment products, even those offered by FDIC-insured banks. Additionally, FDIC deposit insurance doesn’t cover default or bankruptcy of any non-FDIC-insured institution.\n\n \n\nCovered\n\nMoney deposited at FDIC-insured banks in:\n\nChecking accounts\n \n\nNegotiable order of withdrawal (NOW) accounts\n\nSavings accounts\n\nMoney market deposit accounts (MMDAs)\n\nTime deposits such as certificates of deposit (CDs)\n\nCashier’s checks, money orders, and other official items issued by a bank\n\n \n\nNot Covered\n\nStock investments\n \n\nBond investments\n\nMutual funds\n\nAnnuities\n\nLife insurance policies\n\nSafe deposit boxes or their contents\n\nU.S. Treasury bills, bonds, or notes\n\nMunicipal securities\n\nCrypto assets\n\nUnderstanding Your Coverage Limits\n\nFDIC deposit insurance covers $250,000 per depositor, per FDIC-insured bank, for each account ownership category.\n\nOwnership categories include:\n\nSingle Accounts\nJoint Accounts\nCertain Retirement Accounts —for example, Individual Retirement Accounts (IRAs)\nTrust Accounts\nEmployee Benefit Plan Accounts\nCorporation / Partnership / Unincorporated Association Accounts\nGovernment Accounts\n\nAll of your deposits in the same ownership category in the same FDIC-insured bank are added together for the purpose of determining FDIC deposit insurance coverage. However, you may qualify for more than $250,000 in FDIC deposit insurance coverage if you deposit money in accounts that are in different ownership categories.\n\nFor example:\n\nIf you have a single ownership account at an FDIC-insured bank, and you have a joint ownership account with one or more people at the same bank, you will be insured for up to $250,000 for your single ownership account deposits and also insured separately for your ownership interest up to $250,000 for all of your joint ownership account deposits.\n\n-or-\n\nIf you have a single ownership account in one FDIC-insured bank, and another single ownership account in a different FDIC-insured bank, you will be insured for up to $250,000 for your single account deposits at each FDIC-insured bank.\n\n-or-\n\nIf you have two single ownership accounts (such as a checking account and a savings account) and an individual retirement account (IRA) at the same FDIC-insured bank, then you will be insured up to $250,000 for the combined balance of the funds in the two single ownership accounts. You will be separately insured up to $250,000 for the funds in the IRA, because IRAs are in a different account ownership category.\n\nUse the FDIC’s online Electronic Deposit Insurance Estimator (EDIE) to calculate how much of your funds are covered by deposit insurance.\n\n",
+          "hypothetical_customer_facts": "One person has $200,000 in a single-owner checking account at an FDIC-insured bank, with no other deposits there."
+        },
+        "criteria": {
+          "fully_covered": "All stated deposit principal is within the stated FDIC limits and eligibility.",
+          "partly_covered": "Eligible deposits exceed the insurance limit; some principal is uninsured.",
+          "not_fdic_covered": "The specified product is excluded from FDIC deposit insurance.",
+          "verify_missing_facts": "Necessary facts are missing; verify institution or account eligibility before concluding coverage."
+        },
+        "expected": "fully_covered",
+        "reference_basis": {
+          "kind": "authored_hypothetical_case_against_official_policy"
+        }
+      },
+      {
+        "id": "deposit-aggregate",
+        "category": "deposit_insurance_triage",
+        "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "state": {
+          "task": "Triage FDIC coverage using only the supplied policy and hypothetical customer facts. Do not assume missing insurance status or apply protection for non-deposit investments.",
+          "policy_excerpt": "How FDIC Deposit Insurance Works\n\nThe FDIC helps maintain stability and public confidence in the U.S. financial system. One way we do this is by insuring deposits to at least $250,000 per depositor, per ownership category at each FDIC-insured bank.\n\nThe FDIC maintains the Deposit Insurance Fund (DIF), which:\n\nInsures deposits and protects depositors of FDIC-insured banks and\nHelps fund our resolution activities when banks fail.\n\nThe DIF is backed by the full faith and credit of the United States government, and it has two sources of funds:\n\nAssessments (insurance premiums) that FDIC-insured institutions pay and\nInterest earned on funds invested in U.S. government obligations. The FDIC buys Treasury notes, and the interest on those notes helps the DIF grow.\n\nFDIC deposit insurance only covers deposits, and only if your bank is FDIC-insured.\n\nMake sure your bank is FDIC-insured, using the BankFind Suite search tool.\n\nHow to Know If Your Account is Covered\n\nFDIC insurance covers deposits in all types of accounts at FDIC-insured banks, but it does not cover non-deposit investment products, even those offered by FDIC-insured banks. Additionally, FDIC deposit insurance doesn’t cover default or bankruptcy of any non-FDIC-insured institution.\n\n \n\nCovered\n\nMoney deposited at FDIC-insured banks in:\n\nChecking accounts\n \n\nNegotiable order of withdrawal (NOW) accounts\n\nSavings accounts\n\nMoney market deposit accounts (MMDAs)\n\nTime deposits such as certificates of deposit (CDs)\n\nCashier’s checks, money orders, and other official items issued by a bank\n\n \n\nNot Covered\n\nStock investments\n \n\nBond investments\n\nMutual funds\n\nAnnuities\n\nLife insurance policies\n\nSafe deposit boxes or their contents\n\nU.S. Treasury bills, bonds, or notes\n\nMunicipal securities\n\nCrypto assets\n\nUnderstanding Your Coverage Limits\n\nFDIC deposit insurance covers $250,000 per depositor, per FDIC-insured bank, for each account ownership category.\n\nOwnership categories include:\n\nSingle Accounts\nJoint Accounts\nCertain Retirement Accounts —for example, Individual Retirement Accounts (IRAs)\nTrust Accounts\nEmployee Benefit Plan Accounts\nCorporation / Partnership / Unincorporated Association Accounts\nGovernment Accounts\n\nAll of your deposits in the same ownership category in the same FDIC-insured bank are added together for the purpose of determining FDIC deposit insurance coverage. However, you may qualify for more than $250,000 in FDIC deposit insurance coverage if you deposit money in accounts that are in different ownership categories.\n\nFor example:\n\nIf you have a single ownership account at an FDIC-insured bank, and you have a joint ownership account with one or more people at the same bank, you will be insured for up to $250,000 for your single ownership account deposits and also insured separately for your ownership interest up to $250,000 for all of your joint ownership account deposits.\n\n-or-\n\nIf you have a single ownership account in one FDIC-insured bank, and another single ownership account in a different FDIC-insured bank, you will be insured for up to $250,000 for your single account deposits at each FDIC-insured bank.\n\n-or-\n\nIf you have two single ownership accounts (such as a checking account and a savings account) and an individual retirement account (IRA) at the same FDIC-insured bank, then you will be insured up to $250,000 for the combined balance of the funds in the two single ownership accounts. You will be separately insured up to $250,000 for the funds in the IRA, because IRAs are in a different account ownership category.\n\nUse the FDIC’s online Electronic Deposit Insurance Estimator (EDIE) to calculate how much of your funds are covered by deposit insurance.\n\n",
+          "hypothetical_customer_facts": "One person holds a $180,000 single-owner checking account and a $120,000 single-owner savings account at the SAME FDIC-insured bank; no other deposits."
+        },
+        "criteria": {
+          "fully_covered": "All stated deposit principal is within the stated FDIC limits and eligibility.",
+          "partly_covered": "Eligible deposits exceed the insurance limit; some principal is uninsured.",
+          "not_fdic_covered": "The specified product is excluded from FDIC deposit insurance.",
+          "verify_missing_facts": "Necessary facts are missing; verify institution or account eligibility before concluding coverage."
+        },
+        "expected": "partly_covered",
+        "reference_basis": {
+          "kind": "authored_hypothetical_case_against_official_policy"
+        }
+      },
+      {
+        "id": "deposit-separate-banks",
+        "category": "deposit_insurance_triage",
+        "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "state": {
+          "task": "Triage FDIC coverage using only the supplied policy and hypothetical customer facts. Do not assume missing insurance status or apply protection for non-deposit investments.",
+          "policy_excerpt": "How FDIC Deposit Insurance Works\n\nThe FDIC helps maintain stability and public confidence in the U.S. financial system. One way we do this is by insuring deposits to at least $250,000 per depositor, per ownership category at each FDIC-insured bank.\n\nThe FDIC maintains the Deposit Insurance Fund (DIF), which:\n\nInsures deposits and protects depositors of FDIC-insured banks and\nHelps fund our resolution activities when banks fail.\n\nThe DIF is backed by the full faith and credit of the United States government, and it has two sources of funds:\n\nAssessments (insurance premiums) that FDIC-insured institutions pay and\nInterest earned on funds invested in U.S. government obligations. The FDIC buys Treasury notes, and the interest on those notes helps the DIF grow.\n\nFDIC deposit insurance only covers deposits, and only if your bank is FDIC-insured.\n\nMake sure your bank is FDIC-insured, using the BankFind Suite search tool.\n\nHow to Know If Your Account is Covered\n\nFDIC insurance covers deposits in all types of accounts at FDIC-insured banks, but it does not cover non-deposit investment products, even those offered by FDIC-insured banks. Additionally, FDIC deposit insurance doesn’t cover default or bankruptcy of any non-FDIC-insured institution.\n\n \n\nCovered\n\nMoney deposited at FDIC-insured banks in:\n\nChecking accounts\n \n\nNegotiable order of withdrawal (NOW) accounts\n\nSavings accounts\n\nMoney market deposit accounts (MMDAs)\n\nTime deposits such as certificates of deposit (CDs)\n\nCashier’s checks, money orders, and other official items issued by a bank\n\n \n\nNot Covered\n\nStock investments\n \n\nBond investments\n\nMutual funds\n\nAnnuities\n\nLife insurance policies\n\nSafe deposit boxes or their contents\n\nU.S. Treasury bills, bonds, or notes\n\nMunicipal securities\n\nCrypto assets\n\nUnderstanding Your Coverage Limits\n\nFDIC deposit insurance covers $250,000 per depositor, per FDIC-insured bank, for each account ownership category.\n\nOwnership categories include:\n\nSingle Accounts\nJoint Accounts\nCertain Retirement Accounts —for example, Individual Retirement Accounts (IRAs)\nTrust Accounts\nEmployee Benefit Plan Accounts\nCorporation / Partnership / Unincorporated Association Accounts\nGovernment Accounts\n\nAll of your deposits in the same ownership category in the same FDIC-insured bank are added together for the purpose of determining FDIC deposit insurance coverage. However, you may qualify for more than $250,000 in FDIC deposit insurance coverage if you deposit money in accounts that are in different ownership categories.\n\nFor example:\n\nIf you have a single ownership account at an FDIC-insured bank, and you have a joint ownership account with one or more people at the same bank, you will be insured for up to $250,000 for your single ownership account deposits and also insured separately for your ownership interest up to $250,000 for all of your joint ownership account deposits.\n\n-or-\n\nIf you have a single ownership account in one FDIC-insured bank, and another single ownership account in a different FDIC-insured bank, you will be insured for up to $250,000 for your single account deposits at each FDIC-insured bank.\n\n-or-\n\nIf you have two single ownership accounts (such as a checking account and a savings account) and an individual retirement account (IRA) at the same FDIC-insured bank, then you will be insured up to $250,000 for the combined balance of the funds in the two single ownership accounts. You will be separately insured up to $250,000 for the funds in the IRA, because IRAs are in a different account ownership category.\n\nUse the FDIC’s online Electronic Deposit Insurance Estimator (EDIE) to calculate how much of your funds are covered by deposit insurance.\n\n",
+          "hypothetical_customer_facts": "One person has $200,000 in a single-owner savings account at each of TWO DIFFERENT FDIC-insured banks; no other deposits."
+        },
+        "criteria": {
+          "fully_covered": "All stated deposit principal is within the stated FDIC limits and eligibility.",
+          "partly_covered": "Eligible deposits exceed the insurance limit; some principal is uninsured.",
+          "not_fdic_covered": "The specified product is excluded from FDIC deposit insurance.",
+          "verify_missing_facts": "Necessary facts are missing; verify institution or account eligibility before concluding coverage."
+        },
+        "expected": "fully_covered",
+        "reference_basis": {
+          "kind": "authored_hypothetical_case_against_official_policy"
+        }
+      },
+      {
+        "id": "deposit-mutual-fund",
+        "category": "deposit_insurance_triage",
+        "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "state": {
+          "task": "Triage FDIC coverage using only the supplied policy and hypothetical customer facts. Do not assume missing insurance status or apply protection for non-deposit investments.",
+          "policy_excerpt": "How FDIC Deposit Insurance Works\n\nThe FDIC helps maintain stability and public confidence in the U.S. financial system. One way we do this is by insuring deposits to at least $250,000 per depositor, per ownership category at each FDIC-insured bank.\n\nThe FDIC maintains the Deposit Insurance Fund (DIF), which:\n\nInsures deposits and protects depositors of FDIC-insured banks and\nHelps fund our resolution activities when banks fail.\n\nThe DIF is backed by the full faith and credit of the United States government, and it has two sources of funds:\n\nAssessments (insurance premiums) that FDIC-insured institutions pay and\nInterest earned on funds invested in U.S. government obligations. The FDIC buys Treasury notes, and the interest on those notes helps the DIF grow.\n\nFDIC deposit insurance only covers deposits, and only if your bank is FDIC-insured.\n\nMake sure your bank is FDIC-insured, using the BankFind Suite search tool.\n\nHow to Know If Your Account is Covered\n\nFDIC insurance covers deposits in all types of accounts at FDIC-insured banks, but it does not cover non-deposit investment products, even those offered by FDIC-insured banks. Additionally, FDIC deposit insurance doesn’t cover default or bankruptcy of any non-FDIC-insured institution.\n\n \n\nCovered\n\nMoney deposited at FDIC-insured banks in:\n\nChecking accounts\n \n\nNegotiable order of withdrawal (NOW) accounts\n\nSavings accounts\n\nMoney market deposit accounts (MMDAs)\n\nTime deposits such as certificates of deposit (CDs)\n\nCashier’s checks, money orders, and other official items issued by a bank\n\n \n\nNot Covered\n\nStock investments\n \n\nBond investments\n\nMutual funds\n\nAnnuities\n\nLife insurance policies\n\nSafe deposit boxes or their contents\n\nU.S. Treasury bills, bonds, or notes\n\nMunicipal securities\n\nCrypto assets\n\nUnderstanding Your Coverage Limits\n\nFDIC deposit insurance covers $250,000 per depositor, per FDIC-insured bank, for each account ownership category.\n\nOwnership categories include:\n\nSingle Accounts\nJoint Accounts\nCertain Retirement Accounts —for example, Individual Retirement Accounts (IRAs)\nTrust Accounts\nEmployee Benefit Plan Accounts\nCorporation / Partnership / Unincorporated Association Accounts\nGovernment Accounts\n\nAll of your deposits in the same ownership category in the same FDIC-insured bank are added together for the purpose of determining FDIC deposit insurance coverage. However, you may qualify for more than $250,000 in FDIC deposit insurance coverage if you deposit money in accounts that are in different ownership categories.\n\nFor example:\n\nIf you have a single ownership account at an FDIC-insured bank, and you have a joint ownership account with one or more people at the same bank, you will be insured for up to $250,000 for your single ownership account deposits and also insured separately for your ownership interest up to $250,000 for all of your joint ownership account deposits.\n\n-or-\n\nIf you have a single ownership account in one FDIC-insured bank, and another single ownership account in a different FDIC-insured bank, you will be insured for up to $250,000 for your single account deposits at each FDIC-insured bank.\n\n-or-\n\nIf you have two single ownership accounts (such as a checking account and a savings account) and an individual retirement account (IRA) at the same FDIC-insured bank, then you will be insured up to $250,000 for the combined balance of the funds in the two single ownership accounts. You will be separately insured up to $250,000 for the funds in the IRA, because IRAs are in a different account ownership category.\n\nUse the FDIC’s online Electronic Deposit Insurance Estimator (EDIE) to calculate how much of your funds are covered by deposit insurance.\n\n",
+          "hypothetical_customer_facts": "One person bought $150,000 of MUTUAL FUND shares from an FDIC-insured bank. The assets are mutual fund shares, not a bank deposit."
+        },
+        "criteria": {
+          "fully_covered": "All stated deposit principal is within the stated FDIC limits and eligibility.",
+          "partly_covered": "Eligible deposits exceed the insurance limit; some principal is uninsured.",
+          "not_fdic_covered": "The specified product is excluded from FDIC deposit insurance.",
+          "verify_missing_facts": "Necessary facts are missing; verify institution or account eligibility before concluding coverage."
+        },
+        "expected": "not_fdic_covered",
+        "reference_basis": {
+          "kind": "authored_hypothetical_case_against_official_policy"
+        }
+      },
+      {
+        "id": "deposit-crypto",
+        "category": "deposit_insurance_triage",
+        "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "state": {
+          "task": "Triage FDIC coverage using only the supplied policy and hypothetical customer facts. Do not assume missing insurance status or apply protection for non-deposit investments.",
+          "policy_excerpt": "How FDIC Deposit Insurance Works\n\nThe FDIC helps maintain stability and public confidence in the U.S. financial system. One way we do this is by insuring deposits to at least $250,000 per depositor, per ownership category at each FDIC-insured bank.\n\nThe FDIC maintains the Deposit Insurance Fund (DIF), which:\n\nInsures deposits and protects depositors of FDIC-insured banks and\nHelps fund our resolution activities when banks fail.\n\nThe DIF is backed by the full faith and credit of the United States government, and it has two sources of funds:\n\nAssessments (insurance premiums) that FDIC-insured institutions pay and\nInterest earned on funds invested in U.S. government obligations. The FDIC buys Treasury notes, and the interest on those notes helps the DIF grow.\n\nFDIC deposit insurance only covers deposits, and only if your bank is FDIC-insured.\n\nMake sure your bank is FDIC-insured, using the BankFind Suite search tool.\n\nHow to Know If Your Account is Covered\n\nFDIC insurance covers deposits in all types of accounts at FDIC-insured banks, but it does not cover non-deposit investment products, even those offered by FDIC-insured banks. Additionally, FDIC deposit insurance doesn’t cover default or bankruptcy of any non-FDIC-insured institution.\n\n \n\nCovered\n\nMoney deposited at FDIC-insured banks in:\n\nChecking accounts\n \n\nNegotiable order of withdrawal (NOW) accounts\n\nSavings accounts\n\nMoney market deposit accounts (MMDAs)\n\nTime deposits such as certificates of deposit (CDs)\n\nCashier’s checks, money orders, and other official items issued by a bank\n\n \n\nNot Covered\n\nStock investments\n \n\nBond investments\n\nMutual funds\n\nAnnuities\n\nLife insurance policies\n\nSafe deposit boxes or their contents\n\nU.S. Treasury bills, bonds, or notes\n\nMunicipal securities\n\nCrypto assets\n\nUnderstanding Your Coverage Limits\n\nFDIC deposit insurance covers $250,000 per depositor, per FDIC-insured bank, for each account ownership category.\n\nOwnership categories include:\n\nSingle Accounts\nJoint Accounts\nCertain Retirement Accounts —for example, Individual Retirement Accounts (IRAs)\nTrust Accounts\nEmployee Benefit Plan Accounts\nCorporation / Partnership / Unincorporated Association Accounts\nGovernment Accounts\n\nAll of your deposits in the same ownership category in the same FDIC-insured bank are added together for the purpose of determining FDIC deposit insurance coverage. However, you may qualify for more than $250,000 in FDIC deposit insurance coverage if you deposit money in accounts that are in different ownership categories.\n\nFor example:\n\nIf you have a single ownership account at an FDIC-insured bank, and you have a joint ownership account with one or more people at the same bank, you will be insured for up to $250,000 for your single ownership account deposits and also insured separately for your ownership interest up to $250,000 for all of your joint ownership account deposits.\n\n-or-\n\nIf you have a single ownership account in one FDIC-insured bank, and another single ownership account in a different FDIC-insured bank, you will be insured for up to $250,000 for your single account deposits at each FDIC-insured bank.\n\n-or-\n\nIf you have two single ownership accounts (such as a checking account and a savings account) and an individual retirement account (IRA) at the same FDIC-insured bank, then you will be insured up to $250,000 for the combined balance of the funds in the two single ownership accounts. You will be separately insured up to $250,000 for the funds in the IRA, because IRAs are in a different account ownership category.\n\nUse the FDIC’s online Electronic Deposit Insurance Estimator (EDIE) to calculate how much of your funds are covered by deposit insurance.\n\n",
+          "hypothetical_customer_facts": "A customer owns $40,000 of crypto assets sold through a service associated with an FDIC-insured bank."
+        },
+        "criteria": {
+          "fully_covered": "All stated deposit principal is within the stated FDIC limits and eligibility.",
+          "partly_covered": "Eligible deposits exceed the insurance limit; some principal is uninsured.",
+          "not_fdic_covered": "The specified product is excluded from FDIC deposit insurance.",
+          "verify_missing_facts": "Necessary facts are missing; verify institution or account eligibility before concluding coverage."
+        },
+        "expected": "not_fdic_covered",
+        "reference_basis": {
+          "kind": "authored_hypothetical_case_against_official_policy"
+        }
+      },
+      {
+        "id": "deposit-bank-unknown",
+        "category": "deposit_insurance_triage",
+        "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "state": {
+          "task": "Triage FDIC coverage using only the supplied policy and hypothetical customer facts. Do not assume missing insurance status or apply protection for non-deposit investments.",
+          "policy_excerpt": "How FDIC Deposit Insurance Works\n\nThe FDIC helps maintain stability and public confidence in the U.S. financial system. One way we do this is by insuring deposits to at least $250,000 per depositor, per ownership category at each FDIC-insured bank.\n\nThe FDIC maintains the Deposit Insurance Fund (DIF), which:\n\nInsures deposits and protects depositors of FDIC-insured banks and\nHelps fund our resolution activities when banks fail.\n\nThe DIF is backed by the full faith and credit of the United States government, and it has two sources of funds:\n\nAssessments (insurance premiums) that FDIC-insured institutions pay and\nInterest earned on funds invested in U.S. government obligations. The FDIC buys Treasury notes, and the interest on those notes helps the DIF grow.\n\nFDIC deposit insurance only covers deposits, and only if your bank is FDIC-insured.\n\nMake sure your bank is FDIC-insured, using the BankFind Suite search tool.\n\nHow to Know If Your Account is Covered\n\nFDIC insurance covers deposits in all types of accounts at FDIC-insured banks, but it does not cover non-deposit investment products, even those offered by FDIC-insured banks. Additionally, FDIC deposit insurance doesn’t cover default or bankruptcy of any non-FDIC-insured institution.\n\n \n\nCovered\n\nMoney deposited at FDIC-insured banks in:\n\nChecking accounts\n \n\nNegotiable order of withdrawal (NOW) accounts\n\nSavings accounts\n\nMoney market deposit accounts (MMDAs)\n\nTime deposits such as certificates of deposit (CDs)\n\nCashier’s checks, money orders, and other official items issued by a bank\n\n \n\nNot Covered\n\nStock investments\n \n\nBond investments\n\nMutual funds\n\nAnnuities\n\nLife insurance policies\n\nSafe deposit boxes or their contents\n\nU.S. Treasury bills, bonds, or notes\n\nMunicipal securities\n\nCrypto assets\n\nUnderstanding Your Coverage Limits\n\nFDIC deposit insurance covers $250,000 per depositor, per FDIC-insured bank, for each account ownership category.\n\nOwnership categories include:\n\nSingle Accounts\nJoint Accounts\nCertain Retirement Accounts —for example, Individual Retirement Accounts (IRAs)\nTrust Accounts\nEmployee Benefit Plan Accounts\nCorporation / Partnership / Unincorporated Association Accounts\nGovernment Accounts\n\nAll of your deposits in the same ownership category in the same FDIC-insured bank are added together for the purpose of determining FDIC deposit insurance coverage. However, you may qualify for more than $250,000 in FDIC deposit insurance coverage if you deposit money in accounts that are in different ownership categories.\n\nFor example:\n\nIf you have a single ownership account at an FDIC-insured bank, and you have a joint ownership account with one or more people at the same bank, you will be insured for up to $250,000 for your single ownership account deposits and also insured separately for your ownership interest up to $250,000 for all of your joint ownership account deposits.\n\n-or-\n\nIf you have a single ownership account in one FDIC-insured bank, and another single ownership account in a different FDIC-insured bank, you will be insured for up to $250,000 for your single account deposits at each FDIC-insured bank.\n\n-or-\n\nIf you have two single ownership accounts (such as a checking account and a savings account) and an individual retirement account (IRA) at the same FDIC-insured bank, then you will be insured up to $250,000 for the combined balance of the funds in the two single ownership accounts. You will be separately insured up to $250,000 for the funds in the IRA, because IRAs are in a different account ownership category.\n\nUse the FDIC’s online Electronic Deposit Insurance Estimator (EDIE) to calculate how much of your funds are covered by deposit insurance.\n\n",
+          "hypothetical_customer_facts": "One person has $100,000 in a single-owner savings account. The institution's identity and FDIC insurance status are not supplied."
+        },
+        "criteria": {
+          "fully_covered": "All stated deposit principal is within the stated FDIC limits and eligibility.",
+          "partly_covered": "Eligible deposits exceed the insurance limit; some principal is uninsured.",
+          "not_fdic_covered": "The specified product is excluded from FDIC deposit insurance.",
+          "verify_missing_facts": "Necessary facts are missing; verify institution or account eligibility before concluding coverage."
+        },
+        "expected": "verify_missing_facts",
+        "reference_basis": {
+          "kind": "authored_hypothetical_case_against_official_policy"
+        }
+      },
+      {
+        "id": "fx-correct",
+        "category": "fx_reporting_and_payment_routing",
+        "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+        "state": {
+          "task": "Choose the appropriate processing action using the dated ECB source and case facts. Rates mean units of foreign currency for ONE euro. For report amounts allow a 0.01 currency-unit rounding tolerance; a payment requires an executable quote.",
+          "reference_date": "2026-10-12",
+          "base_currency": "EUR",
+          "published_rates": {
+            "USD": "1.1181",
+            "GBP": "0.84478",
+            "JPY": "177.33",
+            "CNY": "7.4832"
+          },
+          "source_notice": "The reference rates are usually updated at around 16:00 CET every working day, except on TARGET closing days.\n\nThey are based on the daily concertation procedure between central banks across Europe, which normally takes place around 14:10 CET. The reference rates are published for information purposes only. Using the rates for transaction purposes is strongly discouraged.\n\n12 October 2026\n\n",
+          "hypothetical_case": {
+            "purpose": "Historical internal reporting, not payment execution",
+            "valuation_date": "2026-10-12",
+            "amount": "10000.00",
+            "from": "EUR",
+            "to": "USD",
+            "proposed_converted_amount": "11181.00"
+          }
+        },
+        "criteria": {
+          "accept_report": "The historical report conversion and date are consistent with the source.",
+          "correct_calculation": "The supplied rate exists but the proposed conversion amount or rate direction is wrong.",
+          "obtain_missing_rate": "The requested currency rate is absent; obtain a valid dated source rather than assuming zero.",
+          "obtain_executable_quote": "Get a current executable bank/provider quote before any payment; an ECB reference rate is not one.",
+          "refresh_date": "Obtain a source matching the required valuation date before accepting this report."
+        },
+        "expected": "accept_report",
+        "reference_basis": {
+          "kind": "authored_case_with_real_ecb_data",
+          "source_date": "2026-10-12",
+          "usd_per_eur": "1.1181",
+          "decimal_expected_eur_10000_to_usd": "11181.00"
+        }
+      },
+      {
+        "id": "fx-inverse-error",
+        "category": "fx_reporting_and_payment_routing",
+        "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+        "state": {
+          "task": "Choose the appropriate processing action using the dated ECB source and case facts. Rates mean units of foreign currency for ONE euro. For report amounts allow a 0.01 currency-unit rounding tolerance; a payment requires an executable quote.",
+          "reference_date": "2026-10-12",
+          "base_currency": "EUR",
+          "published_rates": {
+            "USD": "1.1181",
+            "GBP": "0.84478",
+            "JPY": "177.33",
+            "CNY": "7.4832"
+          },
+          "source_notice": "The reference rates are usually updated at around 16:00 CET every working day, except on TARGET closing days.\n\nThey are based on the daily concertation procedure between central banks across Europe, which normally takes place around 14:10 CET. The reference rates are published for information purposes only. Using the rates for transaction purposes is strongly discouraged.\n\n12 October 2026\n\n",
+          "hypothetical_case": {
+            "purpose": "Historical internal reporting, not payment execution",
+            "valuation_date": "2026-10-12",
+            "amount": "10000.00",
+            "from": "EUR",
+            "to": "USD",
+            "proposed_converted_amount": "8943.74"
+          }
+        },
+        "criteria": {
+          "accept_report": "The historical report conversion and date are consistent with the source.",
+          "correct_calculation": "The supplied rate exists but the proposed conversion amount or rate direction is wrong.",
+          "obtain_missing_rate": "The requested currency rate is absent; obtain a valid dated source rather than assuming zero.",
+          "obtain_executable_quote": "Get a current executable bank/provider quote before any payment; an ECB reference rate is not one.",
+          "refresh_date": "Obtain a source matching the required valuation date before accepting this report."
+        },
+        "expected": "correct_calculation",
+        "reference_basis": {
+          "kind": "authored_case_with_real_ecb_data",
+          "source_date": "2026-10-12",
+          "usd_per_eur": "1.1181",
+          "decimal_expected_eur_10000_to_usd": "11181.00"
+        }
+      },
+      {
+        "id": "fx-missing-currency",
+        "category": "fx_reporting_and_payment_routing",
+        "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+        "state": {
+          "task": "Choose the appropriate processing action using the dated ECB source and case facts. Rates mean units of foreign currency for ONE euro. For report amounts allow a 0.01 currency-unit rounding tolerance; a payment requires an executable quote.",
+          "reference_date": "2026-10-12",
+          "base_currency": "EUR",
+          "published_rates": {
+            "USD": "1.1181",
+            "GBP": "0.84478",
+            "JPY": "177.33",
+            "CNY": "7.4832"
+          },
+          "source_notice": "The reference rates are usually updated at around 16:00 CET every working day, except on TARGET closing days.\n\nThey are based on the daily concertation procedure between central banks across Europe, which normally takes place around 14:10 CET. The reference rates are published for information purposes only. Using the rates for transaction purposes is strongly discouraged.\n\n12 October 2026\n\n",
+          "hypothetical_case": {
+            "purpose": "Historical internal reporting",
+            "valuation_date": "2026-10-12",
+            "amount": "10000.00",
+            "from": "EUR",
+            "to": "RUB",
+            "proposed_converted_amount": "0.00"
+          }
+        },
+        "criteria": {
+          "accept_report": "The historical report conversion and date are consistent with the source.",
+          "correct_calculation": "The supplied rate exists but the proposed conversion amount or rate direction is wrong.",
+          "obtain_missing_rate": "The requested currency rate is absent; obtain a valid dated source rather than assuming zero.",
+          "obtain_executable_quote": "Get a current executable bank/provider quote before any payment; an ECB reference rate is not one.",
+          "refresh_date": "Obtain a source matching the required valuation date before accepting this report."
+        },
+        "expected": "obtain_missing_rate",
+        "reference_basis": {
+          "kind": "authored_case_with_real_ecb_data",
+          "source_date": "2026-10-12",
+          "usd_per_eur": "1.1181",
+          "decimal_expected_eur_10000_to_usd": "11181.00"
+        }
+      },
+      {
+        "id": "fx-payment-quote",
+        "category": "fx_reporting_and_payment_routing",
+        "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+        "state": {
+          "task": "Choose the appropriate processing action using the dated ECB source and case facts. Rates mean units of foreign currency for ONE euro. For report amounts allow a 0.01 currency-unit rounding tolerance; a payment requires an executable quote.",
+          "reference_date": "2026-10-12",
+          "base_currency": "EUR",
+          "published_rates": {
+            "USD": "1.1181",
+            "GBP": "0.84478",
+            "JPY": "177.33",
+            "CNY": "7.4832"
+          },
+          "source_notice": "The reference rates are usually updated at around 16:00 CET every working day, except on TARGET closing days.\n\nThey are based on the daily concertation procedure between central banks across Europe, which normally takes place around 14:10 CET. The reference rates are published for information purposes only. Using the rates for transaction purposes is strongly discouraged.\n\n12 October 2026\n\n",
+          "hypothetical_case": {
+            "purpose": "Execute a supplier payment now at the ECB reference rate",
+            "amount": "10000.00",
+            "from": "EUR",
+            "to": "USD",
+            "executable_bank_quote": null
+          }
+        },
+        "criteria": {
+          "accept_report": "The historical report conversion and date are consistent with the source.",
+          "correct_calculation": "The supplied rate exists but the proposed conversion amount or rate direction is wrong.",
+          "obtain_missing_rate": "The requested currency rate is absent; obtain a valid dated source rather than assuming zero.",
+          "obtain_executable_quote": "Get a current executable bank/provider quote before any payment; an ECB reference rate is not one.",
+          "refresh_date": "Obtain a source matching the required valuation date before accepting this report."
+        },
+        "expected": "obtain_executable_quote",
+        "reference_basis": {
+          "kind": "authored_case_with_real_ecb_data",
+          "source_date": "2026-10-12",
+          "usd_per_eur": "1.1181",
+          "decimal_expected_eur_10000_to_usd": "11181.00"
+        }
+      },
+      {
+        "id": "fx-wrong-date",
+        "category": "fx_reporting_and_payment_routing",
+        "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+        "state": {
+          "task": "Choose the appropriate processing action using the dated ECB source and case facts. Rates mean units of foreign currency for ONE euro. For report amounts allow a 0.01 currency-unit rounding tolerance; a payment requires an executable quote.",
+          "reference_date": "2026-10-12",
+          "base_currency": "EUR",
+          "published_rates": {
+            "USD": "1.1181",
+            "GBP": "0.84478",
+            "JPY": "177.33",
+            "CNY": "7.4832"
+          },
+          "source_notice": "The reference rates are usually updated at around 16:00 CET every working day, except on TARGET closing days.\n\nThey are based on the daily concertation procedure between central banks across Europe, which normally takes place around 14:10 CET. The reference rates are published for information purposes only. Using the rates for transaction purposes is strongly discouraged.\n\n12 October 2026\n\n",
+          "hypothetical_case": {
+            "purpose": "Historical reporting; internal policy REQUIRES the exact valuation date, with no carry-forward permitted",
+            "valuation_date": "2026-10-13",
+            "amount": "10000.00",
+            "from": "EUR",
+            "to": "USD",
+            "proposed_converted_amount": "11181.00"
+          }
+        },
+        "criteria": {
+          "accept_report": "The historical report conversion and date are consistent with the source.",
+          "correct_calculation": "The supplied rate exists but the proposed conversion amount or rate direction is wrong.",
+          "obtain_missing_rate": "The requested currency rate is absent; obtain a valid dated source rather than assuming zero.",
+          "obtain_executable_quote": "Get a current executable bank/provider quote before any payment; an ECB reference rate is not one.",
+          "refresh_date": "Obtain a source matching the required valuation date before accepting this report."
+        },
+        "expected": "refresh_date",
+        "reference_basis": {
+          "kind": "authored_case_with_real_ecb_data",
+          "source_date": "2026-10-12",
+          "usd_per_eur": "1.1181",
+          "decimal_expected_eur_10000_to_usd": "11181.00"
+        }
+      },
+      {
+        "id": "fx-reverse-correct",
+        "category": "fx_reporting_and_payment_routing",
+        "source": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml",
+        "state": {
+          "task": "Choose the appropriate processing action using the dated ECB source and case facts. Rates mean units of foreign currency for ONE euro. For report amounts allow a 0.01 currency-unit rounding tolerance; a payment requires an executable quote.",
+          "reference_date": "2026-10-12",
+          "base_currency": "EUR",
+          "published_rates": {
+            "USD": "1.1181",
+            "GBP": "0.84478",
+            "JPY": "177.33",
+            "CNY": "7.4832"
+          },
+          "source_notice": "The reference rates are usually updated at around 16:00 CET every working day, except on TARGET closing days.\n\nThey are based on the daily concertation procedure between central banks across Europe, which normally takes place around 14:10 CET. The reference rates are published for information purposes only. Using the rates for transaction purposes is strongly discouraged.\n\n12 October 2026\n\n",
+          "hypothetical_case": {
+            "purpose": "Historical internal reporting, not payment execution",
+            "valuation_date": "2026-10-12",
+            "amount": "11181.00",
+            "from": "USD",
+            "to": "EUR",
+            "proposed_converted_amount": "10000.00"
+          }
+        },
+        "criteria": {
+          "accept_report": "The historical report conversion and date are consistent with the source.",
+          "correct_calculation": "The supplied rate exists but the proposed conversion amount or rate direction is wrong.",
+          "obtain_missing_rate": "The requested currency rate is absent; obtain a valid dated source rather than assuming zero.",
+          "obtain_executable_quote": "Get a current executable bank/provider quote before any payment; an ECB reference rate is not one.",
+          "refresh_date": "Obtain a source matching the required valuation date before accepting this report."
+        },
+        "expected": "accept_report",
+        "reference_basis": {
+          "kind": "authored_case_with_real_ecb_data",
+          "source_date": "2026-10-12",
+          "usd_per_eur": "1.1181",
+          "decimal_expected_eur_10000_to_usd": "11181.00"
+        }
+      }
+    ],
+    "variants": [
+      "original_order",
+      "reversed_order"
+    ],
+    "sampling": "FinancialPhraseBank unanimous labels, random seed 20261013, 4 sentences per class sampled before inference. Other cases authored from frozen official excerpts.",
+    "evaluation": "Exact candidate ID against frozen reference. Both models receive identical state, instructions and candidate order for each paired case. Reference labels are never sent to models."
+  },
+  "budget": {
+    "browser_max_calls": 240,
+    "finance_calls": 120,
+    "total_max_calls": 360
+  },
+  "preflight_exclusions": [
+    {
+      "site": "investor.gov SEC bulletin",
+      "reason": "HTTP 403 before model testing; no bypass attempted"
+    },
+    {
+      "site": "FRED date-range editing",
+      "reason": "Manual preflight field edits reverted to original range; inaccessible chart data-table button intercepted pointer events. Kept as environment/tool limitation, not a model failure."
+    }
+  ],
+  "financial_execution": "Read-only evidence/routing evaluation only; no account logins, trades, transfers, refunds or customer communications.",
+  "limits": [
+    "Small task set, two browser runs per model/task, one inference per finance case/order; not production accuracy.",
+    "Finance news is a public historical benchmark; model training overlap is unknown.",
+    "Browser inputs may diverge after different choices; only finance pairs have guaranteed identical inputs.",
+    "No provider fallback, no rule replacement, no retry of model API errors.",
+    "Jev direct API versus Decider via the existing gateway; RTT is deployment-specific, not pure inference time."
+  ],
+  "plan_sha256": "d23009efda7922841c8136e30156346f866ef4ef9fe094c64634555ac5b25d4b"
+}

@@ -1,0 +1,166 @@
+{
+  "id": "fdic-bank-search-jev-2",
+  "task_id": "fdic-bank-search",
+  "provider": "jev",
+  "repeat": 2,
+  "started_at": "2026-10-13T02:42:30.031814+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "420a955d18e8881a87fd20baae4de3ad63f25ea64a71e01f10bf1a779adb3ef9",
+      "model_ms": 166.194,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 7
+      },
+      "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.002,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false,
+          "bank_detail_link": false
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "684aa504fc6e6ec9562a42ce2df32613b7bbd8d25ad2eca94ac4e69c364f5879",
+      "model_ms": 127.44,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "choice": "c8",
+      "action": {
+        "kind": "input",
+        "index": 8,
+        "value": "JPMorgan Chase Bank",
+        "submit": false
+      },
+      "description": "Fill 'Enter Bank Name' with supplied task text 'JPMorgan Chase Bank' (current value: '').",
+      "status": "executed",
+      "action_ms": 788.017,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false,
+          "bank_detail_link": false
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+      }
+    },
+    {
+      "step": 3,
+      "input_sha256": "adfe754f326db86a49e31f8338880786da2c25fcf58b6769973c100fac00eb6a",
+      "model_ms": 121.218,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 7
+      },
+      "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.002,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false,
+          "bank_detail_link": false
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+      }
+    },
+    {
+      "step": 4,
+      "input_sha256": "5f9cf8b684fb00419ce20adc15300b3ed5830d17ceb596baf18d5fd54b8abf0c",
+      "model_ms": 135.768,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 14
+      },
+      "description": "Inspect the next page of available controls (15 onward out of 15). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.002,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false,
+          "bank_detail_link": false
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+      }
+    },
+    {
+      "step": 5,
+      "input_sha256": "3b76000d7deba21aaf9474a3b6d7c8f512b8cda150eb8062227b881cf4c13107",
+      "model_ms": 133.281,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "choice": "c14",
+      "action": {
+        "kind": "click",
+        "index": 14
+      },
+      "description": "Click button 'Search'",
+      "status": "executed",
+      "action_ms": 845.961,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true,
+          "bank_detail_link": true
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+      }
+    },
+    {
+      "step": 6,
+      "input_sha256": "b78c8c4e91fb03ea31afd78bd7494e9b4784aeb4395d7605d8582c2fd2e97cdb",
+      "model_ms": 156.113,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 5.42,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true,
+          "bank_detail_link": true
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+      }
+    }
+  ],
+  "success": true,
+  "goal_reached": true,
+  "model_ms": 840.0140000000001,
+  "blocked_navigations": [],
+  "initial_http_status": 200
+}

@@ -1,0 +1,2078 @@
+[
+  {
+    "id": "sc-a01",
+    "title": "1. 检查长程任务有没有跑偏",
+    "skill": "jev",
+    "overview": "> 对照最初验收标准，判断“现在去改主题颜色”是否推进修复登录失败这个目标。\n- **输入 → 输出：** 目标、验收项、最近结果、拟做动作 → 是否直接推进目标。\n- **可以改：** 里程碑触发时机、验收项、允许的旁支工作；不要擅自重写目标。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json)。\n- **来源：** [R02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r02) · [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r02",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02"
+    ],
+    "number": 1,
+    "input_output": "目标、验收项、最近结果、拟做动作 → 是否直接推进目标。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a01",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a02",
+    "title": "2. 从反复失败的循环里脱困",
+    "skill": "jev",
+    "overview": "> 同一测试已经失败三次。用 Jev 在读错误、换假设、验证新修复、升级求助之间选一步。\n- **输入 → 输出：** 带退出码的尝试记录、输入变化 → 恢复路线。\n- **可以改：** 重复失败窗口、可用诊断工具、重试上限；没有新证据就别无限重试。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json)。\n- **来源：** [R02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r02) · [P03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03)\n- **状态：** 下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r02",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/examples-2026-09-20.json"
+    ],
+    "number": 2,
+    "input_output": "带退出码的尝试记录、输入变化 → 恢复路线。",
+    "original_status": "下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a02",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a06",
+    "title": "3. 检查任务是否真的完成",
+    "skill": "jev-eval",
+    "overview": "> 把验收清单逐项对上当前版本的测试和产物回执；没有证据的项目写“未证实”。\n- **输入 → 输出：** 验收项、产物 ID、测试回执、版本 → 逐项证据支持度。\n- **可以改：** 完成标准、回执新鲜度、必测项；通过日志必须属于当前版本。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/completion.json)。\n- **来源：** [P03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03) · [N01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n01)\n- **状态：** 下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/completion.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n01",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/examples-2026-09-20.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/docs/experiments/public-pr-pilot/README.md"
+    ],
+    "number": 3,
+    "input_output": "验收项、产物 ID、测试回执、版本 → 逐项证据支持度。",
+    "original_status": "下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a06",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a07",
+    "title": "4. 拦住没有证据的“已完成”表述",
+    "skill": "jev-eval",
+    "overview": "> 核对这段最终汇报：只排队了任务，是否却写成已经成功运行？保留原始失败记录。\n- **输入 → 输出：** 拟发汇报、独立执行记录 → 哪些成功表述缺乏支持。\n- **可以改：** 区分计划、尝试、观察到的结果；先补证据或改措辞。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/completion.json)。\n- **来源：** [P03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/completion.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03"
+    ],
+    "number": 4,
+    "input_output": "拟发汇报、独立执行记录 → 哪些成功表述缺乏支持。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a07",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a27",
+    "title": "5. 复盘一次 agent 失败发生在哪里",
+    "skill": "jev",
+    "overview": "> 根据编号轨迹，分别选出可疑步骤、相关 agent 和错误类别，输出调查清单而非追责结论。\n- **输入 → 输出：** 失败轨迹、步骤 ID、错误和参与者 → 步骤／参与者／失败类别。\n- **可以改：** 错误 taxonomy、证据窗口、unknown 路径；复盘标签不是在线恢复策略的证明。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json)。\n- **来源：** [P06](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p06)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p06"
+    ],
+    "number": 5,
+    "input_output": "失败轨迹、步骤 ID、错误和参与者 → 步骤／参与者／失败类别。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a27",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a03",
+    "title": "6. 核对计划和实际调用是否一致",
+    "skill": "jev-eval",
+    "overview": "> 计划是只读检查，拟调用却包含写入参数。请比较目标、范围和效果，标出不一致。\n- **输入 → 输出：** 眼前计划、完整调用及参数 → 语义上一致或不一致。\n- **可以改：** 需要比较的字段、作用范围、例外；一致不等于有权限。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [R02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r02"
+    ],
+    "number": 6,
+    "input_output": "眼前计划、完整调用及参数 → 语义上一致或不一致。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a03",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a08",
+    "title": "7. 发现削弱测试、刷通过的修复",
+    "skill": "jev-eval",
+    "overview": "> 比较改动前后的断言：把检查改成 assert True 是否绕过了需求，而不是修复行为？\n- **输入 → 输出：** 原始需求、测试意图、前后 diff → 是否削弱必要检查。\n- **可以改：** 受保护断言、合法测试改动的例外；标记线索，不判断主观作弊意图。\n- **动手：** [jev-eval](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/code-review.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/code-review.json)。\n- **来源：** [P03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：削弱测试命题为 0.97；不是端到端审查基准。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/code-review.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/code-review.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 7,
+    "input_output": "原始需求、测试意图、前后 diff → 是否削弱必要检查。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：削弱测试命题为 0.97；不是端到端审查基准。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a08",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a09",
+    "title": "8. 检查项目约定和语义规则",
+    "skill": "jev-eval",
+    "overview": "> 按“业务层不能绕过统一鉴权”这条项目规则检查 diff，每条规则分别判断。\n- **输入 → 输出：** 明确规则、例外、相关代码 → 可能违反／不违反／证据不足。\n- **可以改：** 规则文本、适用文件、例外范围；语法类约束仍交给 linter。\n- **动手：** [jev-eval](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/code-review.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/code-review.json)。\n- **来源：** [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/code-review.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/code-review.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02"
+    ],
+    "number": 8,
+    "input_output": "明确规则、例外、相关代码 → 可能违反／不违反／证据不足。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a09",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a10",
+    "title": "9. 给即将执行的动作分风险类",
+    "skill": "jev",
+    "overview": "> 把这些动作分成只读、可逆本地修改、外部影响、潜在破坏、未知，先给审阅顺序。\n- **输入 → 输出：** 命令、目标环境、授权证据、回滚事实 → 风险类别。\n- **可以改：** 环境、影响范围、回滚要求；分类不能覆盖硬权限和确认要求。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [R03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r03) · [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 9,
+    "input_output": "命令、目标环境、授权证据、回滚事实 → 风险类别。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a10",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a11",
+    "title": "10. 标出工具结果里的诱导指令",
+    "skill": "jev-eval",
+    "overview": "> 这段网页是否试图让 agent 忽略目标、读取密钥或执行无关动作？把可疑片段列出来。\n- **输入 → 输出：** 原任务、明确隔离的不可信网页或日志 → 是否有指令重定向企图。\n- **可以改：** 攻击类别、证据窗口；即使低分也继续把外部内容当作不可信数据。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02) · [N02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/docs/updates/2026-09-21.md#decision-failures"
+    ],
+    "number": 10,
+    "input_output": "原任务、明确隔离的不可信网页或日志 → 是否有指令重定向企图。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a11",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a12",
+    "title": "11. 给代码审查排优先级",
+    "skill": "jev-eval",
+    "overview": "> 按行为变化、潜在缺陷、权限或数据丢失风险给 diff 分块评分，让我先看最值得查的地方。\n- **输入 → 输出：** diff 块、文件职责、相关测试 → 分块风险分数和审查顺序。\n- **可以改：** 风险维度、分数锚点、必审范围；低分不免除必须的安全审查。\n- **动手：** [jev-eval](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/code-review.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/code-review.json)。\n- **来源：** [P07](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p07) · [Jev Review](https://github.com/devagrawal09/jev-review) · [Blink review](https://blink.review/)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/code-review.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/code-review.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p07",
+      "https://github.com/devagrawal09/jev-review",
+      "https://blink.review/"
+    ],
+    "number": 11,
+    "input_output": "diff 块、文件职责、相关测试 → 分块风险分数和审查顺序。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a12",
+    "additional_source_ids": [
+      "S01"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a13",
+    "title": "12. 判断工具返回是否真正有用",
+    "skill": "jev-eval",
+    "overview": "> 这个工具虽然退出了，但回复是否为空、缺少必要信息、返回错误，还是明确的政策拒绝？\n- **输入 → 输出：** 预期结果形状、实际返回、工具状态 → 可用／错误／缺信息／拒绝。\n- **可以改：** 必需字段、错误类别、重试条件；不要把拒绝当作需要绕过的错误。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/completion.json)。\n- **来源：** [R04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/completion.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r04"
+    ],
+    "number": 12,
+    "input_output": "预期结果形状、实际返回、工具状态 → 可用／错误／缺信息／拒绝。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a13",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h14",
+    "title": "13. 匿名比较几个候选答案",
+    "skill": "jev-eval",
+    "overview": "> 按相同证据给 A/B 答案评分，打乱展示顺序，检查支持度、完整性和是否满足要求。\n- **输入 → 输出：** 问题、独立证据、匿名候选答案 → 有锚点的评分和分歧。\n- **可以改：** 评分维度、答案顺序、人工抽查；不能让自评成为唯一真值。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04) · [P09](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09) · [N01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n01"
+    ],
+    "number": 13,
+    "input_output": "问题、独立证据、匿名候选答案 → 有锚点的评分和分歧。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h14",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-judge",
+    "title": "14. 把 Jev 用作可重复的评测裁判",
+    "skill": "jev-eval",
+    "overview": "> 对保存的 agent 轨迹用固定标准判断，多次重复，分别测与人工标签的一致性、重复性、延迟和成本。\n- **输入 → 输出：** 轨迹/答案、固定标准 → 类型化标签或分数 → 评测统计。\n- **可以改：** 裁判标准、留出标签、重复次数、误报漏报代价；重复一致不等于判断正确。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [LangChain judge study](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n01) · [OpenRouter author post](https://x.com/OpenRouter/status/2101412965765529853)\n- **状态：** 已记录 LangChain 研究；调研中尚未找到 Ori 的准确实验材料，本次没有新增裁判基准实验。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n01",
+      "https://x.com/OpenRouter/status/2101412965765529853",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/#agent"
+    ],
+    "number": 14,
+    "input_output": "轨迹/答案、固定标准 → 类型化标签或分数 → 评测统计。",
+    "original_status": "已记录 LangChain 研究；调研中尚未找到 Ori 的准确实验材料，本次没有新增裁判基准实验。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-judge",
+    "additional_source_ids": [
+      "S02"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a04",
+    "title": "15. 用户不在时选择还能继续的工作",
+    "skill": "jev",
+    "overview": "> 我只授权本地修改和测试。下一步在检查日志、运行测试、准备补丁、存档等待中选，不要推送。\n- **输入 → 输出：** 预授权队列、依赖状态、实际可用动作 → 下一步或等待。\n- **可以改：** 离线期间授权范围、可逆性、停止条件；用户离线不是追加授权。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json)。\n- **来源：** [P01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01) · [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02"
+    ],
+    "number": 15,
+    "input_output": "预授权队列、依赖状态、实际可用动作 → 下一步或等待。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a04",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a05",
+    "title": "16. 决定查证、升级模型还是交给人",
+    "skill": "jev",
+    "overview": "> 根据当前证据，判断应该再读一份日志、交给强推理模型分析，还是缺少只有我能决定的信息。\n- **输入 → 输出：** 问题、已尝试方法、缺失事实、审阅选项 → 查证／强模型／人工。\n- **可以改：** 错误代价、缺失信息类型、校准后的升级门槛。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [R01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01) · [P01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01"
+    ],
+    "number": 16,
+    "input_output": "问题、已尝试方法、缺失事实、审阅选项 → 查证／强模型／人工。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a05",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a14",
+    "title": "17. 决定子 agent 的消息何时打断主任务",
+    "skill": "jev-eval",
+    "overview": "> 这些子任务汇报中，哪些必须现在处理，哪些可以等检查点，哪些重复或需要核验？\n- **输入 → 输出：** 子任务目标、汇报、证据 ID、主任务状态 → 即刻处理／延后／重复／核验。\n- **可以改：** 打断代价、紧急性标准、去重规则；原始汇报仍可检索。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02"
+    ],
+    "number": 17,
+    "input_output": "子任务目标、汇报、证据 ID、主任务状态 → 即刻处理／延后／重复／核验。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a14",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a15",
+    "title": "18. 选择下一步该用哪个工具",
+    "skill": "jev",
+    "overview": "> 根据眼前子目标，在真实可用的搜索、读文件、运行测试、询问用户之间选工具。\n- **输入 → 输出：** 子目标、观察、实际工具说明和可用性 → 工具 ID 或无匹配。\n- **可以改：** 工具描述、预算、可用权限；参数由宿主另行构造和校验。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [P01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01"
+    ],
+    "number": 18,
+    "input_output": "子目标、观察、实际工具说明和可用性 → 工具 ID 或无匹配。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a15",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a16",
+    "title": "19. 按任务选择模型档位",
+    "skill": "jev",
+    "overview": "> 把简单改写、多步推理和看图任务分别路由到可用模型；不要只按模型名字大小来选。\n- **输入 → 输出：** 任务、模态要求、时延成本、能力卡 → 模型档位或无法路由。\n- **可以改：** 质量底线、延迟、缓存切换成本；最终要测任务结果。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [R04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r04) · [R11](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r11) · [N04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n04) · [Jev Codex Router](https://github.com/0xNatoshi/jev-codex-router)\n- **状态：** 下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r04",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r11",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n04",
+      "https://github.com/0xNatoshi/jev-codex-router",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 19,
+    "input_output": "任务、模态要求、时延成本、能力卡 → 模型档位或无法路由。",
+    "original_status": "下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a16",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a17",
+    "title": "20. 把子任务交给合适的专家",
+    "skill": "jev",
+    "overview": "> 从研究、实现、审查专家或留在主 agent 之间选一个，并明确交接的输入输出。\n- **输入 → 输出：** 有界子任务、专家职责和排除项 → 专家 ID 或留在本地。\n- **可以改：** 交接粒度、角色契约、并发限制；是否允许委派由宿主决定。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [R01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01) · [P01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p01"
+    ],
+    "number": 20,
+    "input_output": "有界子任务、专家职责和排除项 → 专家 ID 或留在本地。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a17",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a18",
+    "title": "21. 从很多技能里挑需要加载的几个",
+    "skill": "jev",
+    "overview": "> 根据当前任务为已安装技能打相关性分，优先加载直接有用的；不要跳过必需指令。\n- **输入 → 输出：** 任务、技能简介、必触发规则 → 可选技能相关性或无合适技能。\n- **可以改：** 技能描述、适用范围、必需项、兜底；没有合适项时不要硬选第一名。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [R06](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r06) · [R08](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r08)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r06",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r08"
+    ],
+    "number": 21,
+    "input_output": "任务、技能简介、必触发规则 → 可选技能相关性或无合适技能。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a18",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a19",
+    "title": "22. 给搜索或 RAG 结果重新排序",
+    "skill": "jev-documents",
+    "overview": "> 对“取消订阅后是否保留数据”这个问题，按真正能回答问题而非只含关键词来排段落。\n- **输入 → 输出：** 查询、已有文档/段落及 ID → 相关性概率、排序或待复核项。\n- **可以改：** 相关性定义、保留数量、漏检代价；保留原排序与引用来源。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [P09](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09) · [N03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n03)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n03",
+      "https://x.com/moritzkremb/status/2100566009312940457"
+    ],
+    "number": 22,
+    "input_output": "查询、已有文档/段落及 ID → 相关性概率、排序或待复核项。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a19",
+    "additional_source_ids": [
+      "S03"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a20",
+    "title": "23. 在代码库里找功能入口",
+    "skill": "jev-documents",
+    "overview": "> 优先用项目代码图，缩小发票生成逻辑的候选路径，再打开源码验证。\n- **输入 → 输出：** 问题、真实目录/符号/摘要 → 下一处值得读取的路径。\n- **可以改：** 目录提示、遍历深度、停止证据；路径相关不代表找到了 bug。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/references/find-code.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/find-code.json)。\n- **来源：** [R12](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r12) · [Blink path search](https://github.com/ellipsis-dev/blink)\n- **状态：** 下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/references/find-code.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/find-code.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r12",
+      "https://github.com/ellipsis-dev/blink",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 23,
+    "input_output": "问题、真实目录/符号/摘要 → 下一处值得读取的路径。",
+    "original_status": "下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a20",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a21",
+    "title": "24. 压缩工具输出，但保留找回原文的能力",
+    "skill": "jev",
+    "overview": "> 给这份长日志按块标记无关、背景、必要证据、关键诊断，先旁路看建议，不直接丢弃。\n- **输入 → 输出：** 当前子目标、带 ID 的输出块 → 保留建议和相关性分数。\n- **可以改：** 误删代价、必须保留的错误、原文检索方式；完整输出单独保存。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/context.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/context.json)。\n- **来源：** [R06](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r06) · [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02) · [N05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n05) · [winnow / VINNOW lead](https://github.com/GhalebDweikat/winnow)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：需要故障块、不需要主题备注；未执行上下文改写。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/context.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/context.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r06",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n05",
+      "https://github.com/GhalebDweikat/winnow",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 24,
+    "input_output": "当前子目标、带 ID 的输出块 → 保留建议和相关性分数。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：需要故障块、不需要主题备注；未执行上下文改写。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a21",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a22",
+    "title": "25. 避免重复读取没有变化的信息",
+    "skill": "jev",
+    "overview": "> 检查这次读文件是否与上次参数相同、相关状态未变，而且不会给当前问题带来新信息。\n- **输入 → 输出：** 拟读操作、上次结果、参数、状态版本 → 是否可能冗余。\n- **可以改：** 缓存有效期、变化范围；代码证明状态相同，模型只判断语义增益。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/context.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/context.json)。\n- **来源：** [R07](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r07)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/context.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/context.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r07"
+    ],
+    "number": 25,
+    "input_output": "拟读操作、上次结果、参数、状态版本 → 是否可能冗余。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a22",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-compaction",
+    "title": "26. 根据任务边界和上下文压力决定何时压缩",
+    "skill": "jev",
+    "overview": "> 现在是阶段结束，还是未完成调查？先给压缩建议，用上下文压力调整策略，别改写模型给出的概率。\n- **输入 → 输出：** 完成度、工作形态判断 + 宿主统计的上下文用量 → 提示或已授权的压缩。\n- **可以改：** 压力曲线、冷却时间、误触发代价、提示/自动模式；压缩后是否还保留所需信息要单独测。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/context.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/context.json)。\n- **来源：** [compact-adviser](https://github.com/kunchenguid/compact-adviser)\n- **状态：** 上游描述了小规模/私有标签调试；本仓库上下文例子返回 ongoing，没有实际压缩。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/context.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/context.json",
+      "https://github.com/kunchenguid/compact-adviser"
+    ],
+    "number": 26,
+    "input_output": "完成度、工作形态判断 + 宿主统计的上下文用量 → 提示或已授权的压缩。",
+    "original_status": "上游描述了小规模/私有标签调试；本仓库上下文例子返回 ongoing，没有实际压缩。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-compaction",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a23",
+    "title": "27. 决定浏览器下一步点哪里",
+    "skill": "jev-act",
+    "overview": "> 根据最新页面控件，在打开取消政策、滚动、等待或阻塞之间选一步；不要下单。\n- **输入 → 输出：** 最新 DOM/无障碍文本、目标、真实动作 ID → 下一步操作。\n- **可以改：** 允许的动作、目标条件、观察新鲜度；浏览器由宿主执行。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [P05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p05) · [Jev Ultrafast](https://github.com/browser-use/jev-ultrafast)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：选出 `open_policy`，未执行浏览器动作；Ultrafast 速度来自作者演示。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p05",
+      "https://github.com/browser-use/jev-ultrafast",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/examples-2026-09-20.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 27,
+    "input_output": "最新 DOM/无障碍文本、目标、真实动作 ID → 下一步操作。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：选出 `open_policy`，未执行浏览器动作；Ultrafast 速度来自作者演示。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a23",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a24",
+    "title": "28. 网页没反应时判断等待还是介入",
+    "skill": "jev-act",
+    "overview": "> 页面仍在加载还是已经报错？在有限等待、重新观察、检查错误、需要登录/同意之间选路。\n- **输入 → 输出：** 加载状态、错误、上一动作、等待记录 → 等待／查错／交接。\n- **可以改：** 超时、重试上限、登录交接；不能据此代替用户同意或绕过验证码。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [P05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p05)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p05"
+    ],
+    "number": 28,
+    "input_output": "加载状态、错误、上一动作、等待记录 → 等待／查错／交接。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a24",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a25",
+    "title": "29. 核验网页动作的真实结果",
+    "skill": "jev-act",
+    "overview": "> 点击之后重新读页面，逐项确认路线、日期和结果是否符合要求，不把点过按钮当成功。\n- **输入 → 输出：** 最新页面回读、明确清单 → 每项是否被观察支持。\n- **可以改：** 结果清单、精确字段校验、证据截图或文本；付款等结果需要真实回执。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [P05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p05)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p05"
+    ],
+    "number": 29,
+    "input_output": "最新页面回读、明确清单 → 每项是否被观察支持。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a25",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a26",
+    "title": "30. 个人助理把消息交接给下一条工作流",
+    "skill": "jev",
+    "overview": "> 判断这条食谱消息该补抓网页、保存完整食谱、提取日程候选，还是先问清楚。\n- **输入 → 输出：** 消息、当前任务、后续工具所需数据 → 工作流分支或澄清。\n- **可以改：** 工作流清单、必需信息、交接格式；外部写入另行授权。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [R01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01"
+    ],
+    "number": 30,
+    "input_output": "消息、当前任务、后续工具所需数据 → 工作流分支或澄清。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a26",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h26",
+    "title": "31. 解析智能家居的低风险指令",
+    "skill": "jev-act",
+    "overview": "> 根据真实设备清单判断“把客厅灯打开”，如果房间或设备不清楚就问，不猜门锁动作。\n- **输入 → 输出：** 用户请求、可见设备、允许动作 → 意图、目标和是否完整。\n- **可以改：** 设备名、同义表达、分支问题；只消费选中意图的答案，锁和危险设备另行控制。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [R09](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r09)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r09"
+    ],
+    "number": 31,
+    "input_output": "用户请求、可见设备、允许动作 → 意图、目标和是否完整。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h26",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-situations",
+    "title": "32. 把观察变成可复用的“当前状态”",
+    "skill": "jev",
+    "overview": "> 根据已授权的家居观察判断是否在做饭，输出带时间和过期条件的状态，供低风险自动化读取。\n- **输入 → 输出：** 观察 → 具名情境概率 → 多条确定性自动化。\n- **可以改：** 情境定义、刷新事件、有效期、预算；同样可以描述 agent 的待验证状态，不能静默复用旧结论。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [Home Assistant situation layer](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p12)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p12"
+    ],
+    "number": 32,
+    "input_output": "观察 → 具名情境概率 → 多条确定性自动化。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-situations",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-voice-browser",
+    "title": "33. 边说边判断浏览器操作是否完整",
+    "skill": "jev-act",
+    "overview": "> 结合半句语音转写和最新页面，判断我是不是说完了、指哪个控件，还是应该继续等。\n- **输入 → 输出：** 语音转写、最新 UI、候选片段 → 意图、目标、完整性 → 操作或等待。\n- **可以改：** 完整性标准、去抖时间、候选文本、确认规则；识别语音和浏览器执行都是其他工具。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [Voice-browser implementation](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p18)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p18"
+    ],
+    "number": 33,
+    "input_output": "语音转写、最新 UI、候选片段 → 意图、目标、完整性 → 操作或等待。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-voice-browser",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-webmcp",
+    "title": "34. 直接选网站工具，少走一长串点击",
+    "skill": "jev-act",
+    "overview": "> 网站确实提供 search_products 时，先选这个工具，再让文本模型提供参数，校验后执行，不要虚构网站 API。\n- **输入 → 输出：** 任务、网站实际工具 → 选工具 → 生成参数 → 执行与核验。\n- **可以改：** 动作粒度、参数来源、UI 兜底、完成标准；生成文本与选择工具分开。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [WindTunnel](https://github.com/nekuda-ai/WindTunnel) · [Benchmark methodology](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/x-intake-2026-09-20.md)\n- **状态：** 上游按每题三次多数成功统计为 49/49 题，实际 141/147 次成功；本仓库未复现，也不是只改接口的严格消融。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://github.com/nekuda-ai/WindTunnel",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/x-intake-2026-09-20.md"
+    ],
+    "number": 34,
+    "input_output": "任务、网站实际工具 → 选工具 → 生成参数 → 执行与核验。",
+    "original_status": "上游按每题三次多数成功统计为 49/49 题，实际 141/147 次成功；本仓库未复现，也不是只改接口的严格消融。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-webmcp",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-primitive",
+    "title": "35. 只给一个操作加判断，不必做完整 agent",
+    "skill": "jev-act",
+    "overview": "> 只在已有 Stagehand 操作内部选择控件或源文本，外围流程保持不变，不必新建自治 agent。\n- **输入 → 输出：** 单次观察、操作内候选 → act／observe／extract 内部的局部选择。\n- **可以改：** 操作边界、目标清单、参数来源、核验方式；选择有效按钮和选择正确下一步不同。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [Stagehand author report](https://x.com/kylejeong/status/2101046888468553855)\n- **状态：** 作者描述；本仓库未安装 Stagehand 集成或测其耗时。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://x.com/kylejeong/status/2101046888468553855"
+    ],
+    "number": 35,
+    "input_output": "单次观察、操作内候选 → act／observe／extract 内部的局部选择。",
+    "original_status": "作者描述；本仓库未安装 Stagehand 集成或测其耗时。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-primitive",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-forms",
+    "title": "36. 让表单根据回答选择下一问",
+    "skill": "jev-act",
+    "overview": "> 根据已填内容和缺失信息，选择下一问、澄清或结束；必填校验仍由代码做。\n- **输入 → 输出：** 部分表单、允许的问题 → 下一问 ID → 表单渲染器。\n- **可以改：** 题库、分支规则、完成标准、跳过规则；不能跳过必须的信息收集。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [JevForm report](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x02)\n- **状态：** 作者帖子摘录；未检查完整应用代码或复现表单。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x02"
+    ],
+    "number": 36,
+    "input_output": "部分表单、允许的问题 → 下一问 ID → 表单渲染器。",
+    "original_status": "作者帖子摘录；未检查完整应用代码或复现表单。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-forms",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-desktop",
+    "title": "37. 在桌面应用里选择下一步控件",
+    "skill": "jev-act",
+    "overview": "> 根据最新桌面观察找到导出窗口；覆盖旧文件前停止，每一步看真实结果。\n- **输入 → 输出：** 真实控件、允许操作 → 操作/目标 → 宿主 CUA 执行。\n- **可以改：** 应用动作、预备输入值、停止点、回读核验；需要已有桌面工具。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json)。\n- **来源：** [Jev Desktop](https://github.com/yikangy873-gif/jev-desktop) · [Setup notes](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/ecosystem.md)\n- **状态：** 上游提供集成样例而非受控加速实验；我们的 UI 冒烟是合成网页，不是这个桌面流程。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/ui.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/example.json",
+      "https://github.com/yikangy873-gif/jev-desktop",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/ecosystem.md",
+      "https://x.com/camsoft2000/status/2100648648434434298"
+    ],
+    "number": 37,
+    "input_output": "真实控件、允许操作 → 操作/目标 → 宿主 CUA 执行。",
+    "original_status": "上游提供集成样例而非受控加速实验；我们的 UI 冒烟是合成网页，不是这个桌面流程。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-desktop",
+    "additional_source_ids": [
+      "S04"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-semantic-find",
+    "title": "38. 在网页里按意思找，而不只是匹配关键词",
+    "skill": "jev-documents",
+    "overview": "> 找出这页所有讲“取消订阅”的段落，即使原文写的是“终止会员资格”，并高亮原文。\n- **输入 → 输出：** 查询、带 ID 的页面文本块及相邻上下文 → 各块相关性，保留无匹配结果。\n- **可以改：** 查询、相关性标准、段落范围。独立文本块批量判断，浏览器负责高亮和滚动。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [原文选择模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/span-selection.json)。\n- **来源：** [Shubham Saboo 的语义 ⌘F 演示](https://x.com/Saboo_Shubham_/status/2101576462042366114)，9 月 20 日。\n- **状态：** 作者演示，未在这里安装扩展。这是语义检索，不是替换精确字符串搜索。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/span-selection.json",
+      "https://x.com/Saboo_Shubham_/status/2101576462042366114"
+    ],
+    "number": 38,
+    "input_output": "查询、带 ID 的页面文本块及相邻上下文 → 各块相关性，保留无匹配结果。",
+    "original_status": "作者演示，未在这里安装扩展。这是语义检索，不是替换精确字符串搜索。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-semantic-find",
+    "additional_source_ids": [
+      "S05",
+      "S37"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-sponsor-skip",
+    "title": "39. 标出视频里的赞助口播",
+    "skill": "jev-triage",
+    "overview": "> 从带时间戳的字幕里找出推广段落，先列出起止位置让我确认，不要直接跳过。\n- **输入 → 输出：** 字幕行、ID 和前后文 → 是否推广、起止行 ID；时间戳由代码处理。\n- **可以改：** 什么算推广、边界上下文、手动或自动跳过。音频要先转写，不是直接喂给 Jev。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [原文选择模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/span-selection.json)。\n- **来源：** [Sponsor Skip](https://github.com/trungdq88/youtube-sponsor-detection)。\n- **状态：** 已读原项目 README，未运行扩展；上游的模型和可选转写服务需另行配置。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/span-selection.json",
+      "https://github.com/trungdq88/youtube-sponsor-detection"
+    ],
+    "number": 39,
+    "input_output": "字幕行、ID 和前后文 → 是否推广、起止行 ID；时间戳由代码处理。",
+    "original_status": "已读原项目 README，未运行扩展；上游的模型和可选转写服务需另行配置。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-sponsor-skip",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h02",
+    "title": "40. 给客服工单分流",
+    "skill": "jev-triage",
+    "overview": "> 把这批工单分成账单、技术、账号访问、安全复核和其他，混合问题单独留给分诊。\n- **输入 → 输出：** 工单、产品背景、队列定义 → 建议队列或待复核。\n- **可以改：** 队列职责、多问题处理、例外；每条记录保留独立 ID。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：故障队列、紧急分 1.29/2；未测批量路由。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/examples-2026-09-20.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 40,
+    "input_output": "工单、产品背景、队列定义 → 建议队列或待复核。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：故障队列、紧急分 1.29/2；未测批量路由。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h02",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h03",
+    "title": "41. 按紧急程度排列待办和故障",
+    "skill": "jev-triage",
+    "overview": "> 区分信息通知、有替代方案、重要工作阻塞、严重进行中影响，不猜测未提供的受影响人数。\n- **输入 → 输出：** 报告的影响、受阻流程、事件规则 → 有锚点的紧急分数。\n- **可以改：** 严重性锚点、客户影响、升级期限；已知硬规则仍由代码执行。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04) · [R05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05"
+    ],
+    "number": 41,
+    "input_output": "报告的影响、受阻流程、事件规则 → 有锚点的紧急分数。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h03",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h15",
+    "title": "42. 预筛聊天记录里的未解决问题",
+    "skill": "jev-triage",
+    "overview": "> 找出仍未解决的产品安全投诉，区分用户已经确认解决和只是客服说会处理。\n- **输入 → 输出：** 授权且脱敏的对话、明确关注点 → 需进一步审阅的会话。\n- **可以改：** 未解决的定义、上下文范围、漏检代价；低分不是安全证明。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [R05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05"
+    ],
+    "number": 42,
+    "input_output": "授权且脱敏的对话、明确关注点 → 需进一步审阅的会话。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h15",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h16",
+    "title": "43. 识别明确的取消或流失信号",
+    "skill": "jev-triage",
+    "overview": "> 哪些消息表达了“问题未解决，所以我要取消”，哪些只是询问取消规则？\n- **输入 → 输出：** 消息、必要的相关历史 → 具体取消意向命题概率。\n- **可以改：** 信号定义、语言差异、跟进方式；不自动改账号或发挽留优惠。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 43,
+    "input_output": "消息、必要的相关历史 → 具体取消意向命题概率。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h16",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h17",
+    "title": "44. 从销售或客服对话整理下一步",
+    "skill": "jev-triage",
+    "overview": "> 按实际承诺选出发资料、安排跟进、技术排查、未承诺或需澄清，给每项附原文。\n- **输入 → 输出：** 通话记录、承诺、允许的跟进类型 → 待确认行动列表。\n- **可以改：** 行动清单、承诺证据标准、联系人确认；不要编造承诺。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [R05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05"
+    ],
+    "number": 44,
+    "input_output": "通话记录、承诺、允许的跟进类型 → 待确认行动列表。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h17",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h18",
+    "title": "45. 给安全事件初步分诊",
+    "skill": "jev-triage",
+    "overview": "> 按给定事件规则，把报告分为可能账号被接管、服务故障、正常变化或信息不足。\n- **输入 → 输出：** 脱敏事件、明确升级策略 → 调查类别和待复核项。\n- **可以改：** 事件类别、已知高风险指示、升级门槛；不能只凭分数封禁账号。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 45,
+    "input_output": "脱敏事件、明确升级策略 → 调查类别和待复核项。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h18",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h19",
+    "title": "46. 筛可疑邮件和消息",
+    "skill": "jev-triage",
+    "overview": "> 标出要求提供凭据或转账的可疑指令，只看已提供的正文和链接元数据，不打开附件。\n- **输入 → 输出：** 正文、显示的发送者、可见链接信息 → 可疑命题概率。\n- **可以改：** 可疑特征、组织规则、复核区间；不输出“保证可以点击”。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 46,
+    "input_output": "正文、显示的发送者、可见链接信息 → 可疑命题概率。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h19",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h20",
+    "title": "47. 把联系表单分给正确团队",
+    "skill": "jev-triage",
+    "overview": "> 把这些咨询分给支持、销售、合作、反馈或其他，不要把陌生但合法的请求直接丢掉。\n- **输入 → 输出：** 联系表单、咨询类别定义 → 队列标签或草稿处理建议。\n- **可以改：** 团队边界、垃圾信息规则、未知请求去向；发送回复另行授权。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 47,
+    "input_output": "联系表单、咨询类别定义 → 队列标签或草稿处理建议。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h20",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h24",
+    "title": "48. 从消息里整理日程候选",
+    "skill": "jev-triage",
+    "overview": "> 区分新事件、时间变更、只是提醒、非事件和模糊项，先给草稿，不直接发邀请。\n- **输入 → 输出：** 授权消息、日程相关标准 → 事件候选及类别。\n- **可以改：** 事件定义、时区、冲突处理；日期由专用代码校验。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [R01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01"
+    ],
+    "number": 48,
+    "input_output": "授权消息、日程相关标准 → 事件候选及类别。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h24",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-mail-rules",
+    "title": "49. 自己写邮件标签和处理规则",
+    "skill": "jev-triage",
+    "overview": "> 给每封邮件独立判断账单、旅行、需要回复等标签；一封可以命中多个，冲突时先给我看。\n- **输入 → 输出：** 邮件、可编辑类别 → 多标签命中 → 标签或复核队列。\n- **可以改：** 标签阈值、优先级、预览模式、允许动作；不能因为多标签命中而反复移动同一封邮件。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [Mail-classifier configuration](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p13)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p13"
+    ],
+    "number": 49,
+    "input_output": "邮件、可编辑类别 → 多标签命中 → 标签或复核队列。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-mail-rules",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-personal-feed",
+    "title": "50. 按自己的兴趣筛研究流和社交内容",
+    "skill": "jev-triage",
+    "overview": "> 按我的研究兴趣给已读取的帖子评分，我可以本地调权重或撤销隐藏，不把喜好当成通用质量。\n- **输入 → 输出：** 已观察帖子、个人 rubric → 保存判断 → 可撤销排序或隐藏。\n- **可以改：** 兴趣、排除项、本地权重、更新策略、撤销；问题或证据变了才重新判断。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [Your Signal report](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x05)\n- **状态：** 作者帖子摘录；本仓库未安装信息流集成。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x05"
+    ],
+    "number": 50,
+    "input_output": "已观察帖子、个人 rubric → 保存判断 → 可撤销排序或隐藏。",
+    "original_status": "作者帖子摘录；本仓库未安装信息流集成。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-personal-feed",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h07",
+    "title": "51. 初筛论文和阅读清单",
+    "skill": "jev-documents",
+    "overview": "> 按“实测 agent 调用工具”筛摘要，区分只提到 agent 和真正做了实验，模糊项留给全文阅读。\n- **输入 → 输出：** 标题、摘要、纳入条件 → 逐项满足程度与阅读优先级。\n- **可以改：** 研究范围、纳入排除条件、宁可多留还是少留；摘要不能代替全文评估。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [P09](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09"
+    ],
+    "number": 51,
+    "input_output": "标题、摘要、纳入条件 → 逐项满足程度与阅读优先级。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h07",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h08",
+    "title": "52. 检查一句主张有没有原文支持",
+    "skill": "jev-documents",
+    "overview": "> 这段引用真的支持“所有用户都受影响”吗？核对范围、对象和条件，不只看词语相似。\n- **输入 → 输出：** 准确主张、可定位的原文 → 支持／矛盾／未知。\n- **可以改：** 支持标准、来源窗口、范围限定；来源支持不等于事实必真。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04) · [P09](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09) · [N02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p09",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02"
+    ],
+    "number": 52,
+    "input_output": "准确主张、可定位的原文 → 支持／矛盾／未知。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h08",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h09",
+    "title": "53. 把政策要求做成可复核清单",
+    "skill": "jev-documents",
+    "overview": "> 对照审核员提供的要求，把条款标成明确涉及、似有冲突、未展示、模糊，并链接原文。\n- **输入 → 输出：** 当前适用规则、材料摘录 → 审阅矩阵。\n- **可以改：** 要求版本、例外、证据粒度；由合适的审核人作最终合规判断。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [R05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05"
+    ],
+    "number": 53,
+    "input_output": "当前适用规则、材料摘录 → 审阅矩阵。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h09",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h10",
+    "title": "54. 把合同条款整理给审核人",
+    "skill": "jev-documents",
+    "overview": "> 把条款分为终止、责任、数据使用、付款和其他，保留条款号，不判断合同是否应该签。\n- **输入 → 输出：** 条款原文、审核人给定类别 → 分组后的条款清单。\n- **可以改：** 条款 taxonomy、交叉标签、例外；不能判断法律效力或替人审批。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [R05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05) · [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 54,
+    "input_output": "条款原文、审核人给定类别 → 分组后的条款清单。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h10",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h11",
+    "title": "55. 按品牌和编辑规则检查文案",
+    "skill": "jev-eval",
+    "overview": "> 按“不得使用无依据的最强、第一”这条规则检查草稿，区分作者断言与带来源的引述。\n- **输入 → 输出：** 草稿、明确编辑规则 → 逐条风险标记。\n- **可以改：** 品牌语气、规则例外、归因要求；模型负责判断，改写另行完成。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [P02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02) · [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p02",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04"
+    ],
+    "number": 55,
+    "input_output": "草稿、明确编辑规则 → 逐条风险标记。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h11",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h21",
+    "title": "56. 帮求职者整理岗位要求的证据",
+    "skill": "jev-documents",
+    "overview": "> 逐条找出我的简历对岗位要求有什么明确、相关或未写出的证据，不替招聘方筛掉人。\n- **输入 → 输出：** 本人授权的简历、与工作相关的要求 → 证据位置与覆盖情况。\n- **可以改：** 岗位要求、证据强度、缺失信息；未写出不等于没有能力，不推断受保护属性。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [R08](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r08)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r08"
+    ],
+    "number": 56,
+    "input_output": "本人授权的简历、与工作相关的要求 → 证据位置与覆盖情况。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h21",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-spans",
+    "title": "57. 选出正确的原始字段值",
+    "skill": "jev-documents",
+    "overview": "> 从已提取的两个邮箱片段里选账单收件地址，返回片段 ID，让代码复制原值而不是编一个邮箱。\n- **输入 → 输出：** 候选片段、字段角色 → 片段 ID 或无匹配 → 复制原值。\n- **可以改：** 字段角色、候选提取方式、格式归一化；候选里没有的值不能凭空找回。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [Official span extraction](https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：选出 s2（0.97），同时指出主张与原文矛盾；未测 OCR 或检索。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 57,
+    "input_output": "候选片段、字段角色 → 片段 ID 或无匹配 → 复制原值。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：选出 s2（0.97），同时指出主张与原文矛盾；未测 OCR 或检索。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-spans",
+    "additional_source_ids": [
+      "S06"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-suitability",
+    "title": "58. 别把“最像”当成“真的有答案”",
+    "skill": "jev-documents",
+    "overview": "> 先选最相关段落，再独立判断这里到底有没有答案；几个都不合适时返回无匹配。\n- **输入 → 输出：** 问题、候选 → 相对最优项 + 独立的是否存在合适答案判断。\n- **可以改：** 适合标准、片段大小、补检索条件；最高排名不等于足够相关。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [Semantic find](https://docs.typesafe.ai/cookbooks/semantic_find)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://docs.typesafe.ai/cookbooks/semantic_find"
+    ],
+    "number": 58,
+    "input_output": "问题、候选 → 相对最优项 + 独立的是否存在合适答案判断。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-suitability",
+    "additional_source_ids": [
+      "S07"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-structure",
+    "title": "59. 把散乱文本恢复成标题、列表和段落",
+    "skill": "jev-documents",
+    "overview": "> 保留 OCR 原文，先判断哪些相邻行属于同一块，再把块分成标题、列表、普通段落。\n- **输入 → 输出：** 逐行连续性判断 → 代码合块 → 块类型和属性 → 渲染。\n- **可以改：** 合行条件、块类型、标题层级、可疑断行；第二遍必须使用第一遍的真实输出。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/document-block.json)。\n- **来源：** [Autoformat cookbook](https://docs.typesafe.ai/cookbooks/autoformat)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/document-block.json",
+      "https://docs.typesafe.ai/cookbooks/autoformat"
+    ],
+    "number": 59,
+    "input_output": "逐行连续性判断 → 代码合块 → 块类型和属性 → 渲染。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-structure",
+    "additional_source_ids": [
+      "S08"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-dates",
+    "title": "60. 理解日期表达，再交给代码算日期",
+    "skill": "jev-documents",
+    "overview": "> 识别“下周五”的日期语义，用指定基准日和时区交给日历代码算具体日期，不让模型心算。\n- **输入 → 输出：** 日期表达 → 绝对/相对日期部件 → 确定性日历解析。\n- **可以改：** 语言、基准时刻、时区、非法日期处理；单位和金额也可采用语义与计算分工。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/span-selection.json)。\n- **来源：** [Date extraction](https://docs.typesafe.ai/cookbooks/date_extraction_cookbook)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/span-selection.json",
+      "https://docs.typesafe.ai/cookbooks/date_extraction_cookbook"
+    ],
+    "number": 60,
+    "input_output": "日期表达 → 绝对/相对日期部件 → 确定性日历解析。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-dates",
+    "additional_source_ids": [
+      "S09"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-extraction-cascade",
+    "title": "61. 复核小模型提取的结构化数据",
+    "skill": "jev-documents",
+    "overview": "> 对照发票原文逐字段核验小模型提取结果，区分支持、矛盾和缺失；需要修复时只修问题字段。\n- **输入 → 输出：** 生成字段、独立原文 → 逐字段判断 → 有界修复或复核。\n- **可以改：** 字段、原文窗口、错误分类、修复上限；不要反复问到通过为止。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [Structured extraction cascade](https://docs.typesafe.ai/cookbooks/sde_cascade)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://docs.typesafe.ai/cookbooks/sde_cascade"
+    ],
+    "number": 61,
+    "input_output": "生成字段、独立原文 → 逐字段判断 → 有界修复或复核。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-extraction-cascade",
+    "additional_source_ids": [
+      "S10"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-transcript",
+    "title": "62. 给演讲、访谈、展示做逐段批注",
+    "skill": "jev-documents",
+    "overview": "> 按我的 rubric 给每轮发言标直接回答、给出证据、含糊主张，保留上下文，再做批注时间线。\n- **输入 → 输出：** 转写单元、上下文 → 独立 rubric 概率 → 批注或时间线。\n- **可以改：** 句子或轮次粒度、上下文范围、标签、汇总方式；修辞评价不等于事实核查。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [Jevmeter](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p19)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p19"
+    ],
+    "number": 62,
+    "input_output": "转写单元、上下文 → 独立 rubric 概率 → 批注或时间线。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-transcript",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h01",
+    "title": "63. 像 grep 一样按语义找日志或笔记",
+    "skill": "jev-triage",
+    "overview": "> 找出真正描述“无法完成结账”的片段，而不只是提到了支付；返回原始片段 ID。\n- **输入 → 输出：** 编号文本块、具体检索条件 → 逐块匹配概率与候选清单。\n- **可以改：** 匹配标准、近似案例、复核区间；抽查被排除的片段。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04) · [SemDecide](https://github.com/sharziki/semdecide)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04",
+      "https://github.com/sharziki/semdecide"
+    ],
+    "number": 63,
+    "input_output": "编号文本块、具体检索条件 → 逐块匹配概率与候选清单。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h01",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h04",
+    "title": "64. 给商品或内容分层归类",
+    "skill": "jev-triage",
+    "overview": "> 先判断这件零件属于紧固件、轴承、密封件还是电气件，再在真实子类中继续分类。\n- **输入 → 输出：** 描述、分类树、候选定义 → 类别路径或其他。\n- **可以改：** 分类树、层级深度、描述边界；测试第一层选错造成的连锁误差。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [R05](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05) · [N03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n03) · [N04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n04)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r05",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n04"
+    ],
+    "number": 64,
+    "input_output": "描述、分类树、候选定义 → 类别路径或其他。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h04",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h05",
+    "title": "65. 发现重复记录或同一实体",
+    "skill": "jev-documents",
+    "overview": "> 这两条店铺记录是否指向同一实体？比较名称、地址和来源，不要仅凭名字相似就合并。\n- **输入 → 输出：** 两条记录、身份属性、来源 → 同实体概率和待确认项。\n- **可以改：** 实体类型、匹配条件、冲突字段；合并仍需确认，保留原记录。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json)。\n- **来源：** [R01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r01"
+    ],
+    "number": 65,
+    "input_output": "两条记录、身份属性、来源 → 同实体概率和待确认项。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h05",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h06",
+    "title": "66. 给问卷和访谈做多标签编码",
+    "skill": "jev-triage",
+    "overview": "> 按我的 codebook，分别判断每条回答是否谈到价格、缺功能和易用性；允许多个标签共存。\n- **输入 → 输出：** 单条回答、预定义编码本 → 独立主题标签及概率。\n- **可以改：** 标签定义、上下文窗口、多人编码分歧；不要强塞进单选。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P04](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04) · [N02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p04",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02"
+    ],
+    "number": 66,
+    "input_output": "单条回答、预定义编码本 → 独立主题标签及概率。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h06",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h22",
+    "title": "67. 给数据集记录做质量侧栏",
+    "skill": "jev-triage",
+    "overview": "> 按用途给每条数据评相关性、完整性，再分别标重复和敏感信息疑点；原始数据不删除。\n- **输入 → 输出：** 单条数据、用途 rubric → 分数和独立检查标签。\n- **可以改：** 用途、质量锚点、抽查比例；通顺不代表数学正确或许可证合适。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [P08](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p08) · [N02](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p08",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02"
+    ],
+    "number": 67,
+    "input_output": "单条数据、用途 rubric → 分数和独立检查标签。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h22",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-graph",
+    "title": "68. 沿知识图谱或大分类树逐步寻找",
+    "skill": "jev-documents",
+    "overview": "> 每次只给当前节点的真实邻居，让 Jev 选值得展开的方向，代码限制深度、去重并验证目标。\n- **输入 → 输出：** 当前节点、邻居描述 → 局部选择 → 有限搜索前沿。\n- **可以改：** 节点描述、搜索宽度、已访问集合、深度预算；路径分不是校准的正确率。\n- **动手：** [jev-documents](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/references/find-code.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/find-code.json)。\n- **来源：** [Hierarchy method](https://docs.typesafe.ai/cookbooks/hierarchical_classification) · [Graph prototype](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p14)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。\n- **也可以做图提取。** 先由宿主从原文提出实体和候选关系，Jev 再为每对实体选择关系标签或 `none`；保留原文片段 ID，由代码组装图。这是根据[社区线索](https://x.com/yoheinakajima/status/2100674306405814568)改编的未测试流程，不是让 Jev 自由生成图。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/references/find-code.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/assets/find-code.json",
+      "https://docs.typesafe.ai/cookbooks/hierarchical_classification",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p14",
+      "https://x.com/yoheinakajima/status/2100674306405814568"
+    ],
+    "number": 68,
+    "input_output": "当前节点、邻居描述 → 局部选择 → 有限搜索前沿。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-graph",
+    "additional_source_ids": [
+      "S11",
+      "S12"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-features",
+    "title": "69. 给传统机器学习模型制作语义特征",
+    "skill": "jev-triage",
+    "overview": "> 让生成模型提出评论相关问题，用 Jev 答成数值特征，再训练传统预测器；留出的测试标签不能参与挑问题。\n- **输入 → 输出：** 候选问题 → 标注记录的数值特征 → 监督学习器 → 开发集误差反馈。\n- **可以改：** 预测目标、问题族、学习器、数据划分；这是下游特征学习，不是给 Jev 做 RLCD 训练。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [Autoresearch feature discovery](https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://docs.typesafe.ai/cookbooks/autoresearch_feature_discovery"
+    ],
+    "number": 69,
+    "input_output": "候选问题 → 标注记录的数值特征 → 监督学习器 → 开发集误差反馈。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-features",
+    "additional_source_ids": [
+      "S13"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-semantic-validation",
+    "title": "70. JSON 格式正确以后，再检查含义",
+    "skill": "jev-eval",
+    "overview": "> 先通过 schema 校验，再判断描述是否符合所选类别、要求的证据是否真的出现；每条语义规则独立问。\n- **输入 → 输出：** 结构合法的数据、语义规则 → 每条满足／疑点／未知／不可用。\n- **可以改：** 字段路径、例外、适用范围、反馈措辞；精确规则继续留在代码里。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [zod-jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p16) · [JevLint](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p17)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p16",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p17"
+    ],
+    "number": 70,
+    "input_output": "结构合法的数据、语义规则 → 每条满足／疑点／未知／不可用。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-semantic-validation",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-shell-history",
+    "title": "71. 从已有命令历史里选合适的建议",
+    "skill": "jev-documents",
+    "overview": "> 根据当前目录和任务，从脱敏后的历史命令里选建议，允许无匹配，不直接执行。\n- **输入 → 输出：** 已有命令候选、当前上下文 → 命令建议。\n- **可以改：** 历史窗口、上下文字段、过期结果丢弃；上传前去掉密钥，选中不等于获准执行。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [Shell-history prototype](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p15)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p15"
+    ],
+    "number": 71,
+    "input_output": "已有命令候选、当前上下文 → 命令建议。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-shell-history",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-semantic-sql",
+    "title": "72. 在普通查询旁边加语义筛选",
+    "skill": "jev-triage",
+    "overview": "> 先用 SQL 缩小近期反馈范围，再让 Jev 筛“未解决的导出失败”；保留行 ID 和判断记录。\n- **输入 → 输出：** 确定性查询 → 选定字段 → 语义判断 → 过滤、分组或排序。\n- **可以改：** 字段投影、问题、调用预算、数据外发范围；本仓库没有安装数据库扩展。\n- **动手：** [jev-triage](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json)。\n- **来源：** [jevQL prototype](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p20)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p20",
+      "https://github.com/realZachi/pg-jev"
+    ],
+    "number": 72,
+    "input_output": "确定性查询 → 选定字段 → 语义判断 → 过滤、分组或排序。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-semantic-sql",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-spreadsheet",
+    "title": "73. 让表格列名变成可修改的语义规则",
+    "skill": "jev-eval",
+    "overview": "> 把“是否值得跟进”这个列名变成明确分级标准，再逐行评分；改列名时更新规则并标记旧结果失效。\n- **输入 → 输出：** 可编辑列含义、行文本 → 评分标准 → 每行分数。\n- **可以改：** 列语义、分数锚点、行字段、去抖、过期结果处理；每个问题明确对应行 ID。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [Predictive spreadsheet report](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x04)\n- **状态：** 作者帖子摘录；本仓库未测试表格 UI 或批量准确率。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x04"
+    ],
+    "number": 73,
+    "input_output": "可编辑列含义、行文本 → 评分标准 → 每行分数。",
+    "original_status": "作者帖子摘录；本仓库未测试表格 UI 或批量准确率。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-spreadsheet",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-market-replay",
+    "title": "74. 用市场回放研究决策与过期处理",
+    "skill": "jev-act",
+    "overview": "> 仅在 mock 回放中，根据给定快照选择买、卖或不动，丢弃迟到决策，分别记录意图、执行回执和成交。\n- **输入 → 输出：** 历史/合成快照 → 有界决策 → dry-run 模拟器与回执记录。\n- **可以改：** 快照时效、截止时间、单请求在途、回放指标；这里只研究流程，不授权真实交易或声称盈利。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json)。\n- **来源：** [Jev Trader](https://github.com/jarrodwatts/jev-trader) · [Mock/live distinction](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/x-intake-2026-09-20.md)\n- **状态：** 作者演示与 README 的 mock/dry-run 默认模式分别记录；未连接钱包、未运行交易。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json",
+      "https://github.com/jarrodwatts/jev-trader",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/x-intake-2026-09-20.md"
+    ],
+    "number": 74,
+    "input_output": "历史/合成快照 → 有界决策 → dry-run 模拟器与回执记录。",
+    "original_status": "作者演示与 README 的 mock/dry-run 默认模式分别记录；未连接钱包、未运行交易。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-market-replay",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-a28",
+    "title": "75. 让游戏 NPC 从合法动作里作选择",
+    "skill": "jev-act",
+    "overview": "> 根据眼前游戏状态和角色目标，在帮助、撤退、交谈、等待中选合法动作，再让模拟器更新状态。\n- **输入 → 输出：** 可见世界、角色准则、合法动作 → 下一步动作。\n- **可以改：** 角色性格、目标、行动预算、进度指标；不要假装知道隐藏状态。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json)。\n- **来源：** [R10](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r10) · [X01](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x01) · [X03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x03) · [R03](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r03)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：检查仓库；未运行状态更新或测胜率。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r10",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x01",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r03",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json",
+      "https://github.com/fhshaik/typesafe-mario",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 75,
+    "input_output": "可见世界、角色准则、合法动作 → 下一步动作。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：检查仓库；未运行状态更新或测胜率。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-a28",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h25",
+    "title": "76. 按自己的标准做想法工作坊",
+    "skill": "jev-eval",
+    "overview": "> 给这个想法的问题清晰度、受众具体度、可测试性分别打分，再设计真正要验证的问题。\n- **输入 → 输出：** 想法、本人定义的分级标准 → 多维评分。\n- **可以改：** 维度、可观察锚点、讨论目的；不是生意成功率或投资预测。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [P10](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p10)\n- **状态：** 下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p10",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/examples-2026-09-20.json"
+    ],
+    "number": 76,
+    "input_output": "想法、本人定义的分级标准 → 多维评分。",
+    "original_status": "下方展示合成输入的真实 API 返回；尚未评估这条工作流的端到端效果。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h25",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-h28",
+    "title": "77. 给内容选文档组件，给界面选图表或表格",
+    "skill": "jev-act",
+    "overview": "> 这段内容应该用比较表、时间线、清单还是普通段落？选已有组件，让代码渲染原内容。\n- **输入 → 输出：** 结构化内容、受众、组件定义 → 组件 ID。\n- **可以改：** 组件库、受众、信息结构；选布局不等于生成文案或图片。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/document-block.json)。\n- **来源：** [R12](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r12)\n- **状态：** 延伸配方；这个具体场景尚未单独评估。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/document-block.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#r12",
+      "https://github.com/etweisberg/jev-ui",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/docs/updates/2026-09-21.md#react-views"
+    ],
+    "number": 77,
+    "input_output": "结构化内容、受众、组件定义 → 组件 ID。",
+    "original_status": "延伸配方；这个具体场景尚未单独评估。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-h28",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-reweight",
+    "title": "78. 一次测维度，随时改自己的权重",
+    "skill": "jev",
+    "overview": "> 给方案的清晰度、证据、投入分别评分，保存结果；我调权重时用本地代码重排，不重新调用模型。\n- **输入 → 输出：** 独立维度判断 → 保存特征向量 → 用户权重生成排序。\n- **可以改：** 维度、锚点、权重、硬排除项；问题含义变了才需要重测，效用分不是概率。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [Composite configuration](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p12) · [Feature experience](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#p12",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/community.md#n02"
+    ],
+    "number": 78,
+    "input_output": "独立维度判断 → 保存特征向量 → 用户权重生成排序。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-reweight",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-world-video",
+    "title": "79. 世界设计、动作选择、视频呈现分开接",
+    "skill": "jev-act",
+    "overview": "> 规划模型设计鲸背城市，Jev 选合法动作，模拟器更新世界，渲染工具再把真实轮次结果做成视频。\n- **输入 → 输出：** 世界规则 → 状态和合法动作 → 决策 → 模拟器 → 可选图像或视频。\n- **可以改：** 世界规则、角色目标、轮次 ID、呈现方式；视频里桥修好了不代表模拟器真的修好了。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json)。\n- **来源：** [gokayfem demo](https://x.com/gokayfem/status/2101022590722810271) · [Access and claim notes](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x01)\n- **状态：** 作者报告约五分钟生成 264 个片段；不是本仓库复现，也不足以确定恰好调用了 264 次 API。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json",
+      "https://x.com/gokayfem/status/2101022590722810271",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x01"
+    ],
+    "number": 79,
+    "input_output": "世界规则 → 状态和合法动作 → 决策 → 模拟器 → 可选图像或视频。",
+    "original_status": "作者报告约五分钟生成 264 个片段；不是本仓库复现，也不足以确定恰好调用了 264 次 API。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-world-video",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-strategy",
+    "title": "80. 大模型定策略，Jev 高频选局部动作",
+    "skill": "jev-act",
+    "overview": "> 规划模型给 Pac-Man 一个短期目标，Jev 连续选合法动作；目标完成、条件变化或停滞时再规划。\n- **输入 → 输出：** 低频策略 → 高频局部动作 → 新状态 → 重规划触发。\n- **可以改：** 子目标、刷新触发、进度窗口、行动预算；过期子目标不能取代原始目标。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json)。\n- **来源：** [Pac-Man report](https://x.com/daniel_mac8/status/2100335929273524541) · [Tetris lead](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x03)\n- **状态：** 作者演示；本仓库没有复现长程成功率。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json",
+      "https://x.com/daniel_mac8/status/2100335929273524541",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x03"
+    ],
+    "number": 80,
+    "input_output": "低频策略 → 高频局部动作 → 新状态 → 重规划触发。",
+    "original_status": "作者演示；本仓库没有复现长程成功率。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-strategy",
+    "additional_source_ids": [
+      "S14"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-speakers",
+    "title": "81. 给多个聊天角色排发言顺序",
+    "skill": "jev-act",
+    "overview": "> 根据对话状态、角色职责和发言资格选下一位，或者暂停；台词仍让生成模型写。\n- **输入 → 输出：** 对话状态、允许发言的角色 → 角色/回应模式 ID → 台词生成。\n- **可以改：** 角色、资格、打断规则、轮次上限、暂停条件；避免机器人彼此无限循环。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/voice-style.json)。\n- **来源：** [Multi-chatbot/TTS report](https://x.com/greenhill_pharm/status/2101492328137711891)\n- **状态：** 本仓库角色/语气联合调用选出 analyst + calm，完整摘录见下一场景。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/voice-style.json",
+      "https://x.com/greenhill_pharm/status/2101492328137711891"
+    ],
+    "number": 81,
+    "input_output": "对话状态、允许发言的角色 → 角色/回应模式 ID → 台词生成。",
+    "original_status": "本仓库角色/语气联合调用选出 analyst + calm，完整摘录见下一场景。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-speakers",
+    "additional_source_ids": [
+      "S15"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-tts",
+    "title": "82. 给剧本或播报选择 TTS 语气",
+    "skill": "jev-act",
+    "overview": "> 给这句虚构角色台词选平静、明快、严肃或中性语气，再映射到已有 TTS 预设。\n- **输入 → 输出：** 剧本、表达 rubric → 语气标签 → TTS 预设；声音由其他工具生成。\n- **可以改：** 语气标签、声线映射、平滑切换、中性兜底；不是对真人内心情绪的诊断。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/voice-style.json)。\n- **来源：** [Creator report](https://x.com/greenhill_pharm/status/2101492328137711891)\n- **状态：** [真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：analyst + calm；没有生成语音。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/voice-style.json",
+      "https://x.com/greenhill_pharm/status/2101492328137711891",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/results/scenario-smoke-2026-09-20.json"
+    ],
+    "number": 82,
+    "input_output": "剧本、表达 rubric → 语气标签 → TTS 预设；声音由其他工具生成。",
+    "original_status": "[真实合成示例](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/SCENARIO_EXAMPLES.md)：analyst + calm；没有生成语音。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-tts",
+    "additional_source_ids": [
+      "S15"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-negotiation",
+    "title": "83. 让模拟谈判有退出条件，不原地打转",
+    "skill": "jev-act",
+    "overview": "> 在 Catan 式模拟谈判里从接受、还价、拒绝、跳过中选合法动作，超过无进展预算就退出。\n- **输入 → 输出：** 报价历史、合法选项 → 局部回应 → 宿主检查进度与死锁。\n- **可以改：** 谈判预算、效用标准、跳过/终止动作、进度定义；局部合理不保证集体推进。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json)。\n- **来源：** [Catan failure report](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x06)\n- **状态：** 来源报告了谈判停滞；这里是根据失败设计的改编，不是已经证明有效的修复。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/assets/world.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x06"
+    ],
+    "number": 83,
+    "input_output": "报价历史、合法选项 → 局部回应 → 宿主检查进度与死锁。",
+    "original_status": "来源报告了谈判停滞；这里是根据失败设计的改编，不是已经证明有效的修复。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-negotiation",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-creative-route",
+    "title": "84. 按创作要求选图片或视频模型",
+    "skill": "jev",
+    "overview": "> 根据图片/视频类型、编辑要求、尺寸、预算，从实际可用的生成器里选一个，再单独调用。\n- **输入 → 输出：** 创作需求、当前能力卡 → 生成器 ID 或无匹配。\n- **可以改：** 媒介、编辑能力、延迟、预算、成品评价标准；不能只测路由置信度。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json)。\n- **来源：** [Creative-model routing demo](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x07)\n- **状态：** 作者帖子摘录；没有复现生成或成品质量对照。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/routing.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/routing.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/twitter-workflows.md#x07"
+    ],
+    "number": 84,
+    "input_output": "创作需求、当前能力卡 → 生成器 ID 或无匹配。",
+    "original_status": "作者帖子摘录；没有复现生成或成品质量对照。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-creative-route",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-story-sensors",
+    "title": "85. 持续检查角色扮演有没有偏离人设和世界观",
+    "skill": "jev-act",
+    "overview": "> 每段剧情后，分别给语气、张力、世界观一致性评分；持续跑偏时才建议一句纠偏提示。\n- **输入 → 输出：** 角色卡、世界规则、最近几段剧情 → 多个独立等级评分，跨轮次观察变化。\n- **可以改：** 监测维度、近期上下文窗口、滚动阈值，以及建议纠偏还是请求重写。\n- **动手：** [jev-act](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md) · [评分模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json)。\n- **来源：** [ST-jeved](https://github.com/mossyfield/ST-jeved) · [作者 9 月 20 日的 Reddit 分享](https://www.reddit.com/r/SillyTavernAI/comments/1wl7uje/jev_might_be_the_next_frontier_for_improving/)。\n- **状态：** 作者报告，尚未复现；Jev 监测，大模型写剧情。评分不是校准后的正确率。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/references/world.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/rubric.json",
+      "https://github.com/mossyfield/ST-jeved",
+      "https://www.reddit.com/r/SillyTavernAI/comments/1wl7uje/jev_might_be_the_next_frontier_for_improving/"
+    ],
+    "number": 85,
+    "input_output": "角色卡、世界规则、最近几段剧情 → 多个独立等级评分，跨轮次观察变化。",
+    "original_status": "作者报告，尚未复现；Jev 监测，大模型写剧情。评分不是校准后的正确率。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-story-sensors",
+    "additional_source_ids": [
+      "S16"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-midi",
+    "title": "86. 通过选择音乐部件，编排可编辑的 MIDI",
+    "skill": "jev-act",
+    "overview": "> 编一段轻柔圆舞曲：从合法候选里选拍号、乐器、和弦和下一小节，让代码渲染、导出 MIDI。\n- **输入 → 输出：** 音乐要求、和声计划、动机、最近小节 → 有限音乐选择 → 可编辑音符。\n- **可以改：** 候选节奏、乐器、风格、锁定音轨和重生成区域；相互依赖的小节要用更新后的上下文。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [选择题模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json)供改写；候选生成器和渲染器需另接。\n- **来源：** [Jevthoven](https://github.com/cocktailpeanut/jevthoven) · [作者视频](https://github.com/user-attachments/assets/176c69e4-501e-4b71-8517-957cc692882a)。\n- **状态：** 已看 README 和视频预览，未运行应用。Jev 选择符号化音乐部件，不生成音频；上游也有模拟模式。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/checkpoint.json",
+      "https://github.com/cocktailpeanut/jevthoven",
+      "https://github.com/user-attachments/assets/176c69e4-501e-4b71-8517-957cc692882a"
+    ],
+    "number": 86,
+    "input_output": "音乐要求、和声计划、动机、最近小节 → 有限音乐选择 → 可编辑音符。",
+    "original_status": "已看 README 和视频预览，未运行应用。Jev 选择符号化音乐部件，不生成音频；上游也有模拟模式。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-midi",
+    "additional_source_ids": [
+      "S17"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-compile",
+    "title": "87. 用一句需求生成可编辑的判断问题",
+    "skill": "jev",
+    "overview": "> 把“找出当前阻碍使用的反馈”编成 typed questions 和标准，先给边界例子检查，再逐条应用。\n- **输入 → 输出：** 用户需求 → 模型起草问题 → schema 和标准复核 → Jev 逐条判断。\n- **可以改：** 问题含义、标签、行 ID、标准版本、结果接收者；这是工作流，不是本 CLI 已有 compiler 命令。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json)。\n- **来源：** [OpenRouter question compiler](https://openrouter.ai/labs/jev/compile)\n- **状态：** 来源描述了这种方法；这里的改编尚未运行。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/semantic-rules.json",
+      "https://openrouter.ai/labs/jev/compile"
+    ],
+    "number": 87,
+    "input_output": "用户需求 → 模型起草问题 → schema 和标准复核 → Jev 逐条判断。",
+    "original_status": "来源描述了这种方法；这里的改编尚未运行。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-compile",
+    "additional_source_ids": [
+      "S18"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-mcp",
+    "title": "88. 通过 MCP 给现有 agent 增加判断工具",
+    "skill": "jev",
+    "overview": "> 选择一个通用 evaluate 工具，或者 classify/verify/rerank 这类命名工具，用自己的标准和复核路径。\n- **输入 → 输出：** Agent 工具调用、状态和问题 → 类型化判断 → 已有宿主流程。\n- **可以改：** 工具形态、模型版本、供应商、结果消费策略；MCP 与文件夹 skill 分别安装。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json)。\n- **来源：** [TypeSafe MCP](https://github.com/itsmostafa/typesafe-mcp) · [Jev MCP](https://github.com/jkudish/jev-mcp)\n- **状态：** 检查到的两个版本均支持 OpenRouter，本仓库未安装；先检查会改配置或存密钥的安装助手。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://github.com/itsmostafa/typesafe-mcp",
+      "https://github.com/jkudish/jev-mcp"
+    ],
+    "number": 88,
+    "input_output": "Agent 工具调用、状态和问题 → 类型化判断 → 已有宿主流程。",
+    "original_status": "检查到的两个版本均支持 OpenRouter，本仓库未安装；先检查会改配置或存密钥的安装助手。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-mcp",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-playground",
+    "title": "89. 边改例子边学，再让 agent 写新例子",
+    "skill": "jev",
+    "overview": "> 读一个 playground 例子的 state、questions、替换输入和消费者，再让 coding agent 照这个结构写自己的用法。\n- **输入 → 输出：** 可编辑例子 → 替换输入 → 检查判断与下游行为。\n- **可以改：** 任务、标准、边界输入、live/mock 模式、消费者；页面演示不自动等于模型调用。\n- **动手：** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写这个模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json)。\n- **来源：** [TypeSafe AI Playground](https://github.com/TypeSafeAI/typesafe-playground) · [Jev Explained](https://github.com/davila7/jev-explained)\n- **状态：** 已读原始 README，未运行界面；TypeSafe AI Playground 区分真实调用、mock 和本地求解器。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://github.com/TypeSafeAI/typesafe-playground",
+      "https://github.com/davila7/jev-explained"
+    ],
+    "number": 89,
+    "input_output": "可编辑例子 → 替换输入 → 检查判断与下游行为。",
+    "original_status": "已读原始 README，未运行界面；TypeSafe AI Playground 区分真实调用、mock 和本地求解器。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-playground",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-local-comparison",
+    "title": "90. 拿本地模型做同题决策对照",
+    "skill": "jev-eval",
+    "overview": "> 固定记录、问题和留出集标签，对比 Jev 与本地决策适配器的质量、延迟和人工复核比例。\n- **输入 → 输出：** 同一批评测样例 → 分开的模型成绩单、原始输出和错误分析。\n- **可以改：** 本地模型、部署方式、问题表述、标签映射与校准检查；不要只比速度。\n- **动手：** [对照评测方法](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/README.md) · [校准评测方法](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/CALIBRATION.md)。\n- **来源：** [Jevify](https://github.com/fidecastro/jevify) · [作者 9 月 20 日的分享](https://www.reddit.com/r/OpenSourceeAI/comments/1wl9m9n/jevify_super_simple_way_to_serve_llms_as_a/)。\n- **状态：** 已读适配器 README，未安装；它不是 Jev 权重或 RLCD 复现。本项目 CLI 仍走 OpenRouter，不会偷偷切换端点。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/README.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/evals/CALIBRATION.md",
+      "https://github.com/fidecastro/jevify",
+      "https://www.reddit.com/r/OpenSourceeAI/comments/1wl9m9n/jevify_super_simple_way_to_serve_llms_as_a/"
+    ],
+    "number": 90,
+    "input_output": "同一批评测样例 → 分开的模型成绩单、原始输出和错误分析。",
+    "original_status": "已读适配器 README，未安装；它不是 Jev 权重或 RLCD 复现。本项目 CLI 仍走 OpenRouter，不会偷偷切换端点。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-local-comparison",
+    "additional_source_ids": [
+      "S19"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-moderation",
+    "title": "91. 给社区审核队列分类",
+    "skill": "jev-triage",
+    "overview": "> 消息 + 频道规则 → 允许 / 复核 / 疑似违规 → 管理员队列。\n- **怎么用、可以改:** 不同消息可并行，但要给相关上下文；封禁等处置保留人工复核和申诉。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/brainstormity/status/2100471987860553931) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 汇总或原帖线索；尚未核实原始实现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/brainstormity/status/2100471987860553931",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 91,
+    "input_output": "消息 + 频道规则 → 允许 / 复核 / 疑似违规 → 管理员队列。",
+    "original_status": "汇总或原帖线索；尚未核实原始实现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-moderation",
+    "additional_source_ids": [
+      "S20",
+      "S35"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-syntax",
+    "title": "92. 给代码做语义高亮",
+    "skill": "jev-triage",
+    "overview": "> 代码片段 + 语言提示 + token 类别 → 片段标签 → 高亮渲染器。\n- **怎么用、可以改:** 保留原文和位置；已知语言优先用解析器。能给自创语言上色，不代表语法分析正确。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/imarikchakma/status/2100587614927741435) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-triage/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/imarikchakma/status/2100587614927741435",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 92,
+    "input_output": "代码片段 + 语言提示 + token 类别 → 片段标签 → 高亮渲染器。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-syntax",
+    "additional_source_ids": [
+      "S21"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-ai-text",
+    "title": "93. 研究 AI 文本风格信号",
+    "skill": "jev-eval",
+    "overview": "> 文本 + 可观察的风格标准 → 重复措辞 / 泛化结构 / 未知 → 供人审阅。\n- **怎么用、可以改:** 分数不能证明作者身份、作弊或不端；必须测试人类文本和混合文本的误报。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/Totzenberger/status/2100575503061004579) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/Totzenberger/status/2100575503061004579",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 93,
+    "input_output": "文本 + 可观察的风格标准 → 重复措辞 / 泛化结构 / 未知 → 供人审阅。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-ai-text",
+    "additional_source_ids": [
+      "S22"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-mute",
+    "title": "94. 给麦克风提供暂停建议",
+    "skill": "jev-act",
+    "overview": "> 获同意的转写 + 明确会议规则 → 继续 / 建议暂停 / 复核 → 可见提示。\n- **怎么用、可以改:** 转写由其他工具完成；不要偷偷录音，也不要因模型判断“胡说”就自动禁言。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/Sybuilds/status/2100417692096459074) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 汇总或原帖线索；尚未核实原始实现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/Sybuilds/status/2100417692096459074",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 94,
+    "input_output": "获同意的转写 + 明确会议规则 → 继续 / 建议暂停 / 复核 → 可见提示。",
+    "original_status": "汇总或原帖线索；尚未核实原始实现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-mute",
+    "additional_source_ids": [
+      "S23"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-launcher",
+    "title": "95. 根据意图排列启动器结果",
+    "skill": "jev-documents",
+    "overview": "> 输入意图 + 允许查看的近期文件或应用 → 候选 ID / none → 用户确认打开。\n- **怎么用、可以改:** 合并短时间内的输入、丢弃过期结果，保留普通搜索；不能无差别上传私密历史。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/dabit3/status/2100756930054504776) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。\n- **也可以做自动补全。** 代码或文本模型先提出补全候选，Jev 根据输入前缀和周围上下文排序，返回候选 ID 或 `none`；丢弃过期结果，由用户确认。来自[社区线索](https://x.com/miiura/status/2100615772053877164)，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/dabit3/status/2100756930054504776",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md",
+      "https://x.com/miiura/status/2100615772053877164"
+    ],
+    "number": 95,
+    "input_output": "输入意图 + 允许查看的近期文件或应用 → 候选 ID / none → 用户确认打开。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-launcher",
+    "additional_source_ids": [
+      "S24",
+      "S25"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-language",
+    "title": "96. 试做带语义判断的编程语言",
+    "skill": "jev",
+    "overview": "> 程序状态 + 已定义的谓词或分支 → 类型化判断 → 解释器走受限分支。\n- **怎么用、可以改:** 在玩具沙箱里做，明确 unknown 分支与循环、费用上限；语义谓词不等于精确不变量。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/southpolesteve/status/2100767781868150938) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/southpolesteve/status/2100767781868150938",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 96,
+    "input_output": "程序状态 + 已定义的谓词或分支 → 类型化判断 → 解释器走受限分支。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-language",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-drawing",
+    "title": "97. 在画布里选择绘图动作",
+    "skill": "jev-act",
+    "overview": "> 文字化画面描述 + 可用图形、工具和目标 → 动作 ID → 宿主绘图工具。\n- **怎么用、可以改:** 宿主负责视觉理解、坐标和画布验证；Jev 不会自己看截图或生成 SVG 文本。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/VladTerin/status/2100762694223618177) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 汇总或原帖线索；尚未核实原始实现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/VladTerin/status/2100762694223618177",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 97,
+    "input_output": "文字化画面描述 + 可用图形、工具和目标 → 动作 ID → 宿主绘图工具。",
+    "original_status": "汇总或原帖线索；尚未核实原始实现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-drawing",
+    "additional_source_ids": [
+      "S26"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-emoji",
+    "title": "98. 从固定候选里推荐 Emoji",
+    "skill": "jev-act",
+    "overview": "> 草稿 + 语气目标 + Emoji 候选描述 → Emoji ID / none → 可选插入。\n- **怎么用、可以改:** 保留“不加表情”的选项，不自动发送；候选变多时也要检查排序质量。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/riku720720/status/2100705558512963602) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/riku720720/status/2100705558512963602",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 98,
+    "input_output": "草稿 + 语气目标 + Emoji 候选描述 → Emoji ID / none → 可选插入。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-emoji",
+    "additional_source_ids": [
+      "S27"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-clipboard",
+    "title": "99. 给剪贴板历史提供相关建议",
+    "skill": "jev-documents",
+    "overview": "> 当前任务 + 明确允许读取的剪贴板条目 → 条目 ID / none → 本地预览。\n- **怎么用、可以改:** 先排除密钥等敏感内容，粘贴由用户确认。原汇总目录第 37 项重名，正文其实是视频混剪。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/CoooolXyh/status/2101284346640654362) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 汇总或原帖线索；尚未核实原始实现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-documents/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/CoooolXyh/status/2101284346640654362",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 99,
+    "input_output": "当前任务 + 明确允许读取的剪贴板条目 → 条目 ID / none → 本地预览。",
+    "original_status": "汇总或原帖线索；尚未核实原始实现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-clipboard",
+    "additional_source_ids": [
+      "S28"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-vitals-demo",
+    "title": "100. 在模拟器里研究合成监测信号",
+    "skill": "jev-act",
+    "overview": "> 合成信号摘要 + 仿真条件 → 演示状态 / unknown → 模拟器显示。\n- **怎么用、可以改:** 来源是生命体征仿真演示，不是临床验证；不能据此诊断、改治疗或关闭真实报警。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/roiyaruRIZ/status/2101130711067431018) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/roiyaruRIZ/status/2101130711067431018",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 100,
+    "input_output": "合成信号摘要 + 仿真条件 → 演示状态 / unknown → 模拟器显示。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-vitals-demo",
+    "additional_source_ids": [
+      "S29"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-video-effects",
+    "title": "101. 实时选择视频特效",
+    "skill": "jev-act",
+    "overview": "> 转写窗口 + 预设特效描述 → 特效 ID / none → 渲染器。\n- **怎么用、可以改:** 时间同步和冷却间隔由代码控制；独立问题可批量，避免闪烁。Jev 本身不感知音视频。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/ponyo877/status/2101139914419290345) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/ponyo877/status/2101139914419290345",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 101,
+    "input_output": "转写窗口 + 预设特效描述 → 特效 ID / none → 渲染器。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-video-effects",
+    "additional_source_ids": [
+      "S30"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-pixels",
+    "title": "102. 通过颜色选择逐像素绘画",
+    "skill": "jev-act",
+    "overview": "> 场景描述 + 像素或区域坐标 + 色板 → 颜色 ID → JavaScript 绘制。\n- **怎么用、可以改:** 并行独立区域时保留空间上下文并检查一致性；这是分类加渲染，不是原生图像生成模型。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/anshuc/status/2101040309522121072) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/anshuc/status/2101040309522121072",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 102,
+    "input_output": "场景描述 + 像素或区域坐标 + 色板 → 颜色 ID → JavaScript 绘制。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-pixels",
+    "additional_source_ids": [
+      "S31",
+      "S36"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-video-edit",
+    "title": "103. 给可编辑视频挑选片段",
+    "skill": "jev-act",
+    "overview": "> 宿主提供的抽帧描述 + 素材 ID + 剪辑标准 → 开场 / 结尾 / 排序 → 剪辑时间线。\n- **怎么用、可以改:** 代码或电脑工具负责裁剪、计时、渲染；检查授权、连续性和导出结果，保留可编辑工程。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/GeekCatX/status/2101223068580643172) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/GeekCatX/status/2101223068580643172",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 103,
+    "input_output": "宿主提供的抽帧描述 + 素材 ID + 剪辑标准 → 开场 / 结尾 / 排序 → 剪辑时间线。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-video-edit",
+    "additional_source_ids": [
+      "S32"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-levels",
+    "title": "104. 选择下一个合法关卡片段",
+    "skill": "jev-act",
+    "overview": "> 当前关卡状态 + 预验证的片段候选 → 片段 ID → 游戏引擎。\n- **怎么用、可以改:** 可达性和碰撞约束由代码验证；模型选内容，不负责证明关卡可解。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/HugoDuprez/status/2100953089003921543) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/HugoDuprez/status/2100953089003921543",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 104,
+    "input_output": "当前关卡状态 + 预验证的片段候选 → 片段 ID → 游戏引擎。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-levels",
+    "additional_source_ids": [
+      "S33"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-ads",
+    "title": "105. 批量拆解广告素材",
+    "skill": "jev-eval",
+    "overview": "> 获准使用的广告文本 + 落地页证据 + 分类标准 → Hook / 形式 / Offer / CTA → 对比表。\n- **怎么用、可以改:** 同条素材的独立维度一次问，按 ID 汇总；作者报告的速度不是转化率证据。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/TheMattBerman/status/2100654891756589230) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/TheMattBerman/status/2100654891756589230",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 105,
+    "input_output": "获准使用的广告文本 + 落地页证据 + 分类标准 → Hook / 形式 / Offer / CTA → 对比表。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-ads",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-physics",
+    "title": "106. 在物理仿真里选择受限动作",
+    "skill": "jev-act",
+    "overview": "> 仿真遥测的文字摘要 + 合法控制 → 转向 / 推力 / 保持 → 仿真一步。\n- **怎么用、可以改:** 驾驶与火箭着陆只作仿真；物理、碰撞检测、重置和急停由确定性代码负责，不接真实车辆。\n- **动手:** [jev](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json).\n- **来源 / 方法:** [原始入口](https://x.com/jpschroeder/status/2100347770867458384) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 已读作者原帖文字；用法为改编，未复现。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-act/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/assets/triage.json",
+      "https://x.com/jpschroeder/status/2100347770867458384",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 106,
+    "input_output": "仿真遥测的文字摘要 + 合法控制 → 转向 / 推力 / 保持 → 仿真一步。",
+    "original_status": "已读作者原帖文字；用法为改编，未复现。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-physics",
+    "additional_source_ids": [
+      "S34"
+    ],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-redteam-batch",
+    "title": "107. 批量整理和判定越狱评测",
+    "skill": "jev-eval",
+    "overview": "> 获授权的已采集对话 + 待测边界 → 结果标签 + 证据状态 → 独立复核。\n- **怎么用、可以改:** 保留稳定 ID、有界并发、正常对照和留出标签；不能仅凭拒答关键词判成功。\n- **动手:** [jev-eval](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/example.json).\n- **来源 / 方法:** [原始入口](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/workflows.md) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 原创流程和离线样例；没有运行攻击任务或真实判分。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/workflows.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 107,
+    "input_output": "获授权的已采集对话 + 待测边界 → 结果标签 + 证据状态 → 独立复核。",
+    "original_status": "原创流程和离线样例；没有运行攻击任务或真实判分。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-redteam-batch",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  },
+  {
+    "id": "sc-redteam-team",
+    "title": "108. 组织多人、多 Agent 与多轮安全评测",
+    "skill": "jev-eval",
+    "overview": "> 授权会话 + 完整轮次历史 + 预算 + 允许的下一步 → 继续 / 停止 / 复核 → 获授权的执行器。\n- **怎么用、可以改:** 分开设计者、执行器、Jev 初筛和独立审阅者；并行会话而不是有依赖的轮次，硬停止规则放在模型外。\n- **动手:** [jev-eval](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md) · [改写模板](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/example.json).\n- **来源 / 方法:** [原始入口](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/workflows.md) · [逐项收录表](https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md).\n- **状态:** 原创流程和离线样例；没有运行攻击任务或真实判分。",
+    "links": [
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/SKILL.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/assets/example.json",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev-eval/references/workflows.md",
+      "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/skills/jev/references/intake-2026-09-21.md"
+    ],
+    "number": 108,
+    "input_output": "授权会话 + 完整轮次历史 + 预算 + 允许的下一步 → 继续 / 停止 / 复核 → 获授权的执行器。",
+    "original_status": "原创流程和离线样例；没有运行攻击任务或真实判分。",
+    "source_url": "https://github.com/wuyoscar/jev-skill/blob/48ba080ab973f11247d6686dc2e3c1d117d76ca3/README.zh.md#sc-redteam-team",
+    "additional_source_ids": [],
+    "research_status": "page_read_no_new_live_application_test"
+  }
+]

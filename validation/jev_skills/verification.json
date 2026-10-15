@@ -1,0 +1,71 @@
+{
+  "checked_at": "2026-10-12T06:29:27.644243+00:00",
+  "upstream_tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "passed": 166,
+    "source_commit": "48ba080ab973f11247d6686dc2e3c1d117d76ca3"
+  },
+  "project_tests": {
+    "command": ".venv/bin/python -m pytest -q tests validation/jev_skills/test_run.py",
+    "passed": 213,
+    "existing": 199,
+    "new": 14,
+    "warnings": [
+      "Existing FastAPI/Starlette httpx deprecation warning"
+    ]
+  },
+  "lint": {
+    "command": ".venv/bin/ruff check validation/jev_skills",
+    "passed": true
+  },
+  "audit": {
+    "frozen_cases_unchanged": true,
+    "unique_paired_receipts": 32,
+    "matching_input_hashes": true,
+    "summary_recomputed_identically": true,
+    "known_credentials_absent_from_new_files": true,
+    "existing_tracked_files_unchanged": true,
+    "readme_local_links_checked": true
+  },
+  "question_types": {
+    "choice": 39,
+    "noul": 21,
+    "score": 8
+  },
+  "artifact_sha256": {
+    "README.md": "209d056bd7f7bfbe0cb62356996daad09cbf7c2e1d7b16a66607701508e9d976",
+    "expectations.json": "b630aab72f200f1207776e335126cebc1962c5f4ebefe46254e435e4bc5a0894",
+    "fixtures/edge_cases.json": "116ab64b4f36e4d237cd85a9a57e9e4036f7a1e89ce104b2c652416996ef65f6",
+    "fixtures/upstream/LICENSE": "a4bcb840162082bbe27b63e6d7984596984e48d0d30630a664e213317b3474e1",
+    "fixtures/upstream/jev--batch-triage.json": "1e0bfa9e27b88ead48f855c8c619870412d6692330efac083dfc4fb609e62153",
+    "fixtures/upstream/jev--browser-route.json": "0d840d4fe03f1cf092dda17e9f21a45d35f84961191b4cc3efa8c2d75786920d",
+    "fixtures/upstream/jev--checkpoint.json": "7c4282bef5a9dd6bbd0b540774751ae7a3e8f2de892e244aa66d4c5e9e9cb1af",
+    "fixtures/upstream/jev--completion.json": "0943a5deaba41f850d52e173ac590874f7a353e84b7c713cc1472fd10b56f8c6",
+    "fixtures/upstream/jev--context.json": "27b55353002413b6c646cbacb0bb3a557b6ce999cfea396b5132c9b6cf61d188",
+    "fixtures/upstream/jev--document-block.json": "08515a6fa2b9fdf0c3c659b31a20ec78883792ee5defb6ac9e5dcae440612c4b",
+    "fixtures/upstream/jev--prompt-conversion-cases.json": "db3bf432b39a7c402a8294fbf83125923d7c917b109fa26ad86de17aec9e9005",
+    "fixtures/upstream/jev--prompt-to-jev.json": "672757de7304c1656cb91ef75030f875fe953ed9b9cc5ac8921817af75c6d7a5",
+    "fixtures/upstream/jev--routing.json": "96202f64c031e88c8d34d751720ea39504f62a27923f5ef6182694fbd10ebd6d",
+    "fixtures/upstream/jev--rubric.json": "2e1a730d06da7aa4eba257a3ccad66080bdd70d53a474a530b3ace92a4986b76",
+    "fixtures/upstream/jev--semantic-rules.json": "de5c5717382c3ece8010154f3e0b6813028c3b7a9ff981d62a2e3fa4855f8514",
+    "fixtures/upstream/jev--span-selection.json": "e9132d1cd4b163ce7fea8a4edbd3c04a4fd6e424759364df7b1d49a6e7fe8b35",
+    "fixtures/upstream/jev--support-labels.json": "44e57d1437e5916bdcd00fc1eb9429c99a93db60230eaf6e04e0e56e5915e6db",
+    "fixtures/upstream/jev--triage.json": "43ad5761ae88b9ef19572e02fe432b717335851cf2bdb2020b74c5849463bf7a",
+    "fixtures/upstream/jev--voice-style.json": "e3fd0b59a8a6ddf13022711ced7a868b6d320fd027ae8fc8a76927526d048e94",
+    "fixtures/upstream/jev-act--example.json": "382398c91a1c8b3aa65f43e795116c14d761609ecaa71d47cf34414cd1960f47",
+    "fixtures/upstream/jev-act--world.json": "f9cc4729246387a12cda9964127d607394deb4a5375319771fcd7c9335af4c27",
+    "fixtures/upstream/jev-documents--example.json": "ccbab1ae70d2c65a22303bb54af9f404dbf262893846e5d7813a5129b10d4fc2",
+    "fixtures/upstream/jev-documents--find-code.json": "86b0be2dec70c7e732d059d05be8850d84275f648bc8eeb075c558b5dfbba62b",
+    "fixtures/upstream/jev-eval--code-review.json": "1b08891603232eed3a11570c925baac1db58b59f6b8edeb4eb945381d993551f",
+    "fixtures/upstream/jev-eval--example.json": "ee2cf58ccb3d452b83c54013324566597fc81769fd03112dd2471d0e4cdc956b",
+    "fixtures/upstream/jev-triage--example.json": "d8bf841647e84b89b77aee10a03a339d312243586bf0211eaef20a5ce79148ce",
+    "results/2026-10-12/health.json": "fa7634d351f1d96c2f2a0e0784c1fbf7c52af60f0ffe4df74209a2b38f758247",
+    "results/2026-10-12/offline.json": "3a77c10f92a442fafccc7816e61e13f91067bde91095306a74270a4216b0af4b",
+    "results/2026-10-12/plan.json": "f99fdd78ebbdb3d1ab74ccd7005996090208f7bec7735c52a36d30d5016d66d9",
+    "results/2026-10-12/receipts.jsonl": "202e08ba378c9bc219d2302a5c1cf077f53934e902b69db1ba900fedce468362",
+    "results/2026-10-12/summary.json": "67acdce677dcbb85fc9cf59fee11216a7c9b2f89f8f98c17c391e90d55854d1e",
+    "run.py": "1900a6287b09a1e5690757cacf64d35d082647e76fbe0519e77820837ba4fc8a",
+    "source.json": "5597d1a7c425cbeddbc76ae7b02eec5528c5a67135babc57c815ca6b132c8b74",
+    "test_run.py": "c51ff5912ff55d74bf2277a4cf1d7d18b467b5faa8f9c597b6fc35082f256ec5"
+  }
+}

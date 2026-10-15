@@ -1,0 +1,27 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "document": "From: sales@example.invalid. Please send the receipt to accounts@example.invalid, not my old address old@example.invalid.",
+    "candidates": {
+      "s1": "sales@example.invalid",
+      "s2": "accounts@example.invalid",
+      "s3": "old@example.invalid"
+    }
+  },
+  "questions": {
+    "receipt_destination": {
+      "type": "choice",
+      "instructions": "Select the candidate in `state.candidates` that `state.document` explicitly requests as the receipt destination. A sender or superseded address is not the requested destination. Return none if no candidate fits.",
+      "criteria": {
+        "s1": "The original span sales@example.invalid",
+        "s2": "The original span accounts@example.invalid",
+        "s3": "The original span old@example.invalid",
+        "none": "The requested destination is absent or not supported by these candidates"
+      }
+    },
+    "destination_stated": {
+      "type": "noul",
+      "instructions": "Does `state.document` explicitly identify where the receipt should be sent? Judge the document, not which address is most plausible."
+    }
+  }
+}

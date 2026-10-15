@@ -1,0 +1,31 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "goal": "Fix the CSV parser without changing the public API; verify tests before declaring done.",
+    "permissions": "Read and edit this local project, run tests; no publishing.",
+    "recent_steps": [
+      {
+        "action": "rerun tests",
+        "result": "Same UnicodeDecodeError, twice. No source change between runs."
+      }
+    ],
+    "observations": "Failure is on a UTF-8 input fixture. The parser opens files without an explicit encoding.",
+    "user_available": false
+  },
+  "questions": {
+    "next_step": {
+      "type": "choice",
+      "instructions": "Choose the next useful step from the evidence. Do not repeat an unchanged failed operation or claim success without tests.",
+      "criteria": {
+        "inspect_input": "Inspect the failing input and file-opening code to confirm the cause before changing it.",
+        "retry_unchanged": "Rerun the identical test only if a transient condition changed.",
+        "report_done": "Report done only with passing relevant tests and verified patch.",
+        "ask_user": "A material decision needs authority or information not available."
+      }
+    },
+    "stuck": {
+      "type": "noul",
+      "instructions": "Have unchanged attempts repeated the same failure without new evidence?"
+    }
+  }
+}

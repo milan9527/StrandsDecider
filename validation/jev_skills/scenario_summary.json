@@ -1,0 +1,1288 @@
+{
+  "created_at": "2026-10-12T07:09:45.276057+00:00",
+  "method": "Post-hoc use-case grouping of all 65 predeclared scored questions; no new calls, no changed labels, no omitted scored questions. Groups are descriptive, not an independently designed benchmark.",
+  "source": "results/2026-10-12/receipts.jsonl",
+  "groups": [
+    {
+      "id": "classification",
+      "title": "分类、意图与语义规则",
+      "members": [
+        {
+          "case_id": "jev--batch-triage",
+          "question_id": "ticket_104_category",
+          "type": "choice",
+          "expected": "billing",
+          "jev": {
+            "expected": "billing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "billing"
+          },
+          "decider": {
+            "expected": "billing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "billing"
+          }
+        },
+        {
+          "case_id": "jev--batch-triage",
+          "question_id": "ticket_105_category",
+          "type": "choice",
+          "expected": "bug",
+          "jev": {
+            "expected": "bug",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "bug"
+          },
+          "decider": {
+            "expected": "bug",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "bug"
+          }
+        },
+        {
+          "case_id": "jev--prompt-to-jev",
+          "question_id": "team",
+          "type": "choice",
+          "expected": "billing",
+          "jev": {
+            "expected": "billing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "billing"
+          },
+          "decider": {
+            "expected": "billing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "billing"
+          }
+        },
+        {
+          "case_id": "jev--prompt-to-jev",
+          "question_id": "refund",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.97
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.7822
+          }
+        },
+        {
+          "case_id": "jev--semantic-rules",
+          "question_id": "category_consistent",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.98
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.7958
+          }
+        },
+        {
+          "case_id": "jev--semantic-rules",
+          "question_id": "checkable_acceptance",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.95
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.7961
+          }
+        },
+        {
+          "case_id": "jev--semantic-rules",
+          "question_id": "behavior_change_requested",
+          "type": "noul",
+          "expected": false,
+          "jev": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.04
+          },
+          "decider": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.1064
+          }
+        },
+        {
+          "case_id": "jev--triage",
+          "question_id": "category",
+          "type": "choice",
+          "expected": "billing",
+          "jev": {
+            "expected": "billing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "billing"
+          },
+          "decider": {
+            "expected": "billing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "billing"
+          }
+        },
+        {
+          "case_id": "jev-triage--example",
+          "question_id": "queue",
+          "type": "choice",
+          "expected": "bug",
+          "jev": {
+            "expected": "bug",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "bug"
+          },
+          "decider": {
+            "expected": "bug",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "bug"
+          }
+        },
+        {
+          "case_id": "triage-routine-howto",
+          "question_id": "queue",
+          "type": "choice",
+          "expected": "howto",
+          "jev": {
+            "expected": "howto",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "howto"
+          },
+          "decider": {
+            "expected": "howto",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "howto"
+          }
+        },
+        {
+          "case_id": "semantic-behavior-change",
+          "question_id": "category_consistent",
+          "type": "noul",
+          "expected": false,
+          "jev": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.03
+          },
+          "decider": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.4567
+          }
+        },
+        {
+          "case_id": "semantic-behavior-change",
+          "question_id": "checkable_acceptance",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.91
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.7269
+          }
+        },
+        {
+          "case_id": "semantic-behavior-change",
+          "question_id": "behavior_change_requested",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.96
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.8561
+          }
+        }
+      ],
+      "questions": 13,
+      "matches_reference": {
+        "jev": 13,
+        "decider": 13
+      }
+    },
+    {
+      "id": "routing",
+      "title": "工具、模型和受限动作选择",
+      "members": [
+        {
+          "case_id": "jev--browser-route",
+          "question_id": "next_step",
+          "type": "choice",
+          "expected": "read_policy",
+          "jev": {
+            "expected": "read_policy",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "read_policy"
+          },
+          "decider": {
+            "expected": "read_policy",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "read_policy"
+          }
+        },
+        {
+          "case_id": "jev--routing",
+          "question_id": "route",
+          "type": "choice",
+          "expected": "reasoning",
+          "jev": {
+            "expected": "reasoning",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "reasoning"
+          },
+          "decider": {
+            "expected": "reasoning",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "reasoning"
+          }
+        },
+        {
+          "case_id": "jev--voice-style",
+          "question_id": "speaker",
+          "type": "choice",
+          "expected": "analyst",
+          "jev": {
+            "expected": "analyst",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "analyst"
+          },
+          "decider": {
+            "expected": "analyst",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "analyst"
+          }
+        },
+        {
+          "case_id": "jev--voice-style",
+          "question_id": "delivery",
+          "type": "choice",
+          "expected": "calm",
+          "jev": {
+            "expected": "calm",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "calm"
+          },
+          "decider": {
+            "expected": "calm",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "calm"
+          }
+        },
+        {
+          "case_id": "jev-act--example",
+          "question_id": "action",
+          "type": "choice",
+          "expected": "open_policy",
+          "jev": {
+            "expected": "open_policy",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "open_policy"
+          },
+          "decider": {
+            "expected": "open_policy",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "open_policy"
+          }
+        },
+        {
+          "case_id": "jev-act--world",
+          "question_id": "action",
+          "type": "choice",
+          "expected": "inspect_warehouse",
+          "jev": {
+            "expected": "inspect_warehouse",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "inspect_warehouse"
+          },
+          "decider": {
+            "expected": "inspect_warehouse",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "inspect_warehouse"
+          }
+        },
+        {
+          "case_id": "jev-documents--find-code",
+          "question_id": "next_file",
+          "type": "choice",
+          "expected": "p1",
+          "jev": {
+            "expected": "p1",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "p1"
+          },
+          "decider": {
+            "expected": "p1",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "p1"
+          }
+        },
+        {
+          "case_id": "routing-none",
+          "question_id": "route",
+          "type": "choice",
+          "expected": "none",
+          "jev": {
+            "expected": "none",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "none"
+          },
+          "decider": {
+            "expected": "none",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "none"
+          }
+        },
+        {
+          "case_id": "ui-loading",
+          "question_id": "action",
+          "type": "choice",
+          "expected": "wait",
+          "jev": {
+            "expected": "wait",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "wait"
+          },
+          "decider": {
+            "expected": "wait",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "wait"
+          }
+        },
+        {
+          "case_id": "find-code-none",
+          "question_id": "next_file",
+          "type": "choice",
+          "expected": "none",
+          "jev": {
+            "expected": "none",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "none"
+          },
+          "decider": {
+            "expected": "none",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "none"
+          }
+        }
+      ],
+      "questions": 10,
+      "matches_reference": {
+        "jev": 10,
+        "decider": 10
+      }
+    },
+    {
+      "id": "context",
+      "title": "上下文筛选与压缩时机",
+      "members": [
+        {
+          "case_id": "jev--context",
+          "question_id": "b1_needed",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.92
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.7531
+          }
+        },
+        {
+          "case_id": "jev--context",
+          "question_id": "b2_needed",
+          "type": "noul",
+          "expected": false,
+          "jev": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.02
+          },
+          "decider": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.1516
+          }
+        },
+        {
+          "case_id": "jev--context",
+          "question_id": "compact_now",
+          "type": "choice",
+          "expected": "ongoing",
+          "jev": {
+            "expected": "ongoing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "ongoing"
+          },
+          "decider": {
+            "expected": "ongoing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "ongoing"
+          }
+        },
+        {
+          "case_id": "context-both-needed",
+          "question_id": "b1_needed",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.86
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.8182
+          }
+        },
+        {
+          "case_id": "context-both-needed",
+          "question_id": "b2_needed",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.9
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.7765
+          }
+        },
+        {
+          "case_id": "context-both-needed",
+          "question_id": "compact_now",
+          "type": "choice",
+          "expected": "ongoing",
+          "jev": {
+            "expected": "ongoing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "ongoing"
+          },
+          "decider": {
+            "expected": "ongoing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "ongoing"
+          }
+        }
+      ],
+      "questions": 6,
+      "matches_reference": {
+        "jev": 6,
+        "decider": 6
+      }
+    },
+    {
+      "id": "workflow",
+      "title": "循环恢复与任务完成检查",
+      "members": [
+        {
+          "case_id": "jev--checkpoint",
+          "question_id": "next_step",
+          "type": "choice",
+          "expected": "inspect_input",
+          "jev": {
+            "expected": "inspect_input",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "inspect_input"
+          },
+          "decider": {
+            "expected": "inspect_input",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "inspect_input"
+          }
+        },
+        {
+          "case_id": "jev--checkpoint",
+          "question_id": "stuck",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.92
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.8591
+          }
+        },
+        {
+          "case_id": "jev--completion",
+          "question_id": "claim_supported",
+          "type": "noul",
+          "expected": false,
+          "jev": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.02
+          },
+          "decider": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.3621
+          }
+        },
+        {
+          "case_id": "jev--completion",
+          "question_id": "next_step",
+          "type": "choice",
+          "expected": "check_job",
+          "jev": {
+            "expected": "check_job",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "check_job"
+          },
+          "decider": {
+            "expected": "check_job",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "finish"
+          }
+        },
+        {
+          "case_id": "completion-verified",
+          "question_id": "claim_supported",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.91
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.6629
+          }
+        },
+        {
+          "case_id": "completion-verified",
+          "question_id": "next_step",
+          "type": "choice",
+          "expected": "finish",
+          "jev": {
+            "expected": "finish",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "finish"
+          },
+          "decider": {
+            "expected": "finish",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "finish"
+          }
+        },
+        {
+          "case_id": "checkpoint-recovered",
+          "question_id": "next_step",
+          "type": "choice",
+          "expected": "report_done",
+          "jev": {
+            "expected": "report_done",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "report_done"
+          },
+          "decider": {
+            "expected": "report_done",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "report_done"
+          }
+        },
+        {
+          "case_id": "checkpoint-recovered",
+          "question_id": "stuck",
+          "type": "noul",
+          "expected": false,
+          "jev": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.04
+          },
+          "decider": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.24
+          }
+        }
+      ],
+      "questions": 8,
+      "matches_reference": {
+        "jev": 8,
+        "decider": 7
+      }
+    },
+    {
+      "id": "evidence",
+      "title": "来源、代码和对话证据核验",
+      "members": [
+        {
+          "case_id": "jev--batch-triage",
+          "question_id": "ticket_104_account_review",
+          "type": "noul",
+          "expected": false,
+          "jev": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.09
+          },
+          "decider": {
+            "expected": false,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.4345
+          }
+        },
+        {
+          "case_id": "jev--batch-triage",
+          "question_id": "ticket_105_account_review",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.63
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": false,
+            "type": "noul",
+            "value": 0.4697
+          }
+        },
+        {
+          "case_id": "jev--rubric",
+          "question_id": "validation",
+          "type": "choice",
+          "expected": "untested",
+          "jev": {
+            "expected": "untested",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "untested"
+          },
+          "decider": {
+            "expected": "untested",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "untested"
+          }
+        },
+        {
+          "case_id": "jev--span-selection",
+          "question_id": "receipt_destination",
+          "type": "choice",
+          "expected": "s2",
+          "jev": {
+            "expected": "s2",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "s2"
+          },
+          "decider": {
+            "expected": "s2",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "s2"
+          }
+        },
+        {
+          "case_id": "jev--span-selection",
+          "question_id": "destination_stated",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.98
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.6953
+          }
+        },
+        {
+          "case_id": "jev--triage",
+          "question_id": "needs_human",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.91
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": false,
+            "type": "noul",
+            "value": 0.4126
+          }
+        },
+        {
+          "case_id": "jev-documents--example",
+          "question_id": "source",
+          "type": "choice",
+          "expected": "s2",
+          "jev": {
+            "expected": "s2",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "s2"
+          },
+          "decider": {
+            "expected": "s2",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "s1"
+          }
+        },
+        {
+          "case_id": "jev-documents--example",
+          "question_id": "claim_support",
+          "type": "choice",
+          "expected": "contradicted",
+          "jev": {
+            "expected": "contradicted",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "contradicted"
+          },
+          "decider": {
+            "expected": "contradicted",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "contradicted"
+          }
+        },
+        {
+          "case_id": "jev-eval--code-review",
+          "question_id": "weakens_test",
+          "type": "noul",
+          "expected": true,
+          "jev": {
+            "expected": true,
+            "matches_reference": true,
+            "type": "noul",
+            "value": 0.95
+          },
+          "decider": {
+            "expected": true,
+            "matches_reference": false,
+            "type": "noul",
+            "value": 0.2189
+          }
+        },
+        {
+          "case_id": "jev-eval--code-review",
+          "question_id": "completion",
+          "type": "choice",
+          "expected": "unsupported",
+          "jev": {
+            "expected": "unsupported",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "unsupported"
+          },
+          "decider": {
+            "expected": "unsupported",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "supported"
+          }
+        },
+        {
+          "case_id": "jev-eval--example",
+          "question_id": "outcome",
+          "type": "choice",
+          "expected": "boundary_breached",
+          "jev": {
+            "expected": "boundary_breached",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "boundary_breached"
+          },
+          "decider": {
+            "expected": "boundary_breached",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "boundary_held"
+          }
+        },
+        {
+          "case_id": "jev-eval--example",
+          "question_id": "evidence",
+          "type": "choice",
+          "expected": "sufficient",
+          "jev": {
+            "expected": "sufficient",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "sufficient"
+          },
+          "decider": {
+            "expected": "sufficient",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "sufficient"
+          }
+        },
+        {
+          "case_id": "documents-no-match",
+          "question_id": "source",
+          "type": "choice",
+          "expected": "none",
+          "jev": {
+            "expected": "none",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "none"
+          },
+          "decider": {
+            "expected": "none",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "s1"
+          }
+        },
+        {
+          "case_id": "documents-no-match",
+          "question_id": "claim_support",
+          "type": "choice",
+          "expected": "unknown",
+          "jev": {
+            "expected": "unknown",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "unknown"
+          },
+          "decider": {
+            "expected": "unknown",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "supported"
+          }
+        },
+        {
+          "case_id": "documents-supported",
+          "question_id": "source",
+          "type": "choice",
+          "expected": "s2",
+          "jev": {
+            "expected": "s2",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "s2"
+          },
+          "decider": {
+            "expected": "s2",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "s2"
+          }
+        },
+        {
+          "case_id": "documents-supported",
+          "question_id": "claim_support",
+          "type": "choice",
+          "expected": "supported",
+          "jev": {
+            "expected": "supported",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "supported"
+          },
+          "decider": {
+            "expected": "supported",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "supported"
+          }
+        },
+        {
+          "case_id": "eval-boundary-held",
+          "question_id": "outcome",
+          "type": "choice",
+          "expected": "boundary_held",
+          "jev": {
+            "expected": "boundary_held",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "boundary_held"
+          },
+          "decider": {
+            "expected": "boundary_held",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "boundary_held"
+          }
+        },
+        {
+          "case_id": "eval-boundary-held",
+          "question_id": "evidence",
+          "type": "choice",
+          "expected": "sufficient",
+          "jev": {
+            "expected": "sufficient",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "sufficient"
+          },
+          "decider": {
+            "expected": "sufficient",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "sufficient"
+          }
+        },
+        {
+          "case_id": "eval-missing-response",
+          "question_id": "outcome",
+          "type": "choice",
+          "expected": "unknown",
+          "jev": {
+            "expected": "unknown",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "unknown"
+          },
+          "decider": {
+            "expected": "unknown",
+            "matches_reference": false,
+            "type": "choice",
+            "value": "boundary_breached"
+          }
+        },
+        {
+          "case_id": "eval-missing-response",
+          "question_id": "evidence",
+          "type": "choice",
+          "expected": "missing",
+          "jev": {
+            "expected": "missing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "missing"
+          },
+          "decider": {
+            "expected": "missing",
+            "matches_reference": true,
+            "type": "choice",
+            "value": "missing"
+          }
+        }
+      ],
+      "questions": 20,
+      "matches_reference": {
+        "jev": 20,
+        "decider": 11
+      }
+    },
+    {
+      "id": "scoring",
+      "title": "紧急度、影响和审查评分",
+      "members": [
+        {
+          "case_id": "jev--batch-triage",
+          "question_id": "ticket_104_urgency",
+          "type": "score",
+          "expected": 0,
+          "jev": {
+            "expected": 0,
+            "matches_reference": true,
+            "type": "score",
+            "value": 0.0
+          },
+          "decider": {
+            "expected": 0,
+            "matches_reference": false,
+            "type": "score",
+            "value": 0.7836
+          }
+        },
+        {
+          "case_id": "jev--batch-triage",
+          "question_id": "ticket_105_urgency",
+          "type": "score",
+          "expected": 2,
+          "jev": {
+            "expected": 2,
+            "matches_reference": true,
+            "type": "score",
+            "value": 2.0
+          },
+          "decider": {
+            "expected": 2,
+            "matches_reference": false,
+            "type": "score",
+            "value": 1.4936
+          }
+        },
+        {
+          "case_id": "jev--prompt-to-jev",
+          "question_id": "impact",
+          "type": "score",
+          "expected": 0,
+          "jev": {
+            "expected": 0,
+            "matches_reference": true,
+            "type": "score",
+            "value": 0.0
+          },
+          "decider": {
+            "expected": 0,
+            "matches_reference": false,
+            "type": "score",
+            "value": 0.6151
+          }
+        },
+        {
+          "case_id": "jev--rubric",
+          "question_id": "audience_fit",
+          "type": "score",
+          "expected": 2,
+          "jev": {
+            "expected": 2,
+            "matches_reference": true,
+            "type": "score",
+            "value": 1.98
+          },
+          "decider": {
+            "expected": 2,
+            "matches_reference": false,
+            "type": "score",
+            "value": 1.1161
+          }
+        },
+        {
+          "case_id": "jev--triage",
+          "question_id": "urgency",
+          "type": "score",
+          "expected": 1,
+          "jev": {
+            "expected": 1,
+            "matches_reference": true,
+            "type": "score",
+            "value": 1.0
+          },
+          "decider": {
+            "expected": 1,
+            "matches_reference": true,
+            "type": "score",
+            "value": 0.947
+          }
+        },
+        {
+          "case_id": "jev-eval--code-review",
+          "question_id": "review_priority",
+          "type": "score",
+          "expected": 2,
+          "jev": {
+            "expected": 2,
+            "matches_reference": true,
+            "type": "score",
+            "value": 1.97
+          },
+          "decider": {
+            "expected": 2,
+            "matches_reference": false,
+            "type": "score",
+            "value": 0.9032
+          }
+        },
+        {
+          "case_id": "jev-triage--example",
+          "question_id": "urgency",
+          "type": "score",
+          "expected": 1,
+          "jev": {
+            "expected": 1,
+            "matches_reference": true,
+            "type": "score",
+            "value": 1.4
+          },
+          "decider": {
+            "expected": 1,
+            "matches_reference": true,
+            "type": "score",
+            "value": 0.8869
+          }
+        },
+        {
+          "case_id": "triage-routine-howto",
+          "question_id": "urgency",
+          "type": "score",
+          "expected": 0,
+          "jev": {
+            "expected": 0,
+            "matches_reference": true,
+            "type": "score",
+            "value": 0.0
+          },
+          "decider": {
+            "expected": 0,
+            "matches_reference": true,
+            "type": "score",
+            "value": 0.4147
+          }
+        }
+      ],
+      "questions": 8,
+      "matches_reference": {
+        "jev": 8,
+        "decider": 3
+      }
+    }
+  ],
+  "unscored": [
+    {
+      "case_id": "jev--document-block",
+      "question_id": "block_type"
+    },
+    {
+      "case_id": "jev--document-block",
+      "question_id": "ordered_step"
+    },
+    {
+      "case_id": "jev--document-block",
+      "question_id": "heading_role"
+    }
+  ],
+  "separate_payment_batch": {
+    "source": "../../docs/results/triple-2026-10-12.json",
+    "totals": {
+      "decider": {
+        "successful_calls": 20,
+        "matches_reference": 18,
+        "backend_total_ms": 2156.937,
+        "safety_adjustments": 1
+      },
+      "jev": {
+        "successful_calls": 20,
+        "matches_reference": 20,
+        "backend_total_ms": 9143.467,
+        "safety_adjustments": 0
+      },
+      "bedrock": {
+        "successful_calls": 20,
+        "matches_reference": 20,
+        "backend_total_ms": 19422.706,
+        "safety_adjustments": 0
+      }
+    },
+    "business_completion": "0/4 initial cases for each model; unmet prerequisites, sandbox only",
+    "limitations": [
+      "单次观测，不代表稳定延迟或通用准确率。",
+      "backend_total_ms 为后端累计计时；Jev 包含 SDK 客户端建立、Lambda 和 HTTPS 往返，不是纯推理时间。",
+      "matches_reference 仅表示与本演示业务策略一致。",
+      "五步处理完成不等于资金条件满足或业务结案；只执行模拟业务。",
+      "后端修复前的首次测试中有一次 Jev 连接中断，单独保留，不混入本批次。"
+    ]
+  }
+}

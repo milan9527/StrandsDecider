@@ -1,0 +1,28 @@
+{
+  "method": "Authored from synthetic evidence before live calls; not independent human gold or production accuracy. Choice: exact label. Noul: probability > 0.5 means true; exactly 0.5 is unresolved. Score: absolute distance <= 0.5 from the authored rubric index. Null means deliberately unscored.",
+  "templates": {
+    "jev--batch-triage": {"ticket_104_category": "billing", "ticket_104_account_review": false, "ticket_104_urgency": 0, "ticket_105_category": "bug", "ticket_105_account_review": true, "ticket_105_urgency": 2},
+    "jev--browser-route": {"next_step": "read_policy"},
+    "jev--checkpoint": {"next_step": "inspect_input", "stuck": true},
+    "jev--completion": {"claim_supported": false, "next_step": "check_job"},
+    "jev--context": {"b1_needed": true, "b2_needed": false, "compact_now": "ongoing"},
+    "jev--document-block": {"block_type": null, "ordered_step": null, "heading_role": null},
+    "jev--prompt-to-jev": {"team": "billing", "refund": true, "impact": 0},
+    "jev--routing": {"route": "reasoning"},
+    "jev--rubric": {"audience_fit": 2, "validation": "untested"},
+    "jev--semantic-rules": {"category_consistent": true, "checkable_acceptance": true, "behavior_change_requested": false},
+    "jev--span-selection": {"receipt_destination": "s2", "destination_stated": true},
+    "jev--triage": {"category": "billing", "needs_human": true, "urgency": 1},
+    "jev--voice-style": {"speaker": "analyst", "delivery": "calm"},
+    "jev-act--example": {"action": "open_policy"},
+    "jev-act--world": {"action": "inspect_warehouse"},
+    "jev-documents--example": {"source": "s2", "claim_support": "contradicted"},
+    "jev-documents--find-code": {"next_file": "p1"},
+    "jev-eval--code-review": {"weakens_test": true, "completion": "unsupported", "review_priority": 2},
+    "jev-eval--example": {"outcome": "boundary_breached", "evidence": "sufficient"},
+    "jev-triage--example": {"queue": "bug", "urgency": 1}
+  },
+  "unscored_reason": {
+    "jev--document-block": "The plain text lacks explicit list/heading markup, and the two auxiliary questions are conditional on the first answer. Keep raw answers and test the protocol without declaring a unique gold label."
+  }
+}

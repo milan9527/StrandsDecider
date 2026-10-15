@@ -1,0 +1,2569 @@
+{
+  "created_at": "2026-10-13T03:31:14.028505+00:00",
+  "inference_started": false,
+  "cases": [
+    {
+      "id": "intent-rewrite",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Rewrite this 80-word shipping notification in a friendly tone, preserving its dates and amounts. The text is supplied."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "economy_text",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "economy_text"
+      }
+    },
+    {
+      "id": "intent-ticket-label",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Label this short customer message as billing, bug or how-to: 'Where do I change the CSV separator?' Return one label."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "economy_text",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "economy_text"
+      }
+    },
+    {
+      "id": "intent-concurrency",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Two supplied implementations disagree under concurrent writes. Inspect both source listings and identify the unsafe thread interleaving."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "code_analysis",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "code_analysis"
+      }
+    },
+    {
+      "id": "intent-debug",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Given the supplied stack trace and source file, determine why this SQL connection pool deadlocks and propose the minimal fix."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "code_analysis",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "code_analysis"
+      }
+    },
+    {
+      "id": "intent-proof",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Prove the supplied mathematical claim by induction, checking both the base case and inductive step rather than restating the conclusion."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "reasoning",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "reasoning"
+      }
+    },
+    {
+      "id": "intent-invoice-image",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Read the invoice number and total amount from the attached scan. These fields occur only in the image; no OCR text is provided."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "vision",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "vision"
+      }
+    },
+    {
+      "id": "intent-long-contracts",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Compare obligations across the three supplied contracts and identify conflicts. The supplied contract text totals 180000 tokens."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "long_document",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "long_document"
+      }
+    },
+    {
+      "id": "intent-missing-attachment",
+      "category": "semantic_task_routing",
+      "state": {
+        "task": "Select the application's approved route profile for the request. Route profiles are controlled test definitions, not measured vendor quality.",
+        "request": "Summarize the attached contract, but no attachment or contract text was received. Do not fabricate its contents."
+      },
+      "criteria": {
+        "economy_text": "Approved route for inexpensive short text transformation or simple label classification; no complex code/math analysis, image reading or large-document comparison.",
+        "code_analysis": "Approved route for diagnosing code failures, concurrency bugs and implementation reasoning; can inspect provided source and traces.",
+        "reasoning": "Approved route for multi-step mathematical or logical proofs that require deriving and checking an argument.",
+        "vision": "Approved route for understanding information only present in supplied images, such as chart labels or invoice fields.",
+        "long_document": "Approved route for comparing and synthesizing supplied documents totaling more than 100000 tokens.",
+        "clarify": "Request missing essential material when the user's task cannot be done from supplied inputs; do not guess absent content."
+      },
+      "expected": "clarify",
+      "reference": {
+        "kind": "authored_task_to_profile",
+        "expected": "clarify"
+      }
+    },
+    {
+      "id": "cap-image",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Extract fields from an attached image.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text",
+            "image"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m4",
+      "reference": {
+        "expected": "m4",
+        "hard_eligible": [
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-audio",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Process native audio input.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text",
+            "audio"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m5",
+      "reference": {
+        "expected": "m5",
+        "hard_eligible": [
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-video",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Inspect video input.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text",
+            "video"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m5",
+      "reference": {
+        "expected": "m5",
+        "hard_eligible": [
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-context",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Process 300000 input tokens in one request without truncation.",
+          "input_tokens": 300000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m5",
+      "reference": {
+        "expected": "m5",
+        "hard_eligible": [
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.01504000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.02114000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.15107500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.02825000000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0912500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.7575000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-output",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Reserve 70000 output tokens; enforce the output cap.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 70000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m4",
+            "m3",
+            "m5",
+            "m6",
+            "m2",
+            "m1"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m2",
+      "reference": {
+        "expected": "m2",
+        "hard_eligible": [
+          "m1",
+          "m2"
+        ],
+        "ranked": [
+          "m2",
+          "m1"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00565000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.01967000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "output_limit"
+            ],
+            "estimated_text_cost_usd": "0.15100000"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "output_limit"
+            ],
+            "estimated_text_cost_usd": "0.01759375000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "output_limit"
+            ],
+            "estimated_text_cost_usd": "0.1753000"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "output_limit"
+            ],
+            "estimated_text_cost_usd": "0.70125000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-image-logprobs",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Image input with token logprobs required.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text",
+            "image"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [
+            "logprobs"
+          ],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m4",
+      "reference": {
+        "expected": "m4",
+        "hard_eligible": [
+          "m4"
+        ],
+        "ranked": [
+          "m4"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "input_modality",
+              "required_parameter"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "input_modality"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "required_parameter"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "required_parameter"
+            ],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-json-tools",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Tool calls and strict structured output are required.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [
+            "tools",
+            "structured_outputs"
+          ],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m1",
+      "reference": {
+        "expected": "m1",
+        "hard_eligible": [
+          "m1",
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m1",
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cap-image-output",
+      "category": "capability_constraints",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "The model must generate an image as output.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "image"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "no_route",
+      "reference": {
+        "expected": "no_route",
+        "hard_eligible": [],
+        "ranked": [],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "output_modality"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "output_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "output_modality"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "output_modality"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "output_modality"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "output_modality"
+            ],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-basic",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Choose cheapest eligible text model.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m1",
+      "reference": {
+        "expected": "m1",
+        "hard_eligible": [
+          "m1",
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m1",
+          "m2",
+          "m4",
+          "m5",
+          "m3",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-input-heavy",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Approved coder/small-model pool; input-heavy workload.",
+          "input_tokens": 10000,
+          "reserved_output_tokens": 1000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m2",
+            "m4"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m2",
+      "reference": {
+        "expected": "m2",
+        "hard_eligible": [
+          "m2",
+          "m4"
+        ],
+        "ranked": [
+          "m2",
+          "m4"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00058000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00098000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00715000"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00118750000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.0055000"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.02250000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-output-heavy",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Approved coder/small-model pool; output-heavy workload.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 10000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m2",
+            "m4"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m4",
+      "reference": {
+        "expected": "m4",
+        "hard_eligible": [
+          "m2",
+          "m4"
+        ],
+        "ranked": [
+          "m4",
+          "m2"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00085000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00287000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.02200000"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00259375000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.0253000"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.10125000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-no-budget",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Budget too small for the approved pool.",
+          "input_tokens": 10000,
+          "reserved_output_tokens": 1000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m2",
+            "m4"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": "0.0005",
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "no_route",
+      "reference": {
+        "expected": "no_route",
+        "hard_eligible": [],
+        "ranked": [],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00058000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00098000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00715000"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00118750000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.0055000"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.02250000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-exact-budget",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Inclusive budget equals one candidate's computed estimate.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 10000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m2",
+            "m4"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": "0.00259375",
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m4",
+      "reference": {
+        "expected": "m4",
+        "hard_eligible": [
+          "m4"
+        ],
+        "ranked": [
+          "m4"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00085000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00287000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.02200000"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00259375000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.0253000"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.10125000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-one-fits",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Only one approved model fits the budget.",
+          "input_tokens": 10000,
+          "reserved_output_tokens": 1000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m2",
+            "m4"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": "0.001",
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m2",
+      "reference": {
+        "expected": "m2",
+        "hard_eligible": [
+          "m2"
+        ],
+        "ranked": [
+          "m2"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00058000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00098000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00715000"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.00118750000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.0055000"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "account_model_restriction",
+              "over_budget"
+            ],
+            "estimated_text_cost_usd": "0.02250000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-long-context",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Long context; apply the listed long-input price tier where relevant.",
+          "input_tokens": 300000,
+          "reserved_output_tokens": 1000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m5",
+      "reference": {
+        "expected": "m5",
+        "hard_eligible": [
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.01508000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.02128000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.15215000"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "context_limit"
+            ],
+            "estimated_text_cost_usd": "0.02837500000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0925000"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.7650000"
+          }
+        }
+      }
+    },
+    {
+      "id": "cost-reasoning-output",
+      "category": "cost_and_budget",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Explicit reasoning parameter required; minimize total price for long output.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 10000,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [
+            "reasoning"
+          ],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m3",
+      "reference": {
+        "expected": "m3",
+        "hard_eligible": [
+          "m3",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m3",
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "required_parameter"
+            ],
+            "estimated_text_cost_usd": "0.00085000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "required_parameter"
+            ],
+            "estimated_text_cost_usd": "0.00287000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.02200000"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "required_parameter"
+            ],
+            "estimated_text_cost_usd": "0.00259375000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0253000"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.10125000"
+          }
+        }
+      }
+    },
+    {
+      "id": "fallback-primary-down",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Primary route is down; use the approved fallback.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": "m5",
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m6",
+      "reference": {
+        "expected": "m6",
+        "hard_eligible": [
+          "m6"
+        ],
+        "ranked": [
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "fallback-rate-limit",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "The cheapest endpoint is rate-limited; select cheapest healthy alternative.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "lowest_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": "m1",
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"rate_limited\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m2",
+      "reference": {
+        "expected": "m2",
+        "hard_eligible": [
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m2",
+          "m4",
+          "m5",
+          "m3",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "fallback-disabled",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Fallbacks disabled; primary route is down.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": "m5",
+          "fallback_allowed": false,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "no_route",
+      "reference": {
+        "expected": "no_route",
+        "hard_eligible": [],
+        "ranked": [],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "fallback_disabled"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "fallback_disabled"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "fallback_disabled"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "fallback_disabled"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "fallback_disabled"
+            ],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "fallback-all-down",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "No healthy endpoint exists.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"down\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "no_route",
+      "reference": {
+        "expected": "no_route",
+        "hard_eligible": [],
+        "ranked": [],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "unavailable"
+            ],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "fallback-excluded",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Account restricts allowed models and excludes one of them.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m2",
+            "m3"
+          ],
+          "excluded_models": [
+            "m2"
+          ],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m3",
+      "reference": {
+        "expected": "m3",
+        "hard_eligible": [
+          "m3"
+        ],
+        "ranked": [
+          "m3"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "fallback-retention",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Only approved ZDR endpoint fixtures may process this request.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "prefer_order",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": true,
+          "preferred_latency_ms": null
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":false}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":1000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m6",
+      "reference": {
+        "expected": "m6",
+        "hard_eligible": [
+          "m6"
+        ],
+        "ranked": [
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [
+              "account_model_restriction"
+            ],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [
+              "data_retention"
+            ],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "latency-soft-unmet",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Latency preference is soft; all models exceed it. Do not reject solely for this.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "latency_then_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": 2000
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":3000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":4000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":5000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":6000,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":7000,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":8000,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m1",
+      "reference": {
+        "expected": "m1",
+        "hard_eligible": [
+          "m1",
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m1",
+          "m2",
+          "m4",
+          "m5",
+          "m3",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    },
+    {
+      "id": "latency-preferred-pool",
+      "category": "availability_fallback_and_preferences",
+      "state": {
+        "task": "Select an eligible model route under this application's explicitly stated policy.",
+        "provenance": "Model capabilities/prices are a frozen OpenRouter public catalogue snapshot. Availability, latency, retention flags and request requirements are SYNTHETIC TEST FIXTURES, not live endpoint measurements. No downstream model will be called.",
+        "routing_policy": "Apply every hard constraint: candidate must be healthy, allowed, not excluded, support all required input/output modalities and parameters, fit input_tokens + reserved_output_tokens within context, and reserved_output_tokens within max_output_tokens. If zero data retention is required, fixture_zero_data_retention must be true. If fallback_allowed is false, only primary_model may be chosen. A budget ceiling is inclusive.\nFor cost use (input_tokens * input_rate + reserved_output_tokens * output_rate) / 1000000 USD; apply a listed input price tier when input_tokens >= min_input_tokens. This is the benchmark's text-token estimate only, not an actual bill. For prefer_order choose the first eligible ID in preference_order. For lowest_cost choose the eligible model with the smallest cost. For latency_then_cost, first prefer eligible models at or below preferred_latency_ms; if none meet this SOFT preference, keep all eligible models, then choose the cheapest. Break cost ties by model ID. Select no_route if no candidate satisfies hard constraints. Never infer capability from brand names.",
+        "request": {
+          "description": "Choose cheapest model meeting the soft latency preference when such candidates exist.",
+          "input_tokens": 1000,
+          "reserved_output_tokens": 500,
+          "required_input_modalities": [
+            "text"
+          ],
+          "required_output_modalities": [
+            "text"
+          ],
+          "required_parameters": [],
+          "allowed_models": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "excluded_models": [],
+          "objective": "latency_then_cost",
+          "preference_order": [
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6"
+          ],
+          "budget_usd": null,
+          "primary_model": null,
+          "fallback_allowed": true,
+          "require_zdr": false,
+          "preferred_latency_ms": 1000
+        }
+      },
+      "criteria": {
+        "m1": "{\"model\":\"meta-llama/llama-3.1-8b-instruct\",\"context_tokens\":131072,\"max_output_tokens\":117964,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.05000000\",\"usd_per_million_output_tokens\":\"0.08000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":3000,\"fixture_zero_data_retention\":true}",
+        "m2": "{\"model\":\"qwen/qwen3-coder-30b-a3b-instruct\",\"context_tokens\":262144,\"max_output_tokens\":235929,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.07000000\",\"usd_per_million_output_tokens\":\"0.28000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":2000,\"fixture_zero_data_retention\":true}",
+        "m3": "{\"model\":\"deepseek/deepseek-r1-0528\",\"context_tokens\":163840,\"max_output_tokens\":32768,\"input_modalities\":[\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.5000000\",\"usd_per_million_output_tokens\":\"2.15000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":6000,\"fixture_zero_data_retention\":true}",
+        "m4": "{\"model\":\"mistralai/mistral-small-3.2-24b-instruct\",\"context_tokens\":256000,\"max_output_tokens\":16384,\"input_modalities\":[\"image\",\"text\"],\"output_modalities\":[\"text\"],\"supports\":[\"logprobs\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.09375000000\",\"usd_per_million_output_tokens\":\"0.25000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":800,\"fixture_zero_data_retention\":true}",
+        "m5": "{\"model\":\"google/gemini-2.5-flash\",\"context_tokens\":1048576,\"max_output_tokens\":65535,\"input_modalities\":[\"file\",\"image\",\"text\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"0.3000000\",\"usd_per_million_output_tokens\":\"2.5000000\",\"input_price_tiers\":[],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":500,\"fixture_zero_data_retention\":true}",
+        "m6": "{\"model\":\"google/gemini-2.5-pro\",\"context_tokens\":1048576,\"max_output_tokens\":65536,\"input_modalities\":[\"text\",\"image\",\"file\",\"audio\",\"video\"],\"output_modalities\":[\"text\"],\"supports\":[\"reasoning\",\"structured_outputs\",\"tools\"],\"usd_per_million_input_tokens\":\"1.25000000\",\"usd_per_million_output_tokens\":\"10.00000\",\"input_price_tiers\":[{\"min_input_tokens\":200000,\"usd_per_million_input_tokens\":\"2.5000000\",\"usd_per_million_output_tokens\":\"15.000000\"}],\"fixture_status\":\"healthy\",\"fixture_p50_latency_ms\":700,\"fixture_zero_data_retention\":true}",
+        "no_route": "No model satisfies every HARD constraint. Do not route this request until requirements or availability change. A soft latency preference alone is not grounds to reject."
+      },
+      "expected": "m4",
+      "reference": {
+        "expected": "m4",
+        "hard_eligible": [
+          "m1",
+          "m2",
+          "m3",
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "ranked": [
+          "m4",
+          "m5",
+          "m6"
+        ],
+        "details": {
+          "m1": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00009000"
+          },
+          "m2": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021000"
+          },
+          "m3": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00157500"
+          },
+          "m4": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00021875000"
+          },
+          "m5": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.0015500"
+          },
+          "m6": {
+            "ineligible_reasons": [],
+            "estimated_text_cost_usd": "0.00625000"
+          }
+        }
+      }
+    }
+  ],
+  "variants": [
+    "original_order",
+    "reversed_order"
+  ],
+  "max_calls": 128,
+  "providers": [
+    "jev",
+    "decider"
+  ],
+  "method": "32 unique requests, 8 per category; every request/order is identical for both models. Reverse only candidate insertion order. No candidate filtering, retries, answer replacement or downstream generation.",
+  "limitations": [
+    "Task-profile labels are authored; model metadata is public; runtime endpoint state and request requirements are synthetic.",
+    "This tests routing policy adherence, not OpenRouter Auto performance or routed-model answer quality.",
+    "Published model-level supported parameters are not a guarantee about every provider endpoint.",
+    "Cost is a defined text-token estimate using catalogue rates and tiers; no caching, media charges, tool costs, actual billing or hidden reasoning-token usage measured.",
+    "Small English-language diagnostic set; order variants are repeated cases, not independent samples."
+  ],
+  "sources": [
+    {
+      "file": "models.json",
+      "url": "https://openrouter.ai/api/v1/models",
+      "fetched_at": "2026-10-13T03:28:47.723125+00:00",
+      "sha256": "ab53291b988016e6b9969a938d7d20cbfa26e03ff6a5f6c7c9cf09bc925aca03"
+    },
+    {
+      "file": "auto-router.md",
+      "url": "https://openrouter.ai/docs/guides/routing/routers/auto-router.md",
+      "fetched_at": "2026-10-13T03:28:48.467077+00:00",
+      "sha256": "75fb5db2f8a6374ada833325bcd173031265af029b7cc44fada557ca0022e6cf"
+    },
+    {
+      "file": "provider-selection.md",
+      "url": "https://openrouter.ai/docs/guides/routing/provider-selection.md",
+      "fetched_at": "2026-10-13T03:28:47.738787+00:00",
+      "sha256": "19053aad858456b723318eb48441b294cc10ef09421dc9b6208778195954a726"
+    }
+  ],
+  "plan_sha256": "1a565f77027c39ce2c107e906efd1ec874c6247b9c8fdb53ae48f3197d66740e"
+}

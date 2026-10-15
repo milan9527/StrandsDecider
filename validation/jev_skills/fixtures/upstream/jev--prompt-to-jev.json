@@ -1,0 +1,9 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {"ticket": {"text": "I was charged twice for my subscription. Please refund the duplicate charge. I can still use the service."}},
+  "questions": {
+    "team": {"type": "choice", "instructions": "Which team should handle state.ticket.text?", "criteria": {"billing": "Charges, invoices, subscriptions or refunds.", "access": "Login, passwords or account access.", "other": "None fits, or the message is unclear."}},
+    "refund": {"type": "noul", "instructions": "Does state.ticket.text explicitly request money back?"},
+    "impact": {"type": "score", "instructions": "How much does the issue in state.ticket.text prevent the customer from working?", "criteria": ["Can still use the service; no work is blocked.", "Some work is disrupted, but a workaround exists.", "Cannot use the service to do their work."]}
+  }
+}

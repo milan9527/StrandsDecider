@@ -1,0 +1,29 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "record": {
+      "category": "Documentation",
+      "title": "Explain recovery after an upload timeout",
+      "description": "Add a troubleshooting example to the guide. We are not changing the retry implementation in this request.",
+      "acceptance_criteria": "The guide includes the observed timeout message, the supported recovery command, and how to confirm the upload completed."
+    }
+  },
+  "questions": {
+    "category_consistent": {
+      "type": "noul",
+      "instructions": "Is `state.record.category` consistent with the work requested in `state.record.description`? Documentation means changes to explanations or examples, not implementation behavior."
+    },
+    "checkable_acceptance": {
+      "type": "noul",
+      "instructions": "Does `state.record.acceptance_criteria` describe an outcome a reviewer could check in the proposed artifact, rather than only saying to make it better? This judges the criterion, not whether the work has been done."
+    },
+    "behavior_change_requested": {
+      "type": "noul",
+      "instructions": "Does `state.record.description` actually request a software behavior change? Distinguish requested implementation work from an explanation of existing behavior.",
+      "criteria": {
+        "true": "A change to executable behavior is requested",
+        "false": "Only explanatory material is requested, or an implementation change is explicitly excluded"
+      }
+    }
+  }
+}

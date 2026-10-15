@@ -1,0 +1,76 @@
+{
+  "id": "fdic-bank-search-decider-2",
+  "task_id": "fdic-bank-search",
+  "provider": "decider",
+  "repeat": 2,
+  "started_at": "2026-10-13T02:42:30.031099+00:00",
+  "status": "premature_finish",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "420a955d18e8881a87fd20baae4de3ad63f25ea64a71e01f10bf1a779adb3ef9",
+      "model_ms": 190.901,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+      "choice": "c4",
+      "action": {
+        "kind": "click",
+        "index": 4
+      },
+      "description": "Click a 'BankFind Suite'; destination https://banks.data.fdic.gov/bankfind-suite",
+      "status": "executed",
+      "action_ms": 834.428,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false,
+          "bank_detail_link": false
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "66dd6d427f252434dea13617e8ab9d7e53ce7636b15c699bada0a5312e3e3a4f",
+      "model_ms": 134.249,
+      "before_url": "https://banks.data.fdic.gov/bankfind-suite",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 5.84,
+      "after_url": "https://banks.data.fdic.gov/bankfind-suite",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false,
+          "bank_detail_link": false
+        },
+        "url": "https://banks.data.fdic.gov/bankfind-suite"
+      }
+    }
+  ],
+  "success": false,
+  "goal_reached": false,
+  "model_ms": 325.15,
+  "blocked_navigations": [],
+  "initial_http_status": 200,
+  "final_check": {
+    "passed": false,
+    "checks": {
+      "url": false,
+      "heading": false,
+      "body_terms": false,
+      "bank_detail_link": false
+    },
+    "url": "https://banks.data.fdic.gov/bankfind-suite"
+  },
+  "wall_ms": 4492.922,
+  "page_errors": []
+}

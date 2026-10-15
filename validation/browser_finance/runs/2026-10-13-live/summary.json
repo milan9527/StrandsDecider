@@ -1,0 +1,561 @@
+{
+  "finance": {
+    "jev": {
+      "correct": 56,
+      "total": 60,
+      "categories": {
+        "annual_report_evidence": {
+          "correct": 12,
+          "total": 12,
+          "errors": 0,
+          "original_order_correct": 6,
+          "original_order_total": 6
+        },
+        "deposit_insurance_triage": {
+          "correct": 10,
+          "total": 12,
+          "errors": 0,
+          "original_order_correct": 5,
+          "original_order_total": 6
+        },
+        "financial_news": {
+          "correct": 22,
+          "total": 24,
+          "errors": 0,
+          "original_order_correct": 11,
+          "original_order_total": 12
+        },
+        "fx_reporting_and_payment_routing": {
+          "correct": 12,
+          "total": 12,
+          "errors": 0,
+          "original_order_correct": 6,
+          "original_order_total": 6
+        }
+      },
+      "order_changed_choice": 0,
+      "order_pairs": 30,
+      "wrong": [
+        {
+          "case_id": "news-831",
+          "category": "financial_news",
+          "provider": "jev",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "neutral",
+          "expected": "positive",
+          "correct": false,
+          "input_sha256": "e943165794f10e1e14d7c61a7cbc27d222d3291e074211f1ad1bd5c934c2636b",
+          "elapsed_ms": 181.911
+        },
+        {
+          "case_id": "news-831",
+          "category": "financial_news",
+          "provider": "jev",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "neutral",
+          "expected": "positive",
+          "correct": false,
+          "input_sha256": "ef7e19b4f633c31c27dd8665926e478c3e5a4e10d475c34ec71b6d431b1f3c46",
+          "elapsed_ms": 151.079
+        },
+        {
+          "case_id": "deposit-aggregate",
+          "category": "deposit_insurance_triage",
+          "provider": "jev",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "fully_covered",
+          "expected": "partly_covered",
+          "correct": false,
+          "input_sha256": "11fdb351d5a5742133ab28bdae4360ff88a2b20d5baeb79a6b580458238979b5",
+          "elapsed_ms": 141.122
+        },
+        {
+          "case_id": "deposit-aggregate",
+          "category": "deposit_insurance_triage",
+          "provider": "jev",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "fully_covered",
+          "expected": "partly_covered",
+          "correct": false,
+          "input_sha256": "4eda8d4b857e690c210346f31ae83a131567b3e53674af0d4b044c6c7457d53e",
+          "elapsed_ms": 132.294
+        }
+      ]
+    },
+    "decider": {
+      "correct": 46,
+      "total": 60,
+      "categories": {
+        "annual_report_evidence": {
+          "correct": 8,
+          "total": 12,
+          "errors": 0,
+          "original_order_correct": 4,
+          "original_order_total": 6
+        },
+        "deposit_insurance_triage": {
+          "correct": 10,
+          "total": 12,
+          "errors": 0,
+          "original_order_correct": 5,
+          "original_order_total": 6
+        },
+        "financial_news": {
+          "correct": 22,
+          "total": 24,
+          "errors": 0,
+          "original_order_correct": 11,
+          "original_order_total": 12
+        },
+        "fx_reporting_and_payment_routing": {
+          "correct": 6,
+          "total": 12,
+          "errors": 0,
+          "original_order_correct": 2,
+          "original_order_total": 6
+        }
+      },
+      "order_changed_choice": 2,
+      "order_pairs": 30,
+      "wrong": [
+        {
+          "case_id": "news-831",
+          "category": "financial_news",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "neutral",
+          "expected": "positive",
+          "correct": false,
+          "input_sha256": "e943165794f10e1e14d7c61a7cbc27d222d3291e074211f1ad1bd5c934c2636b",
+          "elapsed_ms": 104.543
+        },
+        {
+          "case_id": "news-831",
+          "category": "financial_news",
+          "provider": "decider",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "neutral",
+          "expected": "positive",
+          "correct": false,
+          "input_sha256": "ef7e19b4f633c31c27dd8665926e478c3e5a4e10d475c34ec71b6d431b1f3c46",
+          "elapsed_ms": 96.564
+        },
+        {
+          "case_id": "report-wrong-year",
+          "category": "annual_report_evidence",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "supported",
+          "expected": "contradicted",
+          "correct": false,
+          "input_sha256": "22bb4cf9ce2b92aa83988e286166d4711c7f3bbced04ee5e6e8c90aaf1e668ae",
+          "elapsed_ms": 91.938
+        },
+        {
+          "case_id": "report-wrong-year",
+          "category": "annual_report_evidence",
+          "provider": "decider",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "supported",
+          "expected": "contradicted",
+          "correct": false,
+          "input_sha256": "fa277020f95c1a08f1f55fca46c95ba5813f2068c5a5629607b8fe174391f8ba",
+          "elapsed_ms": 97.556
+        },
+        {
+          "case_id": "report-unit-error",
+          "category": "annual_report_evidence",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "supported",
+          "expected": "contradicted",
+          "correct": false,
+          "input_sha256": "00b0424cecd3f376ed891febcb60dadc7e708a86c809031807b8ba07d2b1f7a2",
+          "elapsed_ms": 95.507
+        },
+        {
+          "case_id": "report-unit-error",
+          "category": "annual_report_evidence",
+          "provider": "decider",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "supported",
+          "expected": "contradicted",
+          "correct": false,
+          "input_sha256": "49e16c66494d1db711e960b4f32b53d7b05ee8e29ac5c58a51d579d8651ec305",
+          "elapsed_ms": 96.705
+        },
+        {
+          "case_id": "deposit-aggregate",
+          "category": "deposit_insurance_triage",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "fully_covered",
+          "expected": "partly_covered",
+          "correct": false,
+          "input_sha256": "11fdb351d5a5742133ab28bdae4360ff88a2b20d5baeb79a6b580458238979b5",
+          "elapsed_ms": 165.718
+        },
+        {
+          "case_id": "deposit-aggregate",
+          "category": "deposit_insurance_triage",
+          "provider": "decider",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "fully_covered",
+          "expected": "partly_covered",
+          "correct": false,
+          "input_sha256": "4eda8d4b857e690c210346f31ae83a131567b3e53674af0d4b044c6c7457d53e",
+          "elapsed_ms": 164.375
+        },
+        {
+          "case_id": "fx-correct",
+          "category": "fx_reporting_and_payment_routing",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "obtain_executable_quote",
+          "expected": "accept_report",
+          "correct": false,
+          "input_sha256": "2e81c26b5bb19b5bb1d154598377531f2677f4a23183dbab0a61afec3c6ec994",
+          "elapsed_ms": 96.863
+        },
+        {
+          "case_id": "fx-inverse-error",
+          "category": "fx_reporting_and_payment_routing",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "obtain_executable_quote",
+          "expected": "correct_calculation",
+          "correct": false,
+          "input_sha256": "d219b406bfe814242b1f4f59d10d9ef4f4498c6d5e25b91033234d8273941e96",
+          "elapsed_ms": 93.151
+        },
+        {
+          "case_id": "fx-inverse-error",
+          "category": "fx_reporting_and_payment_routing",
+          "provider": "decider",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "obtain_executable_quote",
+          "expected": "correct_calculation",
+          "correct": false,
+          "input_sha256": "afa1a35639c9184dcbc851fc8194eac12f07f1584f5309b0f94615c6c5cd9c2c",
+          "elapsed_ms": 94.097
+        },
+        {
+          "case_id": "fx-missing-currency",
+          "category": "fx_reporting_and_payment_routing",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "obtain_executable_quote",
+          "expected": "obtain_missing_rate",
+          "correct": false,
+          "input_sha256": "5374b0978611c22b1c376f97ff59562484d10f0dfaf5a62a4657fd4bfa99d350",
+          "elapsed_ms": 97.668
+        },
+        {
+          "case_id": "fx-missing-currency",
+          "category": "fx_reporting_and_payment_routing",
+          "provider": "decider",
+          "variant": "reversed_order",
+          "status": "ok",
+          "choice": "obtain_executable_quote",
+          "expected": "obtain_missing_rate",
+          "correct": false,
+          "input_sha256": "99d34e35eb00fddd186fa7009a9756dbf668354fa8c2deef8e380f0d2ee26a01",
+          "elapsed_ms": 94.671
+        },
+        {
+          "case_id": "fx-reverse-correct",
+          "category": "fx_reporting_and_payment_routing",
+          "provider": "decider",
+          "variant": "original_order",
+          "status": "ok",
+          "choice": "obtain_executable_quote",
+          "expected": "accept_report",
+          "correct": false,
+          "input_sha256": "e5299e0a42a989d986444ecbc4d8513801879c019a0f0bdcb8ce5d19230551a8",
+          "elapsed_ms": 100.653
+        }
+      ]
+    }
+  },
+  "browser": {
+    "jev": {
+      "success": 8,
+      "total": 10,
+      "goal_reached": 8,
+      "statuses": {
+        "completed": 8,
+        "premature_finish": 2
+      },
+      "tasks": {
+        "cfpb-dispute": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "cfpb-dispute-jev-1",
+              "status": "premature_finish",
+              "steps": 4,
+              "goal_reached": false,
+              "wall_ms": 3029.04,
+              "action_errors": 0
+            },
+            {
+              "id": "cfpb-dispute-jev-2",
+              "status": "premature_finish",
+              "steps": 4,
+              "goal_reached": false,
+              "wall_ms": 3156.851,
+              "action_errors": 0
+            }
+          ]
+        },
+        "ecb-usd": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "ecb-usd-jev-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4274.211,
+              "action_errors": 0
+            },
+            {
+              "id": "ecb-usd-jev-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4273.597,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-bank-search": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-bank-search-jev-1",
+              "status": "completed",
+              "steps": 10,
+              "goal_reached": true,
+              "wall_ms": 8049.241,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-bank-search-jev-2",
+              "status": "completed",
+              "steps": 6,
+              "goal_reached": true,
+              "wall_ms": 6212.687,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-faq": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-faq-jev-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3299.77,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-faq-jev-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3217.077,
+              "action_errors": 0
+            }
+          ]
+        },
+        "wikipedia-search": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "wikipedia-search-jev-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3895.728,
+              "action_errors": 0
+            },
+            {
+              "id": "wikipedia-search-jev-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3493.539,
+              "action_errors": 0
+            }
+          ]
+        }
+      }
+    },
+    "decider": {
+      "success": 4,
+      "total": 10,
+      "goal_reached": 4,
+      "statuses": {
+        "premature_finish": 6,
+        "completed": 4
+      },
+      "tasks": {
+        "cfpb-dispute": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "cfpb-dispute-decider-1",
+              "status": "premature_finish",
+              "steps": 4,
+              "goal_reached": false,
+              "wall_ms": 3278.842,
+              "action_errors": 0
+            },
+            {
+              "id": "cfpb-dispute-decider-2",
+              "status": "premature_finish",
+              "steps": 4,
+              "goal_reached": false,
+              "wall_ms": 3280.915,
+              "action_errors": 0
+            }
+          ]
+        },
+        "ecb-usd": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "ecb-usd-decider-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4505.841,
+              "action_errors": 0
+            },
+            {
+              "id": "ecb-usd-decider-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4518.019,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-bank-search": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-bank-search-decider-1",
+              "status": "premature_finish",
+              "steps": 2,
+              "goal_reached": false,
+              "wall_ms": 4356.85,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-bank-search-decider-2",
+              "status": "premature_finish",
+              "steps": 2,
+              "goal_reached": false,
+              "wall_ms": 4492.922,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-faq": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-faq-decider-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3895.549,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-faq-decider-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3656.143,
+              "action_errors": 0
+            }
+          ]
+        },
+        "wikipedia-search": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "wikipedia-search-decider-1",
+              "status": "premature_finish",
+              "steps": 1,
+              "goal_reached": false,
+              "wall_ms": 1879.269,
+              "action_errors": 0
+            },
+            {
+              "id": "wikipedia-search-decider-2",
+              "status": "premature_finish",
+              "steps": 1,
+              "goal_reached": false,
+              "wall_ms": 1908.022,
+              "action_errors": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "api": {
+    "jev": {
+      "calls": 96,
+      "errors": 0,
+      "actual_models": [
+        "jev-1.13.0"
+      ],
+      "median_rtt_ms": 139.3965,
+      "p95_rtt_ms": 182.318
+    },
+    "decider": {
+      "calls": 82,
+      "errors": 0,
+      "actual_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "median_rtt_ms": 99.809,
+      "p95_rtt_ms": 303.655
+    }
+  },
+  "created_at": "2026-10-13T02:42:36.320056+00:00"
+}

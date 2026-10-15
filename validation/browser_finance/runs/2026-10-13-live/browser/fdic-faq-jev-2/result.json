@@ -1,0 +1,75 @@
+{
+  "id": "fdic-faq-jev-2",
+  "task_id": "fdic-faq",
+  "provider": "jev",
+  "repeat": 2,
+  "started_at": "2026-10-13T02:42:26.343486+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "960b709f837554d3ae795c86e517af2128ae301c39819f24d007a580b68ab98e",
+      "model_ms": 138.714,
+      "before_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+      "choice": "c3",
+      "action": {
+        "kind": "click",
+        "index": 3
+      },
+      "description": "Click a 'Deposit Insurance FAQ'; destination https://www.fdic.gov/resources/deposit-insurance/faq/",
+      "status": "executed",
+      "action_ms": 1276.506,
+      "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true
+        },
+        "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "26a60da435fb09ce0ac3d57796d017af420661a3be82e716bb5222bdf89a786d",
+      "model_ms": 128.057,
+      "before_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 4.602,
+      "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true
+        },
+        "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+      }
+    }
+  ],
+  "success": true,
+  "goal_reached": true,
+  "model_ms": 266.77099999999996,
+  "blocked_navigations": [
+    "https://www.youtube.com/embed/K87lSkrhr8g?feature=oembed"
+  ],
+  "initial_http_status": 200,
+  "final_check": {
+    "passed": true,
+    "checks": {
+      "url": true,
+      "heading": true,
+      "body_terms": true
+    },
+    "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+  },
+  "wall_ms": 3217.077,
+  "page_errors": []
+}

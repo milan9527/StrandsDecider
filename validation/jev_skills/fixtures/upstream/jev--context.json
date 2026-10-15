@@ -1,0 +1,39 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "task": "Fix CSV parsing of quoted commas.",
+    "blocks": {
+      "b1": "Failure: expected 3 columns, got 4 when a value contains a quoted comma.",
+      "b2": "Unrelated command-line help for changing the color theme."
+    },
+    "checkpoint": "Parser fix has not been written; failure investigation is ongoing.",
+    "raw_source": "synthetic-tool-result.txt"
+  },
+  "questions": {
+    "b1_needed": {
+      "type": "noul",
+      "instructions": "Does block b1 contain evidence needed for the current task?",
+      "criteria": {
+        "true": "The supplied evidence establishes this condition.",
+        "false": "The supplied evidence does not establish this condition."
+      }
+    },
+    "b2_needed": {
+      "type": "noul",
+      "instructions": "Does block b2 contain evidence needed for the current task?",
+      "criteria": {
+        "true": "The supplied evidence establishes this condition.",
+        "false": "The supplied evidence does not establish this condition."
+      }
+    },
+    "compact_now": {
+      "type": "choice",
+      "instructions": "Is the current task at a completed or explicitly recorded handoff boundary?",
+      "criteria": {
+        "finished": "The unit is completed and relevant outcomes are recorded.",
+        "ongoing": "Investigation or implementation is still ongoing.",
+        "unknown": "The evidence is insufficient."
+      }
+    }
+  }
+}

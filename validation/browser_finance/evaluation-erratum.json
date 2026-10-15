@@ -1,0 +1,19 @@
+{
+  "declared_at": "2026-10-13T02:41:56.314218+00:00",
+  "task_id": "cfpb-dispute",
+  "field": "expected.body_terms",
+  "original": [
+    "60 days",
+    "written"
+  ],
+  "corrected": [
+    "60 calendar days",
+    "written"
+  ],
+  "reason": "The official page says within 60 calendar days. Exact substring 60 days is not present. Correct evaluator only; task goal, model inputs, actions and results remain unchanged. Apply offline using saved final observations and finish actions; preserve original run results.",
+  "source_file": "preflight/cfpb-dispute.json",
+  "source_sha256": "be70c527d91b0e4ace190d32a8b86bd70e445a7944158f1676c4d00fced7aa76",
+  "declared_before_any_browser_model_call": false,
+  "browser_calls_started_before_declaration": 5,
+  "cfpb_calls_started_before_declaration": 2
+}

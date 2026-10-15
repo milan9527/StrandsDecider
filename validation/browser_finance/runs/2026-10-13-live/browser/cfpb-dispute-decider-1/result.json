@@ -1,0 +1,121 @@
+{
+  "id": "cfpb-dispute-decider-1",
+  "task_id": "cfpb-dispute",
+  "provider": "decider",
+  "repeat": 1,
+  "started_at": "2026-10-13T02:41:55.091397+00:00",
+  "status": "premature_finish",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "081be4a05181648f5556f9ebf7ae606a558f8c01929d8bde19fd6dc0295017ae",
+      "model_ms": 200.26,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 7
+      },
+      "description": "Inspect the next page of available controls (8 onward out of 29). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.002,
+      "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "9174cf97e551c01ee5c2a46d6fc2d2d6a0d173a7d3698f385e34795614a4c9ec",
+      "model_ms": 286.94,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "choice": "c10",
+      "action": {
+        "kind": "click",
+        "index": 10
+      },
+      "description": "Click a 'Daily periodic rate'; destination https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+      "status": "executed",
+      "action_ms": 867.246,
+      "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+      }
+    },
+    {
+      "step": 3,
+      "input_sha256": "b53ac2b3fe61b438d688bfed032bccf594c71c5daae7d7bec932e2d3f3fcd101",
+      "model_ms": 231.687,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 7
+      },
+      "description": "Inspect the next page of available controls (8 onward out of 11). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.003,
+      "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+      }
+    },
+    {
+      "step": 4,
+      "input_sha256": "a3fb1d9d45b20ce73ba2188fcda07704dd44f1c87e6528ab77b5d58269a49d25",
+      "model_ms": 224.516,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 5.256,
+      "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+      }
+    }
+  ],
+  "success": false,
+  "goal_reached": false,
+  "model_ms": 943.4029999999999,
+  "blocked_navigations": [],
+  "initial_http_status": 200,
+  "final_check": {
+    "passed": false,
+    "checks": {
+      "url": false,
+      "heading": false,
+      "body_terms": false
+    },
+    "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+  },
+  "wall_ms": 3278.842,
+  "page_errors": []
+}

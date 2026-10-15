@@ -1,0 +1,31 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "record": "Our invoices show two charges for the same order. Checkout still works. Could someone check this today?"
+  },
+  "questions": {
+    "category": {
+      "type": "choice",
+      "instructions": "Classify the support message.",
+      "criteria": {
+        "billing": "Payments, invoices, charges or refunds.",
+        "bug": "Software behavior not primarily about billing.",
+        "account": "Login, permissions or account recovery.",
+        "other": "Insufficient information or another category."
+      }
+    },
+    "needs_human": {
+      "type": "noul",
+      "instructions": "Does resolving this record require checking account-specific evidence rather than sending a generic help link?"
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "Rate urgency from the record; do not infer facts not stated.",
+      "criteria": [
+        "Routine request with no active loss or blocked work.",
+        "Active issue needing timely review; work can continue.",
+        "Work is blocked or active loss requires immediate investigation."
+      ]
+    }
+  }
+}

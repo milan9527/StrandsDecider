@@ -1,0 +1,160 @@
+{
+  "checked_at": "2026-10-12T09:33:11.507154+00:00",
+  "game_results": [
+    {
+      "verified_at": "2026-10-12T09:33:10.495996+00:00",
+      "seed": 42,
+      "max_pieces": 50,
+      "pieces": 36,
+      "lines": 0,
+      "score": 0,
+      "finish_reason": "top_out",
+      "status": "finished",
+      "models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "verified_live_moves": 36,
+      "forced_moves": 0,
+      "policy_moves": 0,
+      "policy": "original",
+      "provider": "decider",
+      "successful_requests": 66,
+      "stats": {
+        "successful_requests": 66,
+        "live_moves": 36,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "dominated_moves": 19,
+        "errors": 0,
+        "mean_decision_ms": 1511.5,
+        "last_decision_ms": 1231.52,
+        "p95_decision_ms": 2483.69
+      },
+      "raw_choice_matches_applied_placement": true,
+      "board_replay_matches": true
+    },
+    {
+      "verified_at": "2026-10-12T09:33:10.666438+00:00",
+      "seed": 42,
+      "max_pieces": 50,
+      "pieces": 43,
+      "lines": 2,
+      "score": 200,
+      "finish_reason": "top_out",
+      "status": "finished",
+      "models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "verified_live_moves": 43,
+      "forced_moves": 0,
+      "policy_moves": 0,
+      "policy": "model",
+      "provider": "decider",
+      "successful_requests": 79,
+      "stats": {
+        "successful_requests": 79,
+        "live_moves": 43,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "dominated_moves": 22,
+        "errors": 0,
+        "mean_decision_ms": 1414.5,
+        "last_decision_ms": 190.2,
+        "p95_decision_ms": 2458.69
+      },
+      "raw_choice_matches_applied_placement": true,
+      "board_replay_matches": true
+    },
+    {
+      "verified_at": "2026-10-12T09:33:10.968758+00:00",
+      "seed": 42,
+      "max_pieces": 50,
+      "pieces": 50,
+      "lines": 19,
+      "score": 3000,
+      "finish_reason": "piece_limit",
+      "status": "finished",
+      "models": [
+        "jev-1.13.0"
+      ],
+      "verified_live_moves": 50,
+      "forced_moves": 0,
+      "policy_moves": 0,
+      "policy": "original",
+      "provider": "jev",
+      "successful_requests": 93,
+      "stats": {
+        "successful_requests": 93,
+        "live_moves": 50,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "dominated_moves": 1,
+        "errors": 0,
+        "mean_decision_ms": 256.1,
+        "last_decision_ms": 262.32,
+        "p95_decision_ms": 335.9
+      },
+      "raw_choice_matches_applied_placement": true,
+      "board_replay_matches": true
+    },
+    {
+      "verified_at": "2026-10-12T09:33:11.388098+00:00",
+      "seed": 42,
+      "max_pieces": 50,
+      "pieces": 50,
+      "lines": 19,
+      "score": 3100,
+      "finish_reason": "piece_limit",
+      "status": "finished",
+      "models": [
+        "jev-1.13.0"
+      ],
+      "verified_live_moves": 50,
+      "forced_moves": 0,
+      "policy_moves": 0,
+      "policy": "model",
+      "provider": "jev",
+      "successful_requests": 93,
+      "stats": {
+        "successful_requests": 93,
+        "live_moves": 50,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "dominated_moves": 1,
+        "errors": 0,
+        "mean_decision_ms": 251.1,
+        "last_decision_ms": 239.09,
+        "p95_decision_ms": 326.7
+      },
+      "raw_choice_matches_applied_placement": true,
+      "board_replay_matches": true
+    }
+  ],
+  "decider_game_source": "../two-versions/comparison-live.json.gz",
+  "jev_game_source": "jev-original.json.gz / jev-model.json.gz",
+  "all_moves_model_selected": true,
+  "same_pair_payloads_verified": true,
+  "same_full_candidate_first_requests_verified": true,
+  "paired_probes": 24,
+  "full_candidate_probes": 12,
+  "pair_results": {
+    "decider/original": {
+      "correct": 3,
+      "total": 6
+    },
+    "decider/plain_options": {
+      "correct": 6,
+      "total": 6
+    },
+    "jev/original": {
+      "correct": 6,
+      "total": 6
+    },
+    "jev/plain_options": {
+      "correct": 6,
+      "total": 6
+    }
+  },
+  "model_card_url": "https://huggingface.co/StrandsAgents/strands-decider-2B-hobson-v19#limitations",
+  "scope": "One full game per provider/input at seed42; diagnostic states deliberately selected from Decider failures; no general accuracy or training-cause claim."
+}

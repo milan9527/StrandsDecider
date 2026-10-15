@@ -1,0 +1,34 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "snapshot_id": "demo-12",
+    "goal": "Find the cancellation policy; do not book or pay.",
+    "surface": "Synthetic booking page",
+    "elements": {
+      "e1": {
+        "role": "link",
+        "label": "Cancellation policy"
+      },
+      "e2": {
+        "role": "button",
+        "label": "Book and pay"
+      }
+    },
+    "allowed_actions": [
+      "open_policy",
+      "wait",
+      "blocked"
+    ]
+  },
+  "questions": {
+    "action": {
+      "type": "choice",
+      "instructions": "Choose an allowed next step toward goal using only the observed snapshot.",
+      "criteria": {
+        "open_policy": "Open observed link e1 to inspect the cancellation policy.",
+        "wait": "The supplied observation is incomplete or still loading.",
+        "blocked": "No allowed action can advance the goal."
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "setting": "Fictional classroom podcast. These are scripted characters, not real people.",
+    "last_line": {
+      "speaker": "host",
+      "text": "We found conflicting results. Analyst, what evidence should we check next?"
+    },
+    "eligible_speakers": [
+      "analyst",
+      "host"
+    ],
+    "delivery_policy": "Match the requested delivery to the line content, not inferred mental health. No evidence for dramatic emotion."
+  },
+  "questions": {
+    "speaker": {
+      "type": "choice",
+      "instructions": "Choose the next eligible speaker from the observed turn-taking cues, or pause.",
+      "criteria": {
+        "analyst": "The analyst was invited to respond.",
+        "host": "The host should continue rather than yield.",
+        "wait": "Pause because turn-taking is unclear."
+      }
+    },
+    "delivery": {
+      "type": "choice",
+      "instructions": "Choose a restrained delivery style for the analyst explaining how to inspect conflicting evidence.",
+      "criteria": {
+        "calm": "Measured, explanatory delivery.",
+        "bright": "Celebratory or enthusiastic delivery justified by the script.",
+        "serious": "Urgent warning justified by the script.",
+        "neutral": "No distinctive style is warranted."
+      }
+    }
+  }
+}

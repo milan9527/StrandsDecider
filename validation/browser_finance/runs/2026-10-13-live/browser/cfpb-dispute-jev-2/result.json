@@ -1,0 +1,121 @@
+{
+  "id": "cfpb-dispute-jev-2",
+  "task_id": "cfpb-dispute",
+  "provider": "jev",
+  "repeat": 2,
+  "started_at": "2026-10-13T02:42:18.481905+00:00",
+  "status": "premature_finish",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "081be4a05181648f5556f9ebf7ae606a558f8c01929d8bde19fd6dc0295017ae",
+      "model_ms": 136.534,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 7
+      },
+      "description": "Inspect the next page of available controls (8 onward out of 29). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.002,
+      "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "9174cf97e551c01ee5c2a46d6fc2d2d6a0d173a7d3698f385e34795614a4c9ec",
+      "model_ms": 143.752,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "choice": "next_controls",
+      "action": {
+        "kind": "inspect",
+        "offset": 14
+      },
+      "description": "Inspect the next page of available controls (15 onward out of 29). This does not navigate the website.",
+      "status": "executed",
+      "action_ms": 0.002,
+      "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+      }
+    },
+    {
+      "step": 3,
+      "input_sha256": "03d3ed7a4e53d22f968757a653e6ac4856e63f77b427f113237c07650d80e7c9",
+      "model_ms": 188.396,
+      "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+      "choice": "c23",
+      "action": {
+        "kind": "click",
+        "index": 23
+      },
+      "description": "Click a 'How to dispute a charge on your credit card bill'; destination https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+      "status": "executed",
+      "action_ms": 881.583,
+      "after_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+      }
+    },
+    {
+      "step": 4,
+      "input_sha256": "f3d06fdb1897106ab33ca97306cab0637cfb142d66e04c42ba3b9223d2b40ec3",
+      "model_ms": 114.689,
+      "before_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 4.926,
+      "after_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": false
+        },
+        "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+      }
+    }
+  ],
+  "success": false,
+  "goal_reached": false,
+  "model_ms": 583.371,
+  "blocked_navigations": [],
+  "initial_http_status": 200,
+  "final_check": {
+    "passed": false,
+    "checks": {
+      "url": true,
+      "heading": true,
+      "body_terms": false
+    },
+    "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+  },
+  "wall_ms": 3156.851,
+  "page_errors": []
+}

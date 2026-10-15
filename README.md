@@ -8,11 +8,11 @@
 
 **[模型路由实测报告：测试过程、四场景结果与结论](docs/MODEL_ROUTING_COMPARISON.md)**：Decider 决策最快；Jev / GPT 在中英文索引和代码选型上更符合已提供的能力证据。
 
+**[各场景验证结果汇总](validation/README.md)**：汇总 Jev Skills、真实浏览器、金融、类 OpenRouter 路由及已有支付和游戏对照，包含逐场景结果、错误分析、耗时和原始证据。
+
 项目基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)，采用 FastAPI + 原生 HTML/CSS/JavaScript。AWS 部署使用私有 S3、CloudFront OAC、ECS Fargate 和 EC2 On-Demand GPU。
 
 **[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [支付流程对比](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [模型路由对比](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [查看架构图](docs/diagrams/architecture.svg)**
-
-**演示资料：[PPTX](docs/presentations/v8/Strands-Decider-模型原理与支付业务演示-v8-三模型预热性能对比-30页-20261012.pptx) · [PDF](docs/presentations/v8/Strands-Decider-模型原理与支付业务演示-v8-三模型预热性能对比-30页-20261012.pdf) · [讲稿、截图与数据说明](docs/presentations/v8/README.md) · [项目历史](docs/HISTORY.md)**
 
 ## 1. 演示目的
 

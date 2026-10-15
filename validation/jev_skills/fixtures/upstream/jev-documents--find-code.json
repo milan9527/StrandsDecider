@@ -1,0 +1,28 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "question": "Where should I inspect duplicate invoice creation?",
+    "candidates": {
+      "p1": {
+        "path": "billing/invoices.py",
+        "observed_summary": "Creates and stores invoice records."
+      },
+      "p2": {
+        "path": "ui/theme.py",
+        "observed_summary": "Applies interface colors."
+      }
+    },
+    "note": "Synthetic file inventory, not an actual repository scan."
+  },
+  "questions": {
+    "next_file": {
+      "type": "choice",
+      "instructions": "Which supplied candidate should be inspected first to investigate question?",
+      "criteria": {
+        "p1": "The observed billing/invoices.py candidate.",
+        "p2": "The observed ui/theme.py candidate.",
+        "none": "Neither candidate is a justified lead."
+      }
+    }
+  }
+}

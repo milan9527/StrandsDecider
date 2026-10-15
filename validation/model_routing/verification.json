@@ -1,0 +1,22 @@
+{
+  "audited_at": "2026-10-15T02:39:38.501301+00:00",
+  "runs": [
+    {
+      "run": "2026-10-13-live",
+      "passed": true,
+      "calls": 128,
+      "identical_input_pairs": 64,
+      "max_reported_decider_input_tokens": 1422
+    },
+    {
+      "run": "2026-10-13-natural",
+      "passed": true,
+      "calls": 96,
+      "identical_input_pairs": 48,
+      "max_reported_decider_input_tokens": 1485
+    }
+  ],
+  "total_calls": 224,
+  "downstream_calls": 0,
+  "new_model_calls_for_audit": 0
+}

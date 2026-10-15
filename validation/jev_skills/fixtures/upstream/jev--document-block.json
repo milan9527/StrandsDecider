@@ -1,0 +1,35 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "previous_block": "Release procedure",
+    "block": "Run the offline checks before building the package.",
+    "next_block": "Build the package, then inspect its contents."
+  },
+  "questions": {
+    "block_type": {
+      "type": "choice",
+      "instructions": "What structural role does `state.block` play in the supplied neighboring text? Select a role; do not rewrite the block.",
+      "criteria": {
+        "heading": "A section label introducing following material",
+        "paragraph": "Ordinary explanatory prose",
+        "list_item": "One item or step in an enumeration",
+        "code": "A literal code or command block",
+        "unknown": "The supplied context does not support one role"
+      }
+    },
+    "ordered_step": {
+      "type": "noul",
+      "instructions": "Assuming `state.block` is a list item, is its position in a procedure semantically important? The caller must ignore this answer unless the block is actually classified as a list item."
+    },
+    "heading_role": {
+      "type": "choice",
+      "instructions": "Assuming `state.block` is a heading, what heading role is supported by the nearby text? The caller must ignore this answer unless the block is actually classified as a heading.",
+      "criteria": {
+        "document_title": "The title of the whole document",
+        "section": "A main section inside the document",
+        "subsection": "A subdivision inside an existing section",
+        "unknown": "There is not enough context to determine a heading role"
+      }
+    }
+  }
+}

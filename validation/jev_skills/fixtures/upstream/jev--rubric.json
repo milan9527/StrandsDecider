@@ -1,0 +1,28 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "idea": "An offline-first pantry app that turns existing ingredients into a short weekly shopping list, without requiring an account.",
+    "audience": "Busy households who want less food waste.",
+    "evidence": "Concept only; no users or market validation yet."
+  },
+  "questions": {
+    "audience_fit": {
+      "type": "score",
+      "instructions": "How clearly does the concept address the stated audience?",
+      "criteria": [
+        "No concrete audience problem.",
+        "Problem identifiable but proposed workflow only partly matches.",
+        "Clear audience, problem and plausible matching workflow."
+      ]
+    },
+    "validation": {
+      "type": "choice",
+      "instructions": "What does the evidence support about real demand?",
+      "criteria": {
+        "validated": "Independent user behavior or customer evidence establishes demand.",
+        "untested": "Only a concept or opinions; demand has not been tested.",
+        "unknown": "Evidence is contradictory or cannot be interpreted."
+      }
+    }
+  }
+}

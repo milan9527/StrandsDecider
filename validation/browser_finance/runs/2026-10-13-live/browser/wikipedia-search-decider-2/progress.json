@@ -1,0 +1,38 @@
+{
+  "id": "wikipedia-search-decider-2",
+  "task_id": "wikipedia-search",
+  "provider": "decider",
+  "repeat": 2,
+  "started_at": "2026-10-13T02:42:14.957799+00:00",
+  "status": "premature_finish",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "b70b35084f2d01d7f38ddbf80eb961bf8c1805f73fce6d4ff1a915524887b468",
+      "model_ms": 312.481,
+      "before_url": "https://en.wikipedia.org/wiki/Main_Page",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 30.88,
+      "after_url": "https://en.wikipedia.org/wiki/Main_Page",
+      "independent_check": {
+        "passed": false,
+        "checks": {
+          "url": false,
+          "heading": false,
+          "body_terms": false
+        },
+        "url": "https://en.wikipedia.org/wiki/Main_Page"
+      }
+    }
+  ],
+  "success": false,
+  "goal_reached": false,
+  "model_ms": 312.481,
+  "blocked_navigations": [],
+  "initial_http_status": 200
+}

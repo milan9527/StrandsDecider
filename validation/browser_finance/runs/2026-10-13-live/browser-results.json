@@ -1,0 +1,1936 @@
+[
+  {
+    "id": "wikipedia-search-jev-1",
+    "task_id": "wikipedia-search",
+    "provider": "jev",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:41:51.165755+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "b70b35084f2d01d7f38ddbf80eb961bf8c1805f73fce6d4ff1a915524887b468",
+        "model_ms": 189.541,
+        "before_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "choice": "c0",
+        "action": {
+          "kind": "input",
+          "index": 0,
+          "value": "Basel III",
+          "submit": true
+        },
+        "description": "Fill 'Search Wikipedia' with supplied task text 'Basel III' (current value: ''). Then press Enter to submit this search.",
+        "status": "executed",
+        "action_ms": 1241.774,
+        "after_url": "https://en.wikipedia.org/wiki/Basel_III",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://en.wikipedia.org/wiki/Basel_III"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "e928e9cc7680a473cfcb09b1699bb94606eaa801a021503dd737d846a6bce054",
+        "model_ms": 146.693,
+        "before_url": "https://en.wikipedia.org/wiki/Basel_III",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 8.358,
+        "after_url": "https://en.wikipedia.org/wiki/Basel_III",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://en.wikipedia.org/wiki/Basel_III"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 336.23400000000004,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://en.wikipedia.org/wiki/Basel_III"
+    },
+    "wall_ms": 3895.728,
+    "page_errors": []
+  },
+  {
+    "id": "wikipedia-search-decider-1",
+    "task_id": "wikipedia-search",
+    "provider": "decider",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:41:51.178191+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "1dfecad481fb035e5961527c128eb07f44fc12390aefb9bf916cf902bb4642ff",
+        "model_ms": 299.915,
+        "before_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 37.018,
+        "after_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://en.wikipedia.org/wiki/Main_Page"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 299.915,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": false,
+        "heading": false,
+        "body_terms": false
+      },
+      "url": "https://en.wikipedia.org/wiki/Main_Page"
+    },
+    "wall_ms": 1879.269,
+    "page_errors": []
+  },
+  {
+    "id": "cfpb-dispute-decider-1",
+    "task_id": "cfpb-dispute",
+    "provider": "decider",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:41:55.091397+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "081be4a05181648f5556f9ebf7ae606a558f8c01929d8bde19fd6dc0295017ae",
+        "model_ms": 200.26,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 29). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "9174cf97e551c01ee5c2a46d6fc2d2d6a0d173a7d3698f385e34795614a4c9ec",
+        "model_ms": 286.94,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "c10",
+        "action": {
+          "kind": "click",
+          "index": 10
+        },
+        "description": "Click a 'Daily periodic rate'; destination https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "status": "executed",
+        "action_ms": 867.246,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+        }
+      },
+      {
+        "step": 3,
+        "input_sha256": "b53ac2b3fe61b438d688bfed032bccf594c71c5daae7d7bec932e2d3f3fcd101",
+        "model_ms": 231.687,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 11). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.003,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+        }
+      },
+      {
+        "step": 4,
+        "input_sha256": "a3fb1d9d45b20ce73ba2188fcda07704dd44f1c87e6528ab77b5d58269a49d25",
+        "model_ms": 224.516,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.256,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 943.4029999999999,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": false,
+        "heading": false,
+        "body_terms": false
+      },
+      "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+    },
+    "wall_ms": 3278.842,
+    "page_errors": []
+  },
+  {
+    "id": "cfpb-dispute-jev-1",
+    "task_id": "cfpb-dispute",
+    "provider": "jev",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:41:55.092332+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "081be4a05181648f5556f9ebf7ae606a558f8c01929d8bde19fd6dc0295017ae",
+        "model_ms": 147.344,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 29). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "9174cf97e551c01ee5c2a46d6fc2d2d6a0d173a7d3698f385e34795614a4c9ec",
+        "model_ms": 140.225,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 14
+        },
+        "description": "Inspect the next page of available controls (15 onward out of 29). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        }
+      },
+      {
+        "step": 3,
+        "input_sha256": "03d3ed7a4e53d22f968757a653e6ac4856e63f77b427f113237c07650d80e7c9",
+        "model_ms": 148.855,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "c23",
+        "action": {
+          "kind": "click",
+          "index": 23
+        },
+        "description": "Click a 'How to dispute a charge on your credit card bill'; destination https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "status": "executed",
+        "action_ms": 879.571,
+        "after_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+        }
+      },
+      {
+        "step": 4,
+        "input_sha256": "f3d06fdb1897106ab33ca97306cab0637cfb142d66e04c42ba3b9223d2b40ec3",
+        "model_ms": 121.323,
+        "before_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.026,
+        "after_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 557.747,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": false
+      },
+      "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+    },
+    "wall_ms": 3029.04,
+    "page_errors": []
+  },
+  {
+    "id": "ecb-usd-jev-1",
+    "task_id": "ecb-usd",
+    "provider": "jev",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:41:58.411369+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "ed1bfc4fa3865ac0794b591253f59d68d324809a86842199deb41d43ee9ec931",
+        "model_ms": 123.627,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+        "choice": "c4",
+        "action": {
+          "kind": "click",
+          "index": 4
+        },
+        "description": "Click a 'USD'; destination https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "status": "executed",
+        "action_ms": 1127.71,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "d617b4ff663d113674f2d77368922b53deaaf82149422958390ea4b8446dc2dd",
+        "model_ms": 128.252,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.839,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 251.87900000000002,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+    },
+    "wall_ms": 4274.211,
+    "page_errors": []
+  },
+  {
+    "id": "ecb-usd-decider-1",
+    "task_id": "ecb-usd",
+    "provider": "decider",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:41:58.412083+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "ed1bfc4fa3865ac0794b591253f59d68d324809a86842199deb41d43ee9ec931",
+        "model_ms": 241.503,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+        "choice": "c4",
+        "action": {
+          "kind": "click",
+          "index": 4
+        },
+        "description": "Click a 'USD'; destination https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "status": "executed",
+        "action_ms": 1133.601,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "d617b4ff663d113674f2d77368922b53deaaf82149422958390ea4b8446dc2dd",
+        "model_ms": 321.053,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 6.357,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 562.556,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+    },
+    "wall_ms": 4505.841,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-faq-decider-1",
+    "task_id": "fdic-faq",
+    "provider": "decider",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:42:02.953082+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "960b709f837554d3ae795c86e517af2128ae301c39819f24d007a580b68ab98e",
+        "model_ms": 223.882,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "choice": "c3",
+        "action": {
+          "kind": "click",
+          "index": 3
+        },
+        "description": "Click a 'Deposit Insurance FAQ'; destination https://www.fdic.gov/resources/deposit-insurance/faq/",
+        "status": "executed",
+        "action_ms": 1371.727,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "26a60da435fb09ce0ac3d57796d017af420661a3be82e716bb5222bdf89a786d",
+        "model_ms": 313.801,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 4.98,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 537.683,
+    "blocked_navigations": [
+      "https://www.youtube.com/embed/K87lSkrhr8g?feature=oembed"
+    ],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+    },
+    "wall_ms": 3895.549,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-faq-jev-1",
+    "task_id": "fdic-faq",
+    "provider": "jev",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:42:02.953262+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "960b709f837554d3ae795c86e517af2128ae301c39819f24d007a580b68ab98e",
+        "model_ms": 158.365,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "choice": "c3",
+        "action": {
+          "kind": "click",
+          "index": 3
+        },
+        "description": "Click a 'Deposit Insurance FAQ'; destination https://www.fdic.gov/resources/deposit-insurance/faq/",
+        "status": "executed",
+        "action_ms": 1306.944,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "26a60da435fb09ce0ac3d57796d017af420661a3be82e716bb5222bdf89a786d",
+        "model_ms": 141.641,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 4.526,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 300.006,
+    "blocked_navigations": [
+      "https://www.youtube.com/embed/K87lSkrhr8g?feature=oembed"
+    ],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+    },
+    "wall_ms": 3299.77,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-bank-search-jev-1",
+    "task_id": "fdic-bank-search",
+    "provider": "jev",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:42:06.877262+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "420a955d18e8881a87fd20baae4de3ad63f25ea64a71e01f10bf1a779adb3ef9",
+        "model_ms": 126.894,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.003,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "684aa504fc6e6ec9562a42ce2df32613b7bbd8d25ad2eca94ac4e69c364f5879",
+        "model_ms": 147.444,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c8",
+        "action": {
+          "kind": "input",
+          "index": 8,
+          "value": "JPMorgan Chase Bank",
+          "submit": false
+        },
+        "description": "Fill 'Enter Bank Name' with supplied task text 'JPMorgan Chase Bank' (current value: '').",
+        "status": "executed",
+        "action_ms": 787.882,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 3,
+        "input_sha256": "adfe754f326db86a49e31f8338880786da2c25fcf58b6769973c100fac00eb6a",
+        "model_ms": 143.31,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.003,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 4,
+        "input_sha256": "5f9cf8b684fb00419ce20adc15300b3ed5830d17ceb596baf18d5fd54b8abf0c",
+        "model_ms": 121.34,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "previous_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 0
+        },
+        "description": "Inspect the preceding page of available controls.",
+        "status": "executed",
+        "action_ms": 0.003,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 5,
+        "input_sha256": "f5c068dd2cfcc1c05d73cf364707ff6ebb71bde51365343e92dc02b561ea2cdc",
+        "model_ms": 157.677,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 6,
+        "input_sha256": "e34770c595d58a08fd1c3fe7b77ba01d14847cb39ccb17ea8c8c8cb6d60aeb25",
+        "model_ms": 137.451,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c8",
+        "action": {
+          "kind": "input",
+          "index": 8,
+          "value": "JPMorgan Chase Bank",
+          "submit": false
+        },
+        "description": "Fill 'Enter Bank Name' with supplied task text 'JPMorgan Chase Bank' (current value: 'JPMorgan Chase Bank').",
+        "status": "executed",
+        "action_ms": 764.967,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 7,
+        "input_sha256": "2f51b0a24fda00b66ca1a1a96964f4310538aaf5e98d7c03d455eccbd2a33b34",
+        "model_ms": 144.062,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 8,
+        "input_sha256": "b88c343743c7c4332f8ab0146c20ce7dbb5625550b0ae3f417ad9091aad33c8a",
+        "model_ms": 131.932,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 14
+        },
+        "description": "Inspect the next page of available controls (15 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 9,
+        "input_sha256": "9f4f21778b7c92f4e8abbb4d6368b19d779717b50e84754be642f22e404753e8",
+        "model_ms": 166.852,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c14",
+        "action": {
+          "kind": "click",
+          "index": 14
+        },
+        "description": "Click button 'Search'",
+        "status": "executed",
+        "action_ms": 855.801,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true,
+            "bank_detail_link": true
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+        }
+      },
+      {
+        "step": 10,
+        "input_sha256": "bce5489465da49f5e0517b5dbf0880015043acac5a1a807a2a684cf3a0e57d6e",
+        "model_ms": 117.299,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.0,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true,
+            "bank_detail_link": true
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 1394.261,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true,
+        "bank_detail_link": true
+      },
+      "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+    },
+    "wall_ms": 8049.241,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-bank-search-decider-1",
+    "task_id": "fdic-bank-search",
+    "provider": "decider",
+    "repeat": 1,
+    "started_at": "2026-10-13T02:42:06.880341+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "420a955d18e8881a87fd20baae4de3ad63f25ea64a71e01f10bf1a779adb3ef9",
+        "model_ms": 187.953,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c4",
+        "action": {
+          "kind": "click",
+          "index": 4
+        },
+        "description": "Click a 'BankFind Suite'; destination https://banks.data.fdic.gov/bankfind-suite",
+        "status": "executed",
+        "action_ms": 832.34,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "66dd6d427f252434dea13617e8ab9d7e53ce7636b15c699bada0a5312e3e3a4f",
+        "model_ms": 127.398,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.258,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 315.351,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": false,
+        "heading": false,
+        "body_terms": false,
+        "bank_detail_link": false
+      },
+      "url": "https://banks.data.fdic.gov/bankfind-suite"
+    },
+    "wall_ms": 4356.85,
+    "page_errors": []
+  },
+  {
+    "id": "wikipedia-search-decider-2",
+    "task_id": "wikipedia-search",
+    "provider": "decider",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:14.957799+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "b70b35084f2d01d7f38ddbf80eb961bf8c1805f73fce6d4ff1a915524887b468",
+        "model_ms": 312.481,
+        "before_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 30.88,
+        "after_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://en.wikipedia.org/wiki/Main_Page"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 312.481,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": false,
+        "heading": false,
+        "body_terms": false
+      },
+      "url": "https://en.wikipedia.org/wiki/Main_Page"
+    },
+    "wall_ms": 1908.022,
+    "page_errors": []
+  },
+  {
+    "id": "wikipedia-search-jev-2",
+    "task_id": "wikipedia-search",
+    "provider": "jev",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:14.956927+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "b70b35084f2d01d7f38ddbf80eb961bf8c1805f73fce6d4ff1a915524887b468",
+        "model_ms": 127.124,
+        "before_url": "https://en.wikipedia.org/wiki/Main_Page",
+        "choice": "c0",
+        "action": {
+          "kind": "input",
+          "index": 0,
+          "value": "Basel III",
+          "submit": true
+        },
+        "description": "Fill 'Search Wikipedia' with supplied task text 'Basel III' (current value: ''). Then press Enter to submit this search.",
+        "status": "executed",
+        "action_ms": 1002.772,
+        "after_url": "https://en.wikipedia.org/wiki/Basel_III",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://en.wikipedia.org/wiki/Basel_III"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "e928e9cc7680a473cfcb09b1699bb94606eaa801a021503dd737d846a6bce054",
+        "model_ms": 119.958,
+        "before_url": "https://en.wikipedia.org/wiki/Basel_III",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 8.215,
+        "after_url": "https://en.wikipedia.org/wiki/Basel_III",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://en.wikipedia.org/wiki/Basel_III"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 247.082,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://en.wikipedia.org/wiki/Basel_III"
+    },
+    "wall_ms": 3493.539,
+    "page_errors": []
+  },
+  {
+    "id": "cfpb-dispute-jev-2",
+    "task_id": "cfpb-dispute",
+    "provider": "jev",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:18.481905+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "081be4a05181648f5556f9ebf7ae606a558f8c01929d8bde19fd6dc0295017ae",
+        "model_ms": 136.534,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 29). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "9174cf97e551c01ee5c2a46d6fc2d2d6a0d173a7d3698f385e34795614a4c9ec",
+        "model_ms": 143.752,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 14
+        },
+        "description": "Inspect the next page of available controls (15 onward out of 29). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        }
+      },
+      {
+        "step": 3,
+        "input_sha256": "03d3ed7a4e53d22f968757a653e6ac4856e63f77b427f113237c07650d80e7c9",
+        "model_ms": 188.396,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "c23",
+        "action": {
+          "kind": "click",
+          "index": 23
+        },
+        "description": "Click a 'How to dispute a charge on your credit card bill'; destination https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "status": "executed",
+        "action_ms": 881.583,
+        "after_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+        }
+      },
+      {
+        "step": 4,
+        "input_sha256": "f3d06fdb1897106ab33ca97306cab0637cfb142d66e04c42ba3b9223d2b40ec3",
+        "model_ms": 114.689,
+        "before_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 4.926,
+        "after_url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 583.371,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": false
+      },
+      "url": "https://www.consumerfinance.gov/ask-cfpb/how-do-i-dispute-a-charge-on-my-credit-card-bill-en-61/"
+    },
+    "wall_ms": 3156.851,
+    "page_errors": []
+  },
+  {
+    "id": "cfpb-dispute-decider-2",
+    "task_id": "cfpb-dispute",
+    "provider": "decider",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:18.485353+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "081be4a05181648f5556f9ebf7ae606a558f8c01929d8bde19fd6dc0295017ae",
+        "model_ms": 192.596,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 29). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "9174cf97e551c01ee5c2a46d6fc2d2d6a0d173a7d3698f385e34795614a4c9ec",
+        "model_ms": 197.047,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/",
+        "choice": "c10",
+        "action": {
+          "kind": "click",
+          "index": 10
+        },
+        "description": "Click a 'Daily periodic rate'; destination https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "status": "executed",
+        "action_ms": 897.606,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+        }
+      },
+      {
+        "step": 3,
+        "input_sha256": "b53ac2b3fe61b438d688bfed032bccf594c71c5daae7d7bec932e2d3f3fcd101",
+        "model_ms": 225.45,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 11). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+        }
+      },
+      {
+        "step": 4,
+        "input_sha256": "a3fb1d9d45b20ce73ba2188fcda07704dd44f1c87e6528ab77b5d58269a49d25",
+        "model_ms": 223.7,
+        "before_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.33,
+        "after_url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false
+          },
+          "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 838.7930000000001,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": false,
+        "heading": false,
+        "body_terms": false
+      },
+      "url": "https://www.consumerfinance.gov/consumer-tools/credit-cards/answers/key-terms/#daily-periodic-rate"
+    },
+    "wall_ms": 3280.915,
+    "page_errors": []
+  },
+  {
+    "id": "ecb-usd-decider-2",
+    "task_id": "ecb-usd",
+    "provider": "decider",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:21.795346+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "ed1bfc4fa3865ac0794b591253f59d68d324809a86842199deb41d43ee9ec931",
+        "model_ms": 259.235,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+        "choice": "c4",
+        "action": {
+          "kind": "click",
+          "index": 4
+        },
+        "description": "Click a 'USD'; destination https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "status": "executed",
+        "action_ms": 1131.074,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "d617b4ff663d113674f2d77368922b53deaaf82149422958390ea4b8446dc2dd",
+        "model_ms": 303.655,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 6.336,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 562.89,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+    },
+    "wall_ms": 4518.019,
+    "page_errors": []
+  },
+  {
+    "id": "ecb-usd-jev-2",
+    "task_id": "ecb-usd",
+    "provider": "jev",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:21.798031+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "ed1bfc4fa3865ac0794b591253f59d68d324809a86842199deb41d43ee9ec931",
+        "model_ms": 118.484,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+        "choice": "c4",
+        "action": {
+          "kind": "click",
+          "index": 4
+        },
+        "description": "Click a 'USD'; destination https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "status": "executed",
+        "action_ms": 1134.964,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "d617b4ff663d113674f2d77368922b53deaaf82149422958390ea4b8446dc2dd",
+        "model_ms": 123.42,
+        "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 6.06,
+        "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 241.904,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+    },
+    "wall_ms": 4273.597,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-faq-jev-2",
+    "task_id": "fdic-faq",
+    "provider": "jev",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:26.343486+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "960b709f837554d3ae795c86e517af2128ae301c39819f24d007a580b68ab98e",
+        "model_ms": 138.714,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "choice": "c3",
+        "action": {
+          "kind": "click",
+          "index": 3
+        },
+        "description": "Click a 'Deposit Insurance FAQ'; destination https://www.fdic.gov/resources/deposit-insurance/faq/",
+        "status": "executed",
+        "action_ms": 1276.506,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "26a60da435fb09ce0ac3d57796d017af420661a3be82e716bb5222bdf89a786d",
+        "model_ms": 128.057,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 4.602,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 266.77099999999996,
+    "blocked_navigations": [
+      "https://www.youtube.com/embed/K87lSkrhr8g?feature=oembed"
+    ],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+    },
+    "wall_ms": 3217.077,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-faq-decider-2",
+    "task_id": "fdic-faq",
+    "provider": "decider",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:26.344051+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "960b709f837554d3ae795c86e517af2128ae301c39819f24d007a580b68ab98e",
+        "model_ms": 229.249,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "choice": "c3",
+        "action": {
+          "kind": "click",
+          "index": 3
+        },
+        "description": "Click a 'Deposit Insurance FAQ'; destination https://www.fdic.gov/resources/deposit-insurance/faq/",
+        "status": "executed",
+        "action_ms": 1272.096,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "26a60da435fb09ce0ac3d57796d017af420661a3be82e716bb5222bdf89a786d",
+        "model_ms": 315.13,
+        "before_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.211,
+        "after_url": "https://www.fdic.gov/resources/deposit-insurance/faq",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true
+          },
+          "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 544.379,
+    "blocked_navigations": [
+      "https://www.youtube.com/embed/K87lSkrhr8g?feature=oembed"
+    ],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true
+      },
+      "url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+    },
+    "wall_ms": 3656.143,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-bank-search-decider-2",
+    "task_id": "fdic-bank-search",
+    "provider": "decider",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:30.031099+00:00",
+    "status": "premature_finish",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "420a955d18e8881a87fd20baae4de3ad63f25ea64a71e01f10bf1a779adb3ef9",
+        "model_ms": 190.901,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c4",
+        "action": {
+          "kind": "click",
+          "index": 4
+        },
+        "description": "Click a 'BankFind Suite'; destination https://banks.data.fdic.gov/bankfind-suite",
+        "status": "executed",
+        "action_ms": 834.428,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "66dd6d427f252434dea13617e8ab9d7e53ce7636b15c699bada0a5312e3e3a4f",
+        "model_ms": 134.249,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.84,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite"
+        }
+      }
+    ],
+    "success": false,
+    "goal_reached": false,
+    "model_ms": 325.15,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": false,
+      "checks": {
+        "url": false,
+        "heading": false,
+        "body_terms": false,
+        "bank_detail_link": false
+      },
+      "url": "https://banks.data.fdic.gov/bankfind-suite"
+    },
+    "wall_ms": 4492.922,
+    "page_errors": []
+  },
+  {
+    "id": "fdic-bank-search-jev-2",
+    "task_id": "fdic-bank-search",
+    "provider": "jev",
+    "repeat": 2,
+    "started_at": "2026-10-13T02:42:30.031814+00:00",
+    "status": "completed",
+    "steps": [
+      {
+        "step": 1,
+        "input_sha256": "420a955d18e8881a87fd20baae4de3ad63f25ea64a71e01f10bf1a779adb3ef9",
+        "model_ms": 166.194,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 2,
+        "input_sha256": "684aa504fc6e6ec9562a42ce2df32613b7bbd8d25ad2eca94ac4e69c364f5879",
+        "model_ms": 127.44,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c8",
+        "action": {
+          "kind": "input",
+          "index": 8,
+          "value": "JPMorgan Chase Bank",
+          "submit": false
+        },
+        "description": "Fill 'Enter Bank Name' with supplied task text 'JPMorgan Chase Bank' (current value: '').",
+        "status": "executed",
+        "action_ms": 788.017,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 3,
+        "input_sha256": "adfe754f326db86a49e31f8338880786da2c25fcf58b6769973c100fac00eb6a",
+        "model_ms": 121.218,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 7
+        },
+        "description": "Inspect the next page of available controls (8 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 4,
+        "input_sha256": "5f9cf8b684fb00419ce20adc15300b3ed5830d17ceb596baf18d5fd54b8abf0c",
+        "model_ms": 135.768,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "next_controls",
+        "action": {
+          "kind": "inspect",
+          "offset": 14
+        },
+        "description": "Inspect the next page of available controls (15 onward out of 15). This does not navigate the website.",
+        "status": "executed",
+        "action_ms": 0.002,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "independent_check": {
+          "passed": false,
+          "checks": {
+            "url": false,
+            "heading": false,
+            "body_terms": false,
+            "bank_detail_link": false
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+        }
+      },
+      {
+        "step": 5,
+        "input_sha256": "3b76000d7deba21aaf9474a3b6d7c8f512b8cda150eb8062227b881cf4c13107",
+        "model_ms": 133.281,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind",
+        "choice": "c14",
+        "action": {
+          "kind": "click",
+          "index": 14
+        },
+        "description": "Click button 'Search'",
+        "status": "executed",
+        "action_ms": 845.961,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true,
+            "bank_detail_link": true
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+        }
+      },
+      {
+        "step": 6,
+        "input_sha256": "b78c8c4e91fb03ea31afd78bd7494e9b4784aeb4395d7605d8582c2fd2e97cdb",
+        "model_ms": 156.113,
+        "before_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+        "choice": "finish",
+        "action": {
+          "kind": "finish"
+        },
+        "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+        "status": "executed",
+        "action_ms": 5.42,
+        "after_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true",
+        "independent_check": {
+          "passed": true,
+          "checks": {
+            "url": true,
+            "heading": true,
+            "body_terms": true,
+            "bank_detail_link": true
+          },
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+        }
+      }
+    ],
+    "success": true,
+    "goal_reached": true,
+    "model_ms": 840.0140000000001,
+    "blocked_navigations": [],
+    "initial_http_status": 200,
+    "final_check": {
+      "passed": true,
+      "checks": {
+        "url": true,
+        "heading": true,
+        "body_terms": true,
+        "bank_detail_link": true
+      },
+      "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind?activeStatus=0%20OR%201&branchOffices=true&name=JPMorgan%20Chase%20Bank&pageNumber=1&resultLimit=25&searchPush=true"
+    },
+    "wall_ms": 6212.687,
+    "page_errors": []
+  }
+]

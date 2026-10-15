@@ -1,0 +1,75 @@
+{
+  "id": "wikipedia-search-jev-1",
+  "task_id": "wikipedia-search",
+  "provider": "jev",
+  "repeat": 1,
+  "started_at": "2026-10-13T02:41:51.165755+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "b70b35084f2d01d7f38ddbf80eb961bf8c1805f73fce6d4ff1a915524887b468",
+      "model_ms": 189.541,
+      "before_url": "https://en.wikipedia.org/wiki/Main_Page",
+      "choice": "c0",
+      "action": {
+        "kind": "input",
+        "index": 0,
+        "value": "Basel III",
+        "submit": true
+      },
+      "description": "Fill 'Search Wikipedia' with supplied task text 'Basel III' (current value: ''). Then press Enter to submit this search.",
+      "status": "executed",
+      "action_ms": 1241.774,
+      "after_url": "https://en.wikipedia.org/wiki/Basel_III",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true
+        },
+        "url": "https://en.wikipedia.org/wiki/Basel_III"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "e928e9cc7680a473cfcb09b1699bb94606eaa801a021503dd737d846a6bce054",
+      "model_ms": 146.693,
+      "before_url": "https://en.wikipedia.org/wiki/Basel_III",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 8.358,
+      "after_url": "https://en.wikipedia.org/wiki/Basel_III",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true
+        },
+        "url": "https://en.wikipedia.org/wiki/Basel_III"
+      }
+    }
+  ],
+  "success": true,
+  "goal_reached": true,
+  "model_ms": 336.23400000000004,
+  "blocked_navigations": [],
+  "initial_http_status": 200,
+  "final_check": {
+    "passed": true,
+    "checks": {
+      "url": true,
+      "heading": true,
+      "body_terms": true
+    },
+    "url": "https://en.wikipedia.org/wiki/Basel_III"
+  },
+  "wall_ms": 3895.728,
+  "page_errors": []
+}

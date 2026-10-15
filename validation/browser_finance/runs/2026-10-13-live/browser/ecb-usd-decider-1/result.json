@@ -1,0 +1,73 @@
+{
+  "id": "ecb-usd-decider-1",
+  "task_id": "ecb-usd",
+  "provider": "decider",
+  "repeat": 1,
+  "started_at": "2026-10-13T02:41:58.412083+00:00",
+  "status": "completed",
+  "steps": [
+    {
+      "step": 1,
+      "input_sha256": "ed1bfc4fa3865ac0794b591253f59d68d324809a86842199deb41d43ee9ec931",
+      "model_ms": 241.503,
+      "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
+      "choice": "c4",
+      "action": {
+        "kind": "click",
+        "index": 4
+      },
+      "description": "Click a 'USD'; destination https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+      "status": "executed",
+      "action_ms": 1133.601,
+      "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true
+        },
+        "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+      }
+    },
+    {
+      "step": 2,
+      "input_sha256": "d617b4ff663d113674f2d77368922b53deaaf82149422958390ea4b8446dc2dd",
+      "model_ms": 321.053,
+      "before_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+      "choice": "finish",
+      "action": {
+        "kind": "finish"
+      },
+      "description": "Finish ONLY if the requested destination/result is actually visible on the current page. Do not finish from a promise, link, or search suggestion.",
+      "status": "executed",
+      "action_ms": 6.357,
+      "after_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html",
+      "independent_check": {
+        "passed": true,
+        "checks": {
+          "url": true,
+          "heading": true,
+          "body_terms": true
+        },
+        "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+      }
+    }
+  ],
+  "success": true,
+  "goal_reached": true,
+  "model_ms": 562.556,
+  "blocked_navigations": [],
+  "initial_http_status": 200,
+  "final_check": {
+    "passed": true,
+    "checks": {
+      "url": true,
+      "heading": true,
+      "body_terms": true
+    },
+    "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html"
+  },
+  "wall_ms": 4505.841,
+  "page_errors": []
+}

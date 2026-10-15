@@ -1,0 +1,33 @@
+{
+  "verified_at": "2026-10-12T08:30:52.901459+00:00",
+  "seed": 314159,
+  "max_pieces": 200,
+  "pieces": 200,
+  "lines": 73,
+  "score": 35300,
+  "finish_reason": "piece_limit",
+  "status": "finished",
+  "models": [
+    "strands-decider-2B-hobson-v19"
+  ],
+  "verified_live_moves": 42,
+  "forced_moves": 0,
+  "policy_moves": 158,
+  "policy": "guarded",
+  "successful_requests": 42,
+  "stats": {
+    "successful_requests": 42,
+    "live_moves": 42,
+    "forced_moves": 0,
+    "policy_moves": 158,
+    "dominated_moves": 0,
+    "errors": 0,
+    "mean_decision_ms": 98.2,
+    "last_decision_ms": 101.79,
+    "p95_decision_ms": 103.23
+  },
+  "raw_choice_matches_applied_placement": true,
+  "board_replay_matches": true,
+  "wall_seconds": 5.99,
+  "variant": "guarded"
+}

@@ -1,0 +1,1112 @@
+{
+  "repository": "https://github.com/wuyoscar/jev-skill",
+  "commit": "48ba080ab973f11247d6686dc2e3c1d117d76ca3",
+  "readme": "README.zh.md",
+  "readme_sha256": "9b96778a00b6162a3863e6731169223f41a69bca560860263cf9b0d1540751ba",
+  "assets": [
+    {
+      "path": "fixtures/upstream/jev--batch-triage.json",
+      "source_path": "skills/jev/assets/batch-triage.json",
+      "sha256": "1e0bfa9e27b88ead48f855c8c619870412d6692330efac083dfc4fb609e62153",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--browser-route.json",
+      "source_path": "skills/jev/assets/browser-route.json",
+      "sha256": "0d840d4fe03f1cf092dda17e9f21a45d35f84961191b4cc3efa8c2d75786920d",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--checkpoint.json",
+      "source_path": "skills/jev/assets/checkpoint.json",
+      "sha256": "7c4282bef5a9dd6bbd0b540774751ae7a3e8f2de892e244aa66d4c5e9e9cb1af",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--completion.json",
+      "source_path": "skills/jev/assets/completion.json",
+      "sha256": "0943a5deaba41f850d52e173ac590874f7a353e84b7c713cc1472fd10b56f8c6",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--context.json",
+      "source_path": "skills/jev/assets/context.json",
+      "sha256": "27b55353002413b6c646cbacb0bb3a557b6ce999cfea396b5132c9b6cf61d188",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--document-block.json",
+      "source_path": "skills/jev/assets/document-block.json",
+      "sha256": "08515a6fa2b9fdf0c3c659b31a20ec78883792ee5defb6ac9e5dcae440612c4b",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--prompt-conversion-cases.json",
+      "source_path": "skills/jev/assets/prompt-conversion-cases.json",
+      "sha256": "db3bf432b39a7c402a8294fbf83125923d7c917b109fa26ad86de17aec9e9005",
+      "request": false
+    },
+    {
+      "path": "fixtures/upstream/jev--prompt-to-jev.json",
+      "source_path": "skills/jev/assets/prompt-to-jev.json",
+      "sha256": "672757de7304c1656cb91ef75030f875fe953ed9b9cc5ac8921817af75c6d7a5",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--routing.json",
+      "source_path": "skills/jev/assets/routing.json",
+      "sha256": "96202f64c031e88c8d34d751720ea39504f62a27923f5ef6182694fbd10ebd6d",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--rubric.json",
+      "source_path": "skills/jev/assets/rubric.json",
+      "sha256": "2e1a730d06da7aa4eba257a3ccad66080bdd70d53a474a530b3ace92a4986b76",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--semantic-rules.json",
+      "source_path": "skills/jev/assets/semantic-rules.json",
+      "sha256": "de5c5717382c3ece8010154f3e0b6813028c3b7a9ff981d62a2e3fa4855f8514",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--span-selection.json",
+      "source_path": "skills/jev/assets/span-selection.json",
+      "sha256": "e9132d1cd4b163ce7fea8a4edbd3c04a4fd6e424759364df7b1d49a6e7fe8b35",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--support-labels.json",
+      "source_path": "skills/jev/assets/support-labels.json",
+      "sha256": "44e57d1437e5916bdcd00fc1eb9429c99a93db60230eaf6e04e0e56e5915e6db",
+      "request": false
+    },
+    {
+      "path": "fixtures/upstream/jev--triage.json",
+      "source_path": "skills/jev/assets/triage.json",
+      "sha256": "43ad5761ae88b9ef19572e02fe432b717335851cf2bdb2020b74c5849463bf7a",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev--voice-style.json",
+      "source_path": "skills/jev/assets/voice-style.json",
+      "sha256": "e3fd0b59a8a6ddf13022711ced7a868b6d320fd027ae8fc8a76927526d048e94",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-act--example.json",
+      "source_path": "skills/jev-act/assets/example.json",
+      "sha256": "382398c91a1c8b3aa65f43e795116c14d761609ecaa71d47cf34414cd1960f47",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-act--world.json",
+      "source_path": "skills/jev-act/assets/world.json",
+      "sha256": "f9cc4729246387a12cda9964127d607394deb4a5375319771fcd7c9335af4c27",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-documents--example.json",
+      "source_path": "skills/jev-documents/assets/example.json",
+      "sha256": "ccbab1ae70d2c65a22303bb54af9f404dbf262893846e5d7813a5129b10d4fc2",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-documents--find-code.json",
+      "source_path": "skills/jev-documents/assets/find-code.json",
+      "sha256": "86b0be2dec70c7e732d059d05be8850d84275f648bc8eeb075c558b5dfbba62b",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-eval--code-review.json",
+      "source_path": "skills/jev-eval/assets/code-review.json",
+      "sha256": "1b08891603232eed3a11570c925baac1db58b59f6b8edeb4eb945381d993551f",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-eval--example.json",
+      "source_path": "skills/jev-eval/assets/example.json",
+      "sha256": "ee2cf58ccb3d452b83c54013324566597fc81769fd03112dd2471d0e4cdc956b",
+      "request": true
+    },
+    {
+      "path": "fixtures/upstream/jev-triage--example.json",
+      "source_path": "skills/jev-triage/assets/example.json",
+      "sha256": "d8bf841647e84b89b77aee10a03a339d312243586bf0211eaef20a5ce79148ce",
+      "request": true
+    }
+  ],
+  "scenarios": [
+    {
+      "anchor": "sc-a01",
+      "title": "1. 检查长程任务有没有跑偏",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/checkpoint.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a02",
+      "title": "2. 从反复失败的循环里脱困",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/checkpoint.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a06",
+      "title": "3. 检查任务是否真的完成",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/completion.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a07",
+      "title": "4. 拦住没有证据的“已完成”表述",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/completion.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a27",
+      "title": "5. 复盘一次 agent 失败发生在哪里",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/checkpoint.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a03",
+      "title": "6. 核对计划和实际调用是否一致",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a08",
+      "title": "7. 发现削弱测试、刷通过的修复",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev-eval/assets/code-review.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a09",
+      "title": "8. 检查项目约定和语义规则",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev-eval/assets/code-review.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a10",
+      "title": "9. 给即将执行的动作分风险类",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a11",
+      "title": "10. 标出工具结果里的诱导指令",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a12",
+      "title": "11. 给代码审查排优先级",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev-eval/assets/code-review.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a13",
+      "title": "12. 判断工具返回是否真正有用",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/completion.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h14",
+      "title": "13. 匿名比较几个候选答案",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-judge",
+      "title": "14. 把 Jev 用作可重复的评测裁判",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a04",
+      "title": "15. 用户不在时选择还能继续的工作",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/checkpoint.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a05",
+      "title": "16. 决定查证、升级模型还是交给人",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a14",
+      "title": "17. 决定子 agent 的消息何时打断主任务",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a15",
+      "title": "18. 选择下一步该用哪个工具",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a16",
+      "title": "19. 按任务选择模型档位",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a17",
+      "title": "20. 把子任务交给合适的专家",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a18",
+      "title": "21. 从很多技能里挑需要加载的几个",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a19",
+      "title": "22. 给搜索或 RAG 结果重新排序",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a20",
+      "title": "23. 在代码库里找功能入口",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/find-code.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a21",
+      "title": "24. 压缩工具输出，但保留找回原文的能力",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/context.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a22",
+      "title": "25. 避免重复读取没有变化的信息",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/context.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-compaction",
+      "title": "26. 根据任务边界和上下文压力决定何时压缩",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/context.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a23",
+      "title": "27. 决定浏览器下一步点哪里",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a24",
+      "title": "28. 网页没反应时判断等待还是介入",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a25",
+      "title": "29. 核验网页动作的真实结果",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a26",
+      "title": "30. 个人助理把消息交接给下一条工作流",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h26",
+      "title": "31. 解析智能家居的低风险指令",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-situations",
+      "title": "32. 把观察变成可复用的“当前状态”",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-voice-browser",
+      "title": "33. 边说边判断浏览器操作是否完整",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-webmcp",
+      "title": "34. 直接选网站工具，少走一长串点击",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-primitive",
+      "title": "35. 只给一个操作加判断，不必做完整 agent",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-forms",
+      "title": "36. 让表单根据回答选择下一问",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-desktop",
+      "title": "37. 在桌面应用里选择下一步控件",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-semantic-find",
+      "title": "38. 在网页里按意思找，而不只是匹配关键词",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/span-selection.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-sponsor-skip",
+      "title": "39. 标出视频里的赞助口播",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev/assets/span-selection.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h02",
+      "title": "40. 给客服工单分流",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h03",
+      "title": "41. 按紧急程度排列待办和故障",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h15",
+      "title": "42. 预筛聊天记录里的未解决问题",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h16",
+      "title": "43. 识别明确的取消或流失信号",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h17",
+      "title": "44. 从销售或客服对话整理下一步",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h18",
+      "title": "45. 给安全事件初步分诊",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h19",
+      "title": "46. 筛可疑邮件和消息",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h20",
+      "title": "47. 把联系表单分给正确团队",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h24",
+      "title": "48. 从消息里整理日程候选",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-mail-rules",
+      "title": "49. 自己写邮件标签和处理规则",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-personal-feed",
+      "title": "50. 按自己的兴趣筛研究流和社交内容",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h07",
+      "title": "51. 初筛论文和阅读清单",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h08",
+      "title": "52. 检查一句主张有没有原文支持",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h09",
+      "title": "53. 把政策要求做成可复核清单",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h10",
+      "title": "54. 把合同条款整理给审核人",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h11",
+      "title": "55. 按品牌和编辑规则检查文案",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h21",
+      "title": "56. 帮求职者整理岗位要求的证据",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-spans",
+      "title": "57. 选出正确的原始字段值",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-suitability",
+      "title": "58. 别把“最像”当成“真的有答案”",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-structure",
+      "title": "59. 把散乱文本恢复成标题、列表和段落",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/document-block.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-dates",
+      "title": "60. 理解日期表达，再交给代码算日期",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/span-selection.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-extraction-cascade",
+      "title": "61. 复核小模型提取的结构化数据",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-transcript",
+      "title": "62. 给演讲、访谈、展示做逐段批注",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h01",
+      "title": "63. 像 grep 一样按语义找日志或笔记",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h04",
+      "title": "64. 给商品或内容分层归类",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h05",
+      "title": "65. 发现重复记录或同一实体",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h06",
+      "title": "66. 给问卷和访谈做多标签编码",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h22",
+      "title": "67. 给数据集记录做质量侧栏",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-graph",
+      "title": "68. 沿知识图谱或大分类树逐步寻找",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev-documents/assets/find-code.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-features",
+      "title": "69. 给传统机器学习模型制作语义特征",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-semantic-validation",
+      "title": "70. JSON 格式正确以后，再检查含义",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-shell-history",
+      "title": "71. 从已有命令历史里选合适的建议",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-semantic-sql",
+      "title": "72. 在普通查询旁边加语义筛选",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev-triage/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-spreadsheet",
+      "title": "73. 让表格列名变成可修改的语义规则",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-market-replay",
+      "title": "74. 用市场回放研究决策与过期处理",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/world.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-a28",
+      "title": "75. 让游戏 NPC 从合法动作里作选择",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/world.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h25",
+      "title": "76. 按自己的标准做想法工作坊",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-h28",
+      "title": "77. 给内容选文档组件，给界面选图表或表格",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/document-block.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-reweight",
+      "title": "78. 一次测维度，随时改自己的权重",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-world-video",
+      "title": "79. 世界设计、动作选择、视频呈现分开接",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/world.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-strategy",
+      "title": "80. 大模型定策略，Jev 高频选局部动作",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/world.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-speakers",
+      "title": "81. 给多个聊天角色排发言顺序",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/voice-style.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-tts",
+      "title": "82. 给剧本或播报选择 TTS 语气",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/voice-style.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-negotiation",
+      "title": "83. 让模拟谈判有退出条件，不原地打转",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev-act/assets/world.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-creative-route",
+      "title": "84. 按创作要求选图片或视频模型",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/routing.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-story-sensors",
+      "title": "85. 持续检查角色扮演有没有偏离人设和世界观",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/rubric.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-midi",
+      "title": "86. 通过选择音乐部件，编排可编辑的 MIDI",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/checkpoint.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-compile",
+      "title": "87. 用一句需求生成可编辑的判断问题",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/semantic-rules.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-mcp",
+      "title": "88. 通过 MCP 给现有 agent 增加判断工具",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-playground",
+      "title": "89. 边改例子边学，再让 agent 写新例子",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-local-comparison",
+      "title": "90. 拿本地模型做同题决策对照",
+      "skill": "jev-eval",
+      "readme_templates": [],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-moderation",
+      "title": "91. 给社区审核队列分类",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-syntax",
+      "title": "92. 给代码做语义高亮",
+      "skill": "jev-triage",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-ai-text",
+      "title": "93. 研究 AI 文本风格信号",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-mute",
+      "title": "94. 给麦克风提供暂停建议",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-launcher",
+      "title": "95. 根据意图排列启动器结果",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-language",
+      "title": "96. 试做带语义判断的编程语言",
+      "skill": "jev",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-drawing",
+      "title": "97. 在画布里选择绘图动作",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-emoji",
+      "title": "98. 从固定候选里推荐 Emoji",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-clipboard",
+      "title": "99. 给剪贴板历史提供相关建议",
+      "skill": "jev-documents",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-vitals-demo",
+      "title": "100. 在模拟器里研究合成监测信号",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-video-effects",
+      "title": "101. 实时选择视频特效",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-pixels",
+      "title": "102. 通过颜色选择逐像素绘画",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-video-edit",
+      "title": "103. 给可编辑视频挑选片段",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-levels",
+      "title": "104. 选择下一个合法关卡片段",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-ads",
+      "title": "105. 批量拆解广告素材",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-physics",
+      "title": "106. 在物理仿真里选择受限动作",
+      "skill": "jev-act",
+      "readme_templates": [
+        "skills/jev/assets/triage.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-redteam-batch",
+      "title": "107. 批量整理和判定越狱评测",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev-eval/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    },
+    {
+      "anchor": "sc-redteam-team",
+      "title": "108. 组织多人、多 Agent 与多轮安全评测",
+      "skill": "jev-eval",
+      "readme_templates": [
+        "skills/jev-eval/assets/example.json"
+      ],
+      "status": "catalog_checked; host_integration_not_executed"
+    }
+  ]
+}

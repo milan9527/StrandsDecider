@@ -1,0 +1,33 @@
+{
+  "model": "typesafe/jev-1.13",
+  "state": {
+    "record_id": "ticket-07",
+    "text": "The export button returns an error for all team members. We need the monthly report tomorrow.",
+    "queues": {
+      "billing": "Charges and invoices",
+      "bug": "Broken product functionality",
+      "howto": "Usage questions"
+    }
+  },
+  "questions": {
+    "queue": {
+      "type": "choice",
+      "instructions": "Which queue matches this record? Use other if none fits.",
+      "criteria": {
+        "billing": "A charge or invoice issue.",
+        "bug": "Broken functionality.",
+        "howto": "A question about how to use working functionality.",
+        "other": "Unclear or outside the queues."
+      }
+    },
+    "urgency": {
+      "type": "score",
+      "instructions": "Rate operational urgency from the evidence, not emotional wording.",
+      "criteria": [
+        "No current blocker or deadline.",
+        "A blocker or approaching deadline.",
+        "Documented widespread outage or imminent severe impact."
+      ]
+    }
+  }
+}
