@@ -1,14 +1,27 @@
 # 已部署环境
 
-最近发布日期：2026-10-12。
+最近发布日期：2026-10-16。
 
 **访问地址：https://d3i7ogfx5ml7dc.cloudfront.net**
 
 API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 
-**2026-10-11：推理服务切换为 EC2 On-Demand `g6.xlarge`，持续运行，禁用闲置自动停机。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
+**当前：所有 Decider 模块统一调用共享 vLLM / EC2 On-Demand `g6.xlarge`，持续运行。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
+
+## 全模块切换共享 vLLM（2026-10-16）
+
+- 工作台、工具守卫、支付固定／优化流程、自主闭环、模型路由都通过同一个 `live_decision` 入口访问 vLLM，返回 `strands-decider-2B-hobson-v19-vllm`。业务输入、候选条件与执行保护保持原有逻辑；Jev 和 Bedrock 入口未改。
+- 使用现有实例 **`i-0ae7eb0abcb815af3` / `g6.xlarge` / L4 / us-east-1d**。ECS 经已有 VPC Peering `pcx-056a4164043065e96` 调用 `172.31.33.164:8100/v1/systemone`，新增模型 IP 路由和两个 API 子网的回程路由，模型端口仅允许 API 安全组与原有 vLLM CloudFront VPC Origin 安全组。
+- vLLM 密钥由 Secrets Manager 在 ECS Task 启动时注入 `DECIDER_API_KEY`，执行角色与新增单 AZ 私有端点限定到该密钥；浏览器不持有密钥。当前 `GPU_STATE_TABLE` 为空，不再获取原版 DynamoDB 独占推理租约；API 使用 128 个在途请求槽位，真实 vLLM 负责推理调度。
+- `/api/health` 校验 `engine=vllm`，`/api/gpu` 显示共享实例和连接状态，`can_manage=false`。界面不启停共享实例，启停 API 返回 409；服务异常不影响登录和规则回放。
+- API 镜像 `vllm-shared-20261016-v1`，摘要 `sha256:28a91953a5d1715951b5b0e0fc7c81aba9be4581b49d262c53de7466265b200f`；ECS Task Definition **revision 22**。主 stack `UPDATE_COMPLETE`，ECS 滚动部署 `COMPLETED`，原 revision 21 Task 已退出。
+- 177 项相关自动化测试通过；包括原版兼容、vLLM 认证、三种协议、并发、上游限流、离线状态、支付与路由。新增真实接入验证保存 **83 次业务 API 响应**（含 5 次仅推进模拟事件的 tick），另外两次并发工作台请求均成功。固定／优化输入覆盖四场景共 40 次支付决策；四场景闭环分别用 6 / 6 / 9 / 6 次模型决策完成模拟业务。
+- 浏览器四场景三模型原始路由验证：6 次预热另存，24 次正式调用全部成功；Decider 两步都返回 vLLM 模型 ID。桌面和 390px 手机端显示正确实例、无共享 GPU 启停按钮、无 JavaScript 错误。
+- S3 四项公共访问阻止仍全开，匿名直连返回 403，未登录业务 API 返回 401；已核对发布前端与本地文件一致。README、当前 SVG 与部署／开发说明同步；历史原版测速、JevBench 和 PPT 数据保持原口径，本轮接入验证不是新的三模型性能基准。
+- **原版实例 `i-0daca64f56056aa1c` 仍为 running，未停止、未删除磁盘，继续单独计费；当前演示不再调用它。** 共享 vLLM 实例也保持 running。原版启停方法归档至 [ORIGINAL_GPU.md](ORIGINAL_GPU.md)。
+- 本机证据目录 `.deployment/vllm-migration-20261016/`：`live-verification.json`、`routing-browser/`、`gpu-browser.json`、`deployment-verification.json`、部署日志及更新前资源快照。GitHub 发布前完整回归为 243 项测试通过；凭据与本机部署证据不入库。
 
 ## 文档与 GitHub 同步（2026-10-12）
 

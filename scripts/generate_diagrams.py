@@ -398,7 +398,7 @@ def architecture():
     p = Page(
         "01  AWS 部署架构",
         "architecture",
-        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · EC2 / Jev / Bedrock 三模型同时对比",
+        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · 共享 vLLM / Jev / Bedrock",
         width=1800,
         height=1620,
         aws_style=True,
@@ -421,9 +421,9 @@ def architecture():
         "vpc",
         440,
         480,
-        740,
+        350,
         620,
-        "应用 VPC · 无 Internet 默认路由",
+        "应用 VPC · 无公网出口",
         group=True,
         icons=("vpc",),
         boundary="#8c4fff",
@@ -432,12 +432,16 @@ def architecture():
         "subnet",
         465,
         550,
-        680,
+        315,
         500,
         "私有子网组 · 2 个 AZ",
         group=True,
         icons=("subnet",),
         boundary="#00a4a6",
+    )
+    p.box(
+        "vllm_vpc", 815, 480, 365, 340, "vLLM 服务 VPC",
+        group=True, icons=("vpc",), boundary="#8c4fff",
     )
     p.box(
         "browser",
@@ -490,13 +494,13 @@ def architecture():
     )
     p.box(
         "sm",
-        825,
+        845,
         605,
         300,
         190,
-        "Amazon ECS / Amazon EC2\nDecider v19 · g6.xlarge / L4\nOn-Demand · GPU 持续运行\n私网 HTTP · 权重预置于镜像",
+        "Amazon EC2 · vLLM\nDecider v19 · g6.xlarge / L4\nOn-Demand · 共享常驻 GPU\nSystem One · Bearer 认证",
         size=17,
-        icons=("ecs", "ec2"),
+        icons=("ec2",),
     )
     p.box(
         "br",
@@ -528,24 +532,13 @@ def architecture():
         size=17,
     )
     p.box(
-        "timer",
+        "secret",
         445,
         1160,
-        300,
-        145,
-        "Amazon EventBridge\n定时规则 · 每分钟触发",
+        650,
+        165,
+        "AWS Secrets Manager · vLLM API 密钥\nECS 启动时注入后端 · 浏览器不持有密钥\n共享 GPU 由部署端管理，页面只查看健康状态",
         size=17,
-        icons=("eventbridge",),
-    )
-    p.box(
-        "lambda",
-        800,
-        1150,
-        300,
-        175,
-        "AWS Lambda · GPU 控制器\n手动启动 / 停止 EC2\n禁用闲置停机 · 固定 g6.xlarge",
-        size=17,
-        icons=("lambda",),
     )
     p.box(
         "ddb",
@@ -553,7 +546,7 @@ def architecture():
         1150,
         340,
         175,
-        "Amazon DynamoDB\n账号 / 会话 / 登录限流\nGPU 状态 / 推理租约",
+        "Amazon DynamoDB\n账号 / 会话 / 登录限流",
         size=17,
         icons=("dynamodb",),
     )
@@ -563,9 +556,9 @@ def architecture():
         1360,
         640,
         80,
-        "ECR 模型镜像 · 80GB 加密 EBS / 模型缓存\n手动停止保留磁盘；GPU 常驻运行，按小时计费",
+        "共享 vLLM · 160GB 加密 EBS / 权重与缓存\nGPU 常驻运行，按实例运行时间计费",
         size=16,
-        icons=("ecr",),
+        icons=("ebs",),
         side=True,
     )
     p.box(
@@ -574,7 +567,7 @@ def architecture():
         1360,
         535,
         80,
-        "旧 EC2 已停止 · 80GB EBS 保留\n回退资源，不参与当前推理",
+        "原版 GPU 保留作基线 / 回退\n当前演示不再调用原版服务",
         size=16,
         icons=("ec2", "ebs"),
         side=True,
@@ -594,8 +587,8 @@ def architecture():
     p.edge(
         "api",
         "sm",
-        [(770, 850), (800, 850), (800, 710), (825, 710)],
-        "私网调用 Decider",
+        [(770, 850), (800, 850), (800, 710), (845, 710)],
+        "VPC Peering · 私网 :8100",
         color=TEAL,
         at=(990, 845),
     )
@@ -625,27 +618,17 @@ def architecture():
         "api",
         "ddb",
         [(770, 975), (930, 975), (930, 1120), (1440, 1120), (1440, 1150)],
-        "账号 / 会话 / GPU 状态",
+        "账号 / 会话",
         at=(1060, 1090),
     )
-    p.edge("timer", "lambda", [(745, 1240), (800, 1240)], color=ORANGE, dashed=True)
     p.edge(
-        "lambda",
-        "ddb",
-        [(1100, 1250), (1270, 1250)],
-        "状态 / 租约",
+        "secret",
+        "api",
+        [(620, 1160), (620, 1015)],
+        "启动时注入",
         color=ORANGE,
         dashed=True,
-        at=(1185, 1278),
-    )
-    p.edge(
-        "lambda",
-        "sm",
-        [(1100, 1190), (1180, 1190), (1180, 815), (975, 815), (975, 795)],
-        "启停 EC2 · 保留磁盘",
-        color=ORANGE,
-        dashed=True,
-        at=(1040, 1130),
+        at=(535, 1120),
     )
     p.box(
         "legend",
@@ -653,7 +636,7 @@ def architecture():
         1525,
         1700,
         35,
-        "实线：请求 / 访问方向（响应省略）   绿色：Decider   蓝色：Bedrock   紫色：Jev   橙色虚线：GPU 生命周期",
+        "实线：请求 / 访问方向（响应省略）   绿色：Decider   蓝色：Bedrock   紫色：Jev   橙色虚线：密钥注入",
         size=16,
         text=True,
     )
@@ -689,11 +672,11 @@ def comparison():
         (
             "d",
             55,
-            "Strands Decider · EC2 GPU",
+            "Strands Decider · vLLM GPU",
             "teal",
             TEAL,
             "System One choice 请求\n业务事实 + 问题 + 候选条件",
-            "私网 HTTP → ECS on EC2\nDecider v19 / L4 GPU\n官方 System One 推理服务",
+            "VPC Peering → EC2 vLLM\nDecider v19 / L4 GPU\n私网 :8100 / System One",
             "choice + probabilities + confidence\n校验候选 ID、分布与响应字段",
             "每步耗时与成功决策累计时间\nGPU 按运行时间计费",
         ),

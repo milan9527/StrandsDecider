@@ -1,0 +1,700 @@
+{
+  "created_at": "2026-10-15T03:09:48.024061+00:00",
+  "base_file": "docs/presentations/v9/Strands-Decider-模型原理与业务演示-v9-适用场景-模型路由-vLLM与成本对比-52页-20261013.pptx",
+  "base_sha256": "c43fd0b89bb8b0f90fc8614064e4c107ff91f85ee3771248191530ab4ca7926f",
+  "pptx_file": "docs/presentations/v10/Strands-Decider-v10-场景验证-vLLM与RI成本对比-32页-20261015.pptx",
+  "pptx_sha256": "7be33704c58ace8bdbb8b92d7512c67e9f375d5a9e490e7366397553c313e7b3",
+  "pages": 32,
+  "previous_pages": 52,
+  "new_model_calls": 0,
+  "aws_mutations": 0,
+  "slides": [
+    {
+      "page": 1,
+      "title": "让决策模型接得住真实业务",
+      "section": "01  从软件中的判断开始",
+      "v9_pages_reworked": [
+        1
+      ],
+      "notes": "基于v9的52页重排为32页。合并机制、支付重复截图、路由解释、优化和选型结论；新增场景验证与RI。"
+    },
+    {
+      "page": 2,
+      "title": "业务流程里，很多步骤只需要一个选择",
+      "section": "01  问题与方法",
+      "v9_pages_reworked": [
+        2,
+        8,
+        9,
+        51
+      ],
+      "notes": "合并原适用场景和评估边界。选择的语义正确性、执行完成状态、耗时费用分别记录。"
+    },
+    {
+      "page": 3,
+      "title": "Decider：读完上下文，直接给候选评分",
+      "section": "02  模型原理",
+      "v9_pages_reworked": [
+        3,
+        5
+      ],
+      "notes": "输入按官方模板编码，模型得到隐藏表示，Pointer Head比较候选与答案位置后评分，用校准参数转成输出。去除LM Head的生成路径；约1M参数的头不等于整个模型只有1M。\nhttps://strandsagents.com/blog/introducing-strands-decider/"
+    },
+    {
+      "page": 4,
+      "title": "相同候选问题，可以通过不同模型回答",
+      "section": "02  模型对照",
+      "v9_pages_reworked": [
+        4,
+        6,
+        7
+      ],
+      "notes": "BERT固定标签分类头适合标签稳定、有领域标注的数据。新增类别通常需调整分类头和训练。Decider接受请求中的动态候选；Jev提供托管决策接口，内部结构未公开，不能推断与Decider相同。GPT按应用要求生成候选ID，即便输出短仍使用生成式推理路径。"
+    },
+    {
+      "page": 5,
+      "title": "JevBench：同时看能力、校准、速度与成本",
+      "section": "02  外部参考",
+      "v9_pages_reworked": [
+        10,
+        11,
+        12
+      ],
+      "notes": "合并原三页榜单介绍。综合分基于能力、校准、速度、成本四轴的调和平均与低分惩罚，不是简单准确率。这里无Strands v19和GPT-6.1 Sol同口径条目，不插入自测排名。\n原始快照：docs/presentations/v8/sources/jevbench-api-20261012.json\n评测链接：https://benchmarkheaven.com/jev-models/api"
+    },
+    {
+      "page": 6,
+      "title": "同一业务后端，连接三个决策模型",
+      "section": "03  演示架构",
+      "v9_pages_reworked": [
+        13
+      ],
+      "notes": "前后端分离，无Cognito，S3 Block Public Access。后端直接连接模型与DynamoDB。图中Lambda是Jev实际调用路径；没有额外画服务runtime或VPC endpoint节点。"
+    },
+    {
+      "page": 7,
+      "title": "四个场景，同样经过五个业务节点",
+      "section": "03  支付流程",
+      "v9_pages_reworked": [
+        14,
+        15
+      ],
+      "notes": "支付数据：2026-10-12 presentation-v8-warm，3次预热另存，4场景×5节点×3模型=60次正式调用。Decider v19官方服务在g6.xlarge；Jev 1.13.0经应用的Lambda适配；Bedrock GPT-6.1 Sol low。计时为后端请求总耗时，预热不计入。与演示参考一致只是这20个节点的参考匹配，不是通用准确率。初始四场景都缺少资金完成条件，三模型各为0/4资金业务完成。执行保护不改写模型原始成绩。\n证据：docs/presentations/v8/live-observations.json\n截图保持实际输入输出，未修改内容。"
+    },
+    {
+      "page": 8,
+      "title": "Decider 响应最快，两个节点仍选错动作",
+      "section": "03  支付实测",
+      "v9_pages_reworked": [
+        16,
+        17,
+        18,
+        21,
+        24,
+        50
+      ],
+      "notes": "支付数据：2026-10-12 presentation-v8-warm，3次预热另存，4场景×5节点×3模型=60次正式调用。Decider v19官方服务在g6.xlarge；Jev 1.13.0经应用的Lambda适配；Bedrock GPT-6.1 Sol low。计时为后端请求总耗时，预热不计入。与演示参考一致只是这20个节点的参考匹配，不是通用准确率。初始四场景都缺少资金完成条件，三模型各为0/4资金业务完成。执行保护不改写模型原始成绩。\n证据：docs/presentations/v8/live-observations.json\n截图保持实际输入输出，未修改内容。"
+    },
+    {
+      "page": 9,
+      "title": "退款：模型批准了，执行器仍要求验证地址",
+      "section": "03  观察选择与执行",
+      "v9_pages_reworked": [
+        19,
+        20,
+        22
+      ],
+      "notes": "支付数据：2026-10-12 presentation-v8-warm，3次预热另存，4场景×5节点×3模型=60次正式调用。Decider v19官方服务在g6.xlarge；Jev 1.13.0经应用的Lambda适配；Bedrock GPT-6.1 Sol low。计时为后端请求总耗时，预热不计入。与演示参考一致只是这20个节点的参考匹配，不是通用准确率。初始四场景都缺少资金完成条件，三模型各为0/4资金业务完成。执行保护不改写模型原始成绩。\n证据：docs/presentations/v8/live-observations.json\n截图保持实际输入输出，未修改内容。\n退款审批：address_verified=false，Decider approved，Jev/GPT verify_destination。少付：100应付、99.80实收，确认20/12已经足够，Decider仍选await_confirmations。"
+    },
+    {
+      "page": 10,
+      "title": "闭环由新事实推动：确认到账，再入账和结案",
+      "section": "03  业务闭环",
+      "v9_pages_reworked": [
+        23,
+        25
+      ],
+      "notes": "支付数据：2026-10-12 presentation-v8-warm，3次预热另存，4场景×5节点×3模型=60次正式调用。Decider v19官方服务在g6.xlarge；Jev 1.13.0经应用的Lambda适配；Bedrock GPT-6.1 Sol low。计时为后端请求总耗时，预热不计入。与演示参考一致只是这20个节点的参考匹配，不是通用准确率。初始四场景都缺少资金完成条件，三模型各为0/4资金业务完成。执行保护不改写模型原始成绩。\n证据：docs/presentations/v8/live-observations.json\n截图保持实际输入输出，未修改内容。\n闭环来自v8保留的v7 pending记录，不将其耗时加入本页支付预热批次。模拟确认3→12，重新核验，入账129USDC并关闭工单；Decider首次选择偏差保留。"
+    },
+    {
+      "page": 11,
+      "title": "用户只给任务，决策模型先选流程、再选型号",
+      "section": "04  主演示：模型路由",
+      "v9_pages_reworked": [
+        26,
+        27
+      ],
+      "notes": "2026-10-13 workflow-model-v1：四个任务，每模型先选流程、再选型号，共24次正式请求，另有6次预热。用户只输入任务，服务提供区域模型目录与第三方能力资料；没有用户指定优先级，也不强制榜单第一。目录124项，按流程形成22个文本或3个embedding候选。三侧输入指纹相同。Decider v19原版g6.xlarge、Jev 1.13.0、Bedrock GPT-6 Sol low。表中时间是两次backend_total_ms相加；没有执行所选下游模型。首次GPT分析40秒超时保存在initial-run，正式表使用随后完整批次；不能据此声称无失败或稳定SLA。\n证据：docs/results/workflow-routing-2026-10-13/summary.json\n报告：https://github.com/milan9527/StrandsDecider/blob/main/docs/MODEL_ROUTING_COMPARISON.md"
+    },
+    {
+      "page": 12,
+      "title": "流程判断一致，具体型号选择出现差异",
+      "section": "04  主演示：路由结果",
+      "v9_pages_reworked": [
+        28,
+        29,
+        30
+      ],
+      "notes": "2026-10-13 workflow-model-v1：四个任务，每模型先选流程、再选型号，共24次正式请求，另有6次预热。用户只输入任务，服务提供区域模型目录与第三方能力资料；没有用户指定优先级，也不强制榜单第一。目录124项，按流程形成22个文本或3个embedding候选。三侧输入指纹相同。Decider v19原版g6.xlarge、Jev 1.13.0、Bedrock GPT-6 Sol low。表中时间是两次backend_total_ms相加；没有执行所选下游模型。首次GPT分析40秒超时保存在initial-run，正式表使用随后完整批次；不能据此声称无失败或稳定SLA。\n证据：docs/results/workflow-routing-2026-10-13/summary.json\n报告：https://github.com/milan9527/StrandsDecider/blob/main/docs/MODEL_ROUTING_COMPARISON.md"
+    },
+    {
+      "page": 13,
+      "title": "拿到了同一上下文，仍可能没有选对证据",
+      "section": "04  主演示：证据使用",
+      "v9_pages_reworked": [
+        31,
+        32
+      ],
+      "notes": "2026-10-13 workflow-model-v1：四个任务，每模型先选流程、再选型号，共24次正式请求，另有6次预热。用户只输入任务，服务提供区域模型目录与第三方能力资料；没有用户指定优先级，也不强制榜单第一。目录124项，按流程形成22个文本或3个embedding候选。三侧输入指纹相同。Decider v19原版g6.xlarge、Jev 1.13.0、Bedrock GPT-6 Sol low。表中时间是两次backend_total_ms相加；没有执行所选下游模型。首次GPT分析40秒超时保存在initial-run，正式表使用随后完整批次；不能据此声称无失败或稳定SLA。\n证据：docs/results/workflow-routing-2026-10-13/summary.json\n报告：https://github.com/milan9527/StrandsDecider/blob/main/docs/MODEL_ROUTING_COMPARISON.md\nMIRACL中文分项English4.18/Multilingual60.65，均值30.65/59.23。代码Coding分项Sonnet5.5=91.37，Opus5=81.45。索引选择与多语言证据不符，但不能据四任务推出通用排名。"
+    },
+    {
+      "page": 14,
+      "title": "从演示样例，扩展到 466 次有记录的调用",
+      "section": "05  新增：场景验证",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json"
+    },
+    {
+      "page": 15,
+      "title": "分类与局部选择接近，证据核验拉开差距",
+      "section": "05  场景验证：Skills",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\n证据：validation/jev_skills/scenario_summary.json。Decider queued任务尚无产物却finish，测试替换成assert True仍通过，缺发票地址时选一般咨询地址。一个评分1.4936与参考2相差0.5064，刚超容差；不能与错误放行等量解释。客户端RTT中位数Decider164.6ms/Jev119.9ms；P95911.1/163.8ms。没有正式预热阶段，Decider首次六问题请求13.511秒原样保留，具体原因未确定。"
+    },
+    {
+      "page": 16,
+      "title": "多步操作要验收目标页面，不能只看 finish",
+      "section": "05  场景验证：真实浏览器",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\n使用scored-summary修订后结果：CFPB官方页面为60 calendar days，原匹配60 days漏判。根据保存页面将Jev8/10更正10/10，无模型重跑；修订与原记录均保留。"
+    },
+    {
+      "page": 17,
+      "title": "银行查询：停在入口页，与查到机构是两种结果",
+      "section": "05  真实过程截图",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\nDecider第二轮2步，在BankFind入口结束；Jev第二轮6步返回机构结果，Cert628。Jev第一轮10步，包含重复操作；完成率高不代表路径最优。"
+    },
+    {
+      "page": 18,
+      "title": "会分类，不代表能正确核验金额和条件",
+      "section": "05  场景验证：金融业务",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\n新闻人工标签，其他业务输入由测试构造，无真实客户资金。财报正确收入FY2025=281724百万美元，FY2024=245122百万美元；Decider误认年份/单位。给定1EUR=1.1181USD，历史报表10000EUR=11181USD，Decider混为真实付款要求可执行报价。同一人、同一家受保银行、同一所有权类别合并300000美元，250000受保50000超限；两者均误判。"
+    },
+    {
+      "page": 19,
+      "title": "任务分流能做好，复合约束仍容易漏判",
+      "section": "05  场景验证：政策路由",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\nDecider首轮40次存在合格候选的机会中37次false no_route；自然语言48/48全拒绝，其中仅8次符合参考。Jev也漏能力与总价条件。输入最大1485token<4096，不能归因上下文超限。建议硬约束代码核验，但该组合方案尚未完成端到端复测。"
+    },
+    {
+      "page": 20,
+      "title": "俄罗斯方块：改写候选，也未消除动作差距",
+      "section": "05  引用验证：动作规划",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\n游戏原始来源已随validation/model_comparison/sources/tetris打包。固定3失败棋盘：Decider数字3/3次受支配动作，自然语言2/3；Jev两者0/3。二选一自然语言两者6/6，不能推广完整候选集合。历史规则版430/550程序代选，排除。"
+    },
+    {
+      "page": 21,
+      "title": "先讲清条件适用范围，20 个节点改善了 4 个",
+      "section": "06  已验证的输入优化",
+      "v9_pages_reworked": [
+        33,
+        34
+      ],
+      "notes": "证据：validation/model_comparison/summary.json的historical_decider_input_optimization。原始提示退款地址等条件未限定业务类型，非退款也被视为缺少验证。优化用case_type限定条款，明确省略字段不适用，审批与到账分开，给出代码计算事实。没有微调权重；剩下少付和退款错误保留。"
+    },
+    {
+      "page": 22,
+      "title": "把失败样本留下，再决定是否需要微调",
+      "section": "06  后续优化路线",
+      "v9_pages_reworked": [
+        35,
+        36,
+        49
+      ],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\n微调应保留官方模板、底座/LoRA/Pointer Head路径，使用领域标签、无匹配、缺证据、金额/年份反例，候选数量与顺序扰动，训练/验证/测试按模板或业务来源拆分防泄漏。独立评估准确、误放行、完成度、置信度校准与拒绝回退，再灰度；不只训练输出JSON形式。"
+    },
+    {
+      "page": 23,
+      "title": "保留决策头，把单请求执行接到并发调度",
+      "section": "07  vLLM 适配",
+      "v9_pages_reworked": [
+        37,
+        38
+      ],
+      "notes": "性能证据来自独立StrandsDeciderVLLM项目；v9/sources/vllm/provenance.json保存来源提交与哈希。v19、vLLM0.31.0，BF16 torso/FP32 Pointer Head，单L4。原版对齐比较在g6.4xlarge同机，容器限制4vCPU/14GiB，回环HTTP；后续独立公网压测在g6.xlarge。20个固定支付输入，每次一个choice，固定worker收到完整响应后发下一个请求；失败不重试，预热另计。吞吐=成功数/正式总时长，失败占用总时长；分位数仅统计成功响应。相同输入反复调用只测性能，不扩充独立质量样本。数值对齐是对原版，不证明选择正确。\n性能报告：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/VLLM_PERFORMANCE.zh-CN.md\nJev对比：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/JEV_CONCURRENCY.zh-CN.md\n导出合并LoRA并携带head/calibration/tokenizer；自定义pooler取候选/答案位置，全prefill后应用官方answer转换。严格比较choice与概率/置信度；容差0.02异常保留。"
+    },
+    {
+      "page": 24,
+      "title": "公网 API，私网 EC2 源站，模型持续驻留",
+      "section": "07  独立推理服务",
+      "v9_pages_reworked": [
+        39,
+        40
+      ],
+      "notes": "性能证据来自独立StrandsDeciderVLLM项目；v9/sources/vllm/provenance.json保存来源提交与哈希。v19、vLLM0.31.0，BF16 torso/FP32 Pointer Head，单L4。原版对齐比较在g6.4xlarge同机，容器限制4vCPU/14GiB，回环HTTP；后续独立公网压测在g6.xlarge。20个固定支付输入，每次一个choice，固定worker收到完整响应后发下一个请求；失败不重试，预热另计。吞吐=成功数/正式总时长，失败占用总时长；分位数仅统计成功响应。相同输入反复调用只测性能，不扩充独立质量样本。数值对齐是对原版，不证明选择正确。\n性能报告：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/VLLM_PERFORMANCE.zh-CN.md\nJev对比：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/JEV_CONCURRENCY.zh-CN.md\n独立API公开入口https://d1e9udi8st2p3g.cloudfront.net，API key认证，EC2上systemd管理，ECR/私有S3模型产物/Secrets Manager。本页不是将主演示迁移到vLLM。"
+    },
+    {
+      "page": 25,
+      "title": "同一块 L4，8 并发吞吐提升约 2.36 倍",
+      "section": "07  原版与 vLLM",
+      "v9_pages_reworked": [
+        41
+      ],
+      "notes": "性能证据来自独立StrandsDeciderVLLM项目；v9/sources/vllm/provenance.json保存来源提交与哈希。v19、vLLM0.31.0，BF16 torso/FP32 Pointer Head，单L4。原版对齐比较在g6.4xlarge同机，容器限制4vCPU/14GiB，回环HTTP；后续独立公网压测在g6.xlarge。20个固定支付输入，每次一个choice，固定worker收到完整响应后发下一个请求；失败不重试，预热另计。吞吐=成功数/正式总时长，失败占用总时长；分位数仅统计成功响应。相同输入反复调用只测性能，不扩充独立质量样本。数值对齐是对原版，不证明选择正确。\n性能报告：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/VLLM_PERFORMANCE.zh-CN.md\nJev对比：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/JEV_CONCURRENCY.zh-CN.md\n8并发原版14.76RPS/P95542.8ms；vLLM复测34.91RPS/P95237.6ms。更早测试的5次超时保留在原始报告，本图为标明的复测。"
+    },
+    {
+      "page": 26,
+      "title": "超过 8 并发后，这批短输入主要在增加等待",
+      "section": "07  并发与批次",
+      "v9_pages_reworked": [
+        42,
+        43
+      ],
+      "notes": "性能证据来自独立StrandsDeciderVLLM项目；v9/sources/vllm/provenance.json保存来源提交与哈希。v19、vLLM0.31.0，BF16 torso/FP32 Pointer Head，单L4。原版对齐比较在g6.4xlarge同机，容器限制4vCPU/14GiB，回环HTTP；后续独立公网压测在g6.xlarge。20个固定支付输入，每次一个choice，固定worker收到完整响应后发下一个请求；失败不重试，预热另计。吞吐=成功数/正式总时长，失败占用总时长；分位数仅统计成功响应。相同输入反复调用只测性能，不扩充独立质量样本。数值对齐是对原版，不证明选择正确。\n性能报告：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/VLLM_PERFORMANCE.zh-CN.md\nJev对比：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/JEV_CONCURRENCY.zh-CN.md\n单次sweep10240成功；另一个重复批次12800成功但1次confidence差.0202超.02容差。batch三预算短输入总体无稳定吞吐收益，不能推广到长输入。"
+    },
+    {
+      "page": 27,
+      "title": "低并发 Decider 延迟低，Jev 在中并发吞吐更高",
+      "section": "07  vLLM vs Jev",
+      "v9_pages_reworked": [
+        44,
+        45
+      ],
+      "notes": "性能证据来自独立StrandsDeciderVLLM项目；v9/sources/vllm/provenance.json保存来源提交与哈希。v19、vLLM0.31.0，BF16 torso/FP32 Pointer Head，单L4。原版对齐比较在g6.4xlarge同机，容器限制4vCPU/14GiB，回环HTTP；后续独立公网压测在g6.xlarge。20个固定支付输入，每次一个choice，固定worker收到完整响应后发下一个请求；失败不重试，预热另计。吞吐=成功数/正式总时长，失败占用总时长；分位数仅统计成功响应。相同输入反复调用只测性能，不扩充独立质量样本。数值对齐是对原版，不证明选择正确。\n性能报告：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/VLLM_PERFORMANCE.zh-CN.md\nJev对比：https://github.com/milan9527/StrandsDeciderVLLM/blob/main/docs/JEV_CONCURRENCY.zh-CN.md\nDecider10239/10240，1次HTTP502，10次confidence差.0202超.02容差；Jev10240/10240。每侧560预热另计。128并发出现尾延迟，不用短测替代长期SLA。"
+    },
+    {
+      "page": 28,
+      "title": "g6.2xlarge：RI 折算月费约降低 35%–60%",
+      "section": "08  新增：EC2 RI 成本",
+      "v9_pages_reworked": [
+        46
+      ],
+      "notes": "2026-10-15 AWS Price List实时查询，us-east-1/Linux/Shared/g6.2xlarge，On-Demand0.9776USD/h；展示Standard RI的1/3年六种付款方式，非Savings Plans或Convertible RI。折算月费=预付额/(12×年数)+小时费×730，AWS一年365天=8760h，三年1095天=26280h。全预付折算月费不是每月账单；无预付也承诺整个期限、停止实例仍付费。区域RI只提供匹配用量的计费优惠，不保证容量。未购买RI。Jev官网0.042USD/百万输入token，输出免费；实际支付10240次usage平均656.95输入token；四任务路由平均2805.75token/完整两步。以这些实测用量估算成本，不是账单或未来价格保证。仅EC2计算费与Jev调用费，未计EBS、网络、应用后端、运维、冗余、税、所选下游模型执行。g6.2xlarge仅为指定成本场景，未实测其容量；不把g6.xlarge吞吐当成它的实测。\nAWS定价源：sources/aws-g6.2xlarge-pricing.json\n公式与交点：sources/cost-calculation.json\nRI条款：https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html\n范围：https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html\nJev：https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+    },
+    {
+      "page": 29,
+      "title": "3 年全预付 RI：与 Jev 的交点约 1033 万次/月",
+      "section": "08  Decider vs Jev",
+      "v9_pages_reworked": [
+        47,
+        48
+      ],
+      "notes": "2026-10-15 AWS Price List实时查询，us-east-1/Linux/Shared/g6.2xlarge，On-Demand0.9776USD/h；展示Standard RI的1/3年六种付款方式，非Savings Plans或Convertible RI。折算月费=预付额/(12×年数)+小时费×730，AWS一年365天=8760h，三年1095天=26280h。全预付折算月费不是每月账单；无预付也承诺整个期限、停止实例仍付费。区域RI只提供匹配用量的计费优惠，不保证容量。未购买RI。Jev官网0.042USD/百万输入token，输出免费；实际支付10240次usage平均656.95输入token；四任务路由平均2805.75token/完整两步。以这些实测用量估算成本，不是账单或未来价格保证。仅EC2计算费与Jev调用费，未计EBS、网络、应用后端、运维、冗余、税、所选下游模型执行。g6.2xlarge仅为指定成本场景，未实测其容量；不把g6.xlarge吞吐当成它的实测。\nAWS定价源：sources/aws-g6.2xlarge-pricing.json\n公式与交点：sources/cost-calculation.json\nRI条款：https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html\n范围：https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html\nJev：https://typesafe.ai/blog/introducing-system-one-models-and-jev"
+    },
+    {
+      "page": 30,
+      "title": "长期稳定运行，才有理由承担 RI 的期限",
+      "section": "08  成本决策",
+      "v9_pages_reworked": [],
+      "notes": "2026-10-15 AWS Price List实时查询，us-east-1/Linux/Shared/g6.2xlarge，On-Demand0.9776USD/h；展示Standard RI的1/3年六种付款方式，非Savings Plans或Convertible RI。折算月费=预付额/(12×年数)+小时费×730，AWS一年365天=8760h，三年1095天=26280h。全预付折算月费不是每月账单；无预付也承诺整个期限、停止实例仍付费。区域RI只提供匹配用量的计费优惠，不保证容量。未购买RI。Jev官网0.042USD/百万输入token，输出免费；实际支付10240次usage平均656.95输入token；四任务路由平均2805.75token/完整两步。以这些实测用量估算成本，不是账单或未来价格保证。仅EC2计算费与Jev调用费，未计EBS、网络、应用后端、运维、冗余、税、所选下游模型执行。g6.2xlarge仅为指定成本场景，未实测其容量；不把g6.xlarge吞吐当成它的实测。\nAWS定价源：sources/aws-g6.2xlarge-pricing.json\n公式与交点：sources/cost-calculation.json\nRI条款：https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html\n范围：https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html\nJev：https://typesafe.ai/blog/introducing-system-one-models-and-jev\n与可停机按需比较，RI年度运行小时交点=RI总额/(按需小时价×期限小时)。1年无预付约65.1%，1年全预付60.8%，3年全预付40.0%；这是可关机小时占比，不是GPU利用率。"
+    },
+    {
+      "page": 31,
+      "title": "用业务结果选模型，再用流量决定部署方式",
+      "section": "09  结论",
+      "v9_pages_reworked": [
+        8,
+        9,
+        32,
+        35,
+        49,
+        50,
+        51
+      ],
+      "notes": "2026-10-12—13保存的真实调用，本次仅复核汇总，无新增模型调用。直接实验为Skills64、浏览器+金融178、两批政策路由224，总计466次。模型为Decider 2B hobson v19原版服务和Jev1.13.0；这批没有GPT，也没有vLLM。问题、任务、请求的计数单位不同，不汇总跨场景准确率；候选顺序反转和重复运行不算新增独立案例。Jev在独立验证中直连，支付经过Lambda；计时边界和输入不同，不能混算加速倍数。\n报告：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n原始索引：validation/model_comparison/summary.json\n最终综合：分类与局部选择接近，Jev本批复杂证据/多步完成更好但也有金融和路由错误；Decider支持可控自托管，vLLM提升并发，RI降固定成本。GPT用于开放式生成和复杂异常，具体任务仍须回归。"
+    },
+    {
+      "page": 32,
+      "title": "打开演示，查看真实过程和原始记录",
+      "section": "09  演示与资料",
+      "v9_pages_reworked": [
+        52
+      ],
+      "notes": "Demo：https://d3i7ogfx5ml7dc.cloudfront.net\n主项目：https://github.com/milan9527/StrandsDecider\nvLLM：https://github.com/milan9527/StrandsDeciderVLLM\n验证：https://github.com/milan9527/StrandsDecider/blob/main/validation/README.md\n官方介绍：https://strandsagents.com/blog/introducing-strands-decider/\n评测：https://benchmarkheaven.com/jev-models/api\n价格与条款见sources。"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/presentations/v8/live-observations.json",
+      "sha256": "aa7d18fa8ae2c8b38887e4578738a7b0effd47f4de91a3a3246701d39b462087"
+    },
+    {
+      "path": "docs/results/workflow-routing-2026-10-13/summary.json",
+      "sha256": "2c979d5e08894aeb79f1c090ab6d196956c4dee767a475bd10763ea48210dee2"
+    },
+    {
+      "path": "validation/model_comparison/summary.json",
+      "sha256": "37df96234e8b147c238702b143d4c5746a219238e80a0d28799c9263b6c2d925"
+    },
+    {
+      "path": "validation/browser_finance/runs/2026-10-13-live/scored-summary.json",
+      "sha256": "a967865d9c86d5f98ca999adc4618484177fbe751e6e3351a219e587fe3bd532"
+    },
+    {
+      "path": "validation/model_routing/runs/2026-10-13-live/summary.json",
+      "sha256": "66c567c356adf12fa63af570226d778e2e16dc72e4ac23f3ab759ac2eee6ec64"
+    },
+    {
+      "path": "validation/model_routing/runs/2026-10-13-natural/summary.json",
+      "sha256": "870d9c712973158db57159c5017ff7acd377ed97bcbbd6d4725f6ae17be2ed06"
+    },
+    {
+      "path": "docs/presentations/v8/sources/jevbench-api-20261012.json",
+      "sha256": "e1f524e49068447b187997a3f1eac672a2bb69a0c30b1f82824c1e12d2ba86fa"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/sweep-1-128.json",
+      "sha256": "e2b5616700e732917ca97f4ce7cbbadd5f99ec0ea2659339909a4154c00bc1c2"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/batch-summary.json",
+      "sha256": "5cb2bb33e6da4801ff33e8373455188dba2f82ddef78e8ae3d2aefec7a2ef16e"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/jev-summary.json",
+      "sha256": "b77ea035330525818137623f903bba640cfdf30096c72064291cad48d417e340"
+    },
+    {
+      "path": "docs/presentations/v10/sources/cost-calculation.json",
+      "sha256": "daaa5dc74c76701c3c196939ace04ddd3bce24e9d3256e7911490ae61f2ce85f"
+    },
+    {
+      "path": "docs/presentations/v10/sources/aws-g6.2xlarge-pricing.json",
+      "sha256": "1ace75968f835a2b54ba68e7dc09295eb9826e863fb99847c11cad9ce4cb8759"
+    },
+    {
+      "path": "docs/presentations/v10/sources/jev-pricing.txt",
+      "sha256": "713ad290e1acac16427afd04dfaca867492c3cd58cddbcb87bf9c713e07454af"
+    },
+    {
+      "path": "docs/presentations/v10/sources/aws-ri-scope.txt",
+      "sha256": "753e8f736ddfcf00d316b303230ad7fc00cea7887d786efee20ac84d95847ce1"
+    },
+    {
+      "path": "docs/presentations/v10/sources/web-source-manifest.json",
+      "sha256": "e77884d07f348f5655b2a716c82713af252953f73d936c9e3cd3c42b2a98870a"
+    },
+    {
+      "path": "docs/presentations/v10/sources/aws-ri-overview.txt",
+      "sha256": "6fddeee46012635935f14a37fb1717e12d087da4168f7e6b1a44e32362f1cf76"
+    },
+    {
+      "path": "docs/presentations/v10/sources/payment-warm.json",
+      "sha256": "aa7d18fa8ae2c8b38887e4578738a7b0effd47f4de91a3a3246701d39b462087"
+    },
+    {
+      "path": "docs/presentations/v10/sources/app-routing.json",
+      "sha256": "2c979d5e08894aeb79f1c090ab6d196956c4dee767a475bd10763ea48210dee2"
+    },
+    {
+      "path": "docs/presentations/v10/sources/validation-cross-scenario.json",
+      "sha256": "37df96234e8b147c238702b143d4c5746a219238e80a0d28799c9263b6c2d925"
+    },
+    {
+      "path": "docs/presentations/v10/sources/browser-finance.json",
+      "sha256": "a967865d9c86d5f98ca999adc4618484177fbe751e6e3351a219e587fe3bd532"
+    },
+    {
+      "path": "docs/presentations/v10/sources/policy-routing-original.json",
+      "sha256": "66c567c356adf12fa63af570226d778e2e16dc72e4ac23f3ab759ac2eee6ec64"
+    },
+    {
+      "path": "docs/presentations/v10/sources/policy-routing-natural.json",
+      "sha256": "870d9c712973158db57159c5017ff7acd377ed97bcbbd6d4725f6ae17be2ed06"
+    },
+    {
+      "path": "docs/presentations/v10/sources/jevbench.json",
+      "sha256": "e1f524e49068447b187997a3f1eac672a2bb69a0c30b1f82824c1e12d2ba86fa"
+    },
+    {
+      "path": "docs/presentations/v10/sources/vllm-concurrency.json",
+      "sha256": "e2b5616700e732917ca97f4ce7cbbadd5f99ec0ea2659339909a4154c00bc1c2"
+    },
+    {
+      "path": "docs/presentations/v10/sources/vllm-batches.json",
+      "sha256": "5cb2bb33e6da4801ff33e8373455188dba2f82ddef78e8ae3d2aefec7a2ef16e"
+    },
+    {
+      "path": "docs/presentations/v10/sources/vllm-jev.json",
+      "sha256": "b77ea035330525818137623f903bba640cfdf30096c72064291cad48d417e340"
+    },
+    {
+      "path": "validation/README.md",
+      "sha256": "33a9c34cb7ef59841b8daa09037f3d33ff904d892c3f8c879524728e3ab2e83d"
+    },
+    {
+      "path": "validation/publication-audit.json",
+      "sha256": "5db57169f1cae5c36f4c8fbc9b32f45d1a522d282ec56d55bc378c5417d2211a"
+    },
+    {
+      "path": "validation/browser_finance/evaluation-erratum.json",
+      "sha256": "894fea4f29ec1bbfedb2567ee5e49984ef45d5b9fecb9ffb53dd3e8dc5421dde"
+    },
+    {
+      "path": "docs/MODEL_ROUTING_COMPARISON.md",
+      "sha256": "e81de3fc6ae488a179baf814b244a3b1dcfef0dacc50a71d046c29ff382fe11d"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/provenance.json",
+      "sha256": "1c1008eb779c468543c14dadb48bea4467cf7d0bf125bbc3642a72c8d8b16303"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/original-benchmark.json",
+      "sha256": "587e98d7a70280a4a5078c27e73b62a3b033b0815656350663405af35f251853"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/vllm-recheck.json",
+      "sha256": "b17bb9b4f73b6c38404cd802e2ebc282c404730cdab4f35b99e21baa522b7c86"
+    },
+    {
+      "path": "docs/presentations/v9/sources/vllm/requests-usage.json",
+      "sha256": "fd236215364fa1439cafd7b9f3454ad774eb05c4c84cbafbd92d06e19a0eae92"
+    },
+    {
+      "path": "docs/presentations/v9/sources/cost-calculation.json",
+      "sha256": "adf803b45a963bb7e20d6d3e2ce9ddd1b9675bf604e6def322e7786818067983"
+    },
+    {
+      "path": "docs/presentations/v3/icons/list-filter.svg",
+      "sha256": "502573071e3b8118356eb408df781872f0608071b4b09cd99954ba1d8e2b8b37"
+    },
+    {
+      "path": "docs/presentations/v3/icons/timer.svg",
+      "sha256": "6771297be65225d462c930865b6f9ee1617aa453885be4c8116a7512a77ac2b6"
+    },
+    {
+      "path": "docs/presentations/v3/icons/banknote.svg",
+      "sha256": "212d628014554424ec0041ab56e8869149d255b7077cfd6977d4ab2be32e8cb1"
+    },
+    {
+      "path": "docs/presentations/v3/icons/receipt-text.svg",
+      "sha256": "264e3ac8b35b5f914333729e40d0de43107765ae636be6eac4e122cf76f6bb87"
+    },
+    {
+      "path": "docs/presentations/v3/icons/brain-circuit.svg",
+      "sha256": "a338cb589935721dc00da71ea7d7457ab7fbb85cff90a62cc3ac6b2ebc68cd82"
+    },
+    {
+      "path": "docs/presentations/v3/icons/workflow.svg",
+      "sha256": "ae99ea8f56a2835a2cca35b2fbb57643ab73443610970dba23e24bd9df75cfec"
+    },
+    {
+      "path": "docs/presentations/v3/icons/clipboard-check.svg",
+      "sha256": "e2bac86a6b24caa0d7d0dcc2719ec6b7870ec5eef2d21afae498d8cb5eefda96"
+    },
+    {
+      "path": "docs/presentations/v3/icons/layers.svg",
+      "sha256": "ce16d0a955e3581cda17f6b2fd5c5bc2034b405f9cecc31c8ebb8495b4afc1bb"
+    },
+    {
+      "path": "docs/presentations/v3/icons/check-check.svg",
+      "sha256": "2b08c34edf3177ef80d523ad4ec3ebbd9efb92c581a48b6765044464e7e373f9"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/cloudfront.svg",
+      "sha256": "664919982792a69058077eaf39240afd320bbcbd082d36a9148184ec32708cd5"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/s3.svg",
+      "sha256": "b92c5101cc6565dd12df37655802279f8fba0c719279f62f93106d26750b36c6"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/alb.svg",
+      "sha256": "27bea44fffd83cc42ce68411e659761a114d41d6b89efc556afef969f96414aa"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/fargate.svg",
+      "sha256": "003cc5280deebfdd044db0a393be0cd7c35fd376013dd72950d7e5b60c7c1917"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/ec2.svg",
+      "sha256": "5a7a0cef7a9f44ccdd544564ce9076abec3024090be0d6454504c49d149ce9ec"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/dynamodb.svg",
+      "sha256": "ed169f049cc24c954cfbe3d14695d5b022558c45e5605936a565d1347c14b664"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/bedrock.svg",
+      "sha256": "80fa4190bb55bde5c3004ed8d2f16bf25db28d230cf46760813f2171636ea105"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/lambda.svg",
+      "sha256": "5818c80cd8e7d08891a2492c7694f472ca914fb3a99d9ef8e597db0b37ad7f13"
+    },
+    {
+      "path": "docs/presentations/v3/icons/headset.svg",
+      "sha256": "685de90f65108f523577a3fc9202f4e7f812ea7d4609a981aac3b36d3b33fc01"
+    },
+    {
+      "path": "docs/presentations/v3/icons/search.svg",
+      "sha256": "9322d964b61cf729b3a81210568d5a97eaf4a1f3239f25a056fda3013bf35611"
+    },
+    {
+      "path": "docs/presentations/v3/icons/shield-check.svg",
+      "sha256": "8d4fcdbde5bba4abb1a2f6fe53e37ceb6343a1d5449a9d88f6f97c1971d26c4e"
+    },
+    {
+      "path": "docs/presentations/v3/icons/wallet.svg",
+      "sha256": "76c9596f629a2abf9cfabb573452f3113ed7e9502c699aa811e630f156eb7556"
+    },
+    {
+      "path": "docs/presentations/v8/screenshots/refund-decision.png",
+      "sha256": "d556723c5a32eae4fcc821d2a352dab79143e489ceac8f9ee203dd5feebe52ec"
+    },
+    {
+      "path": "docs/presentations/v3/icons/repeat-2.svg",
+      "sha256": "788912bbfdeab0401a36e29cde95ef594b59957a13d3e08a392d10f59c49e7da"
+    },
+    {
+      "path": "docs/presentations/v3/icons/circle-check.svg",
+      "sha256": "3e519680ab8e2a8ad8f56a340c10d61957d872237aaa868cf324b0900a74f384"
+    },
+    {
+      "path": "docs/presentations/v8/assets/pending-loop-status.png",
+      "sha256": "8a8439107c85be9fc1e721861209a3832ffcef5474f65a20cf6414b67711aeec"
+    },
+    {
+      "path": "docs/presentations/v3/icons/route.svg",
+      "sha256": "fc169fd38a9963b016ad6d60fd72baa2b0ea8e0cec085bbc53287297c3d8121a"
+    },
+    {
+      "path": "docs/presentations/v9/assets/routing-retrieval-results.png",
+      "sha256": "8af5131a9487b7e5a653a340a6f6ee20666b70996dcaab2a0d7e16c1acb4c765"
+    },
+    {
+      "path": "validation/browser_finance/runs/2026-10-13-live/browser/fdic-bank-search-decider-2/final.png",
+      "sha256": "c1495db4eb64b256d9fe7fff26f3881d92183e4cc769c70200b96d3aabd82b2e"
+    },
+    {
+      "path": "validation/browser_finance/runs/2026-10-13-live/browser/fdic-bank-search-jev-2/final.png",
+      "sha256": "3b41aeef61d6b0bdcafe83f231cb6c6a33c3ca0fef852f891b325b59cbfec7cd"
+    },
+    {
+      "path": "docs/presentations/v3/icons/code-xml.svg",
+      "sha256": "a6d2110227be375be21da7324d3c09262c1bf019d06bdeab356d515342ab7cce"
+    },
+    {
+      "path": "docs/diagrams/aws-icons/ebs.svg",
+      "sha256": "a8ee0d51f7e2359b0e4d2e6a569941ee4e9888eafd4ec49aaa503934bc70edc0"
+    },
+    {
+      "path": "docs/presentations/v9/assets/original-vllm-rps.png",
+      "sha256": "66da9dcba9569b027c02eea7cafdad5bf0d5b8bf11e0d8223abea36622150eb3"
+    }
+  ],
+  "snapshots": [
+    {
+      "file": "docs/presentations/v10/sources/payment-warm.json",
+      "source": "docs/presentations/v8/live-observations.json",
+      "sha256": "aa7d18fa8ae2c8b38887e4578738a7b0effd47f4de91a3a3246701d39b462087"
+    },
+    {
+      "file": "docs/presentations/v10/sources/app-routing.json",
+      "source": "docs/results/workflow-routing-2026-10-13/summary.json",
+      "sha256": "2c979d5e08894aeb79f1c090ab6d196956c4dee767a475bd10763ea48210dee2"
+    },
+    {
+      "file": "docs/presentations/v10/sources/validation-cross-scenario.json",
+      "source": "validation/model_comparison/summary.json",
+      "sha256": "37df96234e8b147c238702b143d4c5746a219238e80a0d28799c9263b6c2d925"
+    },
+    {
+      "file": "docs/presentations/v10/sources/browser-finance.json",
+      "source": "validation/browser_finance/runs/2026-10-13-live/scored-summary.json",
+      "sha256": "a967865d9c86d5f98ca999adc4618484177fbe751e6e3351a219e587fe3bd532"
+    },
+    {
+      "file": "docs/presentations/v10/sources/policy-routing-original.json",
+      "source": "validation/model_routing/runs/2026-10-13-live/summary.json",
+      "sha256": "66c567c356adf12fa63af570226d778e2e16dc72e4ac23f3ab759ac2eee6ec64"
+    },
+    {
+      "file": "docs/presentations/v10/sources/policy-routing-natural.json",
+      "source": "validation/model_routing/runs/2026-10-13-natural/summary.json",
+      "sha256": "870d9c712973158db57159c5017ff7acd377ed97bcbbd6d4725f6ae17be2ed06"
+    },
+    {
+      "file": "docs/presentations/v10/sources/jevbench.json",
+      "source": "docs/presentations/v8/sources/jevbench-api-20261012.json",
+      "sha256": "e1f524e49068447b187997a3f1eac672a2bb69a0c30b1f82824c1e12d2ba86fa"
+    },
+    {
+      "file": "docs/presentations/v10/sources/vllm-concurrency.json",
+      "source": "docs/presentations/v9/sources/vllm/sweep-1-128.json",
+      "sha256": "e2b5616700e732917ca97f4ce7cbbadd5f99ec0ea2659339909a4154c00bc1c2"
+    },
+    {
+      "file": "docs/presentations/v10/sources/vllm-batches.json",
+      "source": "docs/presentations/v9/sources/vllm/batch-summary.json",
+      "sha256": "5cb2bb33e6da4801ff33e8373455188dba2f82ddef78e8ae3d2aefec7a2ef16e"
+    },
+    {
+      "file": "docs/presentations/v10/sources/vllm-jev.json",
+      "source": "docs/presentations/v9/sources/vllm/jev-summary.json",
+      "sha256": "b77ea035330525818137623f903bba640cfdf30096c72064291cad48d417e340"
+    }
+  ],
+  "images": [
+    {
+      "source": "docs/presentations/v8/screenshots/refund-decision.png",
+      "output": "docs/presentations/v10/assets/refund-decision.png",
+      "crop": null,
+      "sha256": "d556723c5a32eae4fcc821d2a352dab79143e489ceac8f9ee203dd5feebe52ec"
+    },
+    {
+      "source": "docs/presentations/v8/assets/pending-loop-status.png",
+      "output": "docs/presentations/v10/assets/pending-loop-status.png",
+      "crop": null,
+      "sha256": "8a8439107c85be9fc1e721861209a3832ffcef5474f65a20cf6414b67711aeec"
+    },
+    {
+      "source": "docs/presentations/v9/assets/routing-retrieval-results.png",
+      "output": "docs/presentations/v10/assets/routing-retrieval-results.png",
+      "crop": null,
+      "sha256": "8af5131a9487b7e5a653a340a6f6ee20666b70996dcaab2a0d7e16c1acb4c765"
+    },
+    {
+      "source": "validation/browser_finance/runs/2026-10-13-live/browser/fdic-bank-search-decider-2/final.png",
+      "output": "docs/presentations/v10/assets/bank-search-decider.png",
+      "crop": [
+        0,
+        0,
+        1526,
+        1000
+      ],
+      "sha256": "fd2527d1ec5c0ada51b0b0bf085dba50f7cd0450ab5565d858870b8b97b19dbf"
+    },
+    {
+      "source": "validation/browser_finance/runs/2026-10-13-live/browser/fdic-bank-search-jev-2/final.png",
+      "output": "docs/presentations/v10/assets/bank-search-jev.png",
+      "crop": [
+        0,
+        130,
+        1440,
+        1130
+      ],
+      "sha256": "14261b2c9a1c1364d33dfef3f8aa0802a2de97ca62235fde9d7a75f1ef393bce"
+    },
+    {
+      "source": "docs/presentations/v9/assets/original-vllm-rps.png",
+      "output": "docs/presentations/v10/assets/original-vllm-rps.png",
+      "crop": null,
+      "sha256": "66da9dcba9569b027c02eea7cafdad5bf0d5b8bf11e0d8223abea36622150eb3"
+    }
+  ],
+  "price_queried_at": "2026-10-15T02:55:19.745810+00:00",
+  "deduplication": [
+    "模型机制与BERT/Jev/GPT接口说明合并，避免重复介绍",
+    "JevBench的三页合并成一页，保留方法解释与链接",
+    "支付逐场景重复截图和结论合并，保留总表、退款截图与一个闭环",
+    "主应用路由保留实现、总表、检索证据，合并代码和语义解释",
+    "优化建议合并为实测改进与后续路线两页",
+    "vLLM部署与测试方法压缩，并发与batch共用一页",
+    "成本加入RI条款、价格和交点，最终选型仅保留一页"
+  ]
+}

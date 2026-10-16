@@ -2,6 +2,8 @@
 
 用四个支付相关任务，比较三个决策模型如何选择处理流程和目标模型，以及完成路由需要多长时间。
 
+本文保留 2026-10-13 的原始两步选型实测。2026-10-16 新增「模型输入优化」及配对测试，见 **[模型自主判断的优化方法、最新结果与截图](MODEL_ROUTING_OPTIMIZATION.md)**；两个批次分开统计。
+
 **本批结论：Decider 路由最快；Jev 和 GPT 在中英文索引、代码选型上更符合已提供的能力证据。** 三者都正确识别了四个任务的处理流程，但这不等于选型正确或目标业务完成。当前结果支持优先继续评估 Jev 承担本项目的模型选型，尚不足以给出通用准确率或所有路由任务的优劣排名。
 
 [在线演示](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [功能、部署与 API](MODEL_ROUTING.md) · [原始输入输出](results/workflow-routing-2026-10-13/results.json) · [计时数据](results/workflow-routing-2026-10-13/summary.json)

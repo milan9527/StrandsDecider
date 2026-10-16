@@ -494,6 +494,78 @@ def template():
         Condition="HasJev",
     )
 
+    # Reuse the existing same-region VPC peering; expose only the model port to this API.
+    add(
+        "VllmRoute",
+        "EC2::Route",
+        {
+            "RouteTableId": ref("PrivateRoutes"),
+            "DestinationCidrBlock": sub("${VllmPrivateIp}/32"),
+            "VpcPeeringConnectionId": ref("VllmPeeringConnectionId"),
+        },
+        Condition="HasVllm",
+    )
+    for n in (1, 2):
+        add(
+            f"VllmReturnRoute{n}",
+            "EC2::Route",
+            {
+                "RouteTableId": ref("VllmRouteTableId"),
+                "DestinationCidrBlock": f"10.78.{n}.0/24",
+                "VpcPeeringConnectionId": ref("VllmPeeringConnectionId"),
+            },
+            Condition="HasVllm",
+        )
+    add(
+        "VllmApiIngress",
+        "EC2::SecurityGroupIngress",
+        {
+            "GroupId": ref("VllmSecurityGroupId"),
+            "IpProtocol": "tcp",
+            "FromPort": 8100,
+            "ToPort": 8100,
+            "SourceSecurityGroupId": ref("TaskSecurityGroup"),
+            "Description": "Authenticated System One calls from the Decider demo API",
+        },
+        Condition="HasVllm",
+    )
+    add(
+        "VllmSecretPolicy",
+        "IAM::Policy",
+        {
+            "PolicyName": "ReadVllmApiKey",
+            "Roles": [ref("ExecutionRole")],
+            "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [{
+                    "Effect": "Allow", "Action": "secretsmanager:GetSecretValue",
+                    "Resource": ref("VllmSecretArn"),
+                }],
+            },
+        },
+        Condition="HasVllm",
+    )
+    add(
+        "SecretsManagerEndpoint",
+        "EC2::VPCEndpoint",
+        {
+            "VpcId": ref("Vpc"), "VpcEndpointType": "Interface", "PrivateDnsEnabled": True,
+            "ServiceName": sub("com.amazonaws.${AWS::Region}.secretsmanager"),
+            "SubnetIds": [ref("Subnet1")],
+            "SecurityGroupIds": [ref("EndpointSecurityGroup")],
+            "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [{
+                    "Effect": "Allow", "Principal": "*",
+                    "Action": "secretsmanager:GetSecretValue",
+                    "Resource": ref("VllmSecretArn"),
+                    "Condition": {"ArnEquals": {"aws:PrincipalArn": attr("ExecutionRole", "Arn")}},
+                }],
+            },
+        },
+        Condition="HasVllm",
+    )
+
     def logging(prefix):
         return {
             "LogDriver": "awslogs",
@@ -550,9 +622,15 @@ def template():
                     "PortMappings": [{"ContainerPort": 8000, "Protocol": "tcp"}],
                     "Environment": [
                         {"Name": "SERVE_FRONTEND", "Value": "false"},
-                        {"Name": "STRANDS_DECIDER_URL", "Value": "http://127.0.0.1:8099"},
-                        {"Name": "GPU_STATE_TABLE", "Value": ref("GpuStateTableName")},
+                        {"Name": "STRANDS_DECIDER_URL", "Value": {
+                            "Fn::If": ["HasVllm", sub("http://${VllmPrivateIp}:8100"),
+                                       "http://127.0.0.1:8099"]
+                        }},
+                        {"Name": "GPU_STATE_TABLE", "Value": {
+                            "Fn::If": ["HasVllm", "", ref("GpuStateTableName")]
+                        }},
                         {"Name": "GPU_PROVIDER", "Value": ref("ModelProvider")},
+                        {"Name": "VLLM_INSTANCE_ID", "Value": ref("VllmInstanceId")},
                         {"Name": "BEDROCK_ENABLED", "Value": "true"},
                         {
                             "Name": "JEV_FUNCTION_NAME",
@@ -565,6 +643,11 @@ def template():
                         {"Name": "AUTH_COOKIE_SECURE", "Value": "true"},
                         {"Name": "AUTH_ORIGIN", "Value": sub("https://${Distribution.DomainName}")},
                     ],
+                    "Secrets": {"Fn::If": [
+                        "HasVllm",
+                        [{"Name": "DECIDER_API_KEY", "ValueFrom": sub("${VllmSecretArn}:api_key::")}],
+                        [],
+                    ]},
                     "LogConfiguration": logging("api"),
                     "HealthCheck": healthcheck("http://127.0.0.1:8000/api/live", 10),
                 },
@@ -847,8 +930,12 @@ def template():
             "ModelProvider": {
                 "Type": "String",
                 "Default": "ec2",
-                "AllowedValues": ["ec2", "sagemaker"],
+                "AllowedValues": ["ec2", "sagemaker", "vllm"],
             },
+            **{name: {"Type": "String", "Default": ""} for name in (
+                "VllmPrivateIp", "VllmSecretArn", "VllmInstanceId", "VllmSecurityGroupId",
+                "VllmRouteTableId", "VllmPeeringConnectionId",
+            )},
             "JevSecretArn": {
                 "Type": "String",
                 "Default": "",
@@ -862,6 +949,7 @@ def template():
         "Conditions": {
             "HasApiImageTag": {"Fn::Not": [{"Fn::Equals": [ref("ApiImageTag"), ""]}]},
             "HasJev": {"Fn::Not": [{"Fn::Equals": [ref("JevSecretArn"), ""]}]},
+            "HasVllm": {"Fn::Equals": [ref("ModelProvider"), "vllm"]},
         },
         "Resources": resources,
         "Outputs": {key: {"Value": value} for key, value in outputs.items()},

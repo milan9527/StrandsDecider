@@ -1,0 +1,78 @@
+{
+  "finished_at": "2026-10-16T01:47:36.308152+00:00",
+  "api_image_tag": "model-evidence-20261016-v1",
+  "evidence_version": "model-evidence-v1",
+  "catalog_version": "e9802ca5213e5f0e",
+  "ranking_version": "75d59020478318df",
+  "pytest_passed": 235,
+  "pytest_warning": "Existing Starlette TestClient/httpx deprecation",
+  "ruff_changed_code": "passed",
+  "node_syntax": "passed",
+  "local_browser": {
+    "profiles": [
+      "original",
+      "optimized",
+      "compare"
+    ],
+    "replay_cases": 4,
+    "original_branch_failure_does_not_block_optimized_model_call": true,
+    "edit_clears_results": true,
+    "no_mobile_overflow": true
+  },
+  "formal_calls": {
+    "warmups": 9,
+    "workflow": 36,
+    "original_model_selection": 36,
+    "optimized_model_selection": 36,
+    "program_selection": 0,
+    "target_execution": 24
+  },
+  "separate_decider_order_diagnostic": {
+    "calls": 6,
+    "included_in_formal_statistics": false,
+    "all_six_selected_first_candidate": true
+  },
+  "browser_errors": [],
+  "gpu_lifecycle_writes": [],
+  "mobile_overflow": false,
+  "screenshots": {
+    "analysis-comparison.png": {
+      "sha256": "4787bf9a7087cdbaf97d75abc88ac78ff93980e35af07c0bbab65d7963515c5b",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "analysis-results.png": {
+      "sha256": "b341377f1efd7a0852e6bb7f27a65a4909b6df75004c630e5c987b8dcddc3684",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "code-comparison.png": {
+      "sha256": "df34cb3788fb1e2d928ecbe9527add9d6f774ef6dc04a5944ac78a906c544f3c",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "code-results.png": {
+      "sha256": "668b8575932d541545dd38ec08a8bfde7761112290b22c5a79699568f3c9d299",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "mobile.png": {
+      "sha256": "bae7c686317513e000c42cd7131608c3949c9bf0a903aaca6c134ea3eeaa8245",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "retrieval-comparison.png": {
+      "sha256": "d65c13617e310646bb484b9abcf96de0def485250f9ce1d42ee1c3b8da1536a9",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "retrieval-results.png": {
+      "sha256": "d75becd644f700a3b93d9eaced7f8441b740432e572ffe2d3f06d99e9e1bae03",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "support-comparison.png": {
+      "sha256": "9617465495e44fbffb578579f4fac4e2d9f4b5f4fbd1cc1fb1dc98001a188c15",
+      "editing": "Unmodified actual browser screenshot"
+    },
+    "support-results.png": {
+      "sha256": "5965d3fd0940708a9a85f64598fc03217c1900bac376de24041f160c6caecf7d",
+      "editing": "Unmodified actual browser screenshot"
+    }
+  },
+  "raw_sha256": "b03d3779aecc850ac6b8993a96960f94e1292995b30721763fc231e5382ecc1c",
+  "diagnostic_sha256": "3d673b8dd335cafa86a6598549837a443b71751330a1866296c722986d04dc4d"
+}

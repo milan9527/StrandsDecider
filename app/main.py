@@ -36,9 +36,16 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app):
     app.state.auth = Auth()
+    app.state.model_provider = os.getenv("GPU_PROVIDER", "ec2")
     app.state.gpu = configured_gpu()
     app.state.upstream = os.getenv("STRANDS_DECIDER_URL", "http://127.0.0.1:8099").rstrip("/")
-    app.state.lock = asyncio.Lock()
+    app.state.model_api_key = os.getenv("DECIDER_API_KEY", "")
+    if app.state.model_provider == "vllm":
+        if not app.state.model_api_key:
+            raise RuntimeError("vLLM requires a server-side DECIDER_API_KEY")
+        app.state.lock = asyncio.Semaphore(128)
+    else:
+        app.state.lock = asyncio.Lock()
     app.state.model_timeout = float(os.getenv("DECIDER_TIMEOUT", "180"))
     app.state.sagemaker = create_runtime() if os.getenv("GPU_PROVIDER") == "sagemaker" else None
     app.state.bedrock = create_bedrock()
@@ -122,6 +129,8 @@ async def health(request: Request):
             data = response.json()
         if not isinstance(data, dict) or data.get("status") != "ok" or not data.get("model"):
             raise ValueError("Not a Decider health response")
+        if request.app.state.model_provider == "vllm" and data.get("engine") != "vllm":
+            raise ValueError("Expected the vLLM service")
         return {"connected": True, "upstream": data}
     except (httpx.HTTPError, ValueError, ClientError, BotoCoreError, TimeoutError):
         return {"connected": False, "message": "模型服务未连接。示例回放仍可使用。"}
@@ -129,6 +138,9 @@ async def health(request: Request):
 
 @app.get("/api/ready", include_in_schema=False)
 async def readiness(request: Request):
+    if request.app.state.model_provider == "vllm":
+        # Keep authentication, replay and diagnostics available during an upstream outage.
+        return {"status": "ready", "model": "shared-vllm-gpu"}
     if request.app.state.gpu:
         # The API serves authentication, examples and lifecycle controls while the GPU is off.
         return {"status": "ready", "model": "on-demand-gpu"}
@@ -218,12 +230,22 @@ async def call_model(request: Request, payload: dict):
                 payload,
             )
         else:
+            options = {}
+            if request.app.state.model_provider == "vllm":
+                options["headers"] = {
+                    "Authorization": f"Bearer {request.app.state.model_api_key}"
+                }
             response = await request.app.state.client.post(
-                request.state.model_upstream + "/v1/systemone", json=payload
+                request.state.model_upstream + "/v1/systemone", json=payload, **options
             )
             if response.status_code == 422:
                 raise HTTPException(
                     422, "模型拒绝了请求，可能超出上下文窗口。请缩短输入或减少问题。"
+                )
+            if response.status_code == 429:
+                raise HTTPException(
+                    429, "模型服务正在处理其他请求，请稍后重试。",
+                    headers={"Retry-After": response.headers.get("Retry-After", "1")},
                 )
             response.raise_for_status()
             result = response.json()
@@ -249,7 +271,7 @@ async def call_model(request: Request, payload: dict):
 async def live_decision(request: Request, payload: dict, *, measure_decisions=False):
     queued_at = perf_counter()
     decision_ms = {}
-    # Keep the entire run in one slot; the engine owns mutable inference state.
+    # Original inference is serialized; vLLM schedules concurrent requests itself.
     async with decision_slot(request.app.state.lock), inference_lease(request):
         started = perf_counter()
         try:

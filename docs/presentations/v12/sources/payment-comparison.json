@@ -1,0 +1,466 @@
+{
+  "source": "sources/payment-live.json",
+  "timing": "Application backend_total_ms, including queue/provider call; not pure GPU time or browser RTT.",
+  "method": "One run per case/profile/provider; 6 warmups excluded. Baseline before optimized; no randomized repeats.",
+  "cases": {
+    "pending": {
+      "baseline": {
+        "decider": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 429.792,
+          "mean_backend_ms": 85.9584,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "链上确认仅 3/12，等待确认数达标。",
+              "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 2179.8129999999996,
+          "mean_backend_ms": 435.9626,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "链上确认仅 3/12，等待确认数达标。",
+              "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 9490.623,
+          "mean_backend_ms": 1898.1246,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "链上确认仅 3/12，等待确认数达标。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      },
+      "optimized": {
+        "decider": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 448.28000000000003,
+          "mean_backend_ms": 89.656,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "链上确认仅 3/12，等待确认数达标。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 2038.934,
+          "mean_backend_ms": 407.78679999999997,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "链上确认仅 3/12，等待确认数达标。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 5809.343,
+          "mean_backend_ms": 1161.8686,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "链上确认仅 3/12，等待确认数达标。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      }
+    },
+    "underpaid": {
+      "baseline": {
+        "decider": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 385.86699999999996,
+          "mean_backend_ms": 77.1734,
+          "safety_adjustments": 1,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "到账仍差 0.20 USDT，等待补款。",
+              "原建议「确认订单收款」未落实，实际改为「挂起并跟进」：当前场景、到账金额或确认数不满足确认收款条件，资金动作已挂起。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 1915.097,
+          "mean_backend_ms": 383.0194,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "到账仍差 0.20 USDT，等待补款。",
+              "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 8168.897,
+          "mean_backend_ms": 1633.7794,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "到账仍差 0.20 USDT，等待补款。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      },
+      "optimized": {
+        "decider": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 395.882,
+          "mean_backend_ms": 79.1764,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "到账仍差 0.20 USDT，等待补款。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 1790.114,
+          "mean_backend_ms": 358.0228,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "到账仍差 0.20 USDT，等待补款。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 4896.424,
+          "mean_backend_ms": 979.2848,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "到账仍差 0.20 USDT，等待补款。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      }
+    },
+    "refund": {
+      "baseline": {
+        "decider": {
+          "matches": 2,
+          "calls": 5,
+          "total_backend_ms": 459.832,
+          "mean_backend_ms": 91.9664,
+          "safety_adjustments": 2,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "退款地址尚未验证。",
+              "退款尚未获得人工审批。",
+              "本次方案选择「等待人工审批」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "原建议「提交模拟退款」未落实，实际改为「挂起并跟进」：风控或本次方案的人工复核尚未完成，资金动作已挂起，继续回复客户。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 1776.296,
+          "mean_backend_ms": 355.2592,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "退款地址尚未验证。",
+              "退款尚未获得人工审批。",
+              "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 5846.945,
+          "mean_backend_ms": 1169.389,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "退款地址尚未验证。",
+              "退款尚未获得人工审批。",
+              "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      },
+      "optimized": {
+        "decider": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 406.90799999999996,
+          "mean_backend_ms": 81.3816,
+          "safety_adjustments": 1,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "退款地址尚未验证。",
+              "退款尚未获得人工审批。",
+              "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 1795.469,
+          "mean_backend_ms": 359.0938,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "退款地址尚未验证。",
+              "退款尚未获得人工审批。",
+              "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 9662.186,
+          "mean_backend_ms": 1932.4372,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "退款地址尚未验证。",
+              "退款尚未获得人工审批。",
+              "本次方案选择「验证退款地址」，待复核状态尚未解除，后续资金动作保持挂起。",
+              "资金步骤仅采用「挂起并跟进」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      }
+    },
+    "settlement": {
+      "baseline": {
+        "decider": {
+          "matches": 4,
+          "calls": 5,
+          "total_backend_ms": 448.89799999999997,
+          "mean_backend_ms": 89.7796,
+          "safety_adjustments": 1,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "结算尚未到账，暂不能完成模拟对账。",
+              "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 2026.992,
+          "mean_backend_ms": 405.3984,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "结算尚未到账，暂不能完成模拟对账。",
+              "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 4780.025,
+          "mean_backend_ms": 956.005,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "结算尚未到账，暂不能完成模拟对账。",
+              "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      },
+      "optimized": {
+        "decider": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 579.4259999999999,
+          "mean_backend_ms": 115.8852,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "结算尚未到账，暂不能完成模拟对账。",
+              "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "jev": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 2145.675,
+          "mean_backend_ms": 429.135,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "结算尚未到账，暂不能完成模拟对账。",
+              "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        },
+        "bedrock": {
+          "matches": 5,
+          "calls": 5,
+          "total_backend_ms": 5069.094,
+          "mean_backend_ms": 1013.8188,
+          "safety_adjustments": 0,
+          "business_outcome": {
+            "fundsComplete": false,
+            "complete": false,
+            "reasons": [
+              "结算尚未到账，暂不能完成模拟对账。",
+              "资金步骤仅采用「升级结算工单」，没有生成收款、退款或对账的模拟账本记录。"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "aggregate": {
+    "baseline": {
+      "decider": {
+        "matches": 14,
+        "calls": 20,
+        "mean_backend_ms": 86.21945,
+        "mean_browser_rtt_ms": 167.7349999964237,
+        "models": [
+          "strands-decider-2B-hobson-v19"
+        ]
+      },
+      "jev": {
+        "matches": 18,
+        "calls": 20,
+        "mean_backend_ms": 394.9099,
+        "mean_browser_rtt_ms": 433.8549999922514,
+        "models": [
+          "jev-1.13.0"
+        ]
+      },
+      "bedrock": {
+        "matches": 20,
+        "calls": 20,
+        "mean_backend_ms": 1414.3245,
+        "mean_browser_rtt_ms": 1442.8149999916554,
+        "models": [
+          "us.openai.gpt-6.1-sol"
+        ]
+      }
+    },
+    "optimized": {
+      "decider": {
+        "matches": 18,
+        "calls": 20,
+        "mean_backend_ms": 91.5248,
+        "mean_browser_rtt_ms": 182.04499999284744,
+        "models": [
+          "strands-decider-2B-hobson-v19"
+        ]
+      },
+      "jev": {
+        "matches": 20,
+        "calls": 20,
+        "mean_backend_ms": 388.5096,
+        "mean_browser_rtt_ms": 433.04000000357627,
+        "models": [
+          "jev-1.13.0"
+        ]
+      },
+      "bedrock": {
+        "matches": 20,
+        "calls": 20,
+        "mean_backend_ms": 1271.8523500000001,
+        "mean_browser_rtt_ms": 1302.3700000017882,
+        "models": [
+          "us.openai.gpt-6.1-sol"
+        ]
+      }
+    }
+  }
+}

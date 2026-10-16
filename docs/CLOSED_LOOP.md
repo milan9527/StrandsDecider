@@ -8,6 +8,8 @@
 
 闭环统一同时运行 Strands Decider / Jev / GPT，各自维护状态、执行保护、反馈和账本；一个模型失败不阻塞其他模型。见 [三模型对比](JEV.md)。
 
+2026-10-16 起，闭环中的每次 Decider 重判也统一使用共享 vLLM 服务。顶部「GPU」只显示状态，实例由部署端管理；以下 2026-10-12 的历史观测保留原版引擎口径。
+
 ![三侧独立的反馈闭环](diagrams/closed-loop.svg)
 
 2026-10-12 的三模型 USDC 闭环中，Decider / Jev / GPT 各六次真实决策、一次模拟确认事件后，都完成 129 USDC 模拟收款及结案。Decider 首次核验误选 `settlement_verified`，执行检查仍等待确认；模拟器将确认数从 3 推进到 12，再携带新事实与执行反馈重新判断，最终入账。中途错误保留，完成闭环不表示每次选择都正确。见 [原始观测中的 loops](presentations/v7/live-observations.json) 与 [v8 第 23 页](presentations/v8/README.md)。

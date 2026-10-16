@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="600" viewBox="0 0 1600 600">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#527083"/></marker></defs>
+<rect width="1600" height="600" fill="white"/>
+<g font-family="Noto Sans CJK SC,sans-serif" fill="#203448">
+<text x="800" y="57" font-size="29" text-anchor="middle" fill="#203448" font-weight="bold">一次前向计算：读取上下文，对候选评分</text>
+<rect x="30" y="110" width="328" height="158" rx="12" fill="#f0f7fa" stroke="#aac6d4" stroke-width="2"/>
+<text x="194" y="153" font-size="28" text-anchor="middle" fill="#203448" font-weight="bold">业务输入</text>
+<text x="194" y="195" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">事实、问题</text>
+<text x="194" y="231" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">候选 ID 与适用条件</text>
+<rect x="430" y="110" width="328" height="158" rx="12" fill="#f0f7fa" stroke="#aac6d4" stroke-width="2"/>
+<text x="594" y="153" font-size="28" text-anchor="middle" fill="#203448" font-weight="bold">Qwen3.5-2B 主体</text>
+<text x="594" y="195" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">rank-16 LoRA 适配</text>
+<text x="594" y="231" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">取得各位置隐藏表示</text>
+<rect x="830" y="110" width="328" height="158" rx="12" fill="#f0f7fa" stroke="#aac6d4" stroke-width="2"/>
+<text x="994" y="153" font-size="28" text-anchor="middle" fill="#203448" font-weight="bold">Pointer Head</text>
+<text x="994" y="195" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">候选位置与答案位置</text>
+<text x="994" y="231" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">评分 → 温度校准</text>
+<rect x="1230" y="110" width="328" height="158" rx="12" fill="#edf8f3" stroke="#80bda6" stroke-width="2"/>
+<text x="1394" y="153" font-size="28" text-anchor="middle" fill="#203448" font-weight="bold">结构化结果</text>
+<text x="1394" y="195" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">候选 ID、概率</text>
+<text x="1394" y="231" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">原始结果留存</text>
+<polyline points="363,189 420,189" fill="none" stroke="#527083" stroke-width="3" marker-end="url(#arrow)"/>
+<polyline points="763,189 820,189" fill="none" stroke="#527083" stroke-width="3" marker-end="url(#arrow)"/>
+<polyline points="1163,189 1220,189" fill="none" stroke="#527083" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1230" y="365" width="328" height="158" rx="12" fill="#fff5e8" stroke="#dbb37b" stroke-width="2"/>
+<text x="1394" y="408" font-size="28" text-anchor="middle" fill="#203448" font-weight="bold">业务执行器</text>
+<text x="1394" y="450" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">核验金额、地址与权限</text>
+<text x="1394" y="486" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">执行实际允许的动作</text>
+<rect x="430" y="365" width="328" height="158" rx="12" fill="#edf8f3" stroke="#80bda6" stroke-width="2"/>
+<text x="594" y="408" font-size="28" text-anchor="middle" fill="#203448" font-weight="bold">更新业务状态</text>
+<text x="594" y="450" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">保存执行结果</text>
+<text x="594" y="486" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">下一轮读取最新事实</text>
+<polyline points="1394,273 1394,360" fill="none" stroke="#527083" stroke-width="3" marker-end="url(#arrow)"/>
+<polyline points="1225,444 766,444" fill="none" stroke="#527083" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="994" y="422" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">执行结果与未完成原因</text>
+<polyline points="425,444 194,444 194,276" fill="none" stroke="#527083" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="293" y="417" font-size="23" text-anchor="middle" fill="#203448" font-weight="normal">反馈</text>
+<text x="800" y="571" font-size="23" text-anchor="middle" fill="#64788a" font-weight="normal">独立问题可以共享上下文；依赖执行结果的问题需要分轮处理。</text>
+</g>
+</svg>

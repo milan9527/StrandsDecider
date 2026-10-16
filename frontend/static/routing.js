@@ -3,6 +3,7 @@ let ui,
   loading = false,
   loaded = false,
   busy = false,
+  executing = "",
   stopped = false;
 let current = "support",
   mode = "live",
@@ -40,6 +41,7 @@ const total = (side) =>
 const newWorkspace = (c) => ({
   task: { text: c.task, allow_cross_region: true, include_legacy: false },
   sides: emptySides(),
+  runStrategy: null,
   elapsed: null,
   runMode: null,
   candidates: null,
@@ -111,7 +113,7 @@ function render() {
       <label class="rt-check"><input type="checkbox" data-rt-field="include_legacy" ${w.task.include_legacy ? "checked" : ""} ${busy ? "disabled" : ""}>纳入旧版模型</label></div></details>
     </section>
     <div class="rt-controls">
-      <button class="primary-button" data-rt-start ${busy ? "disabled" : ""}>${busy ? "正在对比…" : "开始路由对比"}</button>
+      <button class="primary-button" data-rt-start ${busy ? "disabled" : ""}>${busy ? escape(executing || "正在对比…") : "开始路由对比"}</button>
       <button class="secondary-button" data-rt-all ${busy ? "disabled" : ""}>测试全部 4 场景</button>
       <label>运行方式<select data-rt-mode ${busy ? "disabled" : ""}><option value="live" ${mode === "live" ? "selected" : ""}>真实三模型对比</option><option value="replay" ${mode === "replay" ? "selected" : ""}>界面回放 · 不调用模型</option></select></label>
       ${busy ? '<button class="secondary-button" data-rt-stop>完成本场景后停止</button>' : ""}
@@ -122,8 +124,8 @@ function render() {
     <div id="rt-results" aria-live="polite"></div>
     <details class="rt-overview"><summary>评测来源与候选范围</summary>
       <p>${escape(ranks.profile.note)} ${escape(ranks.embedding_source.note)}</p>
-      <p>每侧决策模型先选择处理流程，再根据任务、已选流程与候选评测选择目标型号。两步都保留真实模型输出。</p>
-      <p>候选按账户可用性、区域、模态及已核实的评测映射筛选，按模型 ID 排列。不设价格/质量门槛，也不自动选榜单第一名。未映射模型仍保留在完整目录。</p>
+      <p>原始流程：模型选流程 → 模型选型号。三路分别由 Strands Decider、Jev、GPT 完成两次判断。</p>
+      <p>候选按账户、区域、模态与评测映射筛选，再由模型选择；同一流程使用相同候选与顺序，任务输入不添加优先级。</p>
       <p>${ranks.profile.speed_available ? "第三方速度仅作参考，不能代表 Bedrock 实测。" : "当前 LiveBench 快照不含速度指标，不宣称目标模型最快。"} 两步决策与目标执行分别计时。</p>
       <p>Artificial Analysis：${ranks.profile.id === "artificial_analysis" ? "已接入官方 API 快照。" : "尚未配置 API key；当前使用 LiveBench。"} <a href="https://artificialanalysis.ai/documentation" target="_blank" rel="noopener">API 文档</a></p>
     </details>
@@ -145,39 +147,50 @@ function evidenceDetail(r) {
     <p>${m.quality != null ? `综合 ${num(m.quality)} · 代码 ${num(m.coding)}` : `检索 ${num(m.retrieval)}`}
     ${m.input_price != null ? `<br>参考 USD / 百万 token：输入 ${num(m.input_price, 3)} · 输出 ${num(m.output_price, 3)}` : ""}</p>
     <small>${escape(benchmark.benchmark_configuration)}</small>
-    <details><summary>决策模型看到的 ${pool.candidate_count} 个候选</summary>
-      <p>满足调用条件 ${pool.available_model_count} 个；有评测映射 ${pool.candidate_count} 个。按模型 ID 排列，不是推荐顺序。</p>
+    <details><summary>候选池与基准快照 · ${pool.candidate_count} 个型号</summary>
+      <p>满足调用条件 ${pool.available_model_count} 个；有评测映射 ${pool.candidate_count} 个。按模型 ID 排列，不是推荐顺序。实际发送的指标见对应路径的输入输出。</p>
       <div class="rt-scroll"><table><thead><tr><th>候选</th><th>综合</th><th>代码</th><th>检索</th></tr></thead><tbody>${pool.candidates.map((row) => `<tr><td>${escape(row.candidate_id)} · ${escape(row.model.name)}${row.candidate_id === r.choice ? " ✓" : ""}</td><td>${num(row.benchmark.metrics.quality)}</td><td>${num(row.benchmark.metrics.coding)}</td><td>${num(row.benchmark.metrics.retrieval)}</td></tr>`).join("")}</tbody></table></div>
       <a href="${escape(benchmark.source_url)}" target="_blank" rel="noopener">评测来源</a>
       <details><summary>未纳入候选的原因</summary><pre>${escape(JSON.stringify(pool.excluded, null, 2))}</pre></details>
     </details></div>`;
 }
 
+function executionDetail(side) {
+  const x = side.execution;
+  if (!x) return "";
+  return `<div class="rt-execution"><strong>${x.error ? "执行失败" : x.complete ? "目标模型返回结果" : "未生成完整结果"}</strong>
+    <span>${x.error ? `请求等待 ${ms(x.client_total_ms)}` : `目标执行 ${ms(x.backend_total_ms)}`}</span>
+    <pre>${escape(x.error || x.text)}</pre>${x.vector_preview ? `<pre>${escape(JSON.stringify(x.vector_preview))}</pre>` : ""}
+    <small>${escape(JSON.stringify(x.usage || {}))}</small></div>`;
+}
+
+function sideCard(side, provider, w) {
+  const flow = flowOf(side),
+    r = resultOf(side),
+    model = selected(side);
+  return `<article class="rt-side ${provider}" data-rt-side="${provider}">
+    <div class="rt-model-name">${names[provider]}</div>
+    <strong class="rt-time">${ms(total(side))}</strong><span class="rt-muted">${w.runMode === "replay" ? "回放 · 未调用模型" : `${side.steps.filter((x) => x.source === "live").length} 次已返回决策合计`}</span>
+    <h3>① ${flow ? escape(flow.label) : "等待流程选择"}</h3>
+    ${flow ? `<p class="rt-workflow-plan">${flow.workflow.steps.map(escape).join(" → ")}</p><small>流程选择 ${ms(flow.timings?.backend_total_ms)}</small>` : ""}
+    <div class="rt-selection"><span>② ${names[provider]} 选择的型号</span>
+      <h3>${model ? escape(model.name) : side.error ? "未完成" : r ? "未选出型号" : "等待选择"}</h3>
+      ${model ? `<code>${escape(model.id)}</code><p>型号选择 ${ms(r.timings?.backend_total_ms)}</p>` : ""}</div>
+    ${evidenceDetail(r)}
+    ${side.error ? `<div class="rt-error">${escape(side.error)}</div>` : ""}
+    ${canExecute(r) && w.runMode === "live" ? `<button class="secondary-button" data-rt-execute="${provider}" ${busy ? "disabled" : ""}>执行目标模型</button>` : ""}
+    ${executionDetail(side)}</article>`;
+}
+
 function renderResults() {
-  const w = workspace(),
-    completed = providers.filter((p) => selected(w.sides[p])).length;
+  const w = workspace();
+  const completed = providers.filter((p) => selected(w.sides[p])).length;
   $("#rt-results").innerHTML = `
-    <div class="rt-result-heading"><h2>流程、模型选择与速度</h2><span>${w.runMode === "replay" ? "界面回放 · 无模型推理" : `完成 ${completed}/3 条路由 · 整轮 ${ms(w.elapsed)}`}</span></div>
-    <div class="rt-flow-label">原始任务 <span>→</span> 决策模型选流程 <span>→</span> 决策模型选型号 <span>→</span> 调用目标模型</div>
-    <div class="rt-sides">${providers
-      .map((p) => {
-        const side = w.sides[p],
-          flow = flowOf(side),
-          r = resultOf(side),
-          model = selected(side);
-        return `<article class="rt-side ${p}" data-rt-side="${p}"><div class="rt-model-name">${names[p]}</div>
-        <strong class="rt-time">${ms(total(side))}</strong><span class="rt-muted">${w.runMode === "replay" ? "回放 · 未调用模型" : `${side.steps.filter((x) => x.source === "live").length} 次真实决策合计`}</span>
-        <h3>① ${flow ? escape(flow.label) : "等待流程选择"}</h3>
-        ${flow ? `<p class="rt-workflow-plan">${flow.workflow.steps.map(escape).join(" → ")}</p><small>流程选择 ${ms(flow.timings?.backend_total_ms)}</small>` : ""}
-        <div class="rt-selection"><span>② ${names[p]} 选择的型号</span><h3>${model ? escape(model.name) : side.error ? "未完成" : busy ? "等待模型选择…" : "尚未选择"}</h3>${model ? `<code>${escape(model.id)}</code><p>型号选择 ${ms(r.timings?.backend_total_ms)}</p>` : ""}</div>
-        ${evidenceDetail(r)}
-        ${side.error ? `<div class="rt-error">${escape(side.error)}</div>` : ""}
-        ${r && w.runMode === "live" && canExecute(r) ? `<button class="secondary-button" data-rt-execute="${p}" ${busy ? "disabled" : ""}>执行所选模型</button>` : ""}
-        ${side.execution ? `<div class="rt-execution"><strong>${side.execution.error ? "执行失败" : side.execution.complete ? "目标模型返回结果" : "未生成完整结果"}</strong><span>目标执行 ${ms(side.execution.backend_total_ms)}</span><pre>${escape(side.execution.error || side.execution.text)}</pre>${side.execution.vector_preview ? `<pre>${escape(JSON.stringify(side.execution.vector_preview))}</pre>` : ""}<small>${escape(JSON.stringify(side.execution.usage || {}))}</small></div>` : ""}
-      </article>`;
-      })
-      .join("")}</div>
-    <p class="rt-note">${w.runMode === "replay" ? "回放仅模拟界面流程，结果不是模型选择。" : "两次选择都来自决策模型；第三方分数作为选型依据。"} 流程为处理计划，点击执行后才调用目标模型；不会自动运行代码测试或搜索知识库。</p>
+    <div class="rt-result-heading"><h2>流程、模型选择与速度</h2><span>${w.runMode === "replay" ? "界面回放 · 无模型推理" : `完成 ${completed}/3 条路由 · 整轮 ${ms(w.elapsed)}`}</span>
+    ${w.runMode === "live" && completed ? `<button class="secondary-button" data-rt-execute-all ${busy ? "disabled" : ""}>执行三侧目标模型</button>` : ""}</div>
+    <h3 class="rt-variant-title">原始流程：模型选流程 → 模型选型号</h3>
+    <div class="rt-sides">${providers.map((p) => sideCard(w.sides[p], p, w)).join("")}</div>
+    <p class="rt-note">流程为处理计划，执行后才调用目标模型；不会自动运行代码测试或搜索知识库。</p>
     ${Object.entries(stages)
       .map(([stage, label], index) => {
         const rows = providers.map((p) =>
@@ -187,26 +200,22 @@ function renderResults() {
         const identical =
           rows.every(Boolean) &&
           new Set(rows.map((r) => r.input_hash)).size === 1;
-        return `<section class="rt-round" data-rt-stage="${stage}"><div class="rt-round-title"><h3>${index + 1}. ${label} · 输入与输出</h3><span>${identical ? "三侧输入相同" : stage === "model" ? "沿各自所选流程继续；输入可能不同" : "等待结果"}</span></div>
+        return `<section class="rt-round" data-rt-stage="${stage}"><div class="rt-round-title"><h3>${index + 1}. ${label} · 输入与输出</h3><span>${identical ? "三侧输入相同" : "沿各自所选流程继续"}</span></div>
         <div class="rt-turn-input"><b>原始任务</b><p>${escape(w.runTask.text)}</p></div>
         <div class="rt-sides">${providers
           .map((p, i) => {
             const r = rows[i];
-            return `<div class="rt-turn-output"><b>${names[p]}</b>${r ? `<h4>${escape(r.label)}</h4><code>${escape(JSON.stringify({ choice: r.choice }))}</code><p>${r.candidate_count} 个候选 · ${r.source === "live" ? ms(r.timings.backend_total_ms) : escape(r.notice)}</p>${stage === "model" ? `<p>已选流程：${escape(r.workflow.label)}</p>` : ""}<details><summary>实际输入 / 输出 / token</summary><pre>${escape(JSON.stringify({ input: r.model_input, output: { model: r.model, choice: r.choice, probabilities: r.probabilities, confidence: r.confidence, usage: r.usage, timings: r.timings }, input_hash: r.input_hash }, null, 2))}</pre></details>` : "<p>未返回有效结果。</p>"}</div>`;
+            return `<div class="rt-turn-output"><b>${names[p]}</b>${r ? `<h4>${escape(r.label)}</h4><code>${escape(JSON.stringify({ choice: r.choice }))}</code><p>${r.candidate_count} 个候选 · ${ms(r.timings?.backend_total_ms)}${r.notice ? " · " + escape(r.notice) : ""}</p><details><summary>实际输入 / 输出 / token</summary><pre>${escape(JSON.stringify({ input: r.model_input || r.policy_input, source: r.source, output: { model: r.model, choice: r.choice, probabilities: r.probabilities, confidence: r.confidence, usage: r.usage, timings: r.timings }, input_hash: r.input_hash }, null, 2))}</pre></details>` : "<p>未返回有效结果。</p>"}</div>`;
           })
           .join("")}</div></section>`;
       })
       .join("")}
-    <details class="rt-overview"><summary>四场景汇总</summary><div class="rt-scroll"><table><thead><tr><th>场景</th>${providers.map((p) => `<th>${names[p]}</th>`).join("")}</tr></thead><tbody>${catalog.cases
-      .map(
-        (c) =>
-          `<tr><th>${escape(c.title)}</th>${providers
-            .map((p) => {
-              const s = workspaces.get(c.id).sides[p];
-              return `<td>${flowOf(s) ? escape(flowOf(s).label) : "尚未选择"} → ${selected(s) ? escape(selected(s).name) : s.error ? escape(s.error) : "尚未选择"}<br>两步合计 ${ms(total(s))}</td>`;
-            })
-            .join("")}</tr>`,
-      )
+    <details class="rt-overview"><summary>四场景汇总</summary><div class="rt-scroll"><table><thead><tr><th>场景</th>${providers.map((p) => `<th>${names[p]}</th>`).join("")}</tr></thead><tbody>
+    ${catalog.cases
+      .map((c) => {
+        const item = workspaces.get(c.id);
+        return `<tr><th>${escape(c.title)}</th>${providers.map((p) => `<td>${escape(selected(item.sides[p])?.name || "—")} · ${ms(total(item.sides[p]))}</td>`).join("")}</tr>`;
+      })
       .join("")}</tbody></table></div></details>`;
 }
 
@@ -242,36 +251,52 @@ async function runOne() {
   const w = workspace();
   w.sides = emptySides();
   w.runMode = mode;
+  w.runStrategy = "original";
   w.runTask = structuredClone(w.task);
   w.elapsed = null;
   const start = performance.now();
-  for (const stage of Object.keys(stages)) {
-    await Promise.all(
-      providers.map(async (provider) => {
-        const side = w.sides[provider];
-        if (side.error) return;
-        try {
-          const started = performance.now();
-          const result = await ui.api("/api/routing/decision", {
+  const versions = {
+    catalog_version: catalog.version,
+    ranking_version: catalog.rankings.version,
+  };
+  await Promise.all(
+    providers.map(async (provider) => {
+      const side = w.sides[provider];
+      let flow;
+      try {
+        flow = await ui.api("/api/routing/decision", {
+          task: w.runTask,
+          provider,
+          mode: w.runMode,
+          stage: "workflow",
+          strategy: "original",
+          ...versions,
+        });
+        side.steps.push(flow);
+      } catch (e) {
+        side.error = `流程判断：${e.message}`;
+        renderResults();
+        return;
+      }
+      renderResults();
+      try {
+        side.steps.push(
+          await ui.api("/api/routing/decision", {
             task: w.runTask,
             provider,
             mode: w.runMode,
-            stage,
-            ...(stage === "model" ? { workflow: flowOf(side).choice } : {}),
-            catalog_version: catalog.version,
-            ranking_version: catalog.rankings.version,
-          });
-          side.steps.push({
-            ...result,
-            client_total_ms: performance.now() - started,
-          });
-        } catch (e) {
-          side.error = `${stages[stage]}：${e.message}`;
-        }
-        renderResults();
-      }),
-    );
-  }
+            stage: "model",
+            workflow: flow.choice,
+            strategy: "original",
+            ...versions,
+          }),
+        );
+      } catch (e) {
+        side.error = `型号判断：${e.message}`;
+      }
+      renderResults();
+    }),
+  );
   w.elapsed = performance.now() - start;
   renderResults();
 }
@@ -300,14 +325,14 @@ async function run(all) {
   }
 }
 
-async function execute(provider) {
-  if (busy) return;
+async function executeOne(provider) {
   const w = workspace(),
     side = w.sides[provider],
     r = resultOf(side);
   if (!canExecute(r) || w.runMode !== "live") return;
-  busy = true;
+  executing = `执行 ${names[provider]} 的目标模型…`;
   render();
+  const started = performance.now();
   try {
     side.execution = await ui.api("/api/routing/execute", {
       task: w.runTask,
@@ -315,11 +340,25 @@ async function execute(provider) {
       model_id: r.selected_model.id,
       catalog_version: catalog.version,
       ranking_version: catalog.rankings.version,
+      strategy: "original",
     });
   } catch (e) {
-    side.execution = { error: e.message };
+    side.execution = { error: e.message, status: e.status };
+  }
+  side.execution.client_total_ms = performance.now() - started;
+  renderResults();
+}
+
+async function execute(provider, all = false) {
+  if (busy) return;
+  busy = true;
+  render();
+  try {
+    if (!all) await executeOne(provider);
+    else for (const p of providers) await executeOne(p);
   } finally {
     busy = false;
+    executing = "";
     render();
   }
 }
@@ -344,7 +383,9 @@ function click(event) {
     render();
     updateCandidates();
   }
-  if (el.hasAttribute("data-rt-execute")) return execute(el.dataset.rtExecute);
+  if (el.hasAttribute("data-rt-execute"))
+    return execute(el.dataset.rtExecute);
+  if (el.hasAttribute("data-rt-execute-all")) return execute(null, true);
   if (el.hasAttribute("data-rt-export")) {
     const data = {
       exported_at: new Date().toISOString(),
@@ -353,6 +394,9 @@ function click(event) {
       ranking_version: catalog.rankings.version,
       ranking_source: catalog.rankings.profile,
       routing_version: catalog.routing_version,
+      strategy: "original",
+      comparison_method:
+        "Each provider independently selects a workflow, then a target model using original evidence. The same workflow uses identical candidate IDs and order. Target executions are separate calls.",
       router_model: catalog.router_model,
       reasoning_effort: "low",
       cases: Object.fromEntries(workspaces),
@@ -381,6 +425,7 @@ function change(event) {
   else if (el.dataset.rtField) w.task[el.dataset.rtField] = el.checked;
   else return;
   w.sides = emptySides();
+  w.runStrategy = null;
   w.elapsed = null;
   w.runTask = null;
   w.runMode = null;

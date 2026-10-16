@@ -62,12 +62,12 @@ USDC 收款的 Decider 审批改为规则检查通过；少付核验仍误选等
 
 最多返回 20 次决策；同一步连续两次无进展转人工。模型的错误选择不会被替换成规则答案。模拟账本在当前运行内只登记一次；页面刷新会清除记录，尚不具备生产数据库的持久化与跨请求幂等。实现详情见 [闭环工作流](../docs/CLOSED_LOOP.md)。
 
-当前常驻 GPU 模式直接发起真实推理，不在每次对比前额外查询 GPU。仅 Decider 连接、超时或服务端错误才触发状态检查，确认未就绪或状态未知时打开恢复弹窗；GPT 错误和输入校验／排队错误单独显示。顶部「GPU」与业务台「GPU 管理」共用唯一一组启停按钮；正常运行时不每 5 秒轮询，打开弹窗或启停期间恢复刷新。管理员可手动启停，恢复后返回模块重新运行；其他用户可查看状态并联系管理员。规则回放无需 GPU。
+当前直接调用常驻 vLLM，不在每次对比前额外查询 GPU。仅 Decider 连接、超时或服务端错误触发状态检查和连接提示；GPT 错误和输入校验／排队错误单独显示。顶部「GPU」显示共享实例状态，不提供启停；部署管理员恢复服务后，返回模块重新运行。规则回放无需 GPU。
 
 ## 模型对比口径
 
 - **Bedrock：`us.openai.gpt-6.1-sol`，GPT-6.1 Sol，reasoning effort 为 `low`。** 使用 Bedrock Converse API；没有其他模型回退。
-- **Decider：官方 v19，EC2 On-Demand `g6.xlarge`。** 复用串行推理和占用租约；2026-10-11 起常驻运行，禁用闲置停机，支持手动停止并保留磁盘。
+- **Decider：官方 v19 的 vLLM 适配，EC2 On-Demand `g6.xlarge`。** 2026-10-16 起，全部支付模式共用私网 vLLM 服务，取消原版串行租约，API 支持并发请求；共享实例常驻，页面不启停。本文更早的实测数字仍来自当时原版部署。
 - **Jev：Typesafe `jev-latest`，本批次实际版本 `jev-1.13.0`。** 通过 IAM Lambda 转发请求；后端时间包含客户端建立、转发和外部 HTTPS 往返，纯模型推理时间未报告。
 - 每个步骤发送相同业务事实、问题和候选项；服务器生成输入指纹，只有相同指纹的真实成功结果才进入配对统计。Bedrock 适配层额外要求输出候选 ID JSON。
 - 五个决策步骤按顺序运行，同一步的三个模型并发调用。输入事实在本轮运行开始时固定；一键流程随后分别执行三侧沙盒动作，不因参考差异暂停；资金条件或实际结案条件不足时执行保护调整，原始模型建议保留。沙盒执行另行计时、另行记录。
@@ -98,7 +98,7 @@ USDC 收款的 Decider 审批改为规则检查通过；少付核验仍误选等
 
 ## EC2 迁移验收与演示资料（2026-10-11，历史批次）
 
-当前 Decider 使用 EC2 `g6.xlarge` 常驻服务。迁移验收完成四个场景、20 组同输入配对：两侧各 20 次成功；Decider 累计后端耗时 1,651.831 ms，GPT 为 20,249.118 ms。这是一次固定样本验收，不代表稳定性能；详情见 [部署记录](DEPLOYED.md)。
+当时 Decider 使用原版 EC2 `g6.xlarge` 常驻服务。迁移验收完成四个场景、20 组同输入配对：两侧各 20 次成功；Decider 累计后端耗时 1,651.831 ms，GPT 为 20,249.118 ms。这是一次固定样本验收，不代表稳定性能；详情见 [部署记录](DEPLOYED.md)。
 
 当前 [30 页 v8 PPT / PDF / 讲稿](../docs/presentations/v8/README.md) 包含 EC2 三模型架构、预热后的最新数据与真实截图，以及 JevBench 和 Decider 优化案例。以下保留迁移前历史观测。
 
@@ -146,7 +146,8 @@ USDC 收款的 Decider 审批改为规则检查通过；少付核验仍误选等
 flowchart LR
     UI[支付业务台 / 私有 S3 + OAC] --> API[ECS Fargate / 鉴权]
     API --> GPT[Amazon Bedrock / GPT-6.1 Sol]
-    API --> Decider[ECS on EC2 g6.xlarge / Decider v19 / CUDA]
+    API -->|VPC Peering / 私网 System One| Decider[EC2 g6.xlarge / vLLM / Decider v19]
+    API --> Jev[Lambda 转发 / Jev System One]
     API --> Policy[确定性业务规则 / 沙盒状态转换]
 ```
 
@@ -154,7 +155,7 @@ flowchart LR
 
 共享单子网 Bedrock Runtime interface VPC endpoint。支付模块在应用层仍只允许 GPT-6.1 Sol；新增的 [模型路由模块](../docs/MODEL_ROUTING.md) 使用 GPT-6 Sol，并可调用区域目录中的目标模型，因此共享 IAM 与 endpoint policy 也允许相应基础模型和推理配置。ECS 无公网 IP、VPC 无互联网默认路由，前端保持私有 S3 + CloudFront OAC。
 
-这个私网端点有独立的 AWS PrivateLink 小时费与数据处理费，另计 Bedrock 实际 token 费用。GPU 的闲置删除不删除 API 所需的私网端点。
+私网端点有独立的 AWS PrivateLink 小时费与数据处理费，另计 Bedrock 实际 token 费用。vLLM 的密钥注入、双向私网路由与共享实例管理见 [部署说明](README.md)。
 
 | 接口 | 用途 |
 | --- | --- |

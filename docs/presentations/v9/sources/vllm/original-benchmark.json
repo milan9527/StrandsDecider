@@ -1,0 +1,93 @@
+{
+  "created_at": "2026-10-13T08:09:12.503800+00:00",
+  "url": "http://127.0.0.1:8099",
+  "method": "fixed workers, closed-loop HTTP load, nearest-rank success-only percentiles",
+  "warmups_excluded": 176,
+  "warmup_policy": "Before each level: max(corpus size, 2 * concurrency) requests at that concurrency",
+  "cells": [
+    {
+      "concurrency": 1,
+      "started_at": "2026-10-13T08:09:14.026431+00:00",
+      "finished_at": "2026-10-13T08:09:19.493128+00:00",
+      "warmups_excluded": 20,
+      "requests": 80,
+      "successes": 80,
+      "failures": 0,
+      "wall_seconds": 5.466672204999895,
+      "successful_rps": 14.634131515482284,
+      "mean_ms": 68.29708041250342,
+      "p50_ms": 68.35933299998942,
+      "p95_ms": 69.11243799982003
+    },
+    {
+      "concurrency": 2,
+      "started_at": "2026-10-13T08:09:20.845599+00:00",
+      "finished_at": "2026-10-13T08:09:26.243321+00:00",
+      "warmups_excluded": 20,
+      "requests": 80,
+      "successes": 80,
+      "failures": 0,
+      "wall_seconds": 5.39769780000006,
+      "successful_rps": 14.821133558088249,
+      "mean_ms": 134.0703700249918,
+      "p50_ms": 134.91620199988574,
+      "p95_ms": 135.49370599980648
+    },
+    {
+      "concurrency": 4,
+      "started_at": "2026-10-13T08:09:27.598677+00:00",
+      "finished_at": "2026-10-13T08:09:33.000200+00:00",
+      "warmups_excluded": 20,
+      "requests": 80,
+      "successes": 80,
+      "failures": 0,
+      "wall_seconds": 5.401493076999941,
+      "successful_rps": 14.810719713896779,
+      "mean_ms": 264.9564770749919,
+      "p50_ms": 269.888820999995,
+      "p95_ms": 270.9786810000878
+    },
+    {
+      "concurrency": 8,
+      "started_at": "2026-10-13T08:09:34.362344+00:00",
+      "finished_at": "2026-10-13T08:09:39.781623+00:00",
+      "warmups_excluded": 20,
+      "requests": 80,
+      "successes": 80,
+      "failures": 0,
+      "wall_seconds": 5.419250458000079,
+      "successful_rps": 14.762189092386627,
+      "mean_ms": 518.1739923874801,
+      "p50_ms": 541.475483000113,
+      "p95_ms": 542.7643379998699
+    },
+    {
+      "concurrency": 16,
+      "started_at": "2026-10-13T08:09:41.955793+00:00",
+      "finished_at": "2026-10-13T08:09:47.378414+00:00",
+      "warmups_excluded": 32,
+      "requests": 80,
+      "successes": 80,
+      "failures": 0,
+      "wall_seconds": 5.422590717000048,
+      "successful_rps": 14.753095738757613,
+      "mean_ms": 982.6744011749895,
+      "p50_ms": 1082.0370459998685,
+      "p95_ms": 1084.3875699999899
+    },
+    {
+      "concurrency": 32,
+      "started_at": "2026-10-13T08:09:51.728471+00:00",
+      "finished_at": "2026-10-13T08:09:57.161423+00:00",
+      "warmups_excluded": 64,
+      "requests": 80,
+      "successes": 80,
+      "failures": 0,
+      "wall_seconds": 5.432923123000137,
+      "successful_rps": 14.725038103580392,
+      "mean_ms": 1750.6416636000154,
+      "p50_ms": 2160.015336000015,
+      "p95_ms": 2168.4401350000826
+    }
+  ]
+}

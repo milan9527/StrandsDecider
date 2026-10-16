@@ -1,0 +1,668 @@
+{
+  "created_at": "2026-10-13T10:39:31.740854+00:00",
+  "instance_type": "g6.xlarge",
+  "gpu": "NVIDIA L4",
+  "engine_sequences": 128,
+  "only_batch_token_argument_changed": true,
+  "http_limit": 256,
+  "question_limit": 256,
+  "corpus_sha256": "55fb81ec8ad913195ef277388ca08f545f50cbb58f09544f17fec183937e00b7",
+  "reference_sha256": "b68548a3359d87cf62b2717f1375d87d41247b8cb9c91eefaf58b10ab834c427",
+  "input_token_range": [
+    304,
+    445
+  ],
+  "input_tokens_by_case": {
+    "pending/approve": 396,
+    "pending/close": 333,
+    "pending/execute": 430,
+    "pending/intake": 328,
+    "pending/verify": 380,
+    "refund/approve": 411,
+    "refund/close": 348,
+    "refund/execute": 445,
+    "refund/intake": 343,
+    "refund/verify": 395,
+    "settlement/approve": 372,
+    "settlement/close": 309,
+    "settlement/execute": 406,
+    "settlement/intake": 304,
+    "settlement/verify": 356,
+    "underpaid/approve": 407,
+    "underpaid/close": 344,
+    "underpaid/execute": 441,
+    "underpaid/intake": 339,
+    "underpaid/verify": 391
+  },
+  "mean_input_tokens": 373.9,
+  "requests": 23040,
+  "successes": 23040,
+  "http_failures": 0,
+  "numeric_passed": 23040,
+  "changed_choices": 0,
+  "warmups_excluded": 1948,
+  "warmup_failures": 0,
+  "numeric_failures": [],
+  "max_probability_difference": 0.015000000000000013,
+  "max_confidence_difference": 0.020000000000000018,
+  "gpu_all_samples_peak_memory_mib": 18518.0,
+  "restored_configuration": true,
+  "reports": [
+    {
+      "created_at": "2026-10-13T10:25:11.352254+00:00",
+      "endpoint": "https://d1e9udi8st2p3g.cloudfront.net",
+      "label": "batch-16384",
+      "engine_max_num_seqs": 128,
+      "max_num_batched_tokens": 16384,
+      "http_limit": 256,
+      "question_limit": 256,
+      "requests_per_minute": 120000,
+      "burst": 512,
+      "timeout_seconds": 25,
+      "client_timeout_seconds": 40,
+      "method": "Fixed workers, closed-loop public HTTPS; no retries; warmups excluded",
+      "warmup_policy": "max(corpus size, 2 * concurrency) before every level",
+      "percentiles": "Nearest-rank; successful responses only; failures included in elapsed time",
+      "tolerance": 0.02,
+      "cells": [
+        {
+          "concurrency": 8,
+          "started_at": "2026-10-13T10:25:12.028032+00:00",
+          "finished_at": "2026-10-13T10:25:50.101075+00:00",
+          "warmups_excluded": 20,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 38.01380059798248,
+          "successful_rps": 33.671981750436544,
+          "mean_ms": 237.33560407822551,
+          "p50_ms": 238.37845600792207,
+          "p95_ms": 242.67828100710176,
+          "p99_ms": 248.0832190194633,
+          "max_ms": 254.85693800146692,
+          "server_mean_ms": 225.06660937500018,
+          "server_p95_ms": 232.0,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 38,
+            "busy_percent_mean": 88.78947368421052,
+            "memory_mib_max": 15382.0,
+            "power_w_mean": 71.24473684210527
+          }
+        },
+        {
+          "concurrency": 16,
+          "started_at": "2026-10-13T10:25:51.219083+00:00",
+          "finished_at": "2026-10-13T10:26:33.254653+00:00",
+          "warmups_excluded": 32,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 41.97367656198912,
+          "successful_rps": 30.495303362563984,
+          "mean_ms": 523.7271227081465,
+          "p50_ms": 519.1024100058712,
+          "p95_ms": 547.736801992869,
+          "p99_ms": 556.1164979881141,
+          "max_ms": 564.7076250170358,
+          "server_mean_ms": 503.76204687499995,
+          "server_p95_ms": 529.31,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 42,
+            "busy_percent_mean": 95.83333333333333,
+            "memory_mib_max": 15840.0,
+            "power_w_mean": 72.30642857142857
+          }
+        },
+        {
+          "concurrency": 32,
+          "started_at": "2026-10-13T10:26:35.426502+00:00",
+          "finished_at": "2026-10-13T10:27:18.257784+00:00",
+          "warmups_excluded": 64,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 42.750861148990225,
+          "successful_rps": 29.940917342906754,
+          "mean_ms": 1061.559994426966,
+          "p50_ms": 1067.5128570001107,
+          "p95_ms": 1081.9139490195084,
+          "p99_ms": 1136.0383039864246,
+          "max_ms": 1158.2376370206475,
+          "server_mean_ms": 1034.3498125000012,
+          "server_p95_ms": 1059.98,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 42,
+            "busy_percent_mean": 98.21428571428571,
+            "memory_mib_max": 16292.0,
+            "power_w_mean": 71.85452380952381
+          }
+        },
+        {
+          "concurrency": 64,
+          "started_at": "2026-10-13T10:27:22.615288+00:00",
+          "finished_at": "2026-10-13T10:28:05.702400+00:00",
+          "warmups_excluded": 128,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.02300249499967,
+          "successful_rps": 29.751526526972807,
+          "mean_ms": 2118.97781703756,
+          "p50_ms": 2143.1285929866135,
+          "p95_ms": 2189.3895850225817,
+          "p99_ms": 2381.620144005865,
+          "max_ms": 3049.2628820065875,
+          "server_mean_ms": 1985.3932109374982,
+          "server_p95_ms": 2123.46,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 43,
+            "busy_percent_mean": 98.67441860465117,
+            "memory_mib_max": 17186.0,
+            "power_w_mean": 71.29953488372094
+          }
+        },
+        {
+          "concurrency": 128,
+          "started_at": "2026-10-13T10:28:14.500900+00:00",
+          "finished_at": "2026-10-13T10:28:57.797745+00:00",
+          "warmups_excluded": 256,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.23201535202679,
+          "successful_rps": 29.607687487555246,
+          "mean_ms": 4142.155479540858,
+          "p50_ms": 4362.697984004626,
+          "p95_ms": 5166.660160990432,
+          "p99_ms": 7941.645069979131,
+          "max_ms": 8364.028398995288,
+          "server_mean_ms": 3604.905734374999,
+          "server_p95_ms": 4309.12,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 43,
+            "busy_percent_mean": 99.02325581395348,
+            "memory_mib_max": 17570.0,
+            "power_w_mean": 71.71046511627907
+          }
+        }
+      ]
+    },
+    {
+      "created_at": "2026-10-13T10:31:03.786637+00:00",
+      "endpoint": "https://d1e9udi8st2p3g.cloudfront.net",
+      "label": "batch-32768",
+      "engine_max_num_seqs": 128,
+      "max_num_batched_tokens": 32768,
+      "http_limit": 256,
+      "question_limit": 256,
+      "requests_per_minute": 120000,
+      "burst": 512,
+      "timeout_seconds": 25,
+      "client_timeout_seconds": 40,
+      "method": "Fixed workers, closed-loop public HTTPS; no retries; warmups excluded",
+      "warmup_policy": "max(corpus size, 2 * concurrency) before every level",
+      "percentiles": "Nearest-rank; successful responses only; failures included in elapsed time",
+      "tolerance": 0.02,
+      "cells": [
+        {
+          "concurrency": 8,
+          "started_at": "2026-10-13T10:31:04.458562+00:00",
+          "finished_at": "2026-10-13T10:31:41.872243+00:00",
+          "warmups_excluded": 20,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 37.35346728898003,
+          "successful_rps": 34.2672338848079,
+          "mean_ms": 232.9986380792434,
+          "p50_ms": 235.1815199945122,
+          "p95_ms": 242.17334401328117,
+          "p99_ms": 245.47925702063367,
+          "max_ms": 263.06367601500824,
+          "server_mean_ms": 221.92680468750032,
+          "server_p95_ms": 231.88,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 37,
+            "busy_percent_mean": 90.75675675675676,
+            "memory_mib_max": 14484.0,
+            "power_w_mean": 71.21162162162162
+          }
+        },
+        {
+          "concurrency": 16,
+          "started_at": "2026-10-13T10:31:42.988950+00:00",
+          "finished_at": "2026-10-13T10:32:24.729687+00:00",
+          "warmups_excluded": 32,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 41.677270899002906,
+          "successful_rps": 30.712183700843593,
+          "mean_ms": 520.0222588468023,
+          "p50_ms": 518.6869190074503,
+          "p95_ms": 535.0065500242636,
+          "p99_ms": 566.705802018987,
+          "max_ms": 575.55246699485,
+          "server_mean_ms": 500.41194531249977,
+          "server_p95_ms": 518.48,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 42,
+            "busy_percent_mean": 96.26190476190476,
+            "memory_mib_max": 14942.0,
+            "power_w_mean": 71.6242857142857
+          }
+        },
+        {
+          "concurrency": 32,
+          "started_at": "2026-10-13T10:32:26.906977+00:00",
+          "finished_at": "2026-10-13T10:33:09.965328+00:00",
+          "warmups_excluded": 64,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 42.97616027598269,
+          "successful_rps": 29.783954447771603,
+          "mean_ms": 1067.1576591609892,
+          "p50_ms": 1072.7625059953425,
+          "p95_ms": 1087.1752650127746,
+          "p99_ms": 1145.099396002479,
+          "max_ms": 1165.4873499937821,
+          "server_mean_ms": 1040.2512187500022,
+          "server_p95_ms": 1066.89,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 43,
+            "busy_percent_mean": 98.16279069767442,
+            "memory_mib_max": 15594.0,
+            "power_w_mean": 71.64860465116278
+          }
+        },
+        {
+          "concurrency": 64,
+          "started_at": "2026-10-13T10:33:14.391744+00:00",
+          "finished_at": "2026-10-13T10:33:57.593062+00:00",
+          "warmups_excluded": 128,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.13438620098168,
+          "successful_rps": 29.674700690904206,
+          "mean_ms": 2123.809168017011,
+          "p50_ms": 2150.708533008583,
+          "p95_ms": 2200.009936990682,
+          "p99_ms": 2448.4555270173587,
+          "max_ms": 2498.0871719890274,
+          "server_mean_ms": 1974.5552968749985,
+          "server_p95_ms": 2130.08,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 44,
+            "busy_percent_mean": 98.86363636363636,
+            "memory_mib_max": 16704.0,
+            "power_w_mean": 71.25636363636363
+          }
+        },
+        {
+          "concurrency": 128,
+          "started_at": "2026-10-13T10:34:06.617401+00:00",
+          "finished_at": "2026-10-13T10:34:50.155739+00:00",
+          "warmups_excluded": 256,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.4711667909869,
+          "successful_rps": 29.444804326379135,
+          "mean_ms": 4201.1042457216945,
+          "p50_ms": 4308.780942985322,
+          "p95_ms": 5983.922963991063,
+          "p99_ms": 7541.164480004227,
+          "max_ms": 8740.690703998553,
+          "server_mean_ms": 3375.5251874999967,
+          "server_p95_ms": 4264.08,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 43,
+            "busy_percent_mean": 98.65116279069767,
+            "memory_mib_max": 18518.0,
+            "power_w_mean": 72.19302325581396
+          }
+        }
+      ]
+    },
+    {
+      "created_at": "2026-10-13T10:34:50.369514+00:00",
+      "endpoint": "https://d1e9udi8st2p3g.cloudfront.net",
+      "label": "batch-32768-repeat",
+      "engine_max_num_seqs": 128,
+      "max_num_batched_tokens": 32768,
+      "http_limit": 256,
+      "question_limit": 256,
+      "requests_per_minute": 120000,
+      "burst": 512,
+      "timeout_seconds": 25,
+      "client_timeout_seconds": 40,
+      "method": "Fixed workers, closed-loop public HTTPS; no retries; warmups excluded",
+      "warmup_policy": "max(corpus size, 2 * concurrency) before every level",
+      "percentiles": "Nearest-rank; successful responses only; failures included in elapsed time",
+      "tolerance": 0.02,
+      "cells": [
+        {
+          "concurrency": 32,
+          "started_at": "2026-10-13T10:34:52.647772+00:00",
+          "finished_at": "2026-10-13T10:35:35.843168+00:00",
+          "warmups_excluded": 64,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.13422476500273,
+          "successful_rps": 29.674811752697536,
+          "mean_ms": 1071.60219011364,
+          "p50_ms": 1073.5859840060584,
+          "p95_ms": 1105.0879200047348,
+          "p99_ms": 1118.2646010129247,
+          "max_ms": 1153.4304280066863,
+          "server_mean_ms": 1040.6119921875008,
+          "server_p95_ms": 1080.9,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 43,
+            "busy_percent_mean": 98.11627906976744,
+            "memory_mib_max": 18518.0,
+            "power_w_mean": 71.8593023255814
+          }
+        },
+        {
+          "concurrency": 64,
+          "started_at": "2026-10-13T10:35:40.322878+00:00",
+          "finished_at": "2026-10-13T10:36:24.199884+00:00",
+          "warmups_excluded": 128,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.81307905699941,
+          "successful_rps": 29.215020435673125,
+          "mean_ms": 2157.883860418613,
+          "p50_ms": 2183.109878009418,
+          "p95_ms": 2233.371636015363,
+          "p99_ms": 2503.4982319921255,
+          "max_ms": 2560.794948018156,
+          "server_mean_ms": 2000.6193593750056,
+          "server_p95_ms": 2164.42,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 44,
+            "busy_percent_mean": 96.68181818181819,
+            "memory_mib_max": 18518.0,
+            "power_w_mean": 71.51840909090909
+          }
+        },
+        {
+          "concurrency": 128,
+          "started_at": "2026-10-13T10:36:33.272648+00:00",
+          "finished_at": "2026-10-13T10:37:17.121485+00:00",
+          "warmups_excluded": 256,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 43.78367285002605,
+          "successful_rps": 29.23464197223551,
+          "mean_ms": 4244.383386350862,
+          "p50_ms": 4355.869469989557,
+          "p95_ms": 5903.592727991054,
+          "p99_ms": 7409.480842994526,
+          "max_ms": 8700.781158986501,
+          "server_mean_ms": 3313.2903046875012,
+          "server_p95_ms": 4300.82,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 44,
+            "busy_percent_mean": 97.0,
+            "memory_mib_max": 18518.0,
+            "power_w_mean": 70.95
+          }
+        }
+      ]
+    },
+    {
+      "created_at": "2026-10-13T10:19:24.160405+00:00",
+      "endpoint": "https://d1e9udi8st2p3g.cloudfront.net",
+      "label": "batch-8192",
+      "engine_max_num_seqs": 128,
+      "max_num_batched_tokens": 8192,
+      "http_limit": 256,
+      "question_limit": 256,
+      "requests_per_minute": 120000,
+      "burst": 512,
+      "timeout_seconds": 25,
+      "client_timeout_seconds": 40,
+      "method": "Fixed workers, closed-loop public HTTPS; no retries; warmups excluded",
+      "warmup_policy": "max(corpus size, 2 * concurrency) before every level",
+      "percentiles": "Nearest-rank; successful responses only; failures included in elapsed time",
+      "tolerance": 0.02,
+      "cells": [
+        {
+          "concurrency": 8,
+          "started_at": "2026-10-13T10:19:24.827889+00:00",
+          "finished_at": "2026-10-13T10:19:59.473595+00:00",
+          "warmups_excluded": 20,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 34.585468029021285,
+          "successful_rps": 37.009763722900296,
+          "mean_ms": 215.76331228372965,
+          "p50_ms": 216.71416301978752,
+          "p95_ms": 230.98625798593275,
+          "p99_ms": 234.42878600326367,
+          "max_ms": 241.11368699232116,
+          "server_mean_ms": 205.51945312500007,
+          "server_p95_ms": 222.1,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 35,
+            "busy_percent_mean": 95.0,
+            "memory_mib_max": 15792.0,
+            "power_w_mean": 72.00571428571428
+          }
+        },
+        {
+          "concurrency": 16,
+          "started_at": "2026-10-13T10:20:00.573014+00:00",
+          "finished_at": "2026-10-13T10:20:42.538491+00:00",
+          "warmups_excluded": 32,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 41.903171820013085,
+          "successful_rps": 30.54661364294786,
+          "mean_ms": 522.8035980875347,
+          "p50_ms": 523.8150759832934,
+          "p95_ms": 546.059446001891,
+          "p99_ms": 552.8969269944355,
+          "max_ms": 561.1168470059056,
+          "server_mean_ms": 502.5162812499997,
+          "server_p95_ms": 529.17,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 42,
+            "busy_percent_mean": 95.85714285714286,
+            "memory_mib_max": 16250.0,
+            "power_w_mean": 72.0904761904762
+          }
+        },
+        {
+          "concurrency": 32,
+          "started_at": "2026-10-13T10:20:44.686453+00:00",
+          "finished_at": "2026-10-13T10:21:26.964844+00:00",
+          "warmups_excluded": 64,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 42.19161729500047,
+          "successful_rps": 30.337779920839267,
+          "mean_ms": 1047.6616828748774,
+          "p50_ms": 1053.1861489871517,
+          "p95_ms": 1069.5180549810175,
+          "p99_ms": 1121.936455980176,
+          "max_ms": 1144.5624319894705,
+          "server_mean_ms": 1019.7876015625009,
+          "server_p95_ms": 1045.9,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 42,
+            "busy_percent_mean": 98.21428571428571,
+            "memory_mib_max": 16702.0,
+            "power_w_mean": 71.78785714285715
+          }
+        },
+        {
+          "concurrency": 64,
+          "started_at": "2026-10-13T10:21:31.230046+00:00",
+          "finished_at": "2026-10-13T10:22:13.675919+00:00",
+          "warmups_excluded": 128,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 42.37899316998664,
+          "successful_rps": 30.20364346235844,
+          "mean_ms": 2081.608078251521,
+          "p50_ms": 2106.9986899965443,
+          "p95_ms": 2137.208261003252,
+          "p99_ms": 2786.8853050167672,
+          "max_ms": 2990.696287015453,
+          "server_mean_ms": 2013.7643437500017,
+          "server_p95_ms": 2097.74,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 43,
+            "busy_percent_mean": 98.11627906976744,
+            "memory_mib_max": 17272.0,
+            "power_w_mean": 71.0306976744186
+          }
+        },
+        {
+          "concurrency": 128,
+          "started_at": "2026-10-13T10:22:22.427024+00:00",
+          "finished_at": "2026-10-13T10:23:05.270367+00:00",
+          "warmups_excluded": 256,
+          "warmup_failures": 0,
+          "requests": 1280,
+          "successes": 1280,
+          "failures": 0,
+          "status_counts": {
+            "200": 1280
+          },
+          "wall_seconds": 42.77525011199759,
+          "successful_rps": 29.923846071001368,
+          "mean_ms": 4069.6272476663166,
+          "p50_ms": 4236.866296996595,
+          "p95_ms": 4932.3033379914705,
+          "p99_ms": 7456.943274009973,
+          "max_ms": 8151.242318999721,
+          "server_mean_ms": 3648.173749999998,
+          "server_p95_ms": 4237.62,
+          "behavior_passed": 1280,
+          "changed_choices": 0,
+          "gpu": {
+            "samples": 42,
+            "busy_percent_mean": 98.16666666666667,
+            "memory_mib_max": 17272.0,
+            "power_w_mean": 71.83880952380953
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "task": "商户 A 应结算 12000 USDC，实际收到 11880 USDC，手续费为 0.8%，另有 24 USDC 暂扣。分析结算差额及其原因。",
+  "captured_at": "2026-10-15T04:46:25.856306+00:00",
+  "arithmetic_reference": {
+    "gross": 12000,
+    "received": 11880,
+    "fee_rate": 0.008,
+    "fee": 96,
+    "hold": 24,
+    "difference": 120,
+    "unexplained": 0
+  },
+  "target_configuration": "max effort from benchmark mapping; maxTokens=4096; response wait limit 40s.",
+  "routes": {
+    "decider": {
+      "workflow_choice": "reasoning",
+      "model_choice": "m04",
+      "target_model": "Claude Opus 5",
+      "target_model_id": "anthropic.claude-opus-5",
+      "workflow_ms": 140.842,
+      "model_ms": 336.774,
+      "routing_ms": 477.616,
+      "target_status": 200,
+      "target_complete": true,
+      "target_ms": 38947.185,
+      "target_usage": {
+        "inputTokens": 69,
+        "outputTokens": 2349,
+        "totalTokens": 2418,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "target_text": "## 一、差额核算\n\n| 项目 | 金额 (USDC) | 占应结金额比 | 说明 |\n|---|---|---|---|\n| 应结算金额（Gross） | 12,000.00 | 100% | 结算基数 |\n| 结算手续费 | −96.00 | 0.80% | 12,000 × 0.8% |\n| 暂扣款 | −24.00 | 0.20% | 临时保留，非最终成本 |\n| **应到账（Net）** | **11,880.00** | 99.00% | 12,000 − 96 − 24 |\n| 实际到账 | 11,880.00 | 99.00% | — |\n| **未解释差异** | **0.00** | 0% | 完全勾兑 |\n\n**结论：总差额 120 USDC，由 96 USDC 手续费 + 24 USDC 暂扣 100% 构成，账务完全平衡，无异常缺口。**\n\n需要区分两个口径：\n- **本期现金折让率 = 1.00%**（120 / 12,000）\n- **实际通道成本率 = 0.80%**（若 24 USDC 后续如约释放）；若最终未释放，真实成本率升至 1.00%\n\n## 二、24 USDC 暂扣的可能原因\n\n按发生概率排序，需向通道/收单方取证确认：\n\n1. **滚动准备金（Rolling Reserve）**——恰为 0.2%，典型的按比例计提风控保证金，通常 T+30/60/90 释放\n2. **拒付/争议准备金**——存在未结的争议交易，按预估敞口冻结\n3. **退款预留**——有未完成退款或部分退款待扣\n4. **风控/合规审查**——交易触发 AML、地址风险筛查，待人工复核放行\n5. **链上网络费（Gas）代付**——若通道代垫提币 Gas 并按笔预扣，则此项为**真实费用而非暂扣**\n6. **税费代扣代缴**——某些司法辖区的预提税\n7. **跨期尾差结转**——上期对账差异或整数化结算的尾差挂账\n\n> 关键判断：**它是\"暂扣\"还是\"扣除\"**。两者会计处理和成本计量完全不同。\n\n## 三、会计处理建议\n\n商户 A 账务（假设 24 为可收回暂扣）：\n\n```\n借：数字资产—USDC            11,880\n借：销售费用—结算手续费          96\n借：其他应收款—通道暂扣款        24\n    贷：应收结算款—通道A        12,000\n```\n\n释放时：\n```\n借：数字资产—USDC               24\n    贷：其他应收款—通道暂扣款     24\n```\n\n若确认为税费/Gas 等不可退项目，则 24 应直接计入费用（`贷：应收结算款`），并相应调高成本率至 1.00%。\n\n## 四、待核实事项（建议向通道方发起确认）\n\n1. **费率基数**：0.8% 是对 Gross（12,000）还是 Net 计费？本例按 Gross 计算吻合，须与合同条款一致\n2. **暂扣依据**：性质、计提规则（固定比例 / 按风险敞口）、**释放条件与到期日**\n3. **是否可退**：影响成本率与资产确认\n4. **精度与舍入**：USDC 为 6 位小数，本例金额为整数，无舍入差异；若后续出现 0.000001 级尾差，属精度正常现象\n5. **到账口径**：11,880 是链上实收还是平台账面数？若链上实收，需确认网络费由谁承担（是否已在 120 之外另行损耗）\n\n## 五、风险提示\n\n- 暂扣款应建立**台账并做账龄分析**，超期未释放须升级催收，避免形成事实上的资金占用或坏账\n- 若滚动准备金长期按 0.2% 累积，在稳定交易量下会沉淀相当规模的受限资金，需纳入现金流预测\n- 建议每期用\"**应结 − 手续费 − 暂扣 = 实收**\"公式自动化勾兑，差额不为 0 即触发告警",
+      "target_error": null
+    },
+    "jev": {
+      "workflow_choice": "reasoning",
+      "model_choice": "m05",
+      "target_model": "Claude Opus 5.5",
+      "target_model_id": "anthropic.claude-opus-5-5",
+      "workflow_ms": 387.485,
+      "model_ms": 405.025,
+      "routing_ms": 792.51,
+      "target_status": 504,
+      "target_complete": false,
+      "target_ms": null,
+      "target_usage": null,
+      "target_text": null,
+      "target_error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。"
+    },
+    "bedrock": {
+      "workflow_choice": "reasoning",
+      "model_choice": "m18",
+      "target_model": "GPT-6.1 Sol",
+      "target_model_id": "openai.gpt-6.1-sol",
+      "workflow_ms": 590.607,
+      "model_ms": 1206.944,
+      "routing_ms": 1797.551,
+      "target_status": 200,
+      "target_complete": true,
+      "target_ms": 23248.733,
+      "target_usage": {
+        "inputTokens": 52,
+        "outputTokens": 1172,
+        "totalTokens": 1224,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "target_text": "假设 **12000 USDC 是扣除手续费和暂扣款前的金额**，且手续费按此金额计算：\n\n| 项目 | 计算 | 金额 |\n|---|---|---:|\n| 结算差额 | 12000 − 11880 | **120 USDC** |\n| 手续费 | 12000 × 0.8% | **96 USDC** |\n| 暂扣款 | 已知金额 | **24 USDC** |\n| 总扣减 | 96 + 24 | **120 USDC** |\n\n核算预计到账：\n**12000 − 96 − 24 = 11880 USDC**，与实际收到金额一致。\n\n**结论：**在上述计算口径下，差额完全由 **96 USDC 手续费和 24 USDC 暂扣款**构成，没有未解释的差额。总差额占应结算金额的 **1%**，但手续费率仍是 **0.8%**，另 **0.2%** 为暂扣。\n\n暂扣款不等同于最终费用，是否及何时释放，需核对结算规则或账单。",
+      "target_error": null
+    }
+  }
+}

@@ -20,8 +20,33 @@
       "Default": "ec2",
       "AllowedValues": [
         "ec2",
-        "sagemaker"
+        "sagemaker",
+        "vllm"
       ]
+    },
+    "VllmPrivateIp": {
+      "Type": "String",
+      "Default": ""
+    },
+    "VllmSecretArn": {
+      "Type": "String",
+      "Default": ""
+    },
+    "VllmInstanceId": {
+      "Type": "String",
+      "Default": ""
+    },
+    "VllmSecurityGroupId": {
+      "Type": "String",
+      "Default": ""
+    },
+    "VllmRouteTableId": {
+      "Type": "String",
+      "Default": ""
+    },
+    "VllmPeeringConnectionId": {
+      "Type": "String",
+      "Default": ""
     },
     "JevSecretArn": {
       "Type": "String",
@@ -67,6 +92,14 @@
             ""
           ]
         }
+      ]
+    },
+    "HasVllm": {
+      "Fn::Equals": [
+        {
+          "Ref": "ModelProvider"
+        },
+        "vllm"
       ]
     }
   },
@@ -885,6 +918,134 @@
       },
       "Condition": "HasJev"
     },
+    "VllmRoute": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "PrivateRoutes"
+        },
+        "DestinationCidrBlock": {
+          "Fn::Sub": "${VllmPrivateIp}/32"
+        },
+        "VpcPeeringConnectionId": {
+          "Ref": "VllmPeeringConnectionId"
+        }
+      },
+      "Condition": "HasVllm"
+    },
+    "VllmReturnRoute1": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "VllmRouteTableId"
+        },
+        "DestinationCidrBlock": "10.78.1.0/24",
+        "VpcPeeringConnectionId": {
+          "Ref": "VllmPeeringConnectionId"
+        }
+      },
+      "Condition": "HasVllm"
+    },
+    "VllmReturnRoute2": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "VllmRouteTableId"
+        },
+        "DestinationCidrBlock": "10.78.2.0/24",
+        "VpcPeeringConnectionId": {
+          "Ref": "VllmPeeringConnectionId"
+        }
+      },
+      "Condition": "HasVllm"
+    },
+    "VllmApiIngress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "VllmSecurityGroupId"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 8100,
+        "ToPort": 8100,
+        "SourceSecurityGroupId": {
+          "Ref": "TaskSecurityGroup"
+        },
+        "Description": "Authenticated System One calls from the Decider demo API"
+      },
+      "Condition": "HasVllm"
+    },
+    "VllmSecretPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "ReadVllmApiKey",
+        "Roles": [
+          {
+            "Ref": "ExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": "secretsmanager:GetSecretValue",
+              "Resource": {
+                "Ref": "VllmSecretArn"
+              }
+            }
+          ]
+        }
+      },
+      "Condition": "HasVllm"
+    },
+    "SecretsManagerEndpoint": {
+      "Type": "AWS::EC2::VPCEndpoint",
+      "Properties": {
+        "VpcId": {
+          "Ref": "Vpc"
+        },
+        "VpcEndpointType": "Interface",
+        "PrivateDnsEnabled": true,
+        "ServiceName": {
+          "Fn::Sub": "com.amazonaws.${AWS::Region}.secretsmanager"
+        },
+        "SubnetIds": [
+          {
+            "Ref": "Subnet1"
+          }
+        ],
+        "SecurityGroupIds": [
+          {
+            "Ref": "EndpointSecurityGroup"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "secretsmanager:GetSecretValue",
+              "Resource": {
+                "Ref": "VllmSecretArn"
+              },
+              "Condition": {
+                "ArnEquals": {
+                  "aws:PrincipalArn": {
+                    "Fn::GetAtt": [
+                      "ExecutionRole",
+                      "Arn"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "Condition": "HasVllm"
+    },
     "TaskDefinition": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
@@ -947,18 +1108,38 @@
               },
               {
                 "Name": "STRANDS_DECIDER_URL",
-                "Value": "http://127.0.0.1:8099"
+                "Value": {
+                  "Fn::If": [
+                    "HasVllm",
+                    {
+                      "Fn::Sub": "http://${VllmPrivateIp}:8100"
+                    },
+                    "http://127.0.0.1:8099"
+                  ]
+                }
               },
               {
                 "Name": "GPU_STATE_TABLE",
                 "Value": {
-                  "Ref": "GpuStateTableName"
+                  "Fn::If": [
+                    "HasVllm",
+                    "",
+                    {
+                      "Ref": "GpuStateTableName"
+                    }
+                  ]
                 }
               },
               {
                 "Name": "GPU_PROVIDER",
                 "Value": {
                   "Ref": "ModelProvider"
+                }
+              },
+              {
+                "Name": "VLLM_INSTANCE_ID",
+                "Value": {
+                  "Ref": "VllmInstanceId"
                 }
               },
               {
@@ -1011,6 +1192,20 @@
                 }
               }
             ],
+            "Secrets": {
+              "Fn::If": [
+                "HasVllm",
+                [
+                  {
+                    "Name": "DECIDER_API_KEY",
+                    "ValueFrom": {
+                      "Fn::Sub": "${VllmSecretArn}:api_key::"
+                    }
+                  }
+                ],
+                []
+              ]
+            },
             "LogConfiguration": {
               "LogDriver": "awslogs",
               "Options": {

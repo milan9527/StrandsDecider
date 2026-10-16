@@ -471,3 +471,33 @@
   display: block;
   margin-bottom: 14px;
 }
+.rt-comparison {
+  background: #fff;
+  border: 1px solid #bedbd4;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 16px 0 26px;
+}
+.rt-comparison h3 {
+  margin: 0 0 10px;
+}
+.rt-comparison p,
+.rt-comparison > small {
+  color: #52637c;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.rt-variant-title {
+  margin: 24px 0 14px;
+  font-size: 17px;
+}
+.rt-optimized {
+  background: #edf8f3;
+}
+.rt-policy-json {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 240px;
+  overflow: auto;
+  font-size: 11px;
+}

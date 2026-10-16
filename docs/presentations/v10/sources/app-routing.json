@@ -1,0 +1,169 @@
+{
+  "exported_at": "2026-10-13T12:45:27.396Z",
+  "catalog_version": "34ec203d9142af53",
+  "ranking_version": "75d59020478318df",
+  "routing_version": "workflow-model-v1",
+  "warmups_excluded": 6,
+  "cases": {
+    "support": {
+      "decider": {
+        "workflow": "customer_support",
+        "workflow_label": "直接答复客户",
+        "model": "Claude Opus 5",
+        "model_id": "anthropic.claude-opus-5",
+        "candidate_choice": "m04",
+        "candidate_count": 22,
+        "workflow_ms": 121,
+        "model_ms": 340.018,
+        "total_ms": 461.018
+      },
+      "jev": {
+        "workflow": "customer_support",
+        "workflow_label": "直接答复客户",
+        "model": "Claude Opus 5.5",
+        "model_id": "anthropic.claude-opus-5-5",
+        "candidate_choice": "m05",
+        "candidate_count": 22,
+        "workflow_ms": 383.099,
+        "model_ms": 364.785,
+        "total_ms": 747.884
+      },
+      "bedrock": {
+        "workflow": "customer_support",
+        "workflow_label": "直接答复客户",
+        "model": "GPT-6 Luna",
+        "model_id": "openai.gpt-6-luna",
+        "candidate_choice": "m16",
+        "candidate_count": 22,
+        "workflow_ms": 480.049,
+        "model_ms": 984.751,
+        "total_ms": 1464.8
+      }
+    },
+    "code": {
+      "decider": {
+        "workflow": "coding",
+        "workflow_label": "编写代码与测试用例",
+        "model": "Claude Opus 5",
+        "model_id": "anthropic.claude-opus-5",
+        "candidate_choice": "m04",
+        "candidate_count": 22,
+        "workflow_ms": 153.245,
+        "model_ms": 369.311,
+        "total_ms": 522.556
+      },
+      "jev": {
+        "workflow": "coding",
+        "workflow_label": "编写代码与测试用例",
+        "model": "Claude Sonnet 5.5",
+        "model_id": "anthropic.claude-sonnet-5-5",
+        "candidate_choice": "m08",
+        "candidate_count": 22,
+        "workflow_ms": 436.298,
+        "model_ms": 496.985,
+        "total_ms": 933.283
+      },
+      "bedrock": {
+        "workflow": "coding",
+        "workflow_label": "编写代码与测试用例",
+        "model": "Claude Sonnet 5.5",
+        "model_id": "anthropic.claude-sonnet-5-5",
+        "candidate_choice": "m08",
+        "candidate_count": 22,
+        "workflow_ms": 509.683,
+        "model_ms": 5658.476,
+        "total_ms": 6168.159
+      }
+    },
+    "analysis": {
+      "decider": {
+        "workflow": "reasoning",
+        "workflow_label": "核算与分析",
+        "model": "Claude Opus 5",
+        "model_id": "anthropic.claude-opus-5",
+        "candidate_choice": "m04",
+        "candidate_count": 22,
+        "workflow_ms": 166.576,
+        "model_ms": 337.991,
+        "total_ms": 504.567
+      },
+      "jev": {
+        "workflow": "reasoning",
+        "workflow_label": "核算与分析",
+        "model": "Claude Opus 5.5",
+        "model_id": "anthropic.claude-opus-5-5",
+        "candidate_choice": "m05",
+        "candidate_count": 22,
+        "workflow_ms": 417.959,
+        "model_ms": 402.445,
+        "total_ms": 820.404
+      },
+      "bedrock": {
+        "workflow": "reasoning",
+        "workflow_label": "核算与分析",
+        "model": "GPT-6.1 Sol",
+        "model_id": "openai.gpt-6.1-sol",
+        "candidate_choice": "m18",
+        "candidate_count": 22,
+        "workflow_ms": 537.38,
+        "model_ms": 11568.769,
+        "total_ms": 12106.149
+      }
+    },
+    "retrieval": {
+      "decider": {
+        "workflow": "embedding",
+        "workflow_label": "生成检索向量",
+        "model": "Embed English",
+        "model_id": "cohere.embed-english-v3",
+        "candidate_choice": "m00",
+        "candidate_count": 3,
+        "workflow_ms": 79.517,
+        "model_ms": 102.641,
+        "total_ms": 182.15800000000002
+      },
+      "jev": {
+        "workflow": "embedding",
+        "workflow_label": "生成检索向量",
+        "model": "Embed Multilingual",
+        "model_id": "cohere.embed-multilingual-v3",
+        "candidate_choice": "m01",
+        "candidate_count": 3,
+        "workflow_ms": 415.278,
+        "model_ms": 386.383,
+        "total_ms": 801.6610000000001
+      },
+      "bedrock": {
+        "workflow": "embedding",
+        "workflow_label": "生成检索向量",
+        "model": "Embed Multilingual",
+        "model_id": "cohere.embed-multilingual-v3",
+        "candidate_choice": "m01",
+        "candidate_count": 3,
+        "workflow_ms": 919.785,
+        "model_ms": 980.99,
+        "total_ms": 1900.775
+      }
+    }
+  },
+  "timings": {
+    "decider": {
+      "workflow_ms": 130.084,
+      "model_ms": 287.49,
+      "total_ms": 417.575,
+      "calls": 8
+    },
+    "jev": {
+      "workflow_ms": 413.159,
+      "model_ms": 412.649,
+      "total_ms": 825.808,
+      "calls": 8
+    },
+    "bedrock": {
+      "workflow_ms": 611.724,
+      "model_ms": 4798.247,
+      "total_ms": 5409.971,
+      "calls": 8
+    }
+  }
+}

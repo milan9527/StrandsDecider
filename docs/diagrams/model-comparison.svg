@@ -26,14 +26,14 @@
   <text x="800.0" y="180.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle" font-weight="700">应用准备相同输入（候选项由开发者提供）</text>
   <text x="800.0" y="207.3" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#1c3045" text-anchor="middle">业务事实 state + 问题 instructions + 候选项 criteria → 相同 input_hash</text>
   <rect x="55" y="285" width="470" height="655" rx="12" fill="#e9f6f2" stroke="#72b5a5" stroke-dasharray="7 5" />
-  <text x="71" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="start" font-weight="700">Strands Decider · EC2 GPU</text>
+  <text x="71" y="315.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#155e55" text-anchor="start" font-weight="700">Strands Decider · vLLM GPU</text>
   <rect x="95" y="350" width="390" height="85" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
   <text x="290.0" y="386.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">System One choice 请求</text>
   <text x="290.0" y="410.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">业务事实 + 问题 + 候选条件</text>
   <rect x="95" y="490" width="390" height="110" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
-  <text x="290.0" y="526.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">私网 HTTP → ECS on EC2</text>
+  <text x="290.0" y="526.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">VPC Peering → EC2 vLLM</text>
   <text x="290.0" y="550.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">Decider v19 / L4 GPU</text>
-  <text x="290.0" y="574.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">官方 System One 推理服务</text>
+  <text x="290.0" y="574.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">私网 :8100 / System One</text>
   <rect x="95" y="655" width="390" height="100" rx="12" fill="#e9f6f2" stroke="#72b5a5" />
   <text x="290.0" y="698.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle" font-weight="700">choice + probabilities + confidence</text>
   <text x="290.0" y="722.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#155e55" text-anchor="middle">校验候选 ID、分布与响应字段</text>

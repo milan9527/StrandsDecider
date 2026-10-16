@@ -1,0 +1,42 @@
+{
+  "figures": [
+    {
+      "file": "assets/01-aws-architecture.png",
+      "source": "assets/01-aws-architecture.svg",
+      "source_sha256": "a0113ee0efc28c77046473cfd1f961a6fd11c7d493587162ba7e84c00831cfd3",
+      "sha256": "ce0f486b352f9ca98b4759645d35f3d47c48f96f9c5533b5f4b7a011ec508499",
+      "transformation": "Original simplified architecture, using repository AWS service icons"
+    },
+    {
+      "file": "assets/05-decision-flow.png",
+      "source": "assets/05-decision-flow.svg",
+      "source_sha256": "e58506220680f33552bc303f73c2c9588bc3ba5595810675e118bc178d3a4e8c",
+      "sha256": "b5c42521b131fed7278e04a6883b59bcdffca37162008d0b66972d1fca3a83a0",
+      "reference": "https://strandsagents.com/blog/introducing-strands-decider/",
+      "transformation": "Original explanatory diagram; no model output or measurement fabricated"
+    },
+    {
+      "file": "assets/02-refund-decision.png",
+      "source": "docs/presentations/v8/screenshots/refund-decision.png",
+      "source_sha256": "d556723c5a32eae4fcc821d2a352dab79143e489ceac8f9ee203dd5feebe52ec",
+      "sha256": "d556723c5a32eae4fcc821d2a352dab79143e489ceac8f9ee203dd5feebe52ec",
+      "transformation": "unchanged copy"
+    },
+    {
+      "file": "assets/03-routing-retrieval.png",
+      "source": "docs/presentations/v9/assets/routing-retrieval-results.png",
+      "source_sha256": "8af5131a9487b7e5a653a340a6f6ee20666b70996dcaab2a0d7e16c1acb4c765",
+      "sha256": "8af5131a9487b7e5a653a340a6f6ee20666b70996dcaab2a0d7e16c1acb4c765",
+      "transformation": "unchanged copy"
+    },
+    {
+      "file": "assets/04-original-vllm-rps.png",
+      "source": "docs/presentations/v9/assets/original-vllm-rps.png",
+      "source_sha256": "66da9dcba9569b027c02eea7cafdad5bf0d5b8bf11e0d8223abea36622150eb3",
+      "sha256": "66da9dcba9569b027c02eea7cafdad5bf0d5b8bf11e0d8223abea36622150eb3",
+      "transformation": "unchanged copy"
+    }
+  ],
+  "routing_crop_source": "docs/presentations/v9/build-manifest.json",
+  "aws_icon_attribution": "docs/diagrams/aws-icons/README.md"
+}

@@ -1096,40 +1096,6 @@
       ]
     },
     {
-      "id": "anthropic.claude-sonnet-4-20250514-v1:0",
-      "name": "Claude Sonnet 4",
-      "provider": "Anthropic",
-      "input_modalities": [
-        "TEXT",
-        "IMAGE"
-      ],
-      "output_modalities": [
-        "TEXT"
-      ],
-      "inference_types": [
-        "INFERENCE_PROFILE"
-      ],
-      "lifecycle": "LEGACY",
-      "streaming": true,
-      "availability": {
-        "modelId": "anthropic.claude-sonnet-4-20250514-v1",
-        "agreementAvailability": {
-          "status": "AVAILABLE"
-        },
-        "authorizationStatus": "AUTHORIZED",
-        "entitlementAvailability": "AVAILABLE",
-        "regionAvailability": "AVAILABLE"
-      },
-      "account_available": true,
-      "invoke_id": "us.anthropic.claude-sonnet-4-20250514-v1:0",
-      "invocation": "inference_profile",
-      "destination_regions": [
-        "us-east-1",
-        "us-east-2",
-        "us-west-2"
-      ]
-    },
-    {
       "id": "anthropic.claude-sonnet-4-5-20250929-v1:0",
       "name": "Claude Sonnet 4.5",
       "provider": "Anthropic",
@@ -3778,7 +3744,7 @@
       "inference_types": [
         "INFERENCE_PROFILE"
       ],
-      "lifecycle": "ACTIVE",
+      "lifecycle": "LEGACY",
       "streaming": true,
       "availability": {
         "modelId": "writer.palmyra-x4-v1",
@@ -3811,7 +3777,7 @@
       "inference_types": [
         "INFERENCE_PROFILE"
       ],
-      "lifecycle": "ACTIVE",
+      "lifecycle": "LEGACY",
       "streaming": true,
       "availability": {
         "modelId": "writer.palmyra-x5-v1",
@@ -4026,8 +3992,8 @@
       ]
     }
   ],
-  "captured_at": "2026-10-13T12:39:46.589669+00:00",
-  "version": "34ec203d9142af53",
+  "captured_at": "2026-10-16T01:34:06.468534+00:00",
+  "version": "e9802ca5213e5f0e",
   "source": "Bedrock ListFoundationModels + ListInferenceProfiles + GetFoundationModelAvailability",
   "note": "Availability is a dated account/region snapshot, not a runtime IAM or quota guarantee."
 }

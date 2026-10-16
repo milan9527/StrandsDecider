@@ -1,0 +1,91 @@
+{
+  "method": "Recomputed from saved receipts; no new inference. Median RTT and nearest-rank P95. Finance uses original order only; policy routing includes both orders. Costs use Jev response usage input_tokens at USD0.042/1M, output free. Per-1000-request costs repeat the observed input mix, not 1000 independent tasks.",
+  "sources": {
+    "skills": "validation/jev_skills/results/2026-10-12/receipts.jsonl",
+    "browser_finance": "validation/browser_finance/runs/2026-10-13-live/receipts.jsonl",
+    "routing": "validation/model_routing/runs/2026-10-13-live/receipts.jsonl"
+  },
+  "groups": {
+    "skills": {
+      "decider": {
+        "calls": 32,
+        "median_rtt_ms": 164.649,
+        "p95_rtt_ms": 911.109,
+        "mean_rtt_ms": 616.03803125
+      },
+      "jev": {
+        "calls": 32,
+        "median_rtt_ms": 119.935,
+        "p95_rtt_ms": 163.775,
+        "mean_rtt_ms": 127.66934375,
+        "input_tokens": 16252,
+        "mean_input_tokens": 507.875,
+        "batch_list_price_usd": 0.0006825840000000001,
+        "usd_per_1000_api_calls": 0.021330750000000002
+      }
+    },
+    "browser": {
+      "decider": {
+        "calls": 22,
+        "median_rtt_ms": 227.34949999999998,
+        "p95_rtt_ms": 315.13,
+        "mean_rtt_ms": 238.30004545454545
+      },
+      "jev": {
+        "calls": 36,
+        "median_rtt_ms": 136.9925,
+        "p95_rtt_ms": 188.396,
+        "mean_rtt_ms": 139.42413888888888,
+        "input_tokens": 68601,
+        "mean_input_tokens": 1905.5833333333333,
+        "batch_list_price_usd": 0.002881242,
+        "usd_per_1000_api_calls": 0.08003450000000001
+      }
+    },
+    "finance_original": {
+      "decider": {
+        "calls": 30,
+        "median_rtt_ms": 97.361,
+        "p95_rtt_ms": 165.718,
+        "mean_rtt_ms": 110.09316666666666
+      },
+      "jev": {
+        "calls": 30,
+        "median_rtt_ms": 138.27550000000002,
+        "p95_rtt_ms": 181.911,
+        "mean_rtt_ms": 143.47766666666666,
+        "input_tokens": 22381,
+        "mean_input_tokens": 746.0333333333333,
+        "batch_list_price_usd": 0.0009400020000000001,
+        "usd_per_1000_api_calls": 0.031333400000000004
+      }
+    },
+    "policy_routing": {
+      "decider": {
+        "calls": 64,
+        "median_rtt_ms": 211.4135,
+        "p95_rtt_ms": 219.231,
+        "mean_rtt_ms": 186.24015625
+      },
+      "jev": {
+        "calls": 64,
+        "median_rtt_ms": 137.4105,
+        "p95_rtt_ms": 173.095,
+        "mean_rtt_ms": 139.976640625,
+        "input_tokens": 92992,
+        "mean_input_tokens": 1453,
+        "batch_list_price_usd": 0.003905664,
+        "usd_per_1000_api_calls": 0.061026000000000004
+      }
+    }
+  },
+  "price_usd_per_million_input_tokens": 0.042,
+  "browser_jev_complete_tasks": {
+    "completed": 10,
+    "attempted": 10,
+    "task_wall_median_ms": 3694.6335,
+    "api_calls_per_task_mean": 3.6,
+    "usd_per_1000_observed_tasks": 0.2881242,
+    "cost_scope": "Model API only; excludes Playwright, compute and tool/network costs."
+  }
+}

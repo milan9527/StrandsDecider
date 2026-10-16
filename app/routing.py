@@ -15,6 +15,12 @@ from starlette.concurrency import run_in_threadpool
 from app.bedrock import decide as bedrock_decide
 from app.crypto import fingerprint
 from app.jev import JevError
+from app.routing_evidence import (
+    EVIDENCE_VERSION,
+    evidence_catalog,
+    optimized_payload,
+    task_metrics,
+)
 from app.routing_policy import (
     ROUTING_VERSION,
     WORKFLOWS,
@@ -82,6 +88,8 @@ class Task(StrictModel):
 
 
 class RouteDecision(StrictModel):
+    strategy: Literal["original", "optimized"] = "original"
+    evidence_version: str | None = Field(default=None, max_length=64)
     stage: Literal["workflow", "model"]
     workflow: TaskType | None = None
     task: Task
@@ -97,6 +105,8 @@ class Execute(StrictModel):
     model_id: str = Field(min_length=1, max_length=200)
     catalog_version: str = Field(max_length=64)
     ranking_version: str = Field(max_length=64)
+    strategy: Literal["original", "optimized"] = "original"
+    evidence_version: str | None = Field(default=None, max_length=64)
 
 
 def load_catalog():
@@ -188,11 +198,24 @@ def catalog(request: Request):
         "rankings": rankings,
         "router_model": ROUTER_MODEL,
         "reasoning_effort": "low",
+        "evidence_optimization": evidence_catalog(),
         "configured": {
             "bedrock": request.app.state.bedrock is not None,
             "jev": request.app.state.jev is not None,
         },
     }
+
+
+def check_evidence_version(body):
+    if body.strategy == "optimized" and body.evidence_version != EVIDENCE_VERSION:
+        raise HTTPException(409, "优化输入版本已更新，请刷新页面后重新比较。")
+
+
+@router.post("/rank", deprecated=True)
+def removed_program_ranking():
+    raise HTTPException(
+        410, "程序选型已停用。请刷新页面，通过 /decision 让模型判断原始与优化输入。"
+    )
 
 
 @router.post("/candidates")
@@ -264,6 +287,7 @@ async def decision(body: RouteDecision, request: Request):
     data, rankings = load_catalog(), load_rankings()
     check_version(data, body.catalog_version)
     check_ranking_version(rankings, body.ranking_version)
+    check_evidence_version(body)
     pool = None
     if body.stage == "workflow":
         if body.workflow is not None:
@@ -279,10 +303,10 @@ async def decision(body: RouteDecision, request: Request):
             raise HTTPException(
                 422, "当前评测候选超过接口的 24 项上限；需要扩展候选协议，未静默截断。"
             )
-        payload = model_payload(body.task, body.workflow, pool, rankings)
+        build_payload = optimized_payload if body.strategy == "optimized" else model_payload
+        payload = build_payload(body.task, body.workflow, pool, rankings)
     criteria = payload["questions"]["action"]["criteria"]
-    single = len(criteria) == 1
-    if body.mode == "replay" or single:
+    if body.mode == "replay":
         result = {
             "choice": replay_choice(body.task)
             if body.stage == "workflow"
@@ -308,11 +332,9 @@ async def decision(body: RouteDecision, request: Request):
         **result,
         "provider": body.provider,
         "stage": body.stage,
-        "source": "rule_replay"
-        if body.mode == "replay"
-        else "single_candidate"
-        if single
-        else "live",
+        "source": "rule_replay" if body.mode == "replay" else "live",
+        "strategy": body.strategy,
+        "evidence_version": EVIDENCE_VERSION if body.strategy == "optimized" else None,
         "label": selected_row["model"]["name"] if selected_row else WORKFLOWS[choice]["label"],
         "workflow": {"id": workflow, **WORKFLOWS[workflow]},
         "model_input": payload,
@@ -329,14 +351,13 @@ async def decision(body: RouteDecision, request: Request):
         if pool
         else None,
         "selected_model": selected_row["model"] if selected_row else None,
+        "selected_task_metrics": task_metrics(selected_row["benchmark"], workflow)
+        if selected_row
+        else None,
         "route_total_ms": round((perf_counter() - started) * 1000, 3)
         if body.mode == "live"
         else None,
-        "notice": "界面回放，非模型结果。"
-        if body.mode == "replay"
-        else "唯一候选直通，未调用模型。"
-        if single
-        else None,
+        "notice": "界面回放，非模型结果。" if body.mode == "replay" else None,
     }
 
 
@@ -417,6 +438,7 @@ async def execute(body: Execute, request: Request):
     row = next((row for row in pool["candidates"] if row["model"]["id"] == body.model_id), None)
     if row is None:
         raise HTTPException(422, "所选模型不属于该流程当前可用的评测候选。")
+    check_evidence_version(body)
     model = row["model"]
     if request.app.state.bedrock is None:
         raise HTTPException(503, "Bedrock 尚未配置。")
@@ -440,6 +462,8 @@ async def execute(body: Execute, request: Request):
             "source": "live",
             "ranking_version": rankings["version"],
             "request_fields": row["benchmark"].get("request_fields", {}),
+            "strategy": body.strategy,
+            "evidence_version": EVIDENCE_VERSION if body.strategy == "optimized" else None,
         }
     except TimeoutError as exc:
         raise HTTPException(504, "目标模型执行超时，未自动重试或切换模型。") from exc

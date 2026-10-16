@@ -1,0 +1,25 @@
+{
+  "queried_at": "2026-10-15T02:55:39.675345+00:00",
+  "sources": [
+    {
+      "name": "aws-ri-scope",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html",
+      "status": 200,
+      "excerpt": []
+    },
+    {
+      "name": "jev-pricing",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "status": 200,
+      "excerpt": [
+        "kens: from $0.20 to $10 / MTok.\nOutput tokens: ~5x more expensive than input tokens.\nInput tokens: $0.042 / MTok ($42 per billion tokens).\nOutput tokens: FREE (too cheap to meter).\nSpeed\nEnd-to-end response time is\n3 to 329 seconds\nfor frontier models.  Fast enough for interfacing with humans, but a big bottleneck when integrated in code.\nEnd-to-end response time is 70ms-500ms\nfor TypeSafe. This c"
+      ]
+    },
+    {
+      "name": "aws-ri-overview",
+      "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-reserved-instances.html",
+      "status": 200,
+      "file": "aws-ri-overview.txt"
+    }
+  ]
+}

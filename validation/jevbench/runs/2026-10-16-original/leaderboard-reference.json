@@ -1,0 +1,3028 @@
+{
+  "source_url": "https://benchmarkheaven.com/api/jevbench/v1.6.1",
+  "source_sha256": "5cd8c1332226ea9c179883d2285c0d8b8cc593ae38f2645197364a7ddd9c83c1",
+  "captured_on": "2026-10-16 UTC",
+  "revision": "v1.6.1",
+  "note": "Numeric aggregate extract, not a complete live board snapshot. Later live additions are not included. No sealed tasks or predictions.",
+  "sample": {
+    "open": 300,
+    "sealed": 1200,
+    "total": 1500,
+    "published_open": 300
+  },
+  "options": {
+    "A": {
+      "intelligence_floor": 50.0,
+      "weights": {
+        "calibration": 25,
+        "cost": 25,
+        "intelligence": 25,
+        "speed": 25
+      }
+    },
+    "B": {
+      "intelligence_floor": 50.0,
+      "weights": {
+        "calibration": 20,
+        "cost": 20,
+        "intelligence": 40,
+        "speed": 20
+      }
+    },
+    "C": {
+      "intelligence_floor": 60.0,
+      "weights": {
+        "calibration": 25,
+        "cost": 25,
+        "intelligence": 25,
+        "speed": 25
+      }
+    }
+  },
+  "formula_sources": [
+    {
+      "file": "official_score_v16.py",
+      "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/e4b777b10a18b185f0174be3ad14a570cc8abcd3/ops/priority-evaluation/official_score_v16.py",
+      "bytes": 9184,
+      "sha256": "0971793ff1e2699cc3d66a2c53a31fcd15d80170f482281f33cbb871cd24157d"
+    },
+    {
+      "file": "methodology.html",
+      "url": "https://benchmarkheaven.com/jev-models/methodology",
+      "bytes": 65734,
+      "sha256": "9961d03205dfc34ee341999f747a555a840ed570bb6a0482c2062006170af983"
+    },
+    {
+      "file": "current-board.json",
+      "url": "https://benchmarkheaven.com/api/jevbench/v1.6.1",
+      "bytes": 1351153,
+      "sha256": "5cd8c1332226ea9c179883d2285c0d8b8cc593ae38f2645197364a7ddd9c83c1"
+    },
+    {
+      "file": "jevbench-v12-score.mjs",
+      "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/e4b777b10a18b185f0174be3ad14a570cc8abcd3/lib/jevbench-v12-score.mjs",
+      "sha256": "c4f26d3052d9927f4447be40857dd08fce6b5f58d08ea9f70b596c957ccce1ce",
+      "bytes": 2400
+    },
+    {
+      "file": "jevbench-gpu-cost.mjs",
+      "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/e4b777b10a18b185f0174be3ad14a570cc8abcd3/lib/jevbench-gpu-cost.mjs",
+      "sha256": "fa6afcc366cbc2d803ee2d934abd8e1fee1038fc5f3a9fe7e17307f165791a5f",
+      "bytes": 4821
+    },
+    {
+      "file": "jevbench-axis-weights.mjs",
+      "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/e4b777b10a18b185f0174be3ad14a570cc8abcd3/lib/jevbench-axis-weights.mjs",
+      "sha256": "c2b474575e66f674e5edebe1402fe472108cb5eebeb63a7e1ff08d6cf83db9b4",
+      "bytes": 2786
+    },
+    {
+      "file": "jevbench-current.mjs",
+      "url": "https://raw.githubusercontent.com/fstandhartinger/model-market-comparison/e4b777b10a18b185f0174be3ad14a570cc8abcd3/lib/jevbench-current.mjs",
+      "sha256": "0302639e45adb44054b6cd242be1f6a055457266e431c0824e0efaa3dcc57d6c",
+      "bytes": 1729
+    }
+  ],
+  "systems": [
+    {
+      "key": "sage-1.3.0",
+      "display": "Sage 1.3.0 (Levanto Labs)",
+      "axes": {
+        "calibration": 91.59817606608073,
+        "cost": 58.231203787388296,
+        "intelligence": 65.59290944525489,
+        "speed": 93.61638181239104
+      },
+      "capability": 78.59554275566781,
+      "jevbench_score": 74.04992179175468,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.15245595201849937,
+        "p50_s_raw": 0.15245595201849937,
+        "p95_s_adjusted": 0.2852446019649505,
+        "p95_s_raw": 0.2852446019649505
+      },
+      "usd_per_1000": 0.024677048070413
+    },
+    {
+      "key": "h2o-lightning-4b",
+      "display": "H2O-Lightning-4B v1.1 (H2O.ai, Qwen3.5-4B fine-tune, stock vLLM + open shim)",
+      "axes": {
+        "calibration": 89.95399367673842,
+        "cost": 60.29882443070202,
+        "intelligence": 60.03839906196252,
+        "speed": 92.61084474720658
+      },
+      "capability": 74.99619636935047,
+      "jevbench_score": 72.5232271521435,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.20856922594830393,
+        "p50_s_raw": 0.02928461297415197,
+        "p95_s_adjusted": 0.2628241665661335,
+        "p95_s_raw": 0.056412083283066745
+      },
+      "usd_per_1000": 0.021055837438423645
+    },
+    {
+      "key": "mercury-decide",
+      "display": "Mercury Decide (Inception; System One decisions API, served free on OpenRouter as inception/mercury-decide:free)",
+      "axes": {
+        "calibration": 81.34341651168008,
+        "cost": 62.08313746631354,
+        "intelligence": 65.90701345473542,
+        "speed": 85.47752366478576
+      },
+      "capability": 73.62521498320774,
+      "jevbench_score": 72.36824049637728,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.33213604614138603,
+        "p50_s_raw": 0.33213604614138603,
+        "p95_s_adjusted": 0.8529658075422044,
+        "p95_s_raw": 0.8529658075422044
+      },
+      "usd_per_1000": 0.018360961408259987
+    },
+    {
+      "key": "decisio-gemma-4-31b-v080",
+      "display": "decisio v0.8.0 on gemma-4-31B-it (frozen, FP8 on load, one prefill per state, self-hosted)",
+      "axes": {
+        "calibration": 88.71627256952715,
+        "cost": 51.66530928015878,
+        "intelligence": 70.42321091828492,
+        "speed": 91.18580810090454
+      },
+      "capability": 79.56974174390604,
+      "jevbench_score": 71.6926576652985,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.24419243037700653,
+        "p50_s_raw": 0.047096215188503265,
+        "p95_s_adjusted": 0.3116642528679222,
+        "p95_s_raw": 0.0808321264339611
+      },
+      "usd_per_1000": 0.04084664184157075
+    },
+    {
+      "key": "jev-1.13.0",
+      "display": "Jev 1.13.0 (TypeSafe AI)",
+      "axes": {
+        "calibration": 90.63220203152369,
+        "cost": 54.733842199536014,
+        "intelligence": 63.62075784024779,
+        "speed": 91.49989299046987
+      },
+      "capability": 77.12647993588574,
+      "jevbench_score": 71.49118639284514,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.23910215869545937,
+        "p50_s_raw": 0.23910215869545937,
+        "p95_s_adjusted": 0.29609236158430574,
+        "p95_s_raw": 0.29609236158430574
+      },
+      "usd_per_1000": 0.03227542180094787
+    },
+    {
+      "key": "quyet-1-0-large",
+      "display": "Quyet-1.0-Large (Chinh Nguyen, Gemma-4-31B decoder, option-letter logits)",
+      "axes": {
+        "calibration": 89.97624968733336,
+        "cost": 50.546097335562465,
+        "intelligence": 73.40135940607429,
+        "speed": 86.87440406834797
+      },
+      "capability": 81.68880454670384,
+      "jevbench_score": 71.38706329141472,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3815564611926675,
+        "p50_s_raw": 0.11577823059633374,
+        "p95_s_adjusted": 0.5382707504555583,
+        "p95_s_raw": 0.19413537522777913
+      },
+      "usd_per_1000": 0.04451059729064039
+    },
+    {
+      "key": "decider-12b",
+      "display": "decider-12b v2 (Mapika)",
+      "axes": {
+        "calibration": 81.98845142422223,
+        "cost": 57.755449421401664,
+        "intelligence": 63.01250112161242,
+        "speed": 90.47583056481872
+      },
+      "capability": 72.50047627291733,
+      "jevbench_score": 70.87955164338175,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.25826345253735783,
+        "p50_s_raw": 0.054131726268678904,
+        "p95_s_adjusted": 0.3470195889472961,
+        "p95_s_raw": 0.09850979447364806
+      },
+      "usd_per_1000": 0.025594796798029562
+    },
+    {
+      "key": "wity-1",
+      "display": "wity-1 (Wity, reasoning auto)",
+      "axes": {
+        "calibration": 87.9497550095679,
+        "cost": 58.8349720563948,
+        "intelligence": 70.28143483604077,
+        "speed": 71.79000307789984
+      },
+      "capability": 79.11559492280433,
+      "jevbench_score": 70.76534010331063,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 1.5746641159057617,
+        "p50_s_raw": 1.5746641159057617,
+        "p95_s_adjusted": 4.205443101748823,
+        "p95_s_raw": 4.205443101748823
+      },
+      "usd_per_1000": 0.023559582938388626
+    },
+    {
+      "key": "decider-12b-v1",
+      "display": "decider-12b v1, stock Gemma-4-12B-it (Mapika)",
+      "axes": {
+        "calibration": 83.7629373406296,
+        "cost": 57.755449421401664,
+        "intelligence": 60.62893554403879,
+        "speed": 90.47654290454523
+      },
+      "capability": 72.1959364423342,
+      "jevbench_score": 70.42352588714175,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.25808657668530943,
+        "p50_s_raw": 0.054043288342654705,
+        "p95_s_adjusted": 0.3472004604525864,
+        "p95_s_raw": 0.0986002302262932
+      },
+      "usd_per_1000": 0.025594796798029562
+    },
+    {
+      "key": "torchcast-decision-12b",
+      "display": "torchcast-decision-12b (Torchcast AI, Gemma-4-12B fine-tune, option-letter logprob readout)",
+      "axes": {
+        "calibration": 82.93469131589123,
+        "cost": 56.36034169226667,
+        "intelligence": 60.54320091058725,
+        "speed": 91.74573681567192
+      },
+      "capability": 71.73894611323924,
+      "jevbench_score": 69.9087143535159,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2243030747398734,
+        "p50_s_raw": 0.037151537369936705,
+        "p95_s_adjusted": 0.29825730649754406,
+        "p95_s_raw": 0.07412865324877203
+      },
+      "usd_per_1000": 0.02848756157635468
+    },
+    {
+      "key": "winnow-12b",
+      "display": "Winnow-12B Q8",
+      "axes": {
+        "calibration": 82.95806123333315,
+        "cost": 56.556023424877196,
+        "intelligence": 59.53366229166759,
+        "speed": 86.69753831262085
+      },
+      "capability": 71.24586176250037,
+      "jevbench_score": 68.88542163459404,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.38378054890781643,
+        "p50_s_raw": 0.1168902744539082,
+        "p95_s_adjusted": 0.5573951802216469,
+        "p95_s_raw": 0.20369759011082347
+      },
+      "usd_per_1000": 0.028062900246305422
+    },
+    {
+      "key": "deck31b",
+      "display": "deck-31B (krishna765, frozen Gemma-4-31B-it, TorchAO FP8 dynamic)",
+      "axes": {
+        "calibration": 82.15636027953371,
+        "cost": 49.69190284016272,
+        "intelligence": 73.02512554551848,
+        "speed": 86.69970536196755
+      },
+      "capability": 77.5907429125261,
+      "jevbench_score": 68.68200118286292,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4049364184960723,
+        "p50_s_raw": 0.12746820924803615,
+        "p95_s_adjusted": 0.5280105819925666,
+        "p95_s_raw": 0.18900529099628327
+      },
+      "usd_per_1000": 0.04752658090724441
+    },
+    {
+      "key": "cygnet",
+      "display": "Cygnet (blockbrain, frozen Gemma-4-12B-it)",
+      "axes": {
+        "calibration": 86.96753988280044,
+        "cost": 56.42912569481113,
+        "intelligence": 54.83928122751086,
+        "speed": 91.77283664982562
+      },
+      "capability": 70.90341055515565,
+      "jevbench_score": 68.55012424151383,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.22363614114001393,
+        "p50_s_raw": 0.03681807057000697,
+        "p95_s_adjusted": 0.29728592303581536,
+        "p95_s_raw": 0.07364296151790768
+      },
+      "usd_per_1000": 0.028337561576354687
+    },
+    {
+      "key": "decisio-gemma-4-12b-v080",
+      "display": "decisio v0.8.0 on gemma-4-12B-it (frozen, one forward pass, self-hosted)",
+      "axes": {
+        "calibration": 89.15794375860679,
+        "cost": 59.34583145470655,
+        "intelligence": 52.324988528776075,
+        "speed": 86.9860428376769
+      },
+      "capability": 70.74146614369144,
+      "jevbench_score": 68.17346094077045,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3548810470150784,
+        "p50_s_raw": 0.10244052350753918,
+        "p95_s_adjusted": 0.564043904747814,
+        "p95_s_raw": 0.20702195237390697
+      },
+      "usd_per_1000": 0.022653689911983754
+    },
+    {
+      "key": "decisio-gemma-4-12b-v090",
+      "display": "decisio v0.9.0 on gemma-4-12B-it (frozen, one prefill per question, self-hosted)",
+      "axes": {
+        "calibration": 87.60965425617285,
+        "cost": 59.34583145470655,
+        "intelligence": 52.299106200484864,
+        "speed": 85.86778537116794
+      },
+      "capability": 69.95438022832886,
+      "jevbench_score": 67.76072338665118,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4135970369447023,
+        "p50_s_raw": 0.13179851847235113,
+        "p95_s_adjusted": 0.6261004906438755,
+        "p95_s_raw": 0.23805024532193778
+      },
+      "usd_per_1000": 0.022653689911983754
+    },
+    {
+      "key": "jev-omni",
+      "display": "Jev-Omni (akhilaaa3, Gemma-4-12B merged)",
+      "axes": {
+        "calibration": 87.04450672835743,
+        "cost": 56.05113155939739,
+        "intelligence": 55.530225828826175,
+        "speed": 85.43173201875288
+      },
+      "capability": 71.2873662785918,
+      "jevbench_score": 67.74758858028281,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.45938353668898346,
+        "p50_s_raw": 0.15469176834449172,
+        "p95_s_adjusted": 0.6232343347743153,
+        "p95_s_raw": 0.23661716738715766
+      },
+      "usd_per_1000": 0.02917173645320197
+    },
+    {
+      "key": "xor-26b-a4b",
+      "display": "Xor 26B-A4B (Juspay, Gemma-4-26B-A4B, bf16)",
+      "axes": {
+        "calibration": 86.13921620236111,
+        "cost": 50.69588844260597,
+        "intelligence": 58.673823517178164,
+        "speed": 91.03179229063062
+      },
+      "capability": 72.40651985976965,
+      "jevbench_score": 67.3818936950357,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.26713270749896767,
+        "p50_s_raw": 0.058566353749483824,
+        "p95_s_adjusted": 0.2951846059411764,
+        "p95_s_raw": 0.0725923029705882
+      },
+      "usd_per_1000": 0.04400179417738659
+    },
+    {
+      "key": "bobcat-flash-1.2",
+      "display": "Bobcat Flash 1.2 (Gemma-4-26B-A4B-it + two merged rank-64 LoRA adapters, typed-decision readout at the first answer position, FP8, self-hosted)",
+      "axes": {
+        "calibration": 81.17269878237248,
+        "cost": 49.68577376542501,
+        "intelligence": 65.81464576505633,
+        "speed": 90.781726629608
+      },
+      "capability": 73.4936722737144,
+      "jevbench_score": 67.34032787154446,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2719114740379155,
+        "p50_s_raw": 0.060955737018957734,
+        "p95_s_adjusted": 0.3071848569670692,
+        "p95_s_raw": 0.0785924284835346
+      },
+      "usd_per_1000": 0.04754894380501015
+    },
+    {
+      "key": "spx-cd-flash",
+      "display": "SPX-CD Flash (SurdAI, hosted /v1/systemone, Oct-4 checkpoint)",
+      "axes": {
+        "calibration": 90.20036269195566,
+        "cost": 52.107175358413464,
+        "intelligence": 58.43051843707937,
+        "speed": 79.39117060033084
+      },
+      "capability": 74.31544056451752,
+      "jevbench_score": 66.68017155386212,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.9804960675537586,
+        "p50_s_raw": 0.9804960675537586,
+        "p95_s_adjusted": 1.1733756832778452,
+        "p95_s_raw": 1.1733756832778452
+      },
+      "usd_per_1000": 0.039484576844955994
+    },
+    {
+      "key": "decider-chat-gemma4-31b",
+      "display": "decider chat on Gemma-4-31B-it (Mapika, frozen base, inference technique)",
+      "axes": {
+        "calibration": 82.62244964732962,
+        "cost": 50.78502198104071,
+        "intelligence": 58.54290392078144,
+        "speed": 85.78163968405963
+      },
+      "capability": 70.58267678405554,
+      "jevbench_score": 66.07956202755186,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4011345919920132,
+        "p50_s_raw": 0.12556729599600658,
+        "p95_s_adjusted": 0.658485045604175,
+        "p95_s_raw": 0.2542425228020875
+      },
+      "usd_per_1000": 0.04370179417738659
+    },
+    {
+      "key": "hopper-12b-trained",
+      "display": "Hopper 12B trained (gemma-4-12B-it frozen + LoRA r32 unmerged, one forward pass, self-hosted)",
+      "axes": {
+        "calibration": 84.63452107883388,
+        "cost": 56.15749203571245,
+        "intelligence": 51.6576814732076,
+        "speed": 84.57301814857726
+      },
+      "capability": 68.14610127602074,
+      "jevbench_score": 65.78419365065008,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4776301250443794,
+        "p50_s_raw": 0.1638150625221897,
+        "p95_s_adjusted": 0.7304768792411778,
+        "p95_s_raw": 0.2902384396205889
+      },
+      "usd_per_1000": 0.02893456330399459
+    },
+    {
+      "key": "surogate-rune-26b-a4b-v3-v16",
+      "display": "Surogate Rune 26B-A4B v3 (v1.6 pool)",
+      "axes": {
+        "calibration": 90.88042351612289,
+        "cost": 49.597326937281316,
+        "intelligence": 56.055735926690254,
+        "speed": 86.95393114544444
+      },
+      "capability": 73.46807972140657,
+      "jevbench_score": 65.0490738113794,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3823961119982414,
+        "p50_s_raw": 0.1161980559991207,
+        "p95_s_adjusted": 0.5273432816902641,
+        "p95_s_raw": 0.18867164084513205
+      },
+      "usd_per_1000": 0.047872830060934325
+    },
+    {
+      "key": "gev-26b-decide",
+      "display": "GEV-26B-Decide (AutoTrust, Gemma-4-26B-A4B + LoRA + head)",
+      "axes": {
+        "calibration": 90.33483359631919,
+        "cost": 51.12030271996105,
+        "intelligence": 49.817428608862244,
+        "speed": 89.87310530072351
+      },
+      "capability": 70.07613110259072,
+      "jevbench_score": 64.2201412904201,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2535779389785603,
+        "p50_s_raw": 0.051788969489280134,
+        "p95_s_adjusted": 0.40604858579754366,
+        "p95_s_raw": 0.12802429289877182
+      },
+      "usd_per_1000": 0.04259153012863913
+    },
+    {
+      "key": "spx-cd-omni",
+      "display": "SPX-CD-Omni (SurdAI, google/gemma-4-12B-it + LoRA r32, one forward pass, self-hosted)",
+      "axes": {
+        "calibration": 87.47801599949784,
+        "cost": 58.27072766098771,
+        "intelligence": 48.779308810848946,
+        "speed": 89.44891259349035
+      },
+      "capability": 68.1286624051734,
+      "jevbench_score": 63.16406085537614,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2966954869683832,
+        "p50_s_raw": 0.0733477434841916,
+        "p95_s_adjusted": 0.38264654851518576,
+        "p95_s_raw": 0.11632327425759287
+      },
+      "usd_per_1000": 0.024602301963439405
+    },
+    {
+      "key": "diffusion-jev",
+      "display": "Diffusion Jev (DiffusionGemma 26B-A4B on patched SGLang, 48-step diffusion readout, self-hosted)",
+      "axes": {
+        "calibration": 61.31489461738089,
+        "cost": 49.559714426383636,
+        "intelligence": 54.860121638521335,
+        "speed": 86.79193858661813
+      },
+      "capability": 58.08750812795111,
+      "jevbench_score": 59.330428224994314,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4113455285318196,
+        "p50_s_raw": 0.1306727642659098,
+        "p95_s_adjusted": 0.5088612267747521,
+        "p95_s_raw": 0.17943061338737604
+      },
+      "usd_per_1000": 0.04801123222748815
+    },
+    {
+      "key": "rene-1-31b-fp8",
+      "display": "René-1 31B FP8 (salfatigroup, Gemma 4 31B full fine-tune, one-pass option readout)",
+      "axes": {
+        "calibration": 90.18677086647014,
+        "cost": 45.963638345890566,
+        "intelligence": 61.72139577013068,
+        "speed": 87.11720932683018
+      },
+      "capability": 75.9540833183004,
+      "jevbench_score": 55.84876743320955,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3694145163521171,
+        "p50_s_raw": 0.10970725817605853,
+        "p95_s_adjusted": 0.5257328446954489,
+        "p95_s_raw": 0.18786642234772444
+      },
+      "usd_per_1000": 0.06327207176709546
+    },
+    {
+      "key": "aplomb-1",
+      "display": "Aplomb 1 (5.3B decision model on Qwen3.5-4B, trained readout head, self-hosted)",
+      "axes": {
+        "calibration": 89.21801638247211,
+        "cost": 57.86508463809988,
+        "intelligence": 45.81854920739271,
+        "speed": 88.88310989631262
+      },
+      "capability": 67.51828279493242,
+      "jevbench_score": 54.55838408944504,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.33727095890790226,
+        "p50_s_raw": 0.09363547945395112,
+        "p95_s_adjusted": 0.3834511662367731,
+        "p95_s_raw": 0.11672558311838657
+      },
+      "usd_per_1000": 0.025380324983073795
+    },
+    {
+      "key": "bespoke-nimble-9b-v3",
+      "display": "Bespoke Nimble 9B v3 (Qwen3.5-9B LoRA)",
+      "axes": {
+        "calibration": 77.04569964036838,
+        "cost": 46.094951684283686,
+        "intelligence": 56.54011796945148,
+        "speed": 89.19502471208428
+      },
+      "capability": 66.79290880490993,
+      "jevbench_score": 53.47656993239491,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.33777692201547327,
+        "p50_s_raw": 0.09388846100773662,
+        "p95_s_adjusted": 0.3563424444932025,
+        "p95_s_raw": 0.10317122224660125
+      },
+      "usd_per_1000": 0.06263757616790792
+    },
+    {
+      "key": "apus-openjev-v1-9b",
+      "display": "APUS-OpenJev-v1-9B (merged bf16 checkpoint-3000 on Qwen3.5-9B, their own native runtime, full depth, self-hosted)",
+      "axes": {
+        "calibration": 66.61054590286017,
+        "cost": 48.738123569705756,
+        "intelligence": 47.20514429531085,
+        "speed": 82.18245466956745
+      },
+      "capability": 56.907845099085506,
+      "jevbench_score": 49.17976892452783,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.705569653166458,
+        "p50_s_raw": 0.277784826583229,
+        "p95_s_adjusted": 0.8574615204473958,
+        "p95_s_raw": 0.35373076022369787
+      },
+      "usd_per_1000": 0.05113628977657414
+    },
+    {
+      "key": "plumb-4b",
+      "display": "Plumb-4B (crh225, JevK5 v0.2 + LoRA)",
+      "axes": {
+        "calibration": 87.88101858186977,
+        "cost": 63.07359395281681,
+        "intelligence": 42.9626698747687,
+        "speed": 93.83356539601934
+      },
+      "capability": 65.42184422831923,
+      "jevbench_score": 48.28224126395837,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.18999176411889493,
+        "p50_s_raw": 0.019995882059447467,
+        "p95_s_adjusted": 0.21772519345395266,
+        "p95_s_raw": 0.033862596726976335
+      },
+      "usd_per_1000": 0.01701689039408867
+    },
+    {
+      "key": "spx-cd-pro",
+      "display": "SPX-CD Pro (SurdAI, hosted /v1/systemone, Oct-4 checkpoint)",
+      "axes": {
+        "calibration": 92.41334857032513,
+        "cost": 43.076275488494026,
+        "intelligence": 64.85693822910903,
+        "speed": 77.96292698098645
+      },
+      "capability": 78.63514339971708,
+      "jevbench_score": 47.66970820706367,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 1.1281277425587177,
+        "p50_s_raw": 1.1281277425587177,
+        "p95_s_adjusted": 1.4169320456683636,
+        "p95_s_raw": 1.4169320456683636
+      },
+      "usd_per_1000": 0.07896915368991199
+    },
+    {
+      "key": "messier-one-v0.2",
+      "display": "Messier One v0.2 (Qwen3.5-4B fine-tune, one prefill, self-hosted)",
+      "axes": {
+        "calibration": 73.90972729526267,
+        "cost": 64.78240136302922,
+        "intelligence": 42.35139759222662,
+        "speed": 92.70909408602279
+      },
+      "capability": 58.130562443744644,
+      "jevbench_score": 45.29059491870636,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.20452698896988294,
+        "p50_s_raw": 0.027263494484941475,
+        "p95_s_adjusted": 0.26202333298570013,
+        "p95_s_raw": 0.056011666492850054
+      },
+      "usd_per_1000": 0.014925192958700068
+    },
+    {
+      "key": "spark-s1-4b-v6",
+      "display": "spark-s1-4b-v6 (Open Spark Jev, abhishek085)",
+      "axes": {
+        "calibration": 64.79562625454915,
+        "cost": 60.422063196854964,
+        "intelligence": 43.2364603010071,
+        "speed": 86.95618624402076
+      },
+      "capability": 54.016043277778124,
+      "jevbench_score": 44.90217636528639,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.40721648099715824,
+        "p50_s_raw": 0.1286082404985791,
+        "p95_s_adjusted": 0.4949439602918574,
+        "p95_s_raw": 0.17247198014592868
+      },
+      "usd_per_1000": 0.020857610837438423
+    },
+    {
+      "key": "swanone",
+      "display": "swanOne (blockbrain, Qwen3.8-Flash-Next NVFP4)",
+      "axes": {
+        "calibration": 88.58151013990448,
+        "cost": 42.15074720483203,
+        "intelligence": 56.15104294255194,
+        "speed": 82.64878475169937
+      },
+      "capability": 72.36627654122822,
+      "jevbench_score": 43.78640157551217,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.7114971062168479,
+        "p50_s_raw": 0.28074855310842395,
+        "p95_s_adjusted": 0.7637450117617846,
+        "p95_s_raw": 0.30687250588089227
+      },
+      "usd_per_1000": 0.08478293103448274
+    },
+    {
+      "key": "quyet-1-0-medium",
+      "display": "Quyet-1.0-Medium (Chinh Nguyen, Qwen3.5-4B decoder, option-letter logits)",
+      "axes": {
+        "calibration": 76.76007761870373,
+        "cost": 63.43457194636937,
+        "intelligence": 41.73350604436517,
+        "speed": 89.46638461924755
+      },
+      "capability": 59.24679183153445,
+      "jevbench_score": 43.58925238992216,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3048233319917927,
+        "p50_s_raw": 0.07741166599589633,
+        "p95_s_adjusted": 0.3709482546968502,
+        "p95_s_raw": 0.1104741273484251
+      },
+      "usd_per_1000": 0.01655189039408867
+    },
+    {
+      "key": "lev",
+      "display": "lev (Interfaze AI, Qwen3.5-4B + LoRA r32, label-token readout + candidate-path head, per-bucket temperatures)",
+      "axes": {
+        "calibration": 82.32371666823741,
+        "cost": 61.79891447724963,
+        "intelligence": 41.084702071234844,
+        "speed": 88.00251499520694
+      },
+      "capability": 61.70420936973613,
+      "jevbench_score": 42.177760514319104,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3546039809356444,
+        "p50_s_raw": 0.10230199046782218,
+        "p95_s_adjusted": 0.446688625391107,
+        "p95_s_raw": 0.1483443126955535
+      },
+      "usd_per_1000": 0.01876590517241379
+    },
+    {
+      "key": "ninfer-qwen3.8-flash-next",
+      "display": "NInfer Qwen3.8-Flash-Next mixed",
+      "axes": {
+        "calibration": 90.37232453477458,
+        "cost": 42.53362878447125,
+        "intelligence": 48.980301026876646,
+        "speed": 89.33173525631216
+      },
+      "capability": 69.67631278082561,
+      "jevbench_score": 41.96785076957165,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3100576108321548,
+        "p50_s_raw": 0.08002880541607738,
+        "p95_s_adjusted": 0.37616993160918355,
+        "p95_s_raw": 0.11308496580459178
+      },
+      "usd_per_1000": 0.08232764778325123
+    },
+    {
+      "key": "jev-local",
+      "display": "jev-local (Qwen3.5-9B)",
+      "axes": {
+        "calibration": 73.06634984647151,
+        "cost": 58.85554343293177,
+        "intelligence": 41.85041350559534,
+        "speed": 75.55955847735143
+      },
+      "capability": 57.458381676033426,
+      "jevbench_score": 41.328564334669615,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.8806604199111462,
+        "p50_s_raw": 0.3653302099555731,
+        "p95_s_adjusted": 3.156717182928696,
+        "p95_s_raw": 1.5033585914643481
+      },
+      "usd_per_1000": 0.023522413793103446
+    },
+    {
+      "key": "decider-4b-v2",
+      "display": "decider-4b v2 (Mapika)",
+      "axes": {
+        "calibration": 89.63735637833331,
+        "cost": 64.54376873042901,
+        "intelligence": 40.12597268917964,
+        "speed": 91.78549329698745
+      },
+      "capability": 64.88166453375648,
+      "jevbench_score": 41.240894350857424,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.19992743488401174,
+        "p50_s_raw": 0.024963717442005873,
+        "p95_s_adjusted": 0.3315723263658583,
+        "p95_s_raw": 0.09078616318292916
+      },
+      "usd_per_1000": 0.015201077586206898
+    },
+    {
+      "key": "classone-qwen3.5-9b",
+      "display": "ClassOne Qwen 3.5 9B (Qwen3.5-9B backbone with ClassOne decision heads, schema-constrained single forward pass, self-hosted)",
+      "axes": {
+        "calibration": 58.71667533779978,
+        "cost": 49.33529996402755,
+        "intelligence": 42.225671849648506,
+        "speed": 90.24509258883624
+      },
+      "capability": 50.471173593724146,
+      "jevbench_score": 38.54185769307265,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2636520860018209,
+        "p50_s_raw": 0.05682604300091043,
+        "p95_s_adjusted": 0.35847554139327253,
+        "p95_s_raw": 0.10423777069663628
+      },
+      "usd_per_1000": 0.04884536222071767
+    },
+    {
+      "key": "jevk5-v0.3-4b",
+      "display": "JevK5 v0.3 (4B)",
+      "axes": {
+        "calibration": 89.88230801873149,
+        "cost": 63.07359395281681,
+        "intelligence": 38.53201254374527,
+        "speed": 93.9472917853559
+      },
+      "capability": 64.20716028123837,
+      "jevbench_score": 37.36493548751909,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.18763320203870534,
+        "p50_s_raw": 0.018816601019352674,
+        "p95_s_adjusted": 0.21476382557302715,
+        "p95_s_raw": 0.03238191278651357
+      },
+      "usd_per_1000": 0.01701689039408867
+    },
+    {
+      "key": "metask-jev-4b",
+      "display": "metask-jev-4b",
+      "axes": {
+        "calibration": 84.41575352936586,
+        "cost": 57.7311327584882,
+        "intelligence": 39.166454612935595,
+        "speed": 90.78239008886905
+      },
+      "capability": 61.79110407115073,
+      "jevbench_score": 37.34931073616377,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.25794456995790827,
+        "p50_s_raw": 0.05397228497895412,
+        "p95_s_adjusted": 0.3237685059779324,
+        "p95_s_raw": 0.08688425298896618
+      },
+      "usd_per_1000": 0.025642610837438424
+    },
+    {
+      "key": "deck-4b-v1-0",
+      "display": "deck-4B v1.0 (krishna765, JevK5 + LoRA, FP8 weight-only)",
+      "axes": {
+        "calibration": 88.59116686443139,
+        "cost": 63.46145558281372,
+        "intelligence": 38.62465958342338,
+        "speed": 89.93848373337222
+      },
+      "capability": 63.60791322392738,
+      "jevbench_score": 37.26498528662829,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.30241732355207207,
+        "p50_s_raw": 0.07620866177603602,
+        "p95_s_adjusted": 0.3353860241360962,
+        "p95_s_raw": 0.09269301206804811
+      },
+      "usd_per_1000": 0.01651777251184834
+    },
+    {
+      "key": "clef-flash",
+      "display": "Clef-Flash (Cloudflare, Qwen3.5-9B post-train with a joint schema head, multimodal, measured on text)",
+      "axes": {
+        "calibration": 85.46479352633332,
+        "cost": 46.79963593205177,
+        "intelligence": 42.18368888957246,
+        "speed": 88.4044196893156
+      },
+      "capability": 63.824241207952895,
+      "jevbench_score": 36.635050479655426,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3556603590026498,
+        "p50_s_raw": 0.10283017950132489,
+        "p95_s_adjusted": 0.405996760725975,
+        "p95_s_raw": 0.12799838036298752
+      },
+      "usd_per_1000": 0.05933971674876847
+    },
+    {
+      "key": "evalengine-decision-4b",
+      "display": "Decision-4B (Eval Engine / Chromia)",
+      "axes": {
+        "calibration": 80.25524974800695,
+        "cost": 65.87776871337948,
+        "intelligence": 37.93489123230218,
+        "speed": 91.06043780349009
+      },
+      "capability": 59.09507049015456,
+      "jevbench_score": 35.43243109909669,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.24496516967192292,
+        "p50_s_raw": 0.04748258483596146,
+        "p95_s_adjusted": 0.3197804291266948,
+        "p95_s_raw": 0.08489021456334739
+      },
+      "usd_per_1000": 0.013721693349753695
+    },
+    {
+      "key": "janus-4b",
+      "display": "janus 4B (Icarus AI / cmxu, Qwen3.5-4B + LoRA r64 and pointer decision head)",
+      "axes": {
+        "calibration": 88.12743013642095,
+        "cost": 64.41461114142905,
+        "intelligence": 37.57770128683752,
+        "speed": 93.17471817821269
+      },
+      "capability": 62.85256571162924,
+      "jevbench_score": 35.18351981268845,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2097848016768694,
+        "p50_s_raw": 0.029892400838434696,
+        "p95_s_adjusted": 0.22948492439463736,
+        "p95_s_raw": 0.039742462197318675
+      },
+      "usd_per_1000": 0.015352518472906404
+    },
+    {
+      "key": "qwen35-9b-jev-data-mix-v2",
+      "display": "Qwen3.5-9B Jev-like data-mix v2",
+      "axes": {
+        "calibration": 79.78895435560509,
+        "cost": 45.690218065856605,
+        "intelligence": 41.94184606895763,
+        "speed": 85.40793837616167
+      },
+      "capability": 60.86540021228136,
+      "jevbench_score": 33.58966697347588,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4865717590786517,
+        "p50_s_raw": 0.16828587953932583,
+        "p95_s_adjusted": 0.5916423641145229,
+        "p95_s_raw": 0.22082118205726145
+      },
+      "usd_per_1000": 0.06461391625615764
+    },
+    {
+      "key": "jevk5-v02",
+      "display": "JevK5 v0.2.0",
+      "axes": {
+        "calibration": 89.38710082819252,
+        "cost": 63.07359395281681,
+        "intelligence": 36.261123811123895,
+        "speed": 91.56570599843724
+      },
+      "capability": 62.824112319658205,
+      "jevbench_score": 32.09901620353128,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.23078905596630647,
+        "p50_s_raw": 0.04039452798315324,
+        "p95_s_adjusted": 0.30214414960937575,
+        "p95_s_raw": 0.07607207480468788
+      },
+      "usd_per_1000": 0.01701689039408867
+    },
+    {
+      "key": "jevone",
+      "display": "JevOne",
+      "axes": {
+        "calibration": 91.76581828544445,
+        "cost": 39.84212731591276,
+        "intelligence": 45.955077428728934,
+        "speed": 89.83885080776159
+      },
+      "capability": 68.8604478570867,
+      "jevbench_score": 31.14510331640707,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2735971907153726,
+        "p50_s_raw": 0.06179859535768628,
+        "p95_s_adjusted": 0.3793178545311093,
+        "p95_s_raw": 0.11465892726555464
+      },
+      "usd_per_1000": 0.10121908866995075
+    },
+    {
+      "key": "kahn1",
+      "display": "Kahn1 4B (Okura66, Qwen3.5-4B LoRA merge, author's sysone engine)",
+      "axes": {
+        "calibration": 83.76747077065221,
+        "cost": 46.37729040230682,
+        "intelligence": 39.71971801341685,
+        "speed": 89.97531755002697
+      },
+      "capability": 61.74359439203453,
+      "jevbench_score": 31.117574813020727,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2821926829987206,
+        "p50_s_raw": 0.06609634149936028,
+        "p95_s_adjusted": 0.3563875272346194,
+        "p95_s_raw": 0.10319376361730971
+      },
+      "usd_per_1000": 0.06129480295566502
+    },
+    {
+      "key": "typecastlm-1.4.0",
+      "display": "TypeCastLM 1.4.0 (Mikhail Gribov, Qwen3.5-4B computed head)",
+      "axes": {
+        "calibration": 77.35692434429644,
+        "cost": 64.79986008365586,
+        "intelligence": 35.43137209354293,
+        "speed": 92.95077486551261
+      },
+      "capability": 56.39414821891969,
+      "jevbench_score": 29.827386072784904,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.21072090499219484,
+        "p50_s_raw": 0.030360452496097423,
+        "p95_s_adjusted": 0.2405552782700397,
+        "p95_s_raw": 0.04527763913501986
+      },
+      "usd_per_1000": 0.014905206499661474
+    },
+    {
+      "key": "hopper",
+      "display": "Hopper",
+      "axes": {
+        "calibration": 90.07902805935959,
+        "cost": 62.25627699896333,
+        "intelligence": 34.73970870443837,
+        "speed": 91.11434937226889
+      },
+      "capability": 62.40936838189898,
+      "jevbench_score": 28.852652318563656,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.26295550270006063,
+        "p50_s_raw": 0.0564777513500303,
+        "p95_s_adjusted": 0.2942271867766976,
+        "p95_s_raw": 0.07211359338834882
+      },
+      "usd_per_1000": 0.018118577586206896
+    },
+    {
+      "key": "imajev-4b-rtx5090-a2",
+      "display": "Imajev-4B (RTX 5090)",
+      "axes": {
+        "calibration": 89.1627567462182,
+        "cost": 63.26458220826236,
+        "intelligence": 34.62714018309005,
+        "speed": 90.51878000442085
+      },
+      "capability": 61.89494846465412,
+      "jevbench_score": 28.655751132526984,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.29240404299926015,
+        "p50_s_raw": 0.07120202149963006,
+        "p95_s_adjusted": 0.3034859753679484,
+        "p95_s_raw": 0.07674298768397421
+      },
+      "usd_per_1000": 0.016769261083743846
+    },
+    {
+      "key": "malkuth-4b",
+      "display": "Malkuth-4B (newfull5, Kev post-train)",
+      "axes": {
+        "calibration": 88.43741591513763,
+        "cost": 55.82433433950372,
+        "intelligence": 33.840703805987175,
+        "speed": 89.51571180654442
+      },
+      "capability": 61.139059860562405,
+      "jevbench_score": 26.197476126697616,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2985552769736387,
+        "p50_s_raw": 0.07427763848681934,
+        "p95_s_adjusted": 0.3744588227418717,
+        "p95_s_raw": 0.11222941137093585
+      },
+      "usd_per_1000": 0.02968398399014778
+    },
+    {
+      "key": "jqv",
+      "display": "jqv (Qwen3-32B zero-shot)",
+      "axes": {
+        "calibration": 89.87138320201578,
+        "cost": 51.172592607797476,
+        "intelligence": 33.85815624201783,
+        "speed": 83.1032423977654
+      },
+      "capability": 61.8647697220168,
+      "jevbench_score": 25.391439220985372,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3448032220825553,
+        "p50_s_raw": 0.09740161104127765,
+        "p95_s_adjusted": 1.4193988358601928,
+        "p95_s_raw": 0.6346994179300964
+      },
+      "usd_per_1000": 0.042420935960591134
+    },
+    {
+      "key": "jpt-35b-a3b",
+      "display": "JPT-35B-A3B (Qwen3.5-35B-A3B fine-tune)",
+      "axes": {
+        "calibration": 89.9313809717458,
+        "cost": 33.627578514713974,
+        "intelligence": 51.42208418374838,
+        "speed": 90.51950606084544
+      },
+      "capability": 70.67673257774709,
+      "jevbench_score": 25.357657195103958,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.29123902405845004,
+        "p50_s_raw": 0.070619512029225,
+        "p95_s_adjusted": 0.30464904906693846,
+        "p95_s_raw": 0.07732452453346922
+      },
+      "usd_per_1000": 0.16308501184834123
+    },
+    {
+      "key": "decider-35b-a3b",
+      "display": "decider-35b-a3b (Mapika)",
+      "axes": {
+        "calibration": 83.61830413355554,
+        "cost": 34.38579876859529,
+        "intelligence": 48.72471958402083,
+        "speed": 91.27357492980725
+      },
+      "capability": 66.1715118587882,
+      "jevbench_score": 24.772887446577812,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2493798840790987,
+        "p50_s_raw": 0.04968994203954935,
+        "p95_s_adjusted": 0.29907567272894087,
+        "p95_s_raw": 0.07453783636447042
+      },
+      "usd_per_1000": 0.1538650708128079
+    },
+    {
+      "key": "coco-decision-4b",
+      "display": "CoCo-Decision-4B (corners-ai, LoRA on Qwen3.5-4B, option-label logits of one pass, served by oh-my-jev)",
+      "axes": {
+        "calibration": 81.18327994577871,
+        "cost": 65.17140064644872,
+        "intelligence": 32.65682750200105,
+        "speed": 91.3615355688411
+      },
+      "capability": 56.92005372388988,
+      "jevbench_score": 24.64791535308594,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.23897131998674012,
+        "p50_s_raw": 0.044485659993370064,
+        "p95_s_adjusted": 0.30584448990703095,
+        "p95_s_raw": 0.07792224495351546
+      },
+      "usd_per_1000": 0.014486161137440754
+    },
+    {
+      "key": "manchego-v21-v15",
+      "display": "Manchego v2.1",
+      "axes": {
+        "calibration": 84.0077997110931,
+        "cost": 64.32996474661243,
+        "intelligence": 32.54303915979197,
+        "speed": 90.7347510499745
+      },
+      "capability": 58.27541943544253,
+      "jevbench_score": 24.487333472500133,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2574284589994932,
+        "p50_s_raw": 0.05371422949974658,
+        "p95_s_adjusted": 0.32799584188469455,
+        "p95_s_raw": 0.08899792094234726
+      },
+      "usd_per_1000": 0.015452586206896551
+    },
+    {
+      "key": "decision-4b-v12",
+      "display": "Decision 4B v1.2 (FlyMyJev, Qwen3.5-4B + LoRA)",
+      "axes": {
+        "calibration": 88.42488519968094,
+        "cost": 63.07359395281681,
+        "intelligence": 32.40310972936693,
+        "speed": 93.92936299294371
+      },
+      "capability": 60.41399746452394,
+      "jevbench_score": 24.463556699266523,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.18829862689599394,
+        "p50_s_raw": 0.019149313447996974,
+        "p95_s_adjusted": 0.2148901690961793,
+        "p95_s_raw": 0.032445084548089656
+      },
+      "usd_per_1000": 0.01701689039408867
+    },
+    {
+      "key": "raw-qwen3-4b-instruct-2507",
+      "display": "Raw Qwen3 4B Instruct 2507 direct logits",
+      "axes": {
+        "calibration": 35.18175191334879,
+        "cost": 63.36068112101963,
+        "intelligence": 33.95117742100547,
+        "speed": 91.16296741568695
+      },
+      "capability": 34.56646466717713,
+      "jevbench_score": 21.792436038282993,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.24207517188042402,
+        "p50_s_raw": 0.04603758594021201,
+        "p95_s_adjusted": 0.31604797318577765,
+        "p95_s_raw": 0.08302398659288883
+      },
+      "usd_per_1000": 0.01664602832512315
+    },
+    {
+      "key": "jev-27b-autotrust",
+      "display": "JEV-27B (AutoTrust, Qwen3.8-27B)",
+      "axes": {
+        "calibration": 90.89967561034447,
+        "cost": 31.02571003473804,
+        "intelligence": 56.828664559360675,
+        "speed": 86.89503266505372
+      },
+      "capability": 73.86417008485257,
+      "jevbench_score": 21.291230595611577,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3604971420194488,
+        "p50_s_raw": 0.1052485710097244,
+        "p95_s_adjusted": 0.5670154692983488,
+        "p95_s_raw": 0.20850773464917438
+      },
+      "usd_per_1000": 0.19913289099526063
+    },
+    {
+      "key": "torchcast-decision-27b",
+      "display": "torchcast-decision-27b (Torchcast AI, Qwen3.8-27B fine-tune)",
+      "axes": {
+        "calibration": 91.379440941337,
+        "cost": 30.341044859222123,
+        "intelligence": 71.75187578095783,
+        "speed": 87.72436167205926
+      },
+      "capability": 81.56565836114741,
+      "jevbench_score": 21.273291266043532,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3445720289950259,
+        "p50_s_raw": 0.09728601449751295,
+        "p95_s_adjusted": 0.4900989957066485,
+        "p95_s_raw": 0.17004949785332427
+      },
+      "usd_per_1000": 0.20987715639810428
+    },
+    {
+      "key": "nimble-9b",
+      "display": "Bespoke Nimble 9B (Bespoke Labs)",
+      "axes": {
+        "calibration": 69.88762704651819,
+        "cost": 36.75037423027614,
+        "intelligence": 43.14237010986392,
+        "speed": 86.11327010751721
+      },
+      "capability": 56.514998578191054,
+      "jevbench_score": 21.082616704957896,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.43987150778993966,
+        "p50_s_raw": 0.14493575389496982,
+        "p95_s_adjusted": 0.5563488021492958,
+        "p95_s_raw": 0.2031744010746479
+      },
+      "usd_per_1000": 0.1283278325123153
+    },
+    {
+      "key": "reflex-4b",
+      "display": "reflex 4B (kshetrajna12)",
+      "axes": {
+        "calibration": 86.97925577932901,
+        "cost": 63.142712976263866,
+        "intelligence": 30.935558296483705,
+        "speed": 68.7900017304639
+      },
+      "capability": 58.95740703790636,
+      "jevbench_score": 20.637311182702398,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 2.865421538101509,
+        "p50_s_raw": 1.3577107690507546,
+        "p95_s_adjusted": 4.611171829840169,
+        "p95_s_raw": 2.230585914920084
+      },
+      "usd_per_1000": 0.016926853448275863
+    },
+    {
+      "key": "pplx-decider-v1-1-27b",
+      "display": "Perplexity Decider v1.1 27B (Qwen3.8-27B, noncausal decision readout)",
+      "axes": {
+        "calibration": 89.86695733940225,
+        "cost": 29.886617009940878,
+        "intelligence": 75.71677945512734,
+        "speed": 86.79279341461623
+      },
+      "capability": 82.79186839726479,
+      "jevbench_score": 20.617642759667973,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.39472174100810664,
+        "p50_s_raw": 0.12236087050405331,
+        "p95_s_adjusted": 0.5301876544195693,
+        "p95_s_raw": 0.19009382720978463
+      },
+      "usd_per_1000": 0.21732654028436021
+    },
+    {
+      "key": "jade",
+      "display": "JADE (Qwen3.8-27B LoRA)",
+      "axes": {
+        "calibration": 50.5645403785324,
+        "cost": 33.57969498589053,
+        "intelligence": 47.93439876939806,
+        "speed": 85.53222225487117
+      },
+      "capability": 49.24946957396523,
+      "jevbench_score": 20.194459825016597,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4045139710127842,
+        "p50_s_raw": 0.12725698550639208,
+        "p95_s_adjusted": 0.6915829036966897,
+        "p95_s_raw": 0.27079145184834486
+      },
+      "usd_per_1000": 0.16368548408937036
+    },
+    {
+      "key": "typecastlm",
+      "display": "typecastlm (Mikhail Gribov, Qwen3.5-4B computed head)",
+      "axes": {
+        "calibration": 83.29951051808085,
+        "cost": 63.95900966831593,
+        "intelligence": 29.78900656204624,
+        "speed": 92.76354061232337
+      },
+      "capability": 56.544258540063545,
+      "jevbench_score": 19.72256430004839,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.20903298105113208,
+        "p50_s_raw": 0.02951649052556604,
+        "p95_s_adjusted": 0.25318100801086985,
+        "p95_s_raw": 0.051590504005434926
+      },
+      "usd_per_1000": 0.01589887315270936
+    },
+    {
+      "key": "jebadiah-27b",
+      "display": "Jebadiah 27B (Frontier Infra, Qwen3.8-27B LoRA)",
+      "axes": {
+        "calibration": 83.03844121699153,
+        "cost": 29.935481526523958,
+        "intelligence": 57.58551644935426,
+        "speed": 85.83700487110255
+      },
+      "capability": 70.3119788331729,
+      "jevbench_score": 19.255307672764186,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4285312689666171,
+        "p50_s_raw": 0.13926563448330853,
+        "p95_s_adjusted": 0.6085790472658118,
+        "p95_s_raw": 0.2292895236329059
+      },
+      "usd_per_1000": 0.2165129857819905
+    },
+    {
+      "key": "decision-2-0-vega-27b",
+      "display": "Decision 2.0 Vega 27B (vLLM-SR, Qwen3.8-27B)",
+      "axes": {
+        "calibration": 82.20136692745442,
+        "cost": 29.632311028770005,
+        "intelligence": 60.4093162408047,
+        "speed": 83.80610555916236
+      },
+      "capability": 71.30534158412956,
+      "jevbench_score": 18.883756282485887,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.5303170211613178,
+        "p50_s_raw": 0.1901585105806589,
+        "p95_s_adjusted": 0.784971479140222,
+        "p95_s_raw": 0.317485739570111
+      },
+      "usd_per_1000": 0.22161014218009478
+    },
+    {
+      "key": "decision-4b-v11",
+      "display": "Decision 4B v1.1 (FlyMyJev, Qwen3.5-4B + LoRA)",
+      "axes": {
+        "calibration": 85.23934158755043,
+        "cost": 63.07359395281681,
+        "intelligence": 29.134168280172865,
+        "speed": 93.95641941218838
+      },
+      "capability": 57.18675493386165,
+      "jevbench_score": 18.718356274892123,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.188053295109421,
+        "p50_s_raw": 0.019026647554710507,
+        "p95_s_adjusted": 0.21383417290635406,
+        "p95_s_raw": 0.031917086453177035
+      },
+      "usd_per_1000": 0.01701689039408867
+    },
+    {
+      "key": "autojev-27b",
+      "display": "AutoJev-27B (denis-pplx, Qwen3.8-27B)",
+      "axes": {
+        "calibration": 87.61544276592178,
+        "cost": 29.365937020749882,
+        "intelligence": 55.62422706919757,
+        "speed": 88.60757446254297
+      },
+      "capability": 71.61983491755967,
+      "jevbench_score": 18.463427917707932,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.3447543190326542,
+        "p50_s_raw": 0.09737715951632708,
+        "p95_s_adjusted": 0.3996987941907718,
+        "p95_s_raw": 0.12484939709538592
+      },
+      "usd_per_1000": 0.22618758620689655
+    },
+    {
+      "key": "eikos-27b",
+      "display": "Eikos-27B (caiovicentino1, Qwen3.8-27B)",
+      "axes": {
+        "calibration": 89.97714437568723,
+        "cost": 28.689752882469676,
+        "intelligence": 64.40270761245412,
+        "speed": 88.08630815059152
+      },
+      "capability": 77.18992599407068,
+      "jevbench_score": 18.077889022432696,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.37523653320968153,
+        "p50_s_raw": 0.11261826660484076,
+        "p95_s_adjusted": 0.4140607553534209,
+        "p95_s_raw": 0.13203037767671047
+      },
+      "usd_per_1000": 0.23823646551724137
+    },
+    {
+      "key": "ninfer-qwen3.8-27b",
+      "display": "NInfer Qwen3.8-27B NVFP4",
+      "axes": {
+        "calibration": 84.18557302696732,
+        "cost": 29.118887844204664,
+        "intelligence": 51.800126951055375,
+        "speed": 90.47734239273063
+      },
+      "capability": 67.99284998901135,
+      "jevbench_score": 17.71600496541158,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.26002668901346626,
+        "p50_s_raw": 0.05501334450673312,
+        "p95_s_adjusted": 0.3445464937365614,
+        "p95_s_raw": 0.09727324686828069
+      },
+      "usd_per_1000": 0.2305174137931034
+    },
+    {
+      "key": "openjev-thinking",
+      "display": "OpenJev (thinking, BF16)",
+      "axes": {
+        "calibration": 81.41345474033434,
+        "cost": 28.51480924396573,
+        "intelligence": 70.34621384425424,
+        "speed": 72.55270827201397
+      },
+      "capability": 75.87983429229429,
+      "jevbench_score": 17.265218966202397,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.8639664588030427,
+        "p50_s_raw": 0.8569832294015214,
+        "p95_s_adjusted": 2.980513406405225,
+        "p95_s_raw": 1.4152567032026127
+      },
+      "usd_per_1000": 0.24145693965517237
+    },
+    {
+      "key": "open-jev-zefan-9b",
+      "display": "Open-Jev 9B (Zefan Cai)",
+      "axes": {
+        "calibration": 79.80507069734225,
+        "cost": 33.05490478272432,
+        "intelligence": 43.88591848753404,
+        "speed": 74.39486349899005
+      },
+      "capability": 61.84549459243814,
+      "jevbench_score": 17.045611746249723,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.3850112770218401,
+        "p50_s_raw": 0.6175056385109201,
+        "p95_s_adjusted": 2.624583175848238,
+        "p95_s_raw": 1.237291587924119
+      },
+      "usd_per_1000": 0.17041317733990147
+    },
+    {
+      "key": "standardone-8b",
+      "display": "Standard One 8B (Standard Thinking)",
+      "axes": {
+        "calibration": 84.01508092906352,
+        "cost": 43.283250331904235,
+        "intelligence": 32.80426604507879,
+        "speed": 92.76442849252426
+      },
+      "capability": 58.40967348707115,
+      "jevbench_score": 16.917108299009165,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.21347399484366178,
+        "p50_s_raw": 0.03173699742183089,
+        "p95_s_adjusted": 0.24786326913163065,
+        "p95_s_raw": 0.04893163456581533
+      },
+      "usd_per_1000": 0.07772456896551724
+    },
+    {
+      "key": "clef",
+      "display": "Clef (Cloudflare, Qwen3.8-27B post-train with a joint schema head, multimodal, measured on text)",
+      "axes": {
+        "calibration": 91.57703482429629,
+        "cost": 28.102157220114762,
+        "intelligence": 59.08165501447566,
+        "speed": 83.3998209667487
+      },
+      "capability": 75.32934491938597,
+      "jevbench_score": 16.753692861922005,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.5763746980577708,
+        "p50_s_raw": 0.21318734902888536,
+        "p95_s_adjusted": 0.7930726912803948,
+        "p95_s_raw": 0.3215363456401974
+      },
+      "usd_per_1000": 0.24922681034482758
+    },
+    {
+      "key": "jev-qwen3.5-9b-base-nvfp4",
+      "display": "JEV Qwen3.5-9B Base NVFP4",
+      "axes": {
+        "calibration": 85.03288206087805,
+        "cost": 47.592235403520306,
+        "intelligence": 29.251131763478327,
+        "speed": 93.62779491136789
+      },
+      "capability": 57.14200691217819,
+      "jevbench_score": 15.97555620862577,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.19534559999592602,
+        "p50_s_raw": 0.02267279999796301,
+        "p95_s_adjusted": 0.22203266686410641,
+        "p95_s_raw": 0.03601633343205321
+      },
+      "usd_per_1000": 0.05583743842364531
+    },
+    {
+      "key": "semif-qwen3.5-4b",
+      "display": "SemIf, formerly OpenJev (Qwen3.5-4B, TheoLeeCJ)",
+      "axes": {
+        "calibration": 83.59960184071504,
+        "cost": 63.07359395281681,
+        "intelligence": 27.10113669038628,
+        "speed": 90.76560119421038
+      },
+      "capability": 55.35036926555066,
+      "jevbench_score": 15.517179498801362,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.25408456099685284,
+        "p50_s_raw": 0.05204228049842641,
+        "p95_s_adjusted": 0.32996023471932856,
+        "p95_s_raw": 0.08998011735966428
+      },
+      "usd_per_1000": 0.01701689039408867
+    },
+    {
+      "key": "bev-bonsai-27b",
+      "display": "Bev / Bonsai 27B",
+      "axes": {
+        "calibration": 88.50232899798883,
+        "cost": 28.231834531826323,
+        "intelligence": 43.77513601921869,
+        "speed": 72.98222461463935
+      },
+      "capability": 66.13873250860377,
+      "jevbench_score": 11.7393704396132,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 2.1222116896882652,
+        "p50_s_raw": 0.9861058448441327,
+        "p95_s_adjusted": 2.371312748454511,
+        "p95_s_raw": 1.1106563742272555
+      },
+      "usd_per_1000": 0.2467585344827586
+    },
+    {
+      "key": "litjev",
+      "display": "LitJev (Qwen3.8-27B)",
+      "axes": {
+        "calibration": 89.9210925231847,
+        "cost": 28.35809912639418,
+        "intelligence": 43.28549422942267,
+        "speed": 68.17671225113584
+      },
+      "capability": 66.60329337630368,
+      "jevbench_score": 11.458886170296882,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 3.0960148913785814,
+        "p50_s_raw": 1.4730074456892908,
+        "p95_s_adjusted": 4.9150250315666195,
+        "p95_s_raw": 2.3825125157833096
+      },
+      "usd_per_1000": 0.2443787068965517
+    },
+    {
+      "key": "localjev-qwen3.5-4b",
+      "display": "local-jev Qwen3.5-4B",
+      "axes": {
+        "calibration": 85.84286362718517,
+        "cost": 59.269627658320445,
+        "intelligence": 24.145363218466134,
+        "speed": 86.10068849774444
+      },
+      "capability": 54.99411342282565,
+      "jevbench_score": 11.438161297684031,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.39534114915877583,
+        "p50_s_raw": 0.1226705745793879,
+        "p95_s_adjusted": 0.6208106089383364,
+        "p95_s_raw": 0.2354053044691682
+      },
+      "usd_per_1000": 0.022786576354679802
+    },
+    {
+      "key": "system-one-sg",
+      "display": "system-one (Qwen3-8B, Sean Goedecke)",
+      "axes": {
+        "calibration": 30.16473321941294,
+        "cost": 44.96855803039237,
+        "intelligence": 29.271508779158296,
+        "speed": 90.8867694864598
+      },
+      "capability": 29.718120999285617,
+      "jevbench_score": 11.027723483913586,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.24992560098180547,
+        "p50_s_raw": 0.04996280049090274,
+        "p95_s_adjusted": 0.3262212941306643,
+        "p95_s_raw": 0.08811064706533216
+      },
+      "usd_per_1000": 0.06829381896551724
+    },
+    {
+      "key": "kev-8b",
+      "display": "kev 8B (research preview)",
+      "axes": {
+        "calibration": 70.7561729087212,
+        "cost": 40.42054386073457,
+        "intelligence": 29.26217941280341,
+        "speed": 88.97143473610706
+      },
+      "capability": 50.0091761607623,
+      "jevbench_score": 10.62283914209564,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2989678788930178,
+        "p50_s_raw": 0.07448393944650888,
+        "p95_s_adjusted": 0.42386933271773153,
+        "p95_s_raw": 0.13693466635886578
+      },
+      "usd_per_1000": 0.09682374384236453
+    },
+    {
+      "key": "decision-2b",
+      "display": "Decision 2B (FlyMy.AI, v59)",
+      "axes": {
+        "calibration": 86.77033341356835,
+        "cost": 66.37275756963365,
+        "intelligence": 22.875473256337628,
+        "speed": 90.39462801231525
+      },
+      "capability": 54.82290333495299,
+      "jevbench_score": 10.289708493744515,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.30028566285036506,
+        "p50_s_raw": 0.07514283142518252,
+        "p95_s_adjusted": 0.30409032410243525,
+        "p95_s_raw": 0.07704516205121763
+      },
+      "usd_per_1000": 0.013210160098522166
+    },
+    {
+      "key": "opensourcejev-qwen35-4b-q4km",
+      "display": "OpenSourceJev (Qwen3.5-4B Q4_K_M, native llama.cpp)",
+      "axes": {
+        "calibration": 73.92484912653177,
+        "cost": 69.13657649738097,
+        "intelligence": 23.217995107845883,
+        "speed": 77.06362388237805
+      },
+      "capability": 48.571422117188824,
+      "jevbench_score": 10.263493713193125,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.7395113246515393,
+        "p50_s_raw": 0.29475566232576966,
+        "p95_s_adjusted": 2.6588435446377843,
+        "p95_s_raw": 1.2544217723188922
+      },
+      "usd_per_1000": 0.0106851539408867
+    },
+    {
+      "key": "open-alternative-jev",
+      "display": "open-alternative-jev (Qwen3.5-4B, IkerMoel)",
+      "axes": {
+        "calibration": 75.94384178347806,
+        "cost": 63.27859776193043,
+        "intelligence": 22.34610151162883,
+        "speed": 91.30216983336405
+      },
+      "capability": 49.14497164755345,
+      "jevbench_score": 9.435692571873393,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2366679080063477,
+        "p50_s_raw": 0.04333395400317386,
+        "p95_s_adjusted": 0.3130715797946323,
+        "p95_s_raw": 0.08153578989731614
+      },
+      "usd_per_1000": 0.0167512315270936
+    },
+    {
+      "key": "raw-qwen3-8b",
+      "display": "Raw Qwen3 8B direct logits",
+      "axes": {
+        "calibration": 33.721548452619835,
+        "cost": 45.53515592313027,
+        "intelligence": 26.54912920590792,
+        "speed": 88.65282990878164
+      },
+      "capability": 30.13533882926388,
+      "jevbench_score": 9.30125972789427,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.30506142796948554,
+        "p50_s_raw": 0.07753071398474276,
+        "p95_s_adjusted": 0.4470228368416429,
+        "p95_s_raw": 0.14851141842082144
+      },
+      "usd_per_1000": 0.0653875104679803
+    },
+    {
+      "key": "decider-2b",
+      "display": "decider-2b (Mapika)",
+      "axes": {
+        "calibration": 68.52438190259257,
+        "cost": 64.91766177740826,
+        "intelligence": 20.654576369710338,
+        "speed": 94.55945724666857
+      },
+      "capability": 44.58947913615145,
+      "jevbench_score": 7.6704332123718,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.17949020988307893,
+        "p50_s_raw": 0.014745104941539466,
+        "p95_s_adjusted": 0.1949905256042257,
+        "p95_s_raw": 0.022495262802112847
+      },
+      "usd_per_1000": 0.014771046798029557
+    },
+    {
+      "key": "nemotron-diffusion-8b",
+      "display": "Nemotron Diffusion 8B (pst2154, optimized vLLM)",
+      "axes": {
+        "calibration": 74.53740737677316,
+        "cost": 55.49170925809556,
+        "intelligence": 20.38848344571935,
+        "speed": 93.8305724848098
+      },
+      "capability": 47.46294541124625,
+      "jevbench_score": 7.29748476516348,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.1939013559371233,
+        "p50_s_raw": 0.02195067796856165,
+        "p95_s_adjusted": 0.21348231588490307,
+        "p95_s_raw": 0.03174115794245154
+      },
+      "usd_per_1000": 0.03045157019704434
+    },
+    {
+      "key": "kev-4b",
+      "display": "kev 4B (research preview)",
+      "axes": {
+        "calibration": 68.45285936403559,
+        "cost": 65.78036497095258,
+        "intelligence": 19.510707720813777,
+        "speed": 90.46585183268016
+      },
+      "capability": 43.98178354242468,
+      "jevbench_score": 6.611791819903415,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.29399301540106537,
+        "p50_s_raw": 0.07199650770053267,
+        "p95_s_adjusted": 0.3055468452628701,
+        "p95_s_raw": 0.07777342263143508
+      },
+      "usd_per_1000": 0.013824661330049262
+    },
+    {
+      "key": "kev-27b",
+      "display": "Kev 27B (Kev 1.0, Qwen3.8-27B)",
+      "axes": {
+        "calibration": 93.71720359195915,
+        "cost": 18.302044660887503,
+        "intelligence": 64.16071886717361,
+        "speed": 83.65684843680415
+      },
+      "capability": 78.93896122956639,
+      "jevbench_score": 5.77223551264444,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.5102782679954544,
+        "p50_s_raw": 0.18013913399772719,
+        "p95_s_adjusted": 0.8443219571985537,
+        "p95_s_raw": 0.34716097859927686
+      },
+      "usd_per_1000": 0.5287680162491537
+    },
+    {
+      "key": "malkuth-2b",
+      "display": "Malkuth-2B (newfull5, Kev post-train)",
+      "axes": {
+        "calibration": 79.34885520197874,
+        "cost": 65.5661191189412,
+        "intelligence": 15.917395195670291,
+        "speed": 92.03462875001455
+      },
+      "capability": 47.633125198824516,
+      "jevbench_score": 3.992169201455145,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.23610859100008383,
+        "p50_s_raw": 0.04305429550004192,
+        "p95_s_adjusted": 0.26510952737880866,
+        "p95_s_raw": 0.05755476368940435
+      },
+      "usd_per_1000": 0.014053873152709357
+    },
+    {
+      "key": "qwen3-reranker-4b",
+      "display": "Qwen3-Reranker-4B",
+      "axes": {
+        "calibration": 73.15350658389404,
+        "cost": 48.39770052432463,
+        "intelligence": 16.337944014530347,
+        "speed": 82.14971164581814
+      },
+      "capability": 44.7457252992122,
+      "jevbench_score": 3.715006798009075,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.5581826242618263,
+        "p50_s_raw": 0.20409131213091314,
+        "p95_s_adjusted": 1.092075143335387,
+        "p95_s_raw": 0.47103757166769356
+      },
+      "usd_per_1000": 0.05249000923645321
+    },
+    {
+      "key": "simplejev-qwen3.8-27b-selfhost",
+      "display": "SimpleJev Qwen3.8-27B (self-hosted, v1.6 pool)",
+      "axes": {
+        "calibration": 91.85610710600702,
+        "cost": 15.10193161538902,
+        "intelligence": 57.92931033189586,
+        "speed": 76.19964460590472
+      },
+      "capability": 74.89270871895144,
+      "jevbench_score": 3.394848880196433,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.393547774007311,
+        "p50_s_raw": 0.6217738870036555,
+        "p95_s_adjusted": 1.721526361943688,
+        "p95_s_raw": 0.785763180971844
+      },
+      "usd_per_1000": 0.6759827488151658
+    },
+    {
+      "key": "zerank-2",
+      "display": "ZeroEntropy zerank-2",
+      "axes": {
+        "calibration": 83.20040692874471,
+        "cost": 48.39770052432463,
+        "intelligence": 15.596611891228248,
+        "speed": 82.89783918855927
+      },
+      "capability": 49.39850940998648,
+      "jevbench_score": 3.349795360318651,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4991468541324139,
+        "p50_s_raw": 0.17457342706620693,
+        "p95_s_adjusted": 1.0279872846323996,
+        "p95_s_raw": 0.4389936423161998
+      },
+      "usd_per_1000": 0.05249000923645321
+    },
+    {
+      "key": "exaone-4.0-1.2b-jev-v0.3",
+      "display": "EXAONE-4.0-1.2B-JEV v0.3 (unofficial fine-tune of LGAI-EXAONE/EXAONE-4.0-1.2B, native option-label softmax, two reads averaged, self-hosted)",
+      "axes": {
+        "calibration": 80.52861474872404,
+        "cost": 57.919479713067595,
+        "intelligence": 14.831288392065307,
+        "speed": 94.09940251974388
+      },
+      "capability": 47.67995157039467,
+      "jevbench_score": 3.266776278413127,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.19053296000347472,
+        "p50_s_raw": 0.020266480001737364,
+        "p95_s_adjusted": 0.20421593803039284,
+        "p95_s_raw": 0.02710796901519643
+      },
+      "usd_per_1000": 0.025274583615436694
+    },
+    {
+      "key": "open-jev-zefan-2b",
+      "display": "Open-Jev 2B (Zefan Cai)",
+      "axes": {
+        "calibration": 73.61830158128652,
+        "cost": 33.05490478272432,
+        "intelligence": 21.804441188912403,
+        "speed": 77.13731150142542
+      },
+      "capability": 47.71137138509946,
+      "jevbench_score": 3.2383990318693976,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.0230181839782744,
+        "p50_s_raw": 0.43650909198913723,
+        "p95_s_adjusted": 1.8896679471712559,
+        "p95_s_raw": 0.869833973585628
+      },
+      "usd_per_1000": 0.17041317733990147
+    },
+    {
+      "key": "open-jev-zefan-27b-v1.1",
+      "display": "Open-Jev 27B v1.1 (Zefan Cai, LoRA + decision head on Qwen3.8-27B)",
+      "axes": {
+        "calibration": 83.46836347105969,
+        "cost": 14.357426070787312,
+        "intelligence": 52.45777412397041,
+        "speed": 72.50871441156775
+      },
+      "capability": 67.96306879751505,
+      "jevbench_score": 2.8808671915746493,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.7305992921814322,
+        "p50_s_raw": 0.7902996460907161,
+        "p95_s_adjusted": 3.242888652905821,
+        "p95_s_raw": 1.5464443264529106
+      },
+      "usd_per_1000": 0.7157353448275862
+    },
+    {
+      "key": "raw-phi-4-mini",
+      "display": "Raw Phi-4 mini direct logits",
+      "axes": {
+        "calibration": 57.015465878675315,
+        "cost": 53.22051180195924,
+        "intelligence": 13.660237978082595,
+        "speed": 91.89255362835293
+      },
+      "capability": 35.33785192837895,
+      "jevbench_score": 2.4794266829120515,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.23357354765757918,
+        "p50_s_raw": 0.04178677382878959,
+        "p95_s_adjusted": 0.27689874032512307,
+        "p95_s_raw": 0.06344937016256152
+      },
+      "usd_per_1000": 0.03625068965517241
+    },
+    {
+      "key": "simplejev-qwen3.5-0.8b",
+      "display": "SimpleJev (Qwen3.5-0.8B, CPU)",
+      "axes": {
+        "calibration": 50.197881904888476,
+        "cost": 70.31175519898045,
+        "intelligence": 13.000426205687345,
+        "speed": 58.929227255635794
+      },
+      "capability": 31.59915405528791,
+      "jevbench_score": 2.112084174105171,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 8.797023160476238,
+        "p50_s_raw": 4.323511580238119,
+        "p95_s_adjusted": 14.545931534096598,
+        "p95_s_raw": 7.197965767048299
+      },
+      "usd_per_1000": 0.009763559113300492
+    },
+    {
+      "key": "smalljev",
+      "display": "smalljev semantic-v9",
+      "axes": {
+        "calibration": 77.23092648324078,
+        "cost": 60.77469204714053,
+        "intelligence": 8.670533657732655,
+        "speed": 90.21131723708834
+      },
+      "capability": 42.95073007048671,
+      "jevbench_score": 0.7719455446134506,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2831438841298223,
+        "p50_s_raw": 0.06657194206491113,
+        "p95_s_adjusted": 0.33640395337715745,
+        "p95_s_raw": 0.09320197668857871
+      },
+      "usd_per_1000": 0.020300665024630543
+    },
+    {
+      "key": "kev-0.6b",
+      "display": "kev 0.6B (research preview)",
+      "axes": {
+        "calibration": 66.26655558235618,
+        "cost": 80.09400261254245,
+        "intelligence": 7.598789169415934,
+        "speed": 91.51497362122684
+      },
+      "capability": 36.93267237588606,
+      "jevbench_score": 0.5431213026023877,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.26348884413018825,
+        "p50_s_raw": 0.05674442206509411,
+        "p95_s_adjusted": 0.2677567361854017,
+        "p95_s_raw": 0.05887836809270084
+      },
+      "usd_per_1000": 0.004608220443349753
+    },
+    {
+      "key": "jul-fast",
+      "display": "jul fast (usejul/jul-decision-minicpm5-2b: MiniCPM5-2B fine-tune with a pointer head, option probabilities from one pass, self-hosted via `jul serve`)",
+      "axes": {
+        "calibration": 78.06387337738309,
+        "cost": 68.9870979950853,
+        "intelligence": 7.4645122320968404,
+        "speed": 90.69403874154062
+      },
+      "capability": 42.76419280473996,
+      "jevbench_score": 0.5174168972906218,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.23712351802387274,
+        "p50_s_raw": 0.043561759011936374,
+        "p95_s_adjusted": 0.3594359368114965,
+        "p95_s_raw": 0.10471796840574825
+      },
+      "usd_per_1000": 0.010808449559918753
+    },
+    {
+      "key": "opendecision",
+      "display": "OpenDecision (ModernBERT-large zero-shot)",
+      "axes": {
+        "calibration": 68.56606448002526,
+        "cost": 79.10704862374335,
+        "intelligence": 7.425225288997898,
+        "speed": 87.12856375997052
+      },
+      "capability": 37.99564488451158,
+      "jevbench_score": 0.508795165212109,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.29369962783530357,
+        "p50_s_raw": 0.07184981391765177,
+        "p95_s_adjusted": 0.6595386148197576,
+        "p95_s_raw": 0.2547693074098788
+      },
+      "usd_per_1000": 0.004970862068965518
+    },
+    {
+      "key": "classone-gemma4-e2b",
+      "display": "ClassOne Gemma 4 E2B (Gemma-4-E2B backbone with ClassOne decision heads, schema-constrained single forward pass, self-hosted)",
+      "axes": {
+        "calibration": 22.615652963639242,
+        "cost": 70.20313863040258,
+        "intelligence": 7.802105373202749,
+        "speed": 93.2878888255429
+      },
+      "capability": 15.208879168420996,
+      "jevbench_score": 0.49351800738768026,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.20868116198689676,
+        "p50_s_raw": 0.029340580993448384,
+        "p95_s_adjusted": 0.2247645789931994,
+        "p95_s_raw": 0.0373822894965997
+      },
+      "usd_per_1000": 0.00984529451591063
+    },
+    {
+      "key": "mghafiri-qwen3.5-0.8b-decision-model",
+      "display": "Qwen3.5-0.8B Decision Model (Mourad Ghafiri)",
+      "axes": {
+        "calibration": 77.95657740696296,
+        "cost": 79.5180630553356,
+        "intelligence": 7.297270616183145,
+        "speed": 55.90747410573378
+      },
+      "capability": 42.62692401157305,
+      "jevbench_score": 0.47247471382875306,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 11.252091223932803,
+        "p50_s_raw": 5.551045611966401,
+        "p95_s_adjusted": 22.804436485376208,
+        "p95_s_raw": 11.327218242688105
+      },
+      "usd_per_1000": 0.00481649630541872
+    },
+    {
+      "key": "fastino-gliner-2-5-decide",
+      "display": "Fastino GLiNER-2.5-Decide (hosted API)",
+      "axes": {
+        "calibration": 62.13288114639033,
+        "cost": 45.81558630529788,
+        "intelligence": 7.011351364482595,
+        "speed": 84.7052606179839
+      },
+      "capability": 34.57211625543646,
+      "jevbench_score": 0.34332996901846624,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.4409300498664379,
+        "p50_s_raw": 0.4409300498664379,
+        "p95_s_adjusted": 0.7675456959754229,
+        "p95_s_raw": 0.7675456959754229
+      },
+      "usd_per_1000": 0.06399515910629654
+    },
+    {
+      "key": "deem-0.8-v1",
+      "display": "Deem 0.8B v1",
+      "axes": {
+        "calibration": 29.6278299611924,
+        "cost": 80.28784730320886,
+        "intelligence": 6.531204174677637,
+        "speed": 85.44505463939521
+      },
+      "capability": 18.07951706793502,
+      "jevbench_score": 0.32342918922131697,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.4647796718403697,
+        "p50_s_raw": 0.15738983592018485,
+        "p95_s_adjusted": 0.6141117558348923,
+        "p95_s_raw": 0.23205587791744614
+      },
+      "usd_per_1000": 0.004540166256157636
+    },
+    {
+      "key": "decision-fast",
+      "display": "Decision Fast (FlyMy.AI, v53a)",
+      "axes": {
+        "calibration": 75.07737238688318,
+        "cost": 80.08651867745036,
+        "intelligence": 6.110691078442272,
+        "speed": 91.472185793536
+      },
+      "capability": 40.59403173266273,
+      "jevbench_score": 0.2981489585308357,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2653681320138276,
+        "p50_s_raw": 0.05768406600691378,
+        "p95_s_adjusted": 0.26849280574824663,
+        "p95_s_raw": 0.059246402874123305
+      },
+      "usd_per_1000": 0.004610868226600985
+    },
+    {
+      "key": "quyet-1-0-small-en",
+      "display": "Quyet-1.0-Small-EN (Chinh Nguyen, ModernBERT-base encoder with fixed heads)",
+      "axes": {
+        "calibration": 73.02134054125926,
+        "cost": 89.11296503596958,
+        "intelligence": 6.054813340422714,
+        "speed": 94.90893356488051
+      },
+      "capability": 39.53807694084099,
+      "jevbench_score": 0.29239342204088814,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.1791461439919658,
+        "p50_s_raw": 0.0145730719959829,
+        "p95_s_adjusted": 0.18025992200709878,
+        "p95_s_raw": 0.015129961003549396
+      },
+      "usd_per_1000": 0.0023062222906403943
+    },
+    {
+      "key": "laya-typed-decisions",
+      "display": "Laya typed-decisions",
+      "axes": {
+        "calibration": 82.96996460403702,
+        "cost": 82.52942826196218,
+        "intelligence": 5.471270906587037,
+        "speed": 70.81965680870755
+      },
+      "capability": 44.22061775531203,
+      "jevbench_score": 0.21666109526429145,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.8777340129803632,
+        "p50_s_raw": 0.8638670064901817,
+        "p95_s_adjusted": 4.409610662701016,
+        "p95_s_raw": 2.1298053313505076
+      },
+      "usd_per_1000": 0.003822543103448276
+    },
+    {
+      "key": "watersheep",
+      "display": "WaterSheep (Samrat Dutta, ModernBERT-base encoder with calibrated heads, served by the author's own `watersheep --serve`)",
+      "axes": {
+        "calibration": 65.84236453711111,
+        "cost": 68.67136467637603,
+        "intelligence": 5.305239654184986,
+        "speed": 77.5933742155104
+      },
+      "capability": 35.57380209564805,
+      "jevbench_score": 0.19483758736149703,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.9529444739222527,
+        "p50_s_raw": 0.4014722369611263,
+        "p95_s_adjusted": 1.82639614790678,
+        "p95_s_raw": 0.8381980739533901
+      },
+      "usd_per_1000": 0.011073574813811781
+    },
+    {
+      "key": "openjev-verdict-1.4",
+      "display": "openJev Verdict 1.4",
+      "axes": {
+        "calibration": 75.69890703057408,
+        "cost": 86.62313527343974,
+        "intelligence": 5.035901218168153,
+        "speed": 81.49274954261848
+      },
+      "capability": 40.36740412437111,
+      "jevbench_score": 0.17222636557331997,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.7352308319881559,
+        "p50_s_raw": 0.2926154159940779,
+        "p95_s_adjusted": 0.9644980074837803,
+        "p95_s_raw": 0.40724900374189016
+      },
+      "usd_per_1000": 0.002791871921182266
+    },
+    {
+      "key": "raw-qwen3-0.6b",
+      "display": "Raw Qwen3 0.6B direct logits",
+      "axes": {
+        "calibration": 10.94062892769364,
+        "cost": 77.58073177551512,
+        "intelligence": 5.554864880982027,
+        "speed": 93.52703208725202
+      },
+      "capability": 8.247746904337834,
+      "jevbench_score": 0.1673536172919218,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2079640818759799,
+        "p50_s_raw": 0.02898204093798995,
+        "p95_s_adjusted": 0.21345604490488768,
+        "p95_s_raw": 0.03172802245244384
+      },
+      "usd_per_1000": 0.005588676108374384
+    },
+    {
+      "key": "lev-350m",
+      "display": "lev-350m (Franck Verrot, LFM2.5-350M)",
+      "axes": {
+        "calibration": 81.86424479313416,
+        "cost": 80.03797760430007,
+        "intelligence": 4.827562367090417,
+        "speed": 93.98230372494703
+      },
+      "capability": 43.34590358011229,
+      "jevbench_score": 0.15377137469809216,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.1946538500036695,
+        "p50_s_raw": 0.022326925001834752,
+        "p95_s_adjusted": 0.2053556374099571,
+        "p95_s_raw": 0.02767781870497856
+      },
+      "usd_per_1000": 0.00462807881773399
+    },
+    {
+      "key": "raw-qwen3-1.7b",
+      "display": "Raw Qwen3 1.7B direct logits",
+      "axes": {
+        "calibration": 11.516326812547591,
+        "cost": 68.54983190559568,
+        "intelligence": 5.124286554530066,
+        "speed": 93.23530725162705
+      },
+      "capability": 8.320306683538828,
+      "jevbench_score": 0.13671939226506033,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.21396372243762016,
+        "p50_s_raw": 0.03198186121881008,
+        "p95_s_adjusted": 0.221885605994612,
+        "p95_s_raw": 0.03594280299730599
+      },
+      "usd_per_1000": 0.011177352216748768
+    },
+    {
+      "key": "kev-0.5b",
+      "display": "kev 0.5B",
+      "axes": {
+        "calibration": 61.20618525995795,
+        "cost": 80.09398520305423,
+        "intelligence": 4.598433868646836,
+        "speed": 92.39904218127765
+      },
+      "capability": 32.90230956430239,
+      "jevbench_score": 0.131588623265787,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2379663866944611,
+        "p50_s_raw": 0.043983193347230554,
+        "p95_s_adjusted": 0.24186897580511868,
+        "p95_s_raw": 0.04593448790255934
+      },
+      "usd_per_1000": 0.004608226600985222
+    },
+    {
+      "key": "openjev-verdict",
+      "display": "openJev Verdict (heman10x, ModernBERT-base 151M)",
+      "axes": {
+        "calibration": 49.11476555745841,
+        "cost": 86.62313527343974,
+        "intelligence": 4.1496399816416485,
+        "speed": 79.40046783928
+      },
+      "capability": 26.63220276955003,
+      "jevbench_score": 0.09650709186186587,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.6885442301630974,
+        "p50_s_raw": 0.2692721150815487,
+        "p95_s_adjusted": 1.66732926396653,
+        "p95_s_raw": 0.7586646319832651
+      },
+      "usd_per_1000": 0.002791871921182266
+    },
+    {
+      "key": "quyet-1-0-small",
+      "display": "Quyet-1.0-Small (Chinh Nguyen, SEA-LION-ModernBERT-300M encoder with fixed heads)",
+      "axes": {
+        "calibration": 60.96568104722222,
+        "cost": 79.56261245432609,
+        "intelligence": 4.019045994532796,
+        "speed": 94.91846454857637
+      },
+      "capability": 32.492363520877504,
+      "jevbench_score": 0.08963716950381444,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.17903870801674202,
+        "p50_s_raw": 0.01451935400837101,
+        "p95_s_adjusted": 0.17997269080078693,
+        "p95_s_raw": 0.014986345400393473
+      },
+      "usd_per_1000": 0.004800055418719211
+    },
+    {
+      "key": "watt-flash-0.1",
+      "display": "watt-flash-0.1 (Zaitgeist Labs, 140M mmBERT-small encoder with an option-marker scorer, one forward pass per request, self-hosted)",
+      "axes": {
+        "calibration": 79.37888213235459,
+        "cost": 89.00253166733508,
+        "intelligence": 3.759262959387639,
+        "speed": 75.84832436427908
+      },
+      "capability": 41.569072545871116,
+      "jevbench_score": 0.07461802002995101,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.0144243478775024,
+        "p50_s_raw": 0.4322121739387512,
+        "p95_s_adjusted": 2.564176402240991,
+        "p95_s_raw": 1.2070882011204955
+      },
+      "usd_per_1000": 0.0023258530805687202
+    },
+    {
+      "key": "quyet-1-0-tiny",
+      "display": "Quyet-1.0-Tiny (Chinh Nguyen, mmBERT-small encoder (16 layers kept) with fixed heads)",
+      "axes": {
+        "calibration": 58.46458026762962,
+        "cost": 88.43590631389968,
+        "intelligence": 3.6964771541368573,
+        "speed": 95.09610910731021
+      },
+      "capability": 31.08052871088324,
+      "jevbench_score": 0.07064766318734213,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.1753336349996971,
+        "p50_s_raw": 0.012666817499848548,
+        "p95_s_adjusted": 0.17641026510682423,
+        "p95_s_raw": 0.013205132553412113
+      },
+      "usd_per_1000": 0.0024292364532019703
+    },
+    {
+      "key": "open-jev-deberta-v3-large",
+      "display": "open-jev-deberta-v3-large (local CPU)",
+      "axes": {
+        "calibration": 67.96597988813339,
+        "cost": 77.5922354035203,
+        "intelligence": 2.8293414417857914,
+        "speed": 67.62138193768119
+      },
+      "capability": 35.39766066495959,
+      "jevbench_score": 0.03235814777127837,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 3.5280169868841766,
+        "p50_s_raw": 1.6890084934420884,
+        "p95_s_adjusted": 4.901524059008808,
+        "p95_s_raw": 2.3757620295044037
+      },
+      "usd_per_1000": 0.005583743842364532
+    },
+    {
+      "key": "verdict-small",
+      "display": "verdict-small (Manavarya09, multilingual-e5-small 118M)",
+      "axes": {
+        "calibration": 72.92000413192591,
+        "cost": 100.0,
+        "intelligence": 2.3417095945172277,
+        "speed": 89.48731594094681
+      },
+      "capability": 37.63085686322157,
+      "jevbench_score": 0.01899384266854915,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.24820413775742053,
+        "p50_s_raw": 0.04910206887871027,
+        "p95_s_adjusted": 0.4533769000321627,
+        "p95_s_raw": 0.15168845001608133
+      },
+      "usd_per_1000": 0.000866152709359606
+    },
+    {
+      "key": "tacet-sonata",
+      "display": "Tacet Sonata (CodePawl, 144M packed encoder on mmBERT-small, option-marker softmax in one pass, in-process via the author's tacet package)",
+      "axes": {
+        "calibration": 46.37837260299999,
+        "cost": 89.01467380421724,
+        "intelligence": 2.2436273530567146,
+        "speed": 80.28211114890141
+      },
+      "capability": 24.310999978028352,
+      "jevbench_score": 0.016405006835540154,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.6127247303724289,
+        "p50_s_raw": 0.23136236518621445,
+        "p95_s_adjusted": 1.5294084161520003,
+        "p95_s_raw": 0.6897042080760002
+      },
+      "usd_per_1000": 0.0023236865267433986
+    },
+    {
+      "key": "laya",
+      "display": "Laya (Convai Innovations, ModernBERT-large 421M)",
+      "axes": {
+        "calibration": 63.22326564159259,
+        "cost": 84.89402784895724,
+        "intelligence": 1.7910341507793501,
+        "speed": 73.26302890816496
+      },
+      "capability": 32.50714989618597,
+      "jevbench_score": 0.008560099345041717,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.800616904720664,
+        "p50_s_raw": 0.825308452360332,
+        "p95_s_adjusted": 2.619846137147397,
+        "p95_s_raw": 1.2349230685736985
+      },
+      "usd_per_1000": 0.0031881034482758625
+    },
+    {
+      "key": "mxbai-rerank-base-v2",
+      "display": "Mixedbread mxbai-rerank-base-v2",
+      "axes": {
+        "calibration": 86.60772459153094,
+        "cost": 60.33589314238483,
+        "intelligence": 1.140707327109041,
+        "speed": 92.58758170313658
+      },
+      "capability": 43.87421595931999,
+      "jevbench_score": 0.002273929358844764,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.21285173026844859,
+        "p50_s_raw": 0.031425865134224296,
+        "p95_s_adjusted": 0.2589194315019995,
+        "p95_s_raw": 0.05445971575099974
+      },
+      "usd_per_1000": 0.020996016009852216
+    },
+    {
+      "key": "laya-multilingual",
+      "display": "Laya multilingual",
+      "axes": {
+        "calibration": 33.655846666999985,
+        "cost": 82.1551651086044,
+        "intelligence": 0.2879184668737643,
+        "speed": 77.82044954853706
+      },
+      "capability": 16.971882566936873,
+      "jevbench_score": 3.7595668430455566e-05,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.8654558090260253,
+        "p50_s_raw": 0.3577279045130126,
+        "p95_s_adjusted": 1.908579030103283,
+        "p95_s_raw": 0.8792895150516415
+      },
+      "usd_per_1000": 0.003933940886699508
+    },
+    {
+      "key": "certo",
+      "display": "Certo v1 (AltSlate Labs)",
+      "axes": {
+        "calibration": 86.14595667337036,
+        "cost": 96.9130801359906,
+        "intelligence": 0.20278658812856143,
+        "speed": 92.53493469610669
+      },
+      "capability": 43.17437163074946,
+      "jevbench_score": 1.3254531668229452e-05,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.23407380385324358,
+        "p50_s_raw": 0.042036901926621795,
+        "p95_s_adjusted": 0.2383162835612893,
+        "p95_s_raw": 0.04415814178064466
+      },
+      "usd_per_1000": 0.0012673522167487683
+    },
+    {
+      "key": "clm-8b",
+      "display": "CLM-8B (Contrastive-LM, clm-latest)",
+      "axes": {
+        "calibration": 40.041900621338065,
+        "cost": 50.501662240594015,
+        "intelligence": 0.13075619159747265,
+        "speed": 92.63548383949004
+      },
+      "capability": 20.086328406467768,
+      "jevbench_score": 3.5510969933114796e-06,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.19238147847354412,
+        "p50_s_raw": 0.02119073923677206,
+        "p95_s_adjusted": 0.2833272576332092,
+        "p95_s_raw": 0.0666636288166046
+      },
+      "usd_per_1000": 0.044662660714285714
+    },
+    {
+      "key": "bge-reranker-v2-m3",
+      "display": "BAAI bge-reranker-v2-m3",
+      "axes": {
+        "calibration": 88.10046932372114,
+        "cost": 59.325605115070715,
+        "intelligence": 0.06512222845080358,
+        "speed": 93.86976236118387
+      },
+      "capability": 44.08279577608597,
+      "jevbench_score": 4.4076803151681546e-07,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.1841465687379241,
+        "p50_s_raw": 0.01707328436896205,
+        "p95_s_adjusted": 0.2227717584464699,
+        "p95_s_raw": 0.03638587922323495
+      },
+      "usd_per_1000": 0.022688885467980296
+    },
+    {
+      "key": "gte-reranker-modernbert-base",
+      "display": "Alibaba GTE Reranker ModernBERT-base",
+      "axes": {
+        "calibration": 83.4556233651092,
+        "cost": 69.26965431492843,
+        "intelligence": 0.0,
+        "speed": 93.76120791185616
+      },
+      "capability": 41.7278116825546,
+      "jevbench_score": 0.0,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.19835810186341404,
+        "p50_s_raw": 0.024179050931707025,
+        "p95_s_adjusted": 0.2120455999393016,
+        "p95_s_raw": 0.031022799969650804
+      },
+      "usd_per_1000": 0.010576570197044334
+    },
+    {
+      "key": "mirror",
+      "display": "Mirror",
+      "axes": {
+        "calibration": 51.61277239297377,
+        "cost": 89.27300805786774,
+        "intelligence": 0.0,
+        "speed": 73.47211485993975
+      },
+      "capability": 25.806386196486883,
+      "jevbench_score": 0.0,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 1.4516588259488343,
+        "p50_s_raw": 0.6508294129744172,
+        "p95_s_adjusted": 3.096876988979056,
+        "p95_s_raw": 1.473438494489528
+      },
+      "usd_per_1000": 0.0022780665024630543
+    },
+    {
+      "key": "open-jev-json-canvas-joshuasp",
+      "display": "Open Jev JSON Canvas (JoshuaSP)",
+      "axes": {
+        "calibration": 0.0,
+        "cost": 49.295219536461964,
+        "intelligence": 61.19221807027989,
+        "speed": 85.53332924416175
+      },
+      "capability": 30.596109035139946,
+      "jevbench_score": 0.0,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.44667022498324516,
+        "p50_s_raw": 0.14833511249162257,
+        "p95_s_adjusted": 0.6261524326633662,
+        "p95_s_raw": 0.23807621633168308
+      },
+      "usd_per_1000": 0.04899585591133005
+    },
+    {
+      "key": "apus-openjev-v1-35b-a3b",
+      "display": "APUS-OpenJev-v1-35B-A3B (merged bf16 checkpoint-5949 MoE on Qwen3.5-35B-A3B, their own native runtime, full depth, self-hosted)",
+      "axes": {
+        "calibration": 67.91594971090585,
+        "cost": null,
+        "intelligence": 52.808647095759525,
+        "speed": 80.50610262660216
+      },
+      "capability": 60.36229840333269,
+      "jevbench_score": null,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.859432493080385,
+        "p50_s_raw": 0.3547162465401925,
+        "p95_s_adjusted": 1.0355664409697056,
+        "p95_s_raw": 0.4427832204848528
+      },
+      "usd_per_1000": null
+    },
+    {
+      "key": "bb-qwen3.5-4b-lora",
+      "display": "BB-Qwen3.5-4B-LoRA (Babak Barazandeh, LoRA on Qwen3.5-4B-Base, hosted /v1/systemone)",
+      "axes": {
+        "calibration": 82.13857452060611,
+        "cost": null,
+        "intelligence": 38.67355961154223,
+        "speed": 81.57813729165589
+      },
+      "capability": 60.40606706607417,
+      "jevbench_score": null,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.6954362019896507,
+        "p50_s_raw": 0.6954362019896507,
+        "p95_s_adjusted": 0.9998364746570587,
+        "p95_s_raw": 0.9998364746570587
+      },
+      "usd_per_1000": null
+    },
+    {
+      "key": "seb-9b",
+      "display": "Seb-9B (Qwen3.5-9B-shaped multimodal decision model, one forward pass, stock vLLM, self-hosted)",
+      "axes": {
+        "calibration": 90.06815367376362,
+        "cost": null,
+        "intelligence": 43.512227190846936,
+        "speed": 90.02719232031932
+      },
+      "capability": 66.79019043230528,
+      "jevbench_score": null,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.2702792370459065,
+        "p50_s_raw": 0.06013961852295324,
+        "p95_s_adjusted": 0.36767837166553363,
+        "p95_s_raw": 0.1088391858327668
+      },
+      "usd_per_1000": null
+    },
+    {
+      "key": "wity-1-always",
+      "display": "wity-1 (Wity, reasoning always)",
+      "axes": {
+        "calibration": 89.25002486738025,
+        "cost": 58.8349720563948,
+        "intelligence": 69.25112551166924,
+        "speed": 71.20296182763504
+      },
+      "capability": 79.25057518952474,
+      "jevbench_score": 70.56449594359258,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 1.6885605081915855,
+        "p50_s_raw": 1.6885605081915855,
+        "p95_s_adjusted": 4.489388496428728,
+        "p95_s_raw": 4.489388496428728
+      },
+      "usd_per_1000": 0.023559582938388626
+    },
+    {
+      "key": "wity-1-off",
+      "display": "wity-1 (Wity, reasoning off)",
+      "axes": {
+        "calibration": 81.82569250484788,
+        "cost": 58.8349720563948,
+        "intelligence": 44.11116118075945,
+        "speed": 89.55912090143326
+      },
+      "capability": 62.968426842803666,
+      "jevbench_score": 49.37499462500363,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.28173011541366577,
+        "p50_s_raw": 0.28173011541366577,
+        "p95_s_adjusted": 0.39287521950900556,
+        "p95_s_raw": 0.39287521950900556
+      },
+      "usd_per_1000": 0.023559582938388626
+    }
+  ]
+}

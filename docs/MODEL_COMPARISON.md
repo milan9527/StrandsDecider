@@ -4,6 +4,8 @@
 
 当前页面同时比较 Decider、Typesafe 托管 Jev 与 Bedrock GPT-6.1 Sol。Jev 接收相同的 System One `state`、`questions` 和候选条件，保留服务端返回的实际模型版本、选择与概率；不根据接口相同推断 Jev 使用了与 Decider 相同的内部结构或 confidence 公式。接入细节见 [Jev 指南](JEV.md)。
 
+2026-10-16 起，演示中的 Decider 统一使用官方 v19 的 vLLM 适配服务。下文已采集的性能与选择差异仍来自原版部署，不作为 vLLM 的复测结果。
+
 ## 当前三模型性能
 
 数据来自 [2026-10-12 预热后三模型记录](presentations/v8/live-observations.json)：`triple1` 优化流程，四场景各五步，每步同时请求三个模型，输入与候选一致；每个场景运行一次。Jev 实际版本 `jev-1.13.0`；GPT 为 `us.openai.gpt-6.1-sol` / `low`；Decider 为 EC2 `g6.xlarge` 上的官方 v19。

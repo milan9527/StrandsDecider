@@ -1,0 +1,85 @@
+{
+  "model": "strands-decider-2B-hobson-v19",
+  "engine": "original Strands Decider; not vLLM",
+  "instance_type": "g6.xlarge",
+  "region": "us-east-1",
+  "model_image_digest": "sha256:104aadab321d8e8f4d9444d7b9b00668e6e0ba3934f0420fef07212886c0f450",
+  "started_at": "2026-10-16T02:45:58.447186+00:00",
+  "finished_at": "2026-10-16T02:46:34.269281+00:00",
+  "max_length": 4096,
+  "device": "cuda",
+  "concurrency": 1,
+  "warmups_excluded": 3,
+  "retries": 0,
+  "tiers": {
+    "standard": {
+      "n": 72,
+      "correct": 65,
+      "accuracy": 0.9027777777777778,
+      "latency": {
+        "n": 72,
+        "p50_s": 0.06646841249999902,
+        "p95_s": 0.06824561224999837
+      }
+    },
+    "easy": {
+      "n": 48,
+      "correct": 48,
+      "accuracy": 1.0,
+      "latency": {
+        "n": 48,
+        "p50_s": 0.0683741404999978,
+        "p95_s": 0.06998215310000297
+      }
+    },
+    "hard": {
+      "n": 111,
+      "correct": 55,
+      "accuracy": 0.4954954954954955,
+      "latency": {
+        "n": 111,
+        "p50_s": 0.07450380400000256,
+        "p95_s": 0.5052944635000003
+      }
+    }
+  },
+  "client_mean_ms": 125.90659231601735,
+  "server_reported_mean_ms": 123.57064935064935,
+  "server_reported_latency": {
+    "n": 231,
+    "p50_s": 0.06628,
+    "p95_s": 0.40088999999999997
+  },
+  "input_tokens": {
+    "min": 82,
+    "max": 3936,
+    "mean": 661.1168831168832
+  },
+  "upstream_reference_comparison": {
+    "reference": "Packaged v19 eval/jevbench-w4096/results.jsonl; upstream historical report, not a new run",
+    "reference_sha256": "67519947e87c95717892931da4a4774ff77b2ed6f175373e06abe7624781dd08",
+    "reference_correct": 167,
+    "current_correct": 168,
+    "same_predicted": 230,
+    "changed_predictions": 1,
+    "wrong_to_right": 1,
+    "right_to_wrong": 0,
+    "boundary_changes": [
+      {
+        "type": "noul",
+        "family": "judge_hard",
+        "reference_probabilities": {
+          "yes": 0.4973,
+          "no": 0.5026999999999999
+        },
+        "current_probabilities": {
+          "yes": 0.5007,
+          "no": 0.49929999999999997
+        }
+      }
+    ]
+  },
+  "cost": "No per-token tariff; EC2 and temporary Fargate costs excluded, not free inference",
+  "latency_scope": "Fargate client to existing GPU service over private HTTP; includes network and service queuing",
+  "candidate_order_test": "Not performed; official task and candidate order retained"
+}

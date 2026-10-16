@@ -1,0 +1,3193 @@
+{
+  "created_at": "2026-10-13T02:51:41.334142+00:00",
+  "method": "Aggregate existing recorded tests only; no new inference. Scores with different units are not pooled; repeats and historical versions are not independent cases.",
+  "models": {
+    "jev": "jev-1.13.0",
+    "decider": "strands-decider-2B-hobson-v19"
+  },
+  "skills": {
+    "by_business": [
+      {
+        "id": "classification",
+        "title": "分类、意图与语义规则",
+        "total": 13,
+        "correct": {
+          "jev": 13,
+          "decider": 13
+        }
+      },
+      {
+        "id": "routing",
+        "title": "工具、模型和受限动作选择",
+        "total": 10,
+        "correct": {
+          "jev": 10,
+          "decider": 10
+        }
+      },
+      {
+        "id": "context",
+        "title": "上下文筛选与压缩时机",
+        "total": 6,
+        "correct": {
+          "jev": 6,
+          "decider": 6
+        }
+      },
+      {
+        "id": "workflow",
+        "title": "循环恢复与任务完成检查",
+        "total": 8,
+        "correct": {
+          "jev": 8,
+          "decider": 7
+        }
+      },
+      {
+        "id": "evidence",
+        "title": "来源、代码和对话证据核验",
+        "total": 20,
+        "correct": {
+          "jev": 20,
+          "decider": 11
+        }
+      },
+      {
+        "id": "scoring",
+        "title": "紧急度、影响和审查评分",
+        "total": 8,
+        "correct": {
+          "jev": 8,
+          "decider": 3
+        }
+      }
+    ],
+    "totals": {
+      "jev": {
+        "planned_calls": 32,
+        "attempted_calls": 32,
+        "valid_calls": 32,
+        "failed_calls": 0,
+        "planned_questions": 68,
+        "reference_questions": 65,
+        "matches_reference": 65,
+        "reference_mismatches": 0,
+        "unscored_questions_returned": 3,
+        "resolved_models": [
+          "jev-1.13.0"
+        ],
+        "mean_client_ms": 127.669,
+        "median_client_ms": 119.935,
+        "p95_client_ms": 163.775,
+        "total_client_ms": 4085.419
+      },
+      "decider": {
+        "planned_calls": 32,
+        "attempted_calls": 32,
+        "valid_calls": 32,
+        "failed_calls": 0,
+        "planned_questions": 68,
+        "reference_questions": 65,
+        "matches_reference": 50,
+        "reference_mismatches": 15,
+        "unscored_questions_returned": 3,
+        "resolved_models": [
+          "strands-decider-2B-hobson-v19"
+        ],
+        "mean_client_ms": 616.038,
+        "median_client_ms": 164.649,
+        "p95_client_ms": 911.109,
+        "total_client_ms": 19713.217
+      }
+    }
+  },
+  "payment": {
+    "primary": {
+      "jev": {
+        "successful_calls": 20,
+        "matches_reference": 20,
+        "backend_total_ms": 9143.467,
+        "safety_adjustments": 0
+      },
+      "decider": {
+        "successful_calls": 20,
+        "matches_reference": 18,
+        "backend_total_ms": 2156.937,
+        "safety_adjustments": 1
+      }
+    },
+    "earlier_paired": {
+      "decider": {
+        "calls": 20,
+        "successful_calls": 20,
+        "matches_reference": 18,
+        "safety_adjustments": 1,
+        "backend_total_ms": 1557.975,
+        "mean_backend_ms": 77.899
+      },
+      "jev": {
+        "calls": 20,
+        "successful_calls": 20,
+        "matches_reference": 20,
+        "safety_adjustments": 0,
+        "backend_total_ms": 5673.759,
+        "mean_backend_ms": 283.688
+      }
+    },
+    "jev_in_separate_gpt_pair": {
+      "calls": 20,
+      "successful_calls": 20,
+      "matches_reference": 20,
+      "safety_adjustments": 0,
+      "backend_total_ms": 5591.397,
+      "mean_backend_ms": 279.57
+    },
+    "historical_decider_input_optimization": {
+      "baseline": {
+        "successful_calls": 20,
+        "failed_calls": 0,
+        "reference_matches": 14,
+        "backend_total_ms": 2059.338,
+        "protection_adjustments": 4
+      },
+      "optimized": {
+        "successful_calls": 20,
+        "failed_calls": 0,
+        "reference_matches": 18,
+        "backend_total_ms": 1577.99,
+        "protection_adjustments": 1
+      }
+    },
+    "business_completion": "0/4 per provider for primary initial-evidence batch; prerequisites unmet; sandbox only"
+  },
+  "tetris": {
+    "primary_games": [
+      {
+        "verified_at": "2026-10-12T09:33:10.495996+00:00",
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 36,
+        "lines": 0,
+        "score": 0,
+        "finish_reason": "top_out",
+        "status": "finished",
+        "models": [
+          "strands-decider-2B-hobson-v19"
+        ],
+        "verified_live_moves": 36,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "policy": "original",
+        "provider": "decider",
+        "successful_requests": 66,
+        "stats": {
+          "successful_requests": 66,
+          "live_moves": 36,
+          "forced_moves": 0,
+          "policy_moves": 0,
+          "dominated_moves": 19,
+          "errors": 0,
+          "mean_decision_ms": 1511.5,
+          "last_decision_ms": 1231.52,
+          "p95_decision_ms": 2483.69
+        },
+        "raw_choice_matches_applied_placement": true,
+        "board_replay_matches": true
+      },
+      {
+        "verified_at": "2026-10-12T09:33:10.666438+00:00",
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 43,
+        "lines": 2,
+        "score": 200,
+        "finish_reason": "top_out",
+        "status": "finished",
+        "models": [
+          "strands-decider-2B-hobson-v19"
+        ],
+        "verified_live_moves": 43,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "policy": "model",
+        "provider": "decider",
+        "successful_requests": 79,
+        "stats": {
+          "successful_requests": 79,
+          "live_moves": 43,
+          "forced_moves": 0,
+          "policy_moves": 0,
+          "dominated_moves": 22,
+          "errors": 0,
+          "mean_decision_ms": 1414.5,
+          "last_decision_ms": 190.2,
+          "p95_decision_ms": 2458.69
+        },
+        "raw_choice_matches_applied_placement": true,
+        "board_replay_matches": true
+      },
+      {
+        "verified_at": "2026-10-12T09:33:10.968758+00:00",
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 50,
+        "lines": 19,
+        "score": 3000,
+        "finish_reason": "piece_limit",
+        "status": "finished",
+        "models": [
+          "jev-1.13.0"
+        ],
+        "verified_live_moves": 50,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "policy": "original",
+        "provider": "jev",
+        "successful_requests": 93,
+        "stats": {
+          "successful_requests": 93,
+          "live_moves": 50,
+          "forced_moves": 0,
+          "policy_moves": 0,
+          "dominated_moves": 1,
+          "errors": 0,
+          "mean_decision_ms": 256.1,
+          "last_decision_ms": 262.32,
+          "p95_decision_ms": 335.9
+        },
+        "raw_choice_matches_applied_placement": true,
+        "board_replay_matches": true
+      },
+      {
+        "verified_at": "2026-10-12T09:33:11.388098+00:00",
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 50,
+        "lines": 19,
+        "score": 3100,
+        "finish_reason": "piece_limit",
+        "status": "finished",
+        "models": [
+          "jev-1.13.0"
+        ],
+        "verified_live_moves": 50,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "policy": "model",
+        "provider": "jev",
+        "successful_requests": 93,
+        "stats": {
+          "successful_requests": 93,
+          "live_moves": 50,
+          "forced_moves": 0,
+          "policy_moves": 0,
+          "dominated_moves": 1,
+          "errors": 0,
+          "mean_decision_ms": 251.1,
+          "last_decision_ms": 239.09,
+          "p95_decision_ms": 326.7
+        },
+        "raw_choice_matches_applied_placement": true,
+        "board_replay_matches": true
+      }
+    ],
+    "two_option_probes": {
+      "decider/original": {
+        "correct": 3,
+        "total": 6
+      },
+      "decider/plain_options": {
+        "correct": 6,
+        "total": 6
+      },
+      "jev/original": {
+        "correct": 6,
+        "total": 6
+      },
+      "jev/plain_options": {
+        "correct": 6,
+        "total": 6
+      }
+    },
+    "full_candidate_dominated_choices": {
+      "jev": {
+        "original": {
+          "dominated": 0,
+          "total": 3
+        },
+        "model": {
+          "dominated": 0,
+          "total": 3
+        }
+      },
+      "decider": {
+        "original": {
+          "dominated": 3,
+          "total": 3
+        },
+        "model": {
+          "dominated": 2,
+          "total": 3
+        }
+      }
+    },
+    "historical_decider_games": [
+      {
+        "seed": 12345,
+        "max_pieces": 200,
+        "pieces": 200,
+        "lines": 75,
+        "variant": "guarded",
+        "verified_live_moves": 41,
+        "forced_moves": 0,
+        "policy_moves": 159,
+        "finish_reason": "piece_limit"
+      },
+      {
+        "seed": 2026,
+        "max_pieces": 50,
+        "pieces": 50,
+        "lines": 16,
+        "variant": "guarded",
+        "verified_live_moves": 9,
+        "forced_moves": 0,
+        "policy_moves": 41,
+        "finish_reason": "piece_limit"
+      },
+      {
+        "seed": 314159,
+        "max_pieces": 200,
+        "pieces": 200,
+        "lines": 73,
+        "variant": "guarded",
+        "verified_live_moves": 42,
+        "forced_moves": 0,
+        "policy_moves": 158,
+        "finish_reason": "piece_limit"
+      },
+      {
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 50,
+        "lines": 10,
+        "variant": "guarded",
+        "verified_live_moves": 14,
+        "forced_moves": 0,
+        "policy_moves": 36,
+        "finish_reason": "piece_limit"
+      },
+      {
+        "seed": 7,
+        "max_pieces": 50,
+        "pieces": 50,
+        "lines": 19,
+        "variant": "guarded",
+        "verified_live_moves": 14,
+        "forced_moves": 0,
+        "policy_moves": 36,
+        "finish_reason": "piece_limit"
+      },
+      {
+        "seed": 2026,
+        "max_pieces": 50,
+        "pieces": 39,
+        "lines": 3,
+        "variant": "original",
+        "verified_live_moves": 39,
+        "forced_moves": 0,
+        "policy_moves": null,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 36,
+        "lines": 0,
+        "variant": "original",
+        "verified_live_moves": 36,
+        "forced_moves": 0,
+        "policy_moves": null,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 7,
+        "max_pieces": 50,
+        "pieces": 49,
+        "lines": 5,
+        "variant": "original",
+        "verified_live_moves": 48,
+        "forced_moves": 1,
+        "policy_moves": null,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 12345,
+        "max_pieces": 200,
+        "pieces": 34,
+        "lines": 1,
+        "variant": "plain",
+        "verified_live_moves": 34,
+        "forced_moves": 0,
+        "policy_moves": 0,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 2026,
+        "max_pieces": 50,
+        "pieces": 33,
+        "lines": 0,
+        "variant": "plain",
+        "verified_live_moves": 33,
+        "forced_moves": 0,
+        "policy_moves": null,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 314159,
+        "max_pieces": 200,
+        "pieces": 58,
+        "lines": 8,
+        "variant": "plain",
+        "verified_live_moves": 57,
+        "forced_moves": 1,
+        "policy_moves": 0,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 42,
+        "max_pieces": 50,
+        "pieces": 43,
+        "lines": 2,
+        "variant": "plain",
+        "verified_live_moves": 43,
+        "forced_moves": 0,
+        "policy_moves": null,
+        "finish_reason": "top_out"
+      },
+      {
+        "seed": 7,
+        "max_pieces": 50,
+        "pieces": 50,
+        "lines": 8,
+        "variant": "plain",
+        "verified_live_moves": 50,
+        "forced_moves": 0,
+        "policy_moves": null,
+        "finish_reason": "piece_limit"
+      }
+    ],
+    "historical_note": "guarded is retired and uses program policy selection; not pure model performance. One legal move may be forced in two unguarded historical games."
+  },
+  "browser": {
+    "jev": {
+      "success": 10,
+      "total": 10,
+      "goal_reached": 10,
+      "statuses": {
+        "completed": 10
+      },
+      "tasks": {
+        "cfpb-dispute": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "cfpb-dispute-jev-1",
+              "status": "completed",
+              "steps": 4,
+              "goal_reached": true,
+              "wall_ms": 3029.04,
+              "action_errors": 0
+            },
+            {
+              "id": "cfpb-dispute-jev-2",
+              "status": "completed",
+              "steps": 4,
+              "goal_reached": true,
+              "wall_ms": 3156.851,
+              "action_errors": 0
+            }
+          ]
+        },
+        "ecb-usd": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "ecb-usd-jev-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4274.211,
+              "action_errors": 0
+            },
+            {
+              "id": "ecb-usd-jev-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4273.597,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-bank-search": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-bank-search-jev-1",
+              "status": "completed",
+              "steps": 10,
+              "goal_reached": true,
+              "wall_ms": 8049.241,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-bank-search-jev-2",
+              "status": "completed",
+              "steps": 6,
+              "goal_reached": true,
+              "wall_ms": 6212.687,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-faq": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-faq-jev-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3299.77,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-faq-jev-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3217.077,
+              "action_errors": 0
+            }
+          ]
+        },
+        "wikipedia-search": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "wikipedia-search-jev-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3895.728,
+              "action_errors": 0
+            },
+            {
+              "id": "wikipedia-search-jev-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3493.539,
+              "action_errors": 0
+            }
+          ]
+        }
+      }
+    },
+    "decider": {
+      "success": 4,
+      "total": 10,
+      "goal_reached": 4,
+      "statuses": {
+        "premature_finish": 6,
+        "completed": 4
+      },
+      "tasks": {
+        "cfpb-dispute": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "cfpb-dispute-decider-1",
+              "status": "premature_finish",
+              "steps": 4,
+              "goal_reached": false,
+              "wall_ms": 3278.842,
+              "action_errors": 0
+            },
+            {
+              "id": "cfpb-dispute-decider-2",
+              "status": "premature_finish",
+              "steps": 4,
+              "goal_reached": false,
+              "wall_ms": 3280.915,
+              "action_errors": 0
+            }
+          ]
+        },
+        "ecb-usd": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "ecb-usd-decider-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4505.841,
+              "action_errors": 0
+            },
+            {
+              "id": "ecb-usd-decider-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 4518.019,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-bank-search": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-bank-search-decider-1",
+              "status": "premature_finish",
+              "steps": 2,
+              "goal_reached": false,
+              "wall_ms": 4356.85,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-bank-search-decider-2",
+              "status": "premature_finish",
+              "steps": 2,
+              "goal_reached": false,
+              "wall_ms": 4492.922,
+              "action_errors": 0
+            }
+          ]
+        },
+        "fdic-faq": {
+          "success": 2,
+          "total": 2,
+          "runs": [
+            {
+              "id": "fdic-faq-decider-1",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3895.549,
+              "action_errors": 0
+            },
+            {
+              "id": "fdic-faq-decider-2",
+              "status": "completed",
+              "steps": 2,
+              "goal_reached": true,
+              "wall_ms": 3656.143,
+              "action_errors": 0
+            }
+          ]
+        },
+        "wikipedia-search": {
+          "success": 0,
+          "total": 2,
+          "runs": [
+            {
+              "id": "wikipedia-search-decider-1",
+              "status": "premature_finish",
+              "steps": 1,
+              "goal_reached": false,
+              "wall_ms": 1879.269,
+              "action_errors": 0
+            },
+            {
+              "id": "wikipedia-search-decider-2",
+              "status": "premature_finish",
+              "steps": 1,
+              "goal_reached": false,
+              "wall_ms": 1908.022,
+              "action_errors": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "finance": {
+    "unique_cases": 30,
+    "by_order": {
+      "jev": {
+        "original_order": {
+          "correct": 28,
+          "total": 30
+        },
+        "reversed_order": {
+          "correct": 28,
+          "total": 30
+        }
+      },
+      "decider": {
+        "original_order": {
+          "correct": 22,
+          "total": 30
+        },
+        "reversed_order": {
+          "correct": 24,
+          "total": 30
+        }
+      }
+    },
+    "summary": {
+      "jev": {
+        "correct": 56,
+        "total": 60,
+        "categories": {
+          "annual_report_evidence": {
+            "correct": 12,
+            "total": 12,
+            "errors": 0,
+            "original_order_correct": 6,
+            "original_order_total": 6
+          },
+          "deposit_insurance_triage": {
+            "correct": 10,
+            "total": 12,
+            "errors": 0,
+            "original_order_correct": 5,
+            "original_order_total": 6
+          },
+          "financial_news": {
+            "correct": 22,
+            "total": 24,
+            "errors": 0,
+            "original_order_correct": 11,
+            "original_order_total": 12
+          },
+          "fx_reporting_and_payment_routing": {
+            "correct": 12,
+            "total": 12,
+            "errors": 0,
+            "original_order_correct": 6,
+            "original_order_total": 6
+          }
+        },
+        "order_changed_choice": 0,
+        "order_pairs": 30,
+        "wrong": [
+          {
+            "case_id": "news-831",
+            "category": "financial_news",
+            "provider": "jev",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "neutral",
+            "expected": "positive",
+            "correct": false,
+            "input_sha256": "e943165794f10e1e14d7c61a7cbc27d222d3291e074211f1ad1bd5c934c2636b",
+            "elapsed_ms": 181.911
+          },
+          {
+            "case_id": "news-831",
+            "category": "financial_news",
+            "provider": "jev",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "neutral",
+            "expected": "positive",
+            "correct": false,
+            "input_sha256": "ef7e19b4f633c31c27dd8665926e478c3e5a4e10d475c34ec71b6d431b1f3c46",
+            "elapsed_ms": 151.079
+          },
+          {
+            "case_id": "deposit-aggregate",
+            "category": "deposit_insurance_triage",
+            "provider": "jev",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "fully_covered",
+            "expected": "partly_covered",
+            "correct": false,
+            "input_sha256": "11fdb351d5a5742133ab28bdae4360ff88a2b20d5baeb79a6b580458238979b5",
+            "elapsed_ms": 141.122
+          },
+          {
+            "case_id": "deposit-aggregate",
+            "category": "deposit_insurance_triage",
+            "provider": "jev",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "fully_covered",
+            "expected": "partly_covered",
+            "correct": false,
+            "input_sha256": "4eda8d4b857e690c210346f31ae83a131567b3e53674af0d4b044c6c7457d53e",
+            "elapsed_ms": 132.294
+          }
+        ]
+      },
+      "decider": {
+        "correct": 46,
+        "total": 60,
+        "categories": {
+          "annual_report_evidence": {
+            "correct": 8,
+            "total": 12,
+            "errors": 0,
+            "original_order_correct": 4,
+            "original_order_total": 6
+          },
+          "deposit_insurance_triage": {
+            "correct": 10,
+            "total": 12,
+            "errors": 0,
+            "original_order_correct": 5,
+            "original_order_total": 6
+          },
+          "financial_news": {
+            "correct": 22,
+            "total": 24,
+            "errors": 0,
+            "original_order_correct": 11,
+            "original_order_total": 12
+          },
+          "fx_reporting_and_payment_routing": {
+            "correct": 6,
+            "total": 12,
+            "errors": 0,
+            "original_order_correct": 2,
+            "original_order_total": 6
+          }
+        },
+        "order_changed_choice": 2,
+        "order_pairs": 30,
+        "wrong": [
+          {
+            "case_id": "news-831",
+            "category": "financial_news",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "neutral",
+            "expected": "positive",
+            "correct": false,
+            "input_sha256": "e943165794f10e1e14d7c61a7cbc27d222d3291e074211f1ad1bd5c934c2636b",
+            "elapsed_ms": 104.543
+          },
+          {
+            "case_id": "news-831",
+            "category": "financial_news",
+            "provider": "decider",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "neutral",
+            "expected": "positive",
+            "correct": false,
+            "input_sha256": "ef7e19b4f633c31c27dd8665926e478c3e5a4e10d475c34ec71b6d431b1f3c46",
+            "elapsed_ms": 96.564
+          },
+          {
+            "case_id": "report-wrong-year",
+            "category": "annual_report_evidence",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "supported",
+            "expected": "contradicted",
+            "correct": false,
+            "input_sha256": "22bb4cf9ce2b92aa83988e286166d4711c7f3bbced04ee5e6e8c90aaf1e668ae",
+            "elapsed_ms": 91.938
+          },
+          {
+            "case_id": "report-wrong-year",
+            "category": "annual_report_evidence",
+            "provider": "decider",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "supported",
+            "expected": "contradicted",
+            "correct": false,
+            "input_sha256": "fa277020f95c1a08f1f55fca46c95ba5813f2068c5a5629607b8fe174391f8ba",
+            "elapsed_ms": 97.556
+          },
+          {
+            "case_id": "report-unit-error",
+            "category": "annual_report_evidence",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "supported",
+            "expected": "contradicted",
+            "correct": false,
+            "input_sha256": "00b0424cecd3f376ed891febcb60dadc7e708a86c809031807b8ba07d2b1f7a2",
+            "elapsed_ms": 95.507
+          },
+          {
+            "case_id": "report-unit-error",
+            "category": "annual_report_evidence",
+            "provider": "decider",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "supported",
+            "expected": "contradicted",
+            "correct": false,
+            "input_sha256": "49e16c66494d1db711e960b4f32b53d7b05ee8e29ac5c58a51d579d8651ec305",
+            "elapsed_ms": 96.705
+          },
+          {
+            "case_id": "deposit-aggregate",
+            "category": "deposit_insurance_triage",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "fully_covered",
+            "expected": "partly_covered",
+            "correct": false,
+            "input_sha256": "11fdb351d5a5742133ab28bdae4360ff88a2b20d5baeb79a6b580458238979b5",
+            "elapsed_ms": 165.718
+          },
+          {
+            "case_id": "deposit-aggregate",
+            "category": "deposit_insurance_triage",
+            "provider": "decider",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "fully_covered",
+            "expected": "partly_covered",
+            "correct": false,
+            "input_sha256": "4eda8d4b857e690c210346f31ae83a131567b3e53674af0d4b044c6c7457d53e",
+            "elapsed_ms": 164.375
+          },
+          {
+            "case_id": "fx-correct",
+            "category": "fx_reporting_and_payment_routing",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "obtain_executable_quote",
+            "expected": "accept_report",
+            "correct": false,
+            "input_sha256": "2e81c26b5bb19b5bb1d154598377531f2677f4a23183dbab0a61afec3c6ec994",
+            "elapsed_ms": 96.863
+          },
+          {
+            "case_id": "fx-inverse-error",
+            "category": "fx_reporting_and_payment_routing",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "obtain_executable_quote",
+            "expected": "correct_calculation",
+            "correct": false,
+            "input_sha256": "d219b406bfe814242b1f4f59d10d9ef4f4498c6d5e25b91033234d8273941e96",
+            "elapsed_ms": 93.151
+          },
+          {
+            "case_id": "fx-inverse-error",
+            "category": "fx_reporting_and_payment_routing",
+            "provider": "decider",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "obtain_executable_quote",
+            "expected": "correct_calculation",
+            "correct": false,
+            "input_sha256": "afa1a35639c9184dcbc851fc8194eac12f07f1584f5309b0f94615c6c5cd9c2c",
+            "elapsed_ms": 94.097
+          },
+          {
+            "case_id": "fx-missing-currency",
+            "category": "fx_reporting_and_payment_routing",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "obtain_executable_quote",
+            "expected": "obtain_missing_rate",
+            "correct": false,
+            "input_sha256": "5374b0978611c22b1c376f97ff59562484d10f0dfaf5a62a4657fd4bfa99d350",
+            "elapsed_ms": 97.668
+          },
+          {
+            "case_id": "fx-missing-currency",
+            "category": "fx_reporting_and_payment_routing",
+            "provider": "decider",
+            "variant": "reversed_order",
+            "status": "ok",
+            "choice": "obtain_executable_quote",
+            "expected": "obtain_missing_rate",
+            "correct": false,
+            "input_sha256": "99d34e35eb00fddd186fa7009a9756dbf668354fa8c2deef8e380f0d2ee26a01",
+            "elapsed_ms": 94.671
+          },
+          {
+            "case_id": "fx-reverse-correct",
+            "category": "fx_reporting_and_payment_routing",
+            "provider": "decider",
+            "variant": "original_order",
+            "status": "ok",
+            "choice": "obtain_executable_quote",
+            "expected": "accept_report",
+            "correct": false,
+            "input_sha256": "e5299e0a42a989d986444ecbc4d8513801879c019a0f0bdcb8ce5d19230551a8",
+            "elapsed_ms": 100.653
+          }
+        ]
+      }
+    }
+  },
+  "latest_api_timing": {
+    "jev": {
+      "calls": 96,
+      "errors": 0,
+      "actual_models": [
+        "jev-1.13.0"
+      ],
+      "median_rtt_ms": 139.3965,
+      "p95_rtt_ms": 182.318
+    },
+    "decider": {
+      "calls": 82,
+      "errors": 0,
+      "actual_models": [
+        "strands-decider-2B-hobson-v19"
+      ],
+      "median_rtt_ms": 99.809,
+      "p95_rtt_ms": 303.655
+    }
+  },
+  "evaluation_erratum": {
+    "scored_at": "2026-10-13T02:43:02.765854+00:00",
+    "erratum": {
+      "declared_at": "2026-10-13T02:41:56.314218+00:00",
+      "task_id": "cfpb-dispute",
+      "field": "expected.body_terms",
+      "original": [
+        "60 days",
+        "written"
+      ],
+      "corrected": [
+        "60 calendar days",
+        "written"
+      ],
+      "reason": "The official page says within 60 calendar days. Exact substring 60 days is not present. Correct evaluator only; task goal, model inputs, actions and results remain unchanged. Apply offline using saved final observations and finish actions; preserve original run results.",
+      "source_file": "preflight/cfpb-dispute.json",
+      "source_sha256": "be70c527d91b0e4ace190d32a8b86bd70e445a7944158f1676c4d00fced7aa76",
+      "declared_before_any_browser_model_call": false,
+      "browser_calls_started_before_declaration": 5,
+      "cfpb_calls_started_before_declaration": 2
+    },
+    "raw_results_preserved": true,
+    "additional_model_calls": 0,
+    "changed_run_ids": [
+      "cfpb-dispute-jev-1",
+      "cfpb-dispute-jev-2"
+    ]
+  },
+  "sources": [
+    {
+      "path": "../jev_skills/scenario_summary.json",
+      "sha256": "7034991c13cad5afa77ca53f096f6bf882751e974d839aa77ccdc7c98ed064ba"
+    },
+    {
+      "path": "../jev_skills/results/2026-10-12/summary.json",
+      "sha256": "67acdce677dcbb85fc9cf59fee11216a7c9b2f89f8f98c17c391e90d55854d1e"
+    },
+    {
+      "path": "../../docs/results/triple-2026-10-12.json",
+      "sha256": "ba4991110c4d6289a9a041c24ec804de4e1b2f0d0a75269b3881bf229405aeeb"
+    },
+    {
+      "path": "../../docs/results/jev-2026-10-12.json",
+      "sha256": "949730db3cd39490e1f48cf0d08bd84c61ecfc42ec859a6be3218ce1b29983ea"
+    },
+    {
+      "path": "../../docs/results/optimized-2026-10-11.json",
+      "sha256": "2231bb706071cb019862f9f3de2ed995e923f4b94b1dc0cabee08e52102713de"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/jev-decider-quality/summary.json",
+      "sha256": "ea0c05805894fa9d466f7324b59f7a4b230909763f6a678bfd6b1a1fd8adee04"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/jev-decider-quality/probe-summary.json",
+      "sha256": "3af3c40239e4c94021135bcd4b7045370525671d6df93e271abe8420f94569d1"
+    },
+    {
+      "path": "../browser_finance/runs/2026-10-13-live/scored-summary.json",
+      "sha256": "a967865d9c86d5f98ca999adc4618484177fbe751e6e3351a219e587fe3bd532"
+    },
+    {
+      "path": "../browser_finance/runs/2026-10-13-live/finance-results.json",
+      "sha256": "e63a5cc59471f52098d510f252d0422147aacd2c3238afa6b8cceca10789e197"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/guarded-seed-12345-summary.json",
+      "sha256": "08170ab0567ff2fc4d03171a1ca1768a2bf4b0daad7e5cf3bac73925fbbe85d5"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/guarded-seed-2026-summary.json",
+      "sha256": "d2717b15213d61d2d1f645df72a25db3caea240398842f752e8d464253bab913"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/guarded-seed-314159-summary.json",
+      "sha256": "4eec11407a94085bb4a7c84c38f36d45caaa1d70cf3cb64bfddee66e63c334c3"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/guarded-seed-42-summary.json",
+      "sha256": "208eb50eb315956c2feffe30471902195eb9921516d07d79272601b6a701e774"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/guarded-seed-7-summary.json",
+      "sha256": "7df71cc83341851dfb98f2bb73cf1c9983f5f572bd9f3217ace21f2d48998a6f"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/original-seed-2026-summary.json",
+      "sha256": "78dc4d589444db42acf882d7a660a44b5968173cc63c341b92ac7488f490336f"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/original-seed-42-summary.json",
+      "sha256": "bf6b9633178d105ca396acb86644384008c4883a22b6212d4ca0d801cc3f54c3"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/original-seed-7-summary.json",
+      "sha256": "6e88413caafc5b90857ca6b35447626798bf1c4a40d6ec3bc1e9bac088689e3b"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/plain-seed-12345-summary.json",
+      "sha256": "ad6b9a443bc372b2850419dc478340e967e610989b81506b04fb6f5ad749ab06"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/plain-seed-2026-summary.json",
+      "sha256": "5202504e66e4bb0d2dfb452d38a04ac479e1427cd56a7e70a7342016ca124b3f"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/plain-seed-314159-summary.json",
+      "sha256": "122eaf05d72bc18180e8991ef7a0a87cd51d834d25f01481d569595992c5652d"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/plain-seed-42-summary.json",
+      "sha256": "7ebc797528bb52e7620e3b672d435b80de4f441fc00ab3caaa0529a0f0ca3de3"
+    },
+    {
+      "path": "../../../StrandsDeciderTetris/docs/results/policy/plain-seed-7-summary.json",
+      "sha256": "c8ad5816ad9d340cd18f66f2e9cdb31560795b5c966412fa13fa8ef3aba9ce13"
+    },
+    {
+      "path": "../model_routing/runs/2026-10-13-live/summary.json",
+      "sha256": "66c567c356adf12fa63af570226d778e2e16dc72e4ac23f3ab759ac2eee6ec64"
+    },
+    {
+      "path": "../model_routing/runs/2026-10-13-live/run.json",
+      "sha256": "081e9feabb5ccb1311dbdc9258e3432013d27e392de37439fcb7cc6ba0ef2711"
+    },
+    {
+      "path": "../model_routing/runs/2026-10-13-live/plan.json",
+      "sha256": "0eb6370787b863e843ebc90d37a5dbb42b4b58085d4bea81095f8e9e077c86a6"
+    },
+    {
+      "path": "../model_routing/runs/2026-10-13-natural/summary.json",
+      "sha256": "870d9c712973158db57159c5017ff7acd377ed97bcbbd6d4725f6ae17be2ed06"
+    },
+    {
+      "path": "../model_routing/runs/2026-10-13-natural/run.json",
+      "sha256": "eef787e33233cbf358b5db5dc0c0f4ccb78304b967ba6c70c9b045a8370da4b8"
+    },
+    {
+      "path": "../model_routing/runs/2026-10-13-natural/plan.json",
+      "sha256": "151fe5149e194233a517c1d7c6e2bcd621a180e02edc0c1ab54746bfab79c723"
+    }
+  ],
+  "model_routing": {
+    "method": "Primary 32-case paired policy-adherence test, followed by a natural-language candidate diagnostic on the same 24 non-semantic cases. Repeated orders and expressions are not independent cases. No downstream generation or OpenRouter Auto requests.",
+    "actual_calls": 224,
+    "unique_cases_overall": 32,
+    "candidate_filtering": false,
+    "cases_per_category": 8,
+    "sources_note": "Public OpenRouter capability and pricing snapshot; synthetic request requirements, endpoint health, latency and retention flags.",
+    "primary": {
+      "unique_cases": 32,
+      "variants": [
+        "original_order",
+        "reversed_order"
+      ],
+      "actual_calls": 128,
+      "downstream_calls": 0,
+      "plan_sha256": "1a565f77027c39ce2c107e906efd1ec874c6247b9c8fdb53ae48f3197d66740e",
+      "results": {
+        "jev": {
+          "models": [
+            "jev-1.13.0"
+          ],
+          "calls": 64,
+          "api_errors": 0,
+          "correct": 46,
+          "total": 64,
+          "by_category": {
+            "availability_fallback_and_preferences": {
+              "original_order": {
+                "correct": 8,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 7,
+                "total": 8
+              }
+            },
+            "capability_constraints": {
+              "original_order": {
+                "correct": 5,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 2,
+                "total": 8
+              }
+            },
+            "cost_and_budget": {
+              "original_order": {
+                "correct": 6,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 3,
+                "total": 8
+              }
+            },
+            "semantic_task_routing": {
+              "original_order": {
+                "correct": 7,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 8,
+                "total": 8
+              }
+            }
+          },
+          "order_changed_choice": 10,
+          "order_pairs": 32,
+          "hard_constraint_violations": 5,
+          "false_no_route": 9,
+          "eligible_but_not_preferred": 3,
+          "median_rtt_ms": 137.4105,
+          "p95_rtt_ms": 173.095,
+          "wrong": [
+            {
+              "case_id": "intent-rewrite",
+              "category": "semantic_task_routing",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "clarify",
+              "expected": "economy_text",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 184.269,
+              "input_sha256": "9eb0b1cdb2369ac5394fa0ec5579b48d02157a59f1f2faa71f8da2a6f4f7873b"
+            },
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m1",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [
+                "input_modality"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 152.94,
+              "input_sha256": "3db3361763646242aa3c9365f724ac7ba04e18c1658799809ad12445fb4b9639"
+            },
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 123.345,
+              "input_sha256": "9b37258f6637c58374c9afef6ac227062ab840f30fae4cf294c31ee5877949df"
+            },
+            {
+              "case_id": "cap-audio",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 153.928,
+              "input_sha256": "1a56fefe08251dd0e76ad49b48924bd25683042f805e5f8ca44f77e527a887e1"
+            },
+            {
+              "case_id": "cap-video",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 130.92,
+              "input_sha256": "4c175b085e438613c31f3d2271d556db46771888714a87aacc670eed482601f9"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m1",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [
+                "context_limit"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 162.615,
+              "input_sha256": "3546407b5808af5c657c5feada41c8b68461cbbe2cf5f402265c4eeba780090f"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 142.146,
+              "input_sha256": "313b0ad85e47a19fb75044bb637e122203fc65d18ac79221b7afb9d06d68982b"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 137.595,
+              "input_sha256": "a8a0a2c459110b61bea26afab3011c223fe54e35fc13923ff057ab74834ce420"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 143.105,
+              "input_sha256": "e9ecc9c96b27a1b939aafb77e53bb0550504cbb6f06ffb01dc07be8a3084b8c3"
+            },
+            {
+              "case_id": "cap-image-logprobs",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 131.84,
+              "input_sha256": "c85de3c35b6005c895044c1e894682533a74cdcd242d269415cc6c3ddba0fc66"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": true,
+              "elapsed_ms": 125.753,
+              "input_sha256": "cd06104e886e1e2cc484ebfe94670c18ca1c430f37d6857bd1d4e828d7875920"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": true,
+              "elapsed_ms": 136.378,
+              "input_sha256": "0feccb1c228cbfa3c11f47147db2550af00f090c9df20c86f14f7dc9a8aff08d"
+            },
+            {
+              "case_id": "cost-no-budget",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "no_route",
+              "correct": false,
+              "violated_hard_constraints": [
+                "over_budget"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 132.333,
+              "input_sha256": "a582e7b60e68a01479577adf50dc946db8aa947de243ef417d242438a3f17b5b"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [
+                "over_budget"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 181.935,
+              "input_sha256": "d8e323e26173a0fa7b2e24b4373bb20f95928c6394a9eb085b5c2af434ae9bd2"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [
+                "over_budget"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 159.13,
+              "input_sha256": "4f44fc3392c6d794c063f6179863ca106a4ffa8e2cec6f3a1a3d48ce39dc0729"
+            },
+            {
+              "case_id": "cost-long-context",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 138.796,
+              "input_sha256": "b57a578cc4b5369aef5bef7e17b1a198691022c34bae06ffe3579dac038782e4"
+            },
+            {
+              "case_id": "cost-reasoning-output",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 121.67,
+              "input_sha256": "aa3f6afd6fc9beb4a032740b2b278f98dd31498b4c01e182e0f58bb0406b174f"
+            },
+            {
+              "case_id": "latency-preferred-pool",
+              "category": "availability_fallback_and_preferences",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "m5",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": true,
+              "elapsed_ms": 173.425,
+              "input_sha256": "d46488d54e34ff48a9eff9e60dd702efcb580ebef853ed62772df57db92bb21d"
+            }
+          ]
+        },
+        "decider": {
+          "models": [
+            "strands-decider-2B-hobson-v19"
+          ],
+          "calls": 64,
+          "api_errors": 0,
+          "correct": 25,
+          "total": 64,
+          "by_category": {
+            "availability_fallback_and_preferences": {
+              "original_order": {
+                "correct": 2,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 2,
+                "total": 8
+              }
+            },
+            "capability_constraints": {
+              "original_order": {
+                "correct": 2,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 1,
+                "total": 8
+              }
+            },
+            "cost_and_budget": {
+              "original_order": {
+                "correct": 1,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 1,
+                "total": 8
+              }
+            },
+            "semantic_task_routing": {
+              "original_order": {
+                "correct": 8,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 8,
+                "total": 8
+              }
+            }
+          },
+          "order_changed_choice": 3,
+          "order_pairs": 32,
+          "hard_constraint_violations": 2,
+          "false_no_route": 37,
+          "eligible_but_not_preferred": 0,
+          "median_rtt_ms": 211.4135,
+          "p95_rtt_ms": 219.231,
+          "wrong": [
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 214.541,
+              "input_sha256": "3db3361763646242aa3c9365f724ac7ba04e18c1658799809ad12445fb4b9639"
+            },
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.704,
+              "input_sha256": "9b37258f6637c58374c9afef6ac227062ab840f30fae4cf294c31ee5877949df"
+            },
+            {
+              "case_id": "cap-audio",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 217.572,
+              "input_sha256": "ca0962f1822fd90b3816ebebce7cb4456bfe7a18413084912c89ebc8ea3d2e75"
+            },
+            {
+              "case_id": "cap-audio",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 213.041,
+              "input_sha256": "1a56fefe08251dd0e76ad49b48924bd25683042f805e5f8ca44f77e527a887e1"
+            },
+            {
+              "case_id": "cap-video",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.711,
+              "input_sha256": "efc3efa3d437bb4b6344d3f1aaf9095c66ec5acb879f8f8f97aa1ffc37340959"
+            },
+            {
+              "case_id": "cap-video",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.004,
+              "input_sha256": "4c175b085e438613c31f3d2271d556db46771888714a87aacc670eed482601f9"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m1",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [
+                "context_limit"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 228.856,
+              "input_sha256": "3546407b5808af5c657c5feada41c8b68461cbbe2cf5f402265c4eeba780090f"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 214.29,
+              "input_sha256": "313b0ad85e47a19fb75044bb637e122203fc65d18ac79221b7afb9d06d68982b"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.343,
+              "input_sha256": "a8a0a2c459110b61bea26afab3011c223fe54e35fc13923ff057ab74834ce420"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 209.77,
+              "input_sha256": "e9ecc9c96b27a1b939aafb77e53bb0550504cbb6f06ffb01dc07be8a3084b8c3"
+            },
+            {
+              "case_id": "cap-image-logprobs",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.079,
+              "input_sha256": "dfe885b92cebfed6781a27d550325cf590a042feadeca7998d88c10c6214321e"
+            },
+            {
+              "case_id": "cap-image-logprobs",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 213.904,
+              "input_sha256": "c85de3c35b6005c895044c1e894682533a74cdcd242d269415cc6c3ddba0fc66"
+            },
+            {
+              "case_id": "cap-json-tools",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 207.8,
+              "input_sha256": "88a9c6f6fcd659fab6ef7c0f17203f042b31b726b73de8004c09698ddc2845d6"
+            },
+            {
+              "case_id": "cost-basic",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 229.765,
+              "input_sha256": "8464e75177461c3a0ea7e431e5491f515695c77e7dcb8aa2777f201fe4a39be3"
+            },
+            {
+              "case_id": "cost-basic",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.624,
+              "input_sha256": "3c939525f645718640ba05fc3659dd1627bf1e732c8f61ebbf924db3726f0232"
+            },
+            {
+              "case_id": "cost-input-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 209.964,
+              "input_sha256": "f30886ac2cd6e09a2c2501e75e64c0de2a74729fb644332fb32ebc1f23271465"
+            },
+            {
+              "case_id": "cost-input-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 222.978,
+              "input_sha256": "78f6398aeab58a70d43ebd2b03fe6a54ed69cca86dffd127442fe3b20e990926"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 208.159,
+              "input_sha256": "cd06104e886e1e2cc484ebfe94670c18ca1c430f37d6857bd1d4e828d7875920"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 218.808,
+              "input_sha256": "0feccb1c228cbfa3c11f47147db2550af00f090c9df20c86f14f7dc9a8aff08d"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 215.936,
+              "input_sha256": "d8e323e26173a0fa7b2e24b4373bb20f95928c6394a9eb085b5c2af434ae9bd2"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 209.614,
+              "input_sha256": "4f44fc3392c6d794c063f6179863ca106a4ffa8e2cec6f3a1a3d48ce39dc0729"
+            },
+            {
+              "case_id": "cost-one-fits",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 215.59,
+              "input_sha256": "dd1c301e9581797ef52fab83cbf74bddb9521a00d32cd9474f19268b6fc9ba3b"
+            },
+            {
+              "case_id": "cost-one-fits",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 207.8,
+              "input_sha256": "fbc7e0d945228c9c85ffdd955b22e1522557269329546e5e6e7d8fc0b81b6acc"
+            },
+            {
+              "case_id": "cost-long-context",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 214.7,
+              "input_sha256": "fa78ffd8ce07a7099b9736aaff754e203c3f2b247b37513b2b344f879313b148"
+            },
+            {
+              "case_id": "cost-long-context",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.231,
+              "input_sha256": "b57a578cc4b5369aef5bef7e17b1a198691022c34bae06ffe3579dac038782e4"
+            },
+            {
+              "case_id": "cost-reasoning-output",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.144,
+              "input_sha256": "1f2c17aa6a287eabaf98a93a28ad78a243b767b289cbe1f3e5b4b849832f8f81"
+            },
+            {
+              "case_id": "cost-reasoning-output",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.204,
+              "input_sha256": "aa3f6afd6fc9beb4a032740b2b278f98dd31498b4c01e182e0f58bb0406b174f"
+            },
+            {
+              "case_id": "fallback-primary-down",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 207.854,
+              "input_sha256": "c7b99bacda8854d0770577c493327f3064bdfc7e56bfc89499f00ac82b6abf30"
+            },
+            {
+              "case_id": "fallback-primary-down",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 209.02,
+              "input_sha256": "3647ce79cd9092635b78afd4e06ab663a6858b50ddbae88718990de7ed580fba"
+            },
+            {
+              "case_id": "fallback-rate-limit",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.353,
+              "input_sha256": "254b702a20bcdeae030f9fb00289e677aef41d58a3d0199e0a339c48eb9f50f7"
+            },
+            {
+              "case_id": "fallback-rate-limit",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.232,
+              "input_sha256": "c208726555eb88ee95d58172d0c106ecb655aea8c32e69c3d8078fccc3215d32"
+            },
+            {
+              "case_id": "fallback-excluded",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 209.537,
+              "input_sha256": "b530052c240a7b5d27b0ec83375f621ec3f0d65493003f7c390e7ef880b70e7f"
+            },
+            {
+              "case_id": "fallback-excluded",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.264,
+              "input_sha256": "48036fe84bac8693e3cd98bb17ce27320f704724db65fd84397204efaebef3e6"
+            },
+            {
+              "case_id": "fallback-retention",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m1",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [
+                "account_model_restriction"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 215.382,
+              "input_sha256": "29b7afd469d9664b34782f71899b7c4e44340e3769e2e99bd4e4ae33582af92d"
+            },
+            {
+              "case_id": "fallback-retention",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 210.722,
+              "input_sha256": "825e4263d85d0ea7536ff53fe5504bdc803929b4c2fc0d380b7ffca357c131dd"
+            },
+            {
+              "case_id": "latency-soft-unmet",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.474,
+              "input_sha256": "b7609de892c4555b1c9c6f97cdc3c5f8af6ce3d2e267ac4502304cfe3dd7b017"
+            },
+            {
+              "case_id": "latency-soft-unmet",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.184,
+              "input_sha256": "84bc01a12710da92f12f837918e3b31c21b8c77c6fb0ff19eb31eb18aa2c95f6"
+            },
+            {
+              "case_id": "latency-preferred-pool",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 211.647,
+              "input_sha256": "b889aa3813b2dd720051f95628c0459f22e6f6c1981485235f05a46b5072ada1"
+            },
+            {
+              "case_id": "latency-preferred-pool",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.069,
+              "input_sha256": "d46488d54e34ff48a9eff9e60dd702efcb580ebef853ed62772df57db92bb21d"
+            }
+          ]
+        }
+      }
+    },
+    "natural_language": {
+      "unique_cases": 24,
+      "variants": [
+        "original_order",
+        "reversed_order"
+      ],
+      "actual_calls": 96,
+      "downstream_calls": 0,
+      "plan_sha256": "23f0377c1c31ae31fba59b4ec188538c9941fb3c8f038f85f9e9272594340c79",
+      "results": {
+        "jev": {
+          "models": [
+            "jev-1.13.0"
+          ],
+          "calls": 48,
+          "api_errors": 0,
+          "correct": 31,
+          "total": 48,
+          "by_category": {
+            "availability_fallback_and_preferences": {
+              "original_order": {
+                "correct": 7,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 8,
+                "total": 8
+              }
+            },
+            "capability_constraints": {
+              "original_order": {
+                "correct": 5,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 2,
+                "total": 8
+              }
+            },
+            "cost_and_budget": {
+              "original_order": {
+                "correct": 4,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 5,
+                "total": 8
+              }
+            }
+          },
+          "order_changed_choice": 9,
+          "order_pairs": 24,
+          "hard_constraint_violations": 5,
+          "false_no_route": 9,
+          "eligible_but_not_preferred": 3,
+          "median_rtt_ms": 132.722,
+          "p95_rtt_ms": 193.119,
+          "wrong": [
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m1",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [
+                "input_modality"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 144.031,
+              "input_sha256": "e3f424f93129767e78b2c11f649f3995a0ecfc9ad4363728e6a5574064009c99"
+            },
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 134.292,
+              "input_sha256": "fee45d5830a789246e74c0224ea280b3d4048fe96c25e55f030b59133d28760b"
+            },
+            {
+              "case_id": "cap-audio",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 128.987,
+              "input_sha256": "2070e70a2436ebff19b61731b88ce5d4f2e0544e41f970eca6be4f9c2c19574d"
+            },
+            {
+              "case_id": "cap-video",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 182.078,
+              "input_sha256": "a7700c0ac126ba2fae705574f1f64d46d396e78524612ffc39c5a2f1e3e289d0"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m6",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": true,
+              "elapsed_ms": 164.52,
+              "input_sha256": "808d06fe83895ba75adb021dfe6305e1e2fce6f2f34ebe78057ad4d1c8926279"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 193.119,
+              "input_sha256": "de051a808a05fc4730b6c64718e5492a9978914389d3cbbdf3b069891e138c5a"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 146.959,
+              "input_sha256": "b49391bbd175a562792fc7221aecb122322367352e557ae8e2db4196bd751a30"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 148.021,
+              "input_sha256": "175c6d4312cfa5e6432fc1a576c44b142087da9941e6ec27cedd70851eccb4ba"
+            },
+            {
+              "case_id": "cap-image-logprobs",
+              "category": "capability_constraints",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 132.508,
+              "input_sha256": "f68b5b5ccfba2964ec0f81e95025945713b0a4d7fcf4ba1aaae56d06be234b87"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": true,
+              "elapsed_ms": 133.085,
+              "input_sha256": "2c98155f2453214add350514d27d1c69d1afcd14a8c9afedac058bf406ce8321"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": false,
+              "eligible_but_not_preferred": true,
+              "elapsed_ms": 148.142,
+              "input_sha256": "24055a9046de45477dd1c9bddc5421ec887134d82477d7c39ec6e62c8ce3b459"
+            },
+            {
+              "case_id": "cost-no-budget",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "no_route",
+              "correct": false,
+              "violated_hard_constraints": [
+                "over_budget"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 254.988,
+              "input_sha256": "20ab50283394697ffa9ec0d1538ad34ebb9870ccbf3278866e43d6589264de41"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [
+                "over_budget"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 200.82,
+              "input_sha256": "8dd54583c3b012cf273a968f942639a827426ea4439de59da88a01519dbe97a9"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "m2",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [
+                "over_budget"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 129.732,
+              "input_sha256": "8c5496b8542490b2fae0d6930272aabc98ae5f7f0fb401826ad0e5a2bd48cc99"
+            },
+            {
+              "case_id": "cost-long-context",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 155.399,
+              "input_sha256": "7f3d0e2224b31a885252110cd3008b446ae6961fc951be1788c1db28d4df0c2a"
+            },
+            {
+              "case_id": "cost-reasoning-output",
+              "category": "cost_and_budget",
+              "provider": "jev",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 127.382,
+              "input_sha256": "6a48e89be9feb283a98e065020c5d3528a9733f2d6cfe91c3d8b3fbdcd329586"
+            },
+            {
+              "case_id": "fallback-retention",
+              "category": "availability_fallback_and_preferences",
+              "provider": "jev",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "m5",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [
+                "data_retention"
+              ],
+              "false_no_route": false,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 133.663,
+              "input_sha256": "8da834654ee70b8e72c162ede9d1b421e91aa0690cc0f9efff267fc7b22b0bc8"
+            }
+          ]
+        },
+        "decider": {
+          "models": [
+            "strands-decider-2B-hobson-v19"
+          ],
+          "calls": 48,
+          "api_errors": 0,
+          "correct": 8,
+          "total": 48,
+          "by_category": {
+            "availability_fallback_and_preferences": {
+              "original_order": {
+                "correct": 2,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 2,
+                "total": 8
+              }
+            },
+            "capability_constraints": {
+              "original_order": {
+                "correct": 1,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 1,
+                "total": 8
+              }
+            },
+            "cost_and_budget": {
+              "original_order": {
+                "correct": 1,
+                "total": 8
+              },
+              "reversed_order": {
+                "correct": 1,
+                "total": 8
+              }
+            }
+          },
+          "order_changed_choice": 0,
+          "order_pairs": 24,
+          "hard_constraint_violations": 0,
+          "false_no_route": 40,
+          "eligible_but_not_preferred": 0,
+          "median_rtt_ms": 219.213,
+          "p95_rtt_ms": 298.18,
+          "wrong": [
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 212.805,
+              "input_sha256": "e3f424f93129767e78b2c11f649f3995a0ecfc9ad4363728e6a5574064009c99"
+            },
+            {
+              "case_id": "cap-image",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.414,
+              "input_sha256": "fee45d5830a789246e74c0224ea280b3d4048fe96c25e55f030b59133d28760b"
+            },
+            {
+              "case_id": "cap-audio",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 233.664,
+              "input_sha256": "cbb9d987e7ec9d3750ae0da603cdd276c9167ee086f78ee90fb93be077280739"
+            },
+            {
+              "case_id": "cap-audio",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 234.746,
+              "input_sha256": "2070e70a2436ebff19b61731b88ce5d4f2e0544e41f970eca6be4f9c2c19574d"
+            },
+            {
+              "case_id": "cap-video",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.738,
+              "input_sha256": "d3cd756e80d3837196155c6e10c25b25dce14596f77efa6485b524b315345de0"
+            },
+            {
+              "case_id": "cap-video",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 215.414,
+              "input_sha256": "a7700c0ac126ba2fae705574f1f64d46d396e78524612ffc39c5a2f1e3e289d0"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.165,
+              "input_sha256": "808d06fe83895ba75adb021dfe6305e1e2fce6f2f34ebe78057ad4d1c8926279"
+            },
+            {
+              "case_id": "cap-context",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 226.512,
+              "input_sha256": "de051a808a05fc4730b6c64718e5492a9978914389d3cbbdf3b069891e138c5a"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 237.875,
+              "input_sha256": "b49391bbd175a562792fc7221aecb122322367352e557ae8e2db4196bd751a30"
+            },
+            {
+              "case_id": "cap-output",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 221.738,
+              "input_sha256": "175c6d4312cfa5e6432fc1a576c44b142087da9941e6ec27cedd70851eccb4ba"
+            },
+            {
+              "case_id": "cap-image-logprobs",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 222.594,
+              "input_sha256": "5f716883ac28c42d87ccbf485e5ed960e562529491491e28a64f3e6ff295af59"
+            },
+            {
+              "case_id": "cap-image-logprobs",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 222.667,
+              "input_sha256": "f68b5b5ccfba2964ec0f81e95025945713b0a4d7fcf4ba1aaae56d06be234b87"
+            },
+            {
+              "case_id": "cap-json-tools",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 218.566,
+              "input_sha256": "fa77779b0f8ba25599f8ad313528a9fa3299620c63214c04b853cf814ab37a18"
+            },
+            {
+              "case_id": "cap-json-tools",
+              "category": "capability_constraints",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 217.983,
+              "input_sha256": "89ac236cfecf88fe7f1a0ca4fddfe866d137c654506480e76722dc3e1e5f8695"
+            },
+            {
+              "case_id": "cost-basic",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.001,
+              "input_sha256": "8f8d1edb9966bba7bc37f2738ff7e62b01f73fb8a276c47804f60a28a4396a48"
+            },
+            {
+              "case_id": "cost-basic",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 226.146,
+              "input_sha256": "7002634c9c98b7825dc041fd40fa3191d2f34de688e7e8f877f6f510f88ace1f"
+            },
+            {
+              "case_id": "cost-input-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 217.036,
+              "input_sha256": "4e41fc2654854cb32a3dbc5c233ea21c12891205483b4c8e5c77112bd9caa20c"
+            },
+            {
+              "case_id": "cost-input-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 221.841,
+              "input_sha256": "2b251fae965116b992331b18af3a8323131b98244632dec32f95a22bd78030d4"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 225.347,
+              "input_sha256": "2c98155f2453214add350514d27d1c69d1afcd14a8c9afedac058bf406ce8321"
+            },
+            {
+              "case_id": "cost-output-heavy",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 300.474,
+              "input_sha256": "24055a9046de45477dd1c9bddc5421ec887134d82477d7c39ec6e62c8ce3b459"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 220.234,
+              "input_sha256": "8dd54583c3b012cf273a968f942639a827426ea4439de59da88a01519dbe97a9"
+            },
+            {
+              "case_id": "cost-exact-budget",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 220.349,
+              "input_sha256": "8c5496b8542490b2fae0d6930272aabc98ae5f7f0fb401826ad0e5a2bd48cc99"
+            },
+            {
+              "case_id": "cost-one-fits",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.208,
+              "input_sha256": "b5915428d0dc02edbc7d4dd992b5c59facd7b26119e2d03105e9c214fb63109c"
+            },
+            {
+              "case_id": "cost-one-fits",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 220.908,
+              "input_sha256": "d622a730ef79e265a93d7f38ab743b767dc13dfa193e93a7d23b3af855c1b93a"
+            },
+            {
+              "case_id": "cost-long-context",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 218.35,
+              "input_sha256": "7f3d0e2224b31a885252110cd3008b446ae6961fc951be1788c1db28d4df0c2a"
+            },
+            {
+              "case_id": "cost-long-context",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m5",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 221.674,
+              "input_sha256": "c687d28b1c5317d8cb10fccafc0643f6b288e48366fea5592fcd11be93ea6ab2"
+            },
+            {
+              "case_id": "cost-reasoning-output",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 218.331,
+              "input_sha256": "865349ee51e8b2e07f63a818352d2371554f241d01e5886613112220c7f60005"
+            },
+            {
+              "case_id": "cost-reasoning-output",
+              "category": "cost_and_budget",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.218,
+              "input_sha256": "6a48e89be9feb283a98e065020c5d3528a9733f2d6cfe91c3d8b3fbdcd329586"
+            },
+            {
+              "case_id": "fallback-primary-down",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 221.523,
+              "input_sha256": "b1b439a5106299e3974cfebf7c251f03429594ef10e1f85a9422f0933a581b2e"
+            },
+            {
+              "case_id": "fallback-primary-down",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 217.286,
+              "input_sha256": "9ef9dd68c5185dbd5a749b479cd365a32d620646a1811844b624cd70ed1c3d72"
+            },
+            {
+              "case_id": "fallback-rate-limit",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 218.683,
+              "input_sha256": "101cda378e3682b95d2c3f140784af24338fdd4a047aa4313bfd7a94a638e9a2"
+            },
+            {
+              "case_id": "fallback-rate-limit",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m2",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.141,
+              "input_sha256": "6c6e2178cf3626d3564064af6a4c7782f2c613dcacd67246f99287945da46e5a"
+            },
+            {
+              "case_id": "fallback-excluded",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 213.405,
+              "input_sha256": "bc365b2c1296f7229a14b4c70c2872c4ca0a8b4f0824f329099602b717eadb3c"
+            },
+            {
+              "case_id": "fallback-excluded",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m3",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.749,
+              "input_sha256": "c75c79e69c67683a69d2187a762e0c61e28e41aa905a5d8b9c7306fb0bf5f7c2"
+            },
+            {
+              "case_id": "fallback-retention",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.051,
+              "input_sha256": "8da834654ee70b8e72c162ede9d1b421e91aa0690cc0f9efff267fc7b22b0bc8"
+            },
+            {
+              "case_id": "fallback-retention",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m6",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 218.245,
+              "input_sha256": "eec72dfa8950e3575854cd47560a01bb9f527366c9617dba6ec5b0c19f9eb648"
+            },
+            {
+              "case_id": "latency-soft-unmet",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.707,
+              "input_sha256": "3e9ec522a4b84d033ad2f95ddc7ef89c583f436091a70c308f927bf8e91248d7"
+            },
+            {
+              "case_id": "latency-soft-unmet",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m1",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 219.193,
+              "input_sha256": "63b7110d3b866f03024de70aefaacd197b14f72f1bf57023d776321b3b063421"
+            },
+            {
+              "case_id": "latency-preferred-pool",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "original_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 216.138,
+              "input_sha256": "4cc06f6781869847c436ae9d5de9fe2580e8981c9e8e9b2abbb3d972b6c7b3e4"
+            },
+            {
+              "case_id": "latency-preferred-pool",
+              "category": "availability_fallback_and_preferences",
+              "provider": "decider",
+              "variant": "reversed_order",
+              "status": "ok",
+              "choice": "no_route",
+              "expected": "m4",
+              "correct": false,
+              "violated_hard_constraints": [],
+              "false_no_route": true,
+              "eligible_but_not_preferred": false,
+              "elapsed_ms": 217.386,
+              "input_sha256": "2b18d789e0fc924aceb90082a535bdcc807d89b370f074e5a8b57862e8829618"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "latest_api_timing_scope": "Browser and finance batch only; model-routing timing is stored separately in model_routing.",
+  "updated_at": "2026-10-13T03:39:54.458812+00:00"
+}

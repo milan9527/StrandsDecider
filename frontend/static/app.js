@@ -1,5 +1,5 @@
 import { mountCrypto } from "/static/crypto.js?v=triple1";
-import { mountRouting } from "/static/routing.js?v=workflow-routing1";
+import { mountRouting } from "/static/routing.js?v=original-only-v1";
 
 const paths = {
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
@@ -150,6 +150,17 @@ function renderGpu() {
   }
   const phase = gpuState.phase;
   const sageMaker = gpuState.provider === "sagemaker";
+  if (gpuState.provider === "vllm") {
+    $("#gpu-heading-label").textContent = "Decider · vLLM GPU 服务";
+    $("#gpu-status").textContent = phase === "ready" ? "vLLM GPU 就绪" : "服务暂不可用";
+    $("#gpu-spec").textContent =
+      `${gpuState.instance_type} · ${gpuState.instance_id || "共享实例"} · 按需 $${gpuState.instance_usd_per_hour}/小时 · ${gpuState.disk_gib}GB 磁盘 · 持续运行`;
+    $("#gpu-message").textContent = phase === "ready"
+      ? "决策工作台、工具守卫、支付流程和模型路由统一使用此 vLLM 服务。"
+      : gpuState.last_error_message;
+    $("#gpu-access-hint").textContent = "共享服务由部署端管理，演示页面不启停 GPU。";
+    return;
+  }
   const autoStop = gpuState.idle_auto_stop !== false;
   const idleMinutes = gpuState.idle_minutes ?? 30;
   const lifecycle = autoStop
@@ -447,7 +458,7 @@ async function checkConnection() {
   try {
     const data = await api("/api/health");
     el.innerHTML = data.connected
-      ? `<span class="status-dot"></span>模型已连接 · ${esc(data.upstream.device || "ready")}`
+      ? `<span class="status-dot"></span>模型已连接 · ${esc(data.upstream.engine || data.upstream.device || "ready")}`
       : '<span class="status-dot offline"></span>示例就绪 · 模型未连接';
     el.title = data.connected
       ? data.upstream.model

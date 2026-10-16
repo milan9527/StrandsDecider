@@ -1,0 +1,44 @@
+{
+  "currency": "USD",
+  "hours_per_month": 730,
+  "region": "us-east-1",
+  "instance": "g6.2xlarge",
+  "instance_hourly_usd": 0.9776,
+  "instance_monthly_usd": 713.648,
+  "gp3_gb": 160,
+  "gp3_usd_per_gb_month": 0.08,
+  "compute_plus_disk_usd": 726.448,
+  "jev_usd_per_million_input_tokens": 0.042,
+  "jev_output_usd": 0,
+  "measured_jev_payment_calls": 10240,
+  "measured_jev_input_tokens": 6727168,
+  "mean_input_tokens": 656.95,
+  "jev_usd_per_million_decisions": 27.591900000000003,
+  "measured_batch_list_price_cost_usd": 0.28254105600000007,
+  "warmups_list_price_cost_usd": 0.015458478000000001,
+  "compute_breakeven_decisions_per_month": 25864402.23398896,
+  "compute_breakeven_average_rps": 9.841857775490471,
+  "compute_disk_breakeven_decisions_per_month": 26328306.495746937,
+  "routing_cases": {
+    "support": {
+      "input_tokens": 3271,
+      "usd_per_million_routes": 137.382
+    },
+    "code": {
+      "input_tokens": 3304,
+      "usd_per_million_routes": 138.768
+    },
+    "analysis": {
+      "input_tokens": 3309,
+      "usd_per_million_routes": 138.978
+    },
+    "retrieval": {
+      "input_tokens": 1339,
+      "usd_per_million_routes": 56.23800000000001
+    }
+  },
+  "mean_input_tokens_per_two_step_route": 2805.75,
+  "jev_usd_per_million_two_step_routes": 117.84150000000001,
+  "routing_breakeven_monthly_routes": 6055998.947739124,
+  "scope": "Public list price estimates from measured usage; not an invoice or measured g6.2xlarge capacity. Excludes tax, discounts, networking, operational labor and target-model execution."
+}

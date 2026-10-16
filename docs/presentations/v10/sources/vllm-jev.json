@@ -1,0 +1,2788 @@
+{
+  "created_at": "2026-10-13T11:14:36.568921+00:00",
+  "providers": {
+    "decider": {
+      "attempts": 10240,
+      "successes": 10239,
+      "failures": 1,
+      "statuses": {
+        "200": 10239,
+        "502": 1
+      },
+      "warmups": 560,
+      "warmup_failures": 0,
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 10239
+      },
+      "usage": {
+        "input_tokens": {
+          "min": 304,
+          "max": 445,
+          "mean": 373.8979392518801
+        },
+        "output_tokens": {
+          "min": 1,
+          "max": 1,
+          "mean": 1.0
+        }
+      }
+    },
+    "jev": {
+      "attempts": 10240,
+      "successes": 10240,
+      "failures": 0,
+      "statuses": {
+        "200": 10240
+      },
+      "warmups": 560,
+      "warmup_failures": 0,
+      "models": {
+        "jev-1.13.0": 10240
+      },
+      "usage": {
+        "input_tokens": {
+          "min": 575,
+          "max": 744,
+          "mean": 656.95
+        },
+        "output_tokens": {
+          "min": 33,
+          "max": 79,
+          "mean": 54.95
+        }
+      }
+    }
+  },
+  "decider_numeric_parity_passed": 10229,
+  "decider_numeric_failures": [
+    {
+      "concurrency": 128,
+      "index": 27,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 167,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 307,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 367,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 427,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 507,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 707,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 907,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 987,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    },
+    {
+      "concurrency": 128,
+      "index": 1087,
+      "case": "underpaid/approve",
+      "passed": false,
+      "questions": {
+        "action": {
+          "passed": false,
+          "reference": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1355,
+              "verify_destination": 0.0268,
+              "await_approval": 0.1439,
+              "approved": 0.6938
+            },
+            "confidence": 0.5917
+          },
+          "candidate": {
+            "type": "choice",
+            "choice": "approved",
+            "probabilities": {
+              "risk_review": 0.1267,
+              "verify_destination": 0.0255,
+              "await_approval": 0.1389,
+              "approved": 0.7089
+            },
+            "confidence": 0.6119
+          },
+          "max_probability_difference": 0.015100000000000002,
+          "confidence_difference": 0.020199999999999996,
+          "same_choice": true
+        }
+      }
+    }
+  ],
+  "http_failure_records": [
+    {
+      "provider": "decider",
+      "phase": "measured",
+      "concurrency": 64,
+      "index": 1271,
+      "case": "refund/verify",
+      "started_at": "2026-10-13T11:09:25.851746+00:00",
+      "client_ms": 48.47259999951348,
+      "status": 502,
+      "request_id": null,
+      "headers": {},
+      "success": false,
+      "error_type": "HTTPStatusError",
+      "finished_at": "2026-10-13T11:09:25.900262+00:00"
+    }
+  ],
+  "same_input_paired_successes": 10239,
+  "same_choice_pairs": 9215,
+  "decider_config_unchanged": true,
+  "cells": [
+    {
+      "provider": "decider",
+      "concurrency": 1,
+      "started_at": "2026-10-13T10:58:23.306220+00:00",
+      "finished_at": "2026-10-13T10:59:34.369272+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 71.06304942001589,
+      "successful_rps": 18.012173843464005,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 55.3680328045175,
+        "p50": 54.65254301088862,
+        "p95": 59.364438988268375,
+        "p99": 64.3298710056115,
+        "min": 51.82200198760256,
+        "max": 258.5757719934918
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 55.3680328045175,
+        "p50": 54.65254301088862,
+        "p95": 59.364438988268375,
+        "p99": 64.3298710056115,
+        "min": 51.82200198760256,
+        "max": 258.5757719934918
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 46.93682031249993,
+        "p50": 46.87,
+        "p95": 47.91,
+        "p99": 48.61,
+        "min": 45.52,
+        "max": 52.38
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1280,
+      "gpu": {
+        "samples": 71,
+        "busy_mean_percent": 47.070422535211264,
+        "memory_peak_mib": 15536.0,
+        "power_mean_w": 62.93943661971831
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 1,
+      "started_at": "2026-10-13T10:59:37.005022+00:00",
+      "finished_at": "2026-10-13T11:02:19.068739+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 162.06371440499788,
+      "successful_rps": 7.898128243570148,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 126.45756333765803,
+        "p50": 120.69814099231735,
+        "p95": 160.21450300468132,
+        "p99": 227.65843299566768,
+        "min": 101.90766301820986,
+        "max": 433.8436819962226
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 126.45756333765803,
+        "p50": 120.69814099231735,
+        "p95": 160.21450300468132,
+        "p99": 227.65843299566768,
+        "min": 101.90766301820986,
+        "max": 433.8436819962226
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "jev",
+      "concurrency": 2,
+      "started_at": "2026-10-13T11:02:20.448413+00:00",
+      "finished_at": "2026-10-13T11:03:43.635728+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 83.1873118619842,
+      "successful_rps": 15.38696192183303,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 129.803986529123,
+        "p50": 124.16963599389419,
+        "p95": 171.17865299223922,
+        "p99": 223.0849589977879,
+        "min": 101.84306299197488,
+        "max": 395.7993859949056
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 129.803986529123,
+        "p50": 124.16963599389419,
+        "p95": 171.17865299223922,
+        "p99": 223.0849589977879,
+        "min": 101.84306299197488,
+        "max": 395.7993859949056
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "decider",
+      "concurrency": 2,
+      "started_at": "2026-10-13T11:03:44.581937+00:00",
+      "finished_at": "2026-10-13T11:04:41.388423+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 56.80648294900311,
+      "successful_rps": 22.532639472665373,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 88.57951518964455,
+        "p50": 88.52894700248726,
+        "p95": 91.01749598630704,
+        "p99": 92.59731997735798,
+        "min": 56.47095700260252,
+        "max": 111.00558598991483
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 88.57951518964455,
+        "p50": 88.52894700248726,
+        "p95": 91.01749598630704,
+        "p99": 92.59731997735798,
+        "min": 56.47095700260252,
+        "max": 111.00558598991483
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 80.01210156249991,
+        "p50": 80.3,
+        "p95": 82.62,
+        "p99": 83.6,
+        "min": 47.96,
+        "max": 93.77
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1280,
+      "gpu": {
+        "samples": 57,
+        "busy_mean_percent": 61.56140350877193,
+        "memory_peak_mib": 15536.0,
+        "power_mean_w": 69.66508771929824
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 4,
+      "started_at": "2026-10-13T11:04:42.098799+00:00",
+      "finished_at": "2026-10-13T11:05:21.172570+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 39.073768022994045,
+      "successful_rps": 32.758550423054885,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 121.8116381380014,
+        "p50": 119.79694000910968,
+        "p95": 134.64173200191,
+        "p99": 136.55155201558955,
+        "min": 66.94019402493723,
+        "max": 298.96034800913185
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 121.8116381380014,
+        "p50": 119.79694000910968,
+        "p95": 134.64173200191,
+        "p99": 136.55155201558955,
+        "min": 66.94019402493723,
+        "max": 298.96034800913185
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 112.93500000000003,
+        "p50": 111.45,
+        "p95": 126.05,
+        "p99": 127.87,
+        "min": 58.39,
+        "max": 143.95
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1280,
+      "gpu": {
+        "samples": 39,
+        "busy_mean_percent": 86.61538461538461,
+        "memory_peak_mib": 15678.0,
+        "power_mean_w": 71.42871794871796
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 4,
+      "started_at": "2026-10-13T11:05:22.046997+00:00",
+      "finished_at": "2026-10-13T11:06:04.331211+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 42.28421169199282,
+      "successful_rps": 30.27134594169076,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 131.66787294321693,
+        "p50": 126.53376898379065,
+        "p95": 166.65006300900131,
+        "p99": 246.6809080215171,
+        "min": 102.86414000438526,
+        "max": 491.0334880114533
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 131.66787294321693,
+        "p50": 126.53376898379065,
+        "p95": 166.65006300900131,
+        "p99": 246.6809080215171,
+        "min": 102.86414000438526,
+        "max": 491.0334880114533
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "jev",
+      "concurrency": 8,
+      "started_at": "2026-10-13T11:06:04.730944+00:00",
+      "finished_at": "2026-10-13T11:06:25.432356+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 20.701409658999182,
+      "successful_rps": 61.83153809738588,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 128.93668507922484,
+        "p50": 123.5857089923229,
+        "p95": 166.94843000732362,
+        "p99": 230.4068660014309,
+        "min": 102.65032999450341,
+        "max": 443.39010000112467
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 128.93668507922484,
+        "p50": 123.5857089923229,
+        "p95": 166.94843000732362,
+        "p99": 230.4068660014309,
+        "min": 102.65032999450341,
+        "max": 443.39010000112467
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "decider",
+      "concurrency": 8,
+      "started_at": "2026-10-13T11:06:26.068191+00:00",
+      "finished_at": "2026-10-13T11:07:01.884870+00:00",
+      "warmups": 20,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 35.81667618799838,
+      "successful_rps": 35.73754284963238,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 223.36975337050262,
+        "p50": 222.5030859990511,
+        "p95": 237.04745099530555,
+        "p99": 240.56105501949787,
+        "min": 62.58366699330509,
+        "max": 261.94212699192576
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 223.36975337050262,
+        "p50": 222.5030859990511,
+        "p95": 237.04745099530555,
+        "p99": 240.56105501949787,
+        "min": 62.58366699330509,
+        "max": 261.94212699192576
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 212.1973359375,
+        "p50": 211.43,
+        "p95": 225.0,
+        "p99": 229.58,
+        "min": 51.31,
+        "max": 238.2
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1280,
+      "gpu": {
+        "samples": 36,
+        "busy_mean_percent": 92.66666666666667,
+        "memory_peak_mib": 15830.0,
+        "power_mean_w": 71.5938888888889
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 16,
+      "started_at": "2026-10-13T11:07:03.061764+00:00",
+      "finished_at": "2026-10-13T11:07:41.148230+00:00",
+      "warmups": 32,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 38.086464113992406,
+      "successful_rps": 33.607740434212346,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 474.65104952166257,
+        "p50": 469.57048200420104,
+        "p95": 539.3889160186518,
+        "p99": 556.4259540115017,
+        "min": 69.61122099892236,
+        "max": 564.9147950171027
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 474.65104952166257,
+        "p50": 469.57048200420104,
+        "p95": 539.3889160186518,
+        "p99": 556.4259540115017,
+        "min": 69.61122099892236,
+        "max": 564.9147950171027
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 458.6562109375007,
+        "p50": 455.35,
+        "p95": 518.77,
+        "p99": 531.99,
+        "min": 56.31,
+        "max": 539.46
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1280,
+      "gpu": {
+        "samples": 38,
+        "busy_mean_percent": 95.76315789473684,
+        "memory_peak_mib": 16288.0,
+        "power_mean_w": 72.1457894736842
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 16,
+      "started_at": "2026-10-13T11:07:41.524303+00:00",
+      "finished_at": "2026-10-13T11:07:51.567820+00:00",
+      "warmups": 32,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 10.043514780001715,
+      "successful_rps": 127.4454240410628,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 123.46682430622877,
+        "p50": 117.58054100209847,
+        "p95": 156.88051100005396,
+        "p99": 189.87461799406447,
+        "min": 101.61955098737963,
+        "max": 283.40917397872545
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 123.46682430622877,
+        "p50": 117.58054100209847,
+        "p95": 156.88051100005396,
+        "p99": 189.87461799406447,
+        "min": 101.61955098737963,
+        "max": 283.40917397872545
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "jev",
+      "concurrency": 32,
+      "started_at": "2026-10-13T11:07:51.948226+00:00",
+      "finished_at": "2026-10-13T11:07:57.260836+00:00",
+      "warmups": 64,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 5.312607400002889,
+      "successful_rps": 240.93630558872164,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 129.96665828236473,
+        "p50": 124.3663819914218,
+        "p95": 172.60886399890296,
+        "p99": 212.80200002365746,
+        "min": 103.91261399490759,
+        "max": 345.7440819765907
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 129.96665828236473,
+        "p50": 124.3663819914218,
+        "p95": 172.60886399890296,
+        "p99": 212.80200002365746,
+        "min": 103.91261399490759,
+        "max": 345.7440819765907
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "decider",
+      "concurrency": 32,
+      "started_at": "2026-10-13T11:07:59.429423+00:00",
+      "finished_at": "2026-10-13T11:08:41.251238+00:00",
+      "warmups": 64,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 41.82181271299487,
+      "successful_rps": 30.606038260084276,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 1039.1867452352471,
+        "p50": 1040.9603139851242,
+        "p95": 1073.0975869810209,
+        "p99": 1085.4379800148308,
+        "min": 98.44293701462448,
+        "max": 1132.2578550025355
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 1039.1867452352471,
+        "p50": 1040.9603139851242,
+        "p95": 1073.0975869810209,
+        "p99": 1085.4379800148308,
+        "min": 98.44293701462448,
+        "max": 1132.2578550025355
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 1007.9568203125003,
+        "p50": 1012.13,
+        "p95": 1045.81,
+        "p99": 1055.5,
+        "min": 72.68,
+        "max": 1063.13
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1280,
+      "gpu": {
+        "samples": 41,
+        "busy_mean_percent": 98.29268292682927,
+        "memory_peak_mib": 16756.0,
+        "power_mean_w": 71.79463414634147
+      }
+    },
+    {
+      "provider": "decider",
+      "concurrency": 64,
+      "started_at": "2026-10-13T11:08:45.583301+00:00",
+      "finished_at": "2026-10-13T11:09:27.949381+00:00",
+      "warmups": 128,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1279,
+      "failures": 1,
+      "complete": true,
+      "wall_seconds": 42.36607666502823,
+      "successful_rps": 30.189248112647906,
+      "status_counts": {
+        "200": 1279,
+        "502": 1
+      },
+      "latency_ms": {
+        "n": 1279,
+        "mean": 2080.991096589149,
+        "p50": 2106.313002004754,
+        "p95": 2128.4798579872586,
+        "p99": 2785.0106499972753,
+        "min": 164.4347090041265,
+        "max": 3048.1348519970197
+      },
+      "failure_latency_ms": {
+        "n": 1,
+        "mean": 48.47259999951348,
+        "p50": 48.47259999951348,
+        "p95": 48.47259999951348,
+        "p99": 48.47259999951348,
+        "min": 48.47259999951348,
+        "max": 48.47259999951348
+      },
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 2079.403191513689,
+        "p50": 2106.2377950001974,
+        "p95": 2128.430965996813,
+        "p99": 2785.0106499972753,
+        "min": 48.47259999951348,
+        "max": 3048.1348519970197
+      },
+      "server_latency_ms": {
+        "n": 1279,
+        "mean": 2018.0065129007035,
+        "p50": 2059.07,
+        "p95": 2093.25,
+        "p99": 2727.42,
+        "min": 52.77,
+        "max": 2750.14
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1279
+      },
+      "input_tokens": {
+        "n": 1279,
+        "mean": 373.8835027365129,
+        "p50": 372,
+        "p95": 445,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1279,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "refund/verify": {
+          "payment_verified": 63
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1279,
+      "decider_numeric_parity_passed": 1279,
+      "gpu": {
+        "samples": 42,
+        "busy_mean_percent": 98.5,
+        "memory_peak_mib": 16948.0,
+        "power_mean_w": 71.99
+      }
+    },
+    {
+      "provider": "jev",
+      "concurrency": 64,
+      "started_at": "2026-10-13T11:09:29.040616+00:00",
+      "finished_at": "2026-10-13T11:09:47.823157+00:00",
+      "warmups": 128,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 18.782537162012886,
+      "successful_rps": 68.14840769162758,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 921.2454161091955,
+        "p50": 209.65752200572751,
+        "p95": 4058.9772159873974,
+        "p99": 6696.355822001351,
+        "min": 158.89054199215025,
+        "max": 10942.486954998458
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 921.2454161091955,
+        "p50": 209.65752200572751,
+        "p95": 4058.9772159873974,
+        "p99": 6696.355822001351,
+        "min": 158.89054199215025,
+        "max": 10942.486954998458
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/close": {
+          "follow_up": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "jev",
+      "concurrency": 128,
+      "started_at": "2026-10-13T11:09:51.511943+00:00",
+      "finished_at": "2026-10-13T11:10:15.865868+00:00",
+      "warmups": 256,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 24.35392167198006,
+      "successful_rps": 52.55827037797693,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 1743.5440039159853,
+        "p50": 1165.0583519949578,
+        "p95": 5502.53349301056,
+        "p99": 7845.38768400671,
+        "min": 160.6420669995714,
+        "max": 20466.46725400933
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 1743.5440039159853,
+        "p50": 1165.0583519949578,
+        "p95": 5502.53349301056,
+        "p99": 7845.38768400671,
+        "min": 160.6420669995714,
+        "max": 20466.46725400933
+      },
+      "server_latency_ms": null,
+      "models": {
+        "jev-1.13.0": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 656.95,
+        "p50": 654,
+        "p95": 737,
+        "p99": 744,
+        "min": 575,
+        "max": 744
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 54.95,
+        "p50": 50,
+        "p95": 75,
+        "p99": 79,
+        "min": 33,
+        "max": 79
+      },
+      "choices": {
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/verify": {
+          "request_topup": 64
+        },
+        "refund/approve": {
+          "verify_destination": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": null
+    },
+    {
+      "provider": "decider",
+      "concurrency": 128,
+      "started_at": "2026-10-13T11:10:24.537188+00:00",
+      "finished_at": "2026-10-13T11:11:06.379738+00:00",
+      "warmups": 256,
+      "warmup_failures": 0,
+      "planned_requests": 1280,
+      "attempts": 1280,
+      "successes": 1280,
+      "failures": 0,
+      "complete": true,
+      "wall_seconds": 41.84254278699518,
+      "successful_rps": 30.590875093705556,
+      "status_counts": {
+        "200": 1280
+      },
+      "latency_ms": {
+        "n": 1280,
+        "mean": 3981.896026349065,
+        "p50": 2816.1695229937322,
+        "p95": 11236.771335999947,
+        "p99": 16225.981691997731,
+        "min": 225.90324099292047,
+        "max": 24435.316735995002
+      },
+      "failure_latency_ms": null,
+      "all_latency_ms": {
+        "n": 1280,
+        "mean": 3981.896026349065,
+        "p50": 2816.1695229937322,
+        "p95": 11236.771335999947,
+        "p99": 16225.981691997731,
+        "min": 225.90324099292047,
+        "max": 24435.316735995002
+      },
+      "server_latency_ms": {
+        "n": 1280,
+        "mean": 108.48821093749993,
+        "p50": 100.51,
+        "p95": 187.07,
+        "p99": 262.85,
+        "min": 46.88,
+        "max": 352.92
+      },
+      "models": {
+        "strands-decider-2B-hobson-v19-vllm": 1280
+      },
+      "input_tokens": {
+        "n": 1280,
+        "mean": 373.9,
+        "p50": 372,
+        "p95": 441,
+        "p99": 445,
+        "min": 304,
+        "max": 445
+      },
+      "output_tokens": {
+        "n": 1280,
+        "mean": 1.0,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "min": 1,
+        "max": 1
+      },
+      "choices": {
+        "pending/intake": {
+          "payment_support": 64
+        },
+        "pending/verify": {
+          "await_confirmations": 64
+        },
+        "pending/close": {
+          "follow_up": 64
+        },
+        "underpaid/approve": {
+          "approved": 64
+        },
+        "pending/execute": {
+          "hold": 64
+        },
+        "refund/approve": {
+          "approved": 64
+        },
+        "refund/close": {
+          "follow_up": 64
+        },
+        "underpaid/intake": {
+          "payment_support": 64
+        },
+        "underpaid/close": {
+          "follow_up": 64
+        },
+        "settlement/approve": {
+          "approved": 64
+        },
+        "refund/execute": {
+          "hold": 64
+        },
+        "refund/verify": {
+          "payment_verified": 64
+        },
+        "refund/intake": {
+          "refund_support": 64
+        },
+        "pending/approve": {
+          "approved": 64
+        },
+        "settlement/verify": {
+          "settlement_delayed": 64
+        },
+        "settlement/intake": {
+          "merchant_ops": 64
+        },
+        "settlement/execute": {
+          "escalate_settlement": 64
+        },
+        "underpaid/execute": {
+          "hold": 64
+        },
+        "underpaid/verify": {
+          "await_confirmations": 64
+        },
+        "settlement/close": {
+          "follow_up": 64
+        }
+      },
+      "choices_matching_own_initial_warmup": 1280,
+      "decider_numeric_parity_passed": 1270,
+      "gpu": {
+        "samples": 42,
+        "busy_mean_percent": 83.45238095238095,
+        "memory_peak_mib": 16948.0,
+        "power_mean_w": 71.07261904761906
+      }
+    }
+  ],
+  "provider_stop_reasons": {},
+  "skipped": [],
+  "jev_extended_repeat": {
+    "attempts": 12800,
+    "successes": 12800,
+    "failures": 0,
+    "warmups": 320,
+    "warmup_failures": 0,
+    "cells": [
+      {
+        "provider": "jev",
+        "concurrency": 32,
+        "started_at": "2026-10-13T11:11:28.048156+00:00",
+        "finished_at": "2026-10-13T11:11:54.148689+00:00",
+        "warmups": 64,
+        "warmup_failures": 0,
+        "planned_requests": 6400,
+        "attempts": 6400,
+        "successes": 6400,
+        "failures": 0,
+        "complete": true,
+        "wall_seconds": 26.100529351009754,
+        "successful_rps": 245.20575479257099,
+        "status_counts": {
+          "200": 6400
+        },
+        "latency_ms": {
+          "n": 6400,
+          "mean": 129.864685261864,
+          "p50": 122.3510609997902,
+          "p95": 174.77899199002422,
+          "p99": 233.75466102152131,
+          "min": 101.52897200896405,
+          "max": 455.71533901966177
+        },
+        "failure_latency_ms": null,
+        "all_latency_ms": {
+          "n": 6400,
+          "mean": 129.864685261864,
+          "p50": 122.3510609997902,
+          "p95": 174.77899199002422,
+          "p99": 233.75466102152131,
+          "min": 101.52897200896405,
+          "max": 455.71533901966177
+        },
+        "server_latency_ms": null,
+        "models": {
+          "jev-1.13.0": 6400
+        },
+        "input_tokens": {
+          "n": 6400,
+          "mean": 656.95,
+          "p50": 654,
+          "p95": 737,
+          "p99": 744,
+          "min": 575,
+          "max": 744
+        },
+        "output_tokens": {
+          "n": 6400,
+          "mean": 54.95,
+          "p50": 50,
+          "p95": 75,
+          "p99": 79,
+          "min": 33,
+          "max": 79
+        },
+        "choices": {
+          "pending/verify": {
+            "await_confirmations": 320
+          },
+          "pending/intake": {
+            "payment_support": 320
+          },
+          "underpaid/approve": {
+            "approved": 320
+          },
+          "pending/execute": {
+            "hold": 320
+          },
+          "refund/approve": {
+            "verify_destination": 320
+          },
+          "underpaid/verify": {
+            "request_topup": 320
+          },
+          "settlement/approve": {
+            "approved": 320
+          },
+          "pending/approve": {
+            "approved": 320
+          },
+          "settlement/verify": {
+            "settlement_delayed": 320
+          },
+          "pending/close": {
+            "follow_up": 320
+          },
+          "underpaid/intake": {
+            "payment_support": 320
+          },
+          "refund/verify": {
+            "payment_verified": 320
+          },
+          "refund/execute": {
+            "hold": 320
+          },
+          "underpaid/execute": {
+            "hold": 320
+          },
+          "underpaid/close": {
+            "follow_up": 320
+          },
+          "settlement/execute": {
+            "escalate_settlement": 320
+          },
+          "settlement/close": {
+            "follow_up": 320
+          },
+          "refund/close": {
+            "follow_up": 320
+          },
+          "refund/intake": {
+            "refund_support": 320
+          },
+          "settlement/intake": {
+            "merchant_ops": 320
+          }
+        },
+        "choices_matching_own_initial_warmup": 6400,
+        "decider_numeric_parity_passed": null
+      },
+      {
+        "provider": "jev",
+        "concurrency": 128,
+        "started_at": "2026-10-13T11:11:57.674945+00:00",
+        "finished_at": "2026-10-13T11:13:59.561617+00:00",
+        "warmups": 256,
+        "warmup_failures": 0,
+        "planned_requests": 6400,
+        "attempts": 6400,
+        "successes": 6400,
+        "failures": 0,
+        "complete": true,
+        "wall_seconds": 121.88666960300179,
+        "successful_rps": 52.50779286074104,
+        "status_counts": {
+          "200": 6400
+        },
+        "latency_ms": {
+          "n": 6400,
+          "mean": 2412.9175061832366,
+          "p50": 1596.0356379800942,
+          "p95": 7307.309352996526,
+          "p99": 11280.39363498101,
+          "min": 142.28784199804068,
+          "max": 19584.31709901197
+        },
+        "failure_latency_ms": null,
+        "all_latency_ms": {
+          "n": 6400,
+          "mean": 2412.9175061832366,
+          "p50": 1596.0356379800942,
+          "p95": 7307.309352996526,
+          "p99": 11280.39363498101,
+          "min": 142.28784199804068,
+          "max": 19584.31709901197
+        },
+        "server_latency_ms": null,
+        "models": {
+          "jev-1.13.0": 6400
+        },
+        "input_tokens": {
+          "n": 6400,
+          "mean": 656.95,
+          "p50": 654,
+          "p95": 737,
+          "p99": 744,
+          "min": 575,
+          "max": 744
+        },
+        "output_tokens": {
+          "n": 6400,
+          "mean": 54.95,
+          "p50": 50,
+          "p95": 75,
+          "p99": 79,
+          "min": 33,
+          "max": 79
+        },
+        "choices": {
+          "pending/intake": {
+            "payment_support": 320
+          },
+          "pending/verify": {
+            "await_confirmations": 320
+          },
+          "pending/close": {
+            "follow_up": 320
+          },
+          "underpaid/approve": {
+            "approved": 320
+          },
+          "pending/execute": {
+            "hold": 320
+          },
+          "settlement/approve": {
+            "approved": 320
+          },
+          "underpaid/verify": {
+            "request_topup": 320
+          },
+          "pending/approve": {
+            "approved": 320
+          },
+          "refund/intake": {
+            "refund_support": 320
+          },
+          "settlement/verify": {
+            "settlement_delayed": 320
+          },
+          "refund/approve": {
+            "verify_destination": 320
+          },
+          "settlement/close": {
+            "follow_up": 320
+          },
+          "underpaid/execute": {
+            "hold": 320
+          },
+          "settlement/intake": {
+            "merchant_ops": 320
+          },
+          "refund/close": {
+            "follow_up": 320
+          },
+          "underpaid/intake": {
+            "payment_support": 320
+          },
+          "settlement/execute": {
+            "escalate_settlement": 320
+          },
+          "refund/verify": {
+            "payment_verified": 320
+          },
+          "underpaid/close": {
+            "follow_up": 320
+          },
+          "refund/execute": {
+            "hold": 320
+          }
+        },
+        "choices_matching_own_initial_warmup": 6400,
+        "decider_numeric_parity_passed": null
+      }
+    ],
+    "provider_stop_reasons": {}
+  }
+}

@@ -3,6 +3,7 @@
 import argparse
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 
 from playwright.sync_api import expect, sync_playwright
 
@@ -13,6 +14,11 @@ def main():
     parser.add_argument("--credentials", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--live", action="store_true")
+    parser.add_argument("--chromium", type=Path)
+    parser.add_argument(
+        "--frontend", type=Path,
+        help="Serve local frontend assets in the browser while using the given API URL",
+    )
     parser.add_argument(
         "--execute-targets",
         action="store_true",
@@ -25,11 +31,29 @@ def main():
         parser.error("Use a new output directory to preserve previous evidence")
     args.output.mkdir(parents=True)
     credentials = json.loads(args.credentials.read_text())
-    errors, forbidden = [], []
+    errors, forbidden, calls = [], [], []
     with sync_playwright() as pw:
-        browser = pw.chromium.launch(headless=True)
+        browser = pw.chromium.launch(
+            headless=True,
+            **({"executable_path": str(args.chromium)} if args.chromium else {}),
+        )
         page = browser.new_page(viewport={"width": 1600, "height": 1100})
         page.on("pageerror", lambda error: errors.append(str(error)))
+        page.on(
+            "request",
+            lambda request: calls.append(request.post_data_json)
+            if request.url.endswith("/api/routing/decision")
+            else None,
+        )
+        if args.frontend:
+            def frontend(route):
+                path = urlparse(route.request.url).path
+                if path == "/" or path.startswith("/static/"):
+                    asset = args.frontend / ("index.html" if path == "/" else path.lstrip("/"))
+                    route.fulfill(path=asset)
+                else:
+                    route.continue_()
+            page.route(args.url.rstrip("/") + "/**", frontend)
 
         def prohibit(route):
             forbidden.append(route.request.url)
@@ -44,6 +68,7 @@ def main():
         page.locator("#login-password").fill(credentials["password"])
         page.locator("#login-submit").click()
         expect(page.locator(".rt-case")).to_have_count(4)
+        expect(page.locator("[data-rt-strategy]")).to_have_count(0)
         expect(page.locator('[data-rt-field="capability"]')).to_have_count(0)
         expect(page.locator('[data-rt-field="priority"]')).to_have_count(0)
         if args.live:
@@ -58,6 +83,7 @@ def main():
                         "provider": provider,
                         "stage": stage,
                         "mode": "live",
+                        "strategy": "original",
                         "catalog_version": catalog["version"],
                         "ranking_version": catalog["rankings"]["version"],
                     }
@@ -85,7 +111,14 @@ def main():
             page.locator("[data-rt-export]").click()
         result = json.loads(Path(download.value.path()).read_text())
         (args.output / "results.json").write_text(json.dumps(result, ensure_ascii=False, indent=2))
+        assert result["strategy"] == "original"
+        assert "evidence_optimization" not in result
+        assert len(calls) == 24, len(calls)
+        assert all(call["strategy"] == "original" for call in calls)
+        assert all("evidence_version" not in call for call in calls)
         for case, workspace in result["cases"].items():
+            assert workspace["runStrategy"] == "original"
+            assert "optimizedSides" not in workspace
             model_inputs = {}
             fingerprints = set()
             for provider, side in workspace["sides"].items():
@@ -120,6 +153,11 @@ def main():
             page.locator(f'[data-rt-case="{case}"]').click()
             expect(page.locator(".rt-round")).to_have_count(2)
             expect(page.locator(".rt-turn-output")).to_have_count(6)
+            expect(page.locator(".rt-side")).to_have_count(3)
+            assert not any(
+                word in page.locator("#routing-workspace").inner_text()
+                for word in ("优化前后", "增强证据", "优化流程")
+            )
             page.screenshot(path=str(args.output / f"{case}-desktop.png"), full_page=True)
         executions = {}
         if args.execute_targets:
@@ -159,6 +197,8 @@ def main():
                     "live": args.live,
                     "cases": 4,
                     "route_steps": 24,
+                    "original_strategy_only": True,
+                    "local_frontend_override": bool(args.frontend),
                     "executed_targets": args.execute_targets,
                     "target_results": {
                         case: {

@@ -4,7 +4,7 @@
 
 支付对比统一并排展示 **Strands Decider vs Jev vs GPT**，一次运行三个模型，支持四个场景及三种测试方式。接入与比较口径见 [三模型对比说明](docs/JEV.md)。
 
-新增 **[模型路由对比](docs/MODEL_ROUTING.md)**：Decider、Jev 与 **GPT-6 Sol（low effort）** 根据纯业务任务，分别进行「选择处理流程 → 选择目标型号」两次真实决策。第三方评测作为候选依据，展示两步输入输出、各步及总耗时；支持四场景与完整区域目录。当前使用 LiveBench + MTEB，支持接入 Artificial Analysis API。
+**[模型路由对比](docs/MODEL_ROUTING.md)**：Decider、Jev 与 **GPT-6 Sol（low effort）** 从纯业务任务选择处理流程和目标型号。前端只保留原始流程，展示逐步输入输出、选型、耗时和目标执行；覆盖客服、代码、结算、双语索引四场景。当前使用 LiveBench + MTEB，支持接入 Artificial Analysis API。
 
 **[模型路由实测报告：测试过程、四场景结果与结论](docs/MODEL_ROUTING_COMPARISON.md)**：Decider 决策最快；Jev / GPT 在中英文索引和代码选型上更符合已提供的能力证据。
 
@@ -12,7 +12,42 @@
 
 项目基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)，采用 FastAPI + 原生 HTML/CSS/JavaScript。AWS 部署使用私有 S3、CloudFront OAC、ECS Fargate 和 EC2 On-Demand GPU。
 
+当前所有真实 Decider 调用统一使用 [StrandsDeciderVLLM](https://github.com/milan9527/StrandsDeciderVLLM) 的常驻 `g6.xlarge`，覆盖工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由。
+
 **[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [支付流程对比](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [模型路由对比](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [查看架构图](docs/diagrams/architecture.svg)**
+
+配套文章：[Strands Decider AWS 中文博客稿](docs/blogs/strands-decider/README.md)，包含原理、部署、应用场景、实测截图、并发与成本，提供 Word、Markdown 和 PDF。
+
+## 实测摘要
+
+**Decider 适合优先评估的场景：**
+
+- **客服选择**：意图分类、客服队列和工具选择。本批分类 13/13、局部动作选择 10/10；到账、退款和结案条件仍由程序核验。
+- **模型路由**：原始流程由模型识别任务并选择型号，保留真实选择与两步输入输出，目标输出单独验收。
+
+**场景验证主要结果**：原版 Decider 与 Jev 共保存 466 次调用，按问题或任务分别评分，未包含 GPT。
+
+| 验证场景 | Decider | Jev |
+| --- | ---: | ---: |
+| Skills：分类、工具、证据等判断 | 50/65 | 65/65 |
+| 真实浏览器任务完成 | 4/10 | 10/10 |
+| 金融判断（原始候选顺序） | 22/30 | 28/30 |
+| 政策路由（两种候选顺序） | 25/64 | 46/64 |
+
+简单分类和局部选择接近；Jev 在本批证据核验、多步操作中更好，两者都出现过金融和路由错误。[验证详情](validation/README.md)。
+
+**[JevBench 公开集实测](validation/jevbench/README.md)**：原版 Decider 在 g6.xlarge 上答对 **168/231（72.73%）**，简单题 48/48、困难题 55/111；私网客户端 P50 / P95 为 **68.3 / 403.7 ms**，无调用失败。该结果为 231 题公开子集，不是榜单综合分；[榜单公式与分项估算](validation/jevbench/leaderboard-score.md)。
+
+**三模型历史性能摘要**（以下数据使用原版 EC2 Decider 服务，未重新测量迁移后的 vLLM 性能）：
+
+| 指标 | Decider | Jev | GPT |
+| --- | ---: | ---: | ---: |
+| 支付单步平均后端耗时 | **102.2 ms** | 416.5 ms | 1116.7 ms |
+| 支付选择与演示参考一致 | 18/20 | 20/20 | 20/20 |
+| 原始路由均值（10-16） | **416.3 ms** | 991.6 ms | 2506.0 ms |
+| 增强信息后（仍由模型判断） | **413.7 ms** | 986.0 ms | 2075.5 ms |
+
+支付使用 GPT-6.1 Sol low，路由使用 GPT-6 Sol low；Jev 耗时含 Lambda 转发。支付为 20 个节点；路由为四任务各三轮、每模型 12 个配对样本。两条路径复用同一次分类，再分别调用模型选择型号。参考一致不等于业务完成，路由耗时不含目标执行。[完整对比](#5-实测对比与计时口径)。
 
 ## 1. 演示目的
 
@@ -26,7 +61,7 @@
 | -------------- | --------------------------------------------------------------------------------------------------------------------- |
 | 决策实验室     | 16 个场景、`choice` / `noul` / `score` 三种问题类型、可编辑上下文与选项、工具调用守卫、逐项计时、运行记录及 JSON 导出 |
 | 加密支付业务台 | 四个支付案例 × 五个业务步骤，Decider / Jev / GPT 三模型同时对比，完整模拟订单、工单、账本与客服交互                               |
-| 模型路由对比 | 支付客服、交易代码、结算分析、知识库索引四场景；对比 Decider / Jev / GPT-6 Sol 的流程选择与模型选择，支持可选目标模型执行 |
+| 模型路由对比 | 客服、代码、结算、双语索引四场景；Decider / Jev / GPT-6 Sol 原始流程对比，展示两步模型输入、实际选择、参考价格与目标执行 |
 
 业务数据均为模拟快照。演示不连接钱包、不查询实时区块链、不广播交易。客服回复由应用模板根据实际处理结果生成，本次对比不测量自由长文本生成质量。
 
@@ -36,7 +71,7 @@
 
 | 页面                     | 内容                                                   | 预览                                      |
 | ------------------------ | ------------------------------------------------------ | ----------------------------------------- |
-| 01 AWS 部署架构          | 网络边界、静态站点、API、模型服务、认证与 GPU 生命周期 | [SVG](docs/diagrams/architecture.svg)     |
+| 01 AWS 部署架构          | 网络边界、静态站点、API、共享 vLLM 服务与认证 | [SVG](docs/diagrams/architecture.svg)     |
 | 02 Decider vs Jev vs GPT | 相同输入、不同推理调用方式、输出校验、共同执行策略     | [SVG](docs/diagrams/model-comparison.svg) |
 | 03 加密支付完整流程      | 五步流程、参考差异、保护调整、最终结果与模拟事件       | [SVG](docs/diagrams/payment-workflow.svg) |
 | 04 自主闭环 | 三侧独立判断、执行、等待事件、反馈重判及停止条件 | [SVG](docs/diagrams/closed-loop.svg) |
@@ -51,16 +86,16 @@
 | API 入口     | CloudFront `/api/*` → VPC Origin → 内网 ALB → ECS Fargate                                                   |
 | 业务后端     | FastAPI，1 个 ARM64 Fargate Task，0.25 vCPU / 0.5 GiB；无公网 IP                                            |
 | 身份认证     | 自建用户名 / 密码；scrypt 密码摘要、可撤销 Cookie 会话、限流；AWS 用 DynamoDB，本地用 SQLite                |
-| Decider      | 官方 `StrandsAgents/strands-decider-2B-hobson-v19`，ECS on EC2 `g6.xlarge`，NVIDIA L4 24GB / CUDA         |
+| Decider      | 官方 v19 的 vLLM 适配服务，EC2 `g6.xlarge`，NVIDIA L4 24GB；返回模型 ID `strands-decider-2B-hobson-v19-vllm` |
 | 普通大模型   | Bedrock Converse API；支付模块 `us.openai.gpt-6.1-sol`，路由决策器 `us.openai.gpt-6-sol`，均为 `low`；路由目标模型另按评测配置执行                                    |
 | Jev 决策模型 | ECS 经 IAM 调用 Lambda，再通过 HTTPS 访问 Typesafe System One API；密钥保存在 Secrets Manager |
-| 模型网络     | API 经私网 HTTP 调用 EC2 模型服务；Bedrock 经私有 VPC endpoint 调用，路由目标由服务端区域目录与任务约束校验                      |
-| GPU 控制     | On-Demand 常驻，禁用闲置停机；页面手动启停 → DynamoDB 状态与推理租约 → EventBridge / Lambda → EC2 Start / Stop |
+| 模型网络     | API 经 VPC Peering 私网调用 vLLM `:8100/v1/systemone`；Bearer 密钥由 Secrets Manager 注入后端；Bedrock 经私有端点调用 |
+| GPU 管理     | 共享 On-Demand 实例常驻，页面显示健康状态；启停由部署端管理，演示不启停共享实例 |
 | 业务演练状态 | 各案例、各模型的订单 / 工单 / 模拟账本保存在浏览器内存；刷新或退出清除                                      |
 
-区域资源部署于 **us-east-1**，CloudFront 和 IAM 为全球服务。Bedrock 使用美国跨区域推理配置，AWS 可以将推理路由到其他美国区域。Decider 权重预置在镜像中；API 和 GPU 均无公网 IP，应用 VPC 无 Internet 默认路由。
+区域资源部署于 **us-east-1**，CloudFront 和 IAM 为全球服务。Bedrock 使用美国跨区域推理配置，AWS 可以将推理路由到其他美国区域。API 无公网 IP，应用 VPC 无 Internet 默认路由。vLLM 位于另一个 VPC，其模型端口仅允许受控安全组访问；演示通过私网连接，密钥不下发浏览器。
 
-GPU **持续运行，不因闲置自动停止**；只使用 `g6.xlarge`，容量不足也不自动升级规格。按需计算费 $0.8048/小时，730 小时约 $587.50/月；运行实例的 80GB gp3 磁盘约 $6.40/月，其他服务另计。手动停止会保留磁盘与模型缓存。
+共享 GPU **持续运行，不因闲置自动停止**。`g6.xlarge` 按需计算费 $0.8048/小时，730 小时约 $587.50/月；160GB gp3 磁盘约 $12.80/月，其他服务另计。迁移未停止原版 GPU；保留实例的费用另计，资源记录见 [DEPLOYED.md](deployment/DEPLOYED.md)。
 
 ## 3. Strands Decider vs Jev vs GPT
 
@@ -77,8 +112,8 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 | 维度 | Strands Decider | Jev | Bedrock GPT-6.1 Sol |
 | --- | --- | --- | --- |
 | 本次任务 | 有限候选动作选择 | 相同候选动作选择 | 相同候选动作选择 |
-| 模型 / 配置 | 官方 v19，EC2 `g6.xlarge` / L4 | `jev-latest`，实测返回 `jev-1.13.0` | `us.openai.gpt-6.1-sol`，推理强度 `low` |
-| 请求流程 | ECS → 私网 HTTP → EC2 模型服务 | ECS → Lambda → Typesafe HTTPS API | ECS → Bedrock Converse |
+| 模型 / 配置 | 官方 v19 的 vLLM 适配，EC2 `g6.xlarge` / L4 | `jev-latest`，实测返回 `jev-1.13.0` | `us.openai.gpt-6.1-sol`，推理强度 `low` |
+| 请求流程 | ECS → 私网 VPC Peering → vLLM System One | ECS → Lambda → Typesafe HTTPS API | ECS → Bedrock Converse |
 | 原始输出 | 选择、概率、confidence | 选择、概率、confidence、tokens | 候选 ID JSON、tokens；不伪造概率 |
 | 运行管理 | 自行部署 GPU，当前常驻 | Typesafe 托管，密钥保存在 Secrets Manager | AWS 托管，受模型权限、限流与推理配置影响 |
 | 成本口径 | GPU 实例小时费、磁盘及基础设施 | Jev 用量、Lambda、PrivateLink 与密钥存储 | Bedrock 模型用量及基础设施 |
@@ -101,7 +136,7 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 
 **优化流程**：四个场景均可选择。以固定五步流程为基线，按场景去除无关输入字段，并明确每个候选适用的业务类型：收款不要求退款审批，退款保留地址与审批证据，结算使用到账与 SLA。三模型收到同一份优化后的业务输入、问题和候选条件，随后分别模拟执行。候选 ID 集合、演示参考及执行保护保持一致，不把参考答案输入模型，也不自动推进外部证据。可以先运行固定流程，再以相同证据运行优化流程，通过对比记录回看；模式、模型原始输入及结果随 JSON 导出。输入优化不保证模型总能正确选择。
 
-**对比界面**：顶部依次选择场景、测试方式（固定流程／优化流程／自主闭环）和真实模型／规则回放，再点击「开始对比」。耗时卡片下方默认展开「每轮输入 / 输出」及客户会话，逐轮并排显示输入证据、三模型建议、实际执行结果与时间；每轮可展开实际模型输入中的问题与候选条件。闭环每轮保留当时的执行状态及反馈；模拟器事件、失败请求、客服模板回复分别标记。可切换带模式标签的历史对比，最近 80 轮输入输出随 JSON 导出，证据更新不改写旧输入。流程总表与最终结果位于其后，证据编辑、原始 JSON 与日志按需展开。当前常驻模式直接调用模型，仅 Decider 调用失败后检查 GPU 并按需打开恢复弹窗；所有模块仍可手动打开顶部「GPU」管理入口。就绪后返回模块重新运行，不自动续跑；示例／规则回放无需 GPU。闭环耗时包含各自重判，不混入固定输入配对统计。
+**对比界面**：顶部依次选择场景、测试方式（固定流程／优化流程／自主闭环）和真实模型／规则回放，再点击「开始对比」。耗时卡片下方默认展开「每轮输入 / 输出」及客户会话，逐轮并排显示输入证据、三模型建议、实际执行结果与时间；每轮可展开实际模型输入中的问题与候选条件。闭环每轮保留当时的执行状态及反馈；模拟器事件、失败请求、客服模板回复分别标记。可切换带模式标签的历史对比，最近 80 轮输入输出随 JSON 导出，证据更新不改写旧输入。流程总表与最终结果位于其后，证据编辑、原始 JSON 与日志按需展开。当前直接调用共享 vLLM，顶部「GPU」查看健康状态，实例由部署端管理。失败恢复后手动重新运行，不自动续跑；示例／规则回放无需 GPU。闭环耗时包含各自重判，不混入固定输入配对统计。
 
 **决策工作台**：顶部运行栏集中显示当前场景、问题数、示例／真实模式和「运行决策」，桌面与手机首屏可见，向下滚动时保持固定。「编辑输入」定位到上下文，运行后自动定位到结果。
 
@@ -133,7 +168,7 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 ### 推荐的 5 分钟演示路线
 
 1. 登录并进入「支付流程对比」。首次体验可选择「规则回放」熟悉界面；回放不调用模型，不产生模型性能数据。
-2. 切换到「真实模型」，默认同时运行三个模型。Decider 使用 EC2 常驻 GPU；若已被手动停止，由管理员通过公共 GPU 弹窗启动。
+2. 切换到「真实模型」，默认同时运行三个模型。Decider 使用共享 vLLM 常驻 GPU；顶部「GPU」可查看连接状态。
 3. 选择 **USDC 未到账**，测试方式选「固定流程」，点击「开始对比」。
 4. 查看三侧五步原始选择、每一步的执行输出、耗时和最终客服回复。Decider 即使选择“等待人工审批”，也不会仅因参考差异停在 2/5。
 5. 观察最终结果：可以显示 **已处理 5/5 步，同时资金动作未落实、业务未完成**。展开查看确认数、差额、审批或本次模型选择造成的阻塞原因；黄色状态表示仍有待办。
@@ -151,6 +186,8 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 
 ### 模型路由：四场景对比
 
+前端只保留原始流程。此前的**模型输入优化实验**仍保留[方法与实测](docs/MODEL_ROUTING_OPTIMIZATION.md)：两侧均由模型判断，优化只补充任务相关分项和已知限制。Decider 仍选英文向量模型，独立顺序检查发现选择随首项变化，尚不能宣称准确率改善。旧程序选型方案的提速不计入模型输入优化效果。
+
 2026-10-13 完整复测，三模型都识别了正确的处理流程。每格为 **所选目标型号 · 两次决策累计后端耗时**，使用 GPT-6 Sol low 作为路由决策器。
 
 | 场景 | Strands Decider | Jev | GPT-6 Sol low |
@@ -162,7 +199,7 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 
 **Decider 本批最快，但索引场景选了不适合中英文工单的英文模型；代码场景中 Jev / GPT 的选择更符合提供的代码评分。** 客服、分析没有足够的目标任务实测依据判定选型优劣。24 次正式调用返回有效候选不等于全部选对；本批未执行目标任务，不代表代码通过率或检索效果。每场景仅一个正式样本，6 次预热另存；首轮 GPT 超时也保留。详见 **[独立实测报告](docs/MODEL_ROUTING_COMPARISON.md)**，包含完整过程、分步时间、截图、原始数据与后续优化。
 
-### 当前三模型同时对比
+### 三模型同时对比实测（原版 Decider）
 
 四场景优化流程，2026-10-12 先向三个模型各发起一次预热请求，再正式实测 60 次，全部成功。CloudWatch 确认正式的 20 次 Jev 请求均复用已预热的 Lambda 环境。每格为 **五步累计后端耗时 · 与演示参考一致次数**，单次样本不代表通用准确率或稳定延迟；Jev 耗时包含 Lambda 与外部 HTTPS 往返。[完整输入输出](docs/presentations/v8/live-observations.json) · [预热验证](docs/presentations/v8/lambda-warm-verification.json)。
 
@@ -187,7 +224,7 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 
 此前 Decider / GPT 的固定流程与优化流程四场景数据见 [项目历史](docs/HISTORY.md#四场景明细2026-10-11)，保留原批次口径。
 
-**并发性能测试：** [查看 1 / 2 / 4 / 8 / 16 / 32 并发下的吞吐、p50/p95、成功率和排队分析](docs/CONCURRENCY.md)。每档每模型 80 次请求，测量当前完整 API 路径；客户端延迟与上表的后端耗时分别统计。当前 Decider 串行执行，Jev / GPT 各有两个调用槽，因此结果也反映应用并发限制。
+**并发性能测试：** [查看原版服务 1 / 2 / 4 / 8 / 16 / 32 并发下的吞吐、p50/p95、成功率和排队分析](docs/CONCURRENCY.md)。当时 Decider 串行执行，Jev / GPT 各有两个调用槽，结果包含应用并发限制。当前 vLLM 路径已取消原版串行租约，API 允许最多 128 个在途 Decider 请求；[vLLM 并发实测](https://github.com/milan9527/StrandsDeciderVLLM) 与历史完整演示 API 测试分别统计。
 
 **如何解读：**
 
@@ -203,9 +240,9 @@ Decider 的判断过程、confidence 含义，以及与常见 BERT 固定标签�
 
 1. **Decider 在本批次后端耗时最低，仍需处理选择错误。** 20 次中有两次与演示参考不同，其中退款审批触发一次执行保护；适合继续评估低延迟、有限候选任务。
 2. **Jev 提供托管的结构化判断。** 本批次 20 次选择均符合参考，累计耗时约为 GPT 的 37%；实际体验受网络、转发及连接管理影响，不能直接套用官方宣传倍数。
-3. **GPT 在本批次也全部符合参考，耗时更高。** 本项目只测低推理强度的候选 ID 输出，未比较其开放式规划、解释和长文本生成能力。
+3. **支付流程中的 GPT 全部符合参考，耗时更高。** 该批支付测试只测低推理强度的候选 ID 输出；模型路由模块的目标文本执行单独记录。
 4. **三个模型均需独立的业务执行保护。** 参考一致、五步已处理与资金业务完成是不同指标；金额计算、交易状态核验和执行权限仍由应用确定性代码负责。
-5. **模型路由需要同时验收速度与选型质量。** 当前路由样本支持优先继续评估 Jev；Decider 的低延迟伴随索引选型错误，代码选型依据也较弱。仍需扩大测试集并实际执行目标任务，不能将少量场景推为通用排名。
+5. **优化路由需要验证模型是否利用了更准确的信息。** 原始流程中 Jev 的代码、双语索引选型依据更强；优化流程仍由各模型判断，不提供程序答案。应同时比较型号选择、实际耗时、目标输出和失败。
 
 当前结果支持继续评估 Decider 在高频有限候选任务中的应用，不支持据此认定它可替代所有普通大模型，或直接承担真实支付执行。
 
@@ -234,20 +271,20 @@ bash scripts/serve_model.sh
 
 ## 8. AWS 部署与验证
 
-当前部署使用 `us-east-1` 的 EC2 On-Demand `g6.xlarge` 常驻推理服务。初次部署和模型镜像步骤见 [部署入口](deployment/README.md)，实际资源及版本记录见 [DEPLOYED.md](deployment/DEPLOYED.md)。
+当前部署使用 `us-east-1` 的共享 vLLM / EC2 On-Demand `g6.xlarge` 常驻推理服务。私网、密钥和更新步骤见 [部署入口](deployment/README.md)，实际资源及版本记录见 [DEPLOYED.md](deployment/DEPLOYED.md)。
 
 更新已有环境：
 
 ```bash
-# 更新 API 和前端，保留现有 EC2 模型
+# 更新 API 和前端，保留已部署的 vLLM 参数
 python deployment/deploy.py --region us-east-1 --api-only \
-  --model-provider ec2 --tag YOUR_NEW_API_TAG
+  --model-provider vllm --tag YOUR_NEW_API_TAG
 
 # 仅更新前端
 python deployment/deploy.py --region us-east-1 --frontend-only
 ```
 
-本版本 **219 项自动化测试通过**。固定流程、优化输入、闭环回放、模型路由、输入输出历史、公共 GPU 弹窗、异常恢复与移动端均有验证。回放与模拟错误测试不计入真实模型性能统计。复测命令：
+本次发布前 **243 项自动化测试全部通过**，并已验证全部 Decider 模块的真实调用、四场景三模型路由界面和手机端 GPU 状态。回放与接入验证不计入历史性能基准。复测命令：
 
 ```bash
 uv run --extra dev pytest -q
@@ -260,9 +297,15 @@ uv run --with playwright python scripts/check_jev_browser.py \
   --url http://localhost:8000 \
   --credentials .deployment/local-credentials.json
 
-# 全模块 GPU 公共弹窗；启停与模型调用均在浏览器内拦截
+# 历史 EC2 管理模式的公共弹窗；启停与模型调用均在浏览器内拦截
 uv run --with playwright python scripts/check_gpu_dialog_browser.py \
   --url http://localhost:8000 --credentials .deployment/local-credentials.json
+
+# 当前共享 vLLM：全模块真实调用验证
+uv run python scripts/check_vllm_demo.py \
+  --url https://d3i7ogfx5ml7dc.cloudfront.net \
+  --credentials .deployment/admin-credentials.json \
+  --output .deployment/vllm-live-verification.json
 
 # AWS 环境：四场景三模型优化流程，共 60 次真实调用
 uv run --with playwright python scripts/check_jev_browser.py --live \
@@ -284,6 +327,7 @@ app/
   bedrock.py               # GPT-6.1 Sol Converse 适配与输出校验
   routing.py               # 模型路由目录、两步决策与可选目标执行
   routing_policy.py        # 流程定义、候选证据与决策输入
+  routing_evidence.py      # 任务相关证据与指标解释，不进行选型
   routing_rankings.json    # 第三方评测数据、来源与配置
   sagemaker.py             # 签名的 SageMaker InvokeEndpoint
   auth.py                  # 自建账号、会话、限流
@@ -294,7 +338,8 @@ frontend/
 deployment/                # CloudFormation、镜像、控制器、部署与运维
 docs/
   diagrams/                # AWS 架构、模型对比、固定流程与反馈闭环 SVG 图
-  presentations/v8/        # 最新 30 页三模型预热对比 PPTX / PDF、讲稿与截图
+  presentations/v9/        # 最新 52 页：适用场景、支付、路由、vLLM 并发与成本
+  presentations/v8/        # 保留的 30 页三模型支付预热对比、讲稿与截图
   presentations/v2/        # 历史实测截图、固定输入与闭环采集来源
   MODEL_COMPARISON.md      # 判断机制、BERT 区别、演示参考与执行约束
   CLOSED_LOOP.md           # 闭环实现、观测指标与生产化边界
@@ -320,6 +365,7 @@ tests/                     # API、认证、计时、GPU、SageMaker 与支付�
 | `/api/crypto/event`                                   | 模拟确认、补款、地址验证、审批或结算到账          |
 | `/api/routing/catalog`、`/api/routing/candidates`   | 区域模型目录、评测证据与候选范围                  |
 | `/api/routing/decision`、`/api/routing/execute`     | 两步模型路由决策与可选目标执行                    |
+| `/api/routing/decision` 的 `strategy` 参数        | 原始 / 增强证据，两侧均由模型选择具体型号             |
 | `/api/gpu`、`/api/gpu/start`、`/api/gpu/stop`         | GPU 状态与管理员启停                              |
 
 登录后可访问 `/api/docs`。业务 API 需要有效会话；写请求沿用 CSRF / Origin 校验。

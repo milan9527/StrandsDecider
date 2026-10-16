@@ -1,0 +1,40 @@
+{
+  "InstanceType": "g6.2xlarge",
+  "VCpuInfo": {
+    "DefaultVCpus": 8,
+    "DefaultCores": 4,
+    "DefaultThreadsPerCore": 2,
+    "ValidCores": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "ValidThreadsPerCore": [
+      1,
+      2
+    ]
+  },
+  "MemoryInfo": {
+    "SizeInMiB": 32768
+  },
+  "GpuInfo": {
+    "Gpus": [
+      {
+        "Name": "L4",
+        "Manufacturer": "NVIDIA",
+        "Count": 1,
+        "LogicalGpuCount": 1,
+        "GpuPartitionSize": 1.0,
+        "Workloads": [
+          "graphics",
+          "ml-ai"
+        ],
+        "MemoryInfo": {
+          "SizeInMiB": 22888
+        }
+      }
+    ],
+    "TotalGpuMemoryInMiB": 22888
+  }
+}

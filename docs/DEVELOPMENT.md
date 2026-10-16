@@ -21,9 +21,9 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 示例模式的概率是为教学设置的预设数值，**不是模型输出，也不展示虚构的推理时间或 token 用量**。只允许回放未修改的预设；修改文本或问题后需切换到真实模型。真实推理失败时会直接报错，不会退回示例数据。
 
-AWS 环境的所有模块共用顶部「GPU」管理弹窗。当前常驻模式直接调用模型，不在每次推理前查询 GPU；页面初始化读取一次管理状态，弹窗打开或启停过渡期间才每 5 秒刷新。真实 Decider 请求遇到连接、超时或服务端错误后异步检查状态，确认未就绪或状态不可用时才弹出恢复提示；参数错误、排队限流和 Bedrock 错误不触发 GPU 弹窗。后端 readiness、推理租约与并发控制保持有效。只有管理员能启停，恢复后手动重试，不自动续跑失败任务。历史闲置释放模式仍保留启动前检查；本地未配置 GPU 管理时使用本地模型地址。
+AWS 环境所有模块共用顶部「GPU」状态弹窗。2026-10-16 起，真实 Decider 统一调用共享 vLLM 服务；页面直接提交推理，初始化和弹窗中查询状态，失败后按需显示连接提示。共享实例由部署端管理，`can_manage=false`，页面不提供启停；恢复后手动重试。参数错误、排队限流和 Bedrock 错误不触发 GPU 恢复提示。
 
-2026-10-11 起，线上使用 EC2 On-Demand `g6.xlarge` 常驻运行，`IdleTimeoutSeconds=0` 禁用闲置停机，`GpuInstanceTypes=g6.xlarge` 限定规格。GPU API 返回 `idle_auto_stop=false`、`idle_remaining_seconds=null`；前端据此显示「持续运行」，不显示闲置倒计时。手动停止仍保留磁盘，启动失败的超时保护仍有效。
+vLLM 模式设置 `GPU_PROVIDER=vllm`、`STRANDS_DECIDER_URL` 和服务端 `DECIDER_API_KEY`；AWS 通过 Secrets Manager 注入密钥。API 不读取原版 GPU 状态表或串行推理租约，最多允许 128 个在途 Decider 请求。`g6.xlarge` 常驻，返回 `idle_auto_stop=false`。本地默认的原版服务仍可使用；旧控制器和启停接口仅适用于历史 EC2 / SageMaker 模式，见 [原版部署归档](../deployment/ORIGINAL_GPU.md)。
 
 ## 时间的含义
 
@@ -153,8 +153,8 @@ uv run --with strands-agents python -m examples.strands_agent \
 | `POST /api/auth/logout` | 服务端撤销会话并清除 Cookie                                                  |
 | `GET /api/health`       | 检查真实模型连接、模型名称与设备                                             |
 | `GET /api/gpu`          | 查看按需 GPU 状态、实例、费用参考与管理权限                                  |
-| `POST /api/gpu/start`   | 管理员申请启动 GPU，返回 202，后台异步执行                                   |
-| `POST /api/gpu/stop`    | 管理员申请停止，等待已有推理完成后停止 EC2，保留磁盘与模型缓存；历史 SageMaker 模式删除 Endpoint |
+| `POST /api/gpu/start`   | 共享 vLLM 返回 409；历史 EC2 / SageMaker 模式由管理员申请启动 |
+| `POST /api/gpu/stop`    | 共享 vLLM 返回 409；历史 EC2 模式停止并保留磁盘，历史 SageMaker 模式删除 Endpoint |
 | `GET /api/examples`     | 获取 16 个场景的分类、说明、修改提示、上下文和问题                           |
 | `POST /api/decide`      | 示例回放或官方 System One 推理                                               |
 | `POST /api/guard`       | 执行两项工具检查并返回策略结果                                               |

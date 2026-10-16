@@ -32,7 +32,11 @@ def main():
     parser.add_argument("--frontend-only", action="store_true")
     parser.add_argument("--api-only", action="store_true", help="Keep the existing model image")
     parser.add_argument("--gpu-state-table", help="GPU control table from the GPU stack")
-    parser.add_argument("--model-provider", choices=["ec2", "sagemaker"])
+    parser.add_argument("--model-provider", choices=["ec2", "sagemaker", "vllm"])
+    parser.add_argument(
+        "--vllm-config", type=Path,
+        help="JSON of nonsecret Vllm* CloudFormation parameters; never include API keys",
+    )
     jev = parser.add_mutually_exclusive_group()
     jev.add_argument("--jev-key-file", type=Path, help="Store a local Jev key in Secrets Manager")
     jev.add_argument("--jev-secret-arn", help="Use an existing Secrets Manager Jev credential")
@@ -86,6 +90,20 @@ def main():
         raise TimeoutError("CloudFormation did not stabilize within 40 minutes")
 
     current = stack()
+    vllm_names = (
+        "VllmPrivateIp", "VllmSecretArn", "VllmInstanceId", "VllmSecurityGroupId",
+        "VllmRouteTableId", "VllmPeeringConnectionId",
+    )
+    vllm_config = json.loads(args.vllm_config.read_text()) if args.vllm_config else {}
+    if set(vllm_config) - set(vllm_names):
+        parser.error("--vllm-config contains unsupported keys")
+    if any(not isinstance(v, str) or not v for v in vllm_config.values()):
+        parser.error("--vllm-config values must be nonempty strings")
+    previous_parameters = {p["ParameterKey"]: p["ParameterValue"]
+                           for p in (current or {}).get("Parameters", [])}
+    if (args.model_provider or previous_parameters.get("ModelProvider")) == "vllm":
+        if any(not vllm_config.get(k, previous_parameters.get(k)) for k in vllm_names):
+            parser.error("vLLM requires all six Vllm* parameters in --vllm-config or the existing stack")
     if not args.frontend_only and not args.api_only and not args.bootstrap:
         parser.error(
             "Deploy the GPU image with build_gpu.py and GPU stack first, then use --api-only."
@@ -294,6 +312,12 @@ def main():
                 )
             ],
         ]
+        parameters.extend(
+            {"ParameterKey": name, "ParameterValue": vllm_config.get(
+                name, previous_parameters.get(name, "")
+            )}
+            for name in vllm_names
+        )
         try:
             aws(
                 "cloudformation",

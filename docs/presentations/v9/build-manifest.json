@@ -1,0 +1,449 @@
+{
+  "generated_at": "2026-10-13T13:32:20.517194+00:00",
+  "base_file": "docs/presentations/v8/Strands-Decider-模型原理与支付业务演示-v8-三模型预热性能对比-30页-20261012.pptx",
+  "base_sha256": "5f44245fd6ed0d1b3b116dc4e177fd9d8eed1b29ff6f1721ae3884f12809b99e",
+  "pptx_file": "docs/presentations/v9/Strands-Decider-模型原理与业务演示-v9-适用场景-模型路由-vLLM与成本对比-52页-20261013.pptx",
+  "pptx_sha256": "c43fd0b89bb8b0f90fc8614064e4c107ff91f85ee3771248191530ab4ca7926f",
+  "base_pages_preserved": 30,
+  "new_pages": 22,
+  "slides": [
+    {
+      "title": "让小模型做好高频决策",
+      "source": "v8",
+      "v8_page": 1,
+      "page": 1
+    },
+    {
+      "title": "软件流程，需要大量小而明确的判断",
+      "source": "v8",
+      "v8_page": 2,
+      "page": 2
+    },
+    {
+      "title": "决策模型：状态输入，类型化答案输出",
+      "source": "v8",
+      "v8_page": 3,
+      "page": 3
+    },
+    {
+      "title": "三个模型，同一个候选动作任务",
+      "source": "v8",
+      "v8_page": 4,
+      "page": 4
+    },
+    {
+      "title": "Strands Decider：用候选评分头完成选择",
+      "source": "v8",
+      "v8_page": 5,
+      "page": 5
+    },
+    {
+      "title": "相同业务问题，三条调用路径",
+      "source": "v8",
+      "v8_page": 6,
+      "page": 6
+    },
+    {
+      "title": "BERT、Decider、GPT：适配方式一页看懂",
+      "source": "v8",
+      "v8_page": 7,
+      "page": 7
+    },
+    {
+      "title": "决策模型适用场景：把高频判断接入软件流程",
+      "section": "适用场景 / 六类任务",
+      "source": "new",
+      "page": 8
+    },
+    {
+      "title": "适用条件：候选清晰、事实可得、结果可验证",
+      "section": "适用场景 / 落地边界",
+      "source": "new",
+      "page": 9
+    },
+    {
+      "title": "JevBench：同时衡量能力、校准、速度与成本",
+      "source": "v8",
+      "v8_page": 8,
+      "page": 10
+    },
+    {
+      "title": "公开结果：Jev 与主流开源、闭源模型",
+      "source": "v8",
+      "v8_page": 9,
+      "page": 11
+    },
+    {
+      "title": "综合排名高，不等于复杂问题答得更准",
+      "source": "v8",
+      "v8_page": 10,
+      "page": 12
+    },
+    {
+      "title": "一套业务后端，连接三个模型",
+      "source": "v8",
+      "v8_page": 11,
+      "page": 13
+    },
+    {
+      "title": "四个支付场景，贯穿五个业务节点",
+      "source": "v8",
+      "v8_page": 12,
+      "page": 14
+    },
+    {
+      "title": "真实界面：同一输入，三模型输出并排看",
+      "source": "v8",
+      "v8_page": 13,
+      "page": 15
+    },
+    {
+      "title": "四场景总览：Decider 最快，两处选择仍有差异",
+      "source": "v8",
+      "v8_page": 14,
+      "page": 16
+    },
+    {
+      "title": "逐节点看速度：受理、核验、审批、处置、回复",
+      "source": "v8",
+      "v8_page": 15,
+      "page": 17
+    },
+    {
+      "title": "USDC 未到账：三模型都等待确认",
+      "source": "v8",
+      "v8_page": 16,
+      "page": 18
+    },
+    {
+      "title": "USDT 少付：确认已够，仍需补款",
+      "source": "v8",
+      "v8_page": 17,
+      "page": 19
+    },
+    {
+      "title": "退款审批：原始建议与实际采用动作不同",
+      "source": "v8",
+      "v8_page": 18,
+      "page": 20
+    },
+    {
+      "title": "商户结算：先升级工单，再等待到账",
+      "source": "v8",
+      "v8_page": 19,
+      "page": 21
+    },
+    {
+      "title": "为什么选择不同？先分清观察与解释",
+      "source": "v8",
+      "v8_page": 20,
+      "page": 22
+    },
+    {
+      "title": "五步已处理，为什么三个模型都没有结案？",
+      "source": "v8",
+      "v8_page": 21,
+      "page": 23
+    },
+    {
+      "title": "Jev 为什么没有宣传中的几十倍加速？",
+      "source": "v8",
+      "v8_page": 22,
+      "page": 24
+    },
+    {
+      "title": "闭环做了什么：等待证据、重新核验、完成入账",
+      "source": "v8",
+      "v8_page": 23,
+      "page": 25
+    },
+    {
+      "title": "从选业务动作，到选择执行任务的模型",
+      "section": "模型路由 / 实现",
+      "source": "new",
+      "page": 26
+    },
+    {
+      "title": "四个任务，统一的候选事实",
+      "section": "模型路由 / 输入",
+      "source": "new",
+      "page": 27
+    },
+    {
+      "title": "路由实测：速度领先，选择质量仍需检验",
+      "section": "模型路由 / 结果",
+      "source": "new",
+      "page": 28
+    },
+    {
+      "title": "客服与分析：保留差异，验证目标任务后再判优劣",
+      "section": "模型路由 / 实际界面",
+      "source": "new",
+      "page": 29
+    },
+    {
+      "title": "交易代码：Jev 与 GPT 更贴合代码能力证据",
+      "section": "模型路由 / 实际界面",
+      "source": "new",
+      "page": 30
+    },
+    {
+      "title": "中英文索引：Decider 的型号选择不合适",
+      "section": "模型路由 / 实际界面",
+      "source": "new",
+      "page": 31
+    },
+    {
+      "title": "正确上下文，还需要模型正确使用证据",
+      "section": "模型路由 / 结论",
+      "source": "new",
+      "page": 32
+    },
+    {
+      "title": "优化示例：让退款审批只作用于退款",
+      "source": "v8",
+      "v8_page": 24,
+      "page": 33
+    },
+    {
+      "title": "已验证的优化：Decider 参考一致 14/20 → 18/20",
+      "source": "v8",
+      "v8_page": 25,
+      "page": 34
+    },
+    {
+      "title": "下一步优化：把剩余错误变成可重复的测试",
+      "source": "v8",
+      "v8_page": 26,
+      "page": 35
+    },
+    {
+      "title": "需要微调时：训练决策能力，不只训练 JSON 外形",
+      "source": "v8",
+      "v8_page": 27,
+      "page": 36
+    },
+    {
+      "title": "vLLM 适配：保留决策头，换成并发调度",
+      "section": "vLLM / 推理实现",
+      "source": "new",
+      "page": 37
+    },
+    {
+      "title": "部署过程：导出 → 校验 → 容器 → 对齐",
+      "section": "vLLM / 可复现步骤",
+      "source": "new",
+      "page": 38
+    },
+    {
+      "title": "独立公共 API：私网源站，GPU 持续驻留",
+      "section": "vLLM / AWS 架构",
+      "source": "new",
+      "page": 39
+    },
+    {
+      "title": "压测怎么做：固定输入，完整响应后再补请求",
+      "section": "vLLM / 测试方法",
+      "source": "new",
+      "page": 40
+    },
+    {
+      "title": "同一块 L4：vLLM 在 8 并发约提升 2.36 倍吞吐",
+      "section": "vLLM / 原版对照",
+      "source": "new",
+      "page": 41
+    },
+    {
+      "title": "1–128 并发：吞吐进入平台，等待时间持续增加",
+      "section": "vLLM / 公网扫描",
+      "source": "new",
+      "page": 42
+    },
+    {
+      "title": "批次 token 预算更大，没有提高这批短输入吞吐",
+      "section": "vLLM / 调参实测",
+      "source": "new",
+      "page": 43
+    },
+    {
+      "title": "vLLM vs Jev：低并发延迟与高并发吞吐各有优势",
+      "section": "vLLM / Jev 直接对比",
+      "source": "new",
+      "page": 44
+    },
+    {
+      "title": "选择并发档位，要同时看尾延迟与失败",
+      "section": "vLLM / 性能结论",
+      "source": "new",
+      "page": 45
+    },
+    {
+      "title": "成本：g6.2xlarge 常驻，与 Jev 按量计费",
+      "section": "成本 / 公开价格与实测用量",
+      "source": "new",
+      "page": 46
+    },
+    {
+      "title": "按这批短输入，约 2586 万次/月达到计算费交点",
+      "section": "成本 / 用量敏感性",
+      "source": "new",
+      "page": 47
+    },
+    {
+      "title": "任务变长、一次路由两次判断，成本也会改变",
+      "section": "成本 / 模型路由用量",
+      "source": "new",
+      "page": 48
+    },
+    {
+      "title": "落地方式：常见判断用小模型，复杂异常升级",
+      "source": "v8",
+      "v8_page": 28,
+      "page": 49
+    },
+    {
+      "title": "支付演示回顾：速度、选择和真实业务结果",
+      "source": "v8",
+      "v8_page": 29,
+      "page": 50
+    },
+    {
+      "title": "最终选型：质量、性能、成本分别验收",
+      "section": "总结 / 新增实测",
+      "source": "new",
+      "page": 51
+    },
+    {
+      "title": "打开 Demo，查看三模型过程与原始记录",
+      "source": "v8",
+      "v8_page": 30,
+      "page": 52
+    }
+  ],
+  "preserved_body_except_pages": [
+    1,
+    29,
+    30
+  ],
+  "new_live_model_calls": 0,
+  "g6_2xlarge_performance_tested": false,
+  "cost_basis": "public list prices applied to actual reported input-token usage; not invoice",
+  "crops": [
+    {
+      "source": "docs/results/workflow-routing-2026-10-13/support-desktop.png",
+      "source_sha256": "7f08259ee8331826cc68a6f7bff0a9b1ee21c45309c50830f66f000b8cc1703a",
+      "box": [
+        278,
+        1074,
+        1550,
+        1205
+      ],
+      "file": "assets/routing-support-models.png",
+      "sha256": "cfa054f472143197064e853b01104996cec173601a29c2558acdeeeeda96b756"
+    },
+    {
+      "source": "docs/results/workflow-routing-2026-10-13/analysis-desktop.png",
+      "source_sha256": "8e7834ba31744fddd3ce5ea6bb89085adbbecde0b37a30e5e333ff395f15a129",
+      "box": [
+        278,
+        1074,
+        1550,
+        1205
+      ],
+      "file": "assets/routing-analysis-models.png",
+      "sha256": "e992a7bad1f5340c7a3f701138e88ca2b4e836b14b53ea610412bc12f166c22e"
+    },
+    {
+      "source": "docs/results/workflow-routing-2026-10-13/code-desktop.png",
+      "source_sha256": "5578c0ff1573a2df87d808a427155556070ccb55050b50d571b9194eeea011e1",
+      "box": [
+        260,
+        825,
+        1565,
+        1210
+      ],
+      "file": "assets/routing-code-results.png",
+      "sha256": "25d15ab05867c7b9c2ce763e1c9341104dd8b83a8d4ea6857b4718f01f291905"
+    },
+    {
+      "source": "docs/results/workflow-routing-2026-10-13/retrieval-desktop.png",
+      "source_sha256": "0774d8d3bca0f3cd6e6ce838c54da302df52e00fc36f444ed912b6830a6e3e65",
+      "box": [
+        260,
+        825,
+        1565,
+        1210
+      ],
+      "file": "assets/routing-retrieval-results.png",
+      "sha256": "8af5131a9487b7e5a653a340a6f6ee20666b70996dcaab2a0d7e16c1acb4c765"
+    }
+  ],
+  "routing_results_sha256": "116399f4e8fafa22c457a12093a1e61abaaa06ec7c4bc495862be7982db596a3",
+  "source_files": {
+    "sources/aws-g6.2xlarge-pricing.json": "f75e104f45a54b6499a5e6719485b12d25b61124f4ff5d70c2a079ccc0e0612b",
+    "sources/jev-pricing-page.html": "41c2973ba8f5d993ac36eee7444b7fc222cbd782dbb07e3cf788d0f73e5d2665",
+    "sources/jev-pricing-source.json": "e01e9ec8584c1dab3f2c97b0bcf4aa396fb5e86500506e2b87a09aa164345030",
+    "sources/jev-pricing-page.txt": "ab2bef861476cffa2df5487bf5e75f76ac4d7f2893f484d35dcbc50950139120",
+    "sources/aws-gp3-pricing.json": "8106ab91be2d285fad2a533a1a65b48b5235c98642757874e64c80e7269335a4",
+    "sources/g6.2xlarge-hardware.json": "99d477616babd87e5edfd1245e5fdab776e9a99ce167fa27611e27f01053450d",
+    "sources/cost-calculation.json": "adf803b45a963bb7e20d6d3e2ce9ddd1b9675bf604e6def322e7786818067983",
+    "sources/vllm/jev-summary.json": "b77ea035330525818137623f903bba640cfdf30096c72064291cad48d417e340",
+    "sources/vllm/original-benchmark.json": "587e98d7a70280a4a5078c27e73b62a3b033b0815656350663405af35f251853",
+    "sources/vllm/vllm-recheck.json": "b17bb9b4f73b6c38404cd802e2ebc282c404730cdab4f35b99e21baa522b7c86",
+    "sources/vllm/sweep-1-128.json": "e2b5616700e732917ca97f4ce7cbbadd5f99ec0ea2659339909a4154c00bc1c2",
+    "sources/vllm/batch-summary.json": "5cb2bb33e6da4801ff33e8373455188dba2f82ddef78e8ae3d2aefec7a2ef16e",
+    "sources/vllm/corpus.json": "55fb81ec8ad913195ef277388ca08f545f50cbb58f09544f17fec183937e00b7",
+    "sources/vllm/final-api-check.json": "1c5efd58de56bd16cee59388659d2d0b034e2fe565b3b998261fc252a819a6e2",
+    "sources/vllm/deployment-command.json": "158c0d46b4c805af384ea50cd92791ab757afa719984ddb940fa6ed8feaed060",
+    "sources/vllm/ADAPTER.zh-CN.md": "c838500133330c88e6e3cc6ce68d344c8bb88804f68f8fc8700a3080c26acc3d",
+    "sources/vllm/JEV_CONCURRENCY.zh-CN.md": "701488d82ad9715ea472cbfc72b6847a5607533cec893402da11cd56360577f5",
+    "sources/vllm/VLLM_PERFORMANCE.zh-CN.md": "22a198e82172e252fffe64a9a589d400bcbc28896a2c827fe21114e9d606478d",
+    "sources/vllm/provenance.json": "1c1008eb779c468543c14dadb48bea4467cf7d0bf125bbc3642a72c8d8b16303",
+    "sources/vllm/requests-usage.json": "fd236215364fa1439cafd7b9f3454ad774eb05c4c84cbafbd92d06e19a0eae92",
+    "sources/vllm/warmups-usage.json": "152cdb3a3fc07886a9ceeaeb7d65fb444434b398ab44fa8b603b63e753a6a78f"
+  },
+  "cost_calculation": {
+    "currency": "USD",
+    "hours_per_month": 730,
+    "region": "us-east-1",
+    "instance": "g6.2xlarge",
+    "instance_hourly_usd": 0.9776,
+    "instance_monthly_usd": 713.648,
+    "gp3_gb": 160,
+    "gp3_usd_per_gb_month": 0.08,
+    "compute_plus_disk_usd": 726.448,
+    "jev_usd_per_million_input_tokens": 0.042,
+    "jev_output_usd": 0,
+    "measured_jev_payment_calls": 10240,
+    "measured_jev_input_tokens": 6727168,
+    "mean_input_tokens": 656.95,
+    "jev_usd_per_million_decisions": 27.591900000000003,
+    "measured_batch_list_price_cost_usd": 0.28254105600000007,
+    "warmups_list_price_cost_usd": 0.015458478000000001,
+    "compute_breakeven_decisions_per_month": 25864402.23398896,
+    "compute_breakeven_average_rps": 9.841857775490471,
+    "compute_disk_breakeven_decisions_per_month": 26328306.495746937,
+    "routing_cases": {
+      "support": {
+        "input_tokens": 3271,
+        "usd_per_million_routes": 137.382
+      },
+      "code": {
+        "input_tokens": 3304,
+        "usd_per_million_routes": 138.768
+      },
+      "analysis": {
+        "input_tokens": 3309,
+        "usd_per_million_routes": 138.978
+      },
+      "retrieval": {
+        "input_tokens": 1339,
+        "usd_per_million_routes": 56.23800000000001
+      }
+    },
+    "mean_input_tokens_per_two_step_route": 2805.75,
+    "jev_usd_per_million_two_step_routes": 117.84150000000001,
+    "routing_breakeven_monthly_routes": 6055998.947739124,
+    "scope": "Public list price estimates from measured usage; not an invoice or measured g6.2xlarge capacity. Excludes tax, discounts, networking, operational labor and target-model execution."
+  }
+}

@@ -1,0 +1,1787 @@
+{
+  "started_at": "2026-10-16T01:37:35.228916+00:00",
+  "finished_at": "2026-10-16T01:47:36.308152+00:00",
+  "rounds": 3,
+  "providers": {
+    "decider": {
+      "attempts": 12,
+      "workflow_correct": 12,
+      "original": {
+        "n": 12,
+        "mean_ms": 416.25216666666665,
+        "min_ms": 181.011,
+        "max_ms": 582.849
+      },
+      "optimized": {
+        "n": 12,
+        "mean_ms": 413.7393333333333,
+        "min_ms": 169.29500000000002,
+        "max_ms": 586.2909999999999
+      },
+      "original_route_failures": 0,
+      "optimized_route_failures": 0
+    },
+    "jev": {
+      "attempts": 12,
+      "workflow_correct": 12,
+      "original": {
+        "n": 12,
+        "mean_ms": 991.6098333333333,
+        "min_ms": 786.482,
+        "max_ms": 2074.973
+      },
+      "optimized": {
+        "n": 12,
+        "mean_ms": 986.0101666666667,
+        "min_ms": 788.322,
+        "max_ms": 1963.681
+      },
+      "original_route_failures": 0,
+      "optimized_route_failures": 0
+    },
+    "bedrock": {
+      "attempts": 12,
+      "workflow_correct": 12,
+      "original": {
+        "n": 12,
+        "mean_ms": 2505.9799166666667,
+        "min_ms": 949.9680000000001,
+        "max_ms": 6452.154
+      },
+      "optimized": {
+        "n": 12,
+        "mean_ms": 2075.4905,
+        "min_ms": 876.9110000000001,
+        "max_ms": 4071.4970000000003
+      },
+      "original_route_failures": 0,
+      "optimized_route_failures": 0
+    }
+  },
+  "cases": {
+    "support": {
+      "decider": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 449.174,
+          "min_ms": 425.698,
+          "max_ms": 490.171
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 460.16966666666667,
+          "min_ms": 439.591,
+          "max_ms": 498.02000000000004
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-opus-5": 3
+        },
+        "optimized_choices": {
+          "anthropic.claude-haiku-5-5": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-opus-5",
+            "name": "Claude Opus 5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-opus-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-opus-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+            "status": 504,
+            "client_total_ms": 40094.60000002384
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-haiku-5-5",
+            "name": "Claude Haiku 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-haiku-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-haiku-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 4096,
+              "totalTokens": 4146,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-haiku-5-5",
+            "invoke_id": "us.anthropic.claude-haiku-5-5",
+            "backend_total_ms": 21562.792,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 21615.600000023842
+          },
+          "route_error": null
+        }
+      },
+      "jev": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 917.777,
+          "min_ms": 885.8140000000001,
+          "max_ms": 939.5450000000001
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 919.8533333333334,
+          "min_ms": 868.817,
+          "max_ms": 966.731
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-opus-5-5": 3
+        },
+        "optimized_choices": {
+          "openai.gpt-6.1-sol": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-opus-5-5",
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-opus-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-opus-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "您好，感谢您的耐心等待！\n\n您的 USDC 转账已上链，目前确认数为 3/12，交易正在正常确认中，请您放心。\n\n订单暂时显示\"待支付\"属于正常情况。为确保交易安全、不可撤销（防止区块回滚等情况），系统需要等待交易获得 12 个区块确认后，才会判定为最终到账。确认数达到 12/12 后，订单状态会自动更新为\"已支付\"，您无需进行任何操作。\n\n剩余的 9 个确认会随着新区块产生自动累积，通常几分钟内即可完成，具体时长取决于所用网络的出块速度。\n\n温馨提示：\n1. 请勿重复付款，以免造成重复转账。\n2. 如果确认数已达到 12/12，但订单状态在 30 分钟后仍未更新，请将订单号和交易哈希（TxID）发给我们，我们会第一时间为您核查处理。\n\n如有其他问题，欢迎随时联系我们，祝您生活愉快！\n\n---\n\n（注：如贵平台对到账更新有明确时效，可将\"30 分钟\"替换为实际时效。）",
+            "has_final_text": true,
+            "usage": {
+              "inputTokens": 50,
+              "outputTokens": 3325,
+              "totalTokens": 3375,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "end_turn",
+            "complete": true,
+            "model_id": "anthropic.claude-opus-5-5",
+            "invoke_id": "us.anthropic.claude-opus-5-5",
+            "backend_total_ms": 34075.528,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 34174.89999997616
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "openai.gpt-6.1-sol",
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "openai.gpt-6.1-sol",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "您好，USDC 转出后，还需等待足够的链上确认。目前确认数为 **3/12**，即已完成 3 次确认，尚未达到所需的 12 次，因此订单暂时仍显示“待支付”。\n\n若转账网络、收款地址和金额均符合订单要求，确认达标并完成系统同步后，订单状态通常会更新。请先耐心等待，**无需重复转账**。\n\n若达到 12 次确认后订单仍未更新，请提供订单号和交易哈希（TxID），以便进一步核查。",
+            "has_final_text": true,
+            "usage": {
+              "inputTokens": 34,
+              "outputTokens": 1436,
+              "totalTokens": 1470,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "end_turn",
+            "complete": true,
+            "model_id": "openai.gpt-6.1-sol",
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "backend_total_ms": 30693.431,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "reasoning": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 30727.80000001192
+          },
+          "route_error": null
+        }
+      },
+      "bedrock": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 2474.075,
+          "min_ms": 1553.154,
+          "max_ms": 4087.125
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 2234.773,
+          "min_ms": 1542.723,
+          "max_ms": 3505.219
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "openai.gpt-6-luna": 3
+        },
+        "optimized_choices": {
+          "openai.gpt-6.1-sol": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "openai.gpt-6-luna",
+            "name": "GPT-6 Luna",
+            "provider": "OpenAI",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "openai.gpt-6-luna",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.openai.gpt-6-luna",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "您好，系统已检测到您的 USDC 转账。目前该笔交易已获得 **3/12 个链上确认**，平台需要达到 12 个确认后才会更新订单状态，因此订单暂时仍显示“待支付”。\n\n请耐心等待确认完成，期间无需重复转账。若确认数达到 12 后订单仍未更新，请提供订单号和交易哈希，我们会为您核查。",
+            "has_final_text": true,
+            "usage": {
+              "inputTokens": 34,
+              "outputTokens": 381,
+              "totalTokens": 415,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "end_turn",
+            "complete": true,
+            "model_id": "openai.gpt-6-luna",
+            "invoke_id": "us.openai.gpt-6-luna",
+            "backend_total_ms": 3502.923,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "reasoning": {
+                "effort": "max"
+              }
+            },
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 3541.099999964237
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "openai.gpt-6.1-sol",
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "openai.gpt-6.1-sol",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "您好，USDC 转出后仍需等待链上确认。目前确认数为 **3/12**，尚未达到所需的 **12 次确认**，因此订单暂时显示“待支付”。\n\n请耐心等待，**无需重复转账**。达到确认要求并完成到账核验后，订单状态会更新。若已达到 12 次确认但状态仍未更新，请提供订单号和交易哈希（TxID），以便进一步核查。",
+            "has_final_text": true,
+            "usage": {
+              "inputTokens": 34,
+              "outputTokens": 1318,
+              "totalTokens": 1352,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "end_turn",
+            "complete": true,
+            "model_id": "openai.gpt-6.1-sol",
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "backend_total_ms": 28258.91,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "reasoning": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 28291.099999964237
+          },
+          "route_error": null
+        }
+      }
+    },
+    "code": {
+      "decider": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 509.84000000000003,
+          "min_ms": 422.028,
+          "max_ms": 582.849
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 481.04566666666665,
+          "min_ms": 426.98,
+          "max_ms": 525.762
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-opus-5": 3
+        },
+        "optimized_choices": {
+          "anthropic.claude-haiku-5-5": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-opus-5",
+            "name": "Claude Opus 5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-opus-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-opus-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+            "status": 504,
+            "client_total_ms": 40066.299999952316
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-haiku-5-5",
+            "name": "Claude Haiku 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-haiku-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-haiku-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 76,
+              "outputTokens": 4096,
+              "totalTokens": 4172,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-haiku-5-5",
+            "invoke_id": "us.anthropic.claude-haiku-5-5",
+            "backend_total_ms": 19325.253,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 19362.30000001192
+          },
+          "route_error": null
+        }
+      },
+      "jev": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 1277.797,
+          "min_ms": 846.8340000000001,
+          "max_ms": 2074.973
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 1269.4843333333333,
+          "min_ms": 880.519,
+          "max_ms": 1963.681
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-sonnet-5-5": 3
+        },
+        "optimized_choices": {
+          "anthropic.claude-sonnet-5-5": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-sonnet-5-5",
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-sonnet-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 76,
+              "outputTokens": 4096,
+              "totalTokens": 4172,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-sonnet-5-5",
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "backend_total_ms": 29924.682,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 30381.900000035763
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-sonnet-5-5",
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-sonnet-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 76,
+              "outputTokens": 4096,
+              "totalTokens": 4172,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-sonnet-5-5",
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "backend_total_ms": 29840.715,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 29897
+          },
+          "route_error": null
+        }
+      },
+      "bedrock": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 3773.344,
+          "min_ms": 1242.3690000000001,
+          "max_ms": 6452.154
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 2228.3056666666666,
+          "min_ms": 1245.4270000000001,
+          "max_ms": 4071.4970000000003
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-sonnet-5-5": 3
+        },
+        "optimized_choices": {
+          "anthropic.claude-sonnet-5-5": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-sonnet-5-5",
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-sonnet-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 76,
+              "outputTokens": 4096,
+              "totalTokens": 4172,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-sonnet-5-5",
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "backend_total_ms": 29816.318,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 29879
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-sonnet-5-5",
+            "name": "Claude Sonnet 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-sonnet-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 76,
+              "outputTokens": 4096,
+              "totalTokens": 4172,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-sonnet-5-5",
+            "invoke_id": "us.anthropic.claude-sonnet-5-5",
+            "backend_total_ms": 30529.909,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 30557.5
+          },
+          "route_error": null
+        }
+      }
+    },
+    "analysis": {
+      "decider": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 502.79966666666667,
+          "min_ms": 481.726,
+          "max_ms": 542.604
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 516.5716666666666,
+          "min_ms": 476.995,
+          "max_ms": 586.2909999999999
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-opus-5": 3
+        },
+        "optimized_choices": {
+          "anthropic.claude-haiku-5-5": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-opus-5",
+            "name": "Claude Opus 5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-opus-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-opus-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+            "status": 504,
+            "client_total_ms": 40109.09999996424
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-haiku-5-5",
+            "name": "Claude Haiku 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-haiku-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-haiku-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "已达到 4096 输出 token 上限；模型仅返回推理内容，尚未生成最终答复。本次任务未完成，未自动重试或降低评测配置。",
+            "has_final_text": false,
+            "usage": {
+              "inputTokens": 71,
+              "outputTokens": 4096,
+              "totalTokens": 4167,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "max_tokens",
+            "complete": false,
+            "model_id": "anthropic.claude-haiku-5-5",
+            "invoke_id": "us.anthropic.claude-haiku-5-5",
+            "backend_total_ms": 21416.968,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "thinking": {
+                "type": "adaptive"
+              },
+              "output_config": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 21466.099999964237
+          },
+          "route_error": null
+        }
+      },
+      "jev": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 844.379,
+          "min_ms": 786.482,
+          "max_ms": 941.186
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 843.5983333333334,
+          "min_ms": 788.322,
+          "max_ms": 937.4380000000001
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "anthropic.claude-opus-5-5": 3
+        },
+        "optimized_choices": {
+          "anthropic.claude-opus-5-5": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-opus-5-5",
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-opus-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-opus-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+            "status": 504,
+            "client_total_ms": 40057.299999952316
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "anthropic.claude-opus-5-5",
+            "name": "Claude Opus 5.5",
+            "provider": "Anthropic",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "anthropic.claude-opus-5-5",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.anthropic.claude-opus-5-5",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+            "status": 504,
+            "client_total_ms": 40170.60000002384
+          },
+          "route_error": null
+        }
+      },
+      "bedrock": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 2128.06,
+          "min_ms": 1490.69,
+          "max_ms": 3262.5290000000005
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 2214.3416666666667,
+          "min_ms": 1607.828,
+          "max_ms": 3342.5690000000004
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "openai.gpt-6.1-sol": 3
+        },
+        "optimized_choices": {
+          "openai.gpt-6.1-sol": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "openai.gpt-6.1-sol",
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "openai.gpt-6.1-sol",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "按 **12,000 USDC 为扣费、暂扣前金额**，且手续费以该金额为基数计算：\n\n| 项目 | 金额 |\n|---|---:|\n| 结算差额 | 12,000 − 11,880 = **120 USDC** |\n| 手续费 | 12,000 × 0.8% = **96 USDC** |\n| 暂扣金额 | **24 USDC** |\n\n核算：\n**12,000 − 96 − 24 = 11,880 USDC**，与实际到账一致。\n\n**结论：**120 USDC 的差额由 **96 USDC 手续费 + 24 USDC 暂扣**完全解释，按上述口径不存在未解释的少付金额。暂扣不属于手续费；若后续全额释放且无新增扣款，累计到账应为 **11,904 USDC**。具体暂扣原因及释放条件仍需核对结算明细。",
+            "has_final_text": true,
+            "usage": {
+              "inputTokens": 52,
+              "outputTokens": 1251,
+              "totalTokens": 1303,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "end_turn",
+            "complete": true,
+            "model_id": "openai.gpt-6.1-sol",
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "backend_total_ms": 30387.036,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "reasoning": {
+                "effort": "max"
+              }
+            },
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 30419.5
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "openai.gpt-6.1-sol",
+            "name": "GPT-6.1 Sol",
+            "provider": "OpenAI",
+            "input_modalities": [
+              "TEXT",
+              "IMAGE"
+            ],
+            "output_modalities": [
+              "TEXT"
+            ],
+            "inference_types": [
+              "INFERENCE_PROFILE"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": true,
+            "availability": {
+              "modelId": "openai.gpt-6.1-sol",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "invocation": "inference_profile",
+            "destination_regions": [
+              "us-east-1",
+              "us-east-2",
+              "us-west-2"
+            ]
+          },
+          "result": {
+            "text": "按 **12,000 USDC 为手续费计费基数**计算：\n\n| 项目 | 计算 | 金额 |\n|---|---|---:|\n| 结算差额 | 12,000 − 11,880 | **120 USDC** |\n| 手续费 | 12,000 × 0.8% | **96 USDC** |\n| 暂扣款 | 已知暂扣金额 | **24 USDC** |\n| 合计扣减 | 96 + 24 | **120 USDC** |\n\n**核对结果：**\n12,000 − 96 − 24 = **11,880 USDC**，与实际到账一致，**无未解释的差额**。\n\n差额占应结算金额的 **1%**，其中 **0.8% 为手续费，0.2% 为暂扣款**。手续费属于结算成本；暂扣款属于暂未支付款项，不能直接视为永久损失，需确认其具体原因、释放条件及时间。若暂扣款后续全额释放且无其他扣款，累计到账将为 **11,904 USDC**。",
+            "has_final_text": true,
+            "usage": {
+              "inputTokens": 52,
+              "outputTokens": 1256,
+              "totalTokens": 1308,
+              "cacheReadInputTokens": 0,
+              "cacheWriteInputTokens": 0
+            },
+            "stop_reason": "end_turn",
+            "complete": true,
+            "model_id": "openai.gpt-6.1-sol",
+            "invoke_id": "us.openai.gpt-6.1-sol",
+            "backend_total_ms": 27218.008,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {
+              "reasoning": {
+                "effort": "max"
+              }
+            },
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 27266.899999976158
+          },
+          "route_error": null
+        }
+      }
+    },
+    "retrieval": {
+      "decider": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 203.195,
+          "min_ms": 181.011,
+          "max_ms": 241.002
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 197.17033333333333,
+          "min_ms": 169.29500000000002,
+          "max_ms": 245.68099999999998
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "cohere.embed-english-v3": 3
+        },
+        "optimized_choices": {
+          "cohere.embed-english-v3": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "cohere.embed-english-v3",
+            "name": "Embed English",
+            "provider": "Cohere",
+            "input_modalities": [
+              "TEXT"
+            ],
+            "output_modalities": [
+              "EMBEDDING"
+            ],
+            "inference_types": [
+              "ON_DEMAND"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": false,
+            "availability": {
+              "modelId": "cohere.embed-english-v3",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "cohere.embed-english-v3",
+            "invocation": "regional",
+            "destination_regions": [
+              "us-east-1"
+            ]
+          },
+          "result": {
+            "dimensions": 1024,
+            "vector_preview": [
+              0.049926758,
+              -0.017242432,
+              0.05230713,
+              0.007091522,
+              -0.023361206,
+              0.008972168,
+              0.01612854,
+              -0.007987976,
+              0.0037994385,
+              0.05117798,
+              -0.008399963,
+              -0.013923645
+            ],
+            "complete": true,
+            "text": "已生成 1024 维检索向量；预览前 12 维。",
+            "usage": {
+              "input_tokens": null
+            },
+            "model_id": "cohere.embed-english-v3",
+            "invoke_id": "cohere.embed-english-v3",
+            "backend_total_ms": 157.023,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {},
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 257.89999997615814
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "cohere.embed-english-v3",
+            "name": "Embed English",
+            "provider": "Cohere",
+            "input_modalities": [
+              "TEXT"
+            ],
+            "output_modalities": [
+              "EMBEDDING"
+            ],
+            "inference_types": [
+              "ON_DEMAND"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": false,
+            "availability": {
+              "modelId": "cohere.embed-english-v3",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "cohere.embed-english-v3",
+            "invocation": "regional",
+            "destination_regions": [
+              "us-east-1"
+            ]
+          },
+          "result": {
+            "dimensions": 1024,
+            "vector_preview": [
+              0.050048828,
+              -0.017684937,
+              0.05230713,
+              0.006713867,
+              -0.023986816,
+              0.009056091,
+              0.015350342,
+              -0.007095337,
+              0.0033550262,
+              0.05090332,
+              -0.008087158,
+              -0.014144897
+            ],
+            "complete": true,
+            "text": "已生成 1024 维检索向量；预览前 12 维。",
+            "usage": {
+              "input_tokens": null
+            },
+            "model_id": "cohere.embed-english-v3",
+            "invoke_id": "cohere.embed-english-v3",
+            "backend_total_ms": 187.542,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {},
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 293.80000001192093
+          },
+          "route_error": null
+        }
+      },
+      "jev": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 926.4863333333333,
+          "min_ms": 853.6,
+          "max_ms": 1049.72
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 911.1046666666667,
+          "min_ms": 801.473,
+          "max_ms": 1069.38
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "cohere.embed-multilingual-v3": 3
+        },
+        "optimized_choices": {
+          "cohere.embed-multilingual-v3": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "cohere.embed-multilingual-v3",
+            "name": "Embed Multilingual",
+            "provider": "Cohere",
+            "input_modalities": [
+              "TEXT"
+            ],
+            "output_modalities": [
+              "EMBEDDING"
+            ],
+            "inference_types": [
+              "ON_DEMAND"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": false,
+            "availability": {
+              "modelId": "cohere.embed-multilingual-v3",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "invocation": "regional",
+            "destination_regions": [
+              "us-east-1"
+            ]
+          },
+          "result": {
+            "dimensions": 1024,
+            "vector_preview": [
+              -0.010734558,
+              0.0078125,
+              -0.030227661,
+              -0.008239746,
+              0.009719849,
+              0.006504059,
+              0.0041885376,
+              -0.049957275,
+              -0.033813477,
+              -0.01637268,
+              0.068481445,
+              0.08618164
+            ],
+            "complete": true,
+            "text": "已生成 1024 维检索向量；预览前 12 维。",
+            "usage": {
+              "input_tokens": null
+            },
+            "model_id": "cohere.embed-multilingual-v3",
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "backend_total_ms": 172.197,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {},
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 216.5999999642372
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "cohere.embed-multilingual-v3",
+            "name": "Embed Multilingual",
+            "provider": "Cohere",
+            "input_modalities": [
+              "TEXT"
+            ],
+            "output_modalities": [
+              "EMBEDDING"
+            ],
+            "inference_types": [
+              "ON_DEMAND"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": false,
+            "availability": {
+              "modelId": "cohere.embed-multilingual-v3",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "invocation": "regional",
+            "destination_regions": [
+              "us-east-1"
+            ]
+          },
+          "result": {
+            "dimensions": 1024,
+            "vector_preview": [
+              -0.010368347,
+              0.008155823,
+              -0.030303955,
+              -0.008171082,
+              0.0095825195,
+              0.0065612793,
+              0.0039253235,
+              -0.050079346,
+              -0.033966064,
+              -0.01651001,
+              0.068481445,
+              0.08642578
+            ],
+            "complete": true,
+            "text": "已生成 1024 维检索向量；预览前 12 维。",
+            "usage": {
+              "input_tokens": null
+            },
+            "model_id": "cohere.embed-multilingual-v3",
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "backend_total_ms": 162.955,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {},
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 193.79999995231628
+          },
+          "route_error": null
+        }
+      },
+      "bedrock": {
+        "original_route": {
+          "n": 3,
+          "mean_ms": 1648.4406666666666,
+          "min_ms": 949.9680000000001,
+          "max_ms": 2944.279
+        },
+        "optimized_route": {
+          "n": 3,
+          "mean_ms": 1624.5416666666667,
+          "min_ms": 876.9110000000001,
+          "max_ms": 2890.959
+        },
+        "attempts": 3,
+        "workflow_correct": 3,
+        "original_choices": {
+          "cohere.embed-multilingual-v3": 3
+        },
+        "optimized_choices": {
+          "cohere.embed-multilingual-v3": 3
+        },
+        "original_execution": {
+          "selected_model": {
+            "id": "cohere.embed-multilingual-v3",
+            "name": "Embed Multilingual",
+            "provider": "Cohere",
+            "input_modalities": [
+              "TEXT"
+            ],
+            "output_modalities": [
+              "EMBEDDING"
+            ],
+            "inference_types": [
+              "ON_DEMAND"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": false,
+            "availability": {
+              "modelId": "cohere.embed-multilingual-v3",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "invocation": "regional",
+            "destination_regions": [
+              "us-east-1"
+            ]
+          },
+          "result": {
+            "dimensions": 1024,
+            "vector_preview": [
+              -0.010757446,
+              0.008132935,
+              -0.03050232,
+              -0.008613586,
+              0.010032654,
+              0.0065193176,
+              0.0039482117,
+              -0.05038452,
+              -0.03363037,
+              -0.016479492,
+              0.067993164,
+              0.08673096
+            ],
+            "complete": true,
+            "text": "已生成 1024 维检索向量；预览前 12 维。",
+            "usage": {
+              "input_tokens": null
+            },
+            "model_id": "cohere.embed-multilingual-v3",
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "backend_total_ms": 176.994,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {},
+            "strategy": "original",
+            "evidence_version": null,
+            "client_total_ms": 208.69999998807907
+          },
+          "route_error": null
+        },
+        "optimized_execution": {
+          "selected_model": {
+            "id": "cohere.embed-multilingual-v3",
+            "name": "Embed Multilingual",
+            "provider": "Cohere",
+            "input_modalities": [
+              "TEXT"
+            ],
+            "output_modalities": [
+              "EMBEDDING"
+            ],
+            "inference_types": [
+              "ON_DEMAND"
+            ],
+            "lifecycle": "ACTIVE",
+            "streaming": false,
+            "availability": {
+              "modelId": "cohere.embed-multilingual-v3",
+              "agreementAvailability": {
+                "status": "AVAILABLE"
+              },
+              "authorizationStatus": "AUTHORIZED",
+              "entitlementAvailability": "AVAILABLE",
+              "regionAvailability": "AVAILABLE"
+            },
+            "account_available": true,
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "invocation": "regional",
+            "destination_regions": [
+              "us-east-1"
+            ]
+          },
+          "result": {
+            "dimensions": 1024,
+            "vector_preview": [
+              -0.010734558,
+              0.0078125,
+              -0.030227661,
+              -0.008239746,
+              0.009719849,
+              0.006504059,
+              0.0041885376,
+              -0.049957275,
+              -0.033813477,
+              -0.01637268,
+              0.068481445,
+              0.08618164
+            ],
+            "complete": true,
+            "text": "已生成 1024 维检索向量；预览前 12 维。",
+            "usage": {
+              "input_tokens": null
+            },
+            "model_id": "cohere.embed-multilingual-v3",
+            "invoke_id": "cohere.embed-multilingual-v3",
+            "backend_total_ms": 155.265,
+            "source": "live",
+            "ranking_version": "75d59020478318df",
+            "request_fields": {},
+            "strategy": "optimized",
+            "evidence_version": "model-evidence-v1",
+            "client_total_ms": 179.19999998807907
+          },
+          "route_error": null
+        }
+      }
+    }
+  },
+  "method": "Paired comparison sharing each workflow result. Original model choice and enhanced-evidence model choice use the same workflow, catalog and candidate IDs/order. Target calls are separate; no retry, configuration change or substitution.",
+  "evidence_version": "model-evidence-v1",
+  "legacy_program_policy_version": null,
+  "catalog_version": "e9802ca5213e5f0e",
+  "ranking_version": "75d59020478318df",
+  "warmup_attempts": 9,
+  "formal_route_calls": 108,
+  "program_rank_calls": 0,
+  "target_calls": 24
+}

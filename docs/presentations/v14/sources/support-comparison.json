@@ -1,0 +1,84 @@
+{
+  "task": "回复客户的问题：USDC 已转出，为什么订单仍显示待支付？当前链上确认数为 3/12。",
+  "captured_at": "2026-10-15T05:06:03.460545+00:00",
+  "method": "One support task, six excluded warmups, six routing calls, three target attempts. A frequent-support use case, not a high-concurrency or throughput test.",
+  "configuration": "Router GPT low; targets use their mapped benchmark effort. Maximum 4096 output tokens, 40-second response wait; no retries or substitutions.",
+  "routes": {
+    "decider": {
+      "workflow_choice": "customer_support",
+      "model_choice": "m04",
+      "target_model": "Claude Opus 5",
+      "target_model_id": "anthropic.claude-opus-5",
+      "workflow_ms": 93.242,
+      "model_ms": 334.287,
+      "routing_ms": 427.529,
+      "target_status": 504,
+      "target_complete": false,
+      "target_has_final_text": false,
+      "target_ms": null,
+      "target_usage": null,
+      "target_request_fields": null,
+      "target_text": null,
+      "target_error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+      "review": {
+        "display_status": "目标答复：40 秒超时",
+        "quote": null,
+        "observation": "路由成功。所选 Opus 5 的目标接口返回 HTTP 504，没有最终答复或 token usage。40 秒是响应等待上限，不是完整生成耗时。"
+      }
+    },
+    "jev": {
+      "workflow_choice": "customer_support",
+      "model_choice": "m05",
+      "target_model": "Claude Opus 5.5",
+      "target_model_id": "anthropic.claude-opus-5-5",
+      "workflow_ms": 513.827,
+      "model_ms": 589.389,
+      "routing_ms": 1103.216,
+      "target_status": 504,
+      "target_complete": false,
+      "target_has_final_text": false,
+      "target_ms": null,
+      "target_usage": null,
+      "target_request_fields": null,
+      "target_text": null,
+      "target_error": "目标模型在 40 秒响应等待内未返回；评测推理档位可能较慢。本次未完成，未切换模型。",
+      "review": {
+        "display_status": "目标答复：40 秒超时",
+        "quote": null,
+        "observation": "路由成功。所选 Opus 5.5 的目标接口返回 HTTP 504，没有最终答复或 token usage。没有自动重试、降档或替换模型。"
+      }
+    },
+    "bedrock": {
+      "workflow_choice": "customer_support",
+      "model_choice": "m16",
+      "target_model": "GPT-6 Luna",
+      "target_model_id": "openai.gpt-6-luna",
+      "workflow_ms": 624.774,
+      "model_ms": 857.005,
+      "routing_ms": 1481.779,
+      "target_status": 200,
+      "target_complete": true,
+      "target_has_final_text": true,
+      "target_ms": 5181.485,
+      "target_usage": {
+        "inputTokens": 34,
+        "outputTokens": 572,
+        "totalTokens": 606,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "target_request_fields": {
+        "reasoning": {
+          "effort": "max"
+        }
+      },
+      "target_text": "您好，您的 USDC 转账目前已获得 **3/12 次链上确认**。订单需要达到 12 次确认后，系统才能完成核验并更新状态，因此暂时显示“待支付”是正常的，还需等待 9 次确认。\n\n达到 12 次确认后，订单状态会自动更新。若之后仍未更新，请提供订单号和交易哈希（TXID），我们会为您核查。",
+      "target_error": null,
+      "review": {
+        "display_status": "目标答复：5.18 秒完成",
+        "quote": "订单需要达到 12 次确认后，系统才能完成核验并更新状态",
+        "observation": "Luna 返回最终文本，说明当前 3/12 确认、还需 9 次确认，并建议状态未更新时提供订单号和 TXID。未另外验证其自动更新表述的运营承诺；这不是全面客服质量评分。"
+      }
+    }
+  }
+}

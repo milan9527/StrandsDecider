@@ -1,0 +1,21 @@
+{
+  "method": "Human-readable observations from the saved application responses. No response is rewritten; quoted text is an exact substring after removing Markdown emphasis.",
+  "slide_subtitle": "三路均选直接答复客户；两路目标超时，GPT 所选 Luna 用 5.18 秒返回答复。",
+  "routes": {
+    "decider": {
+      "display_status": "目标答复：40 秒超时",
+      "quote": null,
+      "observation": "路由成功。所选 Opus 5 的目标接口返回 HTTP 504，没有最终答复或 token usage。40 秒是响应等待上限，不是完整生成耗时。"
+    },
+    "jev": {
+      "display_status": "目标答复：40 秒超时",
+      "quote": null,
+      "observation": "路由成功。所选 Opus 5.5 的目标接口返回 HTTP 504，没有最终答复或 token usage。没有自动重试、降档或替换模型。"
+    },
+    "bedrock": {
+      "display_status": "目标答复：5.18 秒完成",
+      "quote": "订单需要达到 12 次确认后，系统才能完成核验并更新状态",
+      "observation": "Luna 返回最终文本，说明当前 3/12 确认、还需 9 次确认，并建议状态未更新时提供订单号和 TXID。未另外验证其自动更新表述的运营承诺；这不是全面客服质量评分。"
+    }
+  }
+}

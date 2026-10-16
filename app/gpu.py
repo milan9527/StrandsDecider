@@ -15,6 +15,9 @@ router = APIRouter(prefix="/api/gpu")
 
 
 def configured_gpu():
+    if os.getenv("GPU_PROVIDER") == "vllm":
+        # The shared vLLM host has its own lifecycle; never acquire the original GPU lease.
+        return None
     table = os.getenv("GPU_STATE_TABLE")
     if not table:
         return None
@@ -80,6 +83,33 @@ def public_state(state, manager):
 
 @router.get("")
 async def status(request: Request):
+    if request.app.state.model_provider == "vllm":
+        from app.main import health
+
+        result = await health(request)
+        connected = result["connected"]
+        upstream = result.get("upstream", {})
+        return {
+            "enabled": True,
+            "can_manage": False,
+            "provider": "vllm",
+            "engine": "vllm",
+            "phase": "ready" if connected else "error",
+            "desired": "running",
+            "instance_id": os.getenv("VLLM_INSTANCE_ID"),
+            "instance_type": "g6.xlarge",
+            "instance_options": ["g6.xlarge"],
+            "instance_usd_per_hour": 0.8048,
+            "disk_gib": 160,
+            "disk_usd_per_month": 12.8,
+            "purchase_option": "on-demand",
+            "disk_retained": True,
+            "instance_count": 1,
+            "busy": upstream.get("pending_requests", 0) > 0,
+            "idle_auto_stop": False,
+            "model": upstream.get("model"),
+            "last_error_message": "" if connected else "共享 vLLM 服务暂不可用，请检查服务状态。",
+        }
     store = request.app.state.gpu
     if store is None:
         return {"enabled": False, "can_manage": False}
@@ -87,6 +117,8 @@ async def status(request: Request):
 
 
 async def change(request, action):
+    if request.app.state.model_provider == "vllm":
+        raise HTTPException(409, "共享 vLLM GPU 由部署端管理，演示不启停该实例。")
     if request.app.state.gpu is None:
         raise HTTPException(409, "当前环境未启用 GPU 按需管理。")
     if not can_manage(request):

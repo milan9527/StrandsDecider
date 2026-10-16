@@ -1,0 +1,158 @@
+{
+  "status": "unofficial_partial_projection_only",
+  "official_capability": null,
+  "official_composite": null,
+  "rank": null,
+  "missing": [
+    "Current-release 300 public and 1200 sealed decisions",
+    "Versioned per-type/tier Intelligence and Calibration scoring",
+    "Official evaluation latency and common cost basis"
+  ],
+  "input_sha256": {
+    "validation/jevbench/runs/2026-10-16-original/summary.json": "e130c3a8295b94683c2a866bbcea69958c6ec59562e97adeaf4d0c1cba88a9de",
+    "validation/jevbench/runs/2026-10-16-original/analysis.json": "28ec4409724e828e3f08b985a7064c978d5e6a65b5b3d67231e31b713c9ed1da",
+    "validation/jevbench/runs/2026-10-16-original/leaderboard-reference.json": "5556b5539dd292d5580d819d6e7e51433286f5dd42ae809fa1f2696b23e9d1fa"
+  },
+  "observed_public_v1": {
+    "n": 231,
+    "correct": 168,
+    "accuracy_percent": 72.72727272727273,
+    "brier": 0.34828721233766263,
+    "ece": 0.04986926406926421,
+    "p50_s": 0.06832395800000057,
+    "p95_s": 0.40371148750000074,
+    "mean_s": 0.12590659231601736
+  },
+  "speed_projections": {
+    "private_http_direct_axis": 93.9392889268312,
+    "self_hosted_rule_p50_s": 0.28664791600000117,
+    "self_hosted_rule_p95_s": 0.9574229750000015,
+    "self_hosted_rule_axis": 85.61547366395195,
+    "limitation": "Private HTTP measurement is not evaluator loopback or public API timing. Applying 2x+150ms is a sensitivity calculation, not an official score."
+  },
+  "cost_projections": {
+    "hourly_usd": 0.8048,
+    "monthly_730h_compute_usd": 587.504,
+    "basis": "g6.xlarge Linux On Demand us-east-1; compute only; one serial stream",
+    "cases": {
+      "website_p50_what_if": [
+        {
+          "utilisation": 1.0,
+          "usd_per_1000": 0.015274200388444572,
+          "cost_axis": 64.48124548030526
+        },
+        {
+          "utilisation": 0.5,
+          "usd_per_1000": 0.030548400776889143,
+          "cost_axis": 55.45034561038583
+        },
+        {
+          "utilisation": 0.1,
+          "usd_per_1000": 0.1527420038844457,
+          "cost_axis": 34.481245480305276
+        }
+      ],
+      "mean_call_time_allocation": [
+        {
+          "utilisation": 1.0,
+          "usd_per_1000": 0.028147118193314103,
+          "cost_axis": 56.51698189664412
+        },
+        {
+          "utilisation": 0.5,
+          "usd_per_1000": 0.056294236386628206,
+          "cost_axis": 47.48608202672468
+        },
+        {
+          "utilisation": 0.1,
+          "usd_per_1000": 0.281471181933141,
+          "cost_axis": 26.516981896644126
+        }
+      ]
+    },
+    "limitation": "Website p50 capacity is modeled, not measured throughput. Mean-call allocation excludes idle time at utilisation=1, EBS, network, application and benchmark-client costs. Neither case supplies the official common-cost axis."
+  },
+  "reference_formula_verification": {
+    "composite": {
+      "checked": 137,
+      "max_absolute_error": 1.4210854715202004e-14
+    },
+    "speed": {
+      "checked": 140,
+      "max_absolute_error": 0.0
+    },
+    "cost": {
+      "checked": 137,
+      "max_absolute_error": 0.0
+    },
+    "capability": {
+      "checked": 140,
+      "max_absolute_error": 0.0
+    }
+  },
+  "published_examples": [
+    {
+      "key": "sage-1.3.0",
+      "display": "Sage 1.3.0 (Levanto Labs)",
+      "axes": {
+        "calibration": 91.59817606608073,
+        "cost": 58.231203787388296,
+        "intelligence": 65.59290944525489,
+        "speed": 93.61638181239104
+      },
+      "capability": 78.59554275566781,
+      "jevbench_score": 74.04992179175468,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.15245595201849937,
+        "p50_s_raw": 0.15245595201849937,
+        "p95_s_adjusted": 0.2852446019649505,
+        "p95_s_raw": 0.2852446019649505
+      },
+      "usd_per_1000": 0.024677048070413
+    },
+    {
+      "key": "h2o-lightning-4b",
+      "display": "H2O-Lightning-4B v1.1 (H2O.ai, Qwen3.5-4B fine-tune, stock vLLM + open shim)",
+      "axes": {
+        "calibration": 89.95399367673842,
+        "cost": 60.29882443070202,
+        "intelligence": 60.03839906196252,
+        "speed": 92.61084474720658
+      },
+      "capability": 74.99619636935047,
+      "jevbench_score": 72.5232271521435,
+      "speed": {
+        "adjustment": "x2 + 0.15 s (assumption, not measured)",
+        "n": 124,
+        "p50_s_adjusted": 0.20856922594830393,
+        "p50_s_raw": 0.02928461297415197,
+        "p95_s_adjusted": 0.2628241665661335,
+        "p95_s_raw": 0.056412083283066745
+      },
+      "usd_per_1000": 0.021055837438423645
+    },
+    {
+      "key": "jev-1.13.0",
+      "display": "Jev 1.13.0 (TypeSafe AI)",
+      "axes": {
+        "calibration": 90.63220203152369,
+        "cost": 54.733842199536014,
+        "intelligence": 63.62075784024779,
+        "speed": 91.49989299046987
+      },
+      "capability": 77.12647993588574,
+      "jevbench_score": 71.49118639284514,
+      "speed": {
+        "adjustment": "none (API)",
+        "n": 124,
+        "p50_s_adjusted": 0.23910215869545937,
+        "p50_s_raw": 0.23910215869545937,
+        "p95_s_adjusted": 0.29609236158430574,
+        "p95_s_raw": 0.29609236158430574
+      },
+      "usd_per_1000": 0.03227542180094787
+    }
+  ]
+}

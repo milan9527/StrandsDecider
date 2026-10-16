@@ -1,0 +1,1 @@
+["serve","--model","/models/decider-vllm","--host","0.0.0.0","--port","8100","--max-num-seqs","128","--max-inflight-questions","256","--max-pending-requests","256","--max-num-batched-tokens","8192","--gpu-memory-utilization","0.7","--timeout-seconds","25","--api-key-file","/run/secrets/api-key","--requests-per-minute","120000","--rate-limit-burst","512"]

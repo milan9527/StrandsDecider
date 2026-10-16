@@ -1,0 +1,77 @@
+{
+  "captured_at": "2026-10-16T01:23:22.037569+00:00",
+  "url": "https://d3i7ogfx5ml7dc.cloudfront.net/#routing",
+  "api_image_tag": "task-ranking-20261016-v1",
+  "pytest": {
+    "passed": 235,
+    "warnings": 1,
+    "warning": "Existing Starlette TestClient/httpx deprecation"
+  },
+  "ruff": "app, tests, changed verification scripts passed",
+  "repository_wide_ruff": "Three pre-existing unused variable/import findings in untracked presentation v10/v11/v12 scripts; left unchanged.",
+  "javascript_syntax": "passed",
+  "local_browser": {
+    "profiles": [
+      "original",
+      "optimized",
+      "compare"
+    ],
+    "replay_cases": 4,
+    "original_failure_preserves_optimized_result": true,
+    "task_edit_clears_results": true,
+    "mobile_overflow": false
+  },
+  "live_browser": {
+    "rounds": 3,
+    "cases": 4,
+    "providers": 3,
+    "route_model_calls": 72,
+    "program_rank_calls": 36,
+    "target_calls": 24,
+    "browser_errors": [],
+    "gpu_lifecycle_writes": [],
+    "mobile_overflow": false
+  },
+  "screenshots": {
+    "analysis-comparison.png": {
+      "sha256": "a50b1793f591d21b9a916dfc3633be45fdd8617b4dd4e7b255bbb7fe9d5165bc",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "analysis-results.png": {
+      "sha256": "0de7c451dd87e4746266997bf03f126ccbfb4993b110da00df6476457605ab5e",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "code-comparison.png": {
+      "sha256": "e032f8ab69df2da61ad9571bfabbb1488eca8b04a7d82f64cde23a7554b8d914",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "code-results.png": {
+      "sha256": "e8261496e717f7acf255c2c1c915d964461c194877d02fbeb5a0451af799cd7f",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "mobile.png": {
+      "sha256": "b1e37057aae6b2edf3f686ff0cdd4ab90322e9c2419889d531a9e015c48d16ef",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "retrieval-comparison.png": {
+      "sha256": "2e58832a646e9ae12c8537fae6556db263ff5859b24ef60dd8d0e37af35a9559",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "retrieval-results.png": {
+      "sha256": "8a6dca33eca03bc4f52e971b2bde897cd259d957ded4dcd7e0edeb9fcf0e2b25",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "support-comparison.png": {
+      "sha256": "0a127f103a9344428b26436cca340605128a19133b4081e5762cd7155329861a",
+      "editing": "Unmodified screenshot from actual browser session"
+    },
+    "support-results.png": {
+      "sha256": "23972eeac6d2af33321e29f817a9d247148ab886ec3cf5b2bd479e11990ea266",
+      "editing": "Unmodified screenshot from actual browser session"
+    }
+  },
+  "results_sha256": "63b40aed76d350a433c6a478d8ebd37a9ff4a20f2f1b61b25a4ee86e86bd1b7b",
+  "policy_version": "task-ranking-v1",
+  "catalog_version": "e9802ca5213e5f0e",
+  "ranking_version": "75d59020478318df"
+}
