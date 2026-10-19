@@ -18,7 +18,7 @@
 
 **[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [支付流程对比](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [模型路由对比](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [查看架构图](docs/diagrams/architecture.svg)**
 
-配套文章：[Strands Decider AWS 中文博客稿](docs/blogs/strands-decider/README.md)，包含原理、部署、应用场景、实测截图、并发与成本，提供 Word、Markdown 和 PDF。
+**[Decider 微调示例](https://github.com/milan9527/StrandsDeciderTetrisFinetuning)**：提供数据准备、LoRA 与决策头微调及评估流程；在俄罗斯方块的 2,068 道独立测试题上，准确率从 **60.35% 提升至 99.95%**，候选换序后的实际落点一致率从 **35.44% 提升至 99.85%**，展示了领域微调对该任务决策效果与稳定性的提升（[实测报告](https://github.com/milan9527/StrandsDeciderTetrisFinetuning/blob/main/finetuning/RESULTS.md)）。
 
 ## 实测摘要
 
