@@ -6,6 +6,8 @@
 
 支付模块支持 Jev 托管模型对比：本地通过 `JEV_API_KEY_FILE` 读取密钥，AWS 通过 IAM-only Lambda 与 Secrets Manager 接入。三模型并发对比、计时边界及验证命令见 [Jev 指南](JEV.md)。
 
+「图片决策」提供支付状态、客服分流和凭证完整性，支持预设图片与上传。使用方式、实际截图及请求结果见 [图片模块说明](VISION.md)。
+
 ## 快速运行
 
 需要 Python 3.11+ 和 [uv](https://docs.astral.sh/uv/getting-started/installation/)。
@@ -21,9 +23,25 @@ uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 示例模式的概率是为教学设置的预设数值，**不是模型输出，也不展示虚构的推理时间或 token 用量**。只允许回放未修改的预设；修改文本或问题后需切换到真实模型。真实推理失败时会直接报错，不会退回示例数据。
 
-AWS 环境所有模块共用顶部「GPU」状态弹窗。2026-10-16 起，真实 Decider 统一调用共享 vLLM 服务；页面直接提交推理，初始化和弹窗中查询状态，失败后按需显示连接提示。共享实例由部署端管理，`can_manage=false`，页面不提供启停；恢复后手动重试。参数错误、排队限流和 Bedrock 错误不触发 GPU 恢复提示。
+AWS 环境文字模块共用顶部「GPU」状态弹窗。2026-10-16 起，文字 Decider 调用共享 vLLM 服务；页面直接提交推理，初始化和弹窗中查询状态，失败后按需显示连接提示。共享实例由部署端管理，`can_manage=false`，页面不提供启停；恢复后手动重试。图片模块通过独立的 `/api/vision/health` 显示视觉服务状态。参数错误、排队限流和 Bedrock 错误不触发 GPU 恢复提示。
 
 vLLM 模式设置 `GPU_PROVIDER=vllm`、`STRANDS_DECIDER_URL` 和服务端 `DECIDER_API_KEY`；AWS 通过 Secrets Manager 注入密钥。API 不读取原版 GPU 状态表或串行推理租约，最多允许 128 个在途 Decider 请求。`g6.xlarge` 常驻，返回 `idle_auto_stop=false`。本地默认的原版服务仍可使用；旧控制器和启停接口仅适用于历史 EC2 / SageMaker 模式，见 [原版部署归档](../deployment/ORIGINAL_GPU.md)。
+
+## 本地图片模块
+
+默认可在 `http://localhost:8000/#vision` 查看仓库中的历史实测，无需 GPU；“运行图片决策”则始终调用真实模型，不会用历史答案替代。历史耗时按采集值标注。
+
+连接一个可访问的官方视觉服务：
+
+```bash
+AUTH_COOKIE_SECURE=false \
+DECIDER_VISION_URL=http://your-vision-host:18123 \
+uv run uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+`DECIDER_VISION_URL` 与文字服务的 `STRANDS_DECIDER_URL` 独立。接口要求 `/health` 返回 `vision=true`、`status=ok`，`/v1/systemone` 返回 `-vision` 模型标识；普通文字 vLLM 地址不满足此要求。本项目的服务包装及离线依赖说明见 [AWS 部署](../deployment/README.md#图片服务接入)。
+
+图片任务定义与冻结实测在 `validation/vision/`；`scripts/package_vision_examples.py` 将其打包至 `app/vision_assets/` 和 `frontend/static/vision/`。修改样例后重新打包，保持后端请求与前端图片一致。不要为修正模型错误而修改已采集结果。
 
 ## 时间的含义
 
@@ -158,6 +176,9 @@ uv run --with strands-agents python -m examples.strands_agent \
 | `GET /api/examples`     | 获取 16 个场景的分类、说明、修改提示、上下文和问题                           |
 | `POST /api/decide`      | 示例回放或官方 System One 推理                                               |
 | `POST /api/guard`       | 执行两项工具检查并返回策略结果                                               |
+| `GET /api/vision/catalog` | 图片任务、预设图片及样例预期 |
+| `GET /api/vision/health` | 官方视觉服务的独立健康检查 |
+| `POST /api/vision/decide` | 图片实时推理或明确标记来源的实测回放 |
 
 真实请求示例：
 
@@ -198,7 +219,9 @@ uv run --extra dev ruff check app tests examples scripts
 node --check frontend/static/app.js   # 可选 JavaScript 语法检查
 ```
 
-199 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、常驻与手动停机、固定机型、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。优化模式另验证四场景字段适用范围、候选集合不变、两模型实际输入一致、基线指纹兼容、非法配置拒绝及错误选择仍受到执行保护。Jev 连接失败测试验证仅在尚未建立连接时重连一次，读取超时及上游错误不会重复提交模型请求。
+256 项自动化测试覆盖：登录与 API 访问控制、Cookie 属性、退出撤销、会话过期、账号禁用与密码重置、跨站请求、持久化限流，三种协议、错误处理、守卫边界、逐项计时与排队合计，以及 GPU / SageMaker、常驻与手动停机、固定机型、支付执行保护、反馈重判、等待事件、预算和当前运行内账本去重。优化模式另验证四场景字段适用范围、候选集合不变、两模型实际输入一致、基线指纹兼容、非法配置拒绝及错误选择仍受到执行保护。Jev 连接失败测试验证仅在尚未建立连接时重连一次，读取超时及上游错误不会重复提交模型请求。
+
+图片接口另覆盖样例与图像一致、上传校验、真实请求不泄露预期、换序语义、无图／白图不套用标签、故障不回退历史及响应格式。`scripts/check_vision_browser.py --live` 检查五次实时调用、历史标识、上传和手机布局；完整参数见 [图片模块](VISION.md)。
 
 支付界面的 `check_crypto_browser.py`、`check_crypto_loop_browser.py`、`check_crypto_dialogue_browser.py` 分别覆盖固定流程、反馈闭环和逐轮快照；`check_gpu_dialog_browser.py` 验证公共 GPU 弹窗及历史闲置释放模式。`check_direct_run_browser.py` 验证常驻模式直接调用、失败后检查、停止常规轮询、错误分类，以及首屏与滚动时的运行栏。这两项 GPU 浏览器测试均拦截真实启停与模型请求，不作为真实性能样本。
 

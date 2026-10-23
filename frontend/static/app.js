@@ -1,7 +1,9 @@
 import { mountCrypto } from "/static/crypto.js?v=triple1";
 import { mountRouting } from "/static/routing.js?v=original-only-v1";
+import { mountVision } from "/static/vision.js?v=vision-v1";
 
 const paths = {
+  image: '<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 5-5 4 4 4-6 5 7"/>',
   search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   shield:
@@ -64,6 +66,7 @@ const names = {
   guard: "工具调用守卫",
   crypto: "支付流程对比",
   routing: "模型路由对比",
+  vision: "图片决策",
   history: "运行记录",
   about: "理解 Decider",
 };
@@ -434,6 +437,8 @@ function showPage() {
   if (currentPage === "history") renderHistory();
   if (currentPage === "routing" && currentUser)
     mountRouting({ api, esc, icon, toast, openGpuDialog, ensureGpuReady });
+  if (currentPage === "vision" && currentUser)
+    mountVision({ api, esc, icon, toast });
   if (currentPage === "crypto" && currentUser)
     mountCrypto({
       api,

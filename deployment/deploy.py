@@ -33,6 +33,8 @@ def main():
     parser.add_argument("--api-only", action="store_true", help="Keep the existing model image")
     parser.add_argument("--gpu-state-table", help="GPU control table from the GPU stack")
     parser.add_argument("--model-provider", choices=["ec2", "sagemaker", "vllm"])
+    parser.add_argument("--vision-url", help="Private official vision service URL")
+    parser.add_argument("--vision-security-group", help="Security group of the vision EC2 host")
     parser.add_argument(
         "--vllm-config", type=Path,
         help="JSON of nonsecret Vllm* CloudFormation parameters; never include API keys",
@@ -101,6 +103,10 @@ def main():
         parser.error("--vllm-config values must be nonempty strings")
     previous_parameters = {p["ParameterKey"]: p["ParameterValue"]
                            for p in (current or {}).get("Parameters", [])}
+    vision_url = args.vision_url or previous_parameters.get("VisionUrl", "")
+    vision_sg = args.vision_security_group or previous_parameters.get("VisionSecurityGroupId", "")
+    if bool(vision_url) != bool(vision_sg):
+        parser.error("Vision requires both URL and security group")
     if (args.model_provider or previous_parameters.get("ModelProvider")) == "vllm":
         if any(not vllm_config.get(k, previous_parameters.get(k)) for k in vllm_names):
             parser.error("vLLM requires all six Vllm* parameters in --vllm-config or the existing stack")
@@ -318,6 +324,10 @@ def main():
             )}
             for name in vllm_names
         )
+        parameters.extend([
+            {"ParameterKey": "VisionUrl", "ParameterValue": vision_url},
+            {"ParameterKey": "VisionSecurityGroupId", "ParameterValue": vision_sg},
+        ])
         try:
             aws(
                 "cloudformation",

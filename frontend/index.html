@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="/static/styles.css?v=direct-run1" />
     <link rel="stylesheet" href="/static/crypto.css?v=triple1" />
     <link rel="stylesheet" href="/static/routing.css?v=model-evidence-v1" />
-    <script src="/static/app.js?v=vllm-shared-v1" type="module"></script>
+    <link rel="stylesheet" href="/static/vision.css?v=vision-v1" />
+    <script src="/static/app.js?v=vision-v1" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -125,6 +126,9 @@
         >
         <a href="#routing" data-page="routing" class="nav-item"
           ><span data-icon="layers"></span>模型路由对比</a
+        >
+        <a href="#vision" data-page="vision" class="nav-item"
+          ><span data-icon="image"></span>图片决策</a
         >
         <a href="#history" data-page="history" class="nav-item"
           ><span data-icon="history"></span>运行记录<span
@@ -557,6 +561,12 @@ What's the weather?</textarea>
         >
           <div id="routing-workspace">
             <div class="loading-placeholder">正在加载模型路由工作台…</div>
+          </div>
+        </section>
+
+        <section id="page-vision" class="page" hidden aria-label="图片内容决策">
+          <div id="vision-workspace">
+            <div class="loading-placeholder">正在加载图片决策…</div>
           </div>
         </section>
 

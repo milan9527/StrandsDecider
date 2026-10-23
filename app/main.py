@@ -28,6 +28,7 @@ from app.routing import router as routing_router
 from app.sagemaker import create_runtime
 from app.sagemaker import invoke as invoke_sagemaker
 from app.schemas import DecisionRequest, GuardRequest
+from app.vision import router as vision_router
 
 FRONTEND = Path(__file__).resolve().parent.parent / "frontend"
 logger = logging.getLogger(__name__)
@@ -47,6 +48,8 @@ async def lifespan(app):
     else:
         app.state.lock = asyncio.Lock()
     app.state.model_timeout = float(os.getenv("DECIDER_TIMEOUT", "180"))
+    app.state.vision_url = os.getenv("DECIDER_VISION_URL", "").rstrip("/")
+    app.state.vision_slots = asyncio.Semaphore(1)
     app.state.sagemaker = create_runtime() if os.getenv("GPU_PROVIDER") == "sagemaker" else None
     app.state.bedrock = create_bedrock()
     app.state.bedrock_slots = asyncio.Semaphore(2)
@@ -81,6 +84,7 @@ app.include_router(gpu_router)
 app.include_router(crypto_router)
 app.include_router(crypto_loop_router)
 app.include_router(routing_router)
+app.include_router(vision_router)
 
 
 @app.middleware("http")

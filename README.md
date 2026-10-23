@@ -14,9 +14,9 @@
 
 项目基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)，采用 FastAPI + 原生 HTML/CSS/JavaScript。AWS 部署使用私有 S3、CloudFront OAC、ECS Fargate 和 EC2 On-Demand GPU。
 
-当前所有真实 Decider 调用统一使用 [StrandsDeciderVLLM](https://github.com/milan9527/StrandsDeciderVLLM) 的常驻 `g6.xlarge`，覆盖工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由。
+当前文字 Decider 调用统一使用 [StrandsDeciderVLLM](https://github.com/milan9527/StrandsDeciderVLLM) 的常驻 `g6.xlarge`，覆盖工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由。[图片决策模块](docs/VISION.md)使用另一台现有 L4 上的官方视觉服务，支持图片上传、实时判断和实测回放。
 
-**[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [支付流程对比](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [模型路由对比](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [查看架构图](docs/diagrams/architecture.svg)**
+**[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [支付流程对比](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [模型路由对比](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [图片决策](https://d3i7ogfx5ml7dc.cloudfront.net/#vision) · [查看架构图](docs/diagrams/architecture.svg)**
 
 **[Decider 微调示例](https://github.com/milan9527/StrandsDeciderTetrisFinetuning)**：提供数据准备、LoRA 与决策头微调及评估流程；在俄罗斯方块的 2,068 道独立测试题上，准确率从 **60.35% 提升至 99.95%**，候选换序后的实际落点一致率从 **35.44% 提升至 99.85%**，展示了领域微调对该任务决策效果与稳定性的提升（[实测报告](https://github.com/milan9527/StrandsDeciderTetrisFinetuning/blob/main/finetuning/RESULTS.md)）。
 
@@ -39,6 +39,8 @@
 简单分类和局部选择接近；Jev 在本批证据核验、多步操作中更好，两者都出现过金融和路由错误。[验证详情](validation/README.md)。
 
 **[JevBench 公开集实测](validation/jevbench/README.md)**：原版 Decider 在 g6.xlarge 上答对 **168/231（72.73%）**，简单题 48/48、困难题 55/111；私网客户端 P50 / P95 为 **68.3 / 403.7 ms**，无调用失败。该结果为 231 题公开子集，不是榜单综合分；[榜单公式与分项估算](validation/jevbench/leaderboard-score.md)。
+
+**[图片决策实测](docs/VISION.md)**：官方 v19 视觉推理在 12 张合成截图上答对 **27/28** 项，预热后整次带图请求平均 **168.2 ms**；支付状态 12/12、中文客服分流 4/4、凭证完整性 11/12。支持上传图片及候选换序／无图／白图对照，保留组合条件误判。该批仅测 Decider，不计入三模型对比。
 
 **三模型历史性能摘要**（以下数据使用原版 EC2 Decider 服务，未重新测量迁移后的 vLLM 性能）：
 
@@ -64,6 +66,7 @@
 | 决策实验室     | 16 个场景、`choice` / `noul` / `score` 三种问题类型、可编辑上下文与选项、工具调用守卫、逐项计时、运行记录及 JSON 导出 |
 | 加密支付业务台 | 四个支付案例 × 五个业务步骤，Decider / Jev / GPT 三模型同时对比，完整模拟订单、工单、账本与客服交互                               |
 | 模型路由对比 | 客服、代码、结算、双语索引四场景；Decider / Jev / GPT-6 Sol 原始流程对比，展示两步模型输入、实际选择、参考价格与目标执行 |
+| 图片决策 | 支付状态、中文客服分流、凭证完整性；12 张预设图片与自行上传，显示实际问题、选择、概率和请求耗时，支持候选换序／无图／白图对照 |
 
 业务数据均为模拟快照。演示不连接钱包、不查询实时区块链、不广播交易。客服回复由应用模板根据实际处理结果生成，本次对比不测量自由长文本生成质量。
 
@@ -73,7 +76,7 @@
 
 | 页面                     | 内容                                                   | 预览                                      |
 | ------------------------ | ------------------------------------------------------ | ----------------------------------------- |
-| 01 AWS 部署架构          | 网络边界、静态站点、API、共享 vLLM 服务与认证 | [SVG](docs/diagrams/architecture.svg)     |
+| 01 AWS 部署架构          | 网络边界、静态站点、API、文字 vLLM、图片视觉服务与认证 | [SVG](docs/diagrams/architecture.svg)     |
 | 02 Decider vs Jev vs GPT | 相同输入、不同推理调用方式、输出校验、共同执行策略     | [SVG](docs/diagrams/model-comparison.svg) |
 | 03 加密支付完整流程      | 五步流程、参考差异、保护调整、最终结果与模拟事件       | [SVG](docs/diagrams/payment-workflow.svg) |
 | 04 自主闭环 | 三侧独立判断、执行、等待事件、反馈重判及停止条件 | [SVG](docs/diagrams/closed-loop.svg) |
@@ -89,6 +92,7 @@
 | 业务后端     | FastAPI，1 个 ARM64 Fargate Task，0.25 vCPU / 0.5 GiB；无公网 IP                                            |
 | 身份认证     | 自建用户名 / 密码；scrypt 密码摘要、可撤销 Cookie 会话、限流；AWS 用 DynamoDB，本地用 SQLite                |
 | Decider      | 官方 v19 的 vLLM 适配服务，EC2 `g6.xlarge`，NVIDIA L4 24GB；返回模型 ID `strands-decider-2B-hobson-v19-vllm` |
+| 图片 Decider | 官方 v19 视觉推理，独立私网服务；返回 `strands-decider-2B-hobson-v19-vision`，与文字 vLLM 路径分别计时 |
 | 普通大模型   | Bedrock Converse API；支付模块 `us.openai.gpt-6.1-sol`，路由决策器 `us.openai.gpt-6-sol`，均为 `low`；路由目标模型另按评测配置执行                                    |
 | Jev 决策模型 | ECS 经 IAM 调用 Lambda，再通过 HTTPS 访问 Typesafe System One API；密钥保存在 Secrets Manager |
 | 模型网络     | API 经 VPC Peering 私网调用 vLLM `:8100/v1/systemone`；Bearer 密钥由 Secrets Manager 注入后端；Bedrock 经私有端点调用 |
@@ -273,7 +277,7 @@ bash scripts/serve_model.sh
 
 ## 8. AWS 部署与验证
 
-当前部署使用 `us-east-1` 的共享 vLLM / EC2 On-Demand `g6.xlarge` 常驻推理服务。私网、密钥和更新步骤见 [部署入口](deployment/README.md)，实际资源及版本记录见 [DEPLOYED.md](deployment/DEPLOYED.md)。
+当前文字决策使用 `us-east-1` 的共享 vLLM / EC2 On-Demand `g6.xlarge` 常驻推理服务；[图片决策](docs/VISION.md)调用另一台现有 L4 的官方视觉服务。私网、密钥和更新步骤见 [部署入口](deployment/README.md)，实际资源及版本记录见 [DEPLOYED.md](deployment/DEPLOYED.md)。
 
 更新已有环境：
 
@@ -286,7 +290,7 @@ python deployment/deploy.py --region us-east-1 --api-only \
 python deployment/deploy.py --region us-east-1 --frontend-only
 ```
 
-本次发布前 **243 项自动化测试全部通过**，并已验证全部 Decider 模块的真实调用、四场景三模型路由界面和手机端 GPU 状态。回放与接入验证不计入历史性能基准。复测命令：
+当前 **256 项自动化测试全部通过**。图片模块已通过线上实时调用、图片上传、对照方式及桌面／手机界面验证；文字模块保留此前共享 vLLM 接入验证记录。回放与接入验证不计入历史性能基准。复测命令：
 
 ```bash
 uv run --extra dev pytest -q
@@ -303,11 +307,17 @@ uv run --with playwright python scripts/check_jev_browser.py \
 uv run --with playwright python scripts/check_gpu_dialog_browser.py \
   --url http://localhost:8000 --credentials .deployment/local-credentials.json
 
-# 当前共享 vLLM：全模块真实调用验证
+# 当前共享 vLLM：文字模块真实调用验证
 uv run python scripts/check_vllm_demo.py \
   --url https://d3i7ogfx5ml7dc.cloudfront.net \
   --credentials .deployment/admin-credentials.json \
   --output .deployment/vllm-live-verification.json
+
+# 图片模块：五次真实推理、上传、历史标识与对照
+uv run --with playwright python scripts/check_vision_browser.py --live \
+  --url https://d3i7ogfx5ml7dc.cloudfront.net \
+  --credentials .deployment/admin-credentials.json \
+  --output .deployment/vision-browser.json
 
 # AWS 环境：四场景三模型优化流程，共 60 次真实调用
 uv run --with playwright python scripts/check_jev_browser.py --live \
@@ -367,6 +377,7 @@ tests/                     # API、认证、计时、GPU、SageMaker 与支付�
 | `/api/crypto/event`                                   | 模拟确认、补款、地址验证、审批或结算到账          |
 | `/api/routing/catalog`、`/api/routing/candidates`   | 区域模型目录、评测证据与候选范围                  |
 | `/api/routing/decision`、`/api/routing/execute`     | 两步模型路由决策与可选目标执行                    |
+| `/api/vision/catalog`、`/api/vision/health`、`/api/vision/decide` | 图片样例、视觉服务状态、实时推理与标记来源的历史实测 |
 | `/api/routing/decision` 的 `strategy` 参数        | 原始 / 增强证据，两侧均由模型选择具体型号             |
 | `/api/gpu`、`/api/gpu/start`、`/api/gpu/stop`         | GPU 状态与管理员启停                              |
 

@@ -21,7 +21,7 @@
   </defs>
   <rect width="100%" height="100%" fill="#ffffff" />
   <text x="56" y="58.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="30" fill="#232f3e" text-anchor="start" font-weight="700">01  AWS 部署架构</text>
-  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · 共享 vLLM / Jev / Bedrock</text>
+  <text x="56" y="104.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · 文字 vLLM / 图片视觉服务 / Jev / Bedrock</text>
   <rect x="360" y="140" width="1380" height="1370" rx="0" fill="#ffffff" stroke="#232f3e" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 40 40" version="1.1" x="372" y="150" aria-hidden="true">
     <title>Icon-Architecture-Group/32/AWS-Cloud-logo_32</title>
@@ -40,7 +40,7 @@
     </g>
   </svg>
   <text x="458" y="433.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#232f3e" text-anchor="start" font-weight="700">AWS Region · us-east-1</text>
-  <rect x="440" y="480" width="350" height="620" rx="0" fill="#ffffff" stroke="#8c4fff" stroke-width="1.5" />
+  <rect x="440" y="480" width="350" height="800" rx="0" fill="#ffffff" stroke="#8c4fff" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 80 80" version="1.1" x="452" y="490" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-Virtual-Private-Cloud_64</title>
     <g id="vpc-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -51,7 +51,7 @@
     </g>
   </svg>
   <text x="498" y="513.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#232f3e" text-anchor="start" font-weight="700">应用 VPC · 无公网出口</text>
-  <rect x="465" y="550" width="315" height="500" rx="0" fill="#f2faf8" stroke="#00a4a6" stroke-width="1.5" />
+  <rect x="465" y="550" width="315" height="710" rx="0" fill="#f2faf8" stroke="#00a4a6" stroke-width="1.5" />
   <svg width="32" height="32" viewBox="0 0 40 40" version="1.1" x="477" y="560" aria-hidden="true">
     <title>Icon-Architecture-Group/32/Private-subnet_32</title>
     <g id="subnet-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -135,6 +135,19 @@
   <text x="630.0" y="930.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">FastAPI · 无公网 IP</text>
   <text x="630.0" y="956.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">认证 · 构造输入 · 计时</text>
   <text x="630.0" y="981.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">固定对比 / 反馈闭环 · 执行保护</text>
+  <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="602.0" y="1070" aria-hidden="true">
+    <title>Icon-Architecture/64/Arch_Amazon-EC2_64</title>
+    <g id="vision-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="vision-icon-0-3" fill="#ED7100">
+        <rect id="vision-icon-0-4" x="0" y="0" width="80" height="80" />
+      </g>
+      <path d="M27,53 L52,53 L52,28 L27,28 L27,53 Z M54,28 L58,28 L58,30 L54,30 L54,34 L58,34 L58,36 L54,36 L54,39 L58,39 L58,41 L54,41 L54,45 L58,45 L58,47 L54,47 L54,51 L58,51 L58,53 L54,53 L54,53.136 C54,54.164 53.164,55 52.136,55 L52,55 L52,59 L50,59 L50,55 L46,55 L46,59 L44,59 L44,55 L41,55 L41,59 L39,59 L39,55 L35,55 L35,59 L33,59 L33,55 L29,55 L29,59 L27,59 L27,55 L26.864,55 C25.836,55 25,54.164 25,53.136 L25,53 L22,53 L22,51 L25,51 L25,47 L22,47 L22,45 L25,45 L25,41 L22,41 L22,39 L25,39 L25,36 L22,36 L22,34 L25,34 L25,30 L22,30 L22,28 L25,28 L25,27.864 C25,26.836 25.836,26 26.864,26 L27,26 L27,22 L29,22 L29,26 L33,26 L33,22 L35,22 L35,26 L39,26 L39,22 L41,22 L41,26 L44,26 L44,22 L46,22 L46,26 L50,26 L50,22 L52,22 L52,26 L52.136,26 C53.164,26 54,26.836 54,27.864 L54,28 Z M41,65.876 C41,65.944 40.944,66 40.876,66 L14.124,66 C14.056,66 14,65.944 14,65.876 L14,39.124 C14,39.056 14.056,39 14.124,39 L20,39 L20,37 L14.124,37 C12.953,37 12,37.953 12,39.124 L12,65.876 C12,67.047 12.953,68 14.124,68 L40.876,68 C42.047,68 43,67.047 43,65.876 L43,61 L41,61 L41,65.876 Z M68,14.124 L68,40.876 C68,42.047 67.047,43 65.876,43 L60,43 L60,41 L65.876,41 C65.944,41 66,40.944 66,40.876 L66,14.124 C66,14.056 65.944,14 65.876,14 L39.124,14 C39.056,14 39,14.056 39,14.124 L39,20 L37,20 L37,14.124 C37,12.953 37.953,12 39.124,12 L65.876,12 C67.047,12 68,12.953 68,14.124 L68,14.124 Z" id="vision-icon-0-5" fill="#FFFFFF" />
+    </g>
+  </svg>
+  <text x="630.0" y="1150.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#232f3e" text-anchor="middle" font-weight="700">Amazon EC2 · 图片决策</text>
+  <text x="630.0" y="1172.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#232f3e" text-anchor="middle">官方 v19 视觉编码器 + 决策头</text>
+  <text x="630.0" y="1195.0" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#232f3e" text-anchor="middle">g6.xlarge / L4 · 常驻</text>
+  <text x="630.0" y="1217.5" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#232f3e" text-anchor="middle">同 VPC 私网 :18123</text>
   <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="967.0" y="615" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-EC2_64</title>
     <g id="sm-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -180,9 +193,10 @@
   <text x="185.0" y="950.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">AWS 账户外部托管服务</text>
   <text x="185.0" y="976.2" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">System One · jev-latest</text>
   <text x="185.0" y="1001.7" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">返回实际模型版本与概率</text>
-  <text x="770.0" y="1222.95" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle" font-weight="700">AWS Secrets Manager · vLLM API 密钥</text>
-  <text x="770.0" y="1248.45" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">ECS 启动时注入后端 · 浏览器不持有密钥</text>
-  <text x="770.0" y="1273.95" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="17" fill="#232f3e" text-anchor="middle">共享 GPU 由部署端管理，页面只查看健康状态</text>
+  <text x="995.0" y="1212.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle" font-weight="700">AWS Secrets Manager</text>
+  <text x="995.0" y="1236.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle">vLLM API 密钥</text>
+  <text x="995.0" y="1260.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle">ECS 启动时注入后端</text>
+  <text x="995.0" y="1284.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="middle">浏览器不持有密钥</text>
   <svg width="56" height="56" viewBox="0 0 80 80" version="1.1" x="1412.0" y="1160" aria-hidden="true">
     <title>Icon-Architecture/64/Arch_Amazon-DynamoDB_64</title>
     <g id="ddb-icon-0-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -223,8 +237,8 @@
       <path d="M66,58 L68,58 L68,68 L58,68 L58,66 L64.586,66 L56.293,57.707 L57.707,56.293 L66,64.586 L66,58 Z M23.707,57.707 L15.414,66 L22,66 L22,68 L12,68 L12,58 L14,58 L14,64.586 L22.293,56.293 L23.707,57.707 Z M68,12 L68,22 L66,22 L66,15.414 L57.707,23.707 L56.293,22.293 L64.586,14 L58,14 L58,12 L68,12 Z M15.414,14 L23.707,22.293 L22.293,23.707 L14,15.414 L14,22 L12,22 L12,12 L22,12 L22,14 L15.414,14 Z M50.678,53.661 C49.521,54.848 45.635,56.046 39.563,56.046 C32.168,56.046 28.031,54.23 28,53 L28,29.857 C30.603,31.395 35.32,32 39.563,32 C43.756,32 48.418,31.397 51,29.867 L51,53.025 C51.002,53.099 51.008,53.323 50.678,53.661 L50.678,53.661 Z M39.563,24 C45.663,24 49.545,25.181 50.686,26.352 C51.008,26.682 51.002,26.902 51,26.975 L51,27 C51,28.226 46.927,30 39.563,30 C32.422,30 28.032,28.265 28.003,27.013 C28.061,25.746 32.093,24 39.563,24 L39.563,24 Z M52.999,27 C53.007,26.482 52.858,25.716 52.118,24.956 C50.313,23.105 45.62,22 39.563,22 C33.365,22 26.094,23.303 26,27 L26,53.025 C26.095,56.731 33.365,58.046 39.563,58.046 C44.22,58.046 49.962,57.261 52.11,55.057 C52.869,54.278 53.013,53.495 53,53 L53,27.011 L53,27.004 L53,27 L52.999,27 Z" id="fallback-icon-1-5" fill="#FFFFFF" />
     </g>
   </svg>
-  <text x="1270" y="1393.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start" font-weight="700">原版 GPU 保留作基线 / 回退</text>
-  <text x="1270" y="1417.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">当前演示不再调用原版服务</text>
+  <text x="1270" y="1393.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start" font-weight="700">图片模块复用另一台现有 L4</text>
+  <text x="1270" y="1417.6" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">文字与图片使用独立服务，分别计时</text>
   <text x="61" y="1548.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">实线：请求 / 访问方向（响应省略）   绿色：Decider   蓝色：Bedrock   紫色：Jev   橙色虚线：密钥注入</text>
   <text x="61" y="1588.1" font-family="'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#232f3e" text-anchor="start">Bedrock 推理可路由至其他美国区域。图示省略私有网络端点、辅助部署依赖及回退资源网络；订单与账本在浏览器内存中模拟。</text>
   <polyline points="320,285 440,285" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
@@ -237,6 +251,7 @@
   <rect x="830" y="437" width="240" height="26" fill="#ffffff" />
   <text x="950" y="455" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">VPC Origin · /api/*</text>
   <polyline points="625,750 625,815" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
+  <polyline points="625,1015 625,1060" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
   <polyline points="770,850 800,850 800,710 845,710" fill="none" stroke="#0f766e" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow0f766e)" />
   <rect x="870" y="832" width="240" height="26" fill="#ffffff" />
   <text x="990" y="850" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#0f766e" text-anchor="middle">VPC Peering · 私网 :8100</text>
@@ -250,7 +265,5 @@
   <polyline points="770,975 930,975 930,1120 1440,1120 1440,1150" fill="none" stroke="#52677c" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow52677c)" />
   <rect x="940" y="1077" width="240" height="26" fill="#ffffff" />
   <text x="1060" y="1095" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#52677c" text-anchor="middle">账号 / 会话</text>
-  <polyline points="620,1160 620,1015" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" stroke-dasharray="7 5" />
-  <rect x="415" y="1107" width="240" height="26" fill="#ffffff" />
-  <text x="535" y="1125" font-family="'Noto Sans CJK SC', sans-serif" font-size="14" fill="#b86c14" text-anchor="middle">启动时注入</text>
+  <polyline points="845,1240 805,1240 805,1000 770,1000" fill="none" stroke="#b86c14" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrowb86c14)" stroke-dasharray="7 5" />
 </svg>

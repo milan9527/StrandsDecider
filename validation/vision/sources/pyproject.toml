@@ -1,0 +1,192 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools-scm>=8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strands-decider"
+dynamic = ["version"]
+description = "An experimental typed classifier: calibrated yes/no, choice and score answers from an LLM torso with a pointer readout."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.7",
+    "transformers>=5.15,<6",
+    "peft>=0.21",
+    "accelerate>=0.34",
+    "huggingface_hub>=1.5",
+    "pydantic>=2.7",
+    "typer>=0.12",
+    "rich>=13.7",
+    "pyyaml>=6.0",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "numpy>=1.24",
+    "safetensors>=0.4",
+]
+
+[project.optional-dependencies]
+# The corpus build and multistep converter use datasets:
+# `python -m training.data build` and `python -m training.data.multistep`. Those modules
+# live under training/, not src/, so they ship in the repo, not in the wheel; this extra
+# is here for `pip install -e ".[train]"` from a checkout rather than for Hub consumers.
+train = ["datasets>=2.20"]
+# Image input (`serve --vision`, `ask --image`, docs/vision.md); also needs transformers >= 5.18.
+vision = ["pillow>=10"]
+# `--device mlx`: the torso on Apple silicon's GPU through mlx-lm (src/strands_decider/mlx_engine.py).
+# mlx-lm is capped at the minor version tested: the backend uses its Qwen3.5 module layout and
+# prompt-cache classes, which are internals.
+mlx = [
+    "mlx>=0.32.2; sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "mlx-lm>=0.32,<0.33; sys_platform == 'darwin' and platform_machine == 'arm64'",
+]
+# `--device cuda`: flash-linear-attention's Triton kernels for the Gated DeltaNet layers. The conv
+# layer's kernel, causal-conv1d, compiles against the local CUDA toolkit and is not listed; on a
+# machine with nvcc: pip install causal-conv1d --no-build-isolation.
+cuda = ["flash-linear-attention>=0.5; sys_platform == 'linux'"]
+# `--device mps` and `--device cpu` need nothing beyond the base install. The extras exist so that
+# every device installs the same way.
+mps = []
+cpu = []
+dev = [
+    "pillow>=10",
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "mypy>=1.15,<3",
+    "pre-commit>=3.7",
+    "commitizen>=3.28",
+]
+
+[project.scripts]
+strands-decider = "strands_decider.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# setuptools-scm drives the version. Release runs override this via
+# SETUPTOOLS_SCM_PRETEND_VERSION (see .github/workflows/release-pypi.yml);
+# local builds without a tag fall back to 0.0.0, so `pip install -e .` and the
+# package-build smoke test still work on any branch.
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+# Only v<major>.<minor>... tags are package versions. Model release tags
+# (model/strands-decider-2B-qwen3.5-v1-2610) are not: without --match,
+# `git describe` finds them and the version fails to parse. The dot is required, so a short
+# tag such as `v1` or `v1-2610` (a recipe generation, not a package version) is ignored too.
+# ponytail: setuptools-scm 10 warns that this key is deprecated (scm.git.describe_command);
+# the new key is not read by 8.x, which build-system.requires still admits.
+git_describe_command = ["git", "describe", "--dirty", "--tags", "--long", "--match", "v[0-9]*.[0-9]*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+# Correctness, import hygiene, and pyupgrade (PEP 585 / PEP 604) modernisation.
+select = ["E", "F", "I", "W", "B", "SLF", "RUF", "UP"]
+ignore = [
+    "B008",    # typer.Option(...) in a default is the idiomatic Typer pattern
+    "E501",    # line length is handled by the formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["SLF001"]  # tests legitimately assert on internal invariants
+"training/tests/*" = ["SLF001"]
+"evaluation/*" = ["SLF001"]  # the probes read model internals, as the tests do
+"training/data/policy.py" = ["SLF001"]  # attaches _cell/_rule to its own examples for balancing
+"research/scripts/*" = ["RUF001"]  # chart labels intentionally use the × multiplication sign
+
+[tool.mypy]
+# Matches the strict-ish profile used by strands-agents/harness-sdk. Type-check the
+# published surface (`src/strands_decider`) and the training package; the rest of the tree
+# (tests, evaluation, research, inference scripts) is deliberately looser. `hatch run
+# lint:check` passes `./src ./training --exclude training/tests` to pin that scope.
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+follow_untyped_imports = true
+ignore_missing_imports = false
+
+# Third-party packages without published type stubs.
+[[tool.mypy.overrides]]
+module = [
+    "torch.*",
+    "transformers.*",
+    "peft.*",
+    "datasets.*",
+    "safetensors.*",
+    "huggingface_hub.*",
+    "yaml",
+    "mlx.*",
+    "mlx_lm.*",
+    "PIL.*",
+    "tokenizers",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "training/tests"]
+# "." so `import training.*` resolves; test_hf_export imports multistep_eval; "tests" and
+# "training/tests" so test_variance (in training/tests) can `from test_checkpoint_load` /
+# `from test_hf_export` (in tests/) regardless of collection order.
+pythonpath = [".", "evaluation", "tests", "training/tests"]
+addopts = "-m 'not distributed'"
+markers = [
+    "distributed: launches torchrun worker processes (minutes); run with -m distributed",
+]
+
+[tool.coverage.report]
+fail_under = 50
+
+# hatch is used as a dev-workflow runner (envs and scripts) only; the wheel is
+# still built with setuptools above. Contributors do not need hatch — the raw
+# commands under `## Development` in CONTRIBUTING.md work the same — but if
+# they have it, `hatch run test` / `hatch run lint` / `hatch run format` will
+# just work.
+[tool.hatch.envs.default]
+features = ["dev"]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -q {args}"
+test-distributed = "pytest -q -m distributed {args}"
+format = "ruff format {args:.}"
+
+# Detached lint env: skips the project install (and therefore torch) so `hatch run lint:check`
+# stays fast in CI and locally. The typed runtime deps are listed explicitly so mypy can resolve
+# their imports; keep this list in sync with [project].dependencies for pydantic/fastapi/typer/rich/uvicorn.
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+    "ruff>=0.6",
+    "mypy>=1.15,<3",
+    "pydantic>=2.7",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "typer>=0.12",
+    "rich>=13.7",
+]
+
+[tool.hatch.envs.lint.scripts]
+check = [
+    "ruff format --check {args:.}",
+    "ruff check {args:.}",
+    "mypy ./src ./training --exclude training/tests",
+]
+
+# Conventional Commits, matching the PR-title gate in
+# .github/workflows/pr-title.yml. Enforced locally by the commit-msg hook in
+# .pre-commit-config.yaml.
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+tag_format = "v$version"

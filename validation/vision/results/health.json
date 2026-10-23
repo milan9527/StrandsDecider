@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "model": "strands-decider-2B-hobson-v19-vision",
+  "checkpoint": "/opt/models/decider",
+  "base_model": "/opt/models/base",
+  "num_slots": 24,
+  "max_length": 4096,
+  "temperature": 0.9627721607677362,
+  "device": "cuda",
+  "prefix_cache": true,
+  "vision": true
+}

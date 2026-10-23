@@ -546,6 +546,17 @@ def template():
         Condition="HasVllm",
     )
     add(
+        "VisionApiIngress",
+        "EC2::SecurityGroupIngress",
+        {
+            "GroupId": ref("VisionSecurityGroupId"),
+            "IpProtocol": "tcp", "FromPort": 18123, "ToPort": 18123,
+            "SourceSecurityGroupId": ref("TaskSecurityGroup"),
+            "Description": "Authenticated application backend to private vision service",
+        },
+        Condition="HasVision",
+    )
+    add(
         "SecretsManagerEndpoint",
         "EC2::VPCEndpoint",
         {
@@ -630,6 +641,7 @@ def template():
                             "Fn::If": ["HasVllm", "", ref("GpuStateTableName")]
                         }},
                         {"Name": "GPU_PROVIDER", "Value": ref("ModelProvider")},
+                        {"Name": "DECIDER_VISION_URL", "Value": ref("VisionUrl")},
                         {"Name": "VLLM_INSTANCE_ID", "Value": ref("VllmInstanceId")},
                         {"Name": "BEDROCK_ENABLED", "Value": "true"},
                         {
@@ -935,6 +947,7 @@ def template():
             **{name: {"Type": "String", "Default": ""} for name in (
                 "VllmPrivateIp", "VllmSecretArn", "VllmInstanceId", "VllmSecurityGroupId",
                 "VllmRouteTableId", "VllmPeeringConnectionId",
+                "VisionUrl", "VisionSecurityGroupId",
             )},
             "JevSecretArn": {
                 "Type": "String",
@@ -950,6 +963,7 @@ def template():
             "HasApiImageTag": {"Fn::Not": [{"Fn::Equals": [ref("ApiImageTag"), ""]}]},
             "HasJev": {"Fn::Not": [{"Fn::Equals": [ref("JevSecretArn"), ""]}]},
             "HasVllm": {"Fn::Equals": [ref("ModelProvider"), "vllm"]},
+            "HasVision": {"Fn::Not": [{"Fn::Equals": [ref("VisionUrl"), ""]}]},
         },
         "Resources": resources,
         "Outputs": {key: {"Value": value} for key, value in outputs.items()},

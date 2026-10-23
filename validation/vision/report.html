@@ -1,0 +1,677 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Decider 图片内容决策实测</title><style>body{font-family:system-ui,sans-serif;background:#edf3f7;color:#173346;margin:32px auto;max-width:1180px;padding:0 20px}article{display:grid;grid-template-columns:320px 1fr;gap:24px;background:white;padding:20px;margin:20px 0;border-radius:16px}article>div{min-width:0}img{width:100%;border-radius:10px}table{table-layout:fixed;border-collapse:collapse;width:100%;font-size:14px}td,th{overflow-wrap:anywhere;border-bottom:1px solid #dde5eb;padding:12px 8px;text-align:left}.ok{color:#00877c}.bad{color:#bc3246;font-weight:bold}details{margin-top:20px}summary{cursor:pointer;color:#006f9e}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#edf3f7;padding:16px}p{line-height:1.8}a{color:#006f9e}@media(max-width:800px){article{grid-template-columns:1fr}img{max-width:448px}}</style><h1>Strands Decider 图片内容决策实测</h1><p>v19 · 官方视觉推理 · L4 · 12 张合成截图 · 首轮 27/28 项判断正确 · 正式带图请求后端均值 168.2 ms</p><p>主要错误：有签名、缺交易编号的凭证被选择接收。反转候选后另有一题由对变错。这是清晰合成截图上的小样本验证；预热后的延迟不包含首次调用。</p><p><a href="README.zh.md">方法、对照和限制</a> · <a href="fixtures-overview.png">图片总览</a> · <a href="results/receipts.jsonl">完整原始请求</a></p><article><img src="images/case-01.png" alt="case-01"><div><h2>case-01 · 支付状态与下一步动作</h2><p>单请求包含全部问题；三轮后端均值 168.2 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>status</td><td>completed</td><td class="ok">completed</td><td>0.986</td></tr><tr><td>next_action</td><td>confirm</td><td class="ok">confirm</td><td>0.975</td></tr><tr><td>paid</td><td>是</td><td class="ok">是</td><td>0.937</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;截图显示的付款状态是什么？&quot;,
+        &quot;criteria&quot;: {
+          &quot;completed&quot;: &quot;页面明确显示付款已成功完成&quot;,
+          &quot;pending&quot;: &quot;页面显示付款仍在处理中或等待确认&quot;,
+          &quot;failed&quot;: &quot;页面明确显示付款失败&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或没有足够信息&quot;
+        }
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;仅依据截图，客服下一步应如何处理？&quot;,
+        &quot;criteria&quot;: {
+          &quot;confirm&quot;: &quot;付款已成功，告知客户该笔付款已完成&quot;,
+          &quot;wait&quot;: &quot;仍在处理中，等待确认，不重复付款&quot;,
+          &quot;retry&quot;: &quot;付款明确失败，提示检查原因后重试&quot;,
+          &quot;review&quot;: &quot;图片信息不足，要求提供清晰完整截图&quot;
+        }
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图是否明确显示这笔付款已经成功完成？&quot;
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;completed&quot;,
+        &quot;probabilities&quot;: {
+          &quot;completed&quot;: 0.9898,
+          &quot;pending&quot;: 0.005,
+          &quot;failed&quot;: 0.0022,
+          &quot;unknown&quot;: 0.0031
+        },
+        &quot;confidence&quot;: 0.9864
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;confirm&quot;,
+        &quot;probabilities&quot;: {
+          &quot;confirm&quot;: 0.9815,
+          &quot;wait&quot;: 0.0113,
+          &quot;retry&quot;: 0.003,
+          &quot;review&quot;: 0.0042
+        },
+        &quot;confidence&quot;: 0.9754
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.9366
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 476,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 167.72
+  }
+}</pre></details></div></article><article><img src="images/case-02.png" alt="case-02"><div><h2>case-02 · 支付状态与下一步动作</h2><p>单请求包含全部问题；三轮后端均值 168.1 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>status</td><td>pending</td><td class="ok">pending</td><td>0.818</td></tr><tr><td>next_action</td><td>wait</td><td class="ok">wait</td><td>0.346</td></tr><tr><td>paid</td><td>否</td><td class="ok">否</td><td>0.263</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;截图显示的付款状态是什么？&quot;,
+        &quot;criteria&quot;: {
+          &quot;completed&quot;: &quot;页面明确显示付款已成功完成&quot;,
+          &quot;pending&quot;: &quot;页面显示付款仍在处理中或等待确认&quot;,
+          &quot;failed&quot;: &quot;页面明确显示付款失败&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或没有足够信息&quot;
+        }
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;仅依据截图，客服下一步应如何处理？&quot;,
+        &quot;criteria&quot;: {
+          &quot;confirm&quot;: &quot;付款已成功，告知客户该笔付款已完成&quot;,
+          &quot;wait&quot;: &quot;仍在处理中，等待确认，不重复付款&quot;,
+          &quot;retry&quot;: &quot;付款明确失败，提示检查原因后重试&quot;,
+          &quot;review&quot;: &quot;图片信息不足，要求提供清晰完整截图&quot;
+        }
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图是否明确显示这笔付款已经成功完成？&quot;
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;pending&quot;,
+        &quot;probabilities&quot;: {
+          &quot;completed&quot;: 0.0854,
+          &quot;pending&quot;: 0.8637,
+          &quot;failed&quot;: 0.0078,
+          &quot;unknown&quot;: 0.0431
+        },
+        &quot;confidence&quot;: 0.8182
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;wait&quot;,
+        &quot;probabilities&quot;: {
+          &quot;confirm&quot;: 0.4149,
+          &quot;wait&quot;: 0.5098,
+          &quot;retry&quot;: 0.0215,
+          &quot;review&quot;: 0.0539
+        },
+        &quot;confidence&quot;: 0.3464
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.2629
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 476,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 168.43
+  }
+}</pre></details></div></article><article><img src="images/case-03.png" alt="case-03"><div><h2>case-03 · 支付状态与下一步动作</h2><p>单请求包含全部问题；三轮后端均值 168.3 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>status</td><td>failed</td><td class="ok">failed</td><td>0.986</td></tr><tr><td>next_action</td><td>retry</td><td class="ok">retry</td><td>0.965</td></tr><tr><td>paid</td><td>否</td><td class="ok">否</td><td>0.139</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;截图显示的付款状态是什么？&quot;,
+        &quot;criteria&quot;: {
+          &quot;completed&quot;: &quot;页面明确显示付款已成功完成&quot;,
+          &quot;pending&quot;: &quot;页面显示付款仍在处理中或等待确认&quot;,
+          &quot;failed&quot;: &quot;页面明确显示付款失败&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或没有足够信息&quot;
+        }
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;仅依据截图，客服下一步应如何处理？&quot;,
+        &quot;criteria&quot;: {
+          &quot;confirm&quot;: &quot;付款已成功，告知客户该笔付款已完成&quot;,
+          &quot;wait&quot;: &quot;仍在处理中，等待确认，不重复付款&quot;,
+          &quot;retry&quot;: &quot;付款明确失败，提示检查原因后重试&quot;,
+          &quot;review&quot;: &quot;图片信息不足，要求提供清晰完整截图&quot;
+        }
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图是否明确显示这笔付款已经成功完成？&quot;
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;failed&quot;,
+        &quot;probabilities&quot;: {
+          &quot;completed&quot;: 0.0058,
+          &quot;pending&quot;: 0.002,
+          &quot;failed&quot;: 0.9895,
+          &quot;unknown&quot;: 0.0027
+        },
+        &quot;confidence&quot;: 0.9861
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;retry&quot;,
+        &quot;probabilities&quot;: {
+          &quot;confirm&quot;: 0.0128,
+          &quot;wait&quot;: 0.0078,
+          &quot;retry&quot;: 0.974,
+          &quot;review&quot;: 0.0054
+        },
+        &quot;confidence&quot;: 0.9653
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.139
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 476,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 168.57
+  }
+}</pre></details></div></article><article><img src="images/case-04.png" alt="case-04"><div><h2>case-04 · 支付状态与下一步动作</h2><p>单请求包含全部问题；三轮后端均值 169.0 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>status</td><td>completed</td><td class="ok">completed</td><td>0.987</td></tr><tr><td>next_action</td><td>confirm</td><td class="ok">confirm</td><td>0.983</td></tr><tr><td>paid</td><td>是</td><td class="ok">是</td><td>0.936</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;截图显示的付款状态是什么？&quot;,
+        &quot;criteria&quot;: {
+          &quot;completed&quot;: &quot;页面明确显示付款已成功完成&quot;,
+          &quot;pending&quot;: &quot;页面显示付款仍在处理中或等待确认&quot;,
+          &quot;failed&quot;: &quot;页面明确显示付款失败&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或没有足够信息&quot;
+        }
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;仅依据截图，客服下一步应如何处理？&quot;,
+        &quot;criteria&quot;: {
+          &quot;confirm&quot;: &quot;付款已成功，告知客户该笔付款已完成&quot;,
+          &quot;wait&quot;: &quot;仍在处理中，等待确认，不重复付款&quot;,
+          &quot;retry&quot;: &quot;付款明确失败，提示检查原因后重试&quot;,
+          &quot;review&quot;: &quot;图片信息不足，要求提供清晰完整截图&quot;
+        }
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图是否明确显示这笔付款已经成功完成？&quot;
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;status&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;completed&quot;,
+        &quot;probabilities&quot;: {
+          &quot;completed&quot;: 0.9902,
+          &quot;pending&quot;: 0.0051,
+          &quot;failed&quot;: 0.0019,
+          &quot;unknown&quot;: 0.0028
+        },
+        &quot;confidence&quot;: 0.987
+      },
+      &quot;next_action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;confirm&quot;,
+        &quot;probabilities&quot;: {
+          &quot;confirm&quot;: 0.9875,
+          &quot;wait&quot;: 0.0078,
+          &quot;retry&quot;: 0.002,
+          &quot;review&quot;: 0.0027
+        },
+        &quot;confidence&quot;: 0.9833
+      },
+      &quot;paid&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.9365
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 476,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 169.04
+  }
+}</pre></details></div></article><article><img src="images/case-05.png" alt="case-05"><div><h2>case-05 · 中文客服队列选择</h2><p>单请求包含全部问题；三轮后端均值 166.8 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>queue</td><td>refunds</td><td class="ok">refunds</td><td>0.948</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;应将截图中的客户问题分配给哪个客服队列？&quot;,
+        &quot;criteria&quot;: {
+          &quot;refunds&quot;: &quot;客户申请退款、重复扣款退回&quot;,
+          &quot;payment_issues&quot;: &quot;客户付款失败、支付无法完成&quot;,
+          &quot;account_access&quot;: &quot;客户无法登录、账号被锁定&quot;,
+          &quot;product_information&quot;: &quot;客户咨询产品支持范围或使用信息&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或无法判断诉求&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;refunds&quot;,
+        &quot;probabilities&quot;: {
+          &quot;refunds&quot;: 0.9584,
+          &quot;payment_issues&quot;: 0.0115,
+          &quot;account_access&quot;: 0.0017,
+          &quot;product_information&quot;: 0.0045,
+          &quot;unknown&quot;: 0.0239
+        },
+        &quot;confidence&quot;: 0.948
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 330,
+      &quot;output_tokens&quot;: 1
+    },
+    &quot;latency_ms&quot;: 167.45
+  }
+}</pre></details></div></article><article><img src="images/case-06.png" alt="case-06"><div><h2>case-06 · 中文客服队列选择</h2><p>单请求包含全部问题；三轮后端均值 166.7 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>queue</td><td>payment_issues</td><td class="ok">payment_issues</td><td>0.990</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;应将截图中的客户问题分配给哪个客服队列？&quot;,
+        &quot;criteria&quot;: {
+          &quot;refunds&quot;: &quot;客户申请退款、重复扣款退回&quot;,
+          &quot;payment_issues&quot;: &quot;客户付款失败、支付无法完成&quot;,
+          &quot;account_access&quot;: &quot;客户无法登录、账号被锁定&quot;,
+          &quot;product_information&quot;: &quot;客户咨询产品支持范围或使用信息&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或无法判断诉求&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;payment_issues&quot;,
+        &quot;probabilities&quot;: {
+          &quot;refunds&quot;: 0.0028,
+          &quot;payment_issues&quot;: 0.9922,
+          &quot;account_access&quot;: 0.0013,
+          &quot;product_information&quot;: 0.0016,
+          &quot;unknown&quot;: 0.0021
+        },
+        &quot;confidence&quot;: 0.9902
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 330,
+      &quot;output_tokens&quot;: 1
+    },
+    &quot;latency_ms&quot;: 166.11
+  }
+}</pre></details></div></article><article><img src="images/case-07.png" alt="case-07"><div><h2>case-07 · 中文客服队列选择</h2><p>单请求包含全部问题；三轮后端均值 167.4 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>queue</td><td>account_access</td><td class="ok">account_access</td><td>0.988</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;应将截图中的客户问题分配给哪个客服队列？&quot;,
+        &quot;criteria&quot;: {
+          &quot;refunds&quot;: &quot;客户申请退款、重复扣款退回&quot;,
+          &quot;payment_issues&quot;: &quot;客户付款失败、支付无法完成&quot;,
+          &quot;account_access&quot;: &quot;客户无法登录、账号被锁定&quot;,
+          &quot;product_information&quot;: &quot;客户咨询产品支持范围或使用信息&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或无法判断诉求&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;account_access&quot;,
+        &quot;probabilities&quot;: {
+          &quot;refunds&quot;: 0.003,
+          &quot;payment_issues&quot;: 0.0014,
+          &quot;account_access&quot;: 0.9902,
+          &quot;product_information&quot;: 0.0028,
+          &quot;unknown&quot;: 0.0026
+        },
+        &quot;confidence&quot;: 0.9877
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 330,
+      &quot;output_tokens&quot;: 1
+    },
+    &quot;latency_ms&quot;: 167.44
+  }
+}</pre></details></div></article><article><img src="images/case-08.png" alt="case-08"><div><h2>case-08 · 中文客服队列选择</h2><p>单请求包含全部问题；三轮后端均值 166.6 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>queue</td><td>product_information</td><td class="ok">product_information</td><td>0.874</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;应将截图中的客户问题分配给哪个客服队列？&quot;,
+        &quot;criteria&quot;: {
+          &quot;refunds&quot;: &quot;客户申请退款、重复扣款退回&quot;,
+          &quot;payment_issues&quot;: &quot;客户付款失败、支付无法完成&quot;,
+          &quot;account_access&quot;: &quot;客户无法登录、账号被锁定&quot;,
+          &quot;product_information&quot;: &quot;客户咨询产品支持范围或使用信息&quot;,
+          &quot;unknown&quot;: &quot;图片缺失、不可读，或无法判断诉求&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;queue&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;product_information&quot;,
+        &quot;probabilities&quot;: {
+          &quot;refunds&quot;: 0.0115,
+          &quot;payment_issues&quot;: 0.0278,
+          &quot;account_access&quot;: 0.0043,
+          &quot;product_information&quot;: 0.8994,
+          &quot;unknown&quot;: 0.0571
+        },
+        &quot;confidence&quot;: 0.8743
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 330,
+      &quot;output_tokens&quot;: 1
+    },
+    &quot;latency_ms&quot;: 166.92
+  }
+}</pre></details></div></article><article><img src="images/case-09.png" alt="case-09"><div><h2>case-09 · 凭证字段与处理动作</h2><p>单请求包含全部问题；三轮后端均值 169.8 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>signature</td><td>是</td><td class="ok">是</td><td>0.780</td></tr><tr><td>reference</td><td>是</td><td class="ok">是</td><td>0.874</td></tr><tr><td>action</td><td>accept</td><td class="ok">accept</td><td>0.794</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Signature 签名框内是否存在手写签名笔迹？&quot;
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Transaction ID 一栏是否已填写交易编号？&quot;
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？&quot;,
+        &quot;criteria&quot;: {
+          &quot;accept&quot;: &quot;交易编号和签名都有，接收凭证&quot;,
+          &quot;request_signature&quot;: &quot;已有交易编号，只有签名缺失，要求补签&quot;,
+          &quot;request_reference&quot;: &quot;已有签名，只有交易编号缺失，要求补编号&quot;,
+          &quot;request_both&quot;: &quot;交易编号和签名都缺失，要求补全两项&quot;,
+          &quot;unknown&quot;: &quot;图片缺失或不可读，无法判断&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.7796
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.8738
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;accept&quot;,
+        &quot;probabilities&quot;: {
+          &quot;accept&quot;: 0.8352,
+          &quot;request_signature&quot;: 0.0539,
+          &quot;request_reference&quot;: 0.0218,
+          &quot;request_both&quot;: 0.0819,
+          &quot;unknown&quot;: 0.0072
+        },
+        &quot;confidence&quot;: 0.794
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 493,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 171.31
+  }
+}</pre></details></div></article><article><img src="images/case-10.png" alt="case-10"><div><h2>case-10 · 凭证字段与处理动作</h2><p>单请求包含全部问题；三轮后端均值 169.1 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>signature</td><td>否</td><td class="ok">否</td><td>0.171</td></tr><tr><td>reference</td><td>是</td><td class="ok">是</td><td>0.885</td></tr><tr><td>action</td><td>request_signature</td><td class="ok">request_signature</td><td>0.304</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Signature 签名框内是否存在手写签名笔迹？&quot;
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Transaction ID 一栏是否已填写交易编号？&quot;
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？&quot;,
+        &quot;criteria&quot;: {
+          &quot;accept&quot;: &quot;交易编号和签名都有，接收凭证&quot;,
+          &quot;request_signature&quot;: &quot;已有交易编号，只有签名缺失，要求补签&quot;,
+          &quot;request_reference&quot;: &quot;已有签名，只有交易编号缺失，要求补编号&quot;,
+          &quot;request_both&quot;: &quot;交易编号和签名都缺失，要求补全两项&quot;,
+          &quot;unknown&quot;: &quot;图片缺失或不可读，无法判断&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.1709
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.8848
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;request_signature&quot;,
+        &quot;probabilities&quot;: {
+          &quot;accept&quot;: 0.2309,
+          &quot;request_signature&quot;: 0.4434,
+          &quot;request_reference&quot;: 0.0283,
+          &quot;request_both&quot;: 0.2881,
+          &quot;unknown&quot;: 0.0093
+        },
+        &quot;confidence&quot;: 0.3043
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 493,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 168.29
+  }
+}</pre></details></div></article><article><img src="images/case-11.png" alt="case-11"><div><h2>case-11 · 凭证字段与处理动作</h2><p>单请求包含全部问题；三轮后端均值 168.7 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>signature</td><td>是</td><td class="ok">是</td><td>0.784</td></tr><tr><td>reference</td><td>否</td><td class="ok">否</td><td>0.197</td></tr><tr><td>action</td><td>request_reference</td><td class="bad">accept</td><td>0.291</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Signature 签名框内是否存在手写签名笔迹？&quot;
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Transaction ID 一栏是否已填写交易编号？&quot;
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？&quot;,
+        &quot;criteria&quot;: {
+          &quot;accept&quot;: &quot;交易编号和签名都有，接收凭证&quot;,
+          &quot;request_signature&quot;: &quot;已有交易编号，只有签名缺失，要求补签&quot;,
+          &quot;request_reference&quot;: &quot;已有签名，只有交易编号缺失，要求补编号&quot;,
+          &quot;request_both&quot;: &quot;交易编号和签名都缺失，要求补全两项&quot;,
+          &quot;unknown&quot;: &quot;图片缺失或不可读，无法判断&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.7839
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.1973
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;accept&quot;,
+        &quot;probabilities&quot;: {
+          &quot;accept&quot;: 0.4327,
+          &quot;request_signature&quot;: 0.1372,
+          &quot;request_reference&quot;: 0.072,
+          &quot;request_both&quot;: 0.346,
+          &quot;unknown&quot;: 0.0122
+        },
+        &quot;confidence&quot;: 0.2909
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 493,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 168.42
+  }
+}</pre></details></div></article><article><img src="images/case-12.png" alt="case-12"><div><h2>case-12 · 凭证字段与处理动作</h2><p>单请求包含全部问题；三轮后端均值 169.3 ms</p><table><tr><th>问题</th><th>预期</th><th>实际</th><th>confidence / P(是)</th></tr><tr><td>signature</td><td>否</td><td class="ok">否</td><td>0.169</td></tr><tr><td>reference</td><td>否</td><td class="ok">否</td><td>0.201</td></tr><tr><td>action</td><td>request_both</td><td class="ok">request_both</td><td>0.509</td></tr></table><details><summary>查看请求问题和原始返回</summary><pre>{
+  &quot;request&quot;: {
+    &quot;state&quot;: &quot;请根据所附截图中的可见内容回答问题。&quot;,
+    &quot;questions&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Signature 签名框内是否存在手写签名笔迹？&quot;
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;instructions&quot;: &quot;截图的 Transaction ID 一栏是否已填写交易编号？&quot;
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;instructions&quot;: &quot;凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？&quot;,
+        &quot;criteria&quot;: {
+          &quot;accept&quot;: &quot;交易编号和签名都有，接收凭证&quot;,
+          &quot;request_signature&quot;: &quot;已有交易编号，只有签名缺失，要求补签&quot;,
+          &quot;request_reference&quot;: &quot;已有签名，只有交易编号缺失，要求补编号&quot;,
+          &quot;request_both&quot;: &quot;交易编号和签名都缺失，要求补全两项&quot;,
+          &quot;unknown&quot;: &quot;图片缺失或不可读，无法判断&quot;
+        }
+      }
+    },
+    &quot;images&quot;: [
+      &quot;图片的 Base64 内容，见完整请求记录&quot;
+    ]
+  },
+  &quot;response&quot;: {
+    &quot;model&quot;: &quot;strands-decider-2B-hobson-v19-vision&quot;,
+    &quot;answers&quot;: {
+      &quot;signature&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.1692
+      },
+      &quot;reference&quot;: {
+        &quot;type&quot;: &quot;noul&quot;,
+        &quot;noul&quot;: 0.2014
+      },
+      &quot;action&quot;: {
+        &quot;type&quot;: &quot;choice&quot;,
+        &quot;choice&quot;: &quot;request_both&quot;,
+        &quot;probabilities&quot;: {
+          &quot;accept&quot;: 0.2489,
+          &quot;request_signature&quot;: 0.1087,
+          &quot;request_reference&quot;: 0.0281,
+          &quot;request_both&quot;: 0.607,
+          &quot;unknown&quot;: 0.0072
+        },
+        &quot;confidence&quot;: 0.5088
+      }
+    },
+    &quot;usage&quot;: {
+      &quot;input_tokens&quot;: 493,
+      &quot;output_tokens&quot;: 3
+    },
+    &quot;latency_ms&quot;: 169.64
+  }
+}</pre></details></div></article></html>

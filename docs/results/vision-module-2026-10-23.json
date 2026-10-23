@@ -1,0 +1,348 @@
+{
+  "url": "https://d3i7ogfx5ml7dc.cloudfront.net",
+  "live_calls": [
+    {
+      "source": "live",
+      "captured_at": null,
+      "variant": "original",
+      "case_id": "case-02",
+      "task": "payment",
+      "model": "strands-decider-2B-hobson-v19-vision",
+      "answers": {
+        "status": {
+          "type": "choice",
+          "choice": "pending",
+          "probabilities": {
+            "completed": 0.0854,
+            "pending": 0.8637,
+            "failed": 0.0078,
+            "unknown": 0.0431
+          },
+          "confidence": 0.8182
+        },
+        "next_action": {
+          "type": "choice",
+          "choice": "wait",
+          "probabilities": {
+            "confirm": 0.4149,
+            "wait": 0.5098,
+            "retry": 0.0215,
+            "review": 0.0539
+          },
+          "confidence": 0.3464
+        },
+        "paid": {
+          "type": "noul",
+          "noul": 0.2629
+        }
+      },
+      "expected": {
+        "status": "pending",
+        "next_action": "wait",
+        "paid": false
+      },
+      "usage": {
+        "input_tokens": 476,
+        "output_tokens": 3
+      },
+      "model_ms": 164.475,
+      "backend_total_ms": 170.733,
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "status": {
+            "type": "choice",
+            "instructions": "截图显示的付款状态是什么？",
+            "criteria": {
+              "completed": "页面明确显示付款已成功完成",
+              "pending": "页面显示付款仍在处理中或等待确认",
+              "failed": "页面明确显示付款失败",
+              "unknown": "图片缺失、不可读，或没有足够信息"
+            }
+          },
+          "next_action": {
+            "type": "choice",
+            "instructions": "仅依据截图，客服下一步应如何处理？",
+            "criteria": {
+              "confirm": "付款已成功，告知客户该笔付款已完成",
+              "wait": "仍在处理中，等待确认，不重复付款",
+              "retry": "付款明确失败，提示检查原因后重试",
+              "review": "图片信息不足，要求提供清晰完整截图"
+            }
+          },
+          "paid": {
+            "type": "noul",
+            "instructions": "截图是否明确显示这笔付款已经成功完成？"
+          }
+        },
+        "image": {
+          "sent": true,
+          "sha256": "57c7d2b8015289ffee2a9258ea28a7c487a66be08593e3ea9a66d380ca90c2d7",
+          "bytes": 26094
+        }
+      }
+    },
+    {
+      "source": "live",
+      "captured_at": null,
+      "variant": "original",
+      "case_id": "case-05",
+      "task": "support",
+      "model": "strands-decider-2B-hobson-v19-vision",
+      "answers": {
+        "queue": {
+          "type": "choice",
+          "choice": "refunds",
+          "probabilities": {
+            "refunds": 0.9584,
+            "payment_issues": 0.0115,
+            "account_access": 0.0017,
+            "product_information": 0.0045,
+            "unknown": 0.0239
+          },
+          "confidence": 0.948
+        }
+      },
+      "expected": {
+        "queue": "refunds"
+      },
+      "usage": {
+        "input_tokens": 330,
+        "output_tokens": 1
+      },
+      "model_ms": 161.457,
+      "backend_total_ms": 166.69,
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "queue": {
+            "type": "choice",
+            "instructions": "应将截图中的客户问题分配给哪个客服队列？",
+            "criteria": {
+              "refunds": "客户申请退款、重复扣款退回",
+              "payment_issues": "客户付款失败、支付无法完成",
+              "account_access": "客户无法登录、账号被锁定",
+              "product_information": "客户咨询产品支持范围或使用信息",
+              "unknown": "图片缺失、不可读，或无法判断诉求"
+            }
+          }
+        },
+        "image": {
+          "sent": true,
+          "sha256": "a64f44d509864f770a2fbf66d713bbd9aaf5276738f2ab28bd70fcc5991cd20c",
+          "bytes": 29531
+        }
+      }
+    },
+    {
+      "source": "live",
+      "captured_at": null,
+      "variant": "reverse",
+      "case_id": "case-11",
+      "task": "receipt",
+      "model": "strands-decider-2B-hobson-v19-vision",
+      "answers": {
+        "signature": {
+          "type": "noul",
+          "noul": 0.7839
+        },
+        "reference": {
+          "type": "noul",
+          "noul": 0.1973
+        },
+        "action": {
+          "type": "choice",
+          "choice": "request_both",
+          "probabilities": {
+            "unknown": 0.0437,
+            "request_both": 0.3324,
+            "request_reference": 0.3252,
+            "request_signature": 0.0881,
+            "accept": 0.2106
+          },
+          "confidence": 0.1655
+        }
+      },
+      "expected": {
+        "signature": true,
+        "reference": false,
+        "action": "request_reference"
+      },
+      "usage": {
+        "input_tokens": 493,
+        "output_tokens": 3
+      },
+      "model_ms": 165.177,
+      "backend_total_ms": 170.716,
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "unknown": "图片缺失或不可读，无法判断",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "accept": "交易编号和签名都有，接收凭证"
+            }
+          }
+        },
+        "image": {
+          "sent": true,
+          "sha256": "2e7bcb85ec9ab06c3ef1116dbc002d5edcb761d06e45115624fc70475098ca25",
+          "bytes": 17006
+        }
+      }
+    },
+    {
+      "source": "live",
+      "captured_at": null,
+      "variant": "no_image",
+      "case_id": "case-11",
+      "task": "receipt",
+      "model": "strands-decider-2B-hobson-v19-vision",
+      "answers": {
+        "signature": {
+          "type": "noul",
+          "noul": 0.2579
+        },
+        "reference": {
+          "type": "noul",
+          "noul": 0.3469
+        },
+        "action": {
+          "type": "choice",
+          "choice": "request_both",
+          "probabilities": {
+            "accept": 0.1401,
+            "request_signature": 0.2227,
+            "request_reference": 0.0819,
+            "request_both": 0.3939,
+            "unknown": 0.1615
+          },
+          "confidence": 0.2423
+        }
+      },
+      "expected": null,
+      "usage": {
+        "input_tokens": 294,
+        "output_tokens": 3
+      },
+      "model_ms": 137.649,
+      "backend_total_ms": 142.123,
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "accept": "交易编号和签名都有，接收凭证",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "unknown": "图片缺失或不可读，无法判断"
+            }
+          }
+        },
+        "image": {
+          "sent": false,
+          "sha256": null,
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "source": "live",
+      "captured_at": null,
+      "variant": "original",
+      "case_id": null,
+      "task": "receipt",
+      "model": "strands-decider-2B-hobson-v19-vision",
+      "answers": {
+        "signature": {
+          "type": "noul",
+          "noul": 0.7839
+        },
+        "reference": {
+          "type": "noul",
+          "noul": 0.1973
+        },
+        "action": {
+          "type": "choice",
+          "choice": "accept",
+          "probabilities": {
+            "accept": 0.4327,
+            "request_signature": 0.1372,
+            "request_reference": 0.072,
+            "request_both": 0.346,
+            "unknown": 0.0122
+          },
+          "confidence": 0.2909
+        }
+      },
+      "expected": null,
+      "usage": {
+        "input_tokens": 493,
+        "output_tokens": 3
+      },
+      "model_ms": 165.664,
+      "backend_total_ms": 170.233,
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "accept": "交易编号和签名都有，接收凭证",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "unknown": "图片缺失或不可读，无法判断"
+            }
+          }
+        },
+        "image": {
+          "sent": true,
+          "sha256": "8f8258e47c8d1f48bf361bf8c882f4956e851fa0172c590260d59712a8f02609",
+          "bytes": 24023
+        }
+      }
+    }
+  ],
+  "browser_errors": [],
+  "replay_labeled": true,
+  "upload_no_reference": true,
+  "controls_verified": true,
+  "mobile_no_horizontal_overflow": true,
+  "captured_on": "2026-10-23",
+  "purpose": "Image module live integration verification, not a repeat accuracy benchmark",
+  "uploaded_image_source": "validation/vision/images/case-11.png"
+}

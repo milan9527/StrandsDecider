@@ -1,0 +1,668 @@
+{
+  "case_count": 12,
+  "question_count": 28,
+  "first_pass_correct": 27,
+  "first_pass_all_correct_images": 11,
+  "requests": {
+    "warmup": 3,
+    "image": 36,
+    "reverse": 12,
+    "no_image": 12,
+    "blank": 12
+  },
+  "failed_requests": 0,
+  "warm_image_client": {
+    "mean_ms": 169.77576944433773,
+    "p50_ms": 169.8845245409757,
+    "p95_ms": 171.27059103222564,
+    "min_ms": 167.7117660874501,
+    "max_ms": 172.92335606180131
+  },
+  "warm_image_backend": {
+    "mean_ms": 168.16722222222222,
+    "p50_ms": 168.32,
+    "p95_ms": 169.765,
+    "min_ms": 165.99,
+    "max_ms": 171.31
+  },
+  "warm_image_tokens": {
+    "min": 330,
+    "max": 493
+  },
+  "warmup_backend_ms": [
+    36845.75,
+    170.59,
+    171.6
+  ],
+  "groups": {
+    "payment": {
+      "images": 4,
+      "questions": 12,
+      "correct": 12,
+      "all_correct_images": 4,
+      "backend_request": {
+        "mean_ms": 168.4075,
+        "p50_ms": 168.5,
+        "p95_ms": 169.306,
+        "min_ms": 167.39,
+        "max_ms": 169.35
+      }
+    },
+    "support": {
+      "images": 4,
+      "questions": 4,
+      "correct": 4,
+      "all_correct_images": 4,
+      "backend_request": {
+        "mean_ms": 166.8825,
+        "p50_ms": 166.89999999999998,
+        "p95_ms": 167.8055,
+        "min_ms": 165.99,
+        "max_ms": 168.24
+      }
+    },
+    "receipt": {
+      "images": 4,
+      "questions": 12,
+      "correct": 11,
+      "all_correct_images": 3,
+      "backend_request": {
+        "mean_ms": 169.21166666666667,
+        "p50_ms": 169.055,
+        "p95_ms": 170.66649999999998,
+        "min_ms": 168.29,
+        "max_ms": 171.31
+      }
+    }
+  },
+  "controls": {
+    "reverse": {
+      "requests": 12,
+      "changed_vs_first_image_questions": 2,
+      "total_questions": 28,
+      "abstained_choices": 0,
+      "total_choices": 16,
+      "matched_original_image_reference": 26
+    },
+    "no_image": {
+      "requests": 12,
+      "changed_vs_first_image_questions": 19,
+      "total_questions": 28,
+      "abstained_choices": 8,
+      "total_choices": 16,
+      "matched_original_image_reference": 9
+    },
+    "blank": {
+      "requests": 12,
+      "changed_vs_first_image_questions": 22,
+      "total_questions": 28,
+      "abstained_choices": 16,
+      "total_choices": 16,
+      "matched_original_image_reference": 6
+    }
+  },
+  "repeat_changed": [],
+  "errors": [
+    {
+      "case": "case-11",
+      "question": "action",
+      "expected": "request_reference",
+      "actual": "accept",
+      "correct": false,
+      "answer": {
+        "type": "choice",
+        "choice": "accept",
+        "probabilities": {
+          "accept": 0.4327,
+          "request_signature": 0.1372,
+          "request_reference": 0.072,
+          "request_both": 0.346,
+          "unknown": 0.0122
+        },
+        "confidence": 0.2909
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case": "case-01",
+      "group": "payment",
+      "questions": {
+        "status": {
+          "expected": "completed",
+          "actual": "completed",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "completed",
+            "probabilities": {
+              "completed": 0.9898,
+              "pending": 0.005,
+              "failed": 0.0022,
+              "unknown": 0.0031
+            },
+            "confidence": 0.9864
+          }
+        },
+        "next_action": {
+          "expected": "confirm",
+          "actual": "confirm",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "confirm",
+            "probabilities": {
+              "confirm": 0.9815,
+              "wait": 0.0113,
+              "retry": 0.003,
+              "review": 0.0042
+            },
+            "confidence": 0.9754
+          }
+        },
+        "paid": {
+          "expected": true,
+          "actual": true,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.9366
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 168.2,
+        "p50_ms": 167.72,
+        "p95_ms": 169.18699999999998,
+        "min_ms": 167.53,
+        "max_ms": 169.35
+      },
+      "first_backend_ms": 167.72
+    },
+    {
+      "case": "case-02",
+      "group": "payment",
+      "questions": {
+        "status": {
+          "expected": "pending",
+          "actual": "pending",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "pending",
+            "probabilities": {
+              "completed": 0.0854,
+              "pending": 0.8637,
+              "failed": 0.0078,
+              "unknown": 0.0431
+            },
+            "confidence": 0.8182
+          }
+        },
+        "next_action": {
+          "expected": "wait",
+          "actual": "wait",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "wait",
+            "probabilities": {
+              "confirm": 0.4149,
+              "wait": 0.5098,
+              "retry": 0.0215,
+              "review": 0.0539
+            },
+            "confidence": 0.3464
+          }
+        },
+        "paid": {
+          "expected": false,
+          "actual": false,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.2629
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 168.14666666666668,
+        "p50_ms": 168.12,
+        "p95_ms": 168.399,
+        "min_ms": 167.89,
+        "max_ms": 168.43
+      },
+      "first_backend_ms": 168.43
+    },
+    {
+      "case": "case-03",
+      "group": "payment",
+      "questions": {
+        "status": {
+          "expected": "failed",
+          "actual": "failed",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "failed",
+            "probabilities": {
+              "completed": 0.0058,
+              "pending": 0.002,
+              "failed": 0.9895,
+              "unknown": 0.0027
+            },
+            "confidence": 0.9861
+          }
+        },
+        "next_action": {
+          "expected": "retry",
+          "actual": "retry",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "retry",
+            "probabilities": {
+              "confirm": 0.0128,
+              "wait": 0.0078,
+              "retry": 0.974,
+              "review": 0.0054
+            },
+            "confidence": 0.9653
+          }
+        },
+        "paid": {
+          "expected": false,
+          "actual": false,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.139
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 168.29999999999998,
+        "p50_ms": 168.57,
+        "p95_ms": 168.903,
+        "min_ms": 167.39,
+        "max_ms": 168.94
+      },
+      "first_backend_ms": 168.57
+    },
+    {
+      "case": "case-04",
+      "group": "payment",
+      "questions": {
+        "status": {
+          "expected": "completed",
+          "actual": "completed",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "completed",
+            "probabilities": {
+              "completed": 0.9902,
+              "pending": 0.0051,
+              "failed": 0.0019,
+              "unknown": 0.0028
+            },
+            "confidence": 0.987
+          }
+        },
+        "next_action": {
+          "expected": "confirm",
+          "actual": "confirm",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "confirm",
+            "probabilities": {
+              "confirm": 0.9875,
+              "wait": 0.0078,
+              "retry": 0.002,
+              "review": 0.0027
+            },
+            "confidence": 0.9833
+          }
+        },
+        "paid": {
+          "expected": true,
+          "actual": true,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.9365
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 168.98333333333332,
+        "p50_ms": 169.04,
+        "p95_ms": 169.247,
+        "min_ms": 168.64,
+        "max_ms": 169.27
+      },
+      "first_backend_ms": 169.04
+    },
+    {
+      "case": "case-05",
+      "group": "support",
+      "questions": {
+        "queue": {
+          "expected": "refunds",
+          "actual": "refunds",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "refunds",
+            "probabilities": {
+              "refunds": 0.9584,
+              "payment_issues": 0.0115,
+              "account_access": 0.0017,
+              "product_information": 0.0045,
+              "unknown": 0.0239
+            },
+            "confidence": 0.948
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 166.83333333333334,
+        "p50_ms": 167.06,
+        "p95_ms": 167.411,
+        "min_ms": 165.99,
+        "max_ms": 167.45
+      },
+      "first_backend_ms": 167.45
+    },
+    {
+      "case": "case-06",
+      "group": "support",
+      "questions": {
+        "queue": {
+          "expected": "payment_issues",
+          "actual": "payment_issues",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "payment_issues",
+            "probabilities": {
+              "refunds": 0.0028,
+              "payment_issues": 0.9922,
+              "account_access": 0.0013,
+              "product_information": 0.0016,
+              "unknown": 0.0021
+            },
+            "confidence": 0.9902
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 166.70333333333335,
+        "p50_ms": 166.88,
+        "p95_ms": 167.096,
+        "min_ms": 166.11,
+        "max_ms": 167.12
+      },
+      "first_backend_ms": 166.11
+    },
+    {
+      "case": "case-07",
+      "group": "support",
+      "questions": {
+        "queue": {
+          "expected": "account_access",
+          "actual": "account_access",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "account_access",
+            "probabilities": {
+              "refunds": 0.003,
+              "payment_issues": 0.0014,
+              "account_access": 0.9902,
+              "product_information": 0.0028,
+              "unknown": 0.0026
+            },
+            "confidence": 0.9877
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 167.36,
+        "p50_ms": 167.44,
+        "p95_ms": 168.16,
+        "min_ms": 166.4,
+        "max_ms": 168.24
+      },
+      "first_backend_ms": 167.44
+    },
+    {
+      "case": "case-08",
+      "group": "support",
+      "questions": {
+        "queue": {
+          "expected": "product_information",
+          "actual": "product_information",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "product_information",
+            "probabilities": {
+              "refunds": 0.0115,
+              "payment_issues": 0.0278,
+              "account_access": 0.0043,
+              "product_information": 0.8994,
+              "unknown": 0.0571
+            },
+            "confidence": 0.8743
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 166.63333333333333,
+        "p50_ms": 166.82,
+        "p95_ms": 166.91,
+        "min_ms": 166.16,
+        "max_ms": 166.92
+      },
+      "first_backend_ms": 166.92
+    },
+    {
+      "case": "case-09",
+      "group": "receipt",
+      "questions": {
+        "signature": {
+          "expected": true,
+          "actual": true,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.7796
+          }
+        },
+        "reference": {
+          "expected": true,
+          "actual": true,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.8738
+          }
+        },
+        "action": {
+          "expected": "accept",
+          "actual": "accept",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "accept",
+            "probabilities": {
+              "accept": 0.8352,
+              "request_signature": 0.0539,
+              "request_reference": 0.0218,
+              "request_both": 0.0819,
+              "unknown": 0.0072
+            },
+            "confidence": 0.794
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 169.79666666666668,
+        "p50_ms": 169.37,
+        "p95_ms": 171.116,
+        "min_ms": 168.71,
+        "max_ms": 171.31
+      },
+      "first_backend_ms": 171.31
+    },
+    {
+      "case": "case-10",
+      "group": "receipt",
+      "questions": {
+        "signature": {
+          "expected": false,
+          "actual": false,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.1709
+          }
+        },
+        "reference": {
+          "expected": true,
+          "actual": true,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.8848
+          }
+        },
+        "action": {
+          "expected": "request_signature",
+          "actual": "request_signature",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "request_signature",
+            "probabilities": {
+              "accept": 0.2309,
+              "request_signature": 0.4434,
+              "request_reference": 0.0283,
+              "request_both": 0.2881,
+              "unknown": 0.0093
+            },
+            "confidence": 0.3043
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 169.09,
+        "p50_ms": 168.84,
+        "p95_ms": 170.01,
+        "min_ms": 168.29,
+        "max_ms": 170.14
+      },
+      "first_backend_ms": 168.29
+    },
+    {
+      "case": "case-11",
+      "group": "receipt",
+      "questions": {
+        "signature": {
+          "expected": true,
+          "actual": true,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.7839
+          }
+        },
+        "reference": {
+          "expected": false,
+          "actual": false,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.1973
+          }
+        },
+        "action": {
+          "expected": "request_reference",
+          "actual": "accept",
+          "correct": false,
+          "answer": {
+            "type": "choice",
+            "choice": "accept",
+            "probabilities": {
+              "accept": 0.4327,
+              "request_signature": 0.1372,
+              "request_reference": 0.072,
+              "request_both": 0.346,
+              "unknown": 0.0122
+            },
+            "confidence": 0.2909
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 168.67666666666665,
+        "p50_ms": 168.42,
+        "p95_ms": 169.176,
+        "min_ms": 168.35,
+        "max_ms": 169.26
+      },
+      "first_backend_ms": 168.42
+    },
+    {
+      "case": "case-12",
+      "group": "receipt",
+      "questions": {
+        "signature": {
+          "expected": false,
+          "actual": false,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.1692
+          }
+        },
+        "reference": {
+          "expected": false,
+          "actual": false,
+          "correct": true,
+          "answer": {
+            "type": "noul",
+            "noul": 0.2014
+          }
+        },
+        "action": {
+          "expected": "request_both",
+          "actual": "request_both",
+          "correct": true,
+          "answer": {
+            "type": "choice",
+            "choice": "request_both",
+            "probabilities": {
+              "accept": 0.2489,
+              "request_signature": 0.1087,
+              "request_reference": 0.0281,
+              "request_both": 0.607,
+              "unknown": 0.0072
+            },
+            "confidence": 0.5088
+          }
+        }
+      },
+      "latency": {
+        "mean_ms": 169.28333333333333,
+        "p50_ms": 169.36,
+        "p95_ms": 169.612,
+        "min_ms": 168.85,
+        "max_ms": 169.64
+      },
+      "first_backend_ms": 169.64
+    }
+  ]
+}

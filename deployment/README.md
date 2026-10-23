@@ -1,6 +1,6 @@
 # AWS 部署
 
-当前所有真实 Decider 请求使用共享 **vLLM / EC2 On-Demand `g6.xlarge`** 服务。实例常驻运行，API 仍部署在 ECS Fargate。工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由共用这一入口。
+当前文字 Decider 请求使用共享 **vLLM / EC2 On-Demand `g6.xlarge`** 服务。工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由共用这一入口。[图片决策](../docs/VISION.md)使用另一台现有 `g6.xlarge` 上的官方视觉服务；两台实例持续运行，业务 API 部署在 ECS Fargate。
 
 访问地址：**https://d3i7ogfx5ml7dc.cloudfront.net**。资源和发布记录见 [DEPLOYED.md](DEPLOYED.md)。原版 ECS on EC2 的构建与启停方法归档至 [ORIGINAL_GPU.md](ORIGINAL_GPU.md)；历史 SageMaker 方案见 [SAGEMAKER.md](SAGEMAKER.md)。
 
@@ -11,6 +11,7 @@ flowchart LR
     CF -->|/api/* / VPC Origin| ALB[内网 ALB]
     ALB --> API[ECS Fargate API]
     API -->|VPC Peering / 私网 :8100 / Bearer| Model[EC2 g6.xlarge / vLLM / Decider v19]
+    API -->|同一应用 VPC / 私网 :18123| Vision[另一台 EC2 g6.xlarge / 官方 v19 视觉推理]
     Model --- EBS[160GB 加密 gp3 / 权重与缓存]
     Secret[Secrets Manager] -. ECS 启动时注入密钥 .-> API
     API -->|Converse| Bedrock[Amazon Bedrock / GPT]
@@ -30,6 +31,8 @@ flowchart LR
 | 私网入口 | `http://172.31.33.164:8100/v1/systemone`，经两个 VPC 之间的 Peering |
 | 认证 | ECS Execution Role 读取 Secrets Manager JSON 字段 `api_key`，作为 `DECIDER_API_KEY` 注入 API；不返回浏览器 |
 | 模型标识 | `strands-decider-2B-hobson-v19-vllm` |
+| 图片服务 | `i-0daca64f56056aa1c` / L4；`http://10.78.1.15:18123`，仅业务 API 安全组可访问 |
+| 图片模型与状态 | `strands-decider-2B-hobson-v19-vision`；`/api/vision/health` 单独检查 |
 | 健康检查 | `/api/health` 验证模型响应中的 `engine=vllm`；`/api/gpu` 显示共享实例 |
 | 登录 | 自建用户名／密码，DynamoDB 会话；不使用 Cognito |
 | GPT / Jev | 原有 Bedrock Converse 和 IAM-only Lambda 转发路径不变 |
@@ -47,7 +50,7 @@ vLLM 保留官方 v19 的决策头和 System One `choice` / `noul` / `score` 协
 - 工作台 `measure_decisions=true` 时，同一次请求中的问题仍依次执行以记录逐题耗时；不同 HTTP 请求可以并发。省略此参数则一次提交完整问题集。
 - 顶部「GPU」显示实例和连接状态，`can_manage=false`。演示页面不启停共享实例；启停 API 返回 `409`。部署管理员通过 vLLM 项目维护服务。
 - `/api/live` 和 `/api/ready` 不依赖模型在线，模型异常时登录与规则回放仍可用。`/api/health` 和 `/api/gpu` 显示真实连接情况；失败任务需要手动重新运行。
-- 原版 GPU `i-0daca64f56056aa1c` 本次保留，当前演示不再向它发起推理。它仍在运行并计费，旧控制器不会管理共享 vLLM 实例。
+- 图片服务复用原版 GPU `i-0daca64f56056aa1c`，独立容器加载和预热后就绪，串行处理图片请求。文字 vLLM 与图片服务的状态、推理槽及计时独立；顶部 GPU 状态只对应文字服务。
 
 ## 更新部署
 
@@ -84,6 +87,21 @@ uv run python deployment/deploy.py --region us-east-1 --api-only \
 
 已有环境省略 `--model-provider` 与 `--vllm-config` 时保留原参数；显式使用 `--model-provider ec2` 会恢复旧部署模式，需先确认旧服务就绪。密钥轮换后需要重新部署 ECS Task 才会读取新值。
 
+### 图片服务接入
+
+先部署可用的官方视觉服务，再向主栈提供私网 URL 和其安全组：
+
+```bash
+uv run python deployment/deploy.py --region us-east-1 --api-only \
+  --tag YOUR_UNIQUE_API_TAG \
+  --vision-url http://10.78.1.15:18123 \
+  --vision-security-group sg-077af78c8a42037c1
+```
+
+两个参数同时提供；后续省略时保留已有配置。主栈注入 `DECIDER_VISION_URL`，并添加仅允许 API 安全组访问 TCP 18123 的规则，不创建 GPU。
+
+现有环境的首次安装脚本为 [deploy_vision.py](deploy_vision.py)：使用缓存模型镜像、固定上游源码及本地准备好的离线 wheel，经一次性 ECS 安装任务启动独立 Docker 容器。该脚本依赖当前账户的模型镜像、S3 桶和 ECS 主机，不是通用的一键创建实例脚本。容器 `unless-stopped`，依赖与缓存保存在宿主磁盘；模型先预热再接收请求。正式运行不需要临时安装任务。
+
 ## 登录与账号管理
 
 账号和会话保存在 `strands-decider-demo-auth`。密码使用独立随机盐的 scrypt；服务端只保存会话令牌摘要。Cookie 为 `Secure`、`HttpOnly`、`SameSite=Strict`；重置密码或禁用账号撤销该账号的旧会话。写请求校验 Origin 与自定义请求头。
@@ -101,7 +119,7 @@ uv run python -m scripts.manage_users disable alice
 ## 验证与排查
 
 ```bash
-# 所有 Decider 模块的真实调用，保存输入、输出与模型 ID
+# 文字 Decider 模块的真实调用，保存输入、输出与模型 ID
 uv run python scripts/check_vllm_demo.py \
   --url https://d3i7ogfx5ml7dc.cloudfront.net \
   --credentials .deployment/admin-credentials.json \
@@ -113,6 +131,12 @@ uv run --with playwright python scripts/check_routing_browser.py --live \
   --credentials .deployment/admin-credentials.json \
   --output .deployment/vllm-routing-browser
 
+# 图片模块：实时推理、上传、对照方式与手机布局
+uv run --with playwright python scripts/check_vision_browser.py --live \
+  --url https://d3i7ogfx5ml7dc.cloudfront.net \
+  --credentials .deployment/admin-credentials.json \
+  --output .deployment/vision-browser.json
+
 # API 日志
 aws logs tail /ecs/strands-decider-demo --region us-east-1 --since 10m
 ```
@@ -121,10 +145,12 @@ aws logs tail /ecs/strands-decider-demo --region us-east-1 --since 10m
 
 登录失败先检查账号和会话；模型连接失败检查 vLLM 服务、双向 Peering 路由和 `8100` 安全组。ECS Task 启动失败检查 Secrets Manager endpoint、执行角色和 JSON 字段 `api_key`。不要将密钥或完整容器环境输出到日志。
 
+图片不可用时检查 `/api/vision/health`、ECS 的 `DECIDER_VISION_URL`、TCP 18123 规则及视觉容器日志；文字 vLLM 健康不能证明图片服务健康。图片实时请求失败会显示错误，历史实测可独立查看。
+
 ## 成本与资源维护
 
 共享 `g6.xlarge` 为 $0.8048/小时，按 730 小时约 $587.50/月；160GB gp3 约 $12.80/月。新增单 AZ Secrets Manager interface endpoint 约 $7.30/月，另有数据处理费。Fargate、ALB、其他私有端点、公共 IPv4、存储、日志及 Jev / Bedrock 用量另计。
 
-原版 GPU 本次未停止，它的计算与磁盘费用继续单独收取。演示与公共 vLLM API 共用同一实例，计算费不能在两个项目中重复相加；共享实例停止会同时影响两处入口。
+图片服务复用的原版 GPU 持续运行，计算与磁盘费用单独收取；按上述单价，两台 g6.xlarge 的计算费合计约 $1,175.01/月，其他费用另计。文字演示与公共 vLLM API 共用一台实例，计算费不能在两个项目中重复相加；共享实例停止会同时影响这两处文字入口。
 
 日常发布只更新 API 和前端。删除演示主 stack 会删除其管理的 vLLM 路由和 API 访问规则，不会删除共享 EC2、vLLM 密钥或 vLLM CloudFront。原版 GPU 的完整清理步骤见归档；共享实例的清理由 vLLM 项目单独管理。

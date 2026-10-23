@@ -398,7 +398,7 @@ def architecture():
     p = Page(
         "01  AWS 部署架构",
         "architecture",
-        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · 共享 vLLM / Jev / Bedrock",
+        "Strands Decider 演示 · 私有 S3 + CloudFront OAC · ECS Fargate · 文字 vLLM / 图片视觉服务 / Jev / Bedrock",
         width=1800,
         height=1620,
         aws_style=True,
@@ -422,7 +422,7 @@ def architecture():
         440,
         480,
         350,
-        620,
+        800,
         "应用 VPC · 无公网出口",
         group=True,
         icons=("vpc",),
@@ -433,7 +433,7 @@ def architecture():
         465,
         550,
         315,
-        500,
+        710,
         "私有子网组 · 2 个 AZ",
         group=True,
         icons=("subnet",),
@@ -493,6 +493,16 @@ def architecture():
         icons=("ecs", "fargate"),
     )
     p.box(
+        "vision",
+        490,
+        1060,
+        280,
+        170,
+        "Amazon EC2 · 图片决策\n官方 v19 视觉编码器 + 决策头\ng6.xlarge / L4 · 常驻\n同 VPC 私网 :18123",
+        size=15,
+        icons=("ec2",),
+    )
+    p.box(
         "sm",
         845,
         605,
@@ -533,12 +543,12 @@ def architecture():
     )
     p.box(
         "secret",
-        445,
+        845,
         1160,
-        650,
+        300,
         165,
-        "AWS Secrets Manager · vLLM API 密钥\nECS 启动时注入后端 · 浏览器不持有密钥\n共享 GPU 由部署端管理，页面只查看健康状态",
-        size=17,
+        "AWS Secrets Manager\nvLLM API 密钥\nECS 启动时注入后端\n浏览器不持有密钥",
+        size=16,
     )
     p.box(
         "ddb",
@@ -567,7 +577,7 @@ def architecture():
         1360,
         535,
         80,
-        "原版 GPU 保留作基线 / 回退\n当前演示不再调用原版服务",
+        "图片模块复用另一台现有 L4\n文字与图片使用独立服务，分别计时",
         size=16,
         icons=("ec2", "ebs"),
         side=True,
@@ -584,6 +594,7 @@ def architecture():
         at=(950, 450),
     )
     p.edge("alb", "api", [(625, 750), (625, 815)])
+    p.edge("api", "vision", [(625, 1015), (625, 1060)], color=TEAL)
     p.edge(
         "api",
         "sm",
@@ -624,11 +635,9 @@ def architecture():
     p.edge(
         "secret",
         "api",
-        [(620, 1160), (620, 1015)],
-        "启动时注入",
+        [(845, 1240), (805, 1240), (805, 1000), (770, 1000)],
         color=ORANGE,
         dashed=True,
-        at=(535, 1120),
     )
     p.box(
         "legend",

@@ -1,0 +1,42 @@
+{
+  "verified_at": "2026-10-23T02:46:45.878533+00:00",
+  "services": [
+    {
+      "serviceName": "strands-decider-demo-gpu-model-ondemand",
+      "desiredCount": 1,
+      "runningCount": 1,
+      "taskDefinition": "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-demo-gpu-model:3"
+    },
+    {
+      "serviceName": "strands-decider-demo",
+      "desiredCount": 1,
+      "runningCount": 1,
+      "taskDefinition": "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-demo:22"
+    }
+  ],
+  "instances": [
+    {
+      "InstanceId": "i-0ae7eb0abcb815af3",
+      "InstanceType": "g6.xlarge",
+      "State": {
+        "Code": 16,
+        "Name": "running"
+      }
+    },
+    {
+      "InstanceId": "i-0daca64f56056aa1c",
+      "InstanceType": "g6.xlarge",
+      "State": {
+        "Code": 16,
+        "Name": "running"
+      }
+    }
+  ],
+  "deregistered_temporary_task_definitions": [
+    "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-vision-validation:1",
+    "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-vision-validation:2",
+    "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-vision-validation:3",
+    "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-vision-probe:1",
+    "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-vision-probe:2"
+  ]
+}

@@ -1,14 +1,23 @@
 # 已部署环境
 
-最近发布日期：2026-10-16。
+最近发布日期：2026-10-23。
 
 **访问地址：https://d3i7ogfx5ml7dc.cloudfront.net**
 
 API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 
-**当前：所有 Decider 模块统一调用共享 vLLM / EC2 On-Demand `g6.xlarge`，持续运行。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
+**当前：文字 Decider 模块调用共享 vLLM / EC2 On-Demand `g6.xlarge`；图片决策调用另一台现有 `g6.xlarge` 上的官方视觉服务，两者持续运行。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
+
+## 图片决策模块（2026-10-23，vision-v1）
+
+- 新入口 [图片决策](https://d3i7ogfx5ml7dc.cloudfront.net/#vision)：支付状态、中文客服分流、凭证完整性，12 张预设图片及 PNG / JPEG / WebP 上传。显示实际问题、模型选择、概率和耗时，支持候选换序、无图及白图对照；实时结果与历史实测分别标识。
+- 官方 v19 视觉服务部署在现有实例 `i-0daca64f56056aa1c` / `g6.xlarge` / L4，容器 `decider-vision-service-20261023-v1`，私网 `10.78.1.15:18123`。源码固定到 `d942e5515db750f80a51032629ec312455a87976`；离线依赖与模型缓存保存在磁盘，加载并预热后就绪，容器配置 `unless-stopped`。复用现有实例，没有新增 EC2。
+- ECS API 通过 `DECIDER_VISION_URL` 调用视觉服务，安全组端口仅向业务 API 安全组开放。文字决策继续走共享 vLLM `172.31.33.164:8100`，健康检查分别确认 `official-vision` 与 `vllm`。
+- API 镜像 `vision-20261023-v1`，ECR 摘要 `sha256:c325096f871c4e1b0d73156e45fd503a29c99f1644f98e978d5342442cc81ccd`，Task Definition **revision 23**。主 stack `UPDATE_COMPLETE`，ECS 滚动部署 `COMPLETED`；CloudFront invalidation `IAG1DN0XU18OULLXTL7GBHPIJH` 已完成，17 个前端与图片资源逐字节核对通过，S3 四项公共访问阻止及 OAC 保持启用。
+- **256 项自动化测试通过**。线上 API 三次、浏览器五次实时调用均成功；浏览器验证三场景、换序／无图／白图、上传不套用样例预期、历史标识和 390px 布局，无 JavaScript 错误。五次浏览器调用中四次带图后端耗时为 **166.7–170.7 ms**，无图为 **142.1 ms**，仅作为接入验收记录。
+- [模块说明](../docs/VISION.md)保留既有小样本实测及错误结果；新接入数据不替代先前基准。部署、API 和浏览器证据位于本机 `.deployment/vision-module/`，不含在公开仓库中。
 
 ## 全模块切换共享 vLLM（2026-10-16）
 
@@ -20,7 +29,7 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 - 177 项相关自动化测试通过；包括原版兼容、vLLM 认证、三种协议、并发、上游限流、离线状态、支付与路由。新增真实接入验证保存 **83 次业务 API 响应**（含 5 次仅推进模拟事件的 tick），另外两次并发工作台请求均成功。固定／优化输入覆盖四场景共 40 次支付决策；四场景闭环分别用 6 / 6 / 9 / 6 次模型决策完成模拟业务。
 - 浏览器四场景三模型原始路由验证：6 次预热另存，24 次正式调用全部成功；Decider 两步都返回 vLLM 模型 ID。桌面和 390px 手机端显示正确实例、无共享 GPU 启停按钮、无 JavaScript 错误。
 - S3 四项公共访问阻止仍全开，匿名直连返回 403，未登录业务 API 返回 401；已核对发布前端与本地文件一致。README、当前 SVG 与部署／开发说明同步；历史原版测速、JevBench 和 PPT 数据保持原口径，本轮接入验证不是新的三模型性能基准。
-- **原版实例 `i-0daca64f56056aa1c` 仍为 running，未停止、未删除磁盘，继续单独计费；当前演示不再调用它。** 共享 vLLM 实例也保持 running。原版启停方法归档至 [ORIGINAL_GPU.md](ORIGINAL_GPU.md)。
+- **迁移当日，原版实例 `i-0daca64f56056aa1c` 仍为 running，未停止、未删除磁盘，继续单独计费；文字演示不再调用它。** 2026-10-23 新增图片模块复用该实例，见本文顶部。共享 vLLM 实例也保持 running。原版启停方法归档至 [ORIGINAL_GPU.md](ORIGINAL_GPU.md)。
 - 本机证据目录 `.deployment/vllm-migration-20261016/`：`live-verification.json`、`routing-browser/`、`gpu-browser.json`、`deployment-verification.json`、部署日志及更新前资源快照。GitHub 发布前完整回归为 243 项测试通过；凭据与本机部署证据不入库。
 
 ## 文档与 GitHub 同步（2026-10-12）

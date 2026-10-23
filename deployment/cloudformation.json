@@ -48,6 +48,14 @@
       "Type": "String",
       "Default": ""
     },
+    "VisionUrl": {
+      "Type": "String",
+      "Default": ""
+    },
+    "VisionSecurityGroupId": {
+      "Type": "String",
+      "Default": ""
+    },
     "JevSecretArn": {
       "Type": "String",
       "Default": "",
@@ -100,6 +108,18 @@
           "Ref": "ModelProvider"
         },
         "vllm"
+      ]
+    },
+    "HasVision": {
+      "Fn::Not": [
+        {
+          "Fn::Equals": [
+            {
+              "Ref": "VisionUrl"
+            },
+            ""
+          ]
+        }
       ]
     }
   },
@@ -999,6 +1019,22 @@
       },
       "Condition": "HasVllm"
     },
+    "VisionApiIngress": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "GroupId": {
+          "Ref": "VisionSecurityGroupId"
+        },
+        "IpProtocol": "tcp",
+        "FromPort": 18123,
+        "ToPort": 18123,
+        "SourceSecurityGroupId": {
+          "Ref": "TaskSecurityGroup"
+        },
+        "Description": "Authenticated application backend to private vision service"
+      },
+      "Condition": "HasVision"
+    },
     "SecretsManagerEndpoint": {
       "Type": "AWS::EC2::VPCEndpoint",
       "Properties": {
@@ -1134,6 +1170,12 @@
                 "Name": "GPU_PROVIDER",
                 "Value": {
                   "Ref": "ModelProvider"
+                }
+              },
+              {
+                "Name": "DECIDER_VISION_URL",
+                "Value": {
+                  "Ref": "VisionUrl"
                 }
               },
               {

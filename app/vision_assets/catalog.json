@@ -1,0 +1,2006 @@
+{
+  "captured_at": "2026-10-23",
+  "cases_sha256": "9751d9913a497ef7c1ba1cea6ca0a405686f16e167ca10bdb1392a98aa24fe3a",
+  "cases": [
+    {
+      "id": "case-01",
+      "group": "payment",
+      "image": "case-01.png",
+      "sha256": "9ca6589171800318768b36d057660c4dab532f6b38753a425dd4468d04133533",
+      "description": "en payment screenshot: completed",
+      "expected": {
+        "status": "completed",
+        "next_action": "confirm",
+        "paid": true
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "status": {
+            "type": "choice",
+            "instructions": "截图显示的付款状态是什么？",
+            "criteria": {
+              "completed": "页面明确显示付款已成功完成",
+              "pending": "页面显示付款仍在处理中或等待确认",
+              "failed": "页面明确显示付款失败",
+              "unknown": "图片缺失、不可读，或没有足够信息"
+            }
+          },
+          "next_action": {
+            "type": "choice",
+            "instructions": "仅依据截图，客服下一步应如何处理？",
+            "criteria": {
+              "confirm": "付款已成功，告知客户该笔付款已完成",
+              "wait": "仍在处理中，等待确认，不重复付款",
+              "retry": "付款明确失败，提示检查原因后重试",
+              "review": "图片信息不足，要求提供清晰完整截图"
+            }
+          },
+          "paid": {
+            "type": "noul",
+            "instructions": "截图是否明确显示这笔付款已经成功完成？"
+          }
+        }
+      },
+      "title": "支付成功 · 英文",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:36.956409+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "completed": 0.9898,
+                  "pending": 0.005,
+                  "failed": 0.0022,
+                  "unknown": 0.0031
+                },
+                "confidence": 0.9864
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "confirm",
+                "probabilities": {
+                  "confirm": 0.9815,
+                  "wait": 0.0113,
+                  "retry": 0.003,
+                  "review": 0.0042
+                },
+                "confidence": 0.9754
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.9366
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 167.72
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:43.087757+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "unknown": 0.0071,
+                  "failed": 0.0071,
+                  "pending": 0.0039,
+                  "completed": 0.9819
+                },
+                "confidence": 0.9759
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "confirm",
+                "probabilities": {
+                  "review": 0.0158,
+                  "retry": 0.009,
+                  "wait": 0.0128,
+                  "confirm": 0.9624
+                },
+                "confidence": 0.9499
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.9366
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.0
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:50.600423+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "completed": 0.4592,
+                  "pending": 0.1967,
+                  "failed": 0.0167,
+                  "unknown": 0.3275
+                },
+                "confidence": 0.2789
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.1153,
+                  "wait": 0.0476,
+                  "retry": 0.047,
+                  "review": 0.79
+                },
+                "confidence": 0.72
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.4208
+              }
+            },
+            "usage": {
+              "input_tokens": 277,
+              "output_tokens": 3
+            },
+            "latency_ms": 135.78
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:52.199532+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "completed": 0.0639,
+                  "pending": 0.0585,
+                  "failed": 0.0167,
+                  "unknown": 0.8609
+                },
+                "confidence": 0.8145
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.0834,
+                  "wait": 0.0534,
+                  "retry": 0.0435,
+                  "review": 0.8197
+                },
+                "confidence": 0.7596
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.202
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 163.44
+          }
+        }
+      }
+    },
+    {
+      "id": "case-02",
+      "group": "payment",
+      "image": "case-02.png",
+      "sha256": "57c7d2b8015289ffee2a9258ea28a7c487a66be08593e3ea9a66d380ca90c2d7",
+      "description": "en payment screenshot: pending",
+      "expected": {
+        "status": "pending",
+        "next_action": "wait",
+        "paid": false
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "status": {
+            "type": "choice",
+            "instructions": "截图显示的付款状态是什么？",
+            "criteria": {
+              "completed": "页面明确显示付款已成功完成",
+              "pending": "页面显示付款仍在处理中或等待确认",
+              "failed": "页面明确显示付款失败",
+              "unknown": "图片缺失、不可读，或没有足够信息"
+            }
+          },
+          "next_action": {
+            "type": "choice",
+            "instructions": "仅依据截图，客服下一步应如何处理？",
+            "criteria": {
+              "confirm": "付款已成功，告知客户该笔付款已完成",
+              "wait": "仍在处理中，等待确认，不重复付款",
+              "retry": "付款明确失败，提示检查原因后重试",
+              "review": "图片信息不足，要求提供清晰完整截图"
+            }
+          },
+          "paid": {
+            "type": "noul",
+            "instructions": "截图是否明确显示这笔付款已经成功完成？"
+          }
+        }
+      },
+      "title": "等待链上确认",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:37.469645+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "pending",
+                "probabilities": {
+                  "completed": 0.0854,
+                  "pending": 0.8637,
+                  "failed": 0.0078,
+                  "unknown": 0.0431
+                },
+                "confidence": 0.8182
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "wait",
+                "probabilities": {
+                  "confirm": 0.4149,
+                  "wait": 0.5098,
+                  "retry": 0.0215,
+                  "review": 0.0539
+                },
+                "confidence": 0.3464
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.2629
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.43
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:43.599089+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "pending",
+                "probabilities": {
+                  "unknown": 0.0775,
+                  "failed": 0.0266,
+                  "pending": 0.7967,
+                  "completed": 0.0992
+                },
+                "confidence": 0.7289
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "wait",
+                "probabilities": {
+                  "review": 0.1249,
+                  "retry": 0.0436,
+                  "wait": 0.5256,
+                  "confirm": 0.3059
+                },
+                "confidence": 0.3675
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.2629
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.69
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:51.015898+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "completed": 0.4592,
+                  "pending": 0.1967,
+                  "failed": 0.0167,
+                  "unknown": 0.3275
+                },
+                "confidence": 0.2789
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.1153,
+                  "wait": 0.0476,
+                  "retry": 0.047,
+                  "review": 0.79
+                },
+                "confidence": 0.72
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.4208
+              }
+            },
+            "usage": {
+              "input_tokens": 277,
+              "output_tokens": 3
+            },
+            "latency_ms": 136.57
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:52.695209+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "completed": 0.0639,
+                  "pending": 0.0585,
+                  "failed": 0.0167,
+                  "unknown": 0.8609
+                },
+                "confidence": 0.8145
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.0834,
+                  "wait": 0.0534,
+                  "retry": 0.0435,
+                  "review": 0.8197
+                },
+                "confidence": 0.7596
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.202
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 164.05
+          }
+        }
+      }
+    },
+    {
+      "id": "case-03",
+      "group": "payment",
+      "image": "case-03.png",
+      "sha256": "269b684e21e80b326722543dbe7829739c5778f881e3b7f00339001025ef57c9",
+      "description": "en payment screenshot: failed",
+      "expected": {
+        "status": "failed",
+        "next_action": "retry",
+        "paid": false
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "status": {
+            "type": "choice",
+            "instructions": "截图显示的付款状态是什么？",
+            "criteria": {
+              "completed": "页面明确显示付款已成功完成",
+              "pending": "页面显示付款仍在处理中或等待确认",
+              "failed": "页面明确显示付款失败",
+              "unknown": "图片缺失、不可读，或没有足够信息"
+            }
+          },
+          "next_action": {
+            "type": "choice",
+            "instructions": "仅依据截图，客服下一步应如何处理？",
+            "criteria": {
+              "confirm": "付款已成功，告知客户该笔付款已完成",
+              "wait": "仍在处理中，等待确认，不重复付款",
+              "retry": "付款明确失败，提示检查原因后重试",
+              "review": "图片信息不足，要求提供清晰完整截图"
+            }
+          },
+          "paid": {
+            "type": "noul",
+            "instructions": "截图是否明确显示这笔付款已经成功完成？"
+          }
+        }
+      },
+      "title": "付款失败",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:37.127020+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "failed",
+                "probabilities": {
+                  "completed": 0.0058,
+                  "pending": 0.002,
+                  "failed": 0.9895,
+                  "unknown": 0.0027
+                },
+                "confidence": 0.9861
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "retry",
+                "probabilities": {
+                  "confirm": 0.0128,
+                  "wait": 0.0078,
+                  "retry": 0.974,
+                  "review": 0.0054
+                },
+                "confidence": 0.9653
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.139
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.57
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:43.257891+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "failed",
+                "probabilities": {
+                  "unknown": 0.0052,
+                  "failed": 0.9916,
+                  "pending": 0.0017,
+                  "completed": 0.0015
+                },
+                "confidence": 0.9889
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "retry",
+                "probabilities": {
+                  "review": 0.0175,
+                  "retry": 0.9723,
+                  "wait": 0.0067,
+                  "confirm": 0.0035
+                },
+                "confidence": 0.963
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.139
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.2
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:50.737775+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "completed": 0.4592,
+                  "pending": 0.1967,
+                  "failed": 0.0167,
+                  "unknown": 0.3275
+                },
+                "confidence": 0.2789
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.1153,
+                  "wait": 0.0476,
+                  "retry": 0.047,
+                  "review": 0.79
+                },
+                "confidence": 0.72
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.4208
+              }
+            },
+            "usage": {
+              "input_tokens": 277,
+              "output_tokens": 3
+            },
+            "latency_ms": 136.72
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:52.364629+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "completed": 0.0639,
+                  "pending": 0.0585,
+                  "failed": 0.0167,
+                  "unknown": 0.8609
+                },
+                "confidence": 0.8145
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.0834,
+                  "wait": 0.0534,
+                  "retry": 0.0435,
+                  "review": 0.8197
+                },
+                "confidence": 0.7596
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.202
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 163.08
+          }
+        }
+      }
+    },
+    {
+      "id": "case-04",
+      "group": "payment",
+      "image": "case-04.png",
+      "sha256": "b77a800afe3ff7781006aef497cb2aac1517b438fbe4246a41be96b2075a8321",
+      "description": "zh payment screenshot: completed",
+      "expected": {
+        "status": "completed",
+        "next_action": "confirm",
+        "paid": true
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "status": {
+            "type": "choice",
+            "instructions": "截图显示的付款状态是什么？",
+            "criteria": {
+              "completed": "页面明确显示付款已成功完成",
+              "pending": "页面显示付款仍在处理中或等待确认",
+              "failed": "页面明确显示付款失败",
+              "unknown": "图片缺失、不可读，或没有足够信息"
+            }
+          },
+          "next_action": {
+            "type": "choice",
+            "instructions": "仅依据截图，客服下一步应如何处理？",
+            "criteria": {
+              "confirm": "付款已成功，告知客户该笔付款已完成",
+              "wait": "仍在处理中，等待确认，不重复付款",
+              "retry": "付款明确失败，提示检查原因后重试",
+              "review": "图片信息不足，要求提供清晰完整截图"
+            }
+          },
+          "paid": {
+            "type": "noul",
+            "instructions": "截图是否明确显示这笔付款已经成功完成？"
+          }
+        }
+      },
+      "title": "支付成功 · 中文",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:37.983490+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "completed": 0.9902,
+                  "pending": 0.0051,
+                  "failed": 0.0019,
+                  "unknown": 0.0028
+                },
+                "confidence": 0.987
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "confirm",
+                "probabilities": {
+                  "confirm": 0.9875,
+                  "wait": 0.0078,
+                  "retry": 0.002,
+                  "review": 0.0027
+                },
+                "confidence": 0.9833
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.9365
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 169.04
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:44.110890+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "unknown": 0.0061,
+                  "failed": 0.005,
+                  "pending": 0.0038,
+                  "completed": 0.9851
+                },
+                "confidence": 0.9802
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "confirm",
+                "probabilities": {
+                  "review": 0.0103,
+                  "retry": 0.0054,
+                  "wait": 0.0073,
+                  "confirm": 0.977
+                },
+                "confidence": 0.9693
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.9365
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.79
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:51.360364+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "completed",
+                "probabilities": {
+                  "completed": 0.4592,
+                  "pending": 0.1967,
+                  "failed": 0.0167,
+                  "unknown": 0.3275
+                },
+                "confidence": 0.2789
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.1153,
+                  "wait": 0.0476,
+                  "retry": 0.047,
+                  "review": 0.79
+                },
+                "confidence": 0.72
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.4208
+              }
+            },
+            "usage": {
+              "input_tokens": 277,
+              "output_tokens": 3
+            },
+            "latency_ms": 135.67
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:53.191816+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "status": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "completed": 0.0639,
+                  "pending": 0.0585,
+                  "failed": 0.0167,
+                  "unknown": 0.8609
+                },
+                "confidence": 0.8145
+              },
+              "next_action": {
+                "type": "choice",
+                "choice": "review",
+                "probabilities": {
+                  "confirm": 0.0834,
+                  "wait": 0.0534,
+                  "retry": 0.0435,
+                  "review": 0.8197
+                },
+                "confidence": 0.7596
+              },
+              "paid": {
+                "type": "noul",
+                "noul": 0.202
+              }
+            },
+            "usage": {
+              "input_tokens": 476,
+              "output_tokens": 3
+            },
+            "latency_ms": 164.37
+          }
+        }
+      }
+    },
+    {
+      "id": "case-05",
+      "group": "support",
+      "image": "case-05.png",
+      "sha256": "a64f44d509864f770a2fbf66d713bbd9aaf5276738f2ab28bd70fcc5991cd20c",
+      "description": "Chinese customer chat: refunds",
+      "expected": {
+        "queue": "refunds"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "queue": {
+            "type": "choice",
+            "instructions": "应将截图中的客户问题分配给哪个客服队列？",
+            "criteria": {
+              "refunds": "客户申请退款、重复扣款退回",
+              "payment_issues": "客户付款失败、支付无法完成",
+              "account_access": "客户无法登录、账号被锁定",
+              "product_information": "客户咨询产品支持范围或使用信息",
+              "unknown": "图片缺失、不可读，或无法判断诉求"
+            }
+          }
+        }
+      },
+      "title": "重复付款退款",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:38.326887+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "refunds",
+                "probabilities": {
+                  "refunds": 0.9584,
+                  "payment_issues": 0.0115,
+                  "account_access": 0.0017,
+                  "product_information": 0.0045,
+                  "unknown": 0.0239
+                },
+                "confidence": 0.948
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 167.45
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:44.452448+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "refunds",
+                "probabilities": {
+                  "unknown": 0.0064,
+                  "product_information": 0.0022,
+                  "account_access": 0.0011,
+                  "payment_issues": 0.0052,
+                  "refunds": 0.9852
+                },
+                "confidence": 0.9815
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 191.32
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:51.635911+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0917,
+                  "payment_issues": 0.0508,
+                  "account_access": 0.0319,
+                  "product_information": 0.1588,
+                  "unknown": 0.6668
+                },
+                "confidence": 0.5835
+              }
+            },
+            "usage": {
+              "input_tokens": 131,
+              "output_tokens": 1
+            },
+            "latency_ms": 65.62
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:53.523664+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0531,
+                  "payment_issues": 0.0269,
+                  "account_access": 0.0247,
+                  "product_information": 0.0765,
+                  "unknown": 0.8188
+                },
+                "confidence": 0.7735
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 162.08
+          }
+        }
+      }
+    },
+    {
+      "id": "case-06",
+      "group": "support",
+      "image": "case-06.png",
+      "sha256": "d3a4fcf0e689d0652b6269ebf0f80c02d397b5f5ab33baaf77910c776bd1534d",
+      "description": "Chinese customer chat: payment_issues",
+      "expected": {
+        "queue": "payment_issues"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "queue": {
+            "type": "choice",
+            "instructions": "应将截图中的客户问题分配给哪个客服队列？",
+            "criteria": {
+              "refunds": "客户申请退款、重复扣款退回",
+              "payment_issues": "客户付款失败、支付无法完成",
+              "account_access": "客户无法登录、账号被锁定",
+              "product_information": "客户咨询产品支持范围或使用信息",
+              "unknown": "图片缺失、不可读，或无法判断诉求"
+            }
+          }
+        }
+      },
+      "title": "支付报错",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:37.641016+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "payment_issues",
+                "probabilities": {
+                  "refunds": 0.0028,
+                  "payment_issues": 0.9922,
+                  "account_access": 0.0013,
+                  "product_information": 0.0016,
+                  "unknown": 0.0021
+                },
+                "confidence": 0.9902
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 166.11
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:43.770149+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "payment_issues",
+                "probabilities": {
+                  "unknown": 0.0027,
+                  "product_information": 0.0008,
+                  "account_access": 0.0005,
+                  "payment_issues": 0.9958,
+                  "refunds": 0.0003
+                },
+                "confidence": 0.9947
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 166.16
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:51.153916+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0917,
+                  "payment_issues": 0.0508,
+                  "account_access": 0.0319,
+                  "product_information": 0.1588,
+                  "unknown": 0.6668
+                },
+                "confidence": 0.5835
+              }
+            },
+            "usage": {
+              "input_tokens": 131,
+              "output_tokens": 1
+            },
+            "latency_ms": 65.83
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:52.860907+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0531,
+                  "payment_issues": 0.0269,
+                  "account_access": 0.0247,
+                  "product_information": 0.0765,
+                  "unknown": 0.8188
+                },
+                "confidence": 0.7735
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 162.62
+          }
+        }
+      }
+    },
+    {
+      "id": "case-07",
+      "group": "support",
+      "image": "case-07.png",
+      "sha256": "729a95106c73b09d74a84b6780d10b7db2efb66ae1e148e537ed4fe2650bdae6",
+      "description": "Chinese customer chat: account_access",
+      "expected": {
+        "queue": "account_access"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "queue": {
+            "type": "choice",
+            "instructions": "应将截图中的客户问题分配给哪个客服队列？",
+            "criteria": {
+              "refunds": "客户申请退款、重复扣款退回",
+              "payment_issues": "客户付款失败、支付无法完成",
+              "account_access": "客户无法登录、账号被锁定",
+              "product_information": "客户咨询产品支持范围或使用信息",
+              "unknown": "图片缺失、不可读，或无法判断诉求"
+            }
+          }
+        }
+      },
+      "title": "账号锁定",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:36.786632+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "account_access",
+                "probabilities": {
+                  "refunds": 0.003,
+                  "payment_issues": 0.0014,
+                  "account_access": 0.9902,
+                  "product_information": 0.0028,
+                  "unknown": 0.0026
+                },
+                "confidence": 0.9877
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 167.44
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:42.921430+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "account_access",
+                "probabilities": {
+                  "unknown": 0.0075,
+                  "product_information": 0.0017,
+                  "account_access": 0.9889,
+                  "payment_issues": 0.0016,
+                  "refunds": 0.0003
+                },
+                "confidence": 0.9861
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 164.04
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:50.532941+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0917,
+                  "payment_issues": 0.0508,
+                  "account_access": 0.0319,
+                  "product_information": 0.1588,
+                  "unknown": 0.6668
+                },
+                "confidence": 0.5835
+              }
+            },
+            "usage": {
+              "input_tokens": 131,
+              "output_tokens": 1
+            },
+            "latency_ms": 66.09
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:52.035717+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0531,
+                  "payment_issues": 0.0269,
+                  "account_access": 0.0247,
+                  "product_information": 0.0765,
+                  "unknown": 0.8188
+                },
+                "confidence": 0.7735
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 162.14
+          }
+        }
+      }
+    },
+    {
+      "id": "case-08",
+      "group": "support",
+      "image": "case-08.png",
+      "sha256": "dec33f2669003509424e5682ee286fd3925775a6803e359565e96ea8d21f10b7",
+      "description": "Chinese customer chat: product_information",
+      "expected": {
+        "queue": "product_information"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "queue": {
+            "type": "choice",
+            "instructions": "应将截图中的客户问题分配给哪个客服队列？",
+            "criteria": {
+              "refunds": "客户申请退款、重复扣款退回",
+              "payment_issues": "客户付款失败、支付无法完成",
+              "account_access": "客户无法登录、账号被锁定",
+              "product_information": "客户咨询产品支持范围或使用信息",
+              "unknown": "图片缺失、不可读，或无法判断诉求"
+            }
+          }
+        }
+      },
+      "title": "币种咨询",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:36.445750+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "product_information",
+                "probabilities": {
+                  "refunds": 0.0115,
+                  "payment_issues": 0.0278,
+                  "account_access": 0.0043,
+                  "product_information": 0.8994,
+                  "unknown": 0.0571
+                },
+                "confidence": 0.8743
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 166.92
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:42.582573+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "product_information",
+                "probabilities": {
+                  "unknown": 0.1229,
+                  "product_information": 0.8434,
+                  "account_access": 0.0043,
+                  "payment_issues": 0.0274,
+                  "refunds": 0.002
+                },
+                "confidence": 0.8042
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 166.25
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:44.646146+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0917,
+                  "payment_issues": 0.0508,
+                  "account_access": 0.0319,
+                  "product_information": 0.1588,
+                  "unknown": 0.6668
+                },
+                "confidence": 0.5835
+              }
+            },
+            "usage": {
+              "input_tokens": 131,
+              "output_tokens": 1
+            },
+            "latency_ms": 5744.76
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:51.703590+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "queue": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "refunds": 0.0531,
+                  "payment_issues": 0.0269,
+                  "account_access": 0.0247,
+                  "product_information": 0.0765,
+                  "unknown": 0.8188
+                },
+                "confidence": 0.7735
+              }
+            },
+            "usage": {
+              "input_tokens": 330,
+              "output_tokens": 1
+            },
+            "latency_ms": 164.17
+          }
+        }
+      }
+    },
+    {
+      "id": "case-09",
+      "group": "receipt",
+      "image": "case-09.png",
+      "sha256": "2d2809db4d646c21b5e7a9a4337acc2f82413358399587b29041d86a57543b8d",
+      "description": "Receipt with signature=True, transaction ID=True",
+      "expected": {
+        "signature": true,
+        "reference": true,
+        "action": "accept"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "accept": "交易编号和签名都有，接收凭证",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "unknown": "图片缺失或不可读，无法判断"
+            }
+          }
+        }
+      },
+      "title": "完整凭证",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:37.809294+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.7796
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.8738
+              },
+              "action": {
+                "type": "choice",
+                "choice": "accept",
+                "probabilities": {
+                  "accept": 0.8352,
+                  "request_signature": 0.0539,
+                  "request_reference": 0.0218,
+                  "request_both": 0.0819,
+                  "unknown": 0.0072
+                },
+                "confidence": 0.794
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 171.31
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:43.938567+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.7796
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.8738
+              },
+              "action": {
+                "type": "choice",
+                "choice": "accept",
+                "probabilities": {
+                  "unknown": 0.0413,
+                  "request_both": 0.1186,
+                  "request_reference": 0.069,
+                  "request_signature": 0.1597,
+                  "accept": 0.6114
+                },
+                "confidence": 0.5143
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 170.23
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:51.221310+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2579
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.3469
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "accept": 0.1401,
+                  "request_signature": 0.2227,
+                  "request_reference": 0.0819,
+                  "request_both": 0.3939,
+                  "unknown": 0.1615
+                },
+                "confidence": 0.2423
+              }
+            },
+            "usage": {
+              "input_tokens": 294,
+              "output_tokens": 3
+            },
+            "latency_ms": 137.51
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:53.025105+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2084
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.263
+              },
+              "action": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "accept": 0.0337,
+                  "request_signature": 0.037,
+                  "request_reference": 0.0369,
+                  "request_both": 0.3845,
+                  "unknown": 0.5079
+                },
+                "confidence": 0.3849
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 165.09
+          }
+        }
+      }
+    },
+    {
+      "id": "case-10",
+      "group": "receipt",
+      "image": "case-10.png",
+      "sha256": "4510850601806d613ca460b390cb27acad37de2dd8a820772155a1cfe3faa191",
+      "description": "Receipt with signature=False, transaction ID=True",
+      "expected": {
+        "signature": false,
+        "reference": true,
+        "action": "request_signature"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "accept": "交易编号和签名都有，接收凭证",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "unknown": "图片缺失或不可读，无法判断"
+            }
+          }
+        }
+      },
+      "title": "缺少签名",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:36.615577+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.1709
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.8848
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_signature",
+                "probabilities": {
+                  "accept": 0.2309,
+                  "request_signature": 0.4434,
+                  "request_reference": 0.0283,
+                  "request_both": 0.2881,
+                  "unknown": 0.0093
+                },
+                "confidence": 0.3043
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.29
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:42.751003+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.1709
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.8848
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "unknown": 0.0311,
+                  "request_both": 0.5151,
+                  "request_reference": 0.037,
+                  "request_signature": 0.3357,
+                  "accept": 0.081
+                },
+                "confidence": 0.3939
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.39
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:50.392450+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2579
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.3469
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "accept": 0.1401,
+                  "request_signature": 0.2227,
+                  "request_reference": 0.0819,
+                  "request_both": 0.3939,
+                  "unknown": 0.1615
+                },
+                "confidence": 0.2423
+              }
+            },
+            "usage": {
+              "input_tokens": 294,
+              "output_tokens": 3
+            },
+            "latency_ms": 139.07
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:51.869355+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2084
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.263
+              },
+              "action": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "accept": 0.0337,
+                  "request_signature": 0.037,
+                  "request_reference": 0.0369,
+                  "request_both": 0.3845,
+                  "unknown": 0.5079
+                },
+                "confidence": 0.3849
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 164.74
+          }
+        }
+      }
+    },
+    {
+      "id": "case-11",
+      "group": "receipt",
+      "image": "case-11.png",
+      "sha256": "2e7bcb85ec9ab06c3ef1116dbc002d5edcb761d06e45115624fc70475098ca25",
+      "description": "Receipt with signature=True, transaction ID=False",
+      "expected": {
+        "signature": true,
+        "reference": false,
+        "action": "request_reference"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "accept": "交易编号和签名都有，接收凭证",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "unknown": "图片缺失或不可读，无法判断"
+            }
+          }
+        }
+      },
+      "title": "缺少交易编号",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:37.298531+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.7839
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.1973
+              },
+              "action": {
+                "type": "choice",
+                "choice": "accept",
+                "probabilities": {
+                  "accept": 0.4327,
+                  "request_signature": 0.1372,
+                  "request_reference": 0.072,
+                  "request_both": 0.346,
+                  "unknown": 0.0122
+                },
+                "confidence": 0.2909
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.42
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:43.428168+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.7839
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.1973
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "unknown": 0.0437,
+                  "request_both": 0.3324,
+                  "request_reference": 0.3252,
+                  "request_signature": 0.0881,
+                  "accept": 0.2106
+                },
+                "confidence": 0.1655
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.46
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:50.876078+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2579
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.3469
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "accept": 0.1401,
+                  "request_signature": 0.2227,
+                  "request_reference": 0.0819,
+                  "request_both": 0.3939,
+                  "unknown": 0.1615
+                },
+                "confidence": 0.2423
+              }
+            },
+            "usage": {
+              "input_tokens": 294,
+              "output_tokens": 3
+            },
+            "latency_ms": 138.39
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:52.529412+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2084
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.263
+              },
+              "action": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "accept": 0.0337,
+                  "request_signature": 0.037,
+                  "request_reference": 0.0369,
+                  "request_both": 0.3845,
+                  "unknown": 0.5079
+                },
+                "confidence": 0.3849
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 164.19
+          }
+        }
+      }
+    },
+    {
+      "id": "case-12",
+      "group": "receipt",
+      "image": "case-12.png",
+      "sha256": "4a13791ccb55345264285b1b267cd05f177dfa7e18c76140125d51d4386450fc",
+      "description": "Receipt with signature=False, transaction ID=False",
+      "expected": {
+        "signature": false,
+        "reference": false,
+        "action": "request_both"
+      },
+      "request": {
+        "state": "请根据所附截图中的可见内容回答问题。",
+        "questions": {
+          "signature": {
+            "type": "noul",
+            "instructions": "截图的 Signature 签名框内是否存在手写签名笔迹？"
+          },
+          "reference": {
+            "type": "noul",
+            "instructions": "截图的 Transaction ID 一栏是否已填写交易编号？"
+          },
+          "action": {
+            "type": "choice",
+            "instructions": "凭证必须同时有交易编号和签名才算完整。根据图片，应采取哪个动作？",
+            "criteria": {
+              "accept": "交易编号和签名都有，接收凭证",
+              "request_signature": "已有交易编号，只有签名缺失，要求补签",
+              "request_reference": "已有签名，只有交易编号缺失，要求补编号",
+              "request_both": "交易编号和签名都缺失，要求补全两项",
+              "unknown": "图片缺失或不可读，无法判断"
+            }
+          }
+        }
+      },
+      "title": "编号和签名都缺失",
+      "recordings": {
+        "original": {
+          "captured_at": "2026-10-23T02:45:38.155310+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.1692
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.2014
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "accept": 0.2489,
+                  "request_signature": 0.1087,
+                  "request_reference": 0.0281,
+                  "request_both": 0.607,
+                  "unknown": 0.0072
+                },
+                "confidence": 0.5088
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 169.64
+          }
+        },
+        "reverse": {
+          "captured_at": "2026-10-23T02:45:44.281794+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.1692
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.2014
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "unknown": 0.0205,
+                  "request_both": 0.7997,
+                  "request_reference": 0.048,
+                  "request_signature": 0.0838,
+                  "accept": 0.048
+                },
+                "confidence": 0.7496
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 168.66
+          }
+        },
+        "no_image": {
+          "captured_at": "2026-10-23T02:45:51.497445+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2579
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.3469
+              },
+              "action": {
+                "type": "choice",
+                "choice": "request_both",
+                "probabilities": {
+                  "accept": 0.1401,
+                  "request_signature": 0.2227,
+                  "request_reference": 0.0819,
+                  "request_both": 0.3939,
+                  "unknown": 0.1615
+                },
+                "confidence": 0.2423
+              }
+            },
+            "usage": {
+              "input_tokens": 294,
+              "output_tokens": 3
+            },
+            "latency_ms": 137.09
+          }
+        },
+        "blank": {
+          "captured_at": "2026-10-23T02:45:53.357867+00:00",
+          "response": {
+            "model": "strands-decider-2B-hobson-v19-vision",
+            "answers": {
+              "signature": {
+                "type": "noul",
+                "noul": 0.2084
+              },
+              "reference": {
+                "type": "noul",
+                "noul": 0.263
+              },
+              "action": {
+                "type": "choice",
+                "choice": "unknown",
+                "probabilities": {
+                  "accept": 0.0337,
+                  "request_signature": 0.037,
+                  "request_reference": 0.0369,
+                  "request_both": 0.3845,
+                  "unknown": 0.5079
+                },
+                "confidence": 0.3849
+              }
+            },
+            "usage": {
+              "input_tokens": 493,
+              "output_tokens": 3
+            },
+            "latency_ms": 164.22
+          }
+        }
+      }
+    }
+  ]
+}

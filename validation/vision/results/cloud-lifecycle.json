@@ -1,0 +1,19 @@
+{
+  "job": {
+    "job": "vision-20261023-024429",
+    "task": "arn:aws:ecs:us-east-1:632930644527:task/strands-decider-demo/2f3c2d9e94f548b8bf3899442a8fa150",
+    "definition": "arn:aws:ecs:us-east-1:632930644527:task-definition/strands-decider-vision-validation:3",
+    "bucket": "strands-decider-tetris-training-632930644527",
+    "prefix": "vision-20261023-024429",
+    "input_sha256": "016e2679e7b6b97c0cafed6422df05c5dfe9efa87df321b95163c6d67cdb0cb9",
+    "instance": "i-0daca64f56056aa1c",
+    "log_group": "/ecs/strands-decider-demo"
+  },
+  "events": [
+    "{\"event\": \"created\", \"container\": \"a96125144e98eab2026adbd2a37e0bd0713aa082d4769b52d218fd7f9ed52419\", \"job\": \"vision-20261023-024429\"}",
+    "{\"event\": \"state\", \"state\": {\"Status\": \"running\", \"Running\": true, \"Paused\": false, \"Restarting\": false, \"OOMKilled\": false, \"Dead\": false, \"Pid\": 3113397, \"ExitCode\": 0, \"Error\": \"\", \"StartedAt\": \"2026-10-23T02:44:32.256244792Z\", \"FinishedAt\": \"0001-01-01T00:00:00Z\"}}",
+    "{\"event\": \"state\", \"state\": {\"Status\": \"exited\", \"Running\": false, \"Paused\": false, \"Restarting\": false, \"OOMKilled\": false, \"Dead\": false, \"Pid\": 0, \"ExitCode\": 0, \"Error\": \"\", \"StartedAt\": \"2026-10-23T02:44:32.256244792Z\", \"FinishedAt\": \"2026-10-23T02:45:54.304205597Z\"}}",
+    "{\"event\": \"results_uploaded\", \"bytes\": 1766400}",
+    "{\"event\": \"cleanup\", \"test_container_removed\": true, \"existing_containers_still_running\": true, \"exit_code\": 0}"
+  ]
+}
