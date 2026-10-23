@@ -14,7 +14,7 @@
 
 项目基于 [Strands Decider 官方介绍](https://strandsagents.com/blog/introducing-strands-decider/)，采用 FastAPI + 原生 HTML/CSS/JavaScript。AWS 部署使用私有 S3、CloudFront OAC、ECS Fargate 和 EC2 On-Demand GPU。
 
-当前文字 Decider 调用统一使用 [StrandsDeciderVLLM](https://github.com/milan9527/StrandsDeciderVLLM) 的常驻 `g6.xlarge`，覆盖工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由。[图片决策模块](docs/VISION.md)使用另一台现有 L4 上的官方视觉服务，支持图片上传、实时判断和实测回放。
+当前文字 Decider 调用统一使用 [StrandsDeciderVLLM](https://github.com/milan9527/StrandsDeciderVLLM) 的常驻 `g6.xlarge`，覆盖工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由。[图片决策模块](docs/VISION.md)使用另一台现有 L4 上的官方视觉服务，支持三模型图片对比、上传和 Decider 实测回放。
 
 **[打开在线演示](https://d3i7ogfx5ml7dc.cloudfront.net) · [支付流程对比](https://d3i7ogfx5ml7dc.cloudfront.net/#crypto) · [模型路由对比](https://d3i7ogfx5ml7dc.cloudfront.net/#routing) · [图片决策](https://d3i7ogfx5ml7dc.cloudfront.net/#vision) · [查看架构图](docs/diagrams/architecture.svg)**
 
@@ -40,7 +40,7 @@
 
 **[JevBench 公开集实测](validation/jevbench/README.md)**：原版 Decider 在 g6.xlarge 上答对 **168/231（72.73%）**，简单题 48/48、困难题 55/111；私网客户端 P50 / P95 为 **68.3 / 403.7 ms**，无调用失败。该结果为 231 题公开子集，不是榜单综合分；[榜单公式与分项估算](validation/jevbench/leaderboard-score.md)。
 
-**[图片决策实测](docs/VISION.md)**：官方 v19 视觉推理在 12 张合成截图上答对 **27/28** 项，预热后整次带图请求平均 **168.2 ms**；支付状态 12/12、中文客服分流 4/4、凭证完整性 11/12。支持上传图片及候选换序／无图／白图对照，保留组合条件误判。该批仅测 Decider，不计入三模型对比。
+**[图片三模型实测](docs/VISION.md)**：12 张合成截图，Decider / Jev / GPT 分别答对 **27/28、28/28、28/28** 项，平均后端耗时 **178.1 / 424.6 / 1,539.2 ms**。Decider 支付状态与客服分流全对，凭证组合条件仍有一次误判。支持同图同题三列对比、上传及候选换序／无图／白图对照；该视觉批次与下文文字任务分别统计。
 
 **三模型历史性能摘要**（以下数据使用原版 EC2 Decider 服务，未重新测量迁移后的 vLLM 性能）：
 
@@ -66,7 +66,7 @@
 | 决策实验室     | 16 个场景、`choice` / `noul` / `score` 三种问题类型、可编辑上下文与选项、工具调用守卫、逐项计时、运行记录及 JSON 导出 |
 | 加密支付业务台 | 四个支付案例 × 五个业务步骤，Decider / Jev / GPT 三模型同时对比，完整模拟订单、工单、账本与客服交互                               |
 | 模型路由对比 | 客服、代码、结算、双语索引四场景；Decider / Jev / GPT-6 Sol 原始流程对比，展示两步模型输入、实际选择、参考价格与目标执行 |
-| 图片决策 | 支付状态、中文客服分流、凭证完整性；12 张预设图片与自行上传，显示实际问题、选择、概率和请求耗时，支持候选换序／无图／白图对照 |
+| 图片决策对比 | 支付状态、中文客服分流、凭证完整性；12 张预设图片与上传，Decider / Jev / GPT 同图同题三列对比选择和耗时，支持候选换序／无图／白图 |
 
 业务数据均为模拟快照。演示不连接钱包、不查询实时区块链、不广播交易。客服回复由应用模板根据实际处理结果生成，本次对比不测量自由长文本生成质量。
 
@@ -290,7 +290,7 @@ python deployment/deploy.py --region us-east-1 --api-only \
 python deployment/deploy.py --region us-east-1 --frontend-only
 ```
 
-当前 **256 项自动化测试全部通过**。图片模块已通过线上实时调用、图片上传、对照方式及桌面／手机界面验证；文字模块保留此前共享 vLLM 接入验证记录。回放与接入验证不计入历史性能基准。复测命令：
+当前 **273 项自动化测试全部通过**。图片模块已通过线上实时调用、图片上传、对照方式及桌面／手机界面验证；文字模块保留此前共享 vLLM 接入验证记录。回放与接入验证不计入历史性能基准。复测命令：
 
 ```bash
 uv run --extra dev pytest -q
@@ -313,7 +313,7 @@ uv run python scripts/check_vllm_demo.py \
   --credentials .deployment/admin-credentials.json \
   --output .deployment/vllm-live-verification.json
 
-# 图片模块：五次真实推理、上传、历史标识与对照
+# 图片模块：五组 × 三模型真实推理、上传、历史标识与对照
 uv run --with playwright python scripts/check_vision_browser.py --live \
   --url https://d3i7ogfx5ml7dc.cloudfront.net \
   --credentials .deployment/admin-credentials.json \

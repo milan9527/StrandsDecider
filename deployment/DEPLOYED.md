@@ -6,9 +6,18 @@
 
 API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 
-**当前：文字 Decider 模块调用共享 vLLM / EC2 On-Demand `g6.xlarge`；图片决策调用另一台现有 `g6.xlarge` 上的官方视觉服务，两者持续运行。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
+**当前：文字 Decider 调用共享 vLLM / EC2 On-Demand `g6.xlarge`；图片 Decider 调用另一台现有 `g6.xlarge` 上的官方视觉服务，两者持续运行。图片模块同时支持 Jev / Bedrock GPT 对比。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
+
+## 图片三模型对比（2026-10-23，vision-triple-v1）
+
+- 图片模块改为 Decider / Jev / GPT-6.1 Sol low 三列对比，三个独立请求共享图片、问题及候选顺序；返回共同输入指纹，单列失败不清除其他结果。上传统一转换为等比例补白的 448×448 PNG，支持图片放大、原始／换序／无图／白图及 JSON 导出。
+- Jev 实际返回 `jev-1.14.0`，复用现有 IAM Lambda 转发，新增内联图片及多问题校验和官方图片请求头。GPT 使用已有 Bedrock Converse 与权限，输出候选 ID 或 Boolean，不生成概率。文字支付与路由的原调用协议保留。
+- API 镜像 `vision-triple-20261023-v1`，ECR 摘要 `sha256:3e223a5734ac90f26be51e79476092c65325e5210b89c4377796a11f15597d94`；ECS **revision 24**，主 stack `UPDATE_COMPLETE`、滚动部署 `COMPLETED`。CloudFront invalidation `I1RSM0CG2WIXMEWMBN3VW6OD63` 已完成，四个前端发布文件逐字节核对通过；S3 四项公共访问阻止及 OAC 保持启用。
+- 273 项自动化测试通过。12 图三模型 **36 次正式调用全部成功**，另保存 3 次预热；Decider / Jev / GPT 符合预期 **27/28、28/28、28/28**，平均后端耗时 **178.1 / 424.6 / 1,539.2 ms**。三个模型输入指纹逐图相同，未修改 Decider 的凭证动作错误。数据见[三模型实测](../docs/results/vision-triple-2026-10-23.json)。
+- 浏览器完成五组 15 次真实调用，包含上传和无图；桌面、390px 手机、放大预览及历史来源标识通过，无 JavaScript 错误。合成浏览器测试另验证 Jev 失败时其余两列继续显示。原支付客服受理三个模型真实调用均成功，文字 Decider 返回 `-vllm`。
+- 本次复用两个现有 GPU，未新增或启停实例。CloudFormation 提交文件去除 JSON 缩进以满足 TemplateBody 大小限制，仓库中的生成模板仍保留可读格式。过程记录位于 `.deployment/vision-triple/`；[模块文档](../docs/VISION.md)包含真实截图和数据。
 
 ## 图片决策模块（2026-10-23，vision-v1）
 

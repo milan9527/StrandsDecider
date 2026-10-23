@@ -93,7 +93,7 @@ class JevClient:
             finally:
                 runtime.close()
 
-    def decide(self, payload):
+    def system_one(self, payload):
         # MODEL is server-owned, not a caller-provided URL or model override.
         body = {**payload, "model": MODEL}
         try:
@@ -111,7 +111,8 @@ class JevClient:
                     raise upstream_error(envelope.get("status"))
                 data = envelope["data"]
             elif self.http:
-                with self.http.stream("POST", ENDPOINT, json=body) as response:
+                headers = {"TypeSafe-Danger-Zone-Images": "true"} if body.get("assets") else {}
+                with self.http.stream("POST", ENDPOINT, json=body, headers=headers) as response:
                     if response.status_code != 200:
                         logger.warning("Jev upstream status=%s", response.status_code)
                         raise upstream_error(response.status_code)
@@ -129,16 +130,7 @@ class JevClient:
             validate_response(data, payload["questions"])
             if not data["model"] or len(data["model"]) > 120:
                 raise ValueError("Invalid model version")
-            answer = data["answers"]["action"]
-            return {
-                "model": data["model"],
-                "choice": answer["choice"],
-                "confidence": answer["confidence"],
-                "probabilities": answer["probabilities"],
-                "usage": data.get("usage"),
-                "estimated_request_usd": None,
-                "model_reported_ms": data.get("latency_ms"),
-            }
+            return {k: data[k] for k in ("model", "answers", "usage", "latency_ms") if k in data}
         except (httpx.TimeoutException, ReadTimeoutError) as exc:
             logger.warning("Jev response timeout; type=%s", type(exc).__name__)
             raise upstream_error(504) from exc
@@ -152,6 +144,19 @@ class JevClient:
         except (ValueError, KeyError, TypeError, AttributeError) as exc:
             logger.warning("Jev invalid response; type=%s", type(exc).__name__)
             raise JevError(502, "Jev 未返回有效候选动作或概率，本步未应用。") from exc
+
+    def decide(self, payload):
+        data = self.system_one(payload)
+        answer = data["answers"]["action"]
+        return {
+            "model": data["model"],
+            "choice": answer["choice"],
+            "confidence": answer["confidence"],
+            "probabilities": answer["probabilities"],
+            "usage": data.get("usage"),
+            "estimated_request_usd": None,
+            "model_reported_ms": data.get("latency_ms"),
+        }
 
 
 def create_client():

@@ -13,3 +13,26 @@
 .vs-empty{padding:22px;border:1px dashed #dbe4e9;border-radius:12px;background:#fbfcfd}.vs-empty h2{font-size:18px}.vs-empty p{color:#81909b;font-size:13px}.vs-question-preview{border-top:1px solid #e8edf0;padding-top:14px;margin-top:16px}.vs-question-preview strong{font-size:13px}.vs-error{padding:14px 18px;color:#a7523a;background:#fff3ed;border:1px solid #f0d7c8;border-radius:9px;margin-bottom:16px;font-size:13px}
 @media(max-width:1100px){.vs-layout{grid-template-columns:minmax(240px,.8fr) minmax(300px,1.2fr);gap:16px}.vs-image-panel{padding:14px}.vs-controls .text-button{margin-left:0}}
 @media(max-width:850px){.vs-layout{grid-template-columns:1fr}.vs-image-panel{position:static}.vs-image-wrap img{max-height:380px}.vs-tabs button{flex:1;padding:10px 8px}.vs-heading{align-items:flex-start;gap:10px}.vs-health{max-width:150px;font-size:11px}.vs-controls{gap:10px}.vs-controls .primary-button{flex:1}.vs-metrics strong{font-size:18px}.vs-metrics>div{padding:12px 9px}.vs-source{flex-wrap:wrap}}
+.vs-input-grid{display:grid;grid-template-columns:360px minmax(0,1fr);gap:20px;align-items:start;margin-bottom:20px}
+.vs-input-grid .vs-image-panel{position:static;padding:16px;display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px}
+.vs-input-grid .vs-image-panel>.vs-panel-heading{grid-column:1/-1;margin:0}.vs-input-grid .vs-image-wrap{grid-column:1;grid-row:2/5}
+.vs-input-grid .vs-image-wrap img{height:150px}.vs-input-grid .vs-select-label{grid-column:2;margin:0}.vs-input-grid .vs-upload{grid-column:2;margin:0;align-self:start}
+.vs-input-grid .vs-image-panel>.vs-hint{grid-column:2;margin:0}.vs-image-zoom{position:absolute;bottom:4px;right:4px;border:1px solid #d7e3df;background:#ffffffed;border-radius:4px;padding:3px 6px;color:#426957;font-size:10px;cursor:pointer}
+.vs-image-dialog{max-width:min(640px,90vw);border:1px solid #dce5e1;border-radius:12px;padding:16px}.vs-image-dialog::backdrop{background:#102a3466}.vs-image-dialog img{display:block;width:min(580px,80vw);height:auto;margin-top:12px}.vs-image-dialog button{float:right}
+.vs-shared-input{min-width:0;background:#fff;border:1px solid #e1e7ec;border-radius:14px;padding:20px}
+.vs-question-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.vs-question-list p{font-size:13px;color:#627482;line-height:1.8}.vs-question-list details{font-size:12px;color:#688173}
+.vs-question-list summary{cursor:pointer}.vs-question-list dt{font-weight:600;margin-top:12px}.vs-question-list dd{margin:5px 0 0;line-height:1.6;color:#788591}
+.vs-question-list code{font-size:10px;font-weight:400;overflow-wrap:anywhere}
+.vs-comparison-summary{border:1px solid #d9e7df;border-radius:10px;background:#f2f8f4;padding:13px 16px;color:#476554;font-size:13px;margin:0 0 16px;line-height:1.7}
+.vs-result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.vs-model-card{min-width:0;background:#f8fafb;border:1px solid #e0e6eb;border-radius:12px;padding:16px;border-top:3px solid #3a9a78}
+.vs-model-card.jev{border-top-color:#9b73c6}.vs-model-card.bedrock{border-top-color:#d29443}
+.vs-model-header h2{font-size:19px;margin:0 0 5px}.vs-model-header p{font-size:10px;overflow-wrap:anywhere;color:#81909b;margin:0 0 15px;min-height:26px}
+.vs-model-card .vs-metrics{grid-template-columns:1fr 1fr;gap:8px}.vs-model-card .vs-metrics>div{padding:12px 9px}.vs-model-card .vs-metrics strong{font-size:21px}
+.vs-model-card .vs-source{gap:6px;flex-wrap:wrap;font-size:11px}.vs-model-card .vs-answer{padding:14px;min-height:146px}
+.vs-model-card .vs-choice{font-size:20px}.vs-model-card .vs-panel-heading{align-items:flex-start;gap:6px}.vs-model-card .vs-panel-heading h3{font-size:13px;line-height:1.6}
+.vs-model-card .vs-panel-heading>span{font-size:10px;padding-top:3px}.vs-model-card .vs-error{margin:0;font-size:12px}.vs-model-card .vs-error p{line-height:1.7}
+.vs-model-card .vs-empty{font-size:13px;color:#76858e;line-height:1.8;min-height:150px}.vs-outcome-note{color:#6f8178;font-size:11px;margin:0 0 14px}
+@media(max-width:1150px){.vs-result-grid{gap:10px}.vs-model-card{padding:10px}.vs-model-card .vs-metrics{grid-template-columns:1fr}.vs-model-card .vs-panel-heading{flex-wrap:wrap}}
+@media(max-width:850px){.vs-input-grid{grid-template-columns:1fr}.vs-result-grid{grid-template-columns:1fr}.vs-model-card{padding:16px}.vs-model-card .vs-metrics{grid-template-columns:1fr 1fr}.vs-question-list{grid-template-columns:1fr}.vs-controls .primary-button{min-width:190px}.vs-input-grid .vs-image-panel{grid-template-columns:120px minmax(0,1fr)}.vs-input-grid .vs-image-wrap img{height:120px}}

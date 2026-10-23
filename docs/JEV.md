@@ -2,7 +2,7 @@
 
 支付流程对比统一为 **Strands Decider vs Jev vs GPT**。无需选择模型组合，点击「开始对比」即同时运行三个模型，支持四个场景及固定流程、优化流程、自主闭环。
 
-2026-10-16 起演示中的 Decider 全部使用共享 vLLM GPU。本文 2026-10-12 的延迟与业务结果保留原版引擎口径，Jev 接入路径保持不变；当前部署见 [部署说明](../deployment/README.md)。
+2026-10-16 起，文字 Decider 使用共享 vLLM GPU；图片 Decider 使用独立的官方视觉服务。本文 2026-10-12 的支付延迟与业务结果保留原版引擎口径；当前部署见 [部署说明](../deployment/README.md)。
 
 固定／优化流程向三模型发送相同业务输入、问题与候选条件，每步并发调用，再分别模拟执行。闭环各自读取执行反馈，后续输入可能不同。三列展示输入输出、实际动作、耗时和最终业务结果；单个模型失败不隐藏其他模型结果。手机上按相同顺序纵向排列。JSON 包含 `comparisonProviders` 和每轮 `providers`，保留完整三侧记录及历史批次。
 
@@ -14,6 +14,14 @@
 - AWS 的 Jev `backend_total_ms` 包含排队、Lambda 调用和到 Typesafe API 的 HTTPS 往返，可能包含 Lambda 冷启动；不是 Jev 纯模型推理时间。上游未报告 `latency_ms` 时，`model_reported_ms` 为 `null`。
 - 耗时卡片显示各模型成功调用的累计耗时和成功次数；失败不计为零耗时成功。Jev、GPT 相对 Decider 的倍数分别使用同输入且双方成功的步骤，并注明样本数。三个模型均成功且输入相同才计入三模型选择差异。自主闭环单列各自全部成功决策，调用次数可能不同，不显示相对倍数。
 - 缺少配置、认证失败、限流、超时、非法候选或概率均明确报错，不退回规则答案。仅 ECS → Lambda 的 TCP 连接超时、确认尚未提交请求时重连一次；读取超时、HTTP 错误和限流不自动重试。规则回放完全不调用 Jev。
+
+## 图片决策对比
+
+[图片模块](VISION.md)复用同一 Jev 密钥与 Lambda 转发，与 Decider、GPT-6.1 Sol low 对比同一张图片和同一组问题。Jev 使用 `assets` 传入 PNG/JPEG，开启 `TypeSafe-Danger-Zone-Images: true`；choice 与 noul 可以在一次请求中混合提交。图片字节在三个模型间保持一致，不预先 OCR，不发送样例预期。
+
+2026-10-23 实际返回 **jev-1.14.0**。12 张图片的 28 项判断全部符合样例预期，平均业务 API 耗时 **424.6 ms**，包含 Lambda 与 HTTPS 往返；该批 Decider 为 27/28、178.1 ms，GPT 为 28/28、1,539.2 ms。完整请求、图片哈希与逐场景结果见[三模型实测](results/vision-triple-2026-10-23.json)。这是独立的视觉批次，不合并到下文历史支付数据。
+
+[Jev 官方图片说明](https://docs.typesafe.ai/images)将该能力列为试验功能。接口要求每边至少 280 像素；演示上传统一等比例缩小并补白为 448×448 PNG。Jev 失败时保留该列错误，另外两列继续展示结果。
 
 ## 本地使用
 
@@ -43,7 +51,7 @@ Lambda 不加入应用 VPC，通过其托管网络访问固定 Jev 地址；没�
 
 ```bash
 uv run python deployment/deploy.py --region us-east-1 --api-only \
-  --model-provider ec2 --tag YOUR_NEW_API_TAG \
+  --tag YOUR_NEW_API_TAG \
   --jev-key-file "$HOME/ai/jev/jevkey.txt"
 ```
 

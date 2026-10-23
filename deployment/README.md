@@ -131,7 +131,7 @@ uv run --with playwright python scripts/check_routing_browser.py --live \
   --credentials .deployment/admin-credentials.json \
   --output .deployment/vllm-routing-browser
 
-# 图片模块：实时推理、上传、对照方式与手机布局
+# 图片模块：三模型实时推理、上传、对照方式与手机布局
 uv run --with playwright python scripts/check_vision_browser.py --live \
   --url https://d3i7ogfx5ml7dc.cloudfront.net \
   --credentials .deployment/admin-credentials.json \
@@ -146,6 +146,8 @@ aws logs tail /ecs/strands-decider-demo --region us-east-1 --since 10m
 登录失败先检查账号和会话；模型连接失败检查 vLLM 服务、双向 Peering 路由和 `8100` 安全组。ECS Task 启动失败检查 Secrets Manager endpoint、执行角色和 JSON 字段 `api_key`。不要将密钥或完整容器环境输出到日志。
 
 图片不可用时检查 `/api/vision/health`、ECS 的 `DECIDER_VISION_URL`、TCP 18123 规则及视觉容器日志；文字 vLLM 健康不能证明图片服务健康。图片实时请求失败会显示错误，历史实测可独立查看。
+
+图片对比的 Jev / GPT 复用现有 Lambda 转发与 Bedrock 权限。Jev 转发允许一张内联 PNG/JPEG、1–8 个 choice / noul，带图时添加官方图片启用请求头；仍拒绝任意 URL、调用方模型覆盖和多余字段。正式图片模型调用相互独立，单列失败不会替换为历史记录。
 
 ## 成本与资源维护
 

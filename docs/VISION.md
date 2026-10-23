@@ -1,32 +1,61 @@
-# 图片决策模块
+# 图片决策：Strands Decider / Jev / GPT 对比
 
 入口：**https://d3i7ogfx5ml7dc.cloudfront.net/#vision**，使用现有用户名和密码。
 
-选择支付状态、客服分流或凭证完整性场景，再选择预设图片或上传自己的图片。点击 **运行图片决策** 后，页面同时显示实际问题、模型选择、概率、模型耗时和后端总耗时。凭证处理动作优先显示，字段识别结果随后展示。
+选择支付状态、客服分流或凭证完整性场景，再选择预设图片或上传自己的图片。点击 **开始三模型对比**，同时调用 Strands Decider、Jev 和 Bedrock GPT-6.1 Sol（low effort）。上方显示共用图片、问题与候选，下方三列显示实际选择、后端总耗时、浏览器请求耗时和样例预期。凭证处理动作优先显示，字段识别结果随后展示。
+
+每列返回后立即显示，一个模型失败不会清除另外两列。只有三个实时请求均成功、输入指纹一致时，才显示哪些判断选择不同。模型间选择相同不表示判断正确，正确性另外对照调用前定义的样例预期。
 
 ## 演示方式
 
 | 功能 | 行为 |
 | --- | --- |
 | 12 张预设图片 | 四张支付截图、四类中文客服诉求、四种签名／交易编号组合 |
-| 上传图片 | PNG / JPEG / WebP；文件最大 8 MB，浏览器将最长边缩放到 448 像素 |
-| 运行图片决策 | 真实调用官方 v19 视觉模型，显示“实时结果” |
-| 查看已有实测 | 展示 2026-10-23 保存的真实结果，显示“历史实测”和“采集时模型耗时” |
+| 上传图片 | PNG / JPEG / WebP；文件最大 8 MB，等比例缩小并补白为 448×448 PNG，三个模型共用同一张图 |
+| 开始三模型对比 | 并发调用三个真实模型，各列显示“实时结果”、选择和耗时 |
+| Decider 历史实测 | 单独展示 2026-10-23 保存的 Decider 结果；Jev / GPT 显示暂无历史数据，不计算跨批次对比 |
+| 放大图片 | 点击缩略图内的按钮，检查输入图片细节 |
 | 原始候选／反转顺序 | 只改变候选排列，不修改候选含义或代替模型选择 |
 | 不发送图片／替换为白图 | 保留相同问题，观察模型是否依赖图片证据 |
-| 导出结果 | 下载问题、候选、图片摘要、模型返回和计时；不导出上传图片的 Base64 |
+| 导出对比 | 下载三列的问题、候选、图片摘要、返回、错误和计时；不导出上传图片的 Base64 |
 
-首次进入显示已保存实测，便于立即演示；“运行图片决策”始终发起新推理。上传图片没有历史答案，也没有样例预期评分。实时服务失败时显示错误，不自动替换为历史结果。
+首次进入显示 Decider 已保存实测，便于立即演示；“开始三模型对比”始终发起新推理。上传图片没有历史答案，也没有样例预期评分。实时服务失败时显示错误，不自动替换为历史结果。
 
 原始／换序的预设图片可以比较样例预期；无图、白图和上传图片不沿用原图标签。`noul` 按 0.5 阈值显示是／否，同时保留原始 P(是)。
 
-上传时先选任务：图片仍按当前场景的问题和候选项判断，不会自动生成新问题。支付与凭证各含三个独立判断，客服包含一个队列选择；同次请求中前一问题的答案不会自动作为后一问题的输入。
+上传时先选任务：图片仍按当前场景的问题和候选项判断，不会自动生成新问题。支付与凭证各含三个独立判断，客服包含一个队列选择；一次提交同一组问题，应用不会用前一问题的返回值改写后续问题。
 
-![支付截图与模型实际选择](images/vision/payment.png)
+GPT 返回候选 ID 或 Boolean；Decider / Jev 返回候选概率或 `P(true)`。页面按同一候选含义及 0.5 的是／否阈值比较，但不会给 GPT 填造概率，也不假设 Decider 与 Jev 的 confidence 具有相同校准尺度。
 
-图中为线上模块展示的已保存实测，来源标签为“历史实测”。点击“运行图片决策”后会显示新返回的结果及计时。
+![支付状态三模型实时对比](images/vision/triple-payment.png)
 
-## 现有实测
+![凭证动作选择差异](images/vision/triple-receipt.png)
+
+截图来自上线后的[浏览器实时验收](results/vision-triple-browser-2026-10-23.json)，保留该次返回的数值。
+
+## 三模型实际对比
+
+2026-10-23 04:07 UTC 起，通过线上业务 API 采集同一组 12 张图片。每个模型单独预热一次，随后按图片顺序执行，同一图片的三个请求并发。**36 次正式请求全部成功**，另保存 3 次预热；每个模型回答 28 个独立问题。
+
+| 指标 | Strands Decider | Jev | GPT |
+| --- | ---: | ---: | ---: |
+| 实际模型 | v19 官方视觉推理 | jev-1.14.0 | GPT-6.1 Sol · low |
+| 判断符合样例预期 | **27/28** | **28/28** | **28/28** |
+| 平均后端耗时 | **178.1 ms** | **424.6 ms** | **1,539.2 ms** |
+| 后端耗时中位数 | 171.2 ms | 398.0 ms | 1,208.4 ms |
+| 成功请求 | 12/12 | 12/12 | 12/12 |
+
+| 场景 | Decider：正确数 / 平均后端耗时 | Jev：正确数 / 平均后端耗时 | GPT：正确数 / 平均后端耗时 |
+| --- | --- | --- | --- |
+| 支付状态 | 12/12 · 170.2 ms | 12/12 · 469.5 ms | 12/12 · 2,107.3 ms |
+| 中文客服分流 | 4/4 · 188.9 ms | 4/4 · 418.7 ms | 4/4 · 1,273.2 ms |
+| 凭证完整性 | 11/12 · 175.3 ms | 12/12 · 385.6 ms | 12/12 · 1,236.9 ms |
+
+**本批 Decider 最快，支付状态和客服分流全部选对；Jev 与 GPT 同时识别出凭证缺少交易编号，并选择要求补全。** case-11 的实际动作分别为 Decider `accept`、Jev / GPT `request_reference`，对应后端耗时 189.9 / 391.3 / 1,134.0 ms。三个模型都识别出“有签名、无交易编号”，差异发生在组合条件对应的动作选择。
+
+上述时间为整组问题的业务 API 耗时，Jev 包含 Lambda 转发；模型内部图像 token 处理方式不同，不能将 token 数相同作为同图的条件。12 张图片属于清晰合成截图的小样本验收，不代表真实票据的通用准确率或服务延迟保证。详细问题、候选顺序、图片哈希、实际返回、错误和预热记录见[本批原始数据](results/vision-triple-2026-10-23.json)。
+
+## 首批 Decider 单模型实测
 
 12 张清晰合成截图，首轮 **27/28 项正确**，预热后 36 次带图请求平均 **168.2 ms**，P95 **169.8 ms**。
 
@@ -53,6 +82,8 @@ flowchart LR
   Browser["浏览器：选择／缩放图片"] --> Front["CloudFront + 私有 S3 / OAC"]
   Browser --> API["CloudFront /api/vision → 内网 ALB → ECS Fargate"]
   API --> Vision["私网 EC2 L4 :18123<br/>官方 v19 视觉编码器 + 决策头"]
+  API --> JevBridge["IAM Lambda → Jev System One<br/>assets + 图片请求头"]
+  API --> GPT["Bedrock Converse<br/>GPT-6.1 Sol · low · 图片 ContentBlock"]
   API --> Recorded["API 镜像中的已保存实测"]
 ```
 
@@ -62,13 +93,17 @@ flowchart LR
 
 API 的 `DECIDER_VISION_URL` 指向私网 `http://10.78.1.15:18123`。端口只允许业务 API 安全组访问；前端仍为关闭公共访问的 S3 桶加 CloudFront OAC。业务接口沿用登录、会话和 CSRF 校验。应用不落盘保存上传图片。
 
+Jev 与 GPT 复用支付、模型路由模块的后端凭据和访问路径。Jev 图片作为 `assets` 提交，使用一次性引用并添加 `TypeSafe-Danger-Zone-Images: true`；GPT 通过 Converse 的 image 内容块接收相同字节，额外系统提示仅约束输出格式及将图中内容视为数据。每个模型一次请求处理全部问题，不执行支付动作，也不先用 OCR 提取文字。
+
+Jev 图片功能按[官方说明](https://docs.typesafe.ai/images)仍为试验功能，实际模型版本保留在返回中。Jev 接受 PNG/JPEG，且每边至少 280 像素；因此网页对所有模型统一转换并补白至 448×448，避免仅给某个模型改变输入。API 直接上传 WebP 时，Jev 会明确拒绝，其他模型独立处理。
+
 | 接口 | 说明 |
 | --- | --- |
 | `GET /api/vision/catalog` | 三类问题、12 张图片和样例预期 |
 | `GET /api/vision/health` | 单独检查视觉服务，不借用文字 vLLM 状态 |
-| `POST /api/vision/decide` | `mode=live/recorded`；指定 `case_id` 或 Base64 `image`，上传时同时指定 `task` |
+| `POST /api/vision/decide` | `provider=decider/jev/bedrock`，`mode=live/recorded`；指定 `case_id` 或 Base64 `image`，上传时同时指定 `task` |
 
-`variant` 为 `original`、`reverse`、`no_image` 或 `blank`。模型只接收 state、questions 和 images，样例预期不发送给模型。响应保留模型耗时；实时请求另外统计 API 后端总耗时，历史回放的后端推理耗时为 null。
+`variant` 为 `original`、`reverse`、`no_image` 或 `blank`。共用输入只有 state、questions 和图片，各适配层使用对应协议封装；样例预期不发送给模型。响应保留可获取的模型／服务耗时；实时请求另外统计 API 后端总耗时，历史回放的后端推理耗时为 null。
 
 ### 请求与实际返回
 
@@ -77,6 +112,7 @@ API 的 `DECIDER_VISION_URL` 指向私网 `http://10.78.1.15:18123`。端口只�
 ```json
 {
   "mode": "live",
+  "provider": "decider",
   "case_id": "case-05",
   "variant": "original"
 }
@@ -103,7 +139,7 @@ API 的 `DECIDER_VISION_URL` 指向私网 `http://10.78.1.15:18123`。端口只�
 }
 ```
 
-[完整五次接入记录](results/vision-module-2026-10-23.json)保留实际问题、全部候选、概率及图片摘要。上传使用 `{"mode":"live","task":"support","image":"<图片的纯 Base64>"}`，不填写 `case_id`，也不包含 `data:image/...;base64,` 前缀。浏览器上传后最长边为 448 像素；API 解码后上限 2 MB。`expected` 只用于样例结果对照，上传图片返回 null。
+[首版五次接入记录](results/vision-module-2026-10-23.json)保留实际问题、全部候选、概率及图片摘要。替换 `provider` 即可调用 Jev 或 GPT；三者的 `input_fingerprint` 按共用上下文、问题、候选顺序及图片计算，不包括各自的协议包装。上传使用 `{"mode":"live","provider":"jev","task":"support","image":"<图片的纯 Base64>"}`，不填写 `case_id`，也不包含 `data:image/...;base64,` 前缀。API 解码后上限 2 MB。`expected` 只用于样例结果对照，上传图片返回 null。
 
 ### 计时
 
@@ -111,23 +147,41 @@ API 的 `DECIDER_VISION_URL` 指向私网 `http://10.78.1.15:18123`。端口只�
 | --- | --- |
 | 模型耗时 `model_ms` | 视觉服务执行整组问题的时间，包含图片处理与模型计算 |
 | 后端总耗时 `backend_total_ms` | 业务 API 的推理槽等待、模型往返和响应校验；不含浏览器到 API 的网络 |
+| GPT 服务报告 `provider_latency_ms` | Bedrock 返回的服务延迟；不与 Decider 纯服务计时混为一谈 |
 | 浏览器导出 `client_total_ms` | 浏览器发起请求至收到结果，包含鉴权与网络 |
 | 历史实测 | 只把保存的 `model_ms` 显示为“采集时模型耗时”，不把读取记录耗时当作新推理 |
 
-三种时间不能相加，也不对一次请求的多个判断平均分摊。
+后端总耗时是三列主要比较指标，Jev 包含 Lambda 与外部 HTTPS 往返。Jev 未返回纯模型耗时时显示为空。以上时间不能相加，也不对一次请求的多个判断平均分摊；三模型并发的本轮等待时间也不是三列耗时之和。
 
 相关代码：
 
 - [前端模块](../frontend/static/vision.js)、[后端接口](../app/vision.py)。
+- [Jev / GPT 图片协议适配](../app/vision_providers.py)、[Jev Lambda 转发](../deployment/jev_proxy.py)。
 - [样例打包](../scripts/package_vision_examples.py)：从冻结的验证记录复制图片和四种条件的实际返回。
 - [官方视觉服务包装](../deployment/vision_server.py)、[离线启动](../deployment/vision_bootstrap.py)。
 - [现有 GPU 首次安装](../deployment/deploy_vision.py)：复用该环境的缓存模型镜像、离线 wheel 和源代码；临时 ECS 安装任务启动独立容器，不替换原模型容器。
 - [接口验证](../tests/test_vision.py)、[浏览器验证](../scripts/check_vision_browser.py)。
+- [三模型适配回归](../tests/test_vision_comparison.py)、[12 图三模型实测采集](../scripts/capture_vision_comparison.py)。
 
 主栈新增 `VisionUrl`、`VisionSecurityGroupId` 参数，后续发布会保留这两个参数。更新 API 与前端使用 `deployment/deploy.py`；不要用图片模块的原生性能替代文字 vLLM 压测数据。
 
+## 复现实测
+
+在仓库根目录执行，使用已有账号的本地凭据文件：
+
+```bash
+uv run python scripts/capture_vision_comparison.py \
+  --url https://d3i7ogfx5ml7dc.cloudfront.net \
+  --credentials .deployment/admin-credentials.json \
+  --output .deployment/vision-comparison-rerun.json
+```
+
+脚本保存 3 次预热、36 次正式请求、全部失败及按场景汇总；输出文件已存在时拒绝覆盖。它只提交图片判断，不调用业务执行或 GPU 启停接口。每次返回的实际模型版本、输入指纹和耗时随结果保存；`jev-latest` 的后续版本可能与本批不同。
+
 ## 上线验证
 
-2026-10-23 完成 256 项自动化测试及线上浏览器验证。五次浏览器实时请求全部成功：支付、客服、凭证换序、无图和上传图片；其中四次带图请求的后端耗时为 166.7–170.7 ms。桌面和 390px 手机布局通过，未出现 JavaScript 错误。此处为模块接入检查，前述准确率来自独立的 12 图验证批次。
+首版完成 256 项自动化测试及五次 Decider 浏览器实时调用。三模型版新增 17 项接口回归，累计 273 项通过，覆盖相同图片／问题、混合选择与是非题、Jev 图片请求头、GPT 严格输出、换序、无图及错误不回放。浏览器回归检查三列并排、上传补白、图片放大、某一模型失败后其余结果保留，以及 390px 手机布局。
 
-本地运行时可以不设置 `DECIDER_VISION_URL`，查看已保存实测；实时推理需要配置可访问的官方视觉服务地址。服务不可用时保留错误提示，不生成替代结果。
+上线后另完成五组、共 **15 次浏览器真实调用**，全部成功，无 JavaScript 错误，涵盖支付、客服、凭证、无图和上传。候选换序与白图界面使用已保存记录校验，三模型无图语义不按原图标签评分。`check_vision_browser.py` 默认使用明确标记的合成响应检查故障分支；添加 `--live` 才执行这五组三模型真实调用。
+
+本地运行时可以不设置 `DECIDER_VISION_URL`，查看已保存实测；实时推理需要配置可访问的官方视觉服务地址。Jev 使用 `JEV_API_KEY_FILE`，GPT 使用 `BEDROCK_ENABLED=true` 及有权限的 AWS 凭据。服务不可用时保留各列错误，不生成替代结果。

@@ -49,8 +49,11 @@ def main():
     if args.frontend_only and (args.jev_key_file or args.jev_secret_arn):
         parser.error("Jev configuration requires --api-only")
     STATE.mkdir(exist_ok=True)
-    template_path = ROOT / "deployment" / "cloudformation.json"
-    template_path.write_text(json.dumps(template(), indent=2) + "\n")
+    document = template()
+    (ROOT / "deployment" / "cloudformation.json").write_text(json.dumps(document, indent=2) + "\n")
+    # Keep the reviewable template formatted, but omit whitespace from TemplateBody's 51,200-byte budget.
+    template_path = STATE / "cloudformation-submit.json"
+    template_path.write_text(json.dumps(document, separators=(",", ":")))
 
     def aws(*parts, raw=False):
         command = ["aws", *parts, "--region", args.region, "--output", "json"]
