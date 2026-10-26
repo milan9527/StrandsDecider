@@ -1,5 +1,7 @@
 # AWS 部署
 
+独立扩展方案：[AgentCore GPU EC2 架构与验证](../docs/AGENTCORE_GPU.md)，已验证 Runtime 管理 GPU、业务会话复用、Observability 和 Evaluations。其代码在 [StrandsDeciderAgentCore](https://github.com/milan9527/StrandsDeciderAgentCore) 维护；下文仍描述本演示现有的 ECS / vLLM / 视觉服务部署。
+
 当前文字 Decider 请求使用共享 **vLLM / EC2 On-Demand `g6.xlarge`** 服务。工作台、工具守卫、支付固定／优化流程、自主闭环和模型路由共用这一入口。[图片决策](../docs/VISION.md)使用另一台现有 `g6.xlarge` 上的官方视觉服务；两台实例持续运行，业务 API 部署在 ECS Fargate。
 
 访问地址：**https://d3i7ogfx5ml7dc.cloudfront.net**。资源和发布记录见 [DEPLOYED.md](DEPLOYED.md)。原版 ECS on EC2 的构建与启停方法归档至 [ORIGINAL_GPU.md](ORIGINAL_GPU.md)；历史 SageMaker 方案见 [SAGEMAKER.md](SAGEMAKER.md)。

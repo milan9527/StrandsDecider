@@ -1,0 +1,31 @@
+{
+  "source_repository": "https://github.com/milan9527/StrandsDeciderAgentCore",
+  "source_commit": "806b817eb15053e9161a4445e230b2c17ccdf7e3",
+  "source_path": "validation/agentcore_gpu/summary.json",
+  "source_sha256": "bf4684a7dfb8c7e4909b9b0aa02f4e3ad053d69b1c7515f17d887e9eb8e94db0",
+  "measured_at": "2026-10-26",
+  "region": "us-east-1",
+  "instance_type": "g5.xlarge",
+  "gpu": "NVIDIA A10G 24 GB",
+  "deployment": "AgentCore Runtime Instances, Python 3.11 direct code",
+  "engine": "official native CUDA; not vLLM",
+  "purpose": "Warm infrastructure and business-session smoke test; not an accuracy or sustained throughput benchmark.",
+  "custom_spans": 48,
+  "evaluations": {
+    "api": "AgentCore Evaluate",
+    "evaluator": "Builtin.Correctness",
+    "sample_count": 4,
+    "correct_count": 4
+  },
+  "gpu_released_after_validation": true,
+  "artifacts": {
+    "docs/diagrams/agentcore-gpu-architecture.svg": {
+      "source_path": "docs/diagrams/agentcore-gpu-architecture.svg",
+      "sha256": "36717bee80d02eeee892c7ec3c33f387c5feead13edc923e26be3e1a8f7e2449"
+    },
+    "docs/diagrams/agentcore-gpu-architecture.png": {
+      "source_path": "docs/diagrams/agentcore-gpu-architecture.png",
+      "sha256": "227de1ca557be999b2f74944b57e709527886466c9be2bd26ecf349a2c85ac59"
+    }
+  }
+}

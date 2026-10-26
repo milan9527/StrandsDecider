@@ -20,6 +20,8 @@
 
 **[Decider 微调示例](https://github.com/milan9527/StrandsDeciderTetrisFinetuning)**：提供数据准备、LoRA 与决策头微调及评估流程；在俄罗斯方块的 2,068 道独立测试题上，准确率从 **60.35% 提升至 99.95%**，候选换序后的实际落点一致率从 **35.44% 提升至 99.85%**，展示了领域微调对该任务决策效果与稳定性的提升（[实测报告](https://github.com/milan9527/StrandsDeciderTetrisFinetuning/blob/main/finetuning/RESULTS.md)）。
 
+**[AgentCore GPU EC2 扩展验证](docs/AGENTCORE_GPU.md)**：通过 AgentCore Runtime 在单台按需 `g5.xlarge` 内运行 Decider，复用 8 个业务会话；24 次决策成功，单并发模型／Runtime 往返均值 **80／209 ms**，并验证 Observability 与 Evaluations。[架构图](docs/diagrams/agentcore-gpu-architecture.svg) · [独立项目](https://github.com/milan9527/StrandsDeciderAgentCore)。这是独立的原生 CUDA 验证，现有演示仍使用上述 vLLM／视觉服务。
+
 ## 实测摘要
 
 **Decider 适合优先评估的场景：**
@@ -72,7 +74,7 @@
 
 ## 2. 架构与流程图
 
-仓库包含四张 SVG 图，可直接在 GitHub 或浏览器中查看：
+仓库包含五张 SVG 图，可直接在 GitHub 或浏览器中查看：
 
 | 页面                     | 内容                                                   | 预览                                      |
 | ------------------------ | ------------------------------------------------------ | ----------------------------------------- |
@@ -80,6 +82,7 @@
 | 02 Decider vs Jev vs GPT | 相同输入、不同推理调用方式、输出校验、共同执行策略     | [SVG](docs/diagrams/model-comparison.svg) |
 | 03 加密支付完整流程      | 五步流程、参考差异、保护调整、最终结果与模拟事件       | [SVG](docs/diagrams/payment-workflow.svg) |
 | 04 自主闭环 | 三侧独立判断、执行、等待事件、反馈重判及停止条件 | [SVG](docs/diagrams/closed-loop.svg) |
+| 05 AgentCore GPU EC2 | 独立验证：统一 Runtime 入口、单 GPU 多业务会话、观测与评估 | [SVG](docs/diagrams/agentcore-gpu-architecture.svg) · [PNG](docs/diagrams/agentcore-gpu-architecture.png) |
 
 ### AWS 部署
 
@@ -362,6 +365,7 @@ docs/
   MODEL_ROUTING.md         # 模型路由功能、API 与复现
   MODEL_ROUTING_COMPARISON.md # 四场景路由实测、选择差异与结论
   CONCURRENCY.md           # 三模型并发测试过程、性能与限制
+  AGENTCORE_GPU.md         # 独立 AgentCore GPU 方案、会话语义、观测评估与实测
 scripts/                   # 账号管理、图表生成、浏览器与真实模型验证
 tests/                     # API、认证、计时、GPU、SageMaker 与支付流程测试
 ```

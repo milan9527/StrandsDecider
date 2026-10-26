@@ -1,0 +1,51 @@
+{
+  "started_at": "2026-10-26T14:09:02.085026+00:00",
+  "request_count": 24,
+  "business_sessions": 8,
+  "native_session_count": 1,
+  "running_managed_instances": 1,
+  "single_gpu_single_process": true,
+  "model_loaded_once": true,
+  "session_state_isolated": true,
+  "cross_owner_denied": true,
+  "idempotency_verified": true,
+  "reference_matches": 24,
+  "reference_total": 24,
+  "concurrency": {
+    "1": {
+      "runtime_roundtrip_ms": {
+        "mean": 209.48,
+        "p50": 208.056,
+        "max": 244.712
+      },
+      "model_inference_ms": {
+        "mean": 80.216,
+        "p50": 80.341,
+        "max": 85.155
+      },
+      "gpu_queue_ms": {
+        "mean": 0.0,
+        "p50": 0.0,
+        "max": 0.001
+      }
+    },
+    "8": {
+      "runtime_roundtrip_ms": {
+        "mean": 477.013,
+        "p50": 476.278,
+        "max": 759.688
+      },
+      "model_inference_ms": {
+        "mean": 81.82,
+        "p50": 80.731,
+        "max": 91.739
+      },
+      "gpu_queue_ms": {
+        "mean": 269.817,
+        "p50": 270.073,
+        "max": 540.258
+      }
+    }
+  },
+  "note": "Small infrastructure smoke test; not a model accuracy benchmark. Native GPU forward is serialized."
+}

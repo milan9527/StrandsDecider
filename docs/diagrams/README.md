@@ -1,11 +1,12 @@
 # 演示图表
 
-仓库提供四张 SVG 图，可直接在 GitHub 或浏览器中查看、下载：
+仓库提供五张 SVG 图，可直接在 GitHub 或浏览器中查看、下载：
 
 1. **[AWS 部署架构](architecture.svg)**：私有 S3 + CloudFront OAC、内网 ALB / ECS、文字 vLLM 与图片视觉服务、Bedrock / DynamoDB、Jev 转发及密钥注入。
 2. **[Decider vs Jev vs GPT](model-comparison.svg)**：同一候选决策任务的三条调用路径，以及共同的应用执行策略。
 3. **[加密支付固定输入流程](payment-workflow.svg)**：五步决策与沙盒执行、参考差异、资金保护、业务完成判定及模拟事件。
 4. **[自主反馈闭环](closed-loop.svg)**：三侧各自判断、执行、读取结果，等待事件或重判，以及预算、转人工和完成条件。
+5. **[AgentCore GPU EC2](agentcore-gpu-architecture.svg)**（[高清 PNG](agentcore-gpu-architecture.png)）：独立项目的 Runtime 统一入口、单 GPU 多业务会话、私有 S3 制品、观测与评估；[方案与实测](../AGENTCORE_GPU.md)。
 
 SVG 文件可用于 README 或演示材料，不依赖外部图片、字体下载或脚本；显示中文需要本机支持中文字体。
 
@@ -23,6 +24,16 @@ Jev 在 AWS 账户边界外，紫色连线表示 ECS 通过 IAM 调用 Lambda，
 uv run python scripts/generate_diagrams.py
 ```
 
-布局源文件是 [scripts/generate_diagrams.py](../../scripts/generate_diagrams.py)。修改生成器后重新运行可同步四张 SVG 图。GitHub 不包含 `.drawio` 文件。
+布局源文件是 [scripts/generate_diagrams.py](../../scripts/generate_diagrams.py)。修改生成器后重新运行可同步前四张 SVG 图。GitHub 不包含 `.drawio` 文件。
 
 图中的业务数据和交易工具均为模拟。普通大模型流程描述的是本项目实际采用的受限 JSON 决策调用，不代表所有生成式模型都必须预设候选项。实线表示请求 / 访问方向（响应省略），虚线表示控制路径或异常分支。
+
+## AgentCore GPU EC2 架构图
+
+[![AgentCore GPU EC2](agentcore-gpu-architecture.svg)](agentcore-gpu-architecture.svg)
+
+这张图使用 AWS 官方 AgentCore、EC2、S3、EBS、CloudWatch、IAM、VPC 与公网子网图标，已内联到 SVG，PNG 分辨率为 2880 × 1860。图标来源同为 [AWS Architecture Icons](https://aws.amazon.com/architecture/icons/) 的 2026-07-31 发布包。
+
+图中为 2026-10-26 验证的 **Python 直接部署 / 按需 g5.xlarge**，按实际配置展示公网子网与无入站规则的安全组。实线为已验证路径，灰色虚线为后续优化；它不表示现有前端已迁入 AgentCore，也不表示该 Runtime 已接入 vLLM。
+
+本仓库同步图像及[数据来源记录](../results/agentcore-gpu-2026-10-26/provenance.json)；[生成脚本](https://github.com/milan9527/StrandsDeciderAgentCore/blob/main/scripts/generate_agentcore_diagram.py)在独立项目维护，访问该私有仓库需要权限。图像可直接在本仓库查看和下载。
