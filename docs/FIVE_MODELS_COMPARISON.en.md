@@ -45,13 +45,9 @@ The payment/routing batch had no warmup, first-request removal or network subtra
 
 Each model makes five independent decisions against the same initial business snapshot, then executes its saved suggestions. Execution feedback is not inserted into later decisions in this round. Confirmations, funding, approval and completion are not changed in advance.
 
-```mermaid
-flowchart LR
-  A["Original business snapshot"] --> B["Intake → verify → approve → process → close decisions"]
-  B --> C["Preserve five original choices"]
-  C --> D["Simulated executor and funds guards"]
-  D --> E["Funds state, ticket state, customer reply"]
-```
+![Fixed payment flow: original snapshot, five independent decisions, saved choices, simulated execution and final outcome](diagrams/five-model-payment-flow.en.png)
+
+[View SVG vector diagram](diagrams/five-model-payment-flow.en.svg)
 
 Each cell below is `candidate ID` / backend milliseconds. These are original model choices; guarded actions are described separately.
 
