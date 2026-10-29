@@ -6,6 +6,8 @@
 
 支付对比统一并排展示 **Strands Decider vs Jev vs GPT**，一次运行三个模型，支持四个场景及三种测试方式。接入与比较口径见 [三模型对比说明](docs/JEV.md)。
 
+**[五模型对比实测报告](docs/FIVE_MODELS_COMPARISON.md)**（[English](docs/FIVE_MODELS_COMPARISON.en.md)）：Strands Decider、Liquid d1-2B、H2O-Lightning 4B、Jev、GPT，覆盖原始支付四场景、模型路由四场景和设备控制三场景（含常用温度）。包含逐步请求、实际选择、耗时、执行结果和截图；支付单步平均 **48.5 / 37.4 / 77.9 / 446.4 / 1018.7 ms**，参考一致 **14/20 / 12/20 / 14/20 / 18/20 / 20/20**。三个本地模型同卡常驻、单并发运行。[打开模块](https://d3i7ogfx5ml7dc.cloudfront.net/#comparison)。
+
 **[模型路由对比](docs/MODEL_ROUTING.md)**：Decider、Jev 与 **GPT-6 Sol（low effort）** 从纯业务任务选择处理流程和目标型号。前端只保留原始流程，展示逐步输入输出、选型、耗时和目标执行；覆盖客服、代码、结算、双语索引四场景。当前使用 LiveBench + MTEB，支持接入 Artificial Analysis API。
 
 **[模型路由实测报告：测试过程、四场景结果与结论](docs/MODEL_ROUTING_COMPARISON.md)**：Decider 决策最快；Jev / GPT 在中英文索引和代码选型上更符合已提供的能力证据。
@@ -69,6 +71,7 @@
 | 加密支付业务台 | 四个支付案例 × 五个业务步骤，Decider / Jev / GPT 三模型同时对比，完整模拟订单、工单、账本与客服交互                               |
 | 模型路由对比 | 客服、代码、结算、双语索引四场景；Decider / Jev / GPT-6 Sol 原始流程对比，展示两步模型输入、实际选择、参考价格与目标执行 |
 | 图片决策对比 | 支付状态、中文客服分流、凭证完整性；12 张预设图片与上传，Decider / Jev / GPT 同图同题三列对比选择和耗时，支持候选换序／无图／白图 |
+| 五模型对比 | 加入 Liquid d1-2B 与 H2O-Lightning 4B；11 条场景；支付五步、路由两步沿用原模块输入，设备控制（含常用温度）三步；五列比较选择、耗时与执行结果 |
 
 业务数据均为模拟快照。演示不连接钱包、不查询实时区块链、不广播交易。客服回复由应用模板根据实际处理结果生成，本次对比不测量自由长文本生成质量。
 
@@ -95,6 +98,7 @@
 | 业务后端     | FastAPI，1 个 ARM64 Fargate Task，0.25 vCPU / 0.5 GiB；无公网 IP                                            |
 | 身份认证     | 自建用户名 / 密码；scrypt 密码摘要、可撤销 Cookie 会话、限流；AWS 用 DynamoDB，本地用 SQLite                |
 | Decider      | 官方 v19 的 vLLM 适配服务，EC2 `g6.xlarge`，NVIDIA L4 24GB；返回模型 ID `strands-decider-2B-hobson-v19-vllm` |
+| Liquid / H2O | 与文字 Decider 同卡常驻；Liquid d1-2B BF16 / H2O-Lightning 4B FP8；各自独立运行环境，私网网关 `:18124` |
 | 图片 Decider | 官方 v19 视觉推理，独立私网服务；返回 `strands-decider-2B-hobson-v19-vision`，与文字 vLLM 路径分别计时 |
 | 普通大模型   | Bedrock Converse API；支付模块 `us.openai.gpt-6.1-sol`，路由决策器 `us.openai.gpt-6-sol`，均为 `low`；路由目标模型另按评测配置执行                                    |
 | Jev 决策模型 | ECS 经 IAM 调用 Lambda，再通过 HTTPS 访问 Typesafe System One API；密钥保存在 Secrets Manager |
