@@ -6,6 +6,8 @@
 
 支付对比统一并排展示 **Strands Decider vs Jev vs GPT**，一次运行三个模型，支持四个场景及三种测试方式。接入与比较口径见 [三模型对比说明](docs/JEV.md)。
 
+**[空调控制五模型对照总结](docs/AC_CONTROL_COMPARISON.md)**（2026-10-30）：完整30项能力集，比较基线、选项改写、规则澄清、合并改写与两阶段。原规范20题基线：Decider **4/20**、Liquid **0/20**、H2O **18/20**、Jev **19/20**、GPT 6.1 Sol low **20/20**；仅改规则后Jev为20/20，两阶段H2O为20/20、Liquid为11/20。另10条诊断题中Jev/GPT五组均10/10，H2O两阶段出现回归。包含完整问题、选项、原始回答与耗时；GPT换序测试1条采集缺失已计失败、未重跑，不影响原始顺序主成绩。
+
 **[五模型对比实测报告](docs/FIVE_MODELS_COMPARISON.md)**（[English](docs/FIVE_MODELS_COMPARISON.en.md)）：Strands Decider、Liquid d1-2B、H2O-Lightning 4B、Jev、GPT，覆盖原始支付四场景、模型路由四场景和设备控制三场景（含常用温度）。包含逐步请求、实际选择、耗时、执行结果和截图；支付单步平均 **48.5 / 37.4 / 77.9 / 446.4 / 1018.7 ms**，参考一致 **14/20 / 12/20 / 14/20 / 18/20 / 20/20**。三个本地模型同卡常驻、单并发运行。[打开模块](https://d3i7ogfx5ml7dc.cloudfront.net/#comparison)。
 
 **[模型路由对比](docs/MODEL_ROUTING.md)**：Decider、Jev 与 **GPT-6 Sol（low effort）** 从纯业务任务选择处理流程和目标型号。前端只保留原始流程，展示逐步输入输出、选型、耗时和目标执行；覆盖客服、代码、结算、双语索引四场景。当前使用 LiveBench + MTEB，支持接入 Artificial Analysis API。

@@ -1,0 +1,62 @@
+{
+  "prepared_at": "2026-10-30T06:58:52.329011+00:00",
+  "arms": [
+    "baseline",
+    "criteria_only",
+    "rules_only",
+    "combined",
+    "two_stage"
+  ],
+  "models": [
+    "decider",
+    "liquid",
+    "h2o"
+  ],
+  "spec_cases": 20,
+  "spec_orders": [
+    "original",
+    "reversed"
+  ],
+  "extension_cases": 10,
+  "extension_orders": [
+    "original"
+  ],
+  "extension_status": "Diagnostic queries authored after observing baseline errors; frozen before new calls, not a blind external holdout.",
+  "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+  "references_sha256": "79f9067e63088d905c3bfec0b7acf76ab22d6bb0570ec440c5515ce2a6d0c335",
+  "command_set_sha256": "3c214dd5b60d039d683477448f08be266769114d18d96f8238696c800c41de41",
+  "baseline_requests_sha256": "3d3048c4b8489d7964bf4a425c7a7283e4284e4c3b5d261085bb4ded92dac687",
+  "observations_per_model": 250,
+  "new_observations_per_model": 210,
+  "maximum_new_http_calls_per_model": 260,
+  "baseline_files": {
+    "decider": "runs/2026-10-30-v1/formal_receipts.jsonl",
+    "liquid": "runs/2026-10-30-resident-v1/liquid/formal_receipts.jsonl",
+    "h2o": "runs/2026-10-30-resident-v1/h2o/formal_receipts.jsonl"
+  },
+  "baseline_sha256": {
+    "decider": "8af150a0c4f186da3361d885effe0b7ddfb29f373b876de915f3a1b768fcf5c6",
+    "liquid": "40dac19c9255a98d5c7c40d8ebe48da58be1c7013bb55ae0d7ef119bc0aa41ac",
+    "h2o": "9efa2f1a6fa376ba6aa25a1a98141136f9b540b5a0093d6428fda6f821ef7f17"
+  },
+  "factors": {
+    "criteria_only": "Change criteria description strings only; candidate IDs/order, state and instructions unchanged.",
+    "rules_only": "Change state.rules and question.instructions only; Query, commandSet and criteria unchanged.",
+    "combined": "Apply both factors without gating.",
+    "two_stage": "Combined prompt; 30 apply/omit gates, followed by value selection for model-selected keys only. Full commandSet in both stages; stage two retains omit."
+  },
+  "automatic_retries": 0,
+  "online_output_repair": false,
+  "supplementary_unit_completion": "Offline engineering result only, separate from raw model scores; fill unit only for exactly one temperature scale and no conflicting existing unit.",
+  "candidate_count": "Original legal values retained, including every integer in each legal range.",
+  "source_sha256": {
+    "prepare.py": "756dfc0916dda153d64e9931a0bafdd710cf89e2d6a44d9bac66502e588a680a",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "prepare_ablation.py": "b4fade881d1f551476ff37868d9e0638e3815fbd7465ebddd82fd1b5fee78ce0",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "analyze.py": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c",
+    "analyze_ablation.py": "d7e5e04ba549c4ec812b360214ae5ce2ca3551a11db28615aebb1dcf3bc2963b",
+    "compare_resident.py": "66aeb04fea0cb69905ca44b4fabba431e6ff88efd70609a8eb2acacb25715964"
+  }
+}

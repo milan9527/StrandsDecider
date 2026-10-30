@@ -1,0 +1,6 @@
+{
+  "command_id": "40a2e43c-682a-491a-bafb-901ccd4b6191",
+  "instance": "i-0ae7eb0abcb815af3",
+  "region": "us-east-1",
+  "script": "date -u +%FT%TZ\nnvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv,noheader\nsystemctl show decider-vllm decider-h2o decider-liquid decider-comparison-gateway --property=Id,ActiveState,SubState,NRestarts,ExecMainStartTimestamp\n"
+}

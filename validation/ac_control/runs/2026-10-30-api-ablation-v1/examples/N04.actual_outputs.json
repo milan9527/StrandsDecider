@@ -1,0 +1,1146 @@
+[
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3504.456,
+    "server_ms": 3502.54,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3239.799,
+    "server_ms": 3238.22,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": [],
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "baseline",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3009.367,
+    "server_ms": 3007.6,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3092.261,
+    "server_ms": 3090.46,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3397.378,
+    "server_ms": 3395.6,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 905.174,
+    "server_ms": 903.1532040098682,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 732.128,
+    "server_ms": 729.9255290417932,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_fan_mute"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "baseline",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 633.721,
+    "server_ms": 631.8425670033321,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 4,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "0"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 830.805,
+    "server_ms": 828.6675389972515,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 725.773,
+    "server_ms": 723.8500749808736,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Comfort Auto",
+        "cmdKey": "t_indoortemp_detection",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7269.843,
+    "server_ms": 7268.0,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_indoortemp_detection",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_indoortemp_detection"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Comfort Auto",
+        "cmdKey": "t_indoortemp_detection",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7050.776,
+    "server_ms": 7048.3,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_fan_mute",
+      "t_indoortemp_detection"
+    ],
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_indoortemp_detection",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_indoortemp_detection"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "baseline",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6032.074,
+    "server_ms": 6030.2,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6309.628,
+    "server_ms": 6307.9,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "N04",
+    "dataset": "extension",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Comfort Auto",
+        "cmdKey": "t_indoortemp_detection",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7000.476,
+    "server_ms": 6998.7,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_indoortemp_detection",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_indoortemp_detection"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "jev",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "combined",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 95.835,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "two_stage",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 127.12199999999999,
+    "server_ms": null,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_fan_mute"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "baseline",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 85.854,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "criteria_only",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 113.189,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "rules_only",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 100.223,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "combined",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3185.56,
+    "server_ms": 3179,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "two_stage",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3963.2039999999997,
+    "server_ms": 3950,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_fan_mute"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "baseline",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2234.369,
+    "server_ms": 2224,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "criteria_only",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3189.526,
+    "server_ms": 3148,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "N04",
+    "dataset": "extension",
+    "variant": "original",
+    "arm": "rules_only",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3344.518,
+    "server_ms": 3326,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  }
+]

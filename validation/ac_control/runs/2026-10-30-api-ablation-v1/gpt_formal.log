@@ -1,0 +1,38 @@
+{"provider":"gpt","actual_observations":10,"actual_calls":12,"errors":0,"last_case":"S01","last_arm":"two_stage"}
+{"provider":"gpt","actual_observations":20,"actual_calls":24,"errors":0,"last_case":"S02","last_arm":"baseline"}
+{"provider":"gpt","actual_observations":30,"actual_calls":36,"errors":0,"last_case":"S03","last_arm":"criteria_only"}
+{"provider":"gpt","actual_observations":40,"actual_calls":48,"errors":0,"last_case":"S04","last_arm":"rules_only"}
+{"provider":"gpt","actual_observations":50,"actual_calls":60,"errors":0,"last_case":"S05","last_arm":"combined"}
+{"provider":"gpt","actual_observations":60,"actual_calls":72,"errors":0,"last_case":"S06","last_arm":"two_stage"}
+{"provider":"gpt","actual_observations":70,"actual_calls":84,"errors":0,"last_case":"S07","last_arm":"baseline"}
+{"provider":"gpt","actual_observations":80,"actual_calls":96,"errors":0,"last_case":"S08","last_arm":"criteria_only"}
+{"provider":"gpt","actual_observations":90,"actual_calls":108,"errors":0,"last_case":"S09","last_arm":"rules_only"}
+{"provider":"gpt","actual_observations":100,"actual_calls":120,"errors":0,"last_case":"S10","last_arm":"combined"}
+{"provider":"gpt","actual_observations":110,"actual_calls":132,"errors":0,"last_case":"M01","last_arm":"two_stage"}
+{"provider":"gpt","actual_observations":120,"actual_calls":144,"errors":0,"last_case":"M02","last_arm":"baseline"}
+{"provider":"gpt","actual_observations":130,"actual_calls":156,"errors":0,"last_case":"M03","last_arm":"criteria_only"}
+{"provider":"gpt","actual_observations":140,"actual_calls":168,"errors":0,"last_case":"M04","last_arm":"rules_only"}
+{"provider":"gpt","actual_observations":150,"actual_calls":180,"errors":0,"last_case":"M05","last_arm":"combined"}
+{"provider":"gpt","actual_observations":160,"actual_calls":192,"errors":0,"last_case":"M06","last_arm":"two_stage"}
+{"provider":"gpt","actual_observations":170,"actual_calls":204,"errors":0,"last_case":"M07","last_arm":"baseline"}
+Traceback (most recent call last):
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/run_api_ablation.py", line 166, in <module>
+    run(parser.parse_args())
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/run_api_ablation.py", line 137, in run
+    stream.write(wire(row) + "\n")
+                 ^^^^^^^^^
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/run_resident.py", line 20, in wire
+    return json.dumps(value, ensure_ascii=False, separators=(",", ":"), allow_nan=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/.local/share/uv/python/cpython-3.11.14-linux-aarch64-gnu/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/ec2-user/.local/share/uv/python/cpython-3.11.14-linux-aarch64-gnu/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/.local/share/uv/python/cpython-3.11.14-linux-aarch64-gnu/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/.local/share/uv/python/cpython-3.11.14-linux-aarch64-gnu/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bytes is not JSON serializable

@@ -1,0 +1,239 @@
+{
+  "decider": {
+    "selected_keys": 0,
+    "expected_keys": 40,
+    "true_positive_keys": 0,
+    "all_omit_cases": 20,
+    "key_exact_cases": 0,
+    "final_exact_cases": 0,
+    "false_positive_keys": [],
+    "false_negative_keys": [
+      {
+        "case_id": "S01",
+        "key": "t_power"
+      },
+      {
+        "case_id": "S02",
+        "key": "t_work_mode"
+      },
+      {
+        "case_id": "S03",
+        "key": "t_temp"
+      },
+      {
+        "case_id": "S03",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "S04",
+        "key": "t_temp_f"
+      },
+      {
+        "case_id": "S04",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "S05",
+        "key": "t_fan_speed"
+      },
+      {
+        "case_id": "S06",
+        "key": "t_fan_mute"
+      },
+      {
+        "case_id": "S07",
+        "key": "t_outdoor_mute"
+      },
+      {
+        "case_id": "S08",
+        "key": "t_purify"
+      },
+      {
+        "case_id": "S09",
+        "key": "t_dimmer"
+      },
+      {
+        "case_id": "S10",
+        "key": "t_swing_direction"
+      },
+      {
+        "case_id": "M01",
+        "key": "t_power"
+      },
+      {
+        "case_id": "M01",
+        "key": "t_temp"
+      },
+      {
+        "case_id": "M01",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "M01",
+        "key": "t_work_mode"
+      },
+      {
+        "case_id": "M02",
+        "key": "t_fan_speed"
+      },
+      {
+        "case_id": "M02",
+        "key": "t_temp"
+      },
+      {
+        "case_id": "M02",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "M02",
+        "key": "t_work_mode"
+      },
+      {
+        "case_id": "M03",
+        "key": "t_eco"
+      },
+      {
+        "case_id": "M03",
+        "key": "t_fan_speed"
+      },
+      {
+        "case_id": "M03",
+        "key": "t_work_mode"
+      },
+      {
+        "case_id": "M04",
+        "key": "t_fan_mute"
+      },
+      {
+        "case_id": "M04",
+        "key": "t_outdoor_mute"
+      },
+      {
+        "case_id": "M05",
+        "key": "t_dimmer"
+      },
+      {
+        "case_id": "M05",
+        "key": "t_purify"
+      },
+      {
+        "case_id": "M06",
+        "key": "t_fresh_air"
+      },
+      {
+        "case_id": "M06",
+        "key": "t_health_fan"
+      },
+      {
+        "case_id": "M07",
+        "key": "t_indoor_selfclean"
+      },
+      {
+        "case_id": "M07",
+        "key": "t_outdoor_selfclean"
+      },
+      {
+        "case_id": "M08",
+        "key": "t_swing_direction"
+      },
+      {
+        "case_id": "M08",
+        "key": "t_up_down"
+      },
+      {
+        "case_id": "M09",
+        "key": "t_dr_mode"
+      },
+      {
+        "case_id": "M09",
+        "key": "t_dr_offset"
+      },
+      {
+        "case_id": "M09",
+        "key": "t_dr_onoff"
+      },
+      {
+        "case_id": "M10",
+        "key": "t_super"
+      },
+      {
+        "case_id": "M10",
+        "key": "t_temp"
+      },
+      {
+        "case_id": "M10",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "M10",
+        "key": "t_work_mode"
+      }
+    ]
+  },
+  "liquid": {
+    "selected_keys": 35,
+    "expected_keys": 40,
+    "true_positive_keys": 32,
+    "all_omit_cases": 2,
+    "key_exact_cases": 10,
+    "final_exact_cases": 11,
+    "false_positive_keys": [
+      {
+        "case_id": "S07",
+        "key": "t_fan_mute"
+      },
+      {
+        "case_id": "S10",
+        "key": "t_left_right"
+      },
+      {
+        "case_id": "M08",
+        "key": "t_left_right"
+      }
+    ],
+    "false_negative_keys": [
+      {
+        "case_id": "S02",
+        "key": "t_work_mode"
+      },
+      {
+        "case_id": "S04",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "S09",
+        "key": "t_dimmer"
+      },
+      {
+        "case_id": "M03",
+        "key": "t_work_mode"
+      },
+      {
+        "case_id": "M05",
+        "key": "t_dimmer"
+      },
+      {
+        "case_id": "M09",
+        "key": "t_dr_onoff"
+      },
+      {
+        "case_id": "M10",
+        "key": "t_temp_type"
+      },
+      {
+        "case_id": "M10",
+        "key": "t_work_mode"
+      }
+    ]
+  },
+  "h2o": {
+    "selected_keys": 40,
+    "expected_keys": 40,
+    "true_positive_keys": 40,
+    "all_omit_cases": 0,
+    "key_exact_cases": 20,
+    "final_exact_cases": 20,
+    "false_positive_keys": [],
+    "false_negative_keys": []
+  }
+}

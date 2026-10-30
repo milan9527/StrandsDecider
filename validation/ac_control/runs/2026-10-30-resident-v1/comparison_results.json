@@ -1,0 +1,7808 @@
+[
+  {
+    "provider": "decider",
+    "case_id": "S01",
+    "variant": "original",
+    "title": "开机",
+    "query": "Turn on the air conditioner.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2900.893,
+    "server_ms": 2861.87,
+    "input_sha256": "a28e6fccedaef2a55c4ff473402ade737ed146bf80d6fccc64332dd61e82075d",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_power",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_power"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S01",
+    "variant": "reversed",
+    "title": "开机",
+    "query": "Turn on the air conditioner.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2879.2,
+    "server_ms": 2871.15,
+    "input_sha256": "52d4d89e4f321bcabf9e43100daf888b7c44201bf016a00ba327653b0a7a5112",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_power",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_power"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S02",
+    "variant": "original",
+    "title": "选择制冷模式",
+    "query": "Set the air conditioner to cooling mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "90"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2873.242,
+    "server_ms": 2859.42,
+    "input_sha256": "08553b93d66e1a3db5f6487a98f652d3c0834a8cb70473989dd7a9cc924e4275",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_temp_f",
+        "90"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S02",
+    "variant": "reversed",
+    "title": "选择制冷模式",
+    "query": "Set the air conditioner to cooling mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2872.427,
+    "server_ms": 2864.45,
+    "input_sha256": "78194338ce1ae7c722b526e2e8287d38e4bbc63b1febe8fdb3a47a0ec3d54e5d",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S03",
+    "variant": "original",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2887.755,
+    "server_ms": 2880.66,
+    "input_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S03",
+    "variant": "reversed",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2885.382,
+    "server_ms": 2878.31,
+    "input_sha256": "25d8e2b69edec82f8b13df7d6858d3dad0bcbbb74116757edf5ac9cadd577974",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S04",
+    "variant": "original",
+    "title": "设置华氏温度",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2893.967,
+    "server_ms": 2882.02,
+    "input_sha256": "72dc9a68100f125ceb0969b94c846c7017485cce85c1d3ca81eb09fd39cb032c",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_temp_type",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S04",
+    "variant": "reversed",
+    "title": "设置华氏温度",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2898.169,
+    "server_ms": 2890.1,
+    "input_sha256": "a4f8c3640cb2445521033197321fd665e2ea6b3e6c1eb7586a6143d29cea44dd",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_temp_type",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S05",
+    "variant": "original",
+    "title": "选择高风速",
+    "query": "Set the air conditioner fan speed to high.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2889.401,
+    "server_ms": 2879.21,
+    "input_sha256": "350f520e71093334a452dd70e2d045e9b8eb1c1e990f1cce4c82a084b7c0c109",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S05",
+    "variant": "reversed",
+    "title": "选择高风速",
+    "query": "Set the air conditioner fan speed to high.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2894.912,
+    "server_ms": 2886.68,
+    "input_sha256": "600d23bc9ebc7d2e70851fcc4f08d76d6895e8e56e53277d3316938aad1851f0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_fan_speed",
+        "9"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_fan_speed"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S06",
+    "variant": "original",
+    "title": "开启室内机静音",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2901.345,
+    "server_ms": 2888.84,
+    "input_sha256": "c7de0d522a8000dad2ed39c88360c375bfb8a43b59fc4944aa859610d767b210",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S06",
+    "variant": "reversed",
+    "title": "开启室内机静音",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2899.876,
+    "server_ms": 2892.1,
+    "input_sha256": "b98996d63ed81ecf60f0ecc392b1b24db7c2b0cea19c1fda81a6cec76cea4727",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_fan_mute",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S07",
+    "variant": "original",
+    "title": "开启室外机静音",
+    "query": "Turn on outdoor quiet mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2898.441,
+    "server_ms": 2889.8,
+    "input_sha256": "1f0b08a1cfa4ce2825dbf2b6ca89b95ca374bcf95e57dea1c4a307f4e5151344",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S07",
+    "variant": "reversed",
+    "title": "开启室外机静音",
+    "query": "Turn on outdoor quiet mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2890.704,
+    "server_ms": 2883.52,
+    "input_sha256": "8f0284edfd52a26373752eb39d25e8a29778ca10e200b76d80ca1faeb1632295",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_outdoor_mute",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_outdoor_mute"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S08",
+    "variant": "original",
+    "title": "开启空气净化",
+    "query": "Turn on air purification.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2897.559,
+    "server_ms": 2890.53,
+    "input_sha256": "9cb10a9679febe203a033b50ff549ac6d8816d14451ba53a9521bf89fdcee125",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S08",
+    "variant": "reversed",
+    "title": "开启空气净化",
+    "query": "Turn on air purification.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2900.827,
+    "server_ms": 2892.54,
+    "input_sha256": "9825df11f1e332cb107eceeb1e5e3020044c55385c02c49f3cf196123e72d28b",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S09",
+    "variant": "original",
+    "title": "关闭 LED 显示屏",
+    "query": "Turn off the air conditioner display light.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2902.784,
+    "server_ms": 2891.65,
+    "input_sha256": "a89332dbf570129db385f626639d14b0682823dcd61096531a01dcf6e5347875",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_dimmer",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_dimmer"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S09",
+    "variant": "reversed",
+    "title": "关闭 LED 显示屏",
+    "query": "Turn off the air conditioner display light.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2899.631,
+    "server_ms": 2892.09,
+    "input_sha256": "89c220db5e3e33e6971f07133090a46958c54e183b98f9a6bee3551f55d20738",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_dimmer",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_dimmer"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S10",
+    "variant": "original",
+    "title": "选择两侧水平送风",
+    "query": "Set the horizontal airflow to both sides.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2906.601,
+    "server_ms": 2898.39,
+    "input_sha256": "7eaff09c5543f911c77cbbc8bed785c1f07c08ad8d49b0b1a0b536e83cd45248",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "S10",
+    "variant": "reversed",
+    "title": "选择两侧水平送风",
+    "query": "Set the horizontal airflow to both sides.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2906.687,
+    "server_ms": 2898.6,
+    "input_sha256": "682ad222a8291c74ad835adc0c2558518d2e3a6def36ab073408d63857aeebeb",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M01",
+    "variant": "original",
+    "title": "电源、模式与摄氏温度",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2933.307,
+    "server_ms": 2925.95,
+    "input_sha256": "684b72492e4f85b74d917097a09710739d4943e30ee3458a3633c03686ddf511",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [
+      [
+        "t_power",
+        "1"
+      ],
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_power",
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M01",
+    "variant": "reversed",
+    "title": "电源、模式与摄氏温度",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2940.164,
+    "server_ms": 2932.41,
+    "input_sha256": "c0d1f182a1b6d9157721177c88280841a48eb90403b500a68cf3d91887d94799",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_power",
+        "1"
+      ],
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_power",
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M02",
+    "variant": "original",
+    "title": "制热模式、温度与风速",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2945.866,
+    "server_ms": 2937.94,
+    "input_sha256": "c98c638f774046f4932ef913ad9ef00839f7128148f5c4fcd85139c28b7d04dd",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 3,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M02",
+    "variant": "reversed",
+    "title": "制热模式、温度与风速",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2980.15,
+    "server_ms": 2939.49,
+    "input_sha256": "5d27e7cc3ca6f83af0f087ec02530c09b413a2f4c2d51bd0e5373544090965eb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M03",
+    "variant": "original",
+    "title": "制冷模式、高风速与节能",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2958.542,
+    "server_ms": 2920.09,
+    "input_sha256": "5c7a23f0bb7518b00186de0b8d5bd26a0f01e7a80bc88bbfe10f161a905c5750",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [
+      [
+        "t_eco",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_eco"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M03",
+    "variant": "reversed",
+    "title": "制冷模式、高风速与节能",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2927.154,
+    "server_ms": 2920.3,
+    "input_sha256": "0ac3d7d00ee7eb2586598557b13631ec68b5bf68197e82d39b69f4bc4d469872",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_fan_speed",
+        "9"
+      ],
+      [
+        "t_work_mode",
+        "2"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_fan_speed",
+      "t_work_mode"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M04",
+    "variant": "original",
+    "title": "室内与室外静音",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2927.252,
+    "server_ms": 2920.36,
+    "input_sha256": "616b6465d980121b2075f744809088af753b0da8297b2a0d7fae1236a1d9db39",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_fan_mute",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M04",
+    "variant": "reversed",
+    "title": "室内与室外静音",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2917.384,
+    "server_ms": 2910.32,
+    "input_sha256": "827a0823e5c17eb8f675dc214f7ff984e4c1672f783875b07ad96b9d70a529fa",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_fan_mute",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_fan_mute"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M05",
+    "variant": "original",
+    "title": "空气净化与显示屏",
+    "query": "Turn on air purification and turn off the display light.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2934.021,
+    "server_ms": 2920.0,
+    "input_sha256": "6eed5ca5f4ac25e508d2ffbdcb69305266babe3a3311f50d78033c3de15eea81",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_dimmer",
+        "0"
+      ],
+      [
+        "t_purify",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_dimmer",
+      "t_purify"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M05",
+    "variant": "reversed",
+    "title": "空气净化与显示屏",
+    "query": "Turn on air purification and turn off the display light.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2925.435,
+    "server_ms": 2918.53,
+    "input_sha256": "54e0510cda1fb6aff1b956df4c183c0ec364497ab78fd99c396b323a815cb576",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_dimmer",
+        "0"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_dimmer"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M06",
+    "variant": "original",
+    "title": "新风与健康风",
+    "query": "Enable fresh air and healthy wind.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2920.049,
+    "server_ms": 2910.83,
+    "input_sha256": "d603427aa6fcd36fd6e10bfefe2f6007d767c49782bb84a7f997fd948370495b",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_fresh_air",
+        "1"
+      ],
+      [
+        "t_health_fan",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_fresh_air",
+      "t_health_fan"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M06",
+    "variant": "reversed",
+    "title": "新风与健康风",
+    "query": "Enable fresh air and healthy wind.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2922.454,
+    "server_ms": 2913.48,
+    "input_sha256": "d9fbf847eb83e319e1488ceb52c345bb4d52aedc252fb57f139c5398687f6aeb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_health_fan",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_health_fan"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M07",
+    "variant": "original",
+    "title": "室内与室外自清洁",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 2928.274,
+    "server_ms": 2918.59,
+    "input_sha256": "8deba4a7dee9caca90824a03aa2b5df18cec26c8c32eb51ba6257a54a27148ed",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_indoor_selfclean",
+      "t_outdoor_selfclean"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M07",
+    "variant": "reversed",
+    "title": "室内与室外自清洁",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "3"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2932.354,
+    "server_ms": 2922.98,
+    "input_sha256": "c4d4486cb1620ac57af29450ef6bdaf051ace4f28bd9d7c0ebcd51431341584f",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [
+      [
+        "t_swing_direction",
+        "3"
+      ]
+    ],
+    "missing": [
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_indoor_selfclean",
+      "t_outdoor_selfclean"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M08",
+    "variant": "original",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2947.641,
+    "server_ms": 2936.29,
+    "input_sha256": "a7afb8f7bfcef0c1283328666c535383ee543ca286bf88bb52a54333521a29e0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_up_down",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_up_down"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M08",
+    "variant": "reversed",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2945.62,
+    "server_ms": 2938.73,
+    "input_sha256": "6fd4bd093539bac3129c7e8eb9bd0540057fb241607ec2034eab58a2f020d056",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M09",
+    "variant": "original",
+    "title": "需求响应设置",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2984.271,
+    "server_ms": 2968.48,
+    "input_sha256": "7f46eeb9caa93c5e7272ec61b3493afdf79a221e5f81090e804cfc092b7399bb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_dr_mode",
+        "60"
+      ],
+      [
+        "t_dr_onoff",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_dr_mode",
+      "t_dr_onoff"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M09",
+    "variant": "reversed",
+    "title": "需求响应设置",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2976.206,
+    "server_ms": 2968.53,
+    "input_sha256": "e61e3cd0b32fb5b5d834fd6f6d1382dd78f1b557d377f0eeb198e84b7dec8f30",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_up_down",
+        "1"
+      ]
+    ],
+    "missing": [
+      [
+        "t_dr_onoff",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_up_down"
+    ],
+    "missing_keys": [
+      "t_dr_onoff"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M10",
+    "variant": "original",
+    "title": "制冷模式、Super Mode 与温度",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2966.863,
+    "server_ms": 2956.4,
+    "input_sha256": "bf2edd5ae5ef468a0dcf9861e737aacddd7b6d2e7ad4e9c51f920a15e7e5cea6",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [
+      [
+        "t_super",
+        "1"
+      ],
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_super",
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "decider",
+    "case_id": "M10",
+    "variant": "reversed",
+    "title": "制冷模式、Super Mode 与温度",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2968.797,
+    "server_ms": 2961.59,
+    "input_sha256": "1a3d9cb54efab00eaba64d4d66d5e6a012575fc6272edaa5800dac6be0172867",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [
+      [
+        "t_swing_direction",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_direction"
+    ],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S01",
+    "variant": "original",
+    "title": "开机",
+    "query": "Turn on the air conditioner.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 603.328,
+    "server_ms": 600.9302330203354,
+    "input_sha256": "a28e6fccedaef2a55c4ff473402ade737ed146bf80d6fccc64332dd61e82075d",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 5,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S01",
+    "variant": "reversed",
+    "title": "开机",
+    "query": "Turn on the air conditioner.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 611.549,
+    "server_ms": 609.3826379510574,
+    "input_sha256": "52d4d89e4f321bcabf9e43100daf888b7c44201bf016a00ba327653b0a7a5112",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 4,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_indoor_selfclean",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S02",
+    "variant": "original",
+    "title": "选择制冷模式",
+    "query": "Set the air conditioner to cooling mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 606.314,
+    "server_ms": 604.3274999829009,
+    "input_sha256": "08553b93d66e1a3db5f6487a98f652d3c0834a8cb70473989dd7a9cc924e4275",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 6,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_power",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S02",
+    "variant": "reversed",
+    "title": "选择制冷模式",
+    "query": "Set the air conditioner to cooling mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 610.021,
+    "server_ms": 607.8920279978774,
+    "input_sha256": "78194338ce1ae7c722b526e2e8287d38e4bbc63b1febe8fdb3a47a0ec3d54e5d",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 4,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_power"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S03",
+    "variant": "original",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "80"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 610.434,
+    "server_ms": 608.4738250356168,
+    "input_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 7,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_temp_f",
+        "80"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S03",
+    "variant": "reversed",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.339,
+    "server_ms": 607.2212790022604,
+    "input_sha256": "25d8e2b69edec82f8b13df7d6858d3dad0bcbbb74116757edf5ac9cadd577974",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S04",
+    "variant": "original",
+    "title": "设置华氏温度",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 612.489,
+    "server_ms": 610.4850929696113,
+    "input_sha256": "72dc9a68100f125ceb0969b94c846c7017485cce85c1d3ca81eb09fd39cb032c",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 6,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S04",
+    "variant": "reversed",
+    "title": "设置华氏温度",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 608.784,
+    "server_ms": 606.7547019920312,
+    "input_sha256": "a4f8c3640cb2445521033197321fd665e2ea6b3e6c1eb7586a6143d29cea44dd",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S05",
+    "variant": "original",
+    "title": "选择高风速",
+    "query": "Set the air conditioner fan speed to high.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 611.072,
+    "server_ms": 608.9708330109715,
+    "input_sha256": "350f520e71093334a452dd70e2d045e9b8eb1c1e990f1cce4c82a084b7c0c109",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 6,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dimmer",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dimmer",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S05",
+    "variant": "reversed",
+    "title": "选择高风速",
+    "query": "Set the air conditioner fan speed to high.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 606.912,
+    "server_ms": 604.9818380270153,
+    "input_sha256": "600d23bc9ebc7d2e70851fcc4f08d76d6895e8e56e53277d3316938aad1851f0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 5,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dimmer",
+        "1"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dimmer",
+      "t_indoor_selfclean",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S06",
+    "variant": "original",
+    "title": "开启室内机静音",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 611.755,
+    "server_ms": 609.8271140363067,
+    "input_sha256": "c7de0d522a8000dad2ed39c88360c375bfb8a43b59fc4944aa859610d767b210",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 7,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_mute",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_direction",
+        "2"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_mute",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_direction",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S06",
+    "variant": "reversed",
+    "title": "开启室内机静音",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 607.284,
+    "server_ms": 605.433835007716,
+    "input_sha256": "b98996d63ed81ecf60f0ecc392b1b24db7c2b0cea19c1fda81a6cec76cea4727",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 6,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_mute",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_indoor_selfclean",
+      "t_outdoor_mute",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S07",
+    "variant": "original",
+    "title": "开启室外机静音",
+    "query": "Turn on outdoor quiet mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.571,
+    "server_ms": 607.5492040254176,
+    "input_sha256": "1f0b08a1cfa4ce2825dbf2b6ca89b95ca374bcf95e57dea1c4a307f4e5151344",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 5,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_fan_mute",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_fan_mute",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S07",
+    "variant": "reversed",
+    "title": "开启室外机静音",
+    "query": "Turn on outdoor quiet mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 608.917,
+    "server_ms": 606.9577749585733,
+    "input_sha256": "8f0284edfd52a26373752eb39d25e8a29778ca10e200b76d80ca1faeb1632295",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 4,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_fan_mute",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_fan_mute",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S08",
+    "variant": "original",
+    "title": "开启空气净化",
+    "query": "Turn on air purification.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 610.69,
+    "server_ms": 608.587966999039,
+    "input_sha256": "9cb10a9679febe203a033b50ff549ac6d8816d14451ba53a9521bf89fdcee125",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 5,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S08",
+    "variant": "reversed",
+    "title": "开启空气净化",
+    "query": "Turn on air purification.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 606.602,
+    "server_ms": 604.5820229919627,
+    "input_sha256": "9825df11f1e332cb107eceeb1e5e3020044c55385c02c49f3cf196123e72d28b",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 6,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_indoor_selfclean",
+      "t_outdoor_selfclean",
+      "t_power",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S09",
+    "variant": "original",
+    "title": "关闭 LED 显示屏",
+    "query": "Turn off the air conditioner display light.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "AI Smart Control",
+        "cmdKey": "t_tms",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 612.127,
+    "server_ms": 610.3045500349253,
+    "input_sha256": "a89332dbf570129db385f626639d14b0682823dcd61096531a01dcf6e5347875",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 10,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "0"
+      ],
+      [
+        "t_dr_mode",
+        "0"
+      ],
+      [
+        "t_fan_mute",
+        "0"
+      ],
+      [
+        "t_outdoor_mute",
+        "0"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "0"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_tms",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_mode",
+      "t_fan_mute",
+      "t_outdoor_mute",
+      "t_outdoor_selfclean",
+      "t_power",
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_tms"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S09",
+    "variant": "reversed",
+    "title": "关闭 LED 显示屏",
+    "query": "Turn off the air conditioner display light.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.212,
+    "server_ms": 607.3167300201021,
+    "input_sha256": "89c220db5e3e33e6971f07133090a46958c54e183b98f9a6bee3551f55d20738",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 5,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "0"
+      ],
+      [
+        "t_dr_onoff",
+        "0"
+      ],
+      [
+        "t_power",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_onoff",
+      "t_power",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S10",
+    "variant": "original",
+    "title": "选择两侧水平送风",
+    "query": "Set the horizontal airflow to both sides.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "3"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.537,
+    "server_ms": 607.6097640325315,
+    "input_sha256": "7eaff09c5543f911c77cbbc8bed785c1f07c08ad8d49b0b1a0b536e83cd45248",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 5,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_outdoor_mute",
+        "0"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "3"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_outdoor_mute",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S10",
+    "variant": "reversed",
+    "title": "选择两侧水平送风",
+    "query": "Set the horizontal airflow to both sides.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 608.432,
+    "server_ms": 606.5422000247054,
+    "input_sha256": "682ad222a8291c74ad835adc0c2558518d2e3a6def36ab073408d63857aeebeb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 3,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M01",
+    "variant": "original",
+    "title": "电源、模式与摄氏温度",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "80"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 612.77,
+    "server_ms": 610.937689023558,
+    "input_sha256": "684b72492e4f85b74d917097a09710739d4943e30ee3458a3633c03686ddf511",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 11,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [
+      [
+        "t_8heat",
+        "0"
+      ],
+      [
+        "t_dr_offset",
+        "24"
+      ],
+      [
+        "t_dr_onoff",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_temp_f",
+        "80"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_offset",
+      "t_dr_onoff",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M01",
+    "variant": "reversed",
+    "title": "电源、模式与摄氏温度",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 615.328,
+    "server_ms": 613.3253989974037,
+    "input_sha256": "c0d1f182a1b6d9157721177c88280841a48eb90403b500a68cf3d91887d94799",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 6,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [
+      [
+        "t_8heat",
+        "0"
+      ],
+      [
+        "t_dr_onoff",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_onoff"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M02",
+    "variant": "original",
+    "title": "制热模式、温度与风速",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "76"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "26"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 610.678,
+    "server_ms": 608.7711839936674,
+    "input_sha256": "c98c638f774046f4932ef913ad9ef00839f7128148f5c4fcd85139c28b7d04dd",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 12,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dimmer",
+        "1"
+      ],
+      [
+        "t_dr_offset",
+        "26"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_temp_f",
+        "76"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dimmer",
+      "t_dr_offset",
+      "t_outdoor_selfclean",
+      "t_power",
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M02",
+    "variant": "reversed",
+    "title": "制热模式、温度与风速",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 615.014,
+    "server_ms": 613.0160799948499,
+    "input_sha256": "5d27e7cc3ca6f83af0f087ec02530c09b413a2f4c2d51bd0e5373544090965eb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 9,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dimmer",
+        "1"
+      ],
+      [
+        "t_dr_onoff",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dimmer",
+      "t_dr_onoff",
+      "t_outdoor_selfclean",
+      "t_power"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M03",
+    "variant": "original",
+    "title": "制冷模式、高风速与节能",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 612.443,
+    "server_ms": 610.465376987122,
+    "input_sha256": "5c7a23f0bb7518b00186de0b8d5bd26a0f01e7a80bc88bbfe10f161a905c5750",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 8,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dimmer",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dimmer",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M03",
+    "variant": "reversed",
+    "title": "制冷模式、高风速与节能",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 615.721,
+    "server_ms": 613.7756520183757,
+    "input_sha256": "0ac3d7d00ee7eb2586598557b13631ec68b5bf68197e82d39b69f4bc4d469872",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 7,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dimmer",
+        "1"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dimmer",
+      "t_indoor_selfclean",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M04",
+    "variant": "original",
+    "title": "室内与室外静音",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "One-Key Self-Clean",
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.792,
+    "server_ms": 607.7114090439864,
+    "input_sha256": "616b6465d980121b2075f744809088af753b0da8297b2a0d7fae1236a1d9db39",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 7,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_onekey_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_direction",
+        "2"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_indoor_selfclean",
+      "t_onekey_selfclean",
+      "t_swing_angle",
+      "t_swing_direction",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M04",
+    "variant": "reversed",
+    "title": "室内与室外静音",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "One-Key Self-Clean",
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 611.726,
+    "server_ms": 609.7437670105137,
+    "input_sha256": "827a0823e5c17eb8f675dc214f7ff984e4c1672f783875b07ad96b9d70a529fa",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 5,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_onekey_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_indoor_selfclean",
+      "t_onekey_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M05",
+    "variant": "original",
+    "title": "空气净化与显示屏",
+    "query": "Turn on air purification and turn off the display light.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 607.785,
+    "server_ms": 605.8644849690609,
+    "input_sha256": "6eed5ca5f4ac25e508d2ffbdcb69305266babe3a3311f50d78033c3de15eea81",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 9,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "0"
+      ],
+      [
+        "t_dr_onoff",
+        "0"
+      ],
+      [
+        "t_fan_mute",
+        "0"
+      ],
+      [
+        "t_outdoor_mute",
+        "0"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_onoff",
+      "t_fan_mute",
+      "t_outdoor_mute",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M05",
+    "variant": "reversed",
+    "title": "空气净化与显示屏",
+    "query": "Turn on air purification and turn off the display light.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 611.666,
+    "server_ms": 609.7511270199902,
+    "input_sha256": "54e0510cda1fb6aff1b956df4c183c0ec364497ab78fd99c396b323a815cb576",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 11,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dr_onoff",
+        "0"
+      ],
+      [
+        "t_fan_mute",
+        "0"
+      ],
+      [
+        "t_indoor_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_mute",
+        "0"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_power",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_onoff",
+      "t_fan_mute",
+      "t_indoor_selfclean",
+      "t_outdoor_mute",
+      "t_outdoor_selfclean",
+      "t_power",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M06",
+    "variant": "original",
+    "title": "新风与健康风",
+    "query": "Enable fresh air and healthy wind.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "One-Key Self-Clean",
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.038,
+    "server_ms": 607.1718620369211,
+    "input_sha256": "d603427aa6fcd36fd6e10bfefe2f6007d767c49782bb84a7f997fd948370495b",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 8,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_onekey_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_direction",
+        "2"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_onekey_selfclean",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_direction",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M06",
+    "variant": "reversed",
+    "title": "新风与健康风",
+    "query": "Enable fresh air and healthy wind.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "One-Key Self-Clean",
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 609.878,
+    "server_ms": 607.9836530261673,
+    "input_sha256": "d9fbf847eb83e319e1488ceb52c345bb4d52aedc252fb57f139c5398687f6aeb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 8,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_onekey_selfclean",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_direction",
+        "2"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_onekey_selfclean",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_direction",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M07",
+    "variant": "original",
+    "title": "室内与室外自清洁",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "One-Key Self-Clean",
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 610.859,
+    "server_ms": 609.0272879810072,
+    "input_sha256": "8deba4a7dee9caca90824a03aa2b5df18cec26c8c32eb51ba6257a54a27148ed",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 6,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_onekey_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_onekey_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M07",
+    "variant": "reversed",
+    "title": "室内与室外自清洁",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "One-Key Self-Clean",
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 613.537,
+    "server_ms": 611.6116119665094,
+    "input_sha256": "c4d4486cb1620ac57af29450ef6bdaf051ace4f28bd9d7c0ebcd51431341584f",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 6,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_onekey_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_onekey_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M08",
+    "variant": "original",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 614.698,
+    "server_ms": 612.5404740450904,
+    "input_sha256": "a7afb8f7bfcef0c1283328666c535383ee543ca286bf88bb52a54333521a29e0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 6,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M08",
+    "variant": "reversed",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 616.552,
+    "server_ms": 614.5107809570618,
+    "input_sha256": "6fd4bd093539bac3129c7e8eb9bd0540057fb241607ec2034eab58a2f020d056",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 5,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_left_right",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M09",
+    "variant": "original",
+    "title": "需求响应设置",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 614.638,
+    "server_ms": 612.708097032737,
+    "input_sha256": "7f46eeb9caa93c5e7272ec61b3493afdf79a221e5f81090e804cfc092b7399bb",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 6,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_temp_type",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_temp_type"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M09",
+    "variant": "reversed",
+    "title": "需求响应设置",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 614.626,
+    "server_ms": 612.5597750069574,
+    "input_sha256": "e61e3cd0b32fb5b5d834fd6f6d1382dd78f1b557d377f0eeb198e84b7dec8f30",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 3,
+    "predicted_count": 4,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M10",
+    "variant": "original",
+    "title": "制冷模式、Super Mode 与温度",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "70"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "22"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 614.459,
+    "server_ms": 612.4328539590351,
+    "input_sha256": "bf2edd5ae5ef468a0dcf9861e737aacddd7b6d2e7ad4e9c51f920a15e7e5cea6",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 10,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dr_offset",
+        "22"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_temp_f",
+        "70"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_offset",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M10",
+    "variant": "reversed",
+    "title": "制冷模式、Super Mode 与温度",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "22"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 616.081,
+    "server_ms": 614.0167139819823,
+    "input_sha256": "1a3d9cb54efab00eaba64d4d66d5e6a012575fc6272edaa5800dac6be0172867",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 4,
+    "predicted_count": 7,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_dr_offset",
+        "22"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_dr_offset",
+      "t_outdoor_selfclean"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S01",
+    "variant": "original",
+    "title": "开机",
+    "query": "Turn on the air conditioner.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5843.952,
+    "server_ms": 5842.3,
+    "input_sha256": "a28e6fccedaef2a55c4ff473402ade737ed146bf80d6fccc64332dd61e82075d",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_work_mode",
+        "2"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_work_mode"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S01",
+    "variant": "reversed",
+    "title": "开机",
+    "query": "Turn on the air conditioner.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5841.58,
+    "server_ms": 5839.9,
+    "input_sha256": "52d4d89e4f321bcabf9e43100daf888b7c44201bf016a00ba327653b0a7a5112",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 1,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_work_mode",
+        "2"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_work_mode"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S02",
+    "variant": "original",
+    "title": "选择制冷模式",
+    "query": "Set the air conditioner to cooling mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5839.908,
+    "server_ms": 5838.2,
+    "input_sha256": "08553b93d66e1a3db5f6487a98f652d3c0834a8cb70473989dd7a9cc924e4275",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S02",
+    "variant": "reversed",
+    "title": "选择制冷模式",
+    "query": "Set the air conditioner to cooling mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5866.392,
+    "server_ms": 5864.7,
+    "input_sha256": "78194338ce1ae7c722b526e2e8287d38e4bbc63b1febe8fdb3a47a0ec3d54e5d",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S03",
+    "variant": "original",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5879.061,
+    "server_ms": 5877.2,
+    "input_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S03",
+    "variant": "reversed",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5891.937,
+    "server_ms": 5890.2,
+    "input_sha256": "25d8e2b69edec82f8b13df7d6858d3dad0bcbbb74116757edf5ac9cadd577974",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S04",
+    "variant": "original",
+    "title": "设置华氏温度",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5899.572,
+    "server_ms": 5897.8,
+    "input_sha256": "72dc9a68100f125ceb0969b94c846c7017485cce85c1d3ca81eb09fd39cb032c",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S04",
+    "variant": "reversed",
+    "title": "设置华氏温度",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5898.163,
+    "server_ms": 5896.4,
+    "input_sha256": "a4f8c3640cb2445521033197321fd665e2ea6b3e6c1eb7586a6143d29cea44dd",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S05",
+    "variant": "original",
+    "title": "选择高风速",
+    "query": "Set the air conditioner fan speed to high.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5897.965,
+    "server_ms": 5896.2,
+    "input_sha256": "350f520e71093334a452dd70e2d045e9b8eb1c1e990f1cce4c82a084b7c0c109",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S05",
+    "variant": "reversed",
+    "title": "选择高风速",
+    "query": "Set the air conditioner fan speed to high.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5899.269,
+    "server_ms": 5897.5,
+    "input_sha256": "600d23bc9ebc7d2e70851fcc4f08d76d6895e8e56e53277d3316938aad1851f0",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S06",
+    "variant": "original",
+    "title": "开启室内机静音",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5912.61,
+    "server_ms": 5910.8,
+    "input_sha256": "c7de0d522a8000dad2ed39c88360c375bfb8a43b59fc4944aa859610d767b210",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S06",
+    "variant": "reversed",
+    "title": "开启室内机静音",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5918.555,
+    "server_ms": 5916.7,
+    "input_sha256": "b98996d63ed81ecf60f0ecc392b1b24db7c2b0cea19c1fda81a6cec76cea4727",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S07",
+    "variant": "original",
+    "title": "开启室外机静音",
+    "query": "Turn on outdoor quiet mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5919.715,
+    "server_ms": 5918.0,
+    "input_sha256": "1f0b08a1cfa4ce2825dbf2b6ca89b95ca374bcf95e57dea1c4a307f4e5151344",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S07",
+    "variant": "reversed",
+    "title": "开启室外机静音",
+    "query": "Turn on outdoor quiet mode.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5916.785,
+    "server_ms": 5915.1,
+    "input_sha256": "8f0284edfd52a26373752eb39d25e8a29778ca10e200b76d80ca1faeb1632295",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S08",
+    "variant": "original",
+    "title": "开启空气净化",
+    "query": "Turn on air purification.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5919.911,
+    "server_ms": 5918.1,
+    "input_sha256": "9cb10a9679febe203a033b50ff549ac6d8816d14451ba53a9521bf89fdcee125",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S08",
+    "variant": "reversed",
+    "title": "开启空气净化",
+    "query": "Turn on air purification.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5924.302,
+    "server_ms": 5922.5,
+    "input_sha256": "9825df11f1e332cb107eceeb1e5e3020044c55385c02c49f3cf196123e72d28b",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S09",
+    "variant": "original",
+    "title": "关闭 LED 显示屏",
+    "query": "Turn off the air conditioner display light.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5946.716,
+    "server_ms": 5944.8,
+    "input_sha256": "a89332dbf570129db385f626639d14b0682823dcd61096531a01dcf6e5347875",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S09",
+    "variant": "reversed",
+    "title": "关闭 LED 显示屏",
+    "query": "Turn off the air conditioner display light.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5943.431,
+    "server_ms": 5941.5,
+    "input_sha256": "89c220db5e3e33e6971f07133090a46958c54e183b98f9a6bee3551f55d20738",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S10",
+    "variant": "original",
+    "title": "选择两侧水平送风",
+    "query": "Set the horizontal airflow to both sides.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5940.53,
+    "server_ms": 5938.7,
+    "input_sha256": "7eaff09c5543f911c77cbbc8bed785c1f07c08ad8d49b0b1a0b536e83cd45248",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S10",
+    "variant": "reversed",
+    "title": "选择两侧水平送风",
+    "query": "Set the horizontal airflow to both sides.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5947.552,
+    "server_ms": 5945.8,
+    "input_sha256": "682ad222a8291c74ad835adc0c2558518d2e3a6def36ab073408d63857aeebeb",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 1,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M01",
+    "variant": "original",
+    "title": "电源、模式与摄氏温度",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6045.442,
+    "server_ms": 6043.7,
+    "input_sha256": "684b72492e4f85b74d917097a09710739d4943e30ee3458a3633c03686ddf511",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M01",
+    "variant": "reversed",
+    "title": "电源、模式与摄氏温度",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6042.505,
+    "server_ms": 6040.7,
+    "input_sha256": "c0d1f182a1b6d9157721177c88280841a48eb90403b500a68cf3d91887d94799",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M02",
+    "variant": "original",
+    "title": "制热模式、温度与风速",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6050.469,
+    "server_ms": 6048.7,
+    "input_sha256": "c98c638f774046f4932ef913ad9ef00839f7128148f5c4fcd85139c28b7d04dd",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M02",
+    "variant": "reversed",
+    "title": "制热模式、温度与风速",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6060.226,
+    "server_ms": 6058.4,
+    "input_sha256": "5d27e7cc3ca6f83af0f087ec02530c09b413a2f4c2d51bd0e5373544090965eb",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M03",
+    "variant": "original",
+    "title": "制冷模式、高风速与节能",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6000.515,
+    "server_ms": 5998.7,
+    "input_sha256": "5c7a23f0bb7518b00186de0b8d5bd26a0f01e7a80bc88bbfe10f161a905c5750",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 3,
+    "predicted_count": 3,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M03",
+    "variant": "reversed",
+    "title": "制冷模式、高风速与节能",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6015.588,
+    "server_ms": 6013.9,
+    "input_sha256": "0ac3d7d00ee7eb2586598557b13631ec68b5bf68197e82d39b69f4bc4d469872",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 3,
+    "predicted_count": 3,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M04",
+    "variant": "original",
+    "title": "室内与室外静音",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5983.223,
+    "server_ms": 5981.4,
+    "input_sha256": "616b6465d980121b2075f744809088af753b0da8297b2a0d7fae1236a1d9db39",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M04",
+    "variant": "reversed",
+    "title": "室内与室外静音",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6006.44,
+    "server_ms": 6004.5,
+    "input_sha256": "827a0823e5c17eb8f675dc214f7ff984e4c1672f783875b07ad96b9d70a529fa",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M05",
+    "variant": "original",
+    "title": "空气净化与显示屏",
+    "query": "Turn on air purification and turn off the display light.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6000.162,
+    "server_ms": 5998.4,
+    "input_sha256": "6eed5ca5f4ac25e508d2ffbdcb69305266babe3a3311f50d78033c3de15eea81",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M05",
+    "variant": "reversed",
+    "title": "空气净化与显示屏",
+    "query": "Turn on air purification and turn off the display light.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6001.484,
+    "server_ms": 5999.7,
+    "input_sha256": "54e0510cda1fb6aff1b956df4c183c0ec364497ab78fd99c396b323a815cb576",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M06",
+    "variant": "original",
+    "title": "新风与健康风",
+    "query": "Enable fresh air and healthy wind.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5992.718,
+    "server_ms": 5990.9,
+    "input_sha256": "d603427aa6fcd36fd6e10bfefe2f6007d767c49782bb84a7f997fd948370495b",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M06",
+    "variant": "reversed",
+    "title": "新风与健康风",
+    "query": "Enable fresh air and healthy wind.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5992.631,
+    "server_ms": 5990.9,
+    "input_sha256": "d9fbf847eb83e319e1488ceb52c345bb4d52aedc252fb57f139c5398687f6aeb",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M07",
+    "variant": "original",
+    "title": "室内与室外自清洁",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6013.136,
+    "server_ms": 6011.3,
+    "input_sha256": "8deba4a7dee9caca90824a03aa2b5df18cec26c8c32eb51ba6257a54a27148ed",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M07",
+    "variant": "reversed",
+    "title": "室内与室外自清洁",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6009.607,
+    "server_ms": 6007.8,
+    "input_sha256": "c4d4486cb1620ac57af29450ef6bdaf051ace4f28bd9d7c0ebcd51431341584f",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M08",
+    "variant": "original",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6020.162,
+    "server_ms": 6018.4,
+    "input_sha256": "a7afb8f7bfcef0c1283328666c535383ee543ca286bf88bb52a54333521a29e0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M08",
+    "variant": "reversed",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6016.432,
+    "server_ms": 6014.7,
+    "input_sha256": "6fd4bd093539bac3129c7e8eb9bd0540057fb241607ec2034eab58a2f020d056",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M09",
+    "variant": "original",
+    "title": "需求响应设置",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6123.91,
+    "server_ms": 6122.1,
+    "input_sha256": "7f46eeb9caa93c5e7272ec61b3493afdf79a221e5f81090e804cfc092b7399bb",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 3,
+    "predicted_count": 3,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M09",
+    "variant": "reversed",
+    "title": "需求响应设置",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6119.817,
+    "server_ms": 6118.0,
+    "input_sha256": "e61e3cd0b32fb5b5d834fd6f6d1382dd78f1b557d377f0eeb198e84b7dec8f30",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 3,
+    "predicted_count": 3,
+    "correct_pairs": 3,
+    "correct_keys": 3,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M10",
+    "variant": "original",
+    "title": "制冷模式、Super Mode 与温度",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6048.809,
+    "server_ms": 6047.0,
+    "input_sha256": "bf2edd5ae5ef468a0dcf9861e737aacddd7b6d2e7ad4e9c51f920a15e7e5cea6",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M10",
+    "variant": "reversed",
+    "title": "制冷模式、Super Mode 与温度",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6061.412,
+    "server_ms": 6059.6,
+    "input_sha256": "1a3d9cb54efab00eaba64d4d66d5e6a012575fc6272edaa5800dac6be0172867",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 4,
+    "predicted_count": 4,
+    "correct_pairs": 4,
+    "correct_keys": 4,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": []
+  }
+]

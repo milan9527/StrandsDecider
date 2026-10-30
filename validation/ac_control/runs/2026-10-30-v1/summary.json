@@ -1,0 +1,165 @@
+{
+  "started_at": "2026-10-30T06:18:01.142185+00:00",
+  "original": {
+    "cases": 20,
+    "errors": 0,
+    "exact_match": {
+      "numerator": 4,
+      "denominator": 20,
+      "rate": 0.2
+    },
+    "single_exact": {
+      "numerator": 4,
+      "denominator": 10,
+      "rate": 0.4
+    },
+    "multi_exact": {
+      "numerator": 0,
+      "denominator": 10,
+      "rate": 0.0
+    },
+    "key_set_exact": {
+      "numerator": 4,
+      "denominator": 20,
+      "rate": 0.2
+    },
+    "key_precision": {
+      "numerator": 19,
+      "denominator": 20,
+      "rate": 0.95
+    },
+    "key_recall": {
+      "numerator": 19,
+      "denominator": 40,
+      "rate": 0.475
+    },
+    "value_accuracy_given_correct_key": {
+      "numerator": 19,
+      "denominator": 19,
+      "rate": 1.0
+    },
+    "pair_precision": {
+      "numerator": 19,
+      "denominator": 20,
+      "rate": 0.95
+    },
+    "pair_recall": {
+      "numerator": 19,
+      "denominator": 40,
+      "rate": 0.475
+    },
+    "extra_command_rate": {
+      "numerator": 1,
+      "denominator": 20,
+      "rate": 0.05
+    },
+    "missing_command_rate": {
+      "numerator": 21,
+      "denominator": 40,
+      "rate": 0.525
+    },
+    "cases_with_extra": 1,
+    "cases_with_missing": 15,
+    "server_ms": {
+      "count": 20,
+      "mean": 2906.866,
+      "p50": 2904.6099999999997,
+      "p95": 2956.4,
+      "min": 2859.42,
+      "max": 2968.48,
+      "total": 58137.32
+    },
+    "client_ms": {
+      "count": 20,
+      "mean": 2919.9037,
+      "p50": 2913.325,
+      "p95": 2966.863,
+      "min": 2873.242,
+      "max": 2984.271,
+      "total": 58398.074
+    }
+  },
+  "reversed": {
+    "cases": 20,
+    "errors": 0,
+    "exact_match": {
+      "numerator": 2,
+      "denominator": 20,
+      "rate": 0.1
+    },
+    "single_exact": {
+      "numerator": 1,
+      "denominator": 10,
+      "rate": 0.1
+    },
+    "multi_exact": {
+      "numerator": 1,
+      "denominator": 10,
+      "rate": 0.1
+    },
+    "key_set_exact": {
+      "numerator": 2,
+      "denominator": 20,
+      "rate": 0.1
+    },
+    "key_precision": {
+      "numerator": 21,
+      "denominator": 37,
+      "rate": 0.5675675675675675
+    },
+    "key_recall": {
+      "numerator": 21,
+      "denominator": 40,
+      "rate": 0.525
+    },
+    "value_accuracy_given_correct_key": {
+      "numerator": 21,
+      "denominator": 21,
+      "rate": 1.0
+    },
+    "pair_precision": {
+      "numerator": 21,
+      "denominator": 37,
+      "rate": 0.5675675675675675
+    },
+    "pair_recall": {
+      "numerator": 21,
+      "denominator": 40,
+      "rate": 0.525
+    },
+    "extra_command_rate": {
+      "numerator": 16,
+      "denominator": 37,
+      "rate": 0.43243243243243246
+    },
+    "missing_command_rate": {
+      "numerator": 19,
+      "denominator": 40,
+      "rate": 0.475
+    },
+    "cases_with_extra": 16,
+    "cases_with_missing": 16,
+    "server_ms": {
+      "count": 20,
+      "mean": 2908.795,
+      "p50": 2904.46,
+      "p95": 2961.59,
+      "min": 2864.45,
+      "max": 2968.53,
+      "total": 58175.899999999994
+    },
+    "client_ms": {
+      "count": 20,
+      "mean": 2918.17665,
+      "p50": 2912.0355,
+      "p95": 2976.206,
+      "min": 2872.427,
+      "max": 2980.15,
+      "total": 58363.532999999996
+    }
+  },
+  "changed_cases": 18,
+  "valid_order_pairs": 20,
+  "scorer_sha256": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c",
+  "receipts_sha256": "8af150a0c4f186da3361d885effe0b7ddfb29f373b876de915f3a1b768fcf5c6"
+}

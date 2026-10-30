@@ -1,0 +1,35 @@
+{
+  "prepared_at": "2026-10-30T06:26:53.258306+00:00",
+  "baseline": "../2026-10-30-v1",
+  "baseline_requests_sha256": "3d3048c4b8489d7964bf4a425c7a7283e4284e4c3b5d261085bb4ded92dac687",
+  "baseline_references_sha256": "3eb97791e4abd3d9a87c3570004c779ab4485ed0a0fc375309b0a4b32bf81c4d",
+  "new_providers": [
+    "liquid",
+    "h2o"
+  ],
+  "model_ids": {
+    "decider": "strands-decider-2B-hobson-v19-vllm",
+    "liquid": "LiquidAI/d1-2B",
+    "h2o": "h2oai/h2o-lightning-4b"
+  },
+  "formal_calls_per_new_provider": 40,
+  "questions_per_call": 30,
+  "variants": [
+    "original",
+    "reversed"
+  ],
+  "input_changes": null,
+  "retries": 0,
+  "execution": "Sequential Liquid then H2O, direct resident loopback services",
+  "decider_baseline": "Reuse earlier same-day calls without changing evidence",
+  "source_sha256": {
+    "prepare.py": "756dfc0916dda153d64e9931a0bafdd710cf89e2d6a44d9bac66502e588a680a",
+    "run.py": "f1f91be993a1e2ced3fdfa50b5c15caaee3b37fde92fe9931f99a03b33d927da",
+    "analyze.py": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c",
+    "test_evaluation.py": "9a1febcb032232719e1e439c8a8aa96bd6df3031dfa33d8c33a621b485cb2d0d",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "remote_resident.py": "491851b3718db30125a88c17e546ca5b4a937cdabde4478f00db433caf02e523",
+    "compare_resident.py": "66aeb04fea0cb69905ca44b4fabba431e6ff88efd70609a8eb2acacb25715964",
+    "test_resident.py": "32636ddbdd6c2b0de0b5fa50d2dc075eb82fa133510d84a71e795e93289a3a6c"
+  }
+}

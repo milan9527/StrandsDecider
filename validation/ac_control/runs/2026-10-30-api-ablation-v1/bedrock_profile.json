@@ -1,0 +1,17 @@
+{
+  "inferenceProfileId": "us.openai.gpt-6.1-sol",
+  "inferenceProfileName": "US OpenAI GPT-6.1 Sol",
+  "status": "ACTIVE",
+  "type": "SYSTEM_DEFINED",
+  "models": [
+    {
+      "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/openai.gpt-6.1-sol"
+    },
+    {
+      "modelArn": "arn:aws:bedrock:us-east-2::foundation-model/openai.gpt-6.1-sol"
+    },
+    {
+      "modelArn": "arn:aws:bedrock:us-west-2::foundation-model/openai.gpt-6.1-sol"
+    }
+  ]
+}

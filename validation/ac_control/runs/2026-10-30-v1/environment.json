@@ -1,0 +1,19 @@
+{
+  "InstanceId": "i-0ae7eb0abcb815af3",
+  "InstanceType": "g6.xlarge",
+  "Architecture": "x86_64",
+  "LaunchTime": "2026-10-13 08:57:46+00:00",
+  "Placement": {
+    "AvailabilityZoneId": "use1-az6",
+    "GroupName": "",
+    "Tenancy": "default",
+    "AvailabilityZone": "us-east-1d"
+  },
+  "State": {
+    "Code": 16,
+    "Name": "running"
+  },
+  "observed_source": "AWS EC2 DescribeInstances",
+  "region": "us-east-1",
+  "documented_gpu": "NVIDIA L4, shared with Liquid and H2O; see deployment/open_models/README.zh.md"
+}

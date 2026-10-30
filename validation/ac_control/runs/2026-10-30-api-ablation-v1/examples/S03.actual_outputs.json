@@ -1,0 +1,1486 @@
+[
+  {
+    "provider": "decider",
+    "case_id": "S03",
+    "variant": "original",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2887.755,
+    "server_ms": 2880.66,
+    "input_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": [],
+    "arm": "baseline",
+    "dataset": "spec",
+    "baseline_reused": true,
+    "http_calls": 1,
+    "gate_selected_keys": null,
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3307.403,
+    "server_ms": 3305.58,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "90"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3429.377,
+    "server_ms": 3427.38,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_temp_f",
+        "90"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3145.491,
+    "server_ms": 3143.97,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": [],
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_temp",
+        "24"
+      ],
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_temp",
+      "t_temp_type"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3030.93,
+    "server_ms": 3028.85,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_dr_offset",
+        "24"
+      ],
+      [
+        "t_work_mode",
+        "2"
+      ]
+    ],
+    "missing": [
+      [
+        "t_temp_type",
+        "0"
+      ]
+    ],
+    "extra_keys": [
+      "t_dr_offset",
+      "t_work_mode"
+    ],
+    "missing_keys": [
+      "t_temp_type"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "liquid",
+    "case_id": "S03",
+    "variant": "original",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "80"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 610.434,
+    "server_ms": 608.4738250356168,
+    "input_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 7,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ],
+      [
+        "t_temp_f",
+        "80"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "arm": "baseline",
+    "dataset": "spec",
+    "baseline_reused": true,
+    "http_calls": 1,
+    "gate_selected_keys": null,
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "80"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 725.285,
+    "server_ms": 723.3993719564751,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_temp_f",
+        "80"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "90"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "24"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 906.494,
+    "server_ms": 904.5563490362838,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_dr_offset",
+        "24"
+      ],
+      [
+        "t_temp_f",
+        "90"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_dr_offset",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 761.1949999999999,
+    "server_ms": 758.9540670160204,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_temp",
+      "t_temp_type"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "90"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 829.928,
+    "server_ms": 827.7810889994726,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 5,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_8heat",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_temp_f",
+        "90"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_8heat",
+      "t_swing_angle",
+      "t_temp_f"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "h2o",
+    "case_id": "S03",
+    "variant": "original",
+    "title": "设置摄氏温度",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5879.061,
+    "server_ms": 5877.2,
+    "input_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "arm": "baseline",
+    "dataset": "spec",
+    "baseline_reused": true,
+    "http_calls": 1,
+    "gate_selected_keys": null,
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6989.556,
+    "server_ms": 6987.7,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7251.374,
+    "server_ms": 7249.4,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7113.96,
+    "server_ms": 7111.599999999999,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_temp",
+      "t_temp_type"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "S03",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6308.153,
+    "server_ms": 6306.1,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "rules_only",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 96.327,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "combined",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 95.359,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "two_stage",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 120.62299999999999,
+    "server_ms": null,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_temp",
+      "t_temp_type"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "baseline",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 68.054,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "criteria_only",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 112.01,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "rules_only",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3638.042,
+    "server_ms": 3629,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "combined",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 4328.153,
+    "server_ms": 4315,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "two_stage",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 5514.987999999999,
+    "server_ms": 5495,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_temp",
+      "t_temp_type"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "baseline",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2285.473,
+    "server_ms": 2276,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "S03",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "criteria_only",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3022.556,
+    "server_ms": 3009,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  }
+]

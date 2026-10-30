@@ -1,0 +1,26 @@
+{
+  "region": "us-east-1",
+  "bucket": "strands-decider-vllm-632930644527",
+  "instance": "i-0ae7eb0abcb815af3",
+  "secret_arn": "arn:aws:secretsmanager:us-east-1:632930644527:secret:strands-decider-vllm/api-key-iF5J73",
+  "prefix": "ac-control/2026-10-30-prompt-ablation-v1",
+  "remote": "/opt/decider-open-models/ac-control/2026-10-30-prompt-ablation-v1",
+  "input_archive_sha256": "4f8522a8eb6f74b657178ffdc42621d02f28b22c415836f1f3f9dfeb4420e664",
+  "transferred_files": [
+    "experiments.json",
+    "plan.json",
+    "run_ablation.py",
+    "ablation_protocol.py",
+    "run_resident.py"
+  ],
+  "commands": [
+    {
+      "phase": "probe",
+      "id": "2dc9201c-fff5-4c62-9e34-c3ce8b58c848"
+    },
+    {
+      "phase": "formal",
+      "id": "999572eb-98b4-41b8-bd05-4b75e9825c1b"
+    }
+  ]
+}

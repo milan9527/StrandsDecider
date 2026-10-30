@@ -1,0 +1,59 @@
+{
+  "phase": "probe",
+  "started_at": "2026-10-30T06:58:54.812764+00:00",
+  "models": {
+    "decider": {
+      "provider": "decider",
+      "model": "strands-decider-2B-hobson-v19-vllm",
+      "endpoint": "http://127.0.0.1:8100",
+      "phase": "probe",
+      "started_at": "2026-10-30T06:58:54.832193+00:00",
+      "status": "complete",
+      "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+      "planned_observations": 4,
+      "actual_observations": 4,
+      "actual_calls": 4,
+      "automatic_retries": 0,
+      "concurrency": 1,
+      "last_case": "S01",
+      "last_arm": "two_stage",
+      "finished_at": "2026-10-30T06:59:08.275286+00:00"
+    },
+    "liquid": {
+      "provider": "liquid",
+      "model": "LiquidAI/d1-2B",
+      "endpoint": "http://127.0.0.1:18801",
+      "phase": "probe",
+      "started_at": "2026-10-30T06:59:09.134107+00:00",
+      "status": "complete",
+      "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+      "planned_observations": 4,
+      "actual_observations": 4,
+      "actual_calls": 5,
+      "automatic_retries": 0,
+      "concurrency": 1,
+      "last_case": "S01",
+      "last_arm": "two_stage",
+      "finished_at": "2026-10-30T06:59:13.034949+00:00"
+    },
+    "h2o": {
+      "provider": "h2o",
+      "model": "h2oai/h2o-lightning-4b",
+      "endpoint": "http://127.0.0.1:18803",
+      "phase": "probe",
+      "started_at": "2026-10-30T06:59:13.836359+00:00",
+      "status": "complete",
+      "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+      "planned_observations": 4,
+      "actual_observations": 4,
+      "actual_calls": 5,
+      "automatic_retries": 0,
+      "concurrency": 1,
+      "last_case": "S01",
+      "last_arm": "two_stage",
+      "finished_at": "2026-10-30T06:59:41.115245+00:00"
+    }
+  },
+  "status": "complete",
+  "finished_at": "2026-10-30T06:59:41.966092+00:00"
+}

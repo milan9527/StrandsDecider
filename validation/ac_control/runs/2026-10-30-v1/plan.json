@@ -1,0 +1,23 @@
+{
+  "prepared_at": "2026-10-30T06:16:54.622589+00:00",
+  "spec_sha256": "d72aee30f97a4b2a8d7b57d1a680b10756b419884c10ba1e5a64df9a2f49f1e6",
+  "requests_sha256": "3d3048c4b8489d7964bf4a425c7a7283e4284e4c3b5d261085bb4ded92dac687",
+  "references_sha256": "3eb97791e4abd3d9a87c3570004c779ab4485ed0a0fc375309b0a4b32bf81c4d",
+  "cases": 20,
+  "variants": [
+    "original",
+    "reversed"
+  ],
+  "formal_http_requests": 40,
+  "questions_per_request": 30,
+  "primary_result": "original candidate order, 20 cases",
+  "robustness_result": "reversed candidate order, same 20 cases; not independent samples",
+  "range_representation": "All integers in each legal interval; fractional values untested",
+  "decoder": "One choice per key; omit is removed. No other repair, defaults or unit completion.",
+  "retry_policy": "No automatic retries; transport and format failures remain failures.",
+  "timing": "Service latency_ms (includes queue/preprocessing) and client HTTP round trip; not pure GPU time.",
+  "source_sha256": {
+    "prepare.py": "756dfc0916dda153d64e9931a0bafdd710cf89e2d6a44d9bac66502e588a680a",
+    "run.py": "12a4d5bc678689f2cd12b72b6a6ce4f6f897b55d733633eb7aadc4a8bb1f7af0"
+  }
+}

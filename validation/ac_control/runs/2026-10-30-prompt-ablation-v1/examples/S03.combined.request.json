@@ -1,0 +1,468 @@
+{
+  "state": "{\"query\":\"Set the air conditioner temperature to 24 degrees Celsius.\",\"deviceTypeCode\":\"009\",\"commandSet\":[{\"name\":\"Power\",\"key\":\"t_power\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Mode\",\"key\":\"t_work_mode\",\"type\":\"enum\",\"options\":{\"0\":\"Fan\",\"1\":\"Heat\",\"2\":\"Cool\",\"3\":\"Dry\",\"4\":\"Auto\"}},{\"name\":\"Temperature (Celsius)\",\"key\":\"t_temp\",\"type\":\"range\",\"min\":16,\"max\":32,\"unit\":\"°C\"},{\"name\":\"Temperature (Fahrenheit)\",\"key\":\"t_temp_f\",\"type\":\"range\",\"min\":61,\"max\":90,\"unit\":\"°F\"},{\"name\":\"Temperature Unit\",\"key\":\"t_temp_type\",\"type\":\"enum\",\"options\":{\"0\":\"Celsius\",\"1\":\"Fahrenheit\"}},{\"name\":\"Fan Speed\",\"key\":\"t_fan_speed\",\"type\":\"enum\",\"options\":{\"0\":\"Auto\",\"5\":\"Low\",\"6\":\"Medium Low\",\"7\":\"Medium\",\"8\":\"Medium High\",\"9\":\"High\"}},{\"name\":\"Quiet\",\"key\":\"t_fan_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Super Mode\",\"key\":\"t_super\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Up and Down Swing\",\"key\":\"t_up_down\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Comfort Auto\",\"key\":\"t_indoortemp_detection\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Left and Right Swing\",\"key\":\"t_left_right\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Airflow\",\"key\":\"t_swing_angle\",\"type\":\"enum\",\"options\":{\"0\":\"Up and down swing\",\"1\":\"Auto\",\"2\":\"Position 1\",\"3\":\"Position 2\",\"4\":\"Position 3\",\"5\":\"Position 4\",\"6\":\"Position 5\",\"7\":\"Position 6\"}},{\"name\":\"Horizontal Airflow\",\"key\":\"t_swing_direction\",\"type\":\"enum\",\"options\":{\"0\":\"Straight\",\"1\":\"All Right\",\"2\":\"Both sides\",\"3\":\"Left and Right Swing\",\"4\":\"All Left\",\"5\":\"Stop\"}},{\"name\":\"Energy Saving\",\"key\":\"t_eco\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Air Purification\",\"key\":\"t_purify\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Wind\",\"key\":\"t_swing_follow\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Blow Towards\",\"2\":\"Do Not Blow\"}},{\"name\":\"8° Heat\",\"key\":\"t_8heat\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Sleep Mode\",\"key\":\"t_sleep\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Normal Sleep\",\"2\":\"Elder Sleep\",\"3\":\"Youth Sleep\",\"4\":\"Child Sleep\"}},{\"name\":\"Dimmer\",\"key\":\"t_dimmer\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Indoor Self-Clean\",\"key\":\"t_indoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Self-Clean\",\"key\":\"t_outdoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"One-Key Self-Clean\",\"key\":\"t_onekey_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Fresh Air\",\"key\":\"t_fresh_air\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Smart Control\",\"key\":\"t_tms\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Healthy Wind\",\"key\":\"t_health_fan\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Quiet\",\"key\":\"t_outdoor_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR On/Off\",\"key\":\"t_dr_onoff\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR Offset Temperature\",\"key\":\"t_dr_offset\",\"type\":\"range\",\"min\":0,\"max\":31,\"unit\":\"°\"},{\"name\":\"DR Load Capacity\",\"key\":\"t_dr_mode\",\"type\":\"range\",\"min\":0,\"max\":100,\"unit\":\"%\"},{\"name\":\"Auto-Defrost Clean\",\"key\":\"t_auto_defrost_clean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Enabled but not executing\",\"2\":\"Enabled and started\",\"3\":\"In progress\",\"4\":\"Finished\"},\"userControllableValues\":[\"0\",\"1\"]}],\"rules\":\"TASK: Translate query into only the command changes requested by the user. query is the user's request. commandSet is a capability catalogue, not a list of requested changes. Each question concerns exactly one command key. Choose omit when that command is neither requested nor a mandatory protocol companion. omit sends nothing; value 0 sends a real setting. Select every requested compatible command, using only supported values and ranges. Do not add defaults, conversions, or inferred power, mode, fan-speed or feature changes. Power and main operating mode are independent: turning power on or off alone requests no mode change. Comfort Auto is separate from Auto operating mode; 8-degree frost-protection heating is separate from Heat operating mode. A Celsius setpoint requires t_temp and t_temp_type=0; a Fahrenheit setpoint requires t_temp_f and t_temp_type=1. The user does not need to separately request the unit companion. When both vertical swing keys are available, a request to enable or disable continuous vertical swing uses t_up_down only; do not additionally emit t_swing_angle=0 for the same request. Fixed vertical positions use t_swing_angle. A generic horizontal swing toggle uses t_left_right; an explicitly requested horizontal direction uses t_swing_direction. An independent feature request does not change the main operating mode or other features.\"}",
+  "questions": {
+    "t_power": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Power (t_power) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Main appliance power only; not the switch for an individual feature.",
+      "criteria": {
+        "omit": "The user requests no change to the air conditioner's main power.",
+        "0": "The user requests switching the air conditioner's main power off.",
+        "1": "The user requests switching the air conditioner's main power on."
+      }
+    },
+    "t_work_mode": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Mode (t_work_mode) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Main operating mode. Auto mode is different from Comfort Auto.",
+      "criteria": {
+        "omit": "The user does not request a change to the main operating mode.",
+        "0": "The user requests Fan or fan-only as the main operating mode.",
+        "1": "The user requests Heat or heating as the main operating mode.",
+        "2": "The user requests Cool or cooling as the main operating mode.",
+        "3": "The user requests Dry or dehumidification as the main operating mode.",
+        "4": "The user requests Auto as the main operating mode, rather than the separate Comfort Auto feature."
+      }
+    },
+    "t_temp": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Temperature (Celsius) (t_temp) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Celsius setpoint only. A Celsius temperature requires t_temp_type=0 too.",
+      "criteria": {
+        "omit": "The user requests no change to Temperature (Celsius).",
+        "16": "Requested Temperature (Celsius) is 16 °C.",
+        "17": "Requested Temperature (Celsius) is 17 °C.",
+        "18": "Requested Temperature (Celsius) is 18 °C.",
+        "19": "Requested Temperature (Celsius) is 19 °C.",
+        "20": "Requested Temperature (Celsius) is 20 °C.",
+        "21": "Requested Temperature (Celsius) is 21 °C.",
+        "22": "Requested Temperature (Celsius) is 22 °C.",
+        "23": "Requested Temperature (Celsius) is 23 °C.",
+        "24": "Requested Temperature (Celsius) is 24 °C.",
+        "25": "Requested Temperature (Celsius) is 25 °C.",
+        "26": "Requested Temperature (Celsius) is 26 °C.",
+        "27": "Requested Temperature (Celsius) is 27 °C.",
+        "28": "Requested Temperature (Celsius) is 28 °C.",
+        "29": "Requested Temperature (Celsius) is 29 °C.",
+        "30": "Requested Temperature (Celsius) is 30 °C.",
+        "31": "Requested Temperature (Celsius) is 31 °C.",
+        "32": "Requested Temperature (Celsius) is 32 °C."
+      }
+    },
+    "t_temp_f": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Temperature (Fahrenheit) (t_temp_f) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Fahrenheit setpoint only. A Fahrenheit temperature requires t_temp_type=1 too. Do not convert to Celsius.",
+      "criteria": {
+        "omit": "The user requests no change to Temperature (Fahrenheit).",
+        "61": "Requested Temperature (Fahrenheit) is 61 °F.",
+        "62": "Requested Temperature (Fahrenheit) is 62 °F.",
+        "63": "Requested Temperature (Fahrenheit) is 63 °F.",
+        "64": "Requested Temperature (Fahrenheit) is 64 °F.",
+        "65": "Requested Temperature (Fahrenheit) is 65 °F.",
+        "66": "Requested Temperature (Fahrenheit) is 66 °F.",
+        "67": "Requested Temperature (Fahrenheit) is 67 °F.",
+        "68": "Requested Temperature (Fahrenheit) is 68 °F.",
+        "69": "Requested Temperature (Fahrenheit) is 69 °F.",
+        "70": "Requested Temperature (Fahrenheit) is 70 °F.",
+        "71": "Requested Temperature (Fahrenheit) is 71 °F.",
+        "72": "Requested Temperature (Fahrenheit) is 72 °F.",
+        "73": "Requested Temperature (Fahrenheit) is 73 °F.",
+        "74": "Requested Temperature (Fahrenheit) is 74 °F.",
+        "75": "Requested Temperature (Fahrenheit) is 75 °F.",
+        "76": "Requested Temperature (Fahrenheit) is 76 °F.",
+        "77": "Requested Temperature (Fahrenheit) is 77 °F.",
+        "78": "Requested Temperature (Fahrenheit) is 78 °F.",
+        "79": "Requested Temperature (Fahrenheit) is 79 °F.",
+        "80": "Requested Temperature (Fahrenheit) is 80 °F.",
+        "81": "Requested Temperature (Fahrenheit) is 81 °F.",
+        "82": "Requested Temperature (Fahrenheit) is 82 °F.",
+        "83": "Requested Temperature (Fahrenheit) is 83 °F.",
+        "84": "Requested Temperature (Fahrenheit) is 84 °F.",
+        "85": "Requested Temperature (Fahrenheit) is 85 °F.",
+        "86": "Requested Temperature (Fahrenheit) is 86 °F.",
+        "87": "Requested Temperature (Fahrenheit) is 87 °F.",
+        "88": "Requested Temperature (Fahrenheit) is 88 °F.",
+        "89": "Requested Temperature (Fahrenheit) is 89 °F.",
+        "90": "Requested Temperature (Fahrenheit) is 90 °F."
+      }
+    },
+    "t_temp_type": {
+      "type": "choice",
+      "instructions": "Choose the required temperature unit. A Celsius setpoint requires value 0; a Fahrenheit setpoint requires value 1, even when no separate unit-change command is spoken. Otherwise follow an explicitly requested unit change. Choose omit only if no setpoint and no unit change is requested.",
+      "criteria": {
+        "omit": "Neither a Celsius or Fahrenheit setpoint nor a temperature-unit change is requested.",
+        "0": "A Celsius setpoint is requested, or the user explicitly requests Celsius as the unit.",
+        "1": "A Fahrenheit setpoint is requested, or the user explicitly requests Fahrenheit as the unit."
+      }
+    },
+    "t_fan_speed": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Fan Speed (t_fan_speed) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Fan speed. Turbo/Super is a separate function, not a fan speed.",
+      "criteria": {
+        "omit": "The user requests no change to Fan Speed.",
+        "0": "The user requests Auto for Fan Speed.",
+        "5": "The user requests Low for Fan Speed.",
+        "6": "The user requests Medium Low for Fan Speed.",
+        "7": "The user requests Medium for Fan Speed.",
+        "8": "The user requests Medium High for Fan Speed.",
+        "9": "The user requests High for Fan Speed."
+      }
+    },
+    "t_fan_mute": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Quiet (t_fan_mute) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Indoor unit quiet only; different from outdoor quiet.",
+      "criteria": {
+        "omit": "The user requests no change to Quiet.",
+        "0": "The user requests Off for Quiet.",
+        "1": "The user requests On for Quiet."
+      }
+    },
+    "t_super": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Super Mode (t_super) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Super/Turbo/powerful/rapid cooling or heating function; separate from fan speed.",
+      "criteria": {
+        "omit": "The user requests no change to Super Mode.",
+        "0": "The user requests Off for Super Mode.",
+        "1": "The user requests On for Super Mode."
+      }
+    },
+    "t_up_down": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Up and Down Swing (t_up_down) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Continuous up-and-down swing switch; fixed vertical positions use t_swing_angle.",
+      "criteria": {
+        "omit": "The user requests no change to Up and Down Swing.",
+        "0": "The user requests Off for Up and Down Swing.",
+        "1": "The user requests On for Up and Down Swing."
+      }
+    },
+    "t_indoortemp_detection": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Comfort Auto (t_indoortemp_detection) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Comfort Auto based on indoor temperature detection; different from Auto operating mode.",
+      "criteria": {
+        "omit": "The user requests no change to Comfort Auto.",
+        "0": "The user requests Off for Comfort Auto.",
+        "1": "The user requests On for Comfort Auto."
+      }
+    },
+    "t_left_right": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Left and Right Swing (t_left_right) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Basic left-and-right swing switch; specific horizontal directions use t_swing_direction.",
+      "criteria": {
+        "omit": "The user requests no change to Left and Right Swing.",
+        "0": "The user requests Off for Left and Right Swing.",
+        "1": "The user requests On for Left and Right Swing."
+      }
+    },
+    "t_swing_angle": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Airflow (t_swing_angle) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Vertical airflow position. Use the option value, not the position number in its label. When t_up_down is available, continuous vertical swing uses t_up_down; omit this key rather than duplicating that command as value 0.",
+      "criteria": {
+        "omit": "The user requests no change to Airflow.",
+        "0": "The user requests Up and down swing for Airflow.",
+        "1": "The user requests Auto for Airflow.",
+        "2": "The user requests Position 1 for Airflow.",
+        "3": "The user requests Position 2 for Airflow.",
+        "4": "The user requests Position 3 for Airflow.",
+        "5": "The user requests Position 4 for Airflow.",
+        "6": "The user requests Position 5 for Airflow.",
+        "7": "The user requests Position 6 for Airflow."
+      }
+    },
+    "t_swing_direction": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Horizontal Airflow (t_swing_direction) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Horizontal airflow direction. Splayed/both-sides airflow is value 2.",
+      "criteria": {
+        "omit": "The user requests no change to Horizontal Airflow.",
+        "0": "The user requests Straight for Horizontal Airflow.",
+        "1": "The user requests All Right for Horizontal Airflow.",
+        "2": "The user requests Both sides for Horizontal Airflow.",
+        "3": "The user requests Left and Right Swing for Horizontal Airflow.",
+        "4": "The user requests All Left for Horizontal Airflow.",
+        "5": "The user requests Stop for Horizontal Airflow."
+      }
+    },
+    "t_eco": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Energy Saving (t_eco) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Energy saving/Eco function; not an operating mode value.",
+      "criteria": {
+        "omit": "The user requests no change to Energy Saving.",
+        "0": "The user requests Off for Energy Saving.",
+        "1": "The user requests On for Energy Saving."
+      }
+    },
+    "t_purify": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Air Purification (t_purify) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Air purification; different from the LED display/Dimmer.",
+      "criteria": {
+        "omit": "The user requests no change to Air Purification.",
+        "0": "The user requests Off for Air Purification.",
+        "1": "The user requests On for Air Purification."
+      }
+    },
+    "t_swing_follow": {
+      "type": "choice",
+      "instructions": "Determine the requested change for AI Wind (t_swing_follow) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. AI Wind human-sensing airflow; different from AI Smart/TMS.",
+      "criteria": {
+        "omit": "The user requests no change to AI Wind.",
+        "0": "The user requests Off for AI Wind.",
+        "1": "The user requests Blow Towards for AI Wind.",
+        "2": "The user requests Do Not Blow for AI Wind."
+      }
+    },
+    "t_8heat": {
+      "type": "choice",
+      "instructions": "Determine the requested change for 8° Heat (t_8heat) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. 8-degree Celsius frost-protection heating; different from Heat operating mode.",
+      "criteria": {
+        "omit": "The user requests no change to 8° Heat.",
+        "0": "The user requests Off for 8° Heat.",
+        "1": "The user requests On for 8° Heat."
+      }
+    },
+    "t_sleep": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Sleep Mode (t_sleep) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Sleep profile selection.",
+      "criteria": {
+        "omit": "The user requests no change to Sleep Mode.",
+        "0": "The user requests Off for Sleep Mode.",
+        "1": "The user requests Normal Sleep for Sleep Mode.",
+        "2": "The user requests Elder Sleep for Sleep Mode.",
+        "3": "The user requests Youth Sleep for Sleep Mode.",
+        "4": "The user requests Child Sleep for Sleep Mode."
+      }
+    },
+    "t_dimmer": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Dimmer (t_dimmer) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. LED display/panel light; different from air purification. Off=0, On=1.",
+      "criteria": {
+        "omit": "The user requests no change to Dimmer.",
+        "0": "The user requests Off for Dimmer.",
+        "1": "The user requests On for Dimmer."
+      }
+    },
+    "t_indoor_selfclean": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Indoor Self-Clean (t_indoor_selfclean) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Clean only the indoor unit.",
+      "criteria": {
+        "omit": "The user requests no change to Indoor Self-Clean.",
+        "0": "The user requests Off for Indoor Self-Clean.",
+        "1": "The user requests On for Indoor Self-Clean."
+      }
+    },
+    "t_outdoor_selfclean": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Outdoor Self-Clean (t_outdoor_selfclean) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Clean only the outdoor unit.",
+      "criteria": {
+        "omit": "The user requests no change to Outdoor Self-Clean.",
+        "0": "The user requests Off for Outdoor Self-Clean.",
+        "1": "The user requests On for Outdoor Self-Clean."
+      }
+    },
+    "t_onekey_selfclean": {
+      "type": "choice",
+      "instructions": "Determine the requested change for One-Key Self-Clean (t_onekey_selfclean) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Combined one-key indoor/outdoor self-clean function.",
+      "criteria": {
+        "omit": "The user requests no change to One-Key Self-Clean.",
+        "0": "The user requests Off for One-Key Self-Clean.",
+        "1": "The user requests On for One-Key Self-Clean."
+      }
+    },
+    "t_fresh_air": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Fresh Air (t_fresh_air) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Fresh air/ventilation function; different from Healthy Wind.",
+      "criteria": {
+        "omit": "The user requests no change to Fresh Air.",
+        "0": "The user requests Off for Fresh Air.",
+        "1": "The user requests On for Fresh Air."
+      }
+    },
+    "t_tms": {
+      "type": "choice",
+      "instructions": "Determine the requested change for AI Smart Control (t_tms) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. General AI Smart/TMS function; different from AI Wind.",
+      "criteria": {
+        "omit": "The user requests no change to AI Smart Control.",
+        "0": "The user requests Off for AI Smart Control.",
+        "1": "The user requests On for AI Smart Control."
+      }
+    },
+    "t_health_fan": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Healthy Wind (t_health_fan) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Healthy Wind function; different from Fresh Air.",
+      "criteria": {
+        "omit": "The user requests no change to Healthy Wind.",
+        "0": "The user requests Off for Healthy Wind.",
+        "1": "The user requests On for Healthy Wind."
+      }
+    },
+    "t_outdoor_mute": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Outdoor Quiet (t_outdoor_mute) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Outdoor unit quiet only; different from indoor Quiet.",
+      "criteria": {
+        "omit": "The user requests no change to Outdoor Quiet.",
+        "0": "The user requests Off for Outdoor Quiet.",
+        "1": "The user requests On for Outdoor Quiet."
+      }
+    },
+    "t_dr_onoff": {
+      "type": "choice",
+      "instructions": "Determine the requested change for DR On/Off (t_dr_onoff) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Demand Response main switch.",
+      "criteria": {
+        "omit": "The user requests no change to DR On/Off.",
+        "0": "The user requests Off for DR On/Off.",
+        "1": "The user requests On for DR On/Off."
+      }
+    },
+    "t_dr_offset": {
+      "type": "choice",
+      "instructions": "Determine the requested change for DR Offset Temperature (t_dr_offset) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Demand Response temperature offset.",
+      "criteria": {
+        "omit": "The user requests no change to DR Offset Temperature.",
+        "0": "Requested DR Offset Temperature is 0 °.",
+        "1": "Requested DR Offset Temperature is 1 °.",
+        "2": "Requested DR Offset Temperature is 2 °.",
+        "3": "Requested DR Offset Temperature is 3 °.",
+        "4": "Requested DR Offset Temperature is 4 °.",
+        "5": "Requested DR Offset Temperature is 5 °.",
+        "6": "Requested DR Offset Temperature is 6 °.",
+        "7": "Requested DR Offset Temperature is 7 °.",
+        "8": "Requested DR Offset Temperature is 8 °.",
+        "9": "Requested DR Offset Temperature is 9 °.",
+        "10": "Requested DR Offset Temperature is 10 °.",
+        "11": "Requested DR Offset Temperature is 11 °.",
+        "12": "Requested DR Offset Temperature is 12 °.",
+        "13": "Requested DR Offset Temperature is 13 °.",
+        "14": "Requested DR Offset Temperature is 14 °.",
+        "15": "Requested DR Offset Temperature is 15 °.",
+        "16": "Requested DR Offset Temperature is 16 °.",
+        "17": "Requested DR Offset Temperature is 17 °.",
+        "18": "Requested DR Offset Temperature is 18 °.",
+        "19": "Requested DR Offset Temperature is 19 °.",
+        "20": "Requested DR Offset Temperature is 20 °.",
+        "21": "Requested DR Offset Temperature is 21 °.",
+        "22": "Requested DR Offset Temperature is 22 °.",
+        "23": "Requested DR Offset Temperature is 23 °.",
+        "24": "Requested DR Offset Temperature is 24 °.",
+        "25": "Requested DR Offset Temperature is 25 °.",
+        "26": "Requested DR Offset Temperature is 26 °.",
+        "27": "Requested DR Offset Temperature is 27 °.",
+        "28": "Requested DR Offset Temperature is 28 °.",
+        "29": "Requested DR Offset Temperature is 29 °.",
+        "30": "Requested DR Offset Temperature is 30 °.",
+        "31": "Requested DR Offset Temperature is 31 °."
+      }
+    },
+    "t_dr_mode": {
+      "type": "choice",
+      "instructions": "Determine the requested change for DR Load Capacity (t_dr_mode) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Demand Response load/capacity percentage.",
+      "criteria": {
+        "omit": "The user requests no change to DR Load Capacity.",
+        "0": "Requested DR Load Capacity is 0 %.",
+        "1": "Requested DR Load Capacity is 1 %.",
+        "2": "Requested DR Load Capacity is 2 %.",
+        "3": "Requested DR Load Capacity is 3 %.",
+        "4": "Requested DR Load Capacity is 4 %.",
+        "5": "Requested DR Load Capacity is 5 %.",
+        "6": "Requested DR Load Capacity is 6 %.",
+        "7": "Requested DR Load Capacity is 7 %.",
+        "8": "Requested DR Load Capacity is 8 %.",
+        "9": "Requested DR Load Capacity is 9 %.",
+        "10": "Requested DR Load Capacity is 10 %.",
+        "11": "Requested DR Load Capacity is 11 %.",
+        "12": "Requested DR Load Capacity is 12 %.",
+        "13": "Requested DR Load Capacity is 13 %.",
+        "14": "Requested DR Load Capacity is 14 %.",
+        "15": "Requested DR Load Capacity is 15 %.",
+        "16": "Requested DR Load Capacity is 16 %.",
+        "17": "Requested DR Load Capacity is 17 %.",
+        "18": "Requested DR Load Capacity is 18 %.",
+        "19": "Requested DR Load Capacity is 19 %.",
+        "20": "Requested DR Load Capacity is 20 %.",
+        "21": "Requested DR Load Capacity is 21 %.",
+        "22": "Requested DR Load Capacity is 22 %.",
+        "23": "Requested DR Load Capacity is 23 %.",
+        "24": "Requested DR Load Capacity is 24 %.",
+        "25": "Requested DR Load Capacity is 25 %.",
+        "26": "Requested DR Load Capacity is 26 %.",
+        "27": "Requested DR Load Capacity is 27 %.",
+        "28": "Requested DR Load Capacity is 28 %.",
+        "29": "Requested DR Load Capacity is 29 %.",
+        "30": "Requested DR Load Capacity is 30 %.",
+        "31": "Requested DR Load Capacity is 31 %.",
+        "32": "Requested DR Load Capacity is 32 %.",
+        "33": "Requested DR Load Capacity is 33 %.",
+        "34": "Requested DR Load Capacity is 34 %.",
+        "35": "Requested DR Load Capacity is 35 %.",
+        "36": "Requested DR Load Capacity is 36 %.",
+        "37": "Requested DR Load Capacity is 37 %.",
+        "38": "Requested DR Load Capacity is 38 %.",
+        "39": "Requested DR Load Capacity is 39 %.",
+        "40": "Requested DR Load Capacity is 40 %.",
+        "41": "Requested DR Load Capacity is 41 %.",
+        "42": "Requested DR Load Capacity is 42 %.",
+        "43": "Requested DR Load Capacity is 43 %.",
+        "44": "Requested DR Load Capacity is 44 %.",
+        "45": "Requested DR Load Capacity is 45 %.",
+        "46": "Requested DR Load Capacity is 46 %.",
+        "47": "Requested DR Load Capacity is 47 %.",
+        "48": "Requested DR Load Capacity is 48 %.",
+        "49": "Requested DR Load Capacity is 49 %.",
+        "50": "Requested DR Load Capacity is 50 %.",
+        "51": "Requested DR Load Capacity is 51 %.",
+        "52": "Requested DR Load Capacity is 52 %.",
+        "53": "Requested DR Load Capacity is 53 %.",
+        "54": "Requested DR Load Capacity is 54 %.",
+        "55": "Requested DR Load Capacity is 55 %.",
+        "56": "Requested DR Load Capacity is 56 %.",
+        "57": "Requested DR Load Capacity is 57 %.",
+        "58": "Requested DR Load Capacity is 58 %.",
+        "59": "Requested DR Load Capacity is 59 %.",
+        "60": "Requested DR Load Capacity is 60 %.",
+        "61": "Requested DR Load Capacity is 61 %.",
+        "62": "Requested DR Load Capacity is 62 %.",
+        "63": "Requested DR Load Capacity is 63 %.",
+        "64": "Requested DR Load Capacity is 64 %.",
+        "65": "Requested DR Load Capacity is 65 %.",
+        "66": "Requested DR Load Capacity is 66 %.",
+        "67": "Requested DR Load Capacity is 67 %.",
+        "68": "Requested DR Load Capacity is 68 %.",
+        "69": "Requested DR Load Capacity is 69 %.",
+        "70": "Requested DR Load Capacity is 70 %.",
+        "71": "Requested DR Load Capacity is 71 %.",
+        "72": "Requested DR Load Capacity is 72 %.",
+        "73": "Requested DR Load Capacity is 73 %.",
+        "74": "Requested DR Load Capacity is 74 %.",
+        "75": "Requested DR Load Capacity is 75 %.",
+        "76": "Requested DR Load Capacity is 76 %.",
+        "77": "Requested DR Load Capacity is 77 %.",
+        "78": "Requested DR Load Capacity is 78 %.",
+        "79": "Requested DR Load Capacity is 79 %.",
+        "80": "Requested DR Load Capacity is 80 %.",
+        "81": "Requested DR Load Capacity is 81 %.",
+        "82": "Requested DR Load Capacity is 82 %.",
+        "83": "Requested DR Load Capacity is 83 %.",
+        "84": "Requested DR Load Capacity is 84 %.",
+        "85": "Requested DR Load Capacity is 85 %.",
+        "86": "Requested DR Load Capacity is 86 %.",
+        "87": "Requested DR Load Capacity is 87 %.",
+        "88": "Requested DR Load Capacity is 88 %.",
+        "89": "Requested DR Load Capacity is 89 %.",
+        "90": "Requested DR Load Capacity is 90 %.",
+        "91": "Requested DR Load Capacity is 91 %.",
+        "92": "Requested DR Load Capacity is 92 %.",
+        "93": "Requested DR Load Capacity is 93 %.",
+        "94": "Requested DR Load Capacity is 94 %.",
+        "95": "Requested DR Load Capacity is 95 %.",
+        "96": "Requested DR Load Capacity is 96 %.",
+        "97": "Requested DR Load Capacity is 97 %.",
+        "98": "Requested DR Load Capacity is 98 %.",
+        "99": "Requested DR Load Capacity is 99 %.",
+        "100": "Requested DR Load Capacity is 100 %."
+      }
+    },
+    "t_auto_defrost_clean": {
+      "type": "choice",
+      "instructions": "Determine the requested change for Auto-Defrost Clean (t_auto_defrost_clean) using query. Apply the command-selection rules in state. Available capabilities are not requests. Return omit if this key is not requested or required by the protocol. Only values 0 and 1 are user-controllable. Values 2, 3 and 4 describe running status and must never be commanded.",
+      "criteria": {
+        "omit": "The user requests no change to Auto-Defrost Clean.",
+        "0": "The user requests Off for Auto-Defrost Clean.",
+        "1": "The user requests Enabled but not executing for Auto-Defrost Clean."
+      }
+    }
+  }
+}

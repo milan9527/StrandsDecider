@@ -1,0 +1,39 @@
+{
+  "observations": 1250,
+  "new_api_observations": 500,
+  "new_api_calls_including_capture_gap": 600,
+  "errors": 1,
+  "capture_errors": 1,
+  "api_observations_with_raw_evidence": 499,
+  "prior_raw_rescoring_matches": true,
+  "prior_evidence_unchanged": true,
+  "preserved_failed_run_evidence_unchanged": true,
+  "capture_gap_counted_as_failure": true,
+  "capture_gap_response_status_and_timing_unknown": true,
+  "replayed_observations": 0,
+  "gpt_model_and_low_effort_verified_for_all_saved_requests": true,
+  "frozen_task_and_transport_hashes_verified_for_all_saved_requests": true,
+  "all_saved_candidate_ids_and_question_ids_validated": true,
+  "second_stage_selected_only_by_model_gate": true,
+  "no_output_repair": true,
+  "original_source_sha256": {
+    "api_ablation_protocol.py": "ed88ab706e866718f745187086d083a17eb1bca38ca152b0a74f8b1d9897e676",
+    "run_api_ablation.py": "d0557d87502565ac50bbbe43f65cc881c385175efc2c6dd0ec1078b485494330",
+    "prepare_api_ablation.py": "811360facc1094dfec8bb01d061812cf5c0bfedbec411efdf8a065f84c9015e5",
+    "analyze_api_ablation.py": "9b6b42aa02e1a2261bec0a84b5ce6042a906273010a60de7e0017d04f2048eb0",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "analyze.py": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c",
+    "analyze_ablation.py": "d7e5e04ba549c4ec812b360214ae5ce2ca3551a11db28615aebb1dcf3bc2963b",
+    "compare_resident.py": "66aeb04fea0cb69905ca44b4fabba431e6ff88efd70609a8eb2acacb25715964",
+    "prepare.py": "756dfc0916dda153d64e9931a0bafdd710cf89e2d6a44d9bac66502e588a680a"
+  },
+  "recovery_runner_sha256": "d64e93c4a4f844df4572ad9d027c218723feae77dd1e29817adc02b961141c08",
+  "recovery_analyzer_sha256": "ea1054f23a4eb1e001910203b56432bf637b090b92e129b974af8fe5bcf9a345",
+  "new_receipts_sha256": {
+    "jev": "ee2a5856156ae60f0b14cd6eec6a7fefaafd06f0b74edd66a3679b9494f871ae",
+    "gpt_initial": "2eecb8db3ec1332db898f459cb9d8f871a701a7dc127067c6f1fe68020331f13",
+    "gpt_remainder": "ab62204fb47530f6b4bdb2bcd76d7a8a9b2af14a293f36c17ba9c6a9f5ba659b"
+  }
+}

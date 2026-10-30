@@ -1,0 +1,1539 @@
+[
+  {
+    "provider": "decider",
+    "case_id": "M08",
+    "variant": "original",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 2947.641,
+    "server_ms": 2936.29,
+    "input_sha256": "a7afb8f7bfcef0c1283328666c535383ee543ca286bf88bb52a54333521a29e0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_up_down",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_up_down"
+    ],
+    "wrong_values": [],
+    "arm": "baseline",
+    "dataset": "spec",
+    "baseline_reused": true,
+    "http_calls": 1,
+    "gate_selected_keys": null,
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3394.849,
+    "server_ms": 3392.86,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 1,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [],
+    "missing": [
+      [
+        "t_up_down",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_up_down"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3511.958,
+    "server_ms": 3510.14,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 1,
+    "correct_keys": 1,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [
+      [
+        "t_up_down",
+        "1"
+      ]
+    ],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [
+      "t_up_down"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [],
+    "status": "ok",
+    "client_ms": 3230.783,
+    "server_ms": 3229.16,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": [],
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 0,
+    "correct_pairs": 0,
+    "correct_keys": 0,
+    "extra": [],
+    "missing": [
+      [
+        "t_swing_direction",
+        "2"
+      ],
+      [
+        "t_up_down",
+        "1"
+      ]
+    ],
+    "extra_keys": [],
+    "missing_keys": [
+      "t_swing_direction",
+      "t_up_down"
+    ],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "decider",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3124.27,
+    "server_ms": 3122.46,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "liquid",
+    "case_id": "M08",
+    "variant": "original",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "AI Wind",
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 614.698,
+    "server_ms": 612.5404740450904,
+    "input_sha256": "a7afb8f7bfcef0c1283328666c535383ee543ca286bf88bb52a54333521a29e0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 6,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_outdoor_selfclean",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ],
+      [
+        "t_swing_follow",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right",
+      "t_outdoor_selfclean",
+      "t_swing_angle",
+      "t_swing_follow"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "arm": "baseline",
+    "dataset": "spec",
+    "baseline_reused": true,
+    "http_calls": 1,
+    "gate_selected_keys": null,
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 726.137,
+    "server_ms": 724.1014470346272,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 906.62,
+    "server_ms": 904.5155809726566,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 761.533,
+    "server_ms": 759.2741450644098,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_up_down",
+      "t_left_right",
+      "t_swing_direction"
+    ],
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "liquid",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Left and Right Swing",
+        "cmdKey": "t_left_right",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 831.158,
+    "server_ms": 829.0948590147309,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 4,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_left_right",
+        "1"
+      ],
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_left_right",
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "h2o",
+    "case_id": "M08",
+    "variant": "original",
+    "title": "垂直与水平风向",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6020.162,
+    "server_ms": 6018.4,
+    "input_sha256": "a7afb8f7bfcef0c1283328666c535383ee543ca286bf88bb52a54333521a29e0",
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "arm": "baseline",
+    "dataset": "spec",
+    "baseline_reused": true,
+    "http_calls": 1,
+    "gate_selected_keys": null,
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "rules_only",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6991.74,
+    "server_ms": 6989.7,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "combined",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7267.945,
+    "server_ms": 7266.1,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "two_stage",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 7084.494,
+    "server_ms": 7082.0,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_up_down",
+      "t_swing_direction"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "original",
+    "provider": "h2o",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 6339.196,
+    "server_ms": 6337.0,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "jev",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "rules_only",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 109.38,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "combined",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 126.513,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "two_stage",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 125.999,
+    "server_ms": null,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_up_down",
+      "t_swing_direction"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "jev",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "baseline",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 79.338,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "jev",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "criteria_only",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Airflow",
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 95.032,
+    "server_ms": null,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": false,
+    "keys_correct": false,
+    "expected_count": 2,
+    "predicted_count": 3,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [
+      [
+        "t_swing_angle",
+        "0"
+      ]
+    ],
+    "missing": [],
+    "extra_keys": [
+      "t_swing_angle"
+    ],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": false
+  },
+  {
+    "provider": "gpt",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "rules_only",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3001.551,
+    "server_ms": 2992,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "combined",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3501.149,
+    "server_ms": 3496,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "two_stage",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 4090.827,
+    "server_ms": 4074,
+    "http_calls": 2,
+    "baseline_reused": false,
+    "gate_selected_keys": [
+      "t_up_down",
+      "t_swing_direction"
+    ],
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "baseline",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3528.368,
+    "server_ms": 3520,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  },
+  {
+    "provider": "gpt",
+    "case_id": "M08",
+    "dataset": "spec",
+    "variant": "original",
+    "arm": "criteria_only",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "cmdList": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "status": "ok",
+    "client_ms": 3124.152,
+    "server_ms": 3117,
+    "http_calls": 1,
+    "baseline_reused": false,
+    "gate_selected_keys": null,
+    "correct": true,
+    "keys_correct": true,
+    "expected_count": 2,
+    "predicted_count": 2,
+    "correct_pairs": 2,
+    "correct_keys": 2,
+    "extra": [],
+    "missing": [],
+    "extra_keys": [],
+    "missing_keys": [],
+    "wrong_values": [],
+    "unit_completion_correct": true
+  }
+]

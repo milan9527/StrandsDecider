@@ -1,0 +1,6174 @@
+{
+  "partial": false,
+  "observations": 1250,
+  "new_api_observations": 500,
+  "new_api_calls": 600,
+  "models": {
+    "decider": {
+      "baseline": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "single_exact": {
+            "numerator": 4,
+            "denominator": 10,
+            "rate": 0.4
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "key_precision": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_recall": {
+            "numerator": 19,
+            "denominator": 40,
+            "rate": 0.475
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 19,
+            "denominator": 19,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "pair_recall": {
+            "numerator": 19,
+            "denominator": 40,
+            "rate": 0.475
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "missing_command_rate": {
+            "numerator": 21,
+            "denominator": 40,
+            "rate": 0.525
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 15,
+          "server_ms": {
+            "count": 20,
+            "mean": 2906.866,
+            "p50": 2904.6099999999997,
+            "p95": 2956.4,
+            "min": 2859.42,
+            "max": 2968.48,
+            "total": 58137.32
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 2919.9037,
+            "p50": 2913.325,
+            "p95": 2966.863,
+            "min": 2873.242,
+            "max": 2984.271,
+            "total": 58398.074
+          },
+          "unit_completion_exact_count": 7,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 2,
+            "denominator": 20,
+            "rate": 0.1
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "multi_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "key_set_exact": {
+            "numerator": 2,
+            "denominator": 20,
+            "rate": 0.1
+          },
+          "key_precision": {
+            "numerator": 21,
+            "denominator": 37,
+            "rate": 0.5675675675675675
+          },
+          "key_recall": {
+            "numerator": 21,
+            "denominator": 40,
+            "rate": 0.525
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 21,
+            "denominator": 21,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 21,
+            "denominator": 37,
+            "rate": 0.5675675675675675
+          },
+          "pair_recall": {
+            "numerator": 21,
+            "denominator": 40,
+            "rate": 0.525
+          },
+          "extra_command_rate": {
+            "numerator": 16,
+            "denominator": 37,
+            "rate": 0.43243243243243246
+          },
+          "missing_command_rate": {
+            "numerator": 19,
+            "denominator": 40,
+            "rate": 0.475
+          },
+          "cases_with_extra": 16,
+          "cases_with_missing": 16,
+          "server_ms": {
+            "count": 20,
+            "mean": 2908.795,
+            "p50": 2904.46,
+            "p95": 2961.59,
+            "min": 2864.45,
+            "max": 2968.53,
+            "total": 58175.899999999994
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 2918.17665,
+            "p50": 2912.0355,
+            "p95": 2976.206,
+            "min": 2872.427,
+            "max": 2980.15,
+            "total": 58363.532999999996
+          },
+          "unit_completion_exact_count": 2,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 4,
+            "denominator": 4,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 4,
+            "denominator": 4,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 4,
+            "denominator": 4,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 4,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 16,
+            "denominator": 20,
+            "rate": 0.8
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 10,
+          "server_ms": {
+            "count": 10,
+            "mean": 3003.283,
+            "p50": 3004.6049999999996,
+            "p95": 3014.98,
+            "min": 2992.55,
+            "max": 3014.98,
+            "total": 30032.829999999998
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3005.1914,
+            "p50": 3006.627,
+            "p95": 3016.735,
+            "min": 2994.831,
+            "max": 3016.735,
+            "total": 30051.914000000004
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 10
+        },
+        "changed_cases": 18,
+        "valid_order_pairs": 20
+      },
+      "criteria_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "key_precision": {
+            "numerator": 28,
+            "denominator": 66,
+            "rate": 0.42424242424242425
+          },
+          "key_recall": {
+            "numerator": 28,
+            "denominator": 40,
+            "rate": 0.7
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 28,
+            "denominator": 28,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 28,
+            "denominator": 66,
+            "rate": 0.42424242424242425
+          },
+          "pair_recall": {
+            "numerator": 28,
+            "denominator": 40,
+            "rate": 0.7
+          },
+          "extra_command_rate": {
+            "numerator": 38,
+            "denominator": 66,
+            "rate": 0.5757575757575758
+          },
+          "missing_command_rate": {
+            "numerator": 12,
+            "denominator": 40,
+            "rate": 0.3
+          },
+          "cases_with_extra": 18,
+          "cases_with_missing": 10,
+          "server_ms": {
+            "count": 20,
+            "mean": 3074.9835,
+            "p50": 3075.48,
+            "p95": 3129.84,
+            "min": 2977.68,
+            "max": 3145.72,
+            "total": 61499.67
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3076.9029,
+            "p50": 3077.3555,
+            "p95": 3131.607,
+            "min": 2979.611,
+            "max": 3147.687,
+            "total": 61538.058
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 38,
+            "denominator": 469,
+            "rate": 0.08102345415778252
+          },
+          "key_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 37,
+            "denominator": 38,
+            "rate": 0.9736842105263158
+          },
+          "pair_precision": {
+            "numerator": 37,
+            "denominator": 469,
+            "rate": 0.07889125799573561
+          },
+          "pair_recall": {
+            "numerator": 37,
+            "denominator": 40,
+            "rate": 0.925
+          },
+          "extra_command_rate": {
+            "numerator": 432,
+            "denominator": 469,
+            "rate": 0.9211087420042644
+          },
+          "missing_command_rate": {
+            "numerator": 3,
+            "denominator": 40,
+            "rate": 0.075
+          },
+          "cases_with_extra": 20,
+          "cases_with_missing": 3,
+          "server_ms": {
+            "count": 20,
+            "mean": 3078.956,
+            "p50": 3078.635,
+            "p95": 3135.74,
+            "min": 2990.8,
+            "max": 3146.84,
+            "total": 61579.119999999995
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3080.82485,
+            "p50": 3080.71,
+            "p95": 3137.568,
+            "min": 2992.553,
+            "max": 3148.655,
+            "total": 61616.497
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 9,
+            "denominator": 13,
+            "rate": 0.6923076923076923
+          },
+          "key_recall": {
+            "numerator": 9,
+            "denominator": 20,
+            "rate": 0.45
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 9,
+            "denominator": 9,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 9,
+            "denominator": 13,
+            "rate": 0.6923076923076923
+          },
+          "pair_recall": {
+            "numerator": 9,
+            "denominator": 20,
+            "rate": 0.45
+          },
+          "extra_command_rate": {
+            "numerator": 4,
+            "denominator": 13,
+            "rate": 0.3076923076923077
+          },
+          "missing_command_rate": {
+            "numerator": 11,
+            "denominator": 20,
+            "rate": 0.55
+          },
+          "cases_with_extra": 3,
+          "cases_with_missing": 10,
+          "server_ms": {
+            "count": 10,
+            "mean": 3106.803,
+            "p50": 3102.475,
+            "p95": 3135.17,
+            "min": 3090.46,
+            "max": 3135.17,
+            "total": 31068.03
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3108.7007,
+            "p50": 3104.3230000000003,
+            "p95": 3137.126,
+            "min": 3092.261,
+            "max": 3137.126,
+            "total": 31087.007
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 10
+        },
+        "changed_cases": 20,
+        "valid_order_pairs": 20
+      },
+      "rules_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 3,
+            "denominator": 20,
+            "rate": 0.15
+          },
+          "single_exact": {
+            "numerator": 3,
+            "denominator": 10,
+            "rate": 0.3
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 3,
+            "denominator": 20,
+            "rate": 0.15
+          },
+          "key_precision": {
+            "numerator": 8,
+            "denominator": 9,
+            "rate": 0.8888888888888888
+          },
+          "key_recall": {
+            "numerator": 8,
+            "denominator": 40,
+            "rate": 0.2
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 8,
+            "denominator": 8,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 8,
+            "denominator": 9,
+            "rate": 0.8888888888888888
+          },
+          "pair_recall": {
+            "numerator": 8,
+            "denominator": 40,
+            "rate": 0.2
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 9,
+            "rate": 0.1111111111111111
+          },
+          "missing_command_rate": {
+            "numerator": 32,
+            "denominator": 40,
+            "rate": 0.8
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 17,
+          "server_ms": {
+            "count": 20,
+            "mean": 3355.288,
+            "p50": 3361.16,
+            "p95": 3406.88,
+            "min": 3251.02,
+            "max": 3407.84,
+            "total": 67105.76
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3357.1799,
+            "p50": 3362.971,
+            "p95": 3408.685,
+            "min": 3253.201,
+            "max": 3409.666,
+            "total": 67143.59800000001
+          },
+          "unit_completion_exact_count": 5,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 3,
+            "denominator": 20,
+            "rate": 0.15
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "multi_exact": {
+            "numerator": 2,
+            "denominator": 10,
+            "rate": 0.2
+          },
+          "key_set_exact": {
+            "numerator": 3,
+            "denominator": 20,
+            "rate": 0.15
+          },
+          "key_precision": {
+            "numerator": 10,
+            "denominator": 13,
+            "rate": 0.7692307692307693
+          },
+          "key_recall": {
+            "numerator": 10,
+            "denominator": 40,
+            "rate": 0.25
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 10,
+            "denominator": 13,
+            "rate": 0.7692307692307693
+          },
+          "pair_recall": {
+            "numerator": 10,
+            "denominator": 40,
+            "rate": 0.25
+          },
+          "extra_command_rate": {
+            "numerator": 3,
+            "denominator": 13,
+            "rate": 0.23076923076923078
+          },
+          "missing_command_rate": {
+            "numerator": 30,
+            "denominator": 40,
+            "rate": 0.75
+          },
+          "cases_with_extra": 3,
+          "cases_with_missing": 16,
+          "server_ms": {
+            "count": 20,
+            "mean": 3356.645,
+            "p50": 3357.365,
+            "p95": 3413.84,
+            "min": 3265.69,
+            "max": 3424.29,
+            "total": 67132.9
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3358.53495,
+            "p50": 3359.196,
+            "p95": 3415.75,
+            "min": 3267.532,
+            "max": 3426.23,
+            "total": 67170.699
+          },
+          "unit_completion_exact_count": 5,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 2,
+            "denominator": 2,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 2,
+            "denominator": 20,
+            "rate": 0.1
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 2,
+            "denominator": 2,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 2,
+            "denominator": 2,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 2,
+            "denominator": 20,
+            "rate": 0.1
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 2,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 10,
+          "server_ms": {
+            "count": 10,
+            "mean": 3392.4320000000002,
+            "p50": 3393.925,
+            "p95": 3407.65,
+            "min": 3374.61,
+            "max": 3407.65,
+            "total": 33924.32
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3394.2883,
+            "p50": 3395.718,
+            "p95": 3409.555,
+            "min": 3376.499,
+            "max": 3409.555,
+            "total": 33942.882999999994
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 10
+        },
+        "changed_cases": 8,
+        "valid_order_pairs": 20
+      },
+      "combined": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "key_precision": {
+            "numerator": 25,
+            "denominator": 69,
+            "rate": 0.36231884057971014
+          },
+          "key_recall": {
+            "numerator": 25,
+            "denominator": 40,
+            "rate": 0.625
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 25,
+            "denominator": 25,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 25,
+            "denominator": 69,
+            "rate": 0.36231884057971014
+          },
+          "pair_recall": {
+            "numerator": 25,
+            "denominator": 40,
+            "rate": 0.625
+          },
+          "extra_command_rate": {
+            "numerator": 44,
+            "denominator": 69,
+            "rate": 0.6376811594202898
+          },
+          "missing_command_rate": {
+            "numerator": 15,
+            "denominator": 40,
+            "rate": 0.375
+          },
+          "cases_with_extra": 19,
+          "cases_with_missing": 12,
+          "server_ms": {
+            "count": 20,
+            "mean": 3474.0175,
+            "p50": 3486.43,
+            "p95": 3514.38,
+            "min": 3375.4,
+            "max": 3521.89,
+            "total": 69480.35
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3475.9797,
+            "p50": 3488.5605,
+            "p95": 3516.699,
+            "min": 3377.349,
+            "max": 3523.794,
+            "total": 69519.594
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 35,
+            "denominator": 299,
+            "rate": 0.11705685618729098
+          },
+          "key_recall": {
+            "numerator": 35,
+            "denominator": 40,
+            "rate": 0.875
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 35,
+            "denominator": 35,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 35,
+            "denominator": 299,
+            "rate": 0.11705685618729098
+          },
+          "pair_recall": {
+            "numerator": 35,
+            "denominator": 40,
+            "rate": 0.875
+          },
+          "extra_command_rate": {
+            "numerator": 264,
+            "denominator": 299,
+            "rate": 0.882943143812709
+          },
+          "missing_command_rate": {
+            "numerator": 5,
+            "denominator": 40,
+            "rate": 0.125
+          },
+          "cases_with_extra": 20,
+          "cases_with_missing": 5,
+          "server_ms": {
+            "count": 20,
+            "mean": 3477.2780000000002,
+            "p50": 3487.01,
+            "p95": 3518.27,
+            "min": 3383.03,
+            "max": 3525.8,
+            "total": 69545.56
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3479.2335,
+            "p50": 3488.955,
+            "p95": 3520.224,
+            "min": 3385.073,
+            "max": 3527.675,
+            "total": 69584.67000000001
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 8,
+            "denominator": 17,
+            "rate": 0.47058823529411764
+          },
+          "key_recall": {
+            "numerator": 8,
+            "denominator": 20,
+            "rate": 0.4
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 7,
+            "denominator": 8,
+            "rate": 0.875
+          },
+          "pair_precision": {
+            "numerator": 7,
+            "denominator": 17,
+            "rate": 0.4117647058823529
+          },
+          "pair_recall": {
+            "numerator": 7,
+            "denominator": 20,
+            "rate": 0.35
+          },
+          "extra_command_rate": {
+            "numerator": 10,
+            "denominator": 17,
+            "rate": 0.5882352941176471
+          },
+          "missing_command_rate": {
+            "numerator": 13,
+            "denominator": 20,
+            "rate": 0.65
+          },
+          "cases_with_extra": 5,
+          "cases_with_missing": 10,
+          "server_ms": {
+            "count": 10,
+            "mean": 3509.464,
+            "p50": 3509.5150000000003,
+            "p95": 3517.61,
+            "min": 3501.71,
+            "max": 3517.61,
+            "total": 35094.64
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3511.3487,
+            "p50": 3511.3095,
+            "p95": 3519.525,
+            "min": 3503.743,
+            "max": 3519.525,
+            "total": 35113.486999999994
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 10
+        },
+        "changed_cases": 20,
+        "valid_order_pairs": 20
+      },
+      "two_stage": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "key_recall": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "pair_precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "pair_recall": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "missing_command_rate": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 20,
+          "server_ms": {
+            "count": 20,
+            "mean": 3189.503,
+            "p50": 3196.84,
+            "p95": 3237.84,
+            "min": 3090.4,
+            "max": 3245.31,
+            "total": 63790.06
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3191.1211,
+            "p50": 3198.413,
+            "p95": 3239.412,
+            "min": 3092.042,
+            "max": 3246.892,
+            "total": 63822.422000000006
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "key_recall": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "pair_precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "pair_recall": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "missing_command_rate": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 20,
+          "server_ms": {
+            "count": 20,
+            "mean": 3191.947,
+            "p50": 3202.135,
+            "p95": 3230.26,
+            "min": 3098.63,
+            "max": 3243.04,
+            "total": 63838.94
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3193.5859,
+            "p50": 3203.7595,
+            "p95": 3231.944,
+            "min": 3100.196,
+            "max": 3244.715,
+            "total": 63871.71800000001
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "key_recall": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "pair_precision": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "pair_recall": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 0,
+            "rate": null
+          },
+          "missing_command_rate": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 10,
+          "server_ms": {
+            "count": 10,
+            "mean": 3230.593,
+            "p50": 3230.23,
+            "p95": 3238.77,
+            "min": 3219.49,
+            "max": 3238.77,
+            "total": 32305.930000000004
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3232.2001,
+            "p50": 3231.7635,
+            "p95": 3240.3,
+            "min": 3221.427,
+            "max": 3240.3,
+            "total": 32322.001
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      }
+    },
+    "liquid": {
+      "baseline": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 145,
+            "rate": 0.27586206896551724
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 145,
+            "rate": 0.27586206896551724
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 105,
+            "denominator": 145,
+            "rate": 0.7241379310344828
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 20,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 608.7348401109921,
+            "p50": 608.8710085023195,
+            "p95": 612.5404740450904,
+            "min": 600.9302330203354,
+            "max": 612.708097032737,
+            "total": 12174.696802219842
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 610.72385,
+            "p50": 610.7745,
+            "p95": 614.638,
+            "min": 603.328,
+            "max": 614.698,
+            "total": 12214.477
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 113,
+            "rate": 0.35398230088495575
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 113,
+            "rate": 0.35398230088495575
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 73,
+            "denominator": 113,
+            "rate": 0.6460176991150443
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 20,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 609.3679803976556,
+            "p50": 608.6831454886124,
+            "p95": 614.0167139819823,
+            "min": 604.5820229919627,
+            "max": 614.5107809570618,
+            "total": 12187.359607953113
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 611.35905,
+            "p50": 610.785,
+            "p95": 616.081,
+            "min": 606.602,
+            "max": 616.552,
+            "total": 12227.180999999997
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "single_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 80,
+            "rate": 0.25
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 80,
+            "rate": 0.25
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 60,
+            "denominator": 80,
+            "rate": 0.75
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 10,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 629.4587926764507,
+            "p50": 629.2150099761784,
+            "p95": 631.8425670033321,
+            "min": 627.1257380140014,
+            "max": 631.8425670033321,
+            "total": 6294.587926764507
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 631.4485999999999,
+            "p50": 631.2415,
+            "p95": 633.721,
+            "min": 629.435,
+            "max": 633.721,
+            "total": 6314.485999999999
+          },
+          "unit_completion_exact_count": 0,
+          "http_calls": 10
+        },
+        "changed_cases": 18,
+        "valid_order_pairs": 20
+      },
+      "criteria_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "key_precision": {
+            "numerator": 39,
+            "denominator": 104,
+            "rate": 0.375
+          },
+          "key_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 39,
+            "denominator": 39,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 39,
+            "denominator": 104,
+            "rate": 0.375
+          },
+          "pair_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "extra_command_rate": {
+            "numerator": 65,
+            "denominator": 104,
+            "rate": 0.625
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 40,
+            "rate": 0.025
+          },
+          "cases_with_extra": 19,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 20,
+            "mean": 826.6094577003969,
+            "p50": 828.4379740071017,
+            "p95": 831.314540002495,
+            "min": 817.1719789970666,
+            "max": 831.5230450243689,
+            "total": 16532.189154007938
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 828.68035,
+            "p50": 830.543,
+            "p95": 833.444,
+            "min": 819.244,
+            "max": 833.561,
+            "total": 16573.607
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 2,
+            "denominator": 20,
+            "rate": 0.1
+          },
+          "single_exact": {
+            "numerator": 2,
+            "denominator": 10,
+            "rate": 0.2
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 2,
+            "denominator": 20,
+            "rate": 0.1
+          },
+          "key_precision": {
+            "numerator": 39,
+            "denominator": 95,
+            "rate": 0.4105263157894737
+          },
+          "key_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 39,
+            "denominator": 39,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 39,
+            "denominator": 95,
+            "rate": 0.4105263157894737
+          },
+          "pair_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "extra_command_rate": {
+            "numerator": 56,
+            "denominator": 95,
+            "rate": 0.5894736842105263
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 40,
+            "rate": 0.025
+          },
+          "cases_with_extra": 18,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 20,
+            "mean": 826.3827826973284,
+            "p50": 828.3575690002181,
+            "p95": 830.7544200215489,
+            "min": 813.8309950008988,
+            "max": 831.4897950040177,
+            "total": 16527.655653946567
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 828.47715,
+            "p50": 830.346,
+            "p95": 832.884,
+            "min": 816.644,
+            "max": 833.688,
+            "total": 16569.542999999998
+          },
+          "unit_completion_exact_count": 2,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 5,
+            "rate": 0.2
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "key_precision": {
+            "numerator": 19,
+            "denominator": 49,
+            "rate": 0.3877551020408163
+          },
+          "key_recall": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 19,
+            "denominator": 19,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 19,
+            "denominator": 49,
+            "rate": 0.3877551020408163
+          },
+          "pair_recall": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "extra_command_rate": {
+            "numerator": 30,
+            "denominator": 49,
+            "rate": 0.6122448979591837
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "cases_with_extra": 9,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 10,
+            "mean": 828.4710244101007,
+            "p50": 828.8213060004637,
+            "p95": 831.9503429811448,
+            "min": 820.8375630201772,
+            "max": 831.9503429811448,
+            "total": 8284.710244101007
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 830.5545999999999,
+            "p50": 830.848,
+            "p95": 834.022,
+            "min": 822.881,
+            "max": 834.022,
+            "total": 8305.546
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 10
+        },
+        "changed_cases": 17,
+        "valid_order_pairs": 20
+      },
+      "rules_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 6,
+            "denominator": 20,
+            "rate": 0.3
+          },
+          "single_exact": {
+            "numerator": 4,
+            "denominator": 10,
+            "rate": 0.4
+          },
+          "multi_exact": {
+            "numerator": 2,
+            "denominator": 10,
+            "rate": 0.2
+          },
+          "key_set_exact": {
+            "numerator": 6,
+            "denominator": 20,
+            "rate": 0.3
+          },
+          "key_precision": {
+            "numerator": 38,
+            "denominator": 63,
+            "rate": 0.6031746031746031
+          },
+          "key_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 38,
+            "denominator": 38,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 38,
+            "denominator": 63,
+            "rate": 0.6031746031746031
+          },
+          "pair_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "extra_command_rate": {
+            "numerator": 25,
+            "denominator": 63,
+            "rate": 0.3968253968253968
+          },
+          "missing_command_rate": {
+            "numerator": 2,
+            "denominator": 40,
+            "rate": 0.05
+          },
+          "cases_with_extra": 14,
+          "cases_with_missing": 2,
+          "server_ms": {
+            "count": 20,
+            "mean": 722.9421218973584,
+            "p50": 723.4499434707686,
+            "p95": 726.0287199751474,
+            "min": 712.3228590353392,
+            "max": 726.3356039766222,
+            "total": 14458.842437947169
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 725.00415,
+            "p50": 725.3285,
+            "p95": 728.088,
+            "min": 715.022,
+            "max": 728.278,
+            "total": 14500.083000000002
+          },
+          "unit_completion_exact_count": 6,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 3,
+            "denominator": 20,
+            "rate": 0.15
+          },
+          "single_exact": {
+            "numerator": 2,
+            "denominator": 10,
+            "rate": 0.2
+          },
+          "multi_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "key_set_exact": {
+            "numerator": 3,
+            "denominator": 20,
+            "rate": 0.15
+          },
+          "key_precision": {
+            "numerator": 38,
+            "denominator": 63,
+            "rate": 0.6031746031746031
+          },
+          "key_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 38,
+            "denominator": 38,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 38,
+            "denominator": 63,
+            "rate": 0.6031746031746031
+          },
+          "pair_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "extra_command_rate": {
+            "numerator": 25,
+            "denominator": 63,
+            "rate": 0.3968253968253968
+          },
+          "missing_command_rate": {
+            "numerator": 2,
+            "denominator": 40,
+            "rate": 0.05
+          },
+          "cases_with_extra": 17,
+          "cases_with_missing": 2,
+          "server_ms": {
+            "count": 20,
+            "mean": 723.4567098406842,
+            "p50": 722.6907144649886,
+            "p95": 726.5233680373058,
+            "min": 721.3046329561621,
+            "max": 726.6403789981268,
+            "total": 14469.134196813684
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 725.5229,
+            "p50": 724.7705,
+            "p95": 728.711,
+            "min": 723.289,
+            "max": 728.812,
+            "total": 14510.457999999999
+          },
+          "unit_completion_exact_count": 3,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "single_exact": {
+            "numerator": 1,
+            "denominator": 5,
+            "rate": 0.2
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "key_precision": {
+            "numerator": 19,
+            "denominator": 36,
+            "rate": 0.5277777777777778
+          },
+          "key_recall": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 19,
+            "denominator": 19,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 19,
+            "denominator": 36,
+            "rate": 0.5277777777777778
+          },
+          "pair_recall": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "extra_command_rate": {
+            "numerator": 17,
+            "denominator": 36,
+            "rate": 0.4722222222222222
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "cases_with_extra": 8,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 10,
+            "mean": 722.5101121992338,
+            "p50": 723.6145765054971,
+            "p95": 725.7342270459048,
+            "min": 713.1949869799428,
+            "max": 725.7342270459048,
+            "total": 7225.101121992338
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 724.6201,
+            "p50": 725.6275,
+            "p95": 727.712,
+            "min": 715.925,
+            "max": 727.712,
+            "total": 7246.200999999999
+          },
+          "unit_completion_exact_count": 1,
+          "http_calls": 10
+        },
+        "changed_cases": 14,
+        "valid_order_pairs": 20
+      },
+      "combined": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "single_exact": {
+            "numerator": 4,
+            "denominator": 10,
+            "rate": 0.4
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 10,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "key_precision": {
+            "numerator": 39,
+            "denominator": 75,
+            "rate": 0.52
+          },
+          "key_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 39,
+            "denominator": 39,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 39,
+            "denominator": 75,
+            "rate": 0.52
+          },
+          "pair_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "extra_command_rate": {
+            "numerator": 36,
+            "denominator": 75,
+            "rate": 0.48
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 40,
+            "rate": 0.025
+          },
+          "cases_with_extra": 15,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 20,
+            "mean": 905.1629738998599,
+            "p50": 904.7306139837019,
+            "p95": 908.8526819832623,
+            "min": 902.6060010073707,
+            "max": 909.0531240217388,
+            "total": 18103.2594779972
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 907.2147,
+            "p50": 906.8335,
+            "p95": 910.882,
+            "min": 904.772,
+            "max": 911.228,
+            "total": 18144.293999999998
+          },
+          "unit_completion_exact_count": 4,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 5,
+            "denominator": 20,
+            "rate": 0.25
+          },
+          "single_exact": {
+            "numerator": 4,
+            "denominator": 10,
+            "rate": 0.4
+          },
+          "multi_exact": {
+            "numerator": 1,
+            "denominator": 10,
+            "rate": 0.1
+          },
+          "key_set_exact": {
+            "numerator": 5,
+            "denominator": 20,
+            "rate": 0.25
+          },
+          "key_precision": {
+            "numerator": 39,
+            "denominator": 64,
+            "rate": 0.609375
+          },
+          "key_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 39,
+            "denominator": 39,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 39,
+            "denominator": 64,
+            "rate": 0.609375
+          },
+          "pair_recall": {
+            "numerator": 39,
+            "denominator": 40,
+            "rate": 0.975
+          },
+          "extra_command_rate": {
+            "numerator": 25,
+            "denominator": 64,
+            "rate": 0.390625
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 40,
+            "rate": 0.025
+          },
+          "cases_with_extra": 14,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 20,
+            "mean": 904.668348285486,
+            "p50": 904.9282449705061,
+            "p95": 907.1329269791022,
+            "min": 899.9912379658781,
+            "max": 908.214183000382,
+            "total": 18093.36696570972
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 906.75225,
+            "p50": 906.9725000000001,
+            "p95": 909.288,
+            "min": 902.287,
+            "max": 910.32,
+            "total": 18135.045
+          },
+          "unit_completion_exact_count": 5,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 4,
+            "denominator": 10,
+            "rate": 0.4
+          },
+          "single_exact": {
+            "numerator": 4,
+            "denominator": 5,
+            "rate": 0.8
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 4,
+            "denominator": 10,
+            "rate": 0.4
+          },
+          "key_precision": {
+            "numerator": 19,
+            "denominator": 33,
+            "rate": 0.5757575757575758
+          },
+          "key_recall": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 19,
+            "denominator": 19,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 19,
+            "denominator": 33,
+            "rate": 0.5757575757575758
+          },
+          "pair_recall": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "extra_command_rate": {
+            "numerator": 14,
+            "denominator": 33,
+            "rate": 0.42424242424242425
+          },
+          "missing_command_rate": {
+            "numerator": 1,
+            "denominator": 20,
+            "rate": 0.05
+          },
+          "cases_with_extra": 5,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 10,
+            "mean": 904.6997499128338,
+            "p50": 904.406032001134,
+            "p95": 907.0660000434145,
+            "min": 903.1532040098682,
+            "max": 907.0660000434145,
+            "total": 9046.997499128338
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 906.7562,
+            "p50": 906.524,
+            "p95": 909.167,
+            "min": 905.174,
+            "max": 909.167,
+            "total": 9067.562
+          },
+          "unit_completion_exact_count": 4,
+          "http_calls": 10
+        },
+        "changed_cases": 11,
+        "valid_order_pairs": 20
+      },
+      "two_stage": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 11,
+            "denominator": 20,
+            "rate": 0.55
+          },
+          "single_exact": {
+            "numerator": 6,
+            "denominator": 10,
+            "rate": 0.6
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 10,
+            "rate": 0.5
+          },
+          "key_set_exact": {
+            "numerator": 11,
+            "denominator": 20,
+            "rate": 0.55
+          },
+          "key_precision": {
+            "numerator": 32,
+            "denominator": 34,
+            "rate": 0.9411764705882353
+          },
+          "key_recall": {
+            "numerator": 32,
+            "denominator": 40,
+            "rate": 0.8
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 32,
+            "denominator": 32,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 32,
+            "denominator": 34,
+            "rate": 0.9411764705882353
+          },
+          "pair_recall": {
+            "numerator": 32,
+            "denominator": 40,
+            "rate": 0.8
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 34,
+            "rate": 0.058823529411764705
+          },
+          "missing_command_rate": {
+            "numerator": 8,
+            "denominator": 40,
+            "rate": 0.2
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 7,
+          "server_ms": {
+            "count": 20,
+            "mean": 741.0831580113154,
+            "p50": 739.3092215061188,
+            "p95": 791.4867619983852,
+            "min": 612.1923419996165,
+            "max": 882.6809599995613,
+            "total": 14821.663160226308
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 743.39855,
+            "p50": 741.9105,
+            "p95": 793.7280000000001,
+            "min": 613.592,
+            "max": 885.424,
+            "total": 14867.970999999998
+          },
+          "unit_completion_exact_count": 12,
+          "http_calls": 38
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 11,
+            "denominator": 20,
+            "rate": 0.55
+          },
+          "single_exact": {
+            "numerator": 6,
+            "denominator": 10,
+            "rate": 0.6
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 10,
+            "rate": 0.5
+          },
+          "key_set_exact": {
+            "numerator": 11,
+            "denominator": 20,
+            "rate": 0.55
+          },
+          "key_precision": {
+            "numerator": 33,
+            "denominator": 36,
+            "rate": 0.9166666666666666
+          },
+          "key_recall": {
+            "numerator": 33,
+            "denominator": 40,
+            "rate": 0.825
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 33,
+            "denominator": 33,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 33,
+            "denominator": 36,
+            "rate": 0.9166666666666666
+          },
+          "pair_recall": {
+            "numerator": 33,
+            "denominator": 40,
+            "rate": 0.825
+          },
+          "extra_command_rate": {
+            "numerator": 3,
+            "denominator": 36,
+            "rate": 0.08333333333333333
+          },
+          "missing_command_rate": {
+            "numerator": 7,
+            "denominator": 40,
+            "rate": 0.175
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 7,
+          "server_ms": {
+            "count": 20,
+            "mean": 737.3131439613644,
+            "p50": 737.8671930055134,
+            "p95": 794.5444450597279,
+            "min": 609.957663982641,
+            "max": 882.4226559954695,
+            "total": 14746.262879227288
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 739.52675,
+            "p50": 740.4965,
+            "p95": 796.7860000000001,
+            "min": 611.415,
+            "max": 884.9350000000001,
+            "total": 14790.534999999998
+          },
+          "unit_completion_exact_count": 11,
+          "http_calls": 37
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 5,
+            "denominator": 10,
+            "rate": 0.5
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "key_set_exact": {
+            "numerator": 5,
+            "denominator": 10,
+            "rate": 0.5
+          },
+          "key_precision": {
+            "numerator": 16,
+            "denominator": 18,
+            "rate": 0.8888888888888888
+          },
+          "key_recall": {
+            "numerator": 16,
+            "denominator": 20,
+            "rate": 0.8
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 16,
+            "denominator": 16,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 16,
+            "denominator": 18,
+            "rate": 0.8888888888888888
+          },
+          "pair_recall": {
+            "numerator": 16,
+            "denominator": 20,
+            "rate": 0.8
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 18,
+            "rate": 0.1111111111111111
+          },
+          "missing_command_rate": {
+            "numerator": 4,
+            "denominator": 20,
+            "rate": 0.2
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 3,
+          "server_ms": {
+            "count": 10,
+            "mean": 762.1863347943872,
+            "p50": 733.4654109727126,
+            "p95": 870.1963099883869,
+            "min": 729.0162050048821,
+            "max": 870.1963099883869,
+            "total": 7621.863347943872
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 764.5336,
+            "p50": 735.6775,
+            "p95": 872.946,
+            "min": 731.606,
+            "max": 872.946,
+            "total": 7645.335999999999
+          },
+          "unit_completion_exact_count": 5,
+          "http_calls": 20
+        },
+        "changed_cases": 5,
+        "valid_order_pairs": 20
+      }
+    },
+    "h2o": {
+      "baseline": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 42,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 5962.135,
+            "p50": 5963.1,
+            "p95": 6048.7,
+            "min": 5838.2,
+            "max": 6122.1,
+            "total": 119242.69999999998
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 5963.9243,
+            "p50": 5964.9695,
+            "p95": 6050.469,
+            "min": 5839.908,
+            "max": 6123.91,
+            "total": 119278.48599999998
+          },
+          "unit_completion_exact_count": 18,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 42,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 5966.925,
+            "p50": 5968.35,
+            "p95": 6059.6,
+            "min": 5839.9,
+            "max": 6118.0,
+            "total": 119338.49999999999
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 5968.7054,
+            "p50": 5970.0915,
+            "p95": 6061.412,
+            "min": 5841.58,
+            "max": 6119.817,
+            "total": 119374.10800000001
+          },
+          "unit_completion_exact_count": 18,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 6045.14,
+            "p50": 6046.7,
+            "p95": 6063.7,
+            "min": 6030.2,
+            "max": 6063.7,
+            "total": 60451.399999999994
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 6047.0068,
+            "p50": 6048.5695,
+            "p95": 6065.549,
+            "min": 6032.074,
+            "max": 6065.549,
+            "total": 60470.068
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "criteria_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 42,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 6318.15,
+            "p50": 6304.0,
+            "p95": 6393.3,
+            "min": 6262.1,
+            "max": 6408.3,
+            "total": 126363.0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 6319.98365,
+            "p50": 6305.8095,
+            "p95": 6395.152,
+            "min": 6263.858,
+            "max": 6410.184,
+            "total": 126399.673
+          },
+          "unit_completion_exact_count": 18,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 42,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 6319.215,
+            "p50": 6300.9,
+            "p95": 6400.6,
+            "min": 6280.6,
+            "max": 6409.4,
+            "total": 126384.3
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 6321.0356,
+            "p50": 6302.624,
+            "p95": 6402.426,
+            "min": 6282.43,
+            "max": 6411.275,
+            "total": 126420.71200000001
+          },
+          "unit_completion_exact_count": 18,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 4,
+            "denominator": 5,
+            "rate": 0.8
+          },
+          "key_set_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 21,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 21,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 21,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 6312.28,
+            "p50": 6307.45,
+            "p95": 6335.9,
+            "min": 6300.8,
+            "max": 6335.9,
+            "total": 63122.8
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 6314.1218,
+            "p50": 6309.2485,
+            "p95": 6337.774,
+            "min": 6302.523,
+            "max": 6337.774,
+            "total": 63141.217999999986
+          },
+          "unit_completion_exact_count": 9,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "rules_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 41,
+            "rate": 0.024390243902439025
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 6989.655,
+            "p50": 6988.2,
+            "p95": 7030.6,
+            "min": 6953.0,
+            "max": 7031.0,
+            "total": 139793.09999999998
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 6991.56335,
+            "p50": 6990.063,
+            "p95": 7032.443,
+            "min": 6955.14,
+            "max": 7032.874,
+            "total": 139831.26700000002
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 41,
+            "rate": 0.024390243902439025
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 6991.325,
+            "p50": 6989.9,
+            "p95": 7032.7,
+            "min": 6964.2,
+            "max": 7041.9,
+            "total": 139826.5
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 6993.2088,
+            "p50": 6991.7405,
+            "p95": 7034.728,
+            "min": 6965.941,
+            "max": 7044.109,
+            "total": 139864.17599999998
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 7,
+            "denominator": 10,
+            "rate": 0.7
+          },
+          "single_exact": {
+            "numerator": 3,
+            "denominator": 5,
+            "rate": 0.6
+          },
+          "multi_exact": {
+            "numerator": 4,
+            "denominator": 5,
+            "rate": 0.8
+          },
+          "key_set_exact": {
+            "numerator": 7,
+            "denominator": 10,
+            "rate": 0.7
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 23,
+            "rate": 0.8695652173913043
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 23,
+            "rate": 0.8695652173913043
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 3,
+            "denominator": 23,
+            "rate": 0.13043478260869565
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 3,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 6991.86,
+            "p50": 6991.9,
+            "p95": 7007.5,
+            "min": 6972.3,
+            "max": 7007.5,
+            "total": 69918.59999999999
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 6993.754,
+            "p50": 6993.82,
+            "p95": 7009.329,
+            "min": 6974.374,
+            "max": 7009.329,
+            "total": 69937.54000000001
+          },
+          "unit_completion_exact_count": 7,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "combined": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 42,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 7254.615,
+            "p50": 7247.75,
+            "p95": 7289.7,
+            "min": 7230.1,
+            "max": 7291.2,
+            "total": 145092.30000000002
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 7256.525,
+            "p50": 7249.713,
+            "p95": 7291.554,
+            "min": 7231.959,
+            "max": 7293.056,
+            "total": 145130.50000000003
+          },
+          "unit_completion_exact_count": 18,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 18,
+            "denominator": 20,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 42,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 42,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 7251.56,
+            "p50": 7245.4,
+            "p95": 7287.9,
+            "min": 7227.9,
+            "max": 7300.4,
+            "total": 145031.2
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 7253.4845,
+            "p50": 7247.305,
+            "p95": 7289.832,
+            "min": 7229.976,
+            "max": 7302.31,
+            "total": 145069.68999999997
+          },
+          "unit_completion_exact_count": 18,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 8,
+            "denominator": 10,
+            "rate": 0.8
+          },
+          "single_exact": {
+            "numerator": 3,
+            "denominator": 5,
+            "rate": 0.6
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 8,
+            "denominator": 10,
+            "rate": 0.8
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 22,
+            "rate": 0.9090909090909091
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 22,
+            "rate": 0.9090909090909091
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 2,
+            "denominator": 22,
+            "rate": 0.09090909090909091
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 2,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 7257.16,
+            "p50": 7256.25,
+            "p95": 7276.8,
+            "min": 7233.7,
+            "max": 7276.8,
+            "total": 72571.6
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 7259.0552,
+            "p50": 7258.076,
+            "p95": 7278.662,
+            "min": 7235.657,
+            "max": 7278.662,
+            "total": 72590.552
+          },
+          "unit_completion_exact_count": 8,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "two_stage": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 7099.705,
+            "p50": 7049.25,
+            "p95": 7612.200000000001,
+            "min": 6799.400000000001,
+            "max": 7731.0,
+            "total": 141994.1
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 7102.1639000000005,
+            "p50": 7051.5650000000005,
+            "p95": 7614.7919999999995,
+            "min": 6801.746,
+            "max": 7733.782,
+            "total": 142043.27800000002
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 40
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 7096.15,
+            "p50": 7049.05,
+            "p95": 7608.7,
+            "min": 6793.8,
+            "max": 7740.799999999999,
+            "total": 141923.0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 7098.62645,
+            "p50": 7051.472,
+            "p95": 7611.271,
+            "min": 6796.3460000000005,
+            "max": 7743.428,
+            "total": 141972.52899999998
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 40
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "single_exact": {
+            "numerator": 4,
+            "denominator": 5,
+            "rate": 0.8
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 21,
+            "rate": 0.9523809523809523
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 21,
+            "rate": 0.9523809523809523
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 21,
+            "rate": 0.047619047619047616
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 7143.34,
+            "p50": 7051.25,
+            "p95": 7712.099999999999,
+            "min": 6826.7,
+            "max": 7712.099999999999,
+            "total": 71433.4
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 7145.8175,
+            "p50": 7053.798,
+            "p95": 7714.816,
+            "min": 6829.146,
+            "max": 7714.816,
+            "total": 71458.175
+          },
+          "unit_completion_exact_count": 9,
+          "http_calls": 20
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      }
+    },
+    "jev": {
+      "baseline": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 41,
+            "rate": 0.024390243902439025
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 85.72125,
+            "p50": 83.811,
+            "p95": 98.499,
+            "min": 67.084,
+            "max": 122.193,
+            "total": 1714.4250000000004
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 41,
+            "rate": 0.024390243902439025
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 88.3613,
+            "p50": 87.4315,
+            "p95": 106.104,
+            "min": 66.3,
+            "max": 123.953,
+            "total": 1767.2259999999999
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 87.328,
+            "p50": 85.846,
+            "p95": 103.483,
+            "min": 77.46,
+            "max": 103.483,
+            "total": 873.28
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "criteria_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 41,
+            "rate": 0.024390243902439025
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 103.70345,
+            "p50": 99.289,
+            "p95": 126.041,
+            "min": 90.086,
+            "max": 144.558,
+            "total": 2074.069
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 41,
+            "rate": 0.975609756097561
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 1,
+            "denominator": 41,
+            "rate": 0.024390243902439025
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 1,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 110.37245,
+            "p50": 96.4905,
+            "p95": 111.969,
+            "min": 84.768,
+            "max": 369.509,
+            "total": 2207.449
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 102.3567,
+            "p50": 100.25649999999999,
+            "p95": 113.389,
+            "min": 94.22,
+            "max": 113.389,
+            "total": 1023.5670000000001
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "rules_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 106.4108,
+            "p50": 103.8745,
+            "p95": 120.335,
+            "min": 91.411,
+            "max": 148.567,
+            "total": 2128.216
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 102.1989,
+            "p50": 96.9615,
+            "p95": 122.166,
+            "min": 82.864,
+            "max": 151.246,
+            "total": 2043.9780000000003
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 106.1547,
+            "p50": 100.98949999999999,
+            "p95": 129.524,
+            "min": 94.973,
+            "max": 129.524,
+            "total": 1061.547
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "combined": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 116.02225,
+            "p50": 100.49199999999999,
+            "p95": 214.213,
+            "min": 81.933,
+            "max": 277.715,
+            "total": 2320.4449999999997
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 99.4104,
+            "p50": 97.9695,
+            "p95": 113.505,
+            "min": 85.287,
+            "max": 116.698,
+            "total": 1988.2080000000003
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 100.8073,
+            "p50": 98.77250000000001,
+            "p95": 116.499,
+            "min": 86.077,
+            "max": 116.499,
+            "total": 1008.073
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "two_stage": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 132.5828,
+            "p50": 134.04399999999998,
+            "p95": 153.513,
+            "min": 115.368,
+            "max": 162.61599999999999,
+            "total": 2651.656
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 40
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 145.77345,
+            "p50": 146.868,
+            "p95": 167.261,
+            "min": 115.044,
+            "max": 173.80599999999998,
+            "total": 2915.469
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 40
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 0
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 134.8995,
+            "p50": 132.212,
+            "p95": 169.32600000000002,
+            "min": 108.038,
+            "max": 169.32600000000002,
+            "total": 1348.995
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 20
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      }
+    },
+    "gpt": {
+      "baseline": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3031,
+            "p50": 3264.0,
+            "p95": 3589,
+            "min": 2142,
+            "max": 3782,
+            "total": 60620
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3040.4972000000002,
+            "p50": 3271.3100000000004,
+            "p95": 3602.881,
+            "min": 2160.619,
+            "max": 3790.619,
+            "total": 60809.94400000001
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3086.05,
+            "p50": 3187.0,
+            "p95": 3613,
+            "min": 2152,
+            "max": 3696,
+            "total": 61721
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3094.9831,
+            "p50": 3195.315,
+            "p95": 3620.113,
+            "min": 2160.813,
+            "max": 3702.022,
+            "total": 61899.662000000004
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 3293,
+            "p50": 3235.5,
+            "p95": 4716,
+            "min": 2224,
+            "max": 4716,
+            "total": 32930
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3305.0427,
+            "p50": 3242.8255,
+            "p95": 4733.845,
+            "min": 2234.369,
+            "max": 4733.845,
+            "total": 33050.427
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "criteria_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3222.55,
+            "p50": 3151.0,
+            "p95": 4327,
+            "min": 2375,
+            "max": 4551,
+            "total": 64451
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3232.9662,
+            "p50": 3158.6555,
+            "p95": 4336.12,
+            "min": 2383.709,
+            "max": 4557.377,
+            "total": 64659.324
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 1,
+          "exact_match": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 9,
+            "denominator": 10,
+            "rate": 0.9
+          },
+          "key_set_exact": {
+            "numerator": 19,
+            "denominator": 20,
+            "rate": 0.95
+          },
+          "key_precision": {
+            "numerator": 38,
+            "denominator": 38,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 38,
+            "denominator": 38,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 38,
+            "denominator": 38,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 38,
+            "denominator": 40,
+            "rate": 0.95
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 38,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 2,
+            "denominator": 40,
+            "rate": 0.05
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 1,
+          "server_ms": {
+            "count": 19,
+            "mean": 3173.1052631578946,
+            "p50": 3246,
+            "p95": 3868,
+            "min": 2199,
+            "max": 3868,
+            "total": 60289
+          },
+          "client_ms": {
+            "count": 19,
+            "mean": 3182.595,
+            "p50": 3254.808,
+            "p95": 3877.595,
+            "min": 2207.726,
+            "max": 3877.595,
+            "total": 60469.305
+          },
+          "unit_completion_exact_count": 19,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 3022.2,
+            "p50": 3100.0,
+            "p95": 3644,
+            "min": 2415,
+            "max": 3644,
+            "total": 30222
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3034.0489,
+            "p50": 3108.0845,
+            "p95": 3655.81,
+            "min": 2424.183,
+            "max": 3655.81,
+            "total": 30340.489
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 19
+      },
+      "rules_only": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3268.95,
+            "p50": 3296.5,
+            "p95": 4174,
+            "min": 2170,
+            "max": 4675,
+            "total": 65379
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3278.88565,
+            "p50": 3304.3819999999996,
+            "p95": 4180.784,
+            "min": 2175.558,
+            "max": 4683.899,
+            "total": 65577.713
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3011.95,
+            "p50": 3212.5,
+            "p95": 3796,
+            "min": 2123,
+            "max": 3871,
+            "total": 60239
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3020.8678,
+            "p50": 3219.5029999999997,
+            "p95": 3804.986,
+            "min": 2130.268,
+            "max": 3880.907,
+            "total": 60417.35599999999
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 3178.7,
+            "p50": 3219.0,
+            "p95": 3471,
+            "min": 2393,
+            "max": 3471,
+            "total": 31787
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 3188.8318,
+            "p50": 3227.343,
+            "p95": 3479.941,
+            "min": 2400.879,
+            "max": 3479.941,
+            "total": 31888.318
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "combined": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3354.75,
+            "p50": 3329.0,
+            "p95": 4315,
+            "min": 2249,
+            "max": 4867,
+            "total": 67095
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3364.0973,
+            "p50": 3338.4015,
+            "p95": 4328.153,
+            "min": 2260.585,
+            "max": 4876.455,
+            "total": 67281.946
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 3053.05,
+            "p50": 3133.0,
+            "p95": 4230,
+            "min": 2158,
+            "max": 4334,
+            "total": 61061
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 3061.4725,
+            "p50": 3142.1594999999998,
+            "p95": 4236.782,
+            "min": 2164.716,
+            "max": 4342.391,
+            "total": 61229.45
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 20
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 2894.9,
+            "p50": 3118.5,
+            "p95": 3466,
+            "min": 2084,
+            "max": 3466,
+            "total": 28949
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 2902.9316,
+            "p50": 3127.6305,
+            "p95": 3474.493,
+            "min": 2091.222,
+            "max": 3474.493,
+            "total": 29029.316
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 10
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      },
+      "two_stage": {
+        "spec_original": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 4527.35,
+            "p50": 4256.0,
+            "p95": 5495,
+            "min": 3115,
+            "max": 11550,
+            "total": 90547
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 4547.6044,
+            "p50": 4281.093,
+            "p95": 5514.987999999999,
+            "min": 3130.527,
+            "max": 11572.994,
+            "total": 90952.088
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 40
+        },
+        "spec_reversed": {
+          "cases": 20,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 40,
+            "denominator": 40,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 40,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 20,
+            "mean": 4015.9,
+            "p50": 4088.5,
+            "p95": 4867,
+            "min": 3084,
+            "max": 5770,
+            "total": 80318
+          },
+          "client_ms": {
+            "count": 20,
+            "mean": 4034.23515,
+            "p50": 4105.997,
+            "p95": 4883.746999999999,
+            "min": 3106.926,
+            "max": 5804.921,
+            "total": 80684.70299999998
+          },
+          "unit_completion_exact_count": 20,
+          "http_calls": 40
+        },
+        "extension_original": {
+          "cases": 10,
+          "errors": 0,
+          "exact_match": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "single_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "multi_exact": {
+            "numerator": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "key_set_exact": {
+            "numerator": 10,
+            "denominator": 10,
+            "rate": 1.0
+          },
+          "key_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "key_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "value_accuracy_given_correct_key": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_precision": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "pair_recall": {
+            "numerator": 20,
+            "denominator": 20,
+            "rate": 1.0
+          },
+          "extra_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "missing_command_rate": {
+            "numerator": 0,
+            "denominator": 20,
+            "rate": 0.0
+          },
+          "cases_with_extra": 0,
+          "cases_with_missing": 0,
+          "server_ms": {
+            "count": 10,
+            "mean": 4494.9,
+            "p50": 4656.0,
+            "p95": 5280,
+            "min": 3297,
+            "max": 5280,
+            "total": 44949
+          },
+          "client_ms": {
+            "count": 10,
+            "mean": 4510.858,
+            "p50": 4669.6805,
+            "p95": 5302.373,
+            "min": 3313.983,
+            "max": 5302.373,
+            "total": 45108.58
+          },
+          "unit_completion_exact_count": 10,
+          "http_calls": 20
+        },
+        "changed_cases": 0,
+        "valid_order_pairs": 20
+      }
+    }
+  },
+  "api_metadata": {
+    "jev": {
+      "provider": "jev",
+      "phase": "formal",
+      "started_at": "2026-10-30T07:51:27.584592+00:00",
+      "status": "complete",
+      "planned_observations": 250,
+      "actual_observations": 250,
+      "actual_calls": 300,
+      "errors": 0,
+      "automatic_retries": 0,
+      "concurrency_per_provider": 1,
+      "expected_model": "jev-1.14.0",
+      "observed_models": [
+        "jev-1.14.0"
+      ],
+      "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+      "plan_file_sha256": "842d3b09d4e4971c535b3acfc101a3106b971919f5e08dadb5b7d758188711df",
+      "last_case": "N10",
+      "last_arm": "combined",
+      "last_variant": "original",
+      "finished_at": "2026-10-30T07:51:54.973823+00:00"
+    },
+    "gpt": {
+      "provider": "gpt",
+      "phase": "formal",
+      "started_at": "2026-10-30T07:51:41.731345+00:00",
+      "status": "complete_with_capture_error",
+      "planned_observations": 250,
+      "actual_observations": 250,
+      "actual_calls": 300,
+      "errors": 1,
+      "automatic_retries": 0,
+      "concurrency_per_provider": 1,
+      "expected_model": "us.openai.gpt-6.1-sol",
+      "observed_models": [
+        "us.openai.gpt-6.1-sol"
+      ],
+      "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+      "plan_file_sha256": "842d3b09d4e4971c535b3acfc101a3106b971919f5e08dadb5b7d758188711df",
+      "last_case": "M08",
+      "last_arm": "baseline",
+      "last_variant": "reversed",
+      "captured_observations": 249,
+      "capture_errors": 1,
+      "finished_at": "2026-10-30T08:06:42.950507+00:00",
+      "source_segments": [
+        "gpt/formal_receipts.jsonl",
+        "gpt/remainder_receipts.jsonl",
+        "gpt/recovery_plan.json"
+      ]
+    }
+  },
+  "new_receipts_sha256": {
+    "jev": "ee2a5856156ae60f0b14cd6eec6a7fefaafd06f0b74edd66a3679b9494f871ae",
+    "gpt_initial": "2eecb8db3ec1332db898f459cb9d8f871a701a7dc127067c6f1fe68020331f13",
+    "gpt_remainder": "ab62204fb47530f6b4bdb2bcd76d7a8a9b2af14a293f36c17ba9c6a9f5ba659b"
+  },
+  "capture_gap": {
+    "case_id": "M08",
+    "dataset": "spec",
+    "arm": "criteria_only",
+    "variant": "reversed",
+    "index_zero_based": 179,
+    "known_attempted_calls": 1,
+    "status": "capture_error",
+    "raw_response_available": false,
+    "reason": "SDK object contained bytes; JSON serialization failed after observe returned. Response, choices, status and timing were lost; no score can be recovered.",
+    "scoring": "Count as failure with missing response, never as a wrong model decision."
+  },
+  "remainder_binary_fields": 1
+}

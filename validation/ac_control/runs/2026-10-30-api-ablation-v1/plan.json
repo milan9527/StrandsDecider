@@ -1,0 +1,71 @@
+{
+  "prepared_at": "2026-10-30T07:51:19.595180+00:00",
+  "region": "us-east-1",
+  "experiments_sha256": "463ae258bb8017221853d1e496035da81e5c3be6ed53c2b7f630ae0013b0bf91",
+  "references_sha256": "79f9067e63088d905c3bfec0b7acf76ab22d6bb0570ec440c5515ce2a6d0c335",
+  "command_set_sha256": "3c214dd5b60d039d683477448f08be266769114d18d96f8238696c800c41de41",
+  "providers": [
+    "jev",
+    "gpt"
+  ],
+  "arms": [
+    "baseline",
+    "criteria_only",
+    "rules_only",
+    "combined",
+    "two_stage"
+  ],
+  "parent_run": "/home/ec2-user/ai/DecisionDemo/validation/ac_control/runs/2026-10-30-prompt-ablation-v1",
+  "parent_files_sha256": {
+    "plan.json": "2fe5ad7d26bc45c0cee992ec21f8439587a794ac87ca89e8bfb77c18276fe630",
+    "experiments.json": "07a8125b28ef4f2433bbf23864be49f929cd4bea8a236316301dcffea64fcd3f",
+    "references.json": "dbfe0d9a53a65752e0ec39ceaa1cad58d06a7ae6f166940990b1879aa403a4e1",
+    "command_set.json": "72de68383714e3eb8feb69de94409283cc731d71e5e671993413a276c2768fe5",
+    "ablation_results.json": "53e10ebc153d5221779913a17c71d5f78a6c11fee64fddbce5256147c036472d",
+    "ablation_summary.json": "e3c5e93979e2097e7af37ad2cb0843f29e9d6e8a7db37ad76bbbf8d3c257345b",
+    "audit.json": "e466e4f6ac1693f611584af451ecc97e4dce9e7430e74e9b9cd1bad419ade080",
+    "decider/formal_receipts.jsonl": "1d1b343567b1bf2409e565c206d32d5e06f023dbd92c81397e784ead838adc6b",
+    "liquid/formal_receipts.jsonl": "bc2a64507a80a7aa05dafbe4ee4677d3755f78127fed91496fab808f9f5dfd76",
+    "h2o/formal_receipts.jsonl": "003f9c7f850e33fdbf9801282ca35e3c98e32dff950d28b568c404f051109783"
+  },
+  "new_observations_per_provider": 250,
+  "maximum_new_calls_per_provider": 300,
+  "baseline_policy": "Run all 250 observations for each new provider; reuse_baseline in inherited input is ignored.",
+  "spec_cases": 20,
+  "spec_orders": [
+    "original",
+    "reversed"
+  ],
+  "extension_cases": 10,
+  "extension_orders": [
+    "original"
+  ],
+  "extension_status": "Diagnostic queries authored after observing baseline errors; frozen before new calls, not a blind external holdout.",
+  "jev_request_model": "jev-latest",
+  "jev_url": "https://api.typesafe.ai/v1/systemone",
+  "jev_secret_arn": "arn:aws:secretsmanager:us-east-1:632930644527:secret:strands-decider-demo/jev-api-key-1MqPkS",
+  "jev_version_policy": "Pin formal response identity to the unique version returned by protocol preflight.",
+  "gpt_model": "us.openai.gpt-6.1-sol",
+  "gpt_effort": "low",
+  "gpt_max_output_tokens": 8192,
+  "gpt_formatting_system": "Answer the supplied decision questions using the supplied state, including its task rules, and each question's instructions and candidate criteria. Return exactly one JSON object with the single key answers. Its value must be an object mapping EVERY supplied question ID to its selected candidate ID as a JSON string, including questions whose selected candidate is omit. Output shape: {\"answers\":{\"QUESTION_ID\":\"CANDIDATE_ID\"}}. Use only the supplied candidate IDs. Do not add explanations, probabilities, confidence estimates or Markdown.",
+  "gpt_output_mode": "Prompt-only JSON; no constrained decoder or semantic repair.",
+  "gpt_model_identity_source": "Bedrock request modelId plus ACTIVE inference profile; Converse does not echo model ID.",
+  "gpt_official_reference": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+  "automatic_retries": 0,
+  "online_output_repair": false,
+  "concurrency_per_provider": 1,
+  "source_sha256": {
+    "api_ablation_protocol.py": "ed88ab706e866718f745187086d083a17eb1bca38ca152b0a74f8b1d9897e676",
+    "run_api_ablation.py": "d0557d87502565ac50bbbe43f65cc881c385175efc2c6dd0ec1078b485494330",
+    "prepare_api_ablation.py": "811360facc1094dfec8bb01d061812cf5c0bfedbec411efdf8a065f84c9015e5",
+    "analyze_api_ablation.py": "9b6b42aa02e1a2261bec0a84b5ce6042a906273010a60de7e0017d04f2048eb0",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "analyze.py": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c",
+    "analyze_ablation.py": "d7e5e04ba549c4ec812b360214ae5ce2ca3551a11db28615aebb1dcf3bc2963b",
+    "compare_resident.py": "66aeb04fea0cb69905ca44b4fabba431e6ff88efd70609a8eb2acacb25715964",
+    "prepare.py": "756dfc0916dda153d64e9931a0bafdd710cf89e2d6a44d9bac66502e588a680a"
+  }
+}
