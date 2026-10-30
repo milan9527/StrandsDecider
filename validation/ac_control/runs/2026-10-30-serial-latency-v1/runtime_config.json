@@ -1,0 +1,15 @@
+{
+  "ssm_command": "6a8aefa8-d76f-4b7a-8cb1-dc44bd66c155",
+  "selected_runtime_settings": {
+    "decider-liquid-resident": {
+      "enforce_eager_flag": false
+    },
+    "decider-h2o-resident": {
+      "--max-num-seqs": "1",
+      "--max-num-batched-tokens": "4096",
+      "enforce_eager_flag": true,
+      "GPU_UTIL": "0.34",
+      "MAX_LEN": "4096"
+    }
+  }
+}

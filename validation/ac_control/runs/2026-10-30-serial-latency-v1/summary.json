@@ -1,0 +1,314 @@
+{
+  "case_id": "S03",
+  "repetitions": 3,
+  "formal_http_calls": 279,
+  "warmup_http_calls": 3,
+  "request_overlap_count": 0,
+  "model_windows_overlap": false,
+  "service_start_times_and_restart_counts_unchanged": true,
+  "same_full_state_and_candidate_values_verified": true,
+  "analyzer_sha256": "62424dec450f4e49027518ca2adfc2db222acf99e902cc6fbb6821b6e6bd7e9f",
+  "receipts_sha256": "b07f87480bd65ce16638c951063da8d393b043ae48da7a2f7d90f0d042dda026",
+  "models": {
+    "decider": {
+      "full_30_ms": {
+        "count": 3,
+        "mean": 2878.8033333333333,
+        "p50": 2877.46,
+        "p95": 2881.925,
+        "min": 2877.025,
+        "max": 2881.925,
+        "total": 8636.41
+      },
+      "serial_30_wall_ms": {
+        "count": 3,
+        "mean": 2925.1833333333334,
+        "p50": 2923.829,
+        "p95": 2935.4320000000002,
+        "min": 2916.2889999999998,
+        "max": 2935.4320000000002,
+        "total": 8775.550000000001
+      },
+      "single_question_ms": {
+        "count": 90,
+        "mean": 97.3009111111111,
+        "p50": 91.789,
+        "p95": 116.693,
+        "min": 88.638,
+        "max": 180.045,
+        "total": 8757.081999999997
+      },
+      "measurements": [
+        {
+          "repetition": 0,
+          "full_30_client_ms": 2877.46,
+          "serial_30_client_sum_ms": 2910.4340000000007,
+          "serial_30_wall_ms": 2916.2889999999998,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 97.01446666666666,
+            "p50": 91.55850000000001,
+            "p95": 116.693,
+            "min": 89.673,
+            "max": 179.3,
+            "total": 2910.4340000000007
+          },
+          "changed_keys": [],
+          "full_usage": {
+            "input_tokens": 39778,
+            "output_tokens": 30
+          }
+        },
+        {
+          "repetition": 1,
+          "full_30_client_ms": 2881.925,
+          "serial_30_client_sum_ms": 2917.564999999999,
+          "serial_30_wall_ms": 2923.829,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 97.25216666666667,
+            "p50": 92.2945,
+            "p95": 119.032,
+            "min": 88.638,
+            "max": 179.685,
+            "total": 2917.565
+          },
+          "changed_keys": [],
+          "full_usage": {
+            "input_tokens": 39778,
+            "output_tokens": 30
+          }
+        },
+        {
+          "repetition": 2,
+          "full_30_client_ms": 2877.025,
+          "serial_30_client_sum_ms": 2929.082999999999,
+          "serial_30_wall_ms": 2935.4320000000002,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 97.6361,
+            "p50": 92.09899999999999,
+            "p95": 116.458,
+            "min": 88.747,
+            "max": 180.045,
+            "total": 2929.083
+          },
+          "changed_keys": [],
+          "full_usage": {
+            "input_tokens": 39778,
+            "output_tokens": 30
+          }
+        }
+      ]
+    },
+    "liquid": {
+      "full_30_ms": {
+        "count": 3,
+        "mean": 611.5563333333333,
+        "p50": 611.329,
+        "p95": 612.441,
+        "min": 610.899,
+        "max": 612.441,
+        "total": 1834.669
+      },
+      "serial_30_wall_ms": {
+        "count": 3,
+        "mean": 3179.1676666666667,
+        "p50": 3179.0029999999997,
+        "p95": 3181.609,
+        "min": 3176.891,
+        "max": 3181.609,
+        "total": 9537.503
+      },
+      "single_question_ms": {
+        "count": 90,
+        "mean": 105.82178888888889,
+        "p50": 103.904,
+        "p95": 115.788,
+        "min": 100.802,
+        "max": 131.685,
+        "total": 9523.961000000003
+      },
+      "measurements": [
+        {
+          "repetition": 0,
+          "full_30_client_ms": 611.329,
+          "serial_30_client_sum_ms": 3177.165,
+          "serial_30_wall_ms": 3181.609,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 105.9055,
+            "p50": 103.9905,
+            "p95": 115.451,
+            "min": 100.808,
+            "max": 131.456,
+            "total": 3177.165000000001
+          },
+          "changed_keys": [
+            "t_temp_f",
+            "t_swing_angle",
+            "t_8heat",
+            "t_health_fan",
+            "t_outdoor_mute",
+            "t_dr_offset"
+          ],
+          "full_usage": {
+            "input_tokens": 6188,
+            "output_tokens": 0
+          }
+        },
+        {
+          "repetition": 1,
+          "full_30_client_ms": 612.441,
+          "serial_30_client_sum_ms": 3172.412,
+          "serial_30_wall_ms": 3176.891,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 105.74706666666667,
+            "p50": 103.5095,
+            "p95": 116.334,
+            "min": 101.27,
+            "max": 130.366,
+            "total": 3172.412
+          },
+          "changed_keys": [
+            "t_temp_f",
+            "t_swing_angle",
+            "t_8heat",
+            "t_health_fan",
+            "t_outdoor_mute",
+            "t_dr_offset"
+          ],
+          "full_usage": {
+            "input_tokens": 6188,
+            "output_tokens": 0
+          }
+        },
+        {
+          "repetition": 2,
+          "full_30_client_ms": 610.899,
+          "serial_30_client_sum_ms": 3174.384,
+          "serial_30_wall_ms": 3179.0029999999997,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 105.8128,
+            "p50": 103.904,
+            "p95": 115.788,
+            "min": 100.802,
+            "max": 131.685,
+            "total": 3174.384
+          },
+          "changed_keys": [
+            "t_temp_f",
+            "t_swing_angle",
+            "t_8heat",
+            "t_health_fan",
+            "t_outdoor_mute",
+            "t_dr_offset"
+          ],
+          "full_usage": {
+            "input_tokens": 6188,
+            "output_tokens": 0
+          }
+        }
+      ]
+    },
+    "h2o": {
+      "full_30_ms": {
+        "count": 3,
+        "mean": 5887.611666666667,
+        "p50": 5881.468,
+        "p95": 5901.153,
+        "min": 5880.214,
+        "max": 5901.153,
+        "total": 17662.835
+      },
+      "serial_30_wall_ms": {
+        "count": 3,
+        "mean": 6019.129,
+        "p50": 6007.866,
+        "p95": 6044.3150000000005,
+        "min": 6005.206,
+        "max": 6044.3150000000005,
+        "total": 18057.387000000002
+      },
+      "single_question_ms": {
+        "count": 90,
+        "mean": 200.46066666666667,
+        "p50": 187.814,
+        "p95": 244.346,
+        "min": 182.704,
+        "max": 378.379,
+        "total": 18041.46
+      },
+      "measurements": [
+        {
+          "repetition": 0,
+          "full_30_client_ms": 5881.468,
+          "serial_30_client_sum_ms": 5999.751999999998,
+          "serial_30_wall_ms": 6005.206,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 199.99173333333334,
+            "p50": 187.34449999999998,
+            "p95": 240.419,
+            "min": 182.704,
+            "max": 377.151,
+            "total": 5999.751999999999
+          },
+          "changed_keys": [],
+          "full_usage": {
+            "input_tokens": 6468,
+            "processed_input_tokens": 40137,
+            "output_tokens": 30,
+            "latency_ms": 5879.7
+          }
+        },
+        {
+          "repetition": 1,
+          "full_30_client_ms": 5880.214,
+          "serial_30_client_sum_ms": 6002.625,
+          "serial_30_wall_ms": 6007.866,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 200.0875,
+            "p50": 187.415,
+            "p95": 244.394,
+            "min": 184.755,
+            "max": 376.656,
+            "total": 6002.625000000001
+          },
+          "changed_keys": [],
+          "full_usage": {
+            "input_tokens": 6468,
+            "processed_input_tokens": 40137,
+            "output_tokens": 30,
+            "latency_ms": 5878.5
+          }
+        },
+        {
+          "repetition": 2,
+          "full_30_client_ms": 5901.153,
+          "serial_30_client_sum_ms": 6039.083,
+          "serial_30_wall_ms": 6044.3150000000005,
+          "single_question_ms": {
+            "count": 30,
+            "mean": 201.30276666666666,
+            "p50": 188.719,
+            "p95": 244.346,
+            "min": 184.999,
+            "max": 378.379,
+            "total": 6039.083
+          },
+          "changed_keys": [],
+          "full_usage": {
+            "input_tokens": 6468,
+            "processed_input_tokens": 40137,
+            "output_tokens": 30,
+            "latency_ms": 5899.4
+          }
+        }
+      ]
+    }
+  }
+}

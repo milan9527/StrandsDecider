@@ -1,0 +1,28 @@
+{
+  "prepared_at": "2026-10-30T09:24:15.351920+00:00",
+  "case_id": "S03",
+  "payload_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+  "repetitions": 3,
+  "warmup_per_provider": 1,
+  "providers": [
+    "decider",
+    "liquid",
+    "h2o"
+  ],
+  "modes": [
+    "full_30",
+    "serial_1"
+  ],
+  "outer_concurrency": 1,
+  "single_question_concurrency": 1,
+  "model_order": "decider then liquid then h2o; no model restart",
+  "state_policy": "Identical full 30-command state for both modes and every single-question call",
+  "scoring_policy": "Latency diagnostic only; not a rerun or replacement of full-suite accuracy",
+  "secret_arn": "arn:aws:secretsmanager:us-east-1:632930644527:secret:strands-decider-vllm/api-key-iF5J73",
+  "source_sha256": {
+    "run_serial_latency.py": "0c91a6b56c8dacfc5363003cc509abcfe56a66f3287d935d148ff6a4e90dc742",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5"
+  }
+}

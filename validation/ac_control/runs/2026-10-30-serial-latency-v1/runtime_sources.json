@@ -1,0 +1,1955 @@
+{
+  "h2o/h2o_lightning_shim.py": {
+    "sha256": "75fd4c79b3a7b106bf4f57de47de436d16bece938f58566df642852a0cf8d670",
+    "excerpts": [
+      {
+        "line": 3,
+        "text": "(selector_v2.py, shipped beside it, is too)."
+      },
+      {
+        "line": 4,
+        "text": ""
+      },
+      {
+        "line": 5,
+        "text": "WHAT IT DOES"
+      },
+      {
+        "line": 6,
+        "text": "    POST /v1/systemone  (the decision wire format; /api/alpha/decisions is an alias)"
+      },
+      {
+        "line": 7,
+        "text": "    POST /v1/decisions  (OpenAI's Decisions API, e.g. client.decisions.create; mapped onto the same decision)"
+      },
+      {
+        "line": 8,
+        "text": "      -> renders each question in the prompt the model was trained on (serve_config.json: the chat template with"
+      },
+      {
+        "line": 9,
+        "text": "         thinking off, the system prompt, the \"plain\" layout, compact JSON for a structured state, one label per"
+      },
+      {
+        "line": 10,
+        "text": "         option, the \"Answer:\" prefill)"
+      },
+      {
+        "line": 11,
+        "text": "      -> sends ONE vLLM completion per question with max_tokens=1 and `logprob_token_ids` set to that question's"
+      },
+      {
+        "line": 12,
+        "text": "         label tokens, so every option is read at the answer slot and none can fall out of a top-k"
+      },
+      {
+        "line": 13,
+        "text": "      -> applies the temperature (one for every question type, or one per type: serve_config.json \"temperature\":"
+      },
+      {
+        "line": 14,
+        "text": "         {\"choice\": T, \"noul\": T, \"score\": T}), then the yes/no commit floor"
+      },
+      {
+        "line": 15,
+        "text": "      -> returns {\"model\", \"answers\", \"probability_source\", \"effort_used\", \"usage\"}"
+      },
+      {
+        "line": 16,
+        "text": ""
+      },
+      {
+        "line": 17,
+        "text": "    Several questions about one state are sent concurrently; vLLM's prefix cache shares the state between them, and"
+      },
+      {
+        "line": 18,
+        "text": "    usage.input_tokens counts that shared head once plus each question's own tail."
+      },
+      {
+        "line": 98,
+        "text": "# vLLM 0.30 accepts at most 128 `logprob_token_ids` per request; a question with more options is read in chunks"
+      },
+      {
+        "line": 99,
+        "text": "LOGPROB_CHUNK = int(os.environ.get(\"SHIM_LOGPROB_CHUNK\", \"128\"))"
+      },
+      {
+        "line": 100,
+        "text": "TIMEOUT = float(os.environ.get(\"SHIM_TIMEOUT\", \"180\"))"
+      },
+      {
+        "line": 101,
+        "text": "# PREFIX-CACHE WRITES (one-way reads; the vLLM build's vllm_xargs prefix_cache_write, ignored by stock vLLM): which"
+      },
+      {
+        "line": 102,
+        "text": "# reads may write their prompt to vLLM's prefix cache. With prefix caching on, vLLM 0.30 splits a writing prefill of"
+      },
+      {
+        "line": 103,
+        "text": "# this hybrid model at the last 528-token state block (so the state there can be cached) and runs the rest as a second"
+      },
+      {
+        "line": 104,
+        "text": "# step; a read that writes nothing runs in one step and still reads what others cached. \"all\" (default): every read"
+      },
+      {
+        "line": 105,
+        "text": "# writes (stock behaviour); \"first\": the first question of a multi-question request writes (the others read the"
+      },
+      {
+        "line": 106,
+        "text": "# shared record from it) and a single question writes nothing: one request at a time is faster (one H100, 1,000-token"
+      },
+      {
+        "line": 110,
+        "text": "if CACHE_WRITE not in (\"first\", \"all\", \"none\"):"
+      },
+      {
+        "line": 111,
+        "text": "    raise SystemExit(\"SHIM_CACHE_WRITE must be first, all or none\")"
+      },
+      {
+        "line": 112,
+        "text": "# vLLM's wording when a prompt does not fit --max-model-len (it has changed between releases)"
+      },
+      {
+        "line": 113,
+        "text": "_CONTEXT_ERROR = re.compile(r\"maximum context length|maximum model length|max_model_len|too long and exceeds|\""
+      },
+      {
+        "line": 114,
+        "text": "                            r\"longer than the maximum\", re.I)"
+      },
+      {
+        "line": 115,
+        "text": "# Qwen3.5's chat template for a system and a user message with the generation prompt and thinking off; the template"
+      },
+      {
+        "line": 116,
+        "text": "# trims both contents (Jinja's `trim` is Python's str.strip)"
+      },
+      {
+        "line": 117,
+        "text": "CHATML = {\"system\": \"<|im_start|>system\\n{content}<|im_end|>\\n\","
+      },
+      {
+        "line": 118,
+        "text": "          \"user\": \"<|im_start|>user\\n{content}<|im_end|>\\n\","
+      },
+      {
+        "line": 182,
+        "text": ""
+      },
+      {
+        "line": 183,
+        "text": ""
+      },
+      {
+        "line": 184,
+        "text": "def options_of(question, max_options=255):"
+      },
+      {
+        "line": 185,
+        "text": "    \"\"\"(option names, descriptions) for the three question types. A yes/no question is always [true, false].\"\"\""
+      },
+      {
+        "line": 186,
+        "text": "    typ = question.get(\"type\", \"choice\")"
+      },
+      {
+        "line": 187,
+        "text": "    criteria = question.get(\"criteria\")"
+      },
+      {
+        "line": 188,
+        "text": "    if typ not in PRIMITIVES:"
+      },
+      {
+        "line": 189,
+        "text": "        raise Unprocessable(f\"question type {typ!r} is not one of {list(PRIMITIVES)}\")"
+      },
+      {
+        "line": 190,
+        "text": "    if typ == \"noul\":"
+      },
+      {
+        "line": 876,
+        "text": "            if not isinstance(ref, list) or len(ref) != len(TWO_WAY_PROBES):"
+      },
+      {
+        "line": 877,
+        "text": "                raise ValueError(f\"two_way.probe_reference must hold one entry per probe ({len(TWO_WAY_PROBES)})\")"
+      },
+      {
+        "line": 878,
+        "text": "            for k, (entry, body) in enumerate(zip(ref, TWO_WAY_PROBES)):"
+      },
+      {
+        "line": 879,
+        "text": "                for qid, q in body[\"questions\"].items():"
+      },
+      {
+        "line": 880,
+        "text": "                    names = options_of(q, len(contract.labels))[0]"
+      },
+      {
+        "line": 881,
+        "text": "                    dist = entry.get(qid) if isinstance(entry, dict) else None"
+      },
+      {
+        "line": 882,
+        "text": "                    if not isinstance(dist, dict) or set(dist) != set(names):"
+      },
+      {
+        "line": 883,
+        "text": "                        raise ValueError(f\"two_way.probe_reference[{k}][{qid!r}] must give a probability per option {names}\")"
+      },
+      {
+        "line": 884,
+        "text": "                    if not all(isinstance(x, (int, float)) and 0.0 <= float(x) <= 1.0 for x in dist.values()) \\"
+      },
+      {
+        "line": 1023,
+        "text": "        self.two_way = TwoWay(tw, self, cfg.get(\"_config_dir\"), env) if isinstance(tw, dict) else None"
+      },
+      {
+        "line": 1024,
+        "text": ""
+      },
+      {
+        "line": 1025,
+        "text": "    def question_parts(self, state_text, q, qid=\"q\"):"
+      },
+      {
+        "line": 1026,
+        "text": "        \"\"\"(user text, option names, descriptions, labels) for one question.\"\"\""
+      },
+      {
+        "line": 1027,
+        "text": "        names, descs = options_of(q, len(self.labels))"
+      },
+      {
+        "line": 1028,
+        "text": "        if len(names) > len(self.labels):"
+      },
+      {
+        "line": 1029,
+        "text": "            raise Unprocessable(f\"question {qid}: {len(names)} options exceeds {len(self.labels)}\")"
+      },
+      {
+        "line": 1030,
+        "text": "        labels = self.labels[:len(names)]"
+      },
+      {
+        "line": 1031,
+        "text": "        instr = render_instr(q.get(\"instructions\", \"\")).lstrip() or self.default_instructions"
+      },
+      {
+        "line": 1032,
+        "text": "        return user_turn(state_text, instr, names, descs, labels, self.layout), names, descs, labels"
+      },
+      {
+        "line": 1033,
+        "text": ""
+      },
+      {
+        "line": 1034,
+        "text": "    def question_prompt(self, state_text, q, qid=\"q\"):"
+      },
+      {
+        "line": 1035,
+        "text": "        \"\"\"(prompt text, option names, descriptions, labels) for one question.\"\"\""
+      },
+      {
+        "line": 1036,
+        "text": "        user, names, descs, labels = self.question_parts(state_text, q, qid)"
+      },
+      {
+        "line": 1037,
+        "text": "        return render_chat(self.system, user, self.prefill, self.chat), names, descs, labels"
+      },
+      {
+        "line": 1038,
+        "text": ""
+      },
+      {
+        "line": 1039,
+        "text": "    def image_prompt(self, state_text, q, image_urls, qid=\"q\"):"
+      },
+      {
+        "line": 1040,
+        "text": "        \"\"\"(chat messages, the same prompt as text with one VISION_SLOT per image, names, descriptions, labels).\"\"\""
+      },
+      {
+        "line": 1220,
+        "text": "        prompt's token ids (prompt_token_ids, from vLLM's return_token_ids), so no /tokenize call is needed.\"\"\""
+      },
+      {
+        "line": 1221,
+        "text": "        out, usage = {}, None"
+      },
+      {
+        "line": 1222,
+        "text": "        xargs = {**({\"attention_mode\": attention_mode} if attention_mode else {}),"
+      },
+      {
+        "line": 1223,
+        "text": "                 **({\"prefix_cache_write\": False} if cache_write is False else {})}"
+      },
+      {
+        "line": 1224,
+        "text": "        for k in range(0, len(ids), LOGPROB_CHUNK):"
+      },
+      {
+        "line": 1225,
+        "text": "            chunk = ids[k:k + LOGPROB_CHUNK]"
+      },
+      {
+        "line": 1226,
+        "text": "            r = self.post(\"/v1/completions\", {"
+      },
+      {
+        "line": 1227,
+        "text": "                **({\"vllm_xargs\": xargs} if xargs else {}),"
+      },
+      {
+        "line": 1228,
+        "text": "                \"model\": self.model, \"prompt\": prompt, \"max_tokens\": 1, \"temperature\": 0.0,"
+      },
+      {
+        "line": 1317,
+        "text": "        for k in range(0, len(ids), LOGPROB_CHUNK):"
+      },
+      {
+        "line": 1318,
+        "text": "            chunk = ids[k:k + LOGPROB_CHUNK]"
+      },
+      {
+        "line": 1319,
+        "text": "            xargs = {**({\"attention_mode\": attention_mode} if attention_mode else {}),"
+      },
+      {
+        "line": 1320,
+        "text": "                     **({\"prefix_cache_write\": False} if cache_write is False else {})}"
+      },
+      {
+        "line": 1321,
+        "text": "            body = {**({\"vllm_xargs\": xargs} if xargs else {}),"
+      },
+      {
+        "line": 1322,
+        "text": "                    \"model\": self.model, \"messages\": messages, \"max_completion_tokens\": 1, \"temperature\": 0.0,"
+      },
+      {
+        "line": 1323,
+        "text": "                    \"logprobs\": True, \"logprob_token_ids\": chunk, \"return_tokens_as_token_ids\": True,"
+      },
+      {
+        "line": 1324,
+        "text": "                    \"add_generation_prompt\": False, \"continue_final_message\": True, \"add_special_tokens\": False,"
+      },
+      {
+        "line": 1325,
+        "text": "                    \"chat_template_kwargs\": {\"enable_thinking\": False}}"
+      },
+      {
+        "line": 1381,
+        "text": "        self.min_context = min_context"
+      },
+      {
+        "line": 1382,
+        "text": "        self.ready = None                 # the backend check, done once at first use (vLLM may start later)"
+      },
+      {
+        "line": 1383,
+        "text": "        self.ready_lock = threading.Lock()"
+      },
+      {
+        "line": 1384,
+        "text": "        self.max_model_len = None"
+      },
+      {
+        "line": 1385,
+        "text": "        self.chat_ok = None               # the image path's template check, done once at the first image request"
+      },
+      {
+        "line": 1386,
+        "text": "        self.two_way_ok = None            # the two-way engine's check, done once at the first two-way request"
+      },
+      {
+        "line": 1387,
+        "text": "        self.two_way_separation = None    # the probes' measured max |dp| between the two engines (the pair only)"
+      },
+      {
+        "line": 1388,
+        "text": "        self.two_way_anchor = None        # the probes' measured max |dp| from the release's recorded two-way answers"
+      },
+      {
+        "line": 1389,
+        "text": "        self.two_way_failed = None        # (time, reason) of a failed check: kept TWO_WAY_RETRY_SECONDS, then re-run"
+      },
+      {
+        "line": 1480,
+        "text": "            anchor, sep, worst = 0.0, 0.0, None"
+      },
+      {
+        "line": 1481,
+        "text": "            for k, body in enumerate(TWO_WAY_PROBES):"
+      },
+      {
+        "line": 1482,
+        "text": "                state_txt = render_state(body[\"state\"], self.c.state_compact)"
+      },
+      {
+        "line": 1483,
+        "text": "                for qid, q in body[\"questions\"].items():"
+      },
+      {
+        "line": 1484,
+        "text": "                    text, names, _d, labels = self.c.question_prompt(state_txt, q, qid)"
+      },
+      {
+        "line": 1485,
+        "text": "                    p2 = probabilities(self.one(text, labels, \"bidirectional\")[0], 1.0)"
+      },
+      {
+        "line": 1486,
+        "text": "                    p1 = probabilities(self.one(text, labels)[0], 1.0)"
+      },
+      {
+        "line": 1487,
+        "text": "                    ref = tw.probe_reference[k][qid]"
+      },
+      {
+        "line": 1488,
+        "text": "                    d = max(abs(a - float(ref[n])) for a, n in zip(p2, names))"
+      },
+      {
+        "line": 1527,
+        "text": "        anchor, sep, first, worst = 0.0, 0.0, None, None"
+      },
+      {
+        "line": 1528,
+        "text": "        for k, body in enumerate(TWO_WAY_PROBES):"
+      },
+      {
+        "line": 1529,
+        "text": "            state_txt = render_state(body[\"state\"], self.c.state_compact)"
+      },
+      {
+        "line": 1530,
+        "text": "            for qid, q in body[\"questions\"].items():"
+      },
+      {
+        "line": 1531,
+        "text": "                text, names, _d, labels = self.c.question_prompt(state_txt, q, qid)"
+      },
+      {
+        "line": 1532,
+        "text": "                lp_two, _u, h = self.one_pooled(text, labels)"
+      },
+      {
+        "line": 1533,
+        "text": "                if first is None:"
+      },
+      {
+        "line": 1534,
+        "text": "                    first = h"
+      },
+      {
+        "line": 1535,
+        "text": "                p2 = probabilities(lp_two, 1.0)"
+      },
+      {
+        "line": 1620,
+        "text": "            if status != 200 or entry is None:"
+      },
+      {
+        "line": 1621,
+        "text": "                raise UpstreamError(f\"vLLM at {self.t.base} does not serve {self.c.model!r} \""
+      },
+      {
+        "line": 1622,
+        "text": "                                    f\"(start it with --served-model-name {self.c.model})\", 503)"
+      },
+      {
+        "line": 1623,
+        "text": "            self.max_model_len = entry.get(\"max_model_len\")"
+      },
+      {
+        "line": 1624,
+        "text": "            if isinstance(self.max_model_len, int) and self.max_model_len < self.min_context:"
+      },
+      {
+        "line": 1625,
+        "text": "                raise UpstreamError(f\"vLLM's max_model_len {self.max_model_len} is below {self.min_context}\", 503)"
+      },
+      {
+        "line": 1626,
+        "text": "            n = len(self.c.labels)"
+      },
+      {
+        "line": 1627,
+        "text": "            probe = {\"type\": \"choice\", \"instructions\": \"Which?\", \"criteria\": {f\"o{i}\": f\"d{i}\" for i in range(n)}}"
+      },
+      {
+        "line": 1628,
+        "text": "            text = self.c.question_prompt(render_state({\"x\": 1}, self.c.state_compact), probe)[0]"
+      },
+      {
+        "line": 1629,
+        "text": "            base = self.t.tokenize(text)"
+      },
+      {
+        "line": 1630,
+        "text": "            ids, bad = {}, []"
+      },
+      {
+        "line": 1640,
+        "text": "            self.check_tokenizer()"
+      },
+      {
+        "line": 1641,
+        "text": "            self.c.label_ids = ids"
+      },
+      {
+        "line": 1642,
+        "text": "            self.ready = True"
+      },
+      {
+        "line": 1643,
+        "text": "            sys.stderr.write(f\"shim: vLLM serves {self.c.model} (max_model_len {self.max_model_len}); \""
+      },
+      {
+        "line": 1644,
+        "text": "                             f\"{n} labels verified\\n\")"
+      },
+      {
+        "line": 1645,
+        "text": ""
+      },
+      {
+        "line": 1646,
+        "text": "    def truncate_state(self, text):"
+      },
+      {
+        "line": 1647,
+        "text": "        \"\"\"Selector headtail (v1.4.1's cut, for comparison): a record over max_state_tokens keeps its head and its tail"
+      },
+      {
+        "line": 1648,
+        "text": "        around a \"...\" line (vLLM's tokenizer).\"\"\""
+      },
+      {
+        "line": 1667,
+        "text": "        \"\"\"SELECTOR v2: ([(record text, user-turn override or None) per question], notes). A question whose prompt fits"
+      },
+      {
+        "line": 1668,
+        "text": "        vLLM's context (and SHIM_MAX_STATE_TOKENS, when set) keeps the whole record, so a request that fits is read"
+      },
+      {
+        "line": 1669,
+        "text": "        as before. One that does not gets the record BM25-selected (selector_v2, the 31B's) to the room its own prompt"
+      },
+      {
+        "line": 1670,
+        "text": "        leaves: max_model_len less the prompt without the record, the images' tokens (an upper bound) and"
+      },
+      {
+        "line": 1671,
+        "text": "        CONTEXT_SLACK; where no part of the record matches the question, its head and tail around a \"\\n...\\n\" line."
+      },
+      {
+        "line": 1672,
+        "text": "        A question that does not fit even without the record is answered without it, its instructions, then its"
+      },
+      {
+        "line": 1673,
+        "text": "        option descriptions, then (in the prompt only) its option names cut to fit; the options, their order and"
+      },
+      {
+        "line": 1674,
+        "text": "        labels never change. NEVER a refusal for length.\"\"\""
+      },
+      {
+        "line": 1675,
+        "text": "        c, C = self.c, self.max_model_len"
+      },
+      {
+        "line": 1676,
+        "text": "        img = n_images * self.image_tokens_bound()"
+      },
+      {
+        "line": 1677,
+        "text": "        limit = (C - CONTEXT_SLACK) if isinstance(C, int) and C > 0 else None"
+      },
+      {
+        "line": 1678,
+        "text": "        out, notes, n_state = [], [], None"
+      },
+      {
+        "line": 1679,
+        "text": "        for qid, q in questions.items():"
+      },
+      {
+        "line": 1680,
+        "text": "            if c.state_cap is None and (limit is None or len(c.question_prompt(full_txt, q, qid)[0].encode("
+      },
+      {
+        "line": 1681,
+        "text": "                    \"utf-8\", \"ignore\")) + img <= limit):           # bytes bound tokens: fits, no tokenizer call"
+      },
+      {
+        "line": 1682,
+        "text": "                out.append((full_txt, None))"
+      },
+      {
+        "line": 1683,
+        "text": "                continue"
+      },
+      {
+        "line": 1684,
+        "text": "            if n_state is None:"
+      },
+      {
+        "line": 1707,
+        "text": "        return out, notes"
+      },
+      {
+        "line": 1708,
+        "text": ""
+      },
+      {
+        "line": 1709,
+        "text": "    def select_record(self, raw_state, full_txt, q, budget, notes):"
+      },
+      {
+        "line": 1710,
+        "text": "        \"\"\"The record cut to `budget` tokens for question q: selector_v2's BM25 on the raw state (its text output is"
+      },
+      {
+        "line": 1711,
+        "text": "        the record), else (no matching part, or a record that cannot be split to fit) the head and tail.\"\"\""
+      },
+      {
+        "line": 1712,
+        "text": "        sv2 = _sibling(\"selector_v2\")"
+      },
+      {
+        "line": 1713,
+        "text": "        try:"
+      },
+      {
+        "line": 1714,
+        "text": "            st = sv2.select_state(raw_state, render_instr(q.get(\"instructions\", \"\")), q.get(\"criteria\"), budget,"
+      },
+      {
+        "line": 1715,
+        "text": "                                  self.t.tokenize)"
+      },
+      {
+        "line": 1758,
+        "text": "        return [lp[i] for i in ids], usage"
+      },
+      {
+        "line": 1759,
+        "text": ""
+      },
+      {
+        "line": 1760,
+        "text": "    def decide(self, body):"
+      },
+      {
+        "line": 1761,
+        "text": "        \"\"\"The /v1/systemone handler: `assets` bound and box questions answered here (box.py), every other"
+      },
+      {
+        "line": 1762,
+        "text": "        question by decide_questions. Raises BadRequest / Unprocessable / UpstreamError.\"\"\""
+      },
+      {
+        "line": 1763,
+        "text": "        if not isinstance(body, dict) or not isinstance(body.get(\"questions\"), dict):"
+      },
+      {
+        "line": 1764,
+        "text": "            return self.decide_questions(body)"
+      },
+      {
+        "line": 1765,
+        "text": "        t0 = time.time()"
+      },
+      {
+        "line": 1766,
+        "text": "        mode = self.mode(body)"
+      },
+      {
+        "line": 1767,
+        "text": "        if \"assets\" in body and not self.c.images:"
+      },
+      {
+        "line": 1768,
+        "text": "            raise BadRequest(\"unsupported_assets: this model reads text only; image assets are not supported\")"
+      },
+      {
+        "line": 1769,
+        "text": "        body = bind_assets(body)  # `assets`: references become images (a 400 on a bad map)"
+      },
+      {
+        "line": 1770,
+        "text": "        boxes = {qid: q for qid, q in body[\"questions\"].items() if isinstance(q, dict) and q.get(\"type\") == \"box\"}"
+      },
+      {
+        "line": 1771,
+        "text": "        if not boxes:"
+      },
+      {
+        "line": 1772,
+        "text": "            return self.decide_questions(body, mode)"
+      },
+      {
+        "line": 1773,
+        "text": "        if not self.c.images:"
+      },
+      {
+        "line": 1774,
+        "text": "            raise BadRequest(\"a box question needs an image deployment\")"
+      },
+      {
+        "line": 1775,
+        "text": "        if self.v is None:"
+      },
+      {
+        "line": 1781,
+        "text": "        self.check_backend()"
+      },
+      {
+        "line": 1782,
+        "text": "        state, images = extract_images(body, self.c.max_images)"
+      },
+      {
+        "line": 1783,
+        "text": "        box_answers, box_tokens = self.decide_boxes(boxes, state, images)"
+      },
+      {
+        "line": 1784,
+        "text": "        rest = {qid: q for qid, q in body[\"questions\"].items() if qid not in boxes}"
+      },
+      {
+        "line": 1785,
+        "text": "        if not rest:"
+      },
+      {
+        "line": 1786,
+        "text": "            return {\"model\": self.c.model, \"answers\": box_answers, \"probability_source\": \"native\","
+      },
+      {
+        "line": 1787,
+        "text": "                    \"effort_used\": {\"tier\": \"fast\", \"passes_per_decision\": 1},"
+      },
+      {
+        "line": 1788,
+        "text": "                    \"usage\": {\"input_tokens\": box_tokens, \"processed_input_tokens\": box_tokens,"
+      },
+      {
+        "line": 1789,
+        "text": "                              \"output_tokens\": len(box_answers), \"latency_ms\": round((time.time() - t0) * 1000, 1),"
+      },
+      {
+        "line": 1790,
+        "text": "                              \"images\": len(images)},"
+      },
+      {
+        "line": 1791,
+        "text": "                    \"attention_mode\": \"causal\"}   # a box is always a one-way generation"
+      },
+      {
+        "line": 1792,
+        "text": "        out = self.decide_questions(dict(body, questions=rest), mode)"
+      },
+      {
+        "line": 1793,
+        "text": "        out[\"answers\"].update(box_answers)"
+      },
+      {
+        "line": 1794,
+        "text": "        for key, n in ((\"input_tokens\", box_tokens), (\"output_tokens\", len(box_answers))):"
+      },
+      {
+        "line": 1795,
+        "text": "            out[\"usage\"][key] = out[\"usage\"].get(key, 0) + n"
+      },
+      {
+        "line": 1796,
+        "text": "        if \"processed_input_tokens\" in out[\"usage\"]:"
+      },
+      {
+        "line": 1797,
+        "text": "            out[\"usage\"][\"processed_input_tokens\"] += box_tokens"
+      },
+      {
+        "line": 1798,
+        "text": "        return out"
+      },
+      {
+        "line": 1799,
+        "text": ""
+      },
+      {
+        "line": 1800,
+        "text": "    def decide_boxes(self, boxes, state, images):"
+      },
+      {
+        "line": 1801,
+        "text": "        \"\"\"({qid: box answer}, input tokens): box.py's runner per question: the grounding through chat_generate under"
+      },
+      {
+        "line": 1802,
+        "text": "        box.SYSTEM, the two yes/no readouts through the image path at the box temperature.\"\"\""
+      },
+      {
+        "line": 1855,
+        "text": "        return answers, tokens"
+      },
+      {
+        "line": 1856,
+        "text": ""
+      },
+      {
+        "line": 1857,
+        "text": "    def decide_questions(self, body, mode=None):"
+      },
+      {
+        "line": 1858,
+        "text": "        \"\"\"The /v1/systemone handler. Raises BadRequest / Unprocessable / UpstreamError.\"\"\""
+      },
+      {
+        "line": 1859,
+        "text": "        t0 = time.time()"
+      },
+      {
+        "line": 1860,
+        "text": "        if not isinstance(body, dict) or \"state\" not in body or not isinstance(body.get(\"questions\"), dict):"
+      },
+      {
+        "line": 1861,
+        "text": "            raise Unprocessable(\"expected a JSON object with `state` and a `questions` object\")"
+      },
+      {
+        "line": 1862,
+        "text": "        questions = body[\"questions\"]"
+      },
+      {
+        "line": 1863,
+        "text": "        if not questions:"
+      },
+      {
+        "line": 1864,
+        "text": "            raise BadRequest(\"no questions\")"
+      },
+      {
+        "line": 1865,
+        "text": "        if not all(isinstance(q, dict) for q in questions.values()):"
+      },
+      {
+        "line": 1866,
+        "text": "            raise Unprocessable(\"every question must be an object\")"
+      },
+      {
+        "line": 1867,
+        "text": "        effort = body.get(\"effort\")"
+      },
+      {
+        "line": 1868,
+        "text": "        if effort is not None and not isinstance(effort, (str, dict)):"
+      },
+      {
+        "line": 1869,
+        "text": "            raise Unprocessable(\"effort must be a tier name or an object\")"
+      },
+      {
+        "line": 1870,
+        "text": "        asked = effort if isinstance(effort, str) or effort is None else effort.get(\"tier\", \"fast\")"
+      },
+      {
+        "line": 1881,
+        "text": "        full_txt = render_state(body[\"state\"], self.c.state_compact)"
+      },
+      {
+        "line": 1882,
+        "text": "        fits, notes = self.fit_request(body[\"state\"], full_txt, questions)"
+      },
+      {
+        "line": 1883,
+        "text": "        work = []"
+      },
+      {
+        "line": 1884,
+        "text": "        for (qid, q), (state_txt, user) in zip(questions.items(), fits):"
+      },
+      {
+        "line": 1885,
+        "text": "            text, names, descs, labels = self.c.question_prompt(state_txt, q, qid)"
+      },
+      {
+        "line": 1886,
+        "text": "            if user is not None:           # the question itself cut to fit the context (the answer keeps its names)"
+      },
+      {
+        "line": 1887,
+        "text": "                text = render_chat(self.c.system, user, self.c.prefill, self.c.chat)"
+      },
+      {
+        "line": 1888,
+        "text": "            work.append((qid, q.get(\"type\", \"choice\"), names, descs, text, labels, noul_threshold(q)))"
+      },
+      {
+        "line": 1889,
+        "text": "        full = None"
+      },
+      {
+        "line": 1890,
+        "text": "        if any(st != full_txt or u is not None for st, u in fits):   # a cut record is billed as if read whole"
+      },
+      {
+        "line": 1891,
+        "text": "            full = self.full_input([self.c.question_prompt(full_txt, q, qid)[0] for qid, q in questions.items()])"
+      },
+      {
+        "line": 1892,
+        "text": "        shared = 0"
+      },
+      {
+        "line": 1893,
+        "text": "        writes = cache_writes(len(work)) if mode == \"causal\" else [None] * len(work)"
+      },
+      {
+        "line": 1894,
+        "text": "        read = (lambda text, labels, w=None: self.one(text, labels, None, w)) if mode == \"causal\" else ("
+      },
+      {
+        "line": 1895,
+        "text": "            (lambda text, labels, w=None: self.one(text, labels, \"bidirectional\")) if self.two_way_flag"
+      },
+      {
+        "line": 1896,
+        "text": "            else (lambda text, labels, w=None: self.one_pooled(text, labels)[:2]))"
+      },
+      {
+        "line": 1901,
+        "text": "            reads = [f.result() for f in futs]"
+      },
+      {
+        "line": 1902,
+        "text": "            # COUNT THE SHARED HEAD ONCE: the system prompt and the record are computed once by vLLM's prefix"
+      },
+      {
+        "line": 1903,
+        "text": "            # cache, so N whole prompts would bill the record N times (the two-way engine has no prefix cache and"
+      },
+      {
+        "line": 1904,
+        "text": "            # reads it N times: processed_input_tokens says so; input_tokens is the same count in both modes). The"
+      },
+      {
+        "line": 1905,
+        "text": "            # prompts' token ids come back with the reads (prompt_token_ids); /tokenize only when they do not."
+      },
+      {
+        "line": 1906,
+        "text": "            toks = [r[1].get(\"prompt_token_ids\") for r in reads]"
+      },
+      {
+        "line": 1907,
+        "text": "            if not all(isinstance(t, list) for t in toks):"
+      },
+      {
+        "line": 1908,
+        "text": "                toks = [self.t.tokenize(w[4]) for w in work]"
+      },
+      {
+        "line": 1909,
+        "text": "            shared = common_prefix_len(toks)"
+      },
+      {
+        "line": 1965,
+        "text": "        full_txt = render_state(state, self.c.state_compact)"
+      },
+      {
+        "line": 1966,
+        "text": "        fits, notes = self.fit_request(state, full_txt, questions, len(images))"
+      },
+      {
+        "line": 1967,
+        "text": "        work, msgs = [], []"
+      },
+      {
+        "line": 1968,
+        "text": "        for (qid, q), (state_txt, user) in zip(questions.items(), fits):"
+      },
+      {
+        "line": 1969,
+        "text": "            m, text, names, descs, labels = self.c.image_prompt(state_txt, q, images, qid)"
+      },
+      {
+        "line": 1970,
+        "text": "            if user is not None:           # the question itself cut to fit the context (the answer keeps its names)"
+      },
+      {
+        "line": 1971,
+        "text": "                m = chat_messages(self.c.system, user, self.c.prefill, images)"
+      },
+      {
+        "line": 1972,
+        "text": "                text = render_chat(self.c.system, VISION_SLOT * len(images) + user.strip(), self.c.prefill, self.c.chat)"
+      },
+      {
+        "line": 1973,
+        "text": "            msgs.append(m)"
+      },
+      {
+        "line": 1990,
+        "text": "        full = None"
+      },
+      {
+        "line": 1991,
+        "text": "        if any(st != full_txt or u is not None for st, u in fits):   # billed as if read whole, images included"
+      },
+      {
+        "line": 1992,
+        "text": "            extra = max(0, int(reads[0][1].get(\"prompt_tokens\") or 0) - len(self.t.tokenize(work[0][4])))"
+      },
+      {
+        "line": 1993,
+        "text": "            full = self.full_input([self.c.image_prompt(full_txt, q, images, qid)[1] for qid, q in questions.items()],"
+      },
+      {
+        "line": 1994,
+        "text": "                                   extra)"
+      },
+      {
+        "line": 1995,
+        "text": "        _t, image_t, floor = self.temperatures(mode)"
+      },
+      {
+        "line": 1996,
+        "text": "        return self.respond(work, reads, shared, asked, t0, (image_t, None, floor), len(images), full, mode, notes)"
+      },
+      {
+        "line": 1997,
+        "text": ""
+      },
+      {
+        "line": 1998,
+        "text": "    def respond(self, work, reads, shared, asked, t0, temperature, n_images=0, full_input=None, mode=\"causal\","
+      },
+      {
+        "line": 2017,
+        "text": "        if notes:                          # only when a record or question was cut to fit (a request that fits: absent)"
+      },
+      {
+        "line": 2018,
+        "text": "            used[\"state_selection\"] = \"; \".join(sorted(set(notes)))"
+      },
+      {
+        "line": 2019,
+        "text": "        out = {\"model\": self.c.model, \"answers\": answers, \"probability_source\": \"native\", \"effort_used\": used,"
+      },
+      {
+        "line": 2020,
+        "text": "               # input_tokens: the full input (processed_input_tokens: what vLLM read, less when a long record was"
+      },
+      {
+        "line": 2021,
+        "text": "               # cut); output_tokens: one label token read per answered question"
+      },
+      {
+        "line": 2022,
+        "text": "               \"usage\": {\"input_tokens\": ntok if full_input is None else full_input,"
+      },
+      {
+        "line": 2023,
+        "text": "                         \"processed_input_tokens\": processed if mode == \"bidirectional\" else ntok,"
+      },
+      {
+        "line": 2024,
+        "text": "                         \"output_tokens\": len(work), \"latency_ms\": round((time.time() - t0) * 1000, 1)}}"
+      },
+      {
+        "line": 2025,
+        "text": "        if n_images:"
+      },
+      {
+        "line": 2026,
+        "text": "            out[\"usage\"][\"images\"] = n_images"
+      },
+      {
+        "line": 2027,
+        "text": "        out[\"attention_mode\"] = mode       # always: the mode the answers were read in"
+      },
+      {
+        "line": 2028,
+        "text": "        return out"
+      },
+      {
+        "line": 2036,
+        "text": "                \"noul_floor\": {\"value\": c.noul_floor, \"source\": c.noul_floor_source},"
+      },
+      {
+        "line": 2037,
+        "text": "                \"temperature_by_type\": dict(c.temperature_by_type),"
+      },
+      {
+        "line": 2038,
+        "text": "                \"temperature_source\": c.temperature_source, \"max_options\": len(c.labels),"
+      },
+      {
+        "line": 2039,
+        "text": "                \"vllm_max_model_len\": self.max_model_len,"
+      },
+      {
+        "line": 2040,
+        "text": "                **({\"images\": {\"max_images\": c.max_images, \"max_pixels\": c.max_pixels or None,"
+      },
+      {
+        "line": 2041,
+        "text": "                               \"temperature\": c.image_temperature, \"verified\": bool(self.chat_ok)}}"
+      },
+      {
+        "line": 2042,
+        "text": "                   if c.images else {}),"
+      },
+      {
+        "line": 2043,
+        "text": "                \"attention_mode\": self.default_mode(),"
+      },
+      {
+        "line": 2044,
+        "text": "                \"modes\": ([m for m, e in ((\"causal\", self.v), (\"bidirectional\", self.p)) if e is not None]"
+      },
+      {
+        "line": 2051,
+        "text": "# ------------------------------------------------------------------------------------------------- OpenAI Decisions"
+      },
+      {
+        "line": 2052,
+        "text": "# POST /v1/decisions speaks OpenAI's Decisions API (client.decisions.create in the `openai` Python package): `input` (a"
+      },
+      {
+        "line": 2053,
+        "text": "# string, or user messages with input_text / input_image parts) and an ordered `questions` list of predicate / choice"
+      },
+      {
+        "line": 2054,
+        "text": "# / score questions. Each request is mapped onto the /v1/systemone decision above (the same readout and calibration),"
+      },
+      {
+        "line": 2055,
+        "text": "# in the option format the model was trained on: a choice's string value is the option's name and its description the"
+      },
+      {
+        "line": 2056,
+        "text": "# option's text, a score level is its label (with \": description\" when given), a predicate is a yes/no question with"
+      },
+      {
+        "line": 2057,
+        "text": "# the default wording. The answers come back in OpenAI's shape. `model` must be the served model (or its name without"
+      },
+      {
+        "line": 2058,
+        "text": "# the organisation prefix, e.g. \"h2o-lightning-4b\"). An image's `detail` is accepted and not used (the deployment's own"
+      },
+      {
+        "line": 2059,
+        "text": "# image cap applies)."
+      },
+      {
+        "line": 2076,
+        "text": ""
+      },
+      {
+        "line": 2077,
+        "text": ""
+      },
+      {
+        "line": 2078,
+        "text": "def openai_request(body, served):"
+      },
+      {
+        "line": 2079,
+        "text": "    \"\"\"(a /v1/systemone body, the answer mapping) for an OpenAI Decisions request; BadRequest when it is not one.\"\"\""
+      },
+      {
+        "line": 2080,
+        "text": "    _oai_fields(body, {\"model\", \"input\", \"questions\", \"safety_identifier\", \"attention_mode\"}, (\"model\", \"input\", \"questions\"))"
+      },
+      {
+        "line": 2081,
+        "text": "    _oai_string(body[\"model\"], \"model\")"
+      },
+      {
+        "line": 2082,
+        "text": "    if body[\"model\"] not in (served, served.rsplit(\"/\", 1)[-1]):"
+      },
+      {
+        "line": 2083,
+        "text": "        _oai_fail(f\"model must be the served model {served!r}\")"
+      },
+      {
+        "line": 2084,
+        "text": "    if body.get(\"safety_identifier\") is not None:"
+      },
+      {
+        "line": 2127,
+        "text": "    if not isinstance(body[\"questions\"], list) or not body[\"questions\"]:"
+      },
+      {
+        "line": 2128,
+        "text": "        _oai_fail(\"questions must be a non-empty ordered array\")"
+      },
+      {
+        "line": 2129,
+        "text": "    questions, mapping = {}, []"
+      },
+      {
+        "line": 2130,
+        "text": "    for index, q in enumerate(body[\"questions\"]):"
+      },
+      {
+        "line": 2131,
+        "text": "        if not isinstance(q, dict):"
+      },
+      {
+        "line": 2132,
+        "text": "            _oai_fail(\"a question must be an object\")"
+      },
+      {
+        "line": 2133,
+        "text": "        typ = q.get(\"type\")"
+      },
+      {
+        "line": 2134,
+        "text": "        _oai_fields(q, {\"type\", \"instructions\", \"name\"} | ({\"choices\"} if typ == \"choice\" else {\"levels\"}"
+      },
+      {
+        "line": 2135,
+        "text": "                                                          if typ == \"score\" else set()), (\"type\", \"instructions\"),"
+      },
+      {
+        "line": 2186,
+        "text": ""
+      },
+      {
+        "line": 2187,
+        "text": ""
+      },
+      {
+        "line": 2188,
+        "text": "def openai_response(core, mapping):"
+      },
+      {
+        "line": 2189,
+        "text": "    \"\"\"A /v1/systemone response in OpenAI's Decisions shape.\"\"\""
+      },
+      {
+        "line": 2190,
+        "text": "    answers = []"
+      },
+      {
+        "line": 2191,
+        "text": "    for i, meta in enumerate(mapping):"
+      },
+      {
+        "line": 2192,
+        "text": "        a = core[\"answers\"][\"q_\" + str(i)]"
+      },
+      {
+        "line": 2193,
+        "text": "        common = {\"type\": meta[\"type\"], \"name\": meta[\"name\"]}"
+      },
+      {
+        "line": 2194,
+        "text": "        if meta[\"type\"] == \"predicate\":"
+      },
+      {
+        "line": 2208,
+        "text": "            \"usage\": {\"input_tokens\": usage[\"input_tokens\"], \"output_tokens\": usage[\"output_tokens\"],"
+      },
+      {
+        "line": 2209,
+        "text": "                      \"total_tokens\": usage[\"input_tokens\"] + usage[\"output_tokens\"],"
+      },
+      {
+        "line": 2210,
+        "text": "                      \"input_tokens_details\": {\"cached_tokens\": 0, \"cache_write_tokens\": 0},"
+      },
+      {
+        "line": 2211,
+        "text": "                      \"processed_input_tokens\": usage[\"processed_input_tokens\"],"
+      },
+      {
+        "line": 2212,
+        "text": "                      \"output_tokens_details\": {\"reasoning_tokens\": 0}}}"
+      },
+      {
+        "line": 2213,
+        "text": ""
+      },
+      {
+        "line": 2214,
+        "text": ""
+      },
+      {
+        "line": 2215,
+        "text": "def make_handler(shim):"
+      },
+      {
+        "line": 2216,
+        "text": "    class Handler(BaseHTTPRequestHandler):"
+      },
+      {
+        "line": 2251,
+        "text": ""
+      },
+      {
+        "line": 2252,
+        "text": "        def do_POST(self):"
+      },
+      {
+        "line": 2253,
+        "text": "            openai = self.path.startswith(\"/v1/decisions\")"
+      },
+      {
+        "line": 2254,
+        "text": "            if not openai and not self.path.startswith((\"/v1/systemone\", \"/api/alpha/decisions\")):"
+      },
+      {
+        "line": 2255,
+        "text": "                return self._send(404, {\"error\": \"not found\"})"
+      },
+      {
+        "line": 2256,
+        "text": "            ctype = self.headers.get(\"Content-Type\") or \"\""
+      },
+      {
+        "line": 2257,
+        "text": "            try:"
+      },
+      {
+        "line": 2258,
+        "text": "                n = int(self.headers.get(\"Content-Length\") or 0)"
+      },
+      {
+        "line": 2259,
+        "text": "                raw = self.rfile.read(n)"
+      }
+    ]
+  },
+  "h2o/selector_v2.py": {
+    "sha256": "bd518a2c3bea9167803b6c21e480b37386fa212cf35101093b84e75c5307b7e3",
+    "excerpts": []
+  },
+  "liquid/modeling_d1.py": {
+    "sha256": "214d3477cef38e7831f2b4fb0250ace7fb1aeac5b02066fcfd5cc030c541fd72",
+    "excerpts": [
+      {
+        "line": 1,
+        "text": "\"\"\"The System One API on any backbone: each `modeling_d1_<model_type>.py` serves `D1Model(SystemOneModel, <its"
+      },
+      {
+        "line": 2,
+        "text": "class>)` to `AutoModel.from_pretrained(repo, trust_remote_code=True)`."
+      },
+      {
+        "line": 3,
+        "text": ""
+      },
+      {
+        "line": 4,
+        "text": "    model.system_one(state, {name: question}, media=None)     # one forward pass; media: pictures, audio, video"
+      },
+      {
+        "line": 5,
+        "text": "    model.system_one_batch([(state, {name: question}), ...])  # many states in one call"
+      },
+      {
+        "line": 6,
+        "text": ""
+      },
+      {
+        "line": 7,
+        "text": "A release's `calibration.json` (its temperature) is applied to every answer."
+      },
+      {
+        "line": 8,
+        "text": "\"\"\""
+      },
+      {
+        "line": 9,
+        "text": ""
+      },
+      {
+        "line": 10,
+        "text": "from __future__ import annotations"
+      },
+      {
+        "line": 55,
+        "text": "                         calibration=Calibration.load(found) if found else None, revision=self._revision())"
+      },
+      {
+        "line": 56,
+        "text": ""
+      },
+      {
+        "line": 57,
+        "text": "    def compile(self, mode: str | None = None) -> None:"
+      },
+      {
+        "line": 58,
+        "text": "        \"\"\"torch.compile what `system_one` runs (`SystemOne.compile`): fused kernels, with no CUDA graphs under `set` attention.\"\"\""
+      },
+      {
+        "line": 59,
+        "text": "        self.engine.compile(mode)"
+      },
+      {
+        "line": 60,
+        "text": ""
+      },
+      {
+        "line": 61,
+        "text": "    def system_one(self, state: Any, questions: Mapping[str, Any], media: Sequence | None = None,"
+      },
+      {
+        "line": 62,
+        "text": "                   score_readout: str = SCORE_READOUT, set_size: int | None = None) -> dict:"
+      },
+      {
+        "line": 63,
+        "text": "        \"\"\"Named questions over a state (text, JSON, or None with media alone) and its media (pictures, audio clips,"
+      },
+      {
+        "line": 64,
+        "text": "        videos: `media`): `{\"answers\": {name: answer}, \"usage\": {\"input_tokens\": n, \"output_tokens\": 0}}`."
+      },
+      {
+        "line": 65,
+        "text": "        `score_readout`: a score's `median` level (the default), its expected level (`mean`) or its `argmax` level."
+      },
+      {
+        "line": 66,
+        "text": "        `set_size`: questions read together after the state, the model's trained size by default; larger is faster"
+      },
+      {
+        "line": 67,
+        "text": "        and costs some accuracy on text.\"\"\""
+      },
+      {
+        "line": 68,
+        "text": "        return self.engine.system_one(state, questions, media, score_readout, set_size=set_size)"
+      },
+      {
+        "line": 69,
+        "text": ""
+      },
+      {
+        "line": 70,
+        "text": "    def system_one_batch(self, requests: Sequence[tuple], score_readout: str = SCORE_READOUT,"
+      },
+      {
+        "line": 71,
+        "text": "                         set_size: int | None = None) -> list[dict]:"
+      },
+      {
+        "line": 72,
+        "text": "        \"\"\"`(state, questions)` or `(state, questions, media)` requests, one response each.\"\"\""
+      },
+      {
+        "line": 73,
+        "text": "        return self.engine.system_one_batch(requests, score_readout, set_size=set_size)"
+      }
+    ]
+  },
+  "liquid/api.py": {
+    "sha256": "d57845b414b6766cd0410f0437080244320adebd4f9f031a03777acbec243d2a",
+    "excerpts": [
+      {
+        "line": 1,
+        "text": "\"\"\"The System One API: named questions over a state in, typed answers out."
+      },
+      {
+        "line": 2,
+        "text": ""
+      },
+      {
+        "line": 3,
+        "text": "    model.system_one(state, {\"refund\": {\"type\": \"noul\", \"instructions\": \"Is this a refund request?\"}})"
+      },
+      {
+        "line": 4,
+        "text": "    # {\"answers\": {\"refund\": {\"type\": \"noul\", \"noul\": p}}, \"usage\": {\"input_tokens\": n, \"output_tokens\": 0}}"
+      },
+      {
+        "line": 5,
+        "text": ""
+      },
+      {
+        "line": 6,
+        "text": "A state is a string, any JSON value, or None with media alone; `media` holds its pictures, audio clips and videos"
+      },
+      {
+        "line": 7,
+        "text": "(`media`). A question is a dict in the Decision Index's schema (`type`, `instructions`, `criteria`; spoken"
+      },
+      {
+        "line": 8,
+        "text": "instructions a media dict) or one of `prompt`'s classes."
+      },
+      {
+        "line": 146,
+        "text": ""
+      },
+      {
+        "line": 147,
+        "text": ""
+      },
+      {
+        "line": 148,
+        "text": "class SystemOneApi:"
+      },
+      {
+        "line": 149,
+        "text": "    \"\"\"`system_one` and `system_one_batch`, and the plain probabilities under them, over a model's"
+      },
+      {
+        "line": 150,
+        "text": "    `run(requests)`: each `(state, questions, media)` request's probabilities (in its questions' order)"
+      },
+      {
+        "line": 151,
+        "text": "    and the tokens it read.\"\"\""
+      },
+      {
+        "line": 152,
+        "text": ""
+      },
+      {
+        "line": 153,
+        "text": "    serves_typed = True  # an engine without the slots and state positions of slots.py says False"
+      },
+      {
+        "line": 154,
+        "text": ""
+      },
+      {
+        "line": 166,
+        "text": "            raise ValueError(f'questions are a dict of name to question, {{\"refund\": {{\"type\": \"noul\", \"instructions\": '"
+      },
+      {
+        "line": 167,
+        "text": "                             f'\"Is it a refund request?\"}}}}, not {type(questions).__name__}')"
+      },
+      {
+        "line": 168,
+        "text": "        out = {}"
+      },
+      {
+        "line": 169,
+        "text": "        for name, q in questions.items():"
+      },
+      {
+        "line": 170,
+        "text": "            try:"
+      },
+      {
+        "line": 171,
+        "text": "                out[name] = self.ask(q)"
+      },
+      {
+        "line": 172,
+        "text": "            except ValueError as e:"
+      },
+      {
+        "line": 173,
+        "text": "                raise ValueError(f\"question {name!r}: {e}\") from None"
+      },
+      {
+        "line": 174,
+        "text": "        return out"
+      },
+      {
+        "line": 175,
+        "text": ""
+      },
+      {
+        "line": 176,
+        "text": "    def answer(self, state: Any, q: Question, probs, score_readout: str = SCORE_READOUT,"
+      },
+      {
+        "line": 177,
+        "text": "               abstain_below: float | None = None) -> dict:"
+      },
+      {
+        "line": 178,
+        "text": "        \"\"\"One question's answer as `system_one` gives it: a read's value parsed in its state, a typed answer's"
+      },
+      {
+        "line": 179,
+        "text": "        probabilities through the served calibration's tables.\"\"\""
+      },
+      {
+        "line": 180,
+        "text": "        context = state_text(state, getattr(self, \"state_style\", DEFAULT_STATE_STYLE)) if isinstance(q, Read) else \"\""
+      },
+      {
+        "line": 181,
+        "text": "        return answer(q, probs, score_readout, abstain_below, context, getattr(self, \"calibration\", None),"
+      },
+      {
+        "line": 182,
+        "text": "                      getattr(getattr(self, \"tokenizer\", None), \"d1_box_edges\", \"median\"))"
+      },
+      {
+        "line": 183,
+        "text": ""
+      },
+      {
+        "line": 187,
+        "text": ""
+      },
+      {
+        "line": 188,
+        "text": "    def probabilities(self, state: Any, questions: Sequence, media: Sequence | None = None) -> list[list[float]]:"
+      },
+      {
+        "line": 189,
+        "text": "        \"\"\"Each question's option probabilities; a multiple choice returns independent P(yes) per option.\"\"\""
+      },
+      {
+        "line": 190,
+        "text": "        return self.run([(state, [self.ask(q) for q in questions], media_list(media))])[0][0]"
+      },
+      {
+        "line": 191,
+        "text": ""
+      },
+      {
+        "line": 192,
+        "text": "    def system_one(self, state: Any, questions: Mapping[str, Any], media: Sequence | None = None,"
+      },
+      {
+        "line": 193,
+        "text": "                   score_readout: str = SCORE_READOUT, abstain_below: float | None = None,"
+      },
+      {
+        "line": 194,
+        "text": "                   set_size: int | None = None) -> dict:"
+      },
+      {
+        "line": 195,
+        "text": "        \"\"\"Named questions over one state, and its media if any (pictures, audio clips, videos), in one forward"
+      },
+      {
+        "line": 196,
+        "text": "        pass.\"\"\""
+      },
+      {
+        "line": 197,
+        "text": "        return self.system_one_batch([(state, questions, media)], score_readout, abstain_below, set_size)[0]"
+      },
+      {
+        "line": 198,
+        "text": ""
+      },
+      {
+        "line": 199,
+        "text": "    def system_one_batch(self, requests: Sequence[tuple], score_readout: str = SCORE_READOUT,"
+      },
+      {
+        "line": 200,
+        "text": "                         abstain_below: float | None = None, set_size: int | None = None) -> list[dict]:"
+      },
+      {
+        "line": 201,
+        "text": "        \"\"\"Many `(state, questions)` or `(state, questions, media)` requests in one call, batched as the engine"
+      },
+      {
+        "line": 202,
+        "text": "        reads them (`run`); a request with several questions reads its state once a pass."
+      },
+      {
+        "line": 203,
+        "text": "        `score_readout` (`SCORE_READOUTS`) sets how a score question answers; `abstain_below` (off by default)"
+      },
+      {
+        "line": 204,
+        "text": "        when a choice with an \"I don't know\" option picks it (`choice_index`); `set_size` how many questions are"
+      }
+    ]
+  },
+  "liquid/runner.py": {
+    "sha256": "ac195b19f60f985a6081ccecc1a5c9f7c9fbe6711e8916c0e9835aaaac0bc2a2",
+    "excerpts": [
+      {
+        "line": 203,
+        "text": "                i, first = seqs[b][:2]"
+      },
+      {
+        "line": 204,
+        "text": "                for k, ends in enumerate(seqs[b][5]):"
+      },
+      {
+        "line": 205,
+        "text": "                    key = (i, first + k)"
+      },
+      {
+        "line": 206,
+        "text": "                    slots.extend((r, key, q, end) for q, end in zip(question_slots(asked(key), self.tokenizer), ends))"
+      },
+      {
+        "line": 207,
+        "text": "            reads = [j for j, s in enumerate(slots) if isinstance(s[2], Position)]  # a read's start then its end"
+      },
+      {
+        "line": 208,
+        "text": "            pointer = None"
+      },
+      {
+        "line": 209,
+        "text": "            if reads:"
+      },
+      {
+        "line": 210,
+        "text": "                masks = [torch.tensor(position_maps[batch[slots[j][0]]].pointer_mask) for j in reads]"
+      },
+      {
+        "line": 211,
+        "text": "                pointer = query_plan([slots[j][0] for j in reads], masks, reads, len(slots))"
+      },
+      {
+        "line": 264,
+        "text": "        `attention` likewise (`d1_attention`, else causal; `attention`).\"\"\""
+      },
+      {
+        "line": 265,
+        "text": "        if model is None or tokenizer is None or isinstance(model, str):"
+      },
+      {
+        "line": 266,
+        "text": "            raise TypeError(\"SystemOne reads a loaded backbone: pass `model=` and `tokenizer=` (a checkpoint's own \""
+      },
+      {
+        "line": 267,
+        "text": "                            \"class serves it: AutoModel.from_pretrained(repo, trust_remote_code=True).system_one)\")"
+      },
+      {
+        "line": 268,
+        "text": "        self.model, self.tokenizer = model, tokenizer"
+      },
+      {
+        "line": 269,
+        "text": "        self.model_id, device = model.config._name_or_path, device or next(model.parameters()).device"
+      },
+      {
+        "line": 270,
+        "text": "        self.device = torch.device(device or (\"cuda\" if torch.cuda.is_available() else \"cpu\"))"
+      },
+      {
+        "line": 271,
+        "text": "        if getattr(self.model, \"hf_device_map\", None):  # spread over GPUs at load: inputs go to the embeddings"
+      },
+      {
+        "line": 272,
+        "text": "            self.device = self.model.get_input_embeddings().weight.device"
+      },
+      {
+        "line": 352,
+        "text": "        state = None if self.attention == \"causal\" else torch.tensor([seqs[b][3] for b in batch])"
+      },
+      {
+        "line": 353,
+        "text": "        question = None if self.attention != \"set\" else torch.tensor("
+      },
+      {
+        "line": 354,
+        "text": "            [seqs[b][4] + [-1] * (width - len(seqs[b][4])) for b in batch])"
+      },
+      {
+        "line": 355,
+        "text": "        rows = slot_logits(self.model, ids, mask, torch.tensor([s[3] for s in slots]), state, question,"
+      },
+      {
+        "line": 356,
+        "text": "                           torch.tensor([s[0] for s in slots]), pointer=pointer, **self._on_device(media))"
+      },
+      {
+        "line": 357,
+        "text": "        codes = rows.codes.float()"
+      },
+      {
+        "line": 358,
+        "text": "        return codes - torch.logsumexp(codes, dim=-1, keepdim=True), rows.positions"
+      },
+      {
+        "line": 359,
+        "text": ""
+      },
+      {
+        "line": 360,
+        "text": "    def _readouts(self, qs: Sequence[Question], logz: torch.Tensor, tempered: Sequence[bool]) -> list[list[float]]:"
+      },
+      {
+        "line": 366,
+        "text": "        prefix, _ = self._prefix(state, ())"
+      },
+      {
+        "line": 367,
+        "text": "        return len(self.tokenizer.encode(prefix, add_special_tokens=False)) + max("
+      },
+      {
+        "line": 368,
+        "text": "            len(self.tokenizer.encode(suffix_text(self.tokenizer, q, self.lead, self.option_style),"
+      },
+      {
+        "line": 369,
+        "text": "                                      add_special_tokens=False)) for q in questions)"
+      },
+      {
+        "line": 370,
+        "text": ""
+      },
+      {
+        "line": 371,
+        "text": "    # ----------------------------------------------------------------- media"
+      },
+      {
+        "line": 372,
+        "text": ""
+      },
+      {
+        "line": 373,
+        "text": "    def _load_processor(self):"
+      },
+      {
+        "line": 374,
+        "text": "        return auto_processor(self.model.config._name_or_path, self.revision)"
+      }
+    ]
+  },
+  "liquid/prompt.py": {
+    "sha256": "e5344f65481374da6b30e5ceda2a5ee398100b13ee69ed2ce52ac42713a7a048",
+    "excerpts": [
+      {
+        "line": 278,
+        "text": ""
+      },
+      {
+        "line": 279,
+        "text": "def as_question(q: Mapping | Question) -> Question:"
+      },
+      {
+        "line": 280,
+        "text": "    \"\"\"A question in the API's JSON (`type`, `instructions`, `criteria`; `multiple`, `range`, `step`, `unit` for the"
+      },
+      {
+        "line": 281,
+        "text": "    typed answers; `instructions` a media dict for a spoken question), as one of the classes above; a class passes"
+      },
+      {
+        "line": 282,
+        "text": "    through.\"\"\""
+      },
+      {
+        "line": 283,
+        "text": "    if not isinstance(q, Mapping):"
+      },
+      {
+        "line": 284,
+        "text": "        return q"
+      },
+      {
+        "line": 285,
+        "text": "    if isinstance(q.get(\"instructions\"), Mapping):"
+      },
+      {
+        "line": 286,
+        "text": "        q = {**q, \"instructions\": as_media(q[\"instructions\"])}"
+      },
+      {
+        "line": 372,
+        "text": ""
+      },
+      {
+        "line": 373,
+        "text": ""
+      },
+      {
+        "line": 374,
+        "text": "def readouts(tokenizer, qs: Sequence[Question], logz, calibrations: Sequence) -> list[list[float]]:"
+      },
+      {
+        "line": 375,
+        "text": "    \"\"\"`readout` for each row of `logz` ([slots, vocabulary], a torch tensor) and its question, as one gather for"
+      },
+      {
+        "line": 376,
+        "text": "    the rows sharing a readout table (a box's edges) and one transfer for all.\"\"\""
+      },
+      {
+        "line": 377,
+        "text": "    import torch"
+      },
+      {
+        "line": 378,
+        "text": ""
+      },
+      {
+        "line": 379,
+        "text": "    tables = [readout_table(tokenizer, q) for q in qs]"
+      },
+      {
+        "line": 380,
+        "text": "    shared: dict[int, list[int]] = {}"
+      },
+      {
+        "line": 564,
+        "text": "    if scale > 1:"
+      },
+      {
+        "line": 565,
+        "text": "        return (\"Each edge is a number from 0 to 999, in thousandths of the picture: top and bottom from its top edge, \""
+      },
+      {
+        "line": 566,
+        "text": "                \"left and right from its left edge.\")"
+      },
+      {
+        "line": 567,
+        "text": "    codes = [code for code, _ in aliases(tokenizer, list(grid_question(\"\", grid).criteria))]"
+      },
+      {
+        "line": 568,
+        "text": "    return (f\"Each edge is a code on a {grid.size}-value scale: {codes[0]} is 0 (top or left), {codes[-1]} is 1 \""
+      },
+      {
+        "line": 569,
+        "text": "            \"(bottom or right). Values are equally spaced.\")"
+      },
+      {
+        "line": 570,
+        "text": ""
+      },
+      {
+        "line": 571,
+        "text": ""
+      },
+      {
+        "line": 572,
+        "text": "def question_block(tokenizer, q: Question, option_style: str = \"desc\") -> str:"
+      }
+    ]
+  }
+}

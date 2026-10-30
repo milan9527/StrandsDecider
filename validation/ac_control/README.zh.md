@@ -4,6 +4,8 @@
 
 阅读入口：[五模型测试总结、优化建议与结论边界](../../docs/AC_CONTROL_COMPARISON.md)。
 
+延迟复核：[单任务与逐Key串行补测](runs/2026-10-30-serial-latency-v1/LATENCY.zh.md)。原测试已按空调Query串行、三个GPU模型依次运行；每条Query含30个选择题。补测独立单Key平均 Decider **97.3 ms**、Liquid **105.8 ms**、H2O **200.5 ms**，逐Key串行完成30题为 **2.93 / 3.18 / 6.02秒**。同一S03输入、每模式3轮、279次正式调用全部成功且无重叠。Liquid拆分后每轮6个Key选择改变，原准确率仍属于完整30题封装，不能与单题诊断混用。
+
 最新：[加入Jev与GPT 6.1 Sol low的五模型实测](runs/2026-10-30-api-ablation-v1/FIVE_MODELS.zh.md) · [错误定位、完整问题选项与实际回答](runs/2026-10-30-api-ablation-v1/DIAGNOSTICS.zh.md)。Jev使用原生API，返回 `jev-1.14.0`；GPT使用Bedrock `us.openai.gpt-6.1-sol`，每次显式设置low effort。新增两个模型各250条观察，业务输入与参考沿用已冻结对照；原三个模型复用750条已核验观察。
 
 原规范20题、原始候选顺序的整条指令完全匹配：
