@@ -1,0 +1,38 @@
+{
+  "audited_at": "2026-10-30T10:56:13.180856+00:00",
+  "status": "passed",
+  "variants": [
+    "seq1-compiled",
+    "seq1-compiled-quality",
+    "seq1-eager",
+    "seq1-eager-restored",
+    "seq1-gdn4096",
+    "seq1-gdn4096-causal",
+    "seq2-eager",
+    "seq4-eager"
+  ],
+  "formal_calls": 863,
+  "main_formal_calls": 851,
+  "supplemental_repeatability_calls": 12,
+  "warmup_calls": 8,
+  "request_overlap_count": 0,
+  "invalid_responses": 0,
+  "protected_services_unchanged": true,
+  "frozen_inputs_and_sources_verified": true,
+  "performance_choice_changes_vs_baseline": [],
+  "selected_variant": "seq1-eager-restored",
+  "selected_quality_changed_cases": [
+    [
+      "N09",
+      "original"
+    ]
+  ],
+  "historical_choices_reproduced_after_rollback": false,
+  "quality_status": "Original deployment configuration restored; historical choice reproducibility failed on N09. Three full and three single-key repeats are internally stable and retain the changed answer. No accelerated variant accepted.",
+  "final_deployment_matches_selected_runtime": true,
+  "model_source_files_unchanged": true,
+  "n09_six_repeat_answers_identical": true,
+  "automatic_rollback_timer_disarmed": true,
+  "restored_validation_variant": "seq1-eager-restored",
+  "auditor_sha256": "60e59c3145d1044f21d4fcd851a060b847a03cc1bf7ba6c8db609c91f0550d91"
+}

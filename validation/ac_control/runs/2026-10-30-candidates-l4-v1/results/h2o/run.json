@@ -1,0 +1,48 @@
+{
+  "started_at": "2026-10-30T14:23:22.959962+00:00",
+  "status": "complete",
+  "provider": "h2o",
+  "model": {
+    "repository": "h2oai/h2o-lightning-4b",
+    "revision": "2240c9eb666a45ac6c566808a0a9ca84dbe9809b"
+  },
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "runner_sha256": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+  "calls": 285,
+  "errors": 0,
+  "serial30_blocks": [
+    {
+      "repetition": 0,
+      "started_at": "2026-10-30T14:40:08.282756+00:00",
+      "finished_at": "2026-10-30T14:40:14.656620+00:00",
+      "wall_ms": 6373.856231999525,
+      "http_sum_ms": 6363.243735999276,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 1,
+      "started_at": "2026-10-30T14:40:28.023103+00:00",
+      "finished_at": "2026-10-30T14:40:34.383068+00:00",
+      "wall_ms": 6359.955814999921,
+      "http_sum_ms": 6349.20705300101,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 2,
+      "started_at": "2026-10-30T14:40:35.718293+00:00",
+      "finished_at": "2026-10-30T14:40:42.066459+00:00",
+      "wall_ms": 6348.158205999425,
+      "http_sum_ms": 6337.171811992448,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "endpoint": "http://127.0.0.1:18811",
+  "last": {
+    "case_id": "S03",
+    "order": "original",
+    "kind": "full30",
+    "repetition": 2
+  },
+  "finished_at": "2026-10-30T14:40:49.215526+00:00"
+}

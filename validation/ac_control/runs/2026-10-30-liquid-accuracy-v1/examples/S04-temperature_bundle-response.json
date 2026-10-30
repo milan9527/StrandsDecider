@@ -1,0 +1,986 @@
+{
+  "case_id": "S04",
+  "dataset": "spec",
+  "category": "single",
+  "order": "original",
+  "input_sha256": "72dc9a68100f125ceb0969b94c846c7017485cce85c1d3ca81eb09fd39cb032c",
+  "strategy": "temperature_bundle",
+  "started_at": "2026-10-30T11:17:45.531766+00:00",
+  "stages": [
+    {
+      "phase": "gate",
+      "payload": {
+        "state": "{\"query\":\"Set the air conditioner temperature to 68 degrees Fahrenheit.\",\"deviceTypeCode\":\"009\",\"commandSet\":[{\"name\":\"Power\",\"key\":\"t_power\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Mode\",\"key\":\"t_work_mode\",\"type\":\"enum\",\"options\":{\"0\":\"Fan\",\"1\":\"Heat\",\"2\":\"Cool\",\"3\":\"Dry\",\"4\":\"Auto\"}},{\"name\":\"Temperature (Celsius)\",\"key\":\"t_temp\",\"type\":\"range\",\"min\":16,\"max\":32,\"unit\":\"°C\"},{\"name\":\"Temperature (Fahrenheit)\",\"key\":\"t_temp_f\",\"type\":\"range\",\"min\":61,\"max\":90,\"unit\":\"°F\"},{\"name\":\"Temperature Unit\",\"key\":\"t_temp_type\",\"type\":\"enum\",\"options\":{\"0\":\"Celsius\",\"1\":\"Fahrenheit\"}},{\"name\":\"Fan Speed\",\"key\":\"t_fan_speed\",\"type\":\"enum\",\"options\":{\"0\":\"Auto\",\"5\":\"Low\",\"6\":\"Medium Low\",\"7\":\"Medium\",\"8\":\"Medium High\",\"9\":\"High\"}},{\"name\":\"Quiet\",\"key\":\"t_fan_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Super Mode\",\"key\":\"t_super\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Up and Down Swing\",\"key\":\"t_up_down\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Comfort Auto\",\"key\":\"t_indoortemp_detection\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Left and Right Swing\",\"key\":\"t_left_right\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Airflow\",\"key\":\"t_swing_angle\",\"type\":\"enum\",\"options\":{\"0\":\"Up and down swing\",\"1\":\"Auto\",\"2\":\"Position 1\",\"3\":\"Position 2\",\"4\":\"Position 3\",\"5\":\"Position 4\",\"6\":\"Position 5\",\"7\":\"Position 6\"}},{\"name\":\"Horizontal Airflow\",\"key\":\"t_swing_direction\",\"type\":\"enum\",\"options\":{\"0\":\"Straight\",\"1\":\"All Right\",\"2\":\"Both sides\",\"3\":\"Left and Right Swing\",\"4\":\"All Left\",\"5\":\"Stop\"}},{\"name\":\"Energy Saving\",\"key\":\"t_eco\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Air Purification\",\"key\":\"t_purify\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Wind\",\"key\":\"t_swing_follow\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Blow Towards\",\"2\":\"Do Not Blow\"}},{\"name\":\"8° Heat\",\"key\":\"t_8heat\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Sleep Mode\",\"key\":\"t_sleep\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Normal Sleep\",\"2\":\"Elder Sleep\",\"3\":\"Youth Sleep\",\"4\":\"Child Sleep\"}},{\"name\":\"Dimmer\",\"key\":\"t_dimmer\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Indoor Self-Clean\",\"key\":\"t_indoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Self-Clean\",\"key\":\"t_outdoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"One-Key Self-Clean\",\"key\":\"t_onekey_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Fresh Air\",\"key\":\"t_fresh_air\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Smart Control\",\"key\":\"t_tms\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Healthy Wind\",\"key\":\"t_health_fan\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Quiet\",\"key\":\"t_outdoor_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR On/Off\",\"key\":\"t_dr_onoff\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR Offset Temperature\",\"key\":\"t_dr_offset\",\"type\":\"range\",\"min\":0,\"max\":31,\"unit\":\"°\"},{\"name\":\"DR Load Capacity\",\"key\":\"t_dr_mode\",\"type\":\"range\",\"min\":0,\"max\":100,\"unit\":\"%\"},{\"name\":\"Auto-Defrost Clean\",\"key\":\"t_auto_defrost_clean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Enabled but not executing\",\"2\":\"Enabled and started\",\"3\":\"In progress\",\"4\":\"Finished\"},\"userControllableValues\":[\"0\",\"1\"]}],\"rules\":\"TASK: Translate query into only the command changes requested by the user. query is the user's request. commandSet is a capability catalogue, not a list of requested changes. Each question concerns exactly one command key. Choose omit when that command is neither requested nor a mandatory protocol companion. omit sends nothing; value 0 sends a real setting. Select every requested compatible command, using only supported values and ranges. Do not add defaults, conversions, or inferred power, mode, fan-speed or feature changes. Power and main operating mode are independent: turning power on or off alone requests no mode change. Comfort Auto is separate from Auto operating mode; 8-degree frost-protection heating is separate from Heat operating mode. A Celsius setpoint requires t_temp and t_temp_type=0; a Fahrenheit setpoint requires t_temp_f and t_temp_type=1. The user does not need to separately request the unit companion. When both vertical swing keys are available, a request to enable or disable continuous vertical swing uses t_up_down only; do not additionally emit t_swing_angle=0 for the same request. Fixed vertical positions use t_swing_angle. A generic horizontal swing toggle uses t_left_right; an explicitly requested horizontal direction uses t_swing_direction. An independent feature request does not change the main operating mode or other features.\"}",
+        "questions": {
+          "t_power": {
+            "type": "choice",
+            "instructions": "Does the current query request switching the whole air conditioner on or off; a feature switch is not main power? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: switching the whole air conditioner on or off; a feature switch is not main power.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: switching the whole air conditioner on or off; a feature switch is not main power.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: switching the whole air conditioner on or off; a feature switch is not main power."
+            }
+          },
+          "t_work_mode": {
+            "type": "choice",
+            "instructions": "Does the current query request changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes."
+            }
+          },
+          "temperature_action": {
+            "type": "choice",
+            "instructions": "Does the current query request setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit."
+            }
+          },
+          "t_fan_speed": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Fan Speed? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Fan Speed.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Fan Speed.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Fan Speed."
+            }
+          },
+          "t_fan_mute": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature."
+            }
+          },
+          "t_super": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Super Mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Super Mode.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Super Mode.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Super Mode."
+            }
+          },
+          "t_up_down": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling continuous vertical/up-and-down oscillation? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling continuous vertical/up-and-down oscillation.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling continuous vertical/up-and-down oscillation.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling continuous vertical/up-and-down oscillation."
+            }
+          },
+          "t_indoortemp_detection": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling Comfort Auto; this is separate from Auto operating mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling Comfort Auto; this is separate from Auto operating mode.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling Comfort Auto; this is separate from Auto operating mode.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling Comfort Auto; this is separate from Auto operating mode."
+            }
+          },
+          "t_left_right": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling the basic left-and-right swing switch? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling the basic left-and-right swing switch.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling the basic left-and-right swing switch.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling the basic left-and-right swing switch."
+            }
+          },
+          "t_swing_angle": {
+            "type": "choice",
+            "instructions": "Does the current query request selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch."
+            }
+          },
+          "t_swing_direction": {
+            "type": "choice",
+            "instructions": "Does the current query request selecting an explicit horizontal airflow direction such as straight, left, right or both sides? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: selecting an explicit horizontal airflow direction such as straight, left, right or both sides.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: selecting an explicit horizontal airflow direction such as straight, left, right or both sides.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: selecting an explicit horizontal airflow direction such as straight, left, right or both sides."
+            }
+          },
+          "t_eco": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Energy Saving? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Energy Saving.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Energy Saving.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Energy Saving."
+            }
+          },
+          "t_purify": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling air purification; ventilation/fresh air and the display light are different functions? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling air purification; ventilation/fresh air and the display light are different functions.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling air purification; ventilation/fresh air and the display light are different functions.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling air purification; ventilation/fresh air and the display light are different functions."
+            }
+          },
+          "t_swing_follow": {
+            "type": "choice",
+            "instructions": "Does the current query request turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function."
+            }
+          },
+          "t_8heat": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode."
+            }
+          },
+          "t_sleep": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Sleep Mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Sleep Mode.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Sleep Mode.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Sleep Mode."
+            }
+          },
+          "t_dimmer": {
+            "type": "choice",
+            "instructions": "Does the current query request switching the display/panel light on or off; this does not switch main power or purification? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: switching the display/panel light on or off; this does not switch main power or purification.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: switching the display/panel light on or off; this does not switch main power or purification.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: switching the display/panel light on or off; this does not switch main power or purification."
+            }
+          },
+          "t_indoor_selfclean": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Indoor Self-Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Indoor Self-Clean.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Indoor Self-Clean.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Indoor Self-Clean."
+            }
+          },
+          "t_outdoor_selfclean": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Outdoor Self-Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Outdoor Self-Clean.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Outdoor Self-Clean.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Outdoor Self-Clean."
+            }
+          },
+          "t_onekey_selfclean": {
+            "type": "choice",
+            "instructions": "Does the current query request changing One-Key Self-Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing One-Key Self-Clean.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing One-Key Self-Clean.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing One-Key Self-Clean."
+            }
+          },
+          "t_fresh_air": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling fresh-air ventilation; healthy wind and purification are different functions? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling fresh-air ventilation; healthy wind and purification are different functions.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling fresh-air ventilation; healthy wind and purification are different functions.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling fresh-air ventilation; healthy wind and purification are different functions."
+            }
+          },
+          "t_tms": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function."
+            }
+          },
+          "t_health_fan": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling healthy wind; fresh-air ventilation is a different function? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling healthy wind; fresh-air ventilation is a different function.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling healthy wind; fresh-air ventilation is a different function.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling healthy wind; fresh-air ventilation is a different function."
+            }
+          },
+          "t_outdoor_mute": {
+            "type": "choice",
+            "instructions": "Does the current query request enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature."
+            }
+          },
+          "t_dr_onoff": {
+            "type": "choice",
+            "instructions": "Does the current query request explicitly enabling or disabling demand response? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: explicitly enabling or disabling demand response.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: explicitly enabling or disabling demand response.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: explicitly enabling or disabling demand response."
+            }
+          },
+          "t_dr_offset": {
+            "type": "choice",
+            "instructions": "Does the current query request setting the demand-response temperature offset; target temperature and frost protection are different settings? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: setting the demand-response temperature offset; target temperature and frost protection are different settings.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: setting the demand-response temperature offset; target temperature and frost protection are different settings.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: setting the demand-response temperature offset; target temperature and frost protection are different settings."
+            }
+          },
+          "t_dr_mode": {
+            "type": "choice",
+            "instructions": "Does the current query request setting the demand-response load/capacity percentage? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: setting the demand-response load/capacity percentage.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: setting the demand-response load/capacity percentage.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: setting the demand-response load/capacity percentage."
+            }
+          },
+          "t_auto_defrost_clean": {
+            "type": "choice",
+            "instructions": "Does the current query request changing Auto-Defrost Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+            "criteria": {
+              "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Auto-Defrost Clean.",
+              "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Auto-Defrost Clean.",
+              "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Auto-Defrost Clean."
+            }
+          }
+        }
+      },
+      "input_sha256": "3b12aed056a52b19c4e3313bb93b744c980e620c2128dd00cdb4339a8f886775",
+      "started_at": "2026-10-30T11:17:45.531987+00:00",
+      "http_status": 200,
+      "response_text": "{\"answers\":{\"t_power\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9444411269304682,\"probabilities\":{\"omit\":0.9444411269304682,\"apply\":0.016197616670983305,\"review\":0.039361256398548386}},\"t_work_mode\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.997799891659718,\"probabilities\":{\"omit\":0.997799891659718,\"apply\":0.0008597980237821964,\"review\":0.0013403103164997144}},\"temperature_action\":{\"type\":\"choice\",\"choice\":\"apply\",\"confidence\":0.5682312042568629,\"probabilities\":{\"omit\":0.02207880824497431,\"apply\":0.5682312042568629,\"review\":0.4096899874981628}},\"t_fan_speed\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9953437575342214,\"probabilities\":{\"omit\":0.9953437575342214,\"apply\":0.0025720207198059665,\"review\":0.002084221745972463}},\"t_fan_mute\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9975351926738679,\"probabilities\":{\"omit\":0.9975351926738679,\"apply\":0.0010607468641006894,\"review\":0.001404060462031402}},\"t_super\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9958774830065901,\"probabilities\":{\"omit\":0.9958774830065901,\"apply\":0.002085339352053245,\"review\":0.0020371776413565246}},\"t_up_down\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9932836330738807,\"probabilities\":{\"omit\":0.9932836330738807,\"apply\":0.0033189511540908574,\"review\":0.0033974157720283666}},\"t_indoortemp_detection\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9981552368008408,\"probabilities\":{\"omit\":0.9981552368008408,\"apply\":0.0007833570000615735,\"review\":0.001061406199097711}},\"t_left_right\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9879048567874614,\"probabilities\":{\"omit\":0.9879048567874614,\"apply\":0.008021591424324606,\"review\":0.004073551788214141}},\"t_swing_angle\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.999409897075119,\"probabilities\":{\"omit\":0.999409897075119,\"apply\":0.00022733687326105003,\"review\":0.00036276605161994225}},\"t_swing_direction\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9965593241744182,\"probabilities\":{\"omit\":0.9965593241744182,\"apply\":0.0015401112440394014,\"review\":0.0019005645815422844}},\"t_eco\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9908291095599506,\"probabilities\":{\"omit\":0.9908291095599506,\"apply\":0.0036351111086279685,\"review\":0.005535779331421445}},\"t_purify\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9993211462436297,\"probabilities\":{\"omit\":0.9993211462436297,\"apply\":0.0002615280891987977,\"review\":0.00041732566717152356}},\"t_swing_follow\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9927994416753773,\"probabilities\":{\"omit\":0.9927994416753773,\"apply\":0.003558218546498277,\"review\":0.0036423397781244243}},\"t_8heat\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9960521193346811,\"probabilities\":{\"omit\":0.9960521193346811,\"apply\":0.0018128666639822342,\"review\":0.002135014001336735}},\"t_sleep\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9982984834396998,\"probabilities\":{\"omit\":0.9982984834396998,\"apply\":0.0008209519256951224,\"review\":0.0008805646346051549}},\"t_dimmer\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9953255511663907,\"probabilities\":{\"omit\":0.9953255511663907,\"apply\":0.0011895641630794895,\"review\":0.0034848846705297643}},\"t_indoor_selfclean\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9980163099950479,\"probabilities\":{\"omit\":0.9980163099950479,\"apply\":0.0009224315361547853,\"review\":0.0010612584687974}},\"t_outdoor_selfclean\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9976147487967856,\"probabilities\":{\"omit\":0.9976147487967856,\"apply\":0.0011647634722732386,\"review\":0.0012204877309411044}},\"t_onekey_selfclean\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9986192373697521,\"probabilities\":{\"omit\":0.9986192373697521,\"apply\":0.0007306645781065914,\"review\":0.0006500980521412336}},\"t_fresh_air\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9978699532023099,\"probabilities\":{\"omit\":0.9978699532023099,\"apply\":0.0008205995233530977,\"review\":0.0013094472743371399}},\"t_tms\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9987491481333974,\"probabilities\":{\"omit\":0.9987491481333974,\"apply\":0.0005028160627873815,\"review\":0.0007480358038153919}},\"t_health_fan\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9989718198057623,\"probabilities\":{\"omit\":0.9989718198057623,\"apply\":0.00040754485839487815,\"review\":0.0006206353358428644}},\"t_outdoor_mute\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9959591630940056,\"probabilities\":{\"omit\":0.9959591630940056,\"apply\":0.0018555521664620472,\"review\":0.0021852847395322857}},\"t_dr_onoff\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9930292190776939,\"probabilities\":{\"omit\":0.9930292190776939,\"apply\":0.00324146824267354,\"review\":0.00372931267963271}},\"t_dr_offset\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9796225890748286,\"probabilities\":{\"omit\":0.9796225890748286,\"apply\":0.01330015306966483,\"review\":0.007077257855506644}},\"t_dr_mode\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9922555109868945,\"probabilities\":{\"omit\":0.9922555109868945,\"apply\":0.00418821992808207,\"review\":0.0035562690850234565}},\"t_auto_defrost_clean\":{\"type\":\"choice\",\"choice\":\"omit\",\"confidence\":0.9989607465052968,\"probabilities\":{\"omit\":0.9989607465052968,\"apply\":0.00038893312116520173,\"review\":0.0006503203735381163}}},\"usage\":{\"input_tokens\":8624,\"output_tokens\":0},\"model\":\"LiquidAI/d1-2B\",\"latency_ms\":984.8658739938401}",
+      "request_id": null,
+      "status": "ok",
+      "response": {
+        "answers": {
+          "t_power": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9444411269304682,
+            "probabilities": {
+              "omit": 0.9444411269304682,
+              "apply": 0.016197616670983305,
+              "review": 0.039361256398548386
+            }
+          },
+          "t_work_mode": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.997799891659718,
+            "probabilities": {
+              "omit": 0.997799891659718,
+              "apply": 0.0008597980237821964,
+              "review": 0.0013403103164997144
+            }
+          },
+          "temperature_action": {
+            "type": "choice",
+            "choice": "apply",
+            "confidence": 0.5682312042568629,
+            "probabilities": {
+              "omit": 0.02207880824497431,
+              "apply": 0.5682312042568629,
+              "review": 0.4096899874981628
+            }
+          },
+          "t_fan_speed": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9953437575342214,
+            "probabilities": {
+              "omit": 0.9953437575342214,
+              "apply": 0.0025720207198059665,
+              "review": 0.002084221745972463
+            }
+          },
+          "t_fan_mute": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9975351926738679,
+            "probabilities": {
+              "omit": 0.9975351926738679,
+              "apply": 0.0010607468641006894,
+              "review": 0.001404060462031402
+            }
+          },
+          "t_super": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9958774830065901,
+            "probabilities": {
+              "omit": 0.9958774830065901,
+              "apply": 0.002085339352053245,
+              "review": 0.0020371776413565246
+            }
+          },
+          "t_up_down": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9932836330738807,
+            "probabilities": {
+              "omit": 0.9932836330738807,
+              "apply": 0.0033189511540908574,
+              "review": 0.0033974157720283666
+            }
+          },
+          "t_indoortemp_detection": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9981552368008408,
+            "probabilities": {
+              "omit": 0.9981552368008408,
+              "apply": 0.0007833570000615735,
+              "review": 0.001061406199097711
+            }
+          },
+          "t_left_right": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9879048567874614,
+            "probabilities": {
+              "omit": 0.9879048567874614,
+              "apply": 0.008021591424324606,
+              "review": 0.004073551788214141
+            }
+          },
+          "t_swing_angle": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.999409897075119,
+            "probabilities": {
+              "omit": 0.999409897075119,
+              "apply": 0.00022733687326105003,
+              "review": 0.00036276605161994225
+            }
+          },
+          "t_swing_direction": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9965593241744182,
+            "probabilities": {
+              "omit": 0.9965593241744182,
+              "apply": 0.0015401112440394014,
+              "review": 0.0019005645815422844
+            }
+          },
+          "t_eco": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9908291095599506,
+            "probabilities": {
+              "omit": 0.9908291095599506,
+              "apply": 0.0036351111086279685,
+              "review": 0.005535779331421445
+            }
+          },
+          "t_purify": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9993211462436297,
+            "probabilities": {
+              "omit": 0.9993211462436297,
+              "apply": 0.0002615280891987977,
+              "review": 0.00041732566717152356
+            }
+          },
+          "t_swing_follow": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9927994416753773,
+            "probabilities": {
+              "omit": 0.9927994416753773,
+              "apply": 0.003558218546498277,
+              "review": 0.0036423397781244243
+            }
+          },
+          "t_8heat": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9960521193346811,
+            "probabilities": {
+              "omit": 0.9960521193346811,
+              "apply": 0.0018128666639822342,
+              "review": 0.002135014001336735
+            }
+          },
+          "t_sleep": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9982984834396998,
+            "probabilities": {
+              "omit": 0.9982984834396998,
+              "apply": 0.0008209519256951224,
+              "review": 0.0008805646346051549
+            }
+          },
+          "t_dimmer": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9953255511663907,
+            "probabilities": {
+              "omit": 0.9953255511663907,
+              "apply": 0.0011895641630794895,
+              "review": 0.0034848846705297643
+            }
+          },
+          "t_indoor_selfclean": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9980163099950479,
+            "probabilities": {
+              "omit": 0.9980163099950479,
+              "apply": 0.0009224315361547853,
+              "review": 0.0010612584687974
+            }
+          },
+          "t_outdoor_selfclean": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9976147487967856,
+            "probabilities": {
+              "omit": 0.9976147487967856,
+              "apply": 0.0011647634722732386,
+              "review": 0.0012204877309411044
+            }
+          },
+          "t_onekey_selfclean": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9986192373697521,
+            "probabilities": {
+              "omit": 0.9986192373697521,
+              "apply": 0.0007306645781065914,
+              "review": 0.0006500980521412336
+            }
+          },
+          "t_fresh_air": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9978699532023099,
+            "probabilities": {
+              "omit": 0.9978699532023099,
+              "apply": 0.0008205995233530977,
+              "review": 0.0013094472743371399
+            }
+          },
+          "t_tms": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9987491481333974,
+            "probabilities": {
+              "omit": 0.9987491481333974,
+              "apply": 0.0005028160627873815,
+              "review": 0.0007480358038153919
+            }
+          },
+          "t_health_fan": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9989718198057623,
+            "probabilities": {
+              "omit": 0.9989718198057623,
+              "apply": 0.00040754485839487815,
+              "review": 0.0006206353358428644
+            }
+          },
+          "t_outdoor_mute": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9959591630940056,
+            "probabilities": {
+              "omit": 0.9959591630940056,
+              "apply": 0.0018555521664620472,
+              "review": 0.0021852847395322857
+            }
+          },
+          "t_dr_onoff": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9930292190776939,
+            "probabilities": {
+              "omit": 0.9930292190776939,
+              "apply": 0.00324146824267354,
+              "review": 0.00372931267963271
+            }
+          },
+          "t_dr_offset": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9796225890748286,
+            "probabilities": {
+              "omit": 0.9796225890748286,
+              "apply": 0.01330015306966483,
+              "review": 0.007077257855506644
+            }
+          },
+          "t_dr_mode": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9922555109868945,
+            "probabilities": {
+              "omit": 0.9922555109868945,
+              "apply": 0.00418821992808207,
+              "review": 0.0035562690850234565
+            }
+          },
+          "t_auto_defrost_clean": {
+            "type": "choice",
+            "choice": "omit",
+            "confidence": 0.9989607465052968,
+            "probabilities": {
+              "omit": 0.9989607465052968,
+              "apply": 0.00038893312116520173,
+              "review": 0.0006503203735381163
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 8624,
+          "output_tokens": 0
+        },
+        "model": "LiquidAI/d1-2B",
+        "latency_ms": 984.8658739938401
+      },
+      "client_ms": 986.354,
+      "finished_at": "2026-10-30T11:17:46.518565+00:00",
+      "choices": {
+        "t_power": "omit",
+        "t_work_mode": "omit",
+        "temperature_action": "apply",
+        "t_fan_speed": "omit",
+        "t_fan_mute": "omit",
+        "t_super": "omit",
+        "t_up_down": "omit",
+        "t_indoortemp_detection": "omit",
+        "t_left_right": "omit",
+        "t_swing_angle": "omit",
+        "t_swing_direction": "omit",
+        "t_eco": "omit",
+        "t_purify": "omit",
+        "t_swing_follow": "omit",
+        "t_8heat": "omit",
+        "t_sleep": "omit",
+        "t_dimmer": "omit",
+        "t_indoor_selfclean": "omit",
+        "t_outdoor_selfclean": "omit",
+        "t_onekey_selfclean": "omit",
+        "t_fresh_air": "omit",
+        "t_tms": "omit",
+        "t_health_fan": "omit",
+        "t_outdoor_mute": "omit",
+        "t_dr_onoff": "omit",
+        "t_dr_offset": "omit",
+        "t_dr_mode": "omit",
+        "t_auto_defrost_clean": "omit"
+      }
+    },
+    {
+      "phase": "value",
+      "payload": {
+        "state": "{\"query\":\"Set the air conditioner temperature to 68 degrees Fahrenheit.\",\"deviceTypeCode\":\"009\",\"commandSet\":[{\"name\":\"Power\",\"key\":\"t_power\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Mode\",\"key\":\"t_work_mode\",\"type\":\"enum\",\"options\":{\"0\":\"Fan\",\"1\":\"Heat\",\"2\":\"Cool\",\"3\":\"Dry\",\"4\":\"Auto\"}},{\"name\":\"Temperature (Celsius)\",\"key\":\"t_temp\",\"type\":\"range\",\"min\":16,\"max\":32,\"unit\":\"°C\"},{\"name\":\"Temperature (Fahrenheit)\",\"key\":\"t_temp_f\",\"type\":\"range\",\"min\":61,\"max\":90,\"unit\":\"°F\"},{\"name\":\"Temperature Unit\",\"key\":\"t_temp_type\",\"type\":\"enum\",\"options\":{\"0\":\"Celsius\",\"1\":\"Fahrenheit\"}},{\"name\":\"Fan Speed\",\"key\":\"t_fan_speed\",\"type\":\"enum\",\"options\":{\"0\":\"Auto\",\"5\":\"Low\",\"6\":\"Medium Low\",\"7\":\"Medium\",\"8\":\"Medium High\",\"9\":\"High\"}},{\"name\":\"Quiet\",\"key\":\"t_fan_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Super Mode\",\"key\":\"t_super\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Up and Down Swing\",\"key\":\"t_up_down\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Comfort Auto\",\"key\":\"t_indoortemp_detection\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Left and Right Swing\",\"key\":\"t_left_right\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Airflow\",\"key\":\"t_swing_angle\",\"type\":\"enum\",\"options\":{\"0\":\"Up and down swing\",\"1\":\"Auto\",\"2\":\"Position 1\",\"3\":\"Position 2\",\"4\":\"Position 3\",\"5\":\"Position 4\",\"6\":\"Position 5\",\"7\":\"Position 6\"}},{\"name\":\"Horizontal Airflow\",\"key\":\"t_swing_direction\",\"type\":\"enum\",\"options\":{\"0\":\"Straight\",\"1\":\"All Right\",\"2\":\"Both sides\",\"3\":\"Left and Right Swing\",\"4\":\"All Left\",\"5\":\"Stop\"}},{\"name\":\"Energy Saving\",\"key\":\"t_eco\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Air Purification\",\"key\":\"t_purify\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Wind\",\"key\":\"t_swing_follow\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Blow Towards\",\"2\":\"Do Not Blow\"}},{\"name\":\"8° Heat\",\"key\":\"t_8heat\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Sleep Mode\",\"key\":\"t_sleep\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Normal Sleep\",\"2\":\"Elder Sleep\",\"3\":\"Youth Sleep\",\"4\":\"Child Sleep\"}},{\"name\":\"Dimmer\",\"key\":\"t_dimmer\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Indoor Self-Clean\",\"key\":\"t_indoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Self-Clean\",\"key\":\"t_outdoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"One-Key Self-Clean\",\"key\":\"t_onekey_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Fresh Air\",\"key\":\"t_fresh_air\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Smart Control\",\"key\":\"t_tms\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Healthy Wind\",\"key\":\"t_health_fan\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Quiet\",\"key\":\"t_outdoor_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR On/Off\",\"key\":\"t_dr_onoff\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR Offset Temperature\",\"key\":\"t_dr_offset\",\"type\":\"range\",\"min\":0,\"max\":31,\"unit\":\"°\"},{\"name\":\"DR Load Capacity\",\"key\":\"t_dr_mode\",\"type\":\"range\",\"min\":0,\"max\":100,\"unit\":\"%\"},{\"name\":\"Auto-Defrost Clean\",\"key\":\"t_auto_defrost_clean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Enabled but not executing\",\"2\":\"Enabled and started\",\"3\":\"In progress\",\"4\":\"Finished\"},\"userControllableValues\":[\"0\",\"1\"]}],\"rules\":\"TASK: Translate query into only the command changes requested by the user. query is the user's request. commandSet is a capability catalogue, not a list of requested changes. Each question concerns exactly one command key. Choose omit when that command is neither requested nor a mandatory protocol companion. omit sends nothing; value 0 sends a real setting. Select every requested compatible command, using only supported values and ranges. Do not add defaults, conversions, or inferred power, mode, fan-speed or feature changes. Power and main operating mode are independent: turning power on or off alone requests no mode change. Comfort Auto is separate from Auto operating mode; 8-degree frost-protection heating is separate from Heat operating mode. A Celsius setpoint requires t_temp and t_temp_type=0; a Fahrenheit setpoint requires t_temp_f and t_temp_type=1. The user does not need to separately request the unit companion. When both vertical swing keys are available, a request to enable or disable continuous vertical swing uses t_up_down only; do not additionally emit t_swing_angle=0 for the same request. Fixed vertical positions use t_swing_angle. A generic horizontal swing toggle uses t_left_right; an explicitly requested horizontal direction uses t_swing_direction. An independent feature request does not change the main operating mode or other features.\"}",
+        "questions": {
+          "temperature_action": {
+            "type": "choice",
+            "instructions": "Choose the complete temperature action requested by query. A setpoint and its unit are one action. Preserve the requested scale and number; never convert or approximate. Frost-protection heating and demand-response offset are not target temperatures. If the requested setpoint is outside the supported range, choose omit. Unit-only candidates apply only to an explicit unit-only change.",
+            "criteria": {
+              "omit": "No supported target-temperature setting or temperature-unit change is requested.",
+              "t_temp:16": "Set the target temperature to 16 degrees Celsius, with the required Celsius unit.",
+              "t_temp:17": "Set the target temperature to 17 degrees Celsius, with the required Celsius unit.",
+              "t_temp:18": "Set the target temperature to 18 degrees Celsius, with the required Celsius unit.",
+              "t_temp:19": "Set the target temperature to 19 degrees Celsius, with the required Celsius unit.",
+              "t_temp:20": "Set the target temperature to 20 degrees Celsius, with the required Celsius unit.",
+              "t_temp:21": "Set the target temperature to 21 degrees Celsius, with the required Celsius unit.",
+              "t_temp:22": "Set the target temperature to 22 degrees Celsius, with the required Celsius unit.",
+              "t_temp:23": "Set the target temperature to 23 degrees Celsius, with the required Celsius unit.",
+              "t_temp:24": "Set the target temperature to 24 degrees Celsius, with the required Celsius unit.",
+              "t_temp:25": "Set the target temperature to 25 degrees Celsius, with the required Celsius unit.",
+              "t_temp:26": "Set the target temperature to 26 degrees Celsius, with the required Celsius unit.",
+              "t_temp:27": "Set the target temperature to 27 degrees Celsius, with the required Celsius unit.",
+              "t_temp:28": "Set the target temperature to 28 degrees Celsius, with the required Celsius unit.",
+              "t_temp:29": "Set the target temperature to 29 degrees Celsius, with the required Celsius unit.",
+              "t_temp:30": "Set the target temperature to 30 degrees Celsius, with the required Celsius unit.",
+              "t_temp:31": "Set the target temperature to 31 degrees Celsius, with the required Celsius unit.",
+              "t_temp:32": "Set the target temperature to 32 degrees Celsius, with the required Celsius unit.",
+              "t_temp_f:61": "Set the target temperature to 61 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:62": "Set the target temperature to 62 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:63": "Set the target temperature to 63 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:64": "Set the target temperature to 64 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:65": "Set the target temperature to 65 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:66": "Set the target temperature to 66 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:67": "Set the target temperature to 67 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:68": "Set the target temperature to 68 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:69": "Set the target temperature to 69 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:70": "Set the target temperature to 70 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:71": "Set the target temperature to 71 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:72": "Set the target temperature to 72 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:73": "Set the target temperature to 73 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:74": "Set the target temperature to 74 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:75": "Set the target temperature to 75 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:76": "Set the target temperature to 76 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:77": "Set the target temperature to 77 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:78": "Set the target temperature to 78 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:79": "Set the target temperature to 79 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:80": "Set the target temperature to 80 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:81": "Set the target temperature to 81 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:82": "Set the target temperature to 82 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:83": "Set the target temperature to 83 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:84": "Set the target temperature to 84 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:85": "Set the target temperature to 85 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:86": "Set the target temperature to 86 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:87": "Set the target temperature to 87 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:88": "Set the target temperature to 88 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:89": "Set the target temperature to 89 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "t_temp_f:90": "Set the target temperature to 90 degrees Fahrenheit, with the required Fahrenheit unit.",
+              "unit:0": "Change only the temperature unit to Celsius; no new target temperature is requested.",
+              "unit:1": "Change only the temperature unit to Fahrenheit; no new target temperature is requested."
+            }
+          }
+        }
+      },
+      "input_sha256": "df7b21a968454f78fe530650fe36eb19076454acebd29813d29f744539eb10f0",
+      "started_at": "2026-10-30T11:17:46.518677+00:00",
+      "http_status": 200,
+      "response_text": "{\"answers\":{\"temperature_action\":{\"type\":\"choice\",\"choice\":\"t_temp_f:68\",\"confidence\":0.99800295978969,\"probabilities\":{\"omit\":0.00015620418360997733,\"t_temp:16\":4.744090165286653e-05,\"t_temp:17\":1.8414736312973656e-05,\"t_temp:18\":3.3414530846925624e-05,\"t_temp:19\":1.677158676547652e-05,\"t_temp:20\":2.7077267024460033e-05,\"t_temp:21\":4.744090165286653e-05,\"t_temp:22\":2.973008692044538e-05,\"t_temp:23\":1.9295728509270816e-05,\"t_temp:24\":3.3414530846925624e-05,\"t_temp:25\":1.0758834710984962e-05,\"t_temp:26\":2.2724589376469034e-05,\"t_temp:27\":2.2724589376469034e-05,\"t_temp:28\":4.856247050096933e-05,\"t_temp:29\":1.375046966029288e-05,\"t_temp:30\":3.935231014153812e-05,\"t_temp:31\":5.088578139812961e-05,\"t_temp:32\":2.8372689372093503e-05,\"t_temp_f:61\":1.5097633665471697e-05,\"t_temp_f:62\":1.9295728509270816e-05,\"t_temp_f:63\":1.2819586550726668e-05,\"t_temp_f:64\":3.501313863683638e-05,\"t_temp_f:65\":3.668822653289222e-05,\"t_temp_f:66\":0.0001295716410241156,\"t_temp_f:67\":0.00010499761133501774,\"t_temp_f:68\":0.99800295978969,\"t_temp_f:69\":5.458080808507929e-05,\"t_temp_f:70\":5.587117424423097e-05,\"t_temp_f:71\":2.904345918101243e-05,\"t_temp_f:72\":1.9522485047689934e-05,\"t_temp_f:73\":3.501313863683638e-05,\"t_temp_f:74\":2.2460639924776985e-05,\"t_temp_f:75\":2.6144664379378287e-05,\"t_temp_f:76\":2.381177224808158e-05,\"t_temp_f:77\":1.3122659393356417e-05,\"t_temp_f:78\":3.26428094644409e-05,\"t_temp_f:79\":3.584089789522323e-05,\"t_temp_f:80\":2.973008692044538e-05,\"t_temp_f:81\":1.8414736312973656e-05,\"t_temp_f:82\":1.40755498733675e-05,\"t_temp_f:83\":1.1406038414342808e-05,\"t_temp_f:84\":7.932413879139061e-05,\"t_temp_f:85\":1.0388275979913689e-05,\"t_temp_f:86\":5.587117424423097e-05,\"t_temp_f:87\":1.7168090385644857e-05,\"t_temp_f:88\":3.935231014153812e-05,\"t_temp_f:89\":1.8200846439218838e-05,\"t_temp_f:90\":3.26428094644409e-05,\"unit:0\":4.744090165286653e-05,\"unit:1\":0.0002551509882559698}}},\"usage\":{\"input_tokens\":2230,\"output_tokens\":0},\"model\":\"LiquidAI/d1-2B\",\"latency_ms\":184.88672497915104}",
+      "request_id": null,
+      "status": "ok",
+      "response": {
+        "answers": {
+          "temperature_action": {
+            "type": "choice",
+            "choice": "t_temp_f:68",
+            "confidence": 0.99800295978969,
+            "probabilities": {
+              "omit": 0.00015620418360997733,
+              "t_temp:16": 4.744090165286653e-05,
+              "t_temp:17": 1.8414736312973656e-05,
+              "t_temp:18": 3.3414530846925624e-05,
+              "t_temp:19": 1.677158676547652e-05,
+              "t_temp:20": 2.7077267024460033e-05,
+              "t_temp:21": 4.744090165286653e-05,
+              "t_temp:22": 2.973008692044538e-05,
+              "t_temp:23": 1.9295728509270816e-05,
+              "t_temp:24": 3.3414530846925624e-05,
+              "t_temp:25": 1.0758834710984962e-05,
+              "t_temp:26": 2.2724589376469034e-05,
+              "t_temp:27": 2.2724589376469034e-05,
+              "t_temp:28": 4.856247050096933e-05,
+              "t_temp:29": 1.375046966029288e-05,
+              "t_temp:30": 3.935231014153812e-05,
+              "t_temp:31": 5.088578139812961e-05,
+              "t_temp:32": 2.8372689372093503e-05,
+              "t_temp_f:61": 1.5097633665471697e-05,
+              "t_temp_f:62": 1.9295728509270816e-05,
+              "t_temp_f:63": 1.2819586550726668e-05,
+              "t_temp_f:64": 3.501313863683638e-05,
+              "t_temp_f:65": 3.668822653289222e-05,
+              "t_temp_f:66": 0.0001295716410241156,
+              "t_temp_f:67": 0.00010499761133501774,
+              "t_temp_f:68": 0.99800295978969,
+              "t_temp_f:69": 5.458080808507929e-05,
+              "t_temp_f:70": 5.587117424423097e-05,
+              "t_temp_f:71": 2.904345918101243e-05,
+              "t_temp_f:72": 1.9522485047689934e-05,
+              "t_temp_f:73": 3.501313863683638e-05,
+              "t_temp_f:74": 2.2460639924776985e-05,
+              "t_temp_f:75": 2.6144664379378287e-05,
+              "t_temp_f:76": 2.381177224808158e-05,
+              "t_temp_f:77": 1.3122659393356417e-05,
+              "t_temp_f:78": 3.26428094644409e-05,
+              "t_temp_f:79": 3.584089789522323e-05,
+              "t_temp_f:80": 2.973008692044538e-05,
+              "t_temp_f:81": 1.8414736312973656e-05,
+              "t_temp_f:82": 1.40755498733675e-05,
+              "t_temp_f:83": 1.1406038414342808e-05,
+              "t_temp_f:84": 7.932413879139061e-05,
+              "t_temp_f:85": 1.0388275979913689e-05,
+              "t_temp_f:86": 5.587117424423097e-05,
+              "t_temp_f:87": 1.7168090385644857e-05,
+              "t_temp_f:88": 3.935231014153812e-05,
+              "t_temp_f:89": 1.8200846439218838e-05,
+              "t_temp_f:90": 3.26428094644409e-05,
+              "unit:0": 4.744090165286653e-05,
+              "unit:1": 0.0002551509882559698
+            }
+          }
+        },
+        "usage": {
+          "input_tokens": 2230,
+          "output_tokens": 0
+        },
+        "model": "LiquidAI/d1-2B",
+        "latency_ms": 184.88672497915104
+      },
+      "client_ms": 185.846,
+      "finished_at": "2026-10-30T11:17:46.704629+00:00",
+      "choices": {
+        "temperature_action": "t_temp_f:68"
+      }
+    }
+  ],
+  "status": "ok",
+  "gate_choices": {
+    "t_power": "omit",
+    "t_work_mode": "omit",
+    "temperature_action": "apply",
+    "t_fan_speed": "omit",
+    "t_fan_mute": "omit",
+    "t_super": "omit",
+    "t_up_down": "omit",
+    "t_indoortemp_detection": "omit",
+    "t_left_right": "omit",
+    "t_swing_angle": "omit",
+    "t_swing_direction": "omit",
+    "t_eco": "omit",
+    "t_purify": "omit",
+    "t_swing_follow": "omit",
+    "t_8heat": "omit",
+    "t_sleep": "omit",
+    "t_dimmer": "omit",
+    "t_indoor_selfclean": "omit",
+    "t_outdoor_selfclean": "omit",
+    "t_onekey_selfclean": "omit",
+    "t_fresh_air": "omit",
+    "t_tms": "omit",
+    "t_health_fan": "omit",
+    "t_outdoor_mute": "omit",
+    "t_dr_onoff": "omit",
+    "t_dr_offset": "omit",
+    "t_dr_mode": "omit",
+    "t_auto_defrost_clean": "omit"
+  },
+  "model_selections": {
+    "temperature_action": "t_temp_f:68"
+  },
+  "action_mapping": {
+    "omit": {},
+    "t_temp:16": {
+      "t_temp": "16",
+      "t_temp_type": "0"
+    },
+    "t_temp:17": {
+      "t_temp": "17",
+      "t_temp_type": "0"
+    },
+    "t_temp:18": {
+      "t_temp": "18",
+      "t_temp_type": "0"
+    },
+    "t_temp:19": {
+      "t_temp": "19",
+      "t_temp_type": "0"
+    },
+    "t_temp:20": {
+      "t_temp": "20",
+      "t_temp_type": "0"
+    },
+    "t_temp:21": {
+      "t_temp": "21",
+      "t_temp_type": "0"
+    },
+    "t_temp:22": {
+      "t_temp": "22",
+      "t_temp_type": "0"
+    },
+    "t_temp:23": {
+      "t_temp": "23",
+      "t_temp_type": "0"
+    },
+    "t_temp:24": {
+      "t_temp": "24",
+      "t_temp_type": "0"
+    },
+    "t_temp:25": {
+      "t_temp": "25",
+      "t_temp_type": "0"
+    },
+    "t_temp:26": {
+      "t_temp": "26",
+      "t_temp_type": "0"
+    },
+    "t_temp:27": {
+      "t_temp": "27",
+      "t_temp_type": "0"
+    },
+    "t_temp:28": {
+      "t_temp": "28",
+      "t_temp_type": "0"
+    },
+    "t_temp:29": {
+      "t_temp": "29",
+      "t_temp_type": "0"
+    },
+    "t_temp:30": {
+      "t_temp": "30",
+      "t_temp_type": "0"
+    },
+    "t_temp:31": {
+      "t_temp": "31",
+      "t_temp_type": "0"
+    },
+    "t_temp:32": {
+      "t_temp": "32",
+      "t_temp_type": "0"
+    },
+    "t_temp_f:61": {
+      "t_temp_f": "61",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:62": {
+      "t_temp_f": "62",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:63": {
+      "t_temp_f": "63",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:64": {
+      "t_temp_f": "64",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:65": {
+      "t_temp_f": "65",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:66": {
+      "t_temp_f": "66",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:67": {
+      "t_temp_f": "67",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:68": {
+      "t_temp_f": "68",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:69": {
+      "t_temp_f": "69",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:70": {
+      "t_temp_f": "70",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:71": {
+      "t_temp_f": "71",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:72": {
+      "t_temp_f": "72",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:73": {
+      "t_temp_f": "73",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:74": {
+      "t_temp_f": "74",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:75": {
+      "t_temp_f": "75",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:76": {
+      "t_temp_f": "76",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:77": {
+      "t_temp_f": "77",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:78": {
+      "t_temp_f": "78",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:79": {
+      "t_temp_f": "79",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:80": {
+      "t_temp_f": "80",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:81": {
+      "t_temp_f": "81",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:82": {
+      "t_temp_f": "82",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:83": {
+      "t_temp_f": "83",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:84": {
+      "t_temp_f": "84",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:85": {
+      "t_temp_f": "85",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:86": {
+      "t_temp_f": "86",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:87": {
+      "t_temp_f": "87",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:88": {
+      "t_temp_f": "88",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:89": {
+      "t_temp_f": "89",
+      "t_temp_type": "1"
+    },
+    "t_temp_f:90": {
+      "t_temp_f": "90",
+      "t_temp_type": "1"
+    },
+    "unit:0": {
+      "t_temp_type": "0"
+    },
+    "unit:1": {
+      "t_temp_type": "1"
+    }
+  },
+  "commands": [
+    {
+      "cmdKey": "t_temp_f",
+      "cmdValue": "68"
+    },
+    {
+      "cmdKey": "t_temp_type",
+      "cmdValue": "1"
+    }
+  ],
+  "finished_at": "2026-10-30T11:17:46.704643+00:00",
+  "wall_ms": 1172.873011964839,
+  "client_ms": 1172.2,
+  "protocol": "temperature_with_unit_actions"
+}

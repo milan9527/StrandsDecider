@@ -1,0 +1,31 @@
+{
+  "http_status": 200,
+  "response_text": "{\"ok\": true, \"model\": \"perplexity-ai/pplx-decider-flash-v1.2\", \"provider\": \"pplx\", \"repository\": \"perplexity-ai/pplx-decider-flash-v1.2\", \"revision\": \"9ff7cf9838e59df461c276b7699d56b244d2af58\", \"gpu\": \"NVIDIA L4\", \"torch\": \"2.14.0+cu130\", \"cuda\": \"13.0\", \"transformers\": \"5.17.0\", \"cpu_threads\": 2, \"external_concurrency\": 1, \"adapter_sha256\": \"e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb\", \"runtime\": \"official fast=True, BF16, CUDA graphs\", \"buckets\": [2048, 4096, 8192, 16384], \"max_encoded_tokens\": 6454, \"max_sequences_per_request\": 1, \"input_truncated\": false, \"gpu_allocated_after_load\": 9190374912}",
+  "status": "ok",
+  "response": {
+    "ok": true,
+    "model": "perplexity-ai/pplx-decider-flash-v1.2",
+    "provider": "pplx",
+    "repository": "perplexity-ai/pplx-decider-flash-v1.2",
+    "revision": "9ff7cf9838e59df461c276b7699d56b244d2af58",
+    "gpu": "NVIDIA L4",
+    "torch": "2.14.0+cu130",
+    "cuda": "13.0",
+    "transformers": "5.17.0",
+    "cpu_threads": 2,
+    "external_concurrency": 1,
+    "adapter_sha256": "e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb",
+    "runtime": "official fast=True, BF16, CUDA graphs",
+    "buckets": [
+      2048,
+      4096,
+      8192,
+      16384
+    ],
+    "max_encoded_tokens": 6454,
+    "max_sequences_per_request": 1,
+    "input_truncated": false,
+    "gpu_allocated_after_load": 9190374912
+  },
+  "client_ms": 0.7176110000273184
+}

@@ -1,0 +1,44 @@
+{
+  "provider": "gpt",
+  "started_at": "2026-10-30T14:57:19.520564+00:00",
+  "status": "complete",
+  "calls": 285,
+  "errors": 0,
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "serial30_blocks": [
+    {
+      "repetition": 0,
+      "started_at": "2026-10-30T15:04:57.677684+00:00",
+      "finished_at": "2026-10-30T15:05:22.409664+00:00",
+      "wall_ms": 24731.97333799908,
+      "http_sum_ms": 24720.69,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 1,
+      "started_at": "2026-10-30T15:05:26.467388+00:00",
+      "finished_at": "2026-10-30T15:05:51.958589+00:00",
+      "wall_ms": 25491.19197699474,
+      "http_sum_ms": 25479.809,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 2,
+      "started_at": "2026-10-30T15:05:53.972834+00:00",
+      "finished_at": "2026-10-30T15:06:18.378466+00:00",
+      "wall_ms": 24405.62576201046,
+      "http_sum_ms": 24394.43,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "plan_sha256": "42fb8864599461a7d5a33411edc848d5b29a4f395e60949b53fe9150b034e66e",
+  "expected_model": "us.openai.gpt-6.1-sol",
+  "last": {
+    "case_id": "S03",
+    "order": "original",
+    "kind": "full30",
+    "repetition": 2
+  },
+  "finished_at": "2026-10-30T15:06:20.237889+00:00"
+}

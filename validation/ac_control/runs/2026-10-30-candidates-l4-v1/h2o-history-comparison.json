@@ -1,0 +1,816 @@
+{
+  "previous_receipts_sha256": "dacd812ee88c4ee01894111ed421dfb7c1c50336229be2207ed5780f851c3e67",
+  "current_receipts_sha256": "e07570699991961e84fea4998462027cfa70a86422c2ebb12ca907e2133cf4b2",
+  "same_state_questions_and_attention": true,
+  "environment_note": "Different instance and process; same business input. This comparison does not isolate the cause of any change.",
+  "requests": 30,
+  "changed_cases": 0,
+  "previous_correct": 27,
+  "current_correct": 27,
+  "rows": [
+    {
+      "case_id": "S01",
+      "changed_fields": [],
+      "previous_correct": false,
+      "current_correct": false,
+      "previous_commands": [
+        {
+          "cmdKey": "t_power",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_power",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        }
+      ]
+    },
+    {
+      "case_id": "S02",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        }
+      ]
+    },
+    {
+      "case_id": "S03",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "24"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "24"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "S04",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_temp_f",
+          "cmdValue": "68"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_temp_f",
+          "cmdValue": "68"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "S05",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "9"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "9"
+        }
+      ]
+    },
+    {
+      "case_id": "S06",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_fan_mute",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_fan_mute",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "S07",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_outdoor_mute",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_outdoor_mute",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "S08",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_purify",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_purify",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "S09",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_dimmer",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_dimmer",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "S10",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_swing_direction",
+          "cmdValue": "2"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_swing_direction",
+          "cmdValue": "2"
+        }
+      ]
+    },
+    {
+      "case_id": "M01",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_power",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "24"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_power",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "24"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "M02",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "26"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "7"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "26"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "7"
+        }
+      ]
+    },
+    {
+      "case_id": "M03",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "9"
+        },
+        {
+          "cmdKey": "t_eco",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "9"
+        },
+        {
+          "cmdKey": "t_eco",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "M04",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_fan_mute",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_outdoor_mute",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_fan_mute",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_outdoor_mute",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "M05",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_purify",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dimmer",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_purify",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dimmer",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "M06",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_fresh_air",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_health_fan",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_fresh_air",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_health_fan",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "M07",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_indoor_selfclean",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_outdoor_selfclean",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_indoor_selfclean",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_outdoor_selfclean",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "M08",
+      "changed_fields": [],
+      "previous_correct": false,
+      "current_correct": false,
+      "previous_commands": [
+        {
+          "cmdKey": "t_up_down",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_swing_angle",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_swing_direction",
+          "cmdValue": "2"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_up_down",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_swing_angle",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_swing_direction",
+          "cmdValue": "2"
+        }
+      ]
+    },
+    {
+      "case_id": "M09",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_dr_onoff",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dr_offset",
+          "cmdValue": "5"
+        },
+        {
+          "cmdKey": "t_dr_mode",
+          "cmdValue": "60"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_dr_onoff",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dr_offset",
+          "cmdValue": "5"
+        },
+        {
+          "cmdKey": "t_dr_mode",
+          "cmdValue": "60"
+        }
+      ]
+    },
+    {
+      "case_id": "M10",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "22"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_super",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "22"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_super",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "N01",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_power",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_power",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "N02",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_indoortemp_detection",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_indoortemp_detection",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "N03",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_8heat",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_8heat",
+          "cmdValue": "1"
+        }
+      ]
+    },
+    {
+      "case_id": "N04",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_fan_mute",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_fan_mute",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "N05",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "25"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "5"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_temp",
+          "cmdValue": "25"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "5"
+        }
+      ]
+    },
+    {
+      "case_id": "N06",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_temp_f",
+          "cmdValue": "72"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "8"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_work_mode",
+          "cmdValue": "2"
+        },
+        {
+          "cmdKey": "t_temp_f",
+          "cmdValue": "72"
+        },
+        {
+          "cmdKey": "t_temp_type",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_fan_speed",
+          "cmdValue": "8"
+        }
+      ]
+    },
+    {
+      "case_id": "N07",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_purify",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dimmer",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_purify",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dimmer",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "N08",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_dr_onoff",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dr_offset",
+          "cmdValue": "7"
+        },
+        {
+          "cmdKey": "t_dr_mode",
+          "cmdValue": "45"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_dr_onoff",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_dr_offset",
+          "cmdValue": "7"
+        },
+        {
+          "cmdKey": "t_dr_mode",
+          "cmdValue": "45"
+        }
+      ]
+    },
+    {
+      "case_id": "N09",
+      "changed_fields": [],
+      "previous_correct": false,
+      "current_correct": false,
+      "previous_commands": [
+        {
+          "cmdKey": "t_up_down",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_swing_angle",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_swing_direction",
+          "cmdValue": "0"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_up_down",
+          "cmdValue": "1"
+        },
+        {
+          "cmdKey": "t_swing_angle",
+          "cmdValue": "0"
+        },
+        {
+          "cmdKey": "t_swing_direction",
+          "cmdValue": "0"
+        }
+      ]
+    },
+    {
+      "case_id": "N10",
+      "changed_fields": [],
+      "previous_correct": true,
+      "current_correct": true,
+      "previous_commands": [
+        {
+          "cmdKey": "t_fresh_air",
+          "cmdValue": "1"
+        }
+      ],
+      "current_commands": [
+        {
+          "cmdKey": "t_fresh_air",
+          "cmdValue": "1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-10-30T15:33:04.671434+00:00",
+  "spec_sha256": "d72aee30f97a4b2a8d7b57d1a680b10756b419884c10ba1e5a64df9a2f49f1e6",
+  "spec_case_count": 20,
+  "spec_expected_pair_count": 40,
+  "same_ordered_business_request_schedule": true,
+  "request_overlap_count": 0,
+  "references_sent": false,
+  "output_repair": false,
+  "new_live_providers": [
+    "jev",
+    "gpt"
+  ],
+  "reused_live_providers": [
+    "pplx",
+    "knowline",
+    "torchcast",
+    "clef",
+    "h2o"
+  ],
+  "observed_calls": 1995,
+  "new_calls": 570,
+  "primary_requests": 140,
+  "formal_calls": 1764,
+  "warmup_calls": 231,
+  "errors": 0,
+  "bedrock_profile_sha256": "f3705130a48f7caa8cd3bede15bb27afd2737c00b6d60e6a4cc63d8918f5d831",
+  "analyzer_sha256": "19a656f0f6add0ab5d77c58e280155ee55f8d270cd107bb04ed400016695c0e5",
+  "passed": true,
+  "source_and_parent_receipts_unchanged": true,
+  "evidence": {
+    "jev": {
+      "run": "validation/ac_control/runs/2026-10-30-spec-unified-v1/results/jev",
+      "receipts_sha256": "a5c7926cd8591a166cf58e45e3eaaf2534bfb41bf60df831a8a18b286131b53a",
+      "metadata_sha256": "533acd6de3d38787c9c2501d5f0019a7fb0b51baa4f26cfee9a85bcb864978a0",
+      "started_at": "2026-10-30T14:56:56.330313+00:00",
+      "finished_at": "2026-10-30T14:57:19.519607+00:00",
+      "reused_live_observations": false
+    },
+    "gpt": {
+      "run": "validation/ac_control/runs/2026-10-30-spec-unified-v1/results/gpt",
+      "receipts_sha256": "14db9851eff3daa9788a3707dc7dcda491e13a42398cf903fda045518dd609be",
+      "metadata_sha256": "d8d631150a54f34ef5d677ddad4c17c5570907e6eaf9e40c0c19aa5c00c9aa59",
+      "started_at": "2026-10-30T14:57:19.520564+00:00",
+      "finished_at": "2026-10-30T15:06:20.237889+00:00",
+      "reused_live_observations": false
+    },
+    "clef": {
+      "run": "validation/ac_control/runs/2026-10-30-candidates-l4-v1/results/clef",
+      "receipts_sha256": "db0074d9ccf0d2344c8d6916dade591c3501915ba4c4eadf66da9ed1cb20ada7",
+      "metadata_sha256": "b34e15cca6e6c14b46b04147b1ea8c79c5673984e443b6188a1719008842b0c5",
+      "started_at": "2026-10-30T14:08:06.475690+00:00",
+      "finished_at": "2026-10-30T14:19:02.250434+00:00",
+      "reused_live_observations": true
+    },
+    "knowline": {
+      "run": "validation/ac_control/runs/2026-10-30-candidates-l4-v1/results/knowline",
+      "receipts_sha256": "4c8315212fc7f6cc3842cc4b9fba91b02d19f0707b93db8bf26c8b5a8421e2ef",
+      "metadata_sha256": "0c604687c1438824b9c94fd4613604214cb0ca99cf600e2f15870323f128e172",
+      "started_at": "2026-10-30T13:06:04.824044+00:00",
+      "finished_at": "2026-10-30T13:09:04.071414+00:00",
+      "reused_live_observations": true
+    },
+    "h2o": {
+      "run": "validation/ac_control/runs/2026-10-30-candidates-l4-v1/results/h2o",
+      "receipts_sha256": "e07570699991961e84fea4998462027cfa70a86422c2ebb12ca907e2133cf4b2",
+      "metadata_sha256": "355a1ca754b14a1b3237c9c5aefda2ad6e7aceb0ecc4b61f326bc664fff388be",
+      "started_at": "2026-10-30T14:23:22.959962+00:00",
+      "finished_at": "2026-10-30T14:40:49.215526+00:00",
+      "reused_live_observations": true
+    },
+    "torchcast": {
+      "run": "validation/ac_control/runs/2026-10-30-candidates-l4-v1/results/torchcast",
+      "receipts_sha256": "7a54e2be8e93ab6a2e69541fb66b24ed8d344d7c08dca47b4999a2f28f5e4008",
+      "metadata_sha256": "ebe41b0ade43d39732ac93ba3bb61444351efb7419f2d004ff23eb89defe032e",
+      "started_at": "2026-10-30T13:11:47.606572+00:00",
+      "finished_at": "2026-10-30T13:46:30.189052+00:00",
+      "reused_live_observations": true
+    },
+    "pplx": {
+      "run": "validation/ac_control/runs/2026-10-30-candidates-l4-v1/results/pplx",
+      "receipts_sha256": "09416bec9fa56942e12ae37eb72de4d6bc706d598737e3ac5579a4ef78c9001a",
+      "metadata_sha256": "6fae23e9d010edbb9a62eb0bd8be3ea18a2ae09fac34e098dfc93e6087df5154",
+      "started_at": "2026-10-30T12:58:22.702839+00:00",
+      "finished_at": "2026-10-30T13:03:28.974720+00:00",
+      "reused_live_observations": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "provider": "jev",
+  "started_at": "2026-10-30T14:56:56.330313+00:00",
+  "status": "complete",
+  "calls": 285,
+  "errors": 0,
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "serial30_blocks": [
+    {
+      "repetition": 0,
+      "started_at": "2026-10-30T14:57:13.299633+00:00",
+      "finished_at": "2026-10-30T14:57:15.253853+00:00",
+      "wall_ms": 1954.2129999608733,
+      "http_sum_ms": 1945.535,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 1,
+      "started_at": "2026-10-30T14:57:15.451415+00:00",
+      "finished_at": "2026-10-30T14:57:17.398869+00:00",
+      "wall_ms": 1947.4475589813665,
+      "http_sum_ms": 1938.548,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 2,
+      "started_at": "2026-10-30T14:57:17.554969+00:00",
+      "finished_at": "2026-10-30T14:57:19.427951+00:00",
+      "wall_ms": 1872.9758340050466,
+      "http_sum_ms": 1864.007,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "plan_sha256": "42fb8864599461a7d5a33411edc848d5b29a4f395e60949b53fe9150b034e66e",
+  "expected_model": "jev-1.14.0",
+  "last": {
+    "case_id": "S03",
+    "order": "original",
+    "kind": "full30",
+    "repetition": 2
+  },
+  "finished_at": "2026-10-30T14:57:19.519607+00:00"
+}

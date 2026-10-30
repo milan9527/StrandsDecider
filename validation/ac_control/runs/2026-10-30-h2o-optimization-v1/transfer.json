@@ -1,0 +1,84 @@
+{
+  "region": "us-east-1",
+  "bucket": "strands-decider-vllm-632930644527",
+  "instance": "i-0ae7eb0abcb815af3",
+  "prefix": "ac-control/2026-10-30-h2o-optimization-v1",
+  "remote": "/opt/decider-open-models/ac-control/2026-10-30-h2o-optimization-v1",
+  "input_archive_sha256": "89b689755019d2e1838f641e5cb1a46209b1afe631665830dfd2a1aaa31352db",
+  "commands": [
+    {
+      "variant": "seq1-eager",
+      "id": "4ec46a30-2967-468e-89fd-ef40bc4ee079"
+    },
+    {
+      "variant": "seq2-eager",
+      "action": "trial",
+      "id": "c54c0336-fe6c-4d8d-ae15-720bc8417164",
+      "controller_sha256": "60c428c6b77040fb4276af26186da0ab4db67c40bbf69b8b267740722dc38e3a",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq2-eager.py"
+    },
+    {
+      "variant": "seq4-eager",
+      "action": "trial",
+      "id": "84078685-6f82-4f1e-938c-a36eab45290c",
+      "controller_sha256": "60c428c6b77040fb4276af26186da0ab4db67c40bbf69b8b267740722dc38e3a",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq4-eager.py"
+    },
+    {
+      "variant": "seq1-gdn4096",
+      "action": "trial",
+      "id": "ec3e3914-1b4a-44d2-8890-f9542bcd8d82",
+      "controller_sha256": "60c428c6b77040fb4276af26186da0ab4db67c40bbf69b8b267740722dc38e3a",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq1-gdn4096.py"
+    },
+    {
+      "variant": "seq1-gdn4096-causal",
+      "action": "benchmark",
+      "id": "7d41155c-3ca8-4688-be04-f39cae6193bb",
+      "controller_sha256": "60c428c6b77040fb4276af26186da0ab4db67c40bbf69b8b267740722dc38e3a",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq1-gdn4096-causal.py"
+    },
+    {
+      "variant": "seq1-compiled",
+      "action": "trial",
+      "id": "16365855-d862-423f-8807-254890416e08",
+      "controller_sha256": "8b8ed04d9b64833a45a01e92b609ef1bbaf52dfaca154e25826cc13f07f9eca4",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq1-compiled.py"
+    },
+    {
+      "variant": "seq1-compiled-quality",
+      "action": "benchmark",
+      "id": "44ad3b26-9085-4f5a-99b4-262d9a624bd2",
+      "controller_sha256": "6f42dbec5682d2fbd68ccb667e32a251df5ad0ad8cc207eabe2f0214f50c0fd3",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq1-compiled-quality.py"
+    },
+    {
+      "variant": "restore-original-final",
+      "action": "rollback",
+      "id": "d4d14f68-f758-4075-ba4f-b6fe6a4943ff",
+      "controller_sha256": "6f42dbec5682d2fbd68ccb667e32a251df5ad0ad8cc207eabe2f0214f50c0fd3",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-restore-original-final.py"
+    },
+    {
+      "variant": "seq1-eager-restored",
+      "action": "benchmark",
+      "id": "adbc4a4a-6e7a-4810-a131-0e87f50402b7",
+      "controller_sha256": "6f42dbec5682d2fbd68ccb667e32a251df5ad0ad8cc207eabe2f0214f50c0fd3",
+      "controller_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/controller-seq1-eager-restored.py"
+    },
+    {
+      "variant": "repeatability",
+      "action": "repeatability",
+      "id": "56469f92-684d-4c2c-a83f-58b5abd2e99c",
+      "source_sha256": "9ef6abc6199fdf639e64a5b71dcd3c5659f05ad4b9925c58fb392d688738feea",
+      "input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/recheck_h2o_repeatability.py"
+    },
+    {
+      "variant": "final-snapshot",
+      "action": "snapshot",
+      "id": "fe6192e6-1ac5-41fd-93f1-fc24894d3ee7",
+      "capture_input_key": "input/ac-control/2026-10-30-h2o-optimization-v1/capture_final_runtime.py",
+      "source_sha256": "4fa90cdd277f614f06c56c79d2c8006c0aebc9f160d391ac486471afb8ee0fb1"
+    }
+  ]
+}

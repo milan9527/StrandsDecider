@@ -1,0 +1,36 @@
+{
+  "prepared_at": "2026-10-30T11:16:37.781135+00:00",
+  "model": "LiquidAI/d1-2B",
+  "strategies": [
+    "baseline",
+    "two_stage",
+    "semantic_gate",
+    "temperature_bundle",
+    "bundle_examples"
+  ],
+  "development_observations": 300,
+  "validation_cases": 24,
+  "orders": [
+    "original",
+    "reversed"
+  ],
+  "development_sha256": "f4247c96c8b19aea73a7c7ce71bdf51dadd6aef4a28355cd182392251709b545",
+  "validation_sha256": "2e3f72871239e0dc3ef508095b3833c58e0b9727db914460d71ff5e183e5bb14",
+  "references_sha256": "a9129a1d7174635cccea6072a90385ca9bbb2a5b9e04a8d9e9a1932d3c891437",
+  "capabilities_sha256": "3c214dd5b60d039d683477448f08be266769114d18d96f8238696c800c41de41",
+  "source_sha256": {
+    "liquid_ac_protocol.py": "f3b52e7d2c6cd60875c985da268e79da7ae90c6af137642b7eba0ab9a28d7a61",
+    "liquid_ac_client.py": "2002138c40bb375abf2d2c1ffb741206644ac2cd56f668079a58a5b4e5154eda",
+    "run_liquid_accuracy.py": "4ffe3f9fdcfe849e42ae8048c93a819323eda4512e159d611fe06b494f31c39a",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e"
+  },
+  "old_reference_source_sha256": "dbfe0d9a53a65752e0ec39ceaa1cad58d06a7ae6f166940990b1879aa403a4e1",
+  "selection_policy": "Select before seeing validation outputs. New strategy must improve development original exact matches versus two_stage, not lower spec or diagnostic original counts, and not lower total reversed exact matches. Rank by original exact count, then reversed exact count, fewer missing pairs, fewer extra pairs, lower mean client time. Validate selected candidate against baseline and two_stage. Recommend only if validation original exact count improves over two_stage and reversed count is no worse; otherwise retain two_stage and report the failed generalization.",
+  "validation_policy": "24 queries authored with known error categories, frozen before trials; unused for selection, not an external blind benchmark. No further tuning after validation.",
+  "request_policy": "All30 capabilities retained in every state; all legal numeric values retained. Bundles declare the changed action schema and expand only a model-selected action.",
+  "timing_policy": "One warmup per strategy; external requests strictly serial. Alternate strategy order per case. Record each stage, end-to-end wall time and HTTP sum.",
+  "automatic_retries": 0,
+  "external_concurrency": 1
+}

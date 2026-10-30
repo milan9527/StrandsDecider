@@ -1,0 +1,48 @@
+{
+  "started_at": "2026-10-30T14:08:06.475690+00:00",
+  "status": "complete",
+  "provider": "clef",
+  "model": {
+    "repository": "Cloudflare/clef-flash",
+    "revision": "f0b7d3cd65296abfe459e6c228b618f5d8b26d2f"
+  },
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "runner_sha256": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+  "calls": 285,
+  "errors": 0,
+  "serial30_blocks": [
+    {
+      "repetition": 0,
+      "started_at": "2026-10-30T14:18:05.301399+00:00",
+      "finished_at": "2026-10-30T14:18:19.712893+00:00",
+      "wall_ms": 14411.484704000031,
+      "http_sum_ms": 14399.137357002473,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 1,
+      "started_at": "2026-10-30T14:18:27.162746+00:00",
+      "finished_at": "2026-10-30T14:18:41.643620+00:00",
+      "wall_ms": 14480.865665000238,
+      "http_sum_ms": 14468.039608993422,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 2,
+      "started_at": "2026-10-30T14:18:43.547698+00:00",
+      "finished_at": "2026-10-30T14:18:58.103632+00:00",
+      "wall_ms": 14555.928345998836,
+      "http_sum_ms": 14543.35921299753,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "endpoint": "http://127.0.0.1:18811",
+  "last": {
+    "case_id": "S03",
+    "order": "original",
+    "kind": "full30",
+    "repetition": 2
+  },
+  "finished_at": "2026-10-30T14:19:02.250434+00:00"
+}

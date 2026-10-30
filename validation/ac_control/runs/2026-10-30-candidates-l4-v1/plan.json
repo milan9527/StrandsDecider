@@ -1,0 +1,40 @@
+{
+  "prepared_at": "2026-10-30T12:04:05.921836+00:00",
+  "instance_id": "i-0bd4d9196f1c163c0",
+  "instance_type": "g6.xlarge",
+  "model_order": [
+    "pplx",
+    "knowline",
+    "torchcast",
+    "clef",
+    "h2o"
+  ],
+  "cases_sha256": "9b331f4b9375ba5a30c565239b1f11c16ebfa4538a19c85c991c196cff95fafb",
+  "references_sha256": "caf55913734650f4458491f75e128595a0f8abf99a43e749b7912126ff013653",
+  "capabilities_sha256": "3c214dd5b60d039d683477448f08be266769114d18d96f8238696c800c41de41",
+  "models_sha256": "875cb91b44ba60e1b0eaabb3bc513eb5c4bb5ad37edab621ced5988de1ccaed9",
+  "quality_requests_per_model": 156,
+  "quality_sets": {
+    "spec_en": 20,
+    "diagnostic_en": 10,
+    "heldback_en": 24,
+    "chinese_translations": 24
+  },
+  "orders": [
+    "original",
+    "reversed"
+  ],
+  "prompt": "Original full30 baseline; same state, rules, questions and legal options for all models.",
+  "chinese_policy": "Translate only the user query of H01-H24; preserve the English catalog and rubric. Gold copied from semantically corresponding frozen English cases; score Chinese separately, not as 24 independent new intentions.",
+  "heldback_policy": "Same-domain authored validation frozen before candidate inference; not an external blind benchmark. No tuning on validation.",
+  "timing_policy": "One externally submitted HTTP request at a time; one resident model on new GPU. Separate startup/warmup, single t_temp, serial30 and full30. S03 repeated three times per timing mode; retain complete state and candidates.",
+  "internal_execution": "Authors' recommended runtime; joint questions, independent question forwards and native option grouping disclosed separately.",
+  "warmup_policy": "Three S03 full30 warmups and one for each single-field shape before timed single-field requests; retain warmup receipts separately.",
+  "quality_policy": "Strict entire command-set match; omit only means no command. Never repair units or remove extra actions. Transport/format failures count as incorrect; no inference retries.",
+  "precision_policy": "Recommended candidate precision; H2O control FP8, seq1 eager with original 4096 context and 0.34 GPU utilization. Record actual packages/runtime, do not label different paths equivalent.",
+  "resource_policy": "Only one additional EC2 authorized. Stop it after artifacts are verified; six-hour boot-time stop guard. No changes to protected original services.",
+  "unsupported_policy": "If a native runtime cannot serve full inputs within L4 memory, record failure before considering an explicitly labeled fallback. Never silently shrink state/options or claim reference speed is optimized speed.",
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "preparation_source_sha256": "4a1f2a29842d34e711b26d5aab33daadf7f5a038f52b2bd9578f93e2bd69b8ff"
+}

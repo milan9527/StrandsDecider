@@ -1,0 +1,47 @@
+{
+  "format": "StartLux-Decision-v1",
+  "letter_token_ids": [
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57
+  ],
+  "temperature_by_type": {
+    "choice": 0.9,
+    "noul": 0.9,
+    "score": 0.9
+  },
+  "max_options_per_pass": 26,
+  "wide_choice": {
+    "group": 25,
+    "keep": 3,
+    "residual": 0.001
+  },
+  "prompt_format": "jev_render_v3",
+  "noul_floor": 0.801,
+  "model_name": "torchcast-decision-4b-v1.3",
+  "release_date": "2026-10-23",
+  "attention_mode": "noncausal_full_attention"
+}

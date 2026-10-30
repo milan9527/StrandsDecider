@@ -1,0 +1,1771 @@
+{
+  "payment-pending-pending-intake": {
+    "id": "payment-pending-pending-intake",
+    "group": "payment",
+    "episode": "payment-pending-pending",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 3,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "payment_support"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-pending-verify": {
+    "id": "payment-pending-pending-verify",
+    "group": "payment",
+    "episode": "payment-pending-pending",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 3,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "await_confirmations"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-pending-approve": {
+    "id": "payment-pending-pending-approve",
+    "group": "payment",
+    "episode": "payment-pending-pending",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 3,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-pending-execute": {
+    "id": "payment-pending-pending-execute",
+    "group": "payment",
+    "episode": "payment-pending-pending",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 3,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "hold"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-pending-close": {
+    "id": "payment-pending-pending-close",
+    "group": "payment",
+    "episode": "payment-pending-pending",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 3,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "follow_up"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-ready-intake": {
+    "id": "payment-pending-ready-intake",
+    "group": "payment",
+    "episode": "payment-pending-ready",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "payment_support"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-ready-verify": {
+    "id": "payment-pending-ready-verify",
+    "group": "payment",
+    "episode": "payment-pending-ready",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "payment_verified"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-ready-approve": {
+    "id": "payment-pending-ready-approve",
+    "group": "payment",
+    "episode": "payment-pending-ready",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-ready-execute": {
+    "id": "payment-pending-ready-execute",
+    "group": "payment",
+    "episode": "payment-pending-ready",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "credit_order"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-pending-ready-close": {
+    "id": "payment-pending-ready-close",
+    "group": "payment",
+    "episode": "payment-pending-ready",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "pending",
+      "message": "我已经支付了 129 USDC，钱包显示转账成功，为什么订单还是待支付？",
+      "expected": "129.00",
+      "received": "129.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "paid",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "resolve"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-pending-intake": {
+    "id": "payment-underpaid-pending-intake",
+    "group": "payment",
+    "episode": "payment-underpaid-pending",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "99.80",
+      "confirmations": 20,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "payment_support"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-pending-verify": {
+    "id": "payment-underpaid-pending-verify",
+    "group": "payment",
+    "episode": "payment-underpaid-pending",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "99.80",
+      "confirmations": 20,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "request_topup"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-pending-approve": {
+    "id": "payment-underpaid-pending-approve",
+    "group": "payment",
+    "episode": "payment-underpaid-pending",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "99.80",
+      "confirmations": 20,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-pending-execute": {
+    "id": "payment-underpaid-pending-execute",
+    "group": "payment",
+    "episode": "payment-underpaid-pending",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "99.80",
+      "confirmations": 20,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "hold"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-pending-close": {
+    "id": "payment-underpaid-pending-close",
+    "group": "payment",
+    "episode": "payment-underpaid-pending",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "99.80",
+      "confirmations": 20,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "follow_up"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-ready-intake": {
+    "id": "payment-underpaid-ready-intake",
+    "group": "payment",
+    "episode": "payment-underpaid-ready",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "100.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "payment_support"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-ready-verify": {
+    "id": "payment-underpaid-ready-verify",
+    "group": "payment",
+    "episode": "payment-underpaid-ready",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "100.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "payment_verified"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-ready-approve": {
+    "id": "payment-underpaid-ready-approve",
+    "group": "payment",
+    "episode": "payment-underpaid-ready",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "100.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-ready-execute": {
+    "id": "payment-underpaid-ready-execute",
+    "group": "payment",
+    "episode": "payment-underpaid-ready",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "100.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "credit_order"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-underpaid-ready-close": {
+    "id": "payment-underpaid-ready-close",
+    "group": "payment",
+    "episode": "payment-underpaid-ready",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "underpaid",
+      "message": "我付了 100 USDT，扣了手续费以后到账 99.8，能帮我确认订单吗？",
+      "expected": "100.00",
+      "received": "100.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "paid",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "resolve"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-pending-intake": {
+    "id": "payment-refund-pending-intake",
+    "group": "payment",
+    "episode": "payment-refund-pending",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": false,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "refund_support"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-pending-verify": {
+    "id": "payment-refund-pending-verify",
+    "group": "payment",
+    "episode": "payment-refund-pending",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": false,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "payment_verified"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-pending-approve": {
+    "id": "payment-refund-pending-approve",
+    "group": "payment",
+    "episode": "payment-refund-pending",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": false,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "verify_destination"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-pending-execute": {
+    "id": "payment-refund-pending-execute",
+    "group": "payment",
+    "episode": "payment-refund-pending",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": false,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": true,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "hold"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-pending-close": {
+    "id": "payment-refund-pending-close",
+    "group": "payment",
+    "episode": "payment-refund-pending",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": false,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": true,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "follow_up"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-ready-intake": {
+    "id": "payment-refund-ready-intake",
+    "group": "payment",
+    "episode": "payment-refund-ready",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "refund_support"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-ready-verify": {
+    "id": "payment-refund-ready-verify",
+    "group": "payment",
+    "episode": "payment-refund-ready",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "payment_verified"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-ready-approve": {
+    "id": "payment-refund-ready-approve",
+    "group": "payment",
+    "episode": "payment-refund-ready",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-ready-execute": {
+    "id": "payment-refund-ready-execute",
+    "group": "payment",
+    "episode": "payment-refund-ready",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "refund_payment"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-refund-ready-close": {
+    "id": "payment-refund-ready-close",
+    "group": "payment",
+    "episode": "payment-refund-ready",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "refund",
+      "message": "同一个订单重复付款了，请把多付的 250 USDC 退回我的地址。",
+      "expected": "250.00",
+      "received": "250.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 0,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "refunded",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "resolve"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-pending-intake": {
+    "id": "payment-settlement-pending-intake",
+    "group": "payment",
+    "episode": "payment-settlement-pending",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "merchant_ops"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-pending-verify": {
+    "id": "payment-settlement-pending-verify",
+    "group": "payment",
+    "episode": "payment-settlement-pending",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "settlement_delayed"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-pending-approve": {
+    "id": "payment-settlement-pending-approve",
+    "group": "payment",
+    "episode": "payment-settlement-pending",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-pending-execute": {
+    "id": "payment-settlement-pending-execute",
+    "group": "payment",
+    "episode": "payment-settlement-pending",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "escalate_settlement"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-pending-close": {
+    "id": "payment-settlement-pending-close",
+    "group": "payment",
+    "episode": "payment-settlement-pending",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 30,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": false,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": false,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "follow_up"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-ready-intake": {
+    "id": "payment-settlement-ready-intake",
+    "group": "payment",
+    "episode": "payment-settlement-ready",
+    "stage": "intake",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": true,
+      "order_status": "open",
+      "ticket_status": "new",
+      "completed": []
+    },
+    "expected": {
+      "action": "merchant_ops"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-ready-verify": {
+    "id": "payment-settlement-ready-verify",
+    "group": "payment",
+    "episode": "payment-settlement-ready",
+    "stage": "verify",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": true,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake"
+      ]
+    },
+    "expected": {
+      "action": "settlement_verified"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-ready-approve": {
+    "id": "payment-settlement-ready-approve",
+    "group": "payment",
+    "episode": "payment-settlement-ready",
+    "stage": "approve",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": true,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify"
+      ]
+    },
+    "expected": {
+      "action": "approved"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-ready-execute": {
+    "id": "payment-settlement-ready-execute",
+    "group": "payment",
+    "episode": "payment-settlement-ready",
+    "stage": "execute",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": true,
+      "order_status": "open",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve"
+      ]
+    },
+    "expected": {
+      "action": "reconcile_settlement"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "payment-settlement-ready-close": {
+    "id": "payment-settlement-ready-close",
+    "group": "payment",
+    "episode": "payment-settlement-ready",
+    "stage": "close",
+    "snapshot": {
+      "scenario": "settlement",
+      "message": "这批 4800 USDC 的结算已经等了两个小时，约定一小时内到账，请协助排查。",
+      "expected": "4800.00",
+      "received": "4800.00",
+      "confirmations": 12,
+      "required_confirmations": 12,
+      "address_verified": true,
+      "risk_flag": false,
+      "approved": true,
+      "review_pending": false,
+      "settlement_minutes": 120,
+      "settlement_sla_minutes": 60,
+      "settled": true,
+      "order_status": "settled",
+      "ticket_status": "active",
+      "completed": [
+        "intake",
+        "verify",
+        "approve",
+        "execute"
+      ]
+    },
+    "expected": {
+      "action": "resolve"
+    },
+    "reference_basis": "Existing disclosed payment sandbox policy; optimized input for every model."
+  },
+  "routing-intent-rewrite": {
+    "id": "routing-intent-rewrite",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "economy_text"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-ticket-label": {
+    "id": "routing-intent-ticket-label",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "economy_text"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-concurrency": {
+    "id": "routing-intent-concurrency",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "code_analysis"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-debug": {
+    "id": "routing-intent-debug",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "code_analysis"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-proof": {
+    "id": "routing-intent-proof",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "reasoning"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-invoice-image": {
+    "id": "routing-intent-invoice-image",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "vision"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-long-contracts": {
+    "id": "routing-intent-long-contracts",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "long_document"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-intent-missing-attachment": {
+    "id": "routing-intent-missing-attachment",
+    "group": "routing",
+    "category": "semantic_task_routing",
+    "expected": {
+      "action": "clarify"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-image": {
+    "id": "routing-cap-image",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m4"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-audio": {
+    "id": "routing-cap-audio",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m5"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-video": {
+    "id": "routing-cap-video",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m5"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-context": {
+    "id": "routing-cap-context",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m5"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-output": {
+    "id": "routing-cap-output",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m2"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-image-logprobs": {
+    "id": "routing-cap-image-logprobs",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m4"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-json-tools": {
+    "id": "routing-cap-json-tools",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "m1"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cap-image-output": {
+    "id": "routing-cap-image-output",
+    "group": "routing",
+    "category": "capability_constraints",
+    "expected": {
+      "action": "no_route"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-basic": {
+    "id": "routing-cost-basic",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m1"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-input-heavy": {
+    "id": "routing-cost-input-heavy",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m2"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-output-heavy": {
+    "id": "routing-cost-output-heavy",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m4"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-no-budget": {
+    "id": "routing-cost-no-budget",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "no_route"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-exact-budget": {
+    "id": "routing-cost-exact-budget",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m4"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-one-fits": {
+    "id": "routing-cost-one-fits",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m2"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-long-context": {
+    "id": "routing-cost-long-context",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m5"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-cost-reasoning-output": {
+    "id": "routing-cost-reasoning-output",
+    "group": "routing",
+    "category": "cost_and_budget",
+    "expected": {
+      "action": "m3"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-fallback-primary-down": {
+    "id": "routing-fallback-primary-down",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "m6"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-fallback-rate-limit": {
+    "id": "routing-fallback-rate-limit",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "m2"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-fallback-disabled": {
+    "id": "routing-fallback-disabled",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "no_route"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-fallback-all-down": {
+    "id": "routing-fallback-all-down",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "no_route"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-fallback-excluded": {
+    "id": "routing-fallback-excluded",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "m3"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-fallback-retention": {
+    "id": "routing-fallback-retention",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "m6"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-latency-soft-unmet": {
+    "id": "routing-latency-soft-unmet",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "m1"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "routing-latency-preferred-pool": {
+    "id": "routing-latency-preferred-pool",
+    "group": "routing",
+    "category": "availability_fallback_and_preferences",
+    "expected": {
+      "action": "m4"
+    },
+    "reference_basis": "Frozen 2026-10-13 routing policy; tests candidate selection, not downstream answer quality."
+  },
+  "device-00": {
+    "id": "device-00",
+    "group": "device_control",
+    "expected": {
+      "power": "on",
+      "temperature": "24",
+      "mode": "cool"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-01": {
+    "id": "device-01",
+    "group": "device_control",
+    "expected": {
+      "power": "on",
+      "temperature": "24",
+      "mode": "cool"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-02": {
+    "id": "device-02",
+    "group": "device_control",
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-03": {
+    "id": "device-03",
+    "group": "device_control",
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-04": {
+    "id": "device-04",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "22",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-05": {
+    "id": "device-05",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "dry"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-06": {
+    "id": "device-06",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "24",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-07": {
+    "id": "device-07",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "28",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-08": {
+    "id": "device-08",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-09": {
+    "id": "device-09",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-10": {
+    "id": "device-10",
+    "group": "device_control",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "device-11": {
+    "id": "device-11",
+    "group": "device_control",
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    },
+    "reference_basis": "Authored device policy; no real devices are controlled."
+  },
+  "temperature-set-00": {
+    "id": "temperature-set-00",
+    "group": "temperature_multiselect",
+    "expected": {
+      "t16": "no",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "yes",
+      "t23": "no",
+      "t24": "no",
+      "t25": "no",
+      "t26": "yes",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "no"
+    },
+    "expected_set": [
+      "22",
+      "26"
+    ],
+    "reference_basis": "Exact set, including explicit exclusions and empty set; shared binary questions for fairness."
+  },
+  "temperature-set-01": {
+    "id": "temperature-set-01",
+    "group": "temperature_multiselect",
+    "expected": {
+      "t16": "yes",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "no",
+      "t23": "no",
+      "t24": "yes",
+      "t25": "no",
+      "t26": "no",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "yes"
+    },
+    "expected_set": [
+      "16",
+      "24",
+      "30"
+    ],
+    "reference_basis": "Exact set, including explicit exclusions and empty set; shared binary questions for fairness."
+  },
+  "temperature-set-02": {
+    "id": "temperature-set-02",
+    "group": "temperature_multiselect",
+    "expected": {
+      "t16": "no",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "no",
+      "t23": "no",
+      "t24": "yes",
+      "t25": "no",
+      "t26": "no",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "no"
+    },
+    "expected_set": [
+      "24"
+    ],
+    "reference_basis": "Exact set, including explicit exclusions and empty set; shared binary questions for fairness."
+  },
+  "temperature-set-03": {
+    "id": "temperature-set-03",
+    "group": "temperature_multiselect",
+    "expected": {
+      "t16": "no",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "yes",
+      "t23": "yes",
+      "t24": "yes",
+      "t25": "yes",
+      "t26": "no",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "no"
+    },
+    "expected_set": [
+      "22",
+      "23",
+      "24",
+      "25"
+    ],
+    "reference_basis": "Exact set, including explicit exclusions and empty set; shared binary questions for fairness."
+  },
+  "temperature-set-04": {
+    "id": "temperature-set-04",
+    "group": "temperature_multiselect",
+    "expected": {
+      "t16": "no",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "no",
+      "t23": "no",
+      "t24": "no",
+      "t25": "no",
+      "t26": "no",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "no"
+    },
+    "expected_set": [],
+    "reference_basis": "Exact set, including explicit exclusions and empty set; shared binary questions for fairness."
+  }
+}

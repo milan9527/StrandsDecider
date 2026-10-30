@@ -1,0 +1,14 @@
+{
+  "selected_variant": "seq1-eager-restored",
+  "action": "rollback",
+  "reason": "No tested alternative qualified: seq2 full30 gain only1.5% and single step unchanged; seq4/GDN slower; causal lost N09,N10; compiled lost N03,N09. Restore original runtime and preserve full baseline choices.",
+  "restored_validation_variant": "seq1-eager-restored",
+  "baseline_variant": "seq1-eager",
+  "observed_restoration_changes": [
+    [
+      "N09",
+      "original"
+    ]
+  ],
+  "quality_status": "Original deployment configuration restored; historical choice reproducibility failed on N09. Three full and three single-key repeats are internally stable and retain the changed answer. No accelerated variant accepted."
+}

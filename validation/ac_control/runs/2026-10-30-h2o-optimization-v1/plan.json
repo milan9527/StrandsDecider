@@ -1,0 +1,29 @@
+{
+  "prepared_at": "2026-10-30T10:03:00.507340+00:00",
+  "model": "h2oai/h2o-lightning-4b",
+  "region": "us-east-1",
+  "repetitions": 3,
+  "cases_sha256": "28d16ebbce09b28253410d8c17557219935cef6a442082b5f62b54bd21e4cfb0",
+  "payload_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+  "references_sha256": "79f9067e63088d905c3bfec0b7acf76ab22d6bb0570ec440c5515ce2a6d0c335",
+  "case_policy": "50 frozen baseline observations: 20 spec x original/reversed, 10 diagnostic original; full 30-key state and all candidates unchanged",
+  "performance_policy": "S03; one warmup; full30 and actual single-key serial each repeated3, alternating order",
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "planned_variants": [
+    "seq1-eager",
+    "seq2-eager",
+    "seq4-eager",
+    "best-seqs-graphs",
+    "causal-on-best-runtime"
+  ],
+  "selection_policy": "Measure both speed and all baseline cases. Prefer zero choice changes for runtime-only optimizations; reject regressions on previously correct cases. Do not promote a mode change without quality evidence. Keep full state/candidates. Roll back failed startup.",
+  "runner_source_sha256": {
+    "run_h2o_optimization.py": "df27831a0446560b19a6ff74f3dbf4817c2b7f41fcde4d27a7c6d18b1ac26a8c",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5"
+  },
+  "parent_experiments_sha256": "07a8125b28ef4f2433bbf23864be49f929cd4bea8a236316301dcffea64fcd3f",
+  "parent_serial_plan_sha256": "3ebe5f1c097c579db038c1dde8a09ecd472ab82b0349632896a713d7132213c4"
+}

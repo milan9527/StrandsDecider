@@ -1,0 +1,26 @@
+{
+  "version": "open-models-20261029-v1",
+  "cases": 89,
+  "requests_per_model": 178,
+  "variants": [
+    "original",
+    "reversed"
+  ],
+  "groups": {
+    "device_control": 12,
+    "payment": 40,
+    "routing": 32,
+    "temperature_multiselect": 5
+  },
+  "request_list_sha256": "1c7063f8cbe36e2572b24267c796cd0ffa0520168b1fd668ee9145582cb173b1",
+  "references_sha256": "c9ee67421bb0c3ce324699eaa3e8da9c122bd61dd3498f783f374ca0b0f5ea73",
+  "max_baseline_calls_per_provider": 278,
+  "notes": [
+    "References are stored separately and never sent to any provider.",
+    "Model errors count as failed cases; no silent retries or fallback choices.",
+    "Temperature multiselect uses identical independent binary questions for all seven providers.",
+    "Liquid native multiselect is an extra capability test, excluded from paired scores.",
+    "Two candidate orders are repeated observations of the same case.",
+    "Device execution is simulated. Routing scores do not measure downstream model outputs."
+  ]
+}

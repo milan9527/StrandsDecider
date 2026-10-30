@@ -1,0 +1,921 @@
+[
+  {
+    "id": "S01",
+    "title": "开机",
+    "category": "single",
+    "query": "Turn on the air conditioner.",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S02",
+    "title": "选择制冷模式",
+    "category": "single",
+    "query": "Set the air conditioner to cooling mode.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S03",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S04",
+    "title": "设置华氏温度",
+    "category": "single",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S05",
+    "title": "选择高风速",
+    "category": "single",
+    "query": "Set the air conditioner fan speed to high.",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S06",
+    "title": "开启室内机静音",
+    "category": "single",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S07",
+    "title": "开启室外机静音",
+    "category": "single",
+    "query": "Turn on outdoor quiet mode.",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S08",
+    "title": "开启空气净化",
+    "category": "single",
+    "query": "Turn on air purification.",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S09",
+    "title": "关闭 LED 显示屏",
+    "category": "single",
+    "query": "Turn off the air conditioner display light.",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "S10",
+    "title": "选择两侧水平送风",
+    "category": "single",
+    "query": "Set the horizontal airflow to both sides.",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M01",
+    "title": "电源、模式与摄氏温度",
+    "category": "multi",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M02",
+    "title": "制热模式、温度与风速",
+    "category": "multi",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M03",
+    "title": "制冷模式、高风速与节能",
+    "category": "multi",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M04",
+    "title": "室内与室外静音",
+    "category": "multi",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M05",
+    "title": "空气净化与显示屏",
+    "category": "multi",
+    "query": "Turn on air purification and turn off the display light.",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M06",
+    "title": "新风与健康风",
+    "category": "multi",
+    "query": "Enable fresh air and healthy wind.",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M07",
+    "title": "室内与室外自清洁",
+    "category": "multi",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M08",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M09",
+    "title": "需求响应设置",
+    "category": "multi",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "M10",
+    "title": "制冷模式、Super Mode 与温度",
+    "category": "multi",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "dataset": "spec"
+  },
+  {
+    "id": "N01",
+    "title": "仅开机，保持模式",
+    "category": "single",
+    "dataset": "extension",
+    "query": "Please power on the AC without changing its operating mode.",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N02",
+    "title": "舒适自动与主模式区分",
+    "category": "single",
+    "dataset": "extension",
+    "query": "Enable Comfort Auto; leave the operating mode unchanged.",
+    "expected": [
+      {
+        "cmdName": "Comfort Auto",
+        "cmdKey": "t_indoortemp_detection",
+        "cmdValue": "1"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N03",
+    "title": "防冻制热与主模式区分",
+    "category": "single",
+    "dataset": "extension",
+    "query": "Enable 8-degree frost protection; leave the operating mode unchanged.",
+    "expected": [
+      {
+        "cmdName": "8° Heat",
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N04",
+    "title": "关闭室内静音，保持室外设置",
+    "category": "single",
+    "dataset": "extension",
+    "query": "Stop indoor quiet mode, but leave outdoor quiet unchanged.",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N05",
+    "title": "新表达摄氏温度组合",
+    "category": "multi",
+    "dataset": "extension",
+    "query": "Use heating at 25 degrees Celsius with low fan speed.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "25"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "5"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N06",
+    "title": "新表达华氏温度组合",
+    "category": "multi",
+    "dataset": "extension",
+    "query": "Use cooling at 72 degrees Fahrenheit with medium-high fan speed.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "72"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "8"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N07",
+    "title": "灯光净化，保持电源",
+    "category": "multi",
+    "dataset": "extension",
+    "query": "Switch off the display light and switch on air purification; leave the main power setting unchanged.",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N08",
+    "title": "新数值需求响应",
+    "category": "multi",
+    "dataset": "extension",
+    "query": "Enable demand response with a 7-degree temperature offset and 45 percent load capacity.",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "7"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "45"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N09",
+    "title": "垂直摆风与水平直吹",
+    "category": "multi",
+    "dataset": "extension",
+    "query": "Enable vertical oscillation and point horizontal airflow straight ahead.",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "0"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "N10",
+    "title": "新风与健康风区分",
+    "category": "single",
+    "dataset": "extension",
+    "query": "Enable fresh air while keeping healthy wind unchanged.",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      }
+    ],
+    "reference_basis": "AC spec section 2 command mapping, explicit-only changes and mandatory temperature unit; unchanged settings emit nothing."
+  },
+  {
+    "id": "H01",
+    "query": "Power the air conditioner on; keep the operating mode unchanged.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H02",
+    "query": "Power the air conditioner off without changing its quiet settings.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_power",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H03",
+    "query": "Set a target of 21 degrees Celsius and turn energy saving on.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_temp",
+        "cmdValue": "21"
+      },
+      {
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H04",
+    "query": "Set the target to 73 degrees Fahrenheit with high fan speed.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_temp_f",
+        "cmdValue": "73"
+      },
+      {
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      },
+      {
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ]
+  },
+  {
+    "id": "H05",
+    "query": "Enable continuous vertical oscillation; keep horizontal airflow unchanged.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H06",
+    "query": "Disable continuous vertical oscillation and point horizontal airflow straight ahead.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_up_down",
+        "cmdValue": "0"
+      },
+      {
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H07",
+    "query": "Set vertical airflow to Position 2 and horizontal airflow to all right.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_swing_angle",
+        "cmdValue": "3"
+      },
+      {
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H08",
+    "query": "Turn fresh air off while keeping healthy wind unchanged.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H09",
+    "query": "Turn healthy wind on without changing fresh-air ventilation.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H10",
+    "query": "Enable 8-degree frost-protection heating, preserving the DR temperature offset.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_8heat",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H11",
+    "query": "Disable 8-degree frost protection and turn the display light off.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_8heat",
+        "cmdValue": "0"
+      },
+      {
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H12",
+    "query": "Enable outdoor quiet and disable indoor quiet.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H13",
+    "query": "Switch to heating mode and choose low fan speed; leave the target temperature unchanged.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "5"
+      }
+    ]
+  },
+  {
+    "id": "H14",
+    "query": "Select Comfort Auto without changing the operating mode.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_indoortemp_detection",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H15",
+    "query": "Select Auto operating mode while leaving Comfort Auto unchanged.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_work_mode",
+        "cmdValue": "4"
+      }
+    ]
+  },
+  {
+    "id": "H16",
+    "query": "Turn AI Smart off and set AI Wind to blow towards people.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_tms",
+        "cmdValue": "0"
+      },
+      {
+        "cmdKey": "t_swing_follow",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H17",
+    "query": "Start outdoor self-cleaning; keep indoor self-cleaning unchanged.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H18",
+    "query": "Activate one-key self-cleaning without changing the separate indoor and outdoor self-clean switches.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_onekey_selfclean",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H19",
+    "query": "Choose the youth sleep profile and enable air purification.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_sleep",
+        "cmdValue": "3"
+      },
+      {
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H20",
+    "query": "Enable demand response with a temperature offset of 6 degrees and load capacity of 52 percent.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "6"
+      },
+      {
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "52"
+      }
+    ]
+  },
+  {
+    "id": "H21",
+    "query": "Disable demand response while preserving its offset and load capacity.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H22",
+    "query": "Disable automatic defrost cleaning and Super Mode.",
+    "dataset": "validation",
+    "category": "multi",
+    "expected": [
+      {
+        "cmdKey": "t_auto_defrost_clean",
+        "cmdValue": "0"
+      },
+      {
+        "cmdKey": "t_super",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "H23",
+    "query": "Change only the temperature unit to Fahrenheit; preserve the target value.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": [
+      {
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "H24",
+    "query": "Leave all air-conditioner settings unchanged.",
+    "dataset": "validation",
+    "category": "single",
+    "expected": []
+  }
+]

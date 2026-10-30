@@ -1,0 +1,31 @@
+{
+  "http_status": 200,
+  "response_text": "{\"ok\": true, \"model\": \"torchcast-ai/torchcast-decision-4b\", \"provider\": \"torchcast\", \"repository\": \"torchcast-ai/torchcast-decision-4b\", \"revision\": \"492bfb19662f3c6e601cc9c4bd2911ac95609ed4\", \"gpu\": \"NVIDIA L4\", \"torch\": \"2.9.1+cu128\", \"cuda\": \"12.8\", \"transformers\": \"5.8.1\", \"cpu_threads\": 2, \"external_concurrency\": 1, \"adapter_sha256\": \"e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb\", \"runtime\": \"official noncausal BF16 with CUDA graphs; images=False\", \"cuda_graphs\": 52, \"fast_kernels\": true, \"prompt_token_upper_bound\": 6664, \"input_truncated\": false, \"native_option_grouping\": {\"threshold\": 26, \"group\": 25, \"keep\": 3}, \"gpu_allocated_after_load\": 8685169664}",
+  "status": "ok",
+  "response": {
+    "ok": true,
+    "model": "torchcast-ai/torchcast-decision-4b",
+    "provider": "torchcast",
+    "repository": "torchcast-ai/torchcast-decision-4b",
+    "revision": "492bfb19662f3c6e601cc9c4bd2911ac95609ed4",
+    "gpu": "NVIDIA L4",
+    "torch": "2.9.1+cu128",
+    "cuda": "12.8",
+    "transformers": "5.8.1",
+    "cpu_threads": 2,
+    "external_concurrency": 1,
+    "adapter_sha256": "e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb",
+    "runtime": "official noncausal BF16 with CUDA graphs; images=False",
+    "cuda_graphs": 52,
+    "fast_kernels": true,
+    "prompt_token_upper_bound": 6664,
+    "input_truncated": false,
+    "native_option_grouping": {
+      "threshold": 26,
+      "group": 25,
+      "keep": 3
+    },
+    "gpu_allocated_after_load": 8685169664
+  },
+  "client_ms": 22.88444200075901
+}

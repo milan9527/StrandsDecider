@@ -1,0 +1,48 @@
+{
+  "started_at": "2026-10-30T12:58:22.702839+00:00",
+  "status": "complete",
+  "provider": "pplx",
+  "model": {
+    "repository": "perplexity-ai/pplx-decider-flash-v1.2",
+    "revision": "9ff7cf9838e59df461c276b7699d56b244d2af58"
+  },
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "runner_sha256": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+  "calls": 285,
+  "errors": 0,
+  "serial30_blocks": [
+    {
+      "repetition": 0,
+      "started_at": "2026-10-30T13:02:48.280340+00:00",
+      "finished_at": "2026-10-30T13:02:59.209554+00:00",
+      "wall_ms": 10929.20616299989,
+      "http_sum_ms": 10917.024895999475,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 1,
+      "started_at": "2026-10-30T13:03:03.136711+00:00",
+      "finished_at": "2026-10-30T13:03:14.040573+00:00",
+      "wall_ms": 10903.855200999715,
+      "http_sum_ms": 10891.962531000445,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 2,
+      "started_at": "2026-10-30T13:03:15.609244+00:00",
+      "finished_at": "2026-10-30T13:03:26.539731+00:00",
+      "wall_ms": 10930.477200000041,
+      "http_sum_ms": 10918.040331999691,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "endpoint": "http://127.0.0.1:18811",
+  "last": {
+    "case_id": "S03",
+    "order": "original",
+    "kind": "full30",
+    "repetition": 2
+  },
+  "finished_at": "2026-10-30T13:03:28.974720+00:00"
+}

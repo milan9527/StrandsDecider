@@ -1,0 +1,2966 @@
+[
+  {
+    "provider": "decider",
+    "case_id": "payment-pending-ready-verify",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "await_confirmations"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "payment_verified"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-pending-ready-verify",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "await_confirmations"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "payment_verified"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-pending-ready-execute",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "hold"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "credit_order"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-pending-ready-execute",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "wait_settlement"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "credit_order"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-pending-ready-close",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "follow_up"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "resolve"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-pending-ready-close",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "follow_up"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "resolve"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-underpaid-pending-verify",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "await_confirmations"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "request_topup"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-underpaid-pending-verify",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "await_confirmations"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "request_topup"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-underpaid-ready-verify",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "await_confirmations"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "payment_verified"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-underpaid-ready-execute",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "hold"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "credit_order"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-underpaid-ready-execute",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "hold"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "credit_order"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-refund-pending-approve",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "approved"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "verify_destination"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-refund-pending-approve",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "approved"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "verify_destination"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "payment-settlement-ready-execute",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "escalate_settlement"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "reconcile_settlement"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-image",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-image",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-audio",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-audio",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-video",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-video",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m4"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-image-logprobs",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-image-logprobs",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-image-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cap-image-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-input-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-one-fits",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-one-fits",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-long-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-long-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m6"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-primary-down",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-primary-down",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-rate-limit",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-disabled",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-disabled",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-excluded",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-excluded",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-retention",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-fallback-retention",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-latency-soft-unmet",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m1"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-latency-soft-unmet",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m1"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-latency-preferred-pool",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "routing-latency-preferred-pool",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-02",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-05",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "dry"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "dry"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-05",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "dry"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "dry"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-06",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "18",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "24",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-06",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "28",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "24",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-07",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "22",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "28",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-07",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "29",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "28",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-08",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "heat"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-09",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "heat"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-11",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "decider",
+    "case_id": "device-11",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "payment-refund-ready-execute",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 50 (char 49)",
+    "expected": {
+      "action": "refund_payment"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "payment-refund-ready-execute",
+    "variant": "reversed",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 50 (char 49)",
+    "expected": {
+      "action": "refund_payment"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "routing-intent-concurrency",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "clarify"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "code_analysis"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "routing-intent-debug",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "clarify"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "code_analysis"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "routing-intent-debug",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "clarify"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "code_analysis"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "routing-intent-proof",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "clarify"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "reasoning"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "routing-intent-proof",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "clarify"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "reasoning"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-01",
+    "variant": "reversed",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 92 (char 91)",
+    "expected": {
+      "power": "on",
+      "temperature": "24",
+      "mode": "cool"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-02",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 104 (char 103)",
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-02",
+    "variant": "reversed",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 104 (char 103)",
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-04",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 104 (char 103)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "22",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-05",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 105 (char 104)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "dry"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-05",
+    "variant": "reversed",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 105 (char 104)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "dry"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-06",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 104 (char 103)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "24",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-06",
+    "variant": "reversed",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 104 (char 103)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "24",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-07",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 104 (char 103)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "28",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "gpt",
+    "case_id": "device-08",
+    "variant": "original",
+    "status": "error",
+    "choices": null,
+    "error_type": "JSONDecodeError",
+    "error": "Expecting ',' delimiter: line 1 column 109 (char 108)",
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-intent-debug",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "clarify"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "code_analysis"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-cost-no-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-fallback-disabled",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-fallback-disabled",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-fallback-retention",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "routing-fallback-retention",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-08",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-08",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-09",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-10",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-10",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-11",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "h2o",
+    "case_id": "device-11",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "routing-cap-image",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "routing-cap-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m6"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "routing-cap-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "device-02",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "device-04",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "off",
+      "temperature": "22",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "22",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "device-11",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "jev",
+    "case_id": "device-11",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-image",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-audio",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-audio",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-video",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-video",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cap-image-logprobs",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-one-fits",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-one-fits",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-long-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-long-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-fallback-primary-down",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-fallback-retention",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "routing-latency-preferred-pool",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "device-03",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "device-03",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "device-10",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "device-11",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "knowline",
+    "case_id": "device-11",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "30",
+      "mode": "heat"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "payment-underpaid-pending-close",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "resolve"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "follow_up"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "payment-refund-pending-execute",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "refund_payment"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "hold"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "payment-refund-pending-close",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "resolve"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "follow_up"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cap-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cap-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cap-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cap-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-input-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-input-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-no-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-no-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-one-fits",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-one-fits",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-long-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-long-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-primary-down",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-primary-down",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-rate-limit",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-disabled",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-disabled",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-all-down",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-excluded",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-excluded",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-retention",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-fallback-retention",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "routing-latency-preferred-pool",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m5"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-02",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "26",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-02",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "cool"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "on",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-03",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-03",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-06",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "18",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "24",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-10",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "liquid",
+    "case_id": "device-10",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cap-audio",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cap-audio",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m6"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cap-video",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m6"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cap-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m6"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cap-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cap-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m2"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-exact-budget",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "m2"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m4"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-long-context",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-long-context",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m5"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m3"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-fallback-disabled",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "m1"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "no_route"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-fallback-retention",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "routing-fallback-retention",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "action": "no_route"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "action": "m6"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-03",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-03",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "unchanged",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "off",
+      "temperature": "unchanged",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-08",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-08",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-09",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-09",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "clarify",
+      "mode": "unchanged"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-10",
+    "variant": "original",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "device-10",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "power": "on",
+      "temperature": "16",
+      "mode": "fan"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "power": "unchanged",
+      "temperature": "16",
+      "mode": "fan"
+    }
+  },
+  {
+    "provider": "pplx",
+    "case_id": "temperature-set-03",
+    "variant": "reversed",
+    "status": "ok",
+    "choices": {
+      "t16": "no",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "yes",
+      "t23": "yes",
+      "t24": "no",
+      "t25": "no",
+      "t26": "no",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "no"
+    },
+    "error_type": null,
+    "error": null,
+    "expected": {
+      "t16": "no",
+      "t17": "no",
+      "t18": "no",
+      "t19": "no",
+      "t20": "no",
+      "t21": "no",
+      "t22": "yes",
+      "t23": "yes",
+      "t24": "yes",
+      "t25": "yes",
+      "t26": "no",
+      "t27": "no",
+      "t28": "no",
+      "t29": "no",
+      "t30": "no"
+    }
+  }
+]

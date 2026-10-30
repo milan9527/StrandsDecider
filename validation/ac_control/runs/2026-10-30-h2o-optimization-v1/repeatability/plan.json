@@ -1,0 +1,70 @@
+{
+  "prepared_at": "2026-10-30T10:53:50.305896+00:00",
+  "reason": "Restored original runtime changed N09; investigate repeatability",
+  "schedule": [
+    {
+      "case_id": "N03",
+      "mode": "full_30",
+      "repetition": 0
+    },
+    {
+      "case_id": "N09",
+      "mode": "full_30",
+      "repetition": 0
+    },
+    {
+      "case_id": "N10",
+      "mode": "full_30",
+      "repetition": 0
+    },
+    {
+      "case_id": "N09",
+      "mode": "single_key",
+      "repetition": 0
+    },
+    {
+      "case_id": "N03",
+      "mode": "full_30",
+      "repetition": 1
+    },
+    {
+      "case_id": "N09",
+      "mode": "full_30",
+      "repetition": 1
+    },
+    {
+      "case_id": "N10",
+      "mode": "full_30",
+      "repetition": 1
+    },
+    {
+      "case_id": "N09",
+      "mode": "single_key",
+      "repetition": 1
+    },
+    {
+      "case_id": "N03",
+      "mode": "full_30",
+      "repetition": 2
+    },
+    {
+      "case_id": "N09",
+      "mode": "full_30",
+      "repetition": 2
+    },
+    {
+      "case_id": "N10",
+      "mode": "full_30",
+      "repetition": 2
+    },
+    {
+      "case_id": "N09",
+      "mode": "single_key",
+      "repetition": 2
+    }
+  ],
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "changes": "No prompt/candidate edits; separate single-key N09 uses full state and original t_swing_angle question",
+  "scoring": "Supplemental diagnosis only; never replace prior 50-case results"
+}

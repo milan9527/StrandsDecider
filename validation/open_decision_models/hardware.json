@@ -1,0 +1,18 @@
+{
+  "date_utc": "2026-10-29",
+  "instance_id": "i-0daca64f56056aa1c",
+  "instance_type": "g6.xlarge",
+  "region": "us-east-1",
+  "gpu": "NVIDIA L4",
+  "gpu_memory_mib": 23034,
+  "vcpus": 4,
+  "ram_gib": 16,
+  "driver": "580.178.04",
+  "gpu_models_tested_sequentially": true,
+  "original_model_and_vision_services_paused_during_test": true,
+  "online_vllm_instance_used": false,
+  "gpu_client_location": "loopback on the inference instance",
+  "api_client_location": "existing development EC2 in us-east-1",
+  "primary_round": "isolated_repeat",
+  "initial_round_issue": "See isolation_correction.json"
+}

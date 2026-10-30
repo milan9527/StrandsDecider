@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "ExecMainStatus=0\nMemoryCurrent=6021689344\nActiveState=active\nSubState=running\nStarted ac-candidate-pplx.service - /opt/ac-candidate-tests/envs/pplx/bin/python /opt/ac-candidate-tests/run/candidate_server.py --provider pplx --model /opt/ac-candidate-tests/models/pplx --cases /opt/ac-candidate-tests/run/cases.json --metadata /opt/ac-candidate-tests/logs/pplx-runtime.json --port 18811.\n\rLoading weights:   0%|          | 0/723 [00:00<?, ?it/s]\rLoading weights:  11%|\u2588\u258f        | 83/723 [00:00<00:00, 779.04it/s]\rLoading weights:  22%|\u2588\u2588\u258f       | 161/723 [00:00<00:00, 622.08it/s]\rLoading weights:  31%|\u2588\u2588\u2588\u258f      | 226/723 [00:00<00:00, 614.98it/s]\rLoading weights:  41%|\u2588\u2588\u2588\u2588\u258f     | 300/723 [00:00<00:00, 640.49it/s]\rLoading weights:  52%|\u2588\u2588\u2588\u2588\u2588\u258f    | 375/723 [00:00<00:00, 669.25it/s]\rLoading weights:  61%|\u2588\u2588\u2588\u2588\u2588\u2588\u258f   | 443/723 [00:00<00:00, 644.51it/s]\rLoading weights:  74%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d  | 538/723 [00:00<00:00, 736.95it/s]\rLoading weights:  89%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2589 | 646/723 [00:00<00:00, 824.74it/s]\rLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 723/723 [00:00<00:00, 762.40it/s]\n5336 MiB, 1 %\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T12:20:23.608Z",
+  "ExecutionEndDateTime": "2026-10-30T12:20:23.608Z"
+}

@@ -1,0 +1,35 @@
+{
+  "region": "us-east-1",
+  "bucket": "strands-decider-vllm-632930644527",
+  "instance": "i-0ae7eb0abcb815af3",
+  "prefix": "ac-control/2026-10-30-liquid-accuracy-v1",
+  "remote": "/opt/decider-open-models/ac-control/2026-10-30-liquid-accuracy-v1",
+  "commands": [
+    {
+      "phase": "development",
+      "id": "20fcd0dd-5ff3-4745-b6f3-4b6cd865c9c6",
+      "input_key": "input/ac-control/2026-10-30-liquid-accuracy-v1/development.tar.gz",
+      "archive_sha256": "421adb578ed2ffb9e09ea41f5839ef9f4b358b479fe2eef2701ad2f4da0cf157",
+      "files": [
+        "plan.json",
+        "development_cases.json",
+        "liquid_ac_protocol.py",
+        "liquid_ac_client.py",
+        "run_liquid_accuracy.py",
+        "ablation_protocol.py",
+        "run_ablation.py",
+        "run_resident.py"
+      ]
+    },
+    {
+      "phase": "validation",
+      "id": "fa302ec6-33b0-4871-8cdf-9a4c285397dd",
+      "input_key": "input/ac-control/2026-10-30-liquid-accuracy-v1/validation.tar.gz",
+      "archive_sha256": "95a64db6660eb9ca310d2b17049f6078226f01aace98d6fe5bcd19673bc18556",
+      "files": [
+        "validation_cases.json",
+        "selection.json"
+      ]
+    }
+  ]
+}

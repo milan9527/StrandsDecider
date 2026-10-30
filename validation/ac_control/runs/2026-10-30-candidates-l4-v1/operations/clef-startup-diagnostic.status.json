@@ -1,0 +1,36 @@
+{
+  "CommandId": "5e9e2205-2879-4ca0-b0ca-beb4707f3cbc",
+  "InstanceId": "i-0bd4d9196f1c163c0",
+  "Comment": "Read-only Clef startup progress",
+  "DocumentName": "AWS-RunShellScript",
+  "DocumentVersion": "$DEFAULT",
+  "PluginName": "aws:runShellScript",
+  "ResponseCode": 0,
+  "ExecutionStartDateTime": "2026-10-30T13:48:09.806Z",
+  "ExecutionElapsedTime": "PT0.03S",
+  "ExecutionEndDateTime": "2026-10-30T13:48:09.806Z",
+  "Status": "Success",
+  "StatusDetails": "Success",
+  "StandardOutputContent": "0 MiB, 0 %\n  File \"/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d/causal_conv1d_interface.py\", line 6, in <module>\n    from causal_conv1d.cpp_functions import causal_conv1d_fwd_function, causal_conv1d_bwd_function, causal_conv1d_update_function\n  File \"/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d/cpp_functions.py\", line 5, in <module>\n    import causal_conv1d_cuda\nImportError: /opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c104cuda29c10_cuda_check_implementationEiPKcS2_ib\nac-candidate-clef.service: Main process exited, code=exited, status=1/FAILURE\nac-candidate-clef.service: Failed with result 'exit-code'.\nac-candidate-clef.service: Consumed 3.688s CPU time.\n",
+  "StandardOutputUrl": "",
+  "StandardErrorContent": "",
+  "StandardErrorUrl": "",
+  "CloudWatchOutputConfig": {
+    "CloudWatchLogGroupName": "",
+    "CloudWatchOutputEnabled": false
+  },
+  "ResponseMetadata": {
+    "RequestId": "85c20758-0e6e-4bb8-a66a-a0bfa9e43655",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "server": "Server",
+      "date": "Fri, 30 Oct 2026 13:48:15 GMT",
+      "content-type": "application/x-amz-json-1.1",
+      "content-length": "1444",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "85c20758-0e6e-4bb8-a66a-a0bfa9e43655",
+      "cache-control": "no-store"
+    },
+    "RetryAttempts": 0
+  }
+}

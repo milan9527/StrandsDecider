@@ -1,0 +1,16 @@
+{
+  "recorded_at": "2026-10-30T10:19:41.531801+00:00",
+  "image": "sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07",
+  "started_at": "2026-10-30T10:15:45.052581443Z",
+  "restart_count": 0,
+  "env": {
+    "MAX_LEN": "4096",
+    "GPU_UTIL": "0.34",
+    "VLLM_ARGS": "--max-num-seqs 4 --max-num-batched-tokens 4096 --enforce-eager --quantization fp8",
+    "CUDA_GRAPH_MAX_TOKENS": "128",
+    "VLLM_GDN_PREFILL_GRAPH_MAX_TOKENS": "0",
+    "VLLM_GDN_PREFILL_GRAPH_PRECAPTURE": "0",
+    "VLLM_CACHE_ROOT": "/bench/h2o-cache/ac-optimization-seq4-eager",
+    "SHIM_ATTENTION_MODE": null
+  }
+}

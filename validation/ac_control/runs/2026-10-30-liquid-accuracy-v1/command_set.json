@@ -1,0 +1,299 @@
+{
+  "deviceTypeCode": "009",
+  "commandSet": [
+    {
+      "name": "Power",
+      "key": "t_power",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Mode",
+      "key": "t_work_mode",
+      "type": "enum",
+      "options": {
+        "0": "Fan",
+        "1": "Heat",
+        "2": "Cool",
+        "3": "Dry",
+        "4": "Auto"
+      }
+    },
+    {
+      "name": "Temperature (Celsius)",
+      "key": "t_temp",
+      "type": "range",
+      "min": 16,
+      "max": 32,
+      "unit": "°C"
+    },
+    {
+      "name": "Temperature (Fahrenheit)",
+      "key": "t_temp_f",
+      "type": "range",
+      "min": 61,
+      "max": 90,
+      "unit": "°F"
+    },
+    {
+      "name": "Temperature Unit",
+      "key": "t_temp_type",
+      "type": "enum",
+      "options": {
+        "0": "Celsius",
+        "1": "Fahrenheit"
+      }
+    },
+    {
+      "name": "Fan Speed",
+      "key": "t_fan_speed",
+      "type": "enum",
+      "options": {
+        "0": "Auto",
+        "5": "Low",
+        "6": "Medium Low",
+        "7": "Medium",
+        "8": "Medium High",
+        "9": "High"
+      }
+    },
+    {
+      "name": "Quiet",
+      "key": "t_fan_mute",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Super Mode",
+      "key": "t_super",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Up and Down Swing",
+      "key": "t_up_down",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Comfort Auto",
+      "key": "t_indoortemp_detection",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Left and Right Swing",
+      "key": "t_left_right",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Airflow",
+      "key": "t_swing_angle",
+      "type": "enum",
+      "options": {
+        "0": "Up and down swing",
+        "1": "Auto",
+        "2": "Position 1",
+        "3": "Position 2",
+        "4": "Position 3",
+        "5": "Position 4",
+        "6": "Position 5",
+        "7": "Position 6"
+      }
+    },
+    {
+      "name": "Horizontal Airflow",
+      "key": "t_swing_direction",
+      "type": "enum",
+      "options": {
+        "0": "Straight",
+        "1": "All Right",
+        "2": "Both sides",
+        "3": "Left and Right Swing",
+        "4": "All Left",
+        "5": "Stop"
+      }
+    },
+    {
+      "name": "Energy Saving",
+      "key": "t_eco",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Air Purification",
+      "key": "t_purify",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "AI Wind",
+      "key": "t_swing_follow",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "Blow Towards",
+        "2": "Do Not Blow"
+      }
+    },
+    {
+      "name": "8° Heat",
+      "key": "t_8heat",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Sleep Mode",
+      "key": "t_sleep",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "Normal Sleep",
+        "2": "Elder Sleep",
+        "3": "Youth Sleep",
+        "4": "Child Sleep"
+      }
+    },
+    {
+      "name": "Dimmer",
+      "key": "t_dimmer",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Indoor Self-Clean",
+      "key": "t_indoor_selfclean",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Outdoor Self-Clean",
+      "key": "t_outdoor_selfclean",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "One-Key Self-Clean",
+      "key": "t_onekey_selfclean",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Fresh Air",
+      "key": "t_fresh_air",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "AI Smart Control",
+      "key": "t_tms",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Healthy Wind",
+      "key": "t_health_fan",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "Outdoor Quiet",
+      "key": "t_outdoor_mute",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "DR On/Off",
+      "key": "t_dr_onoff",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    {
+      "name": "DR Offset Temperature",
+      "key": "t_dr_offset",
+      "type": "range",
+      "min": 0,
+      "max": 31,
+      "unit": "°"
+    },
+    {
+      "name": "DR Load Capacity",
+      "key": "t_dr_mode",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
+    },
+    {
+      "name": "Auto-Defrost Clean",
+      "key": "t_auto_defrost_clean",
+      "type": "enum",
+      "options": {
+        "0": "Off",
+        "1": "Enabled but not executing",
+        "2": "Enabled and started",
+        "3": "In progress",
+        "4": "Finished"
+      },
+      "userControllableValues": [
+        "0",
+        "1"
+      ]
+    }
+  ]
+}

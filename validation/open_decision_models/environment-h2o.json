@@ -1,0 +1,15 @@
+{
+  "provider": "h2o",
+  "engine": "vLLM 0.30.0 with H2O pinned per-request-attention overlay",
+  "torch": "2.13.0+cu130",
+  "cuda": "13.0",
+  "transformers": "5.20.2",
+  "gpu": "NVIDIA L4",
+  "attention": "bidirectional",
+  "max_model_len": 8192,
+  "max_num_seqs": 16,
+  "enforce_eager": true,
+  "gpu_memory_utilization": 0.88,
+  "server_host": "127.0.0.1",
+  "overlay_commit": "b05cc29ab813895947954c268c4ec41ca0da1306"
+}

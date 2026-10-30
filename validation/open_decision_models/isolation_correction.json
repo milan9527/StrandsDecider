@@ -1,0 +1,17 @@
+{
+  "recorded_at": "2026-10-29T02:19:09.672903+00:00",
+  "reason": "The existing scheduled GPU controller restored the legacy model service at 01:53:07 UTC, occupying approximately 8478 MiB. Initial GPU observations are retained separately and excluded from final comparisons.",
+  "initial_data_directory": "initial_shared_gpu",
+  "primary_repeat_providers": [
+    "decider",
+    "liquid",
+    "pplx",
+    "knowline"
+  ],
+  "additional_quality_requests_per_provider": 178,
+  "additional_performance_requests_per_provider": 96,
+  "reference_inputs_unchanged": true,
+  "model_weights_unchanged": true,
+  "controls": "Temporarily disable controller schedule and function concurrency; stop legacy model service; assert <512 MiB GPU used before each model starts; restore after tests.",
+  "api_controls_reused": true
+}

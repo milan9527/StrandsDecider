@@ -1,0 +1,53 @@
+{
+  "verified_at": "2026-10-30T12:19:34.952001+00:00",
+  "exact_original_unit_restored": true,
+  "dropin_absent": true,
+  "protected_services_unchanged": true,
+  "health": {
+    "ok": true,
+    "model": "h2oai/h2o-lightning-4b",
+    "shim": "h2o-lightning-shim",
+    "backend": "vllm http://127.0.0.1:18802",
+    "layout": "plain",
+    "chat_template": true,
+    "state_compact": true,
+    "prefill": "Answer:",
+    "max_state_tokens": 32000,
+    "selector": "v2",
+    "state_cap": null,
+    "noul_floor": {
+      "value": 0.801,
+      "source": "serve_config.json"
+    },
+    "temperature_by_type": {
+      "choice": 0.75,
+      "noul": 0.8,
+      "score": 0.65
+    },
+    "temperature_source": "serve_config.json",
+    "max_options": 255,
+    "vllm_max_model_len": 4096,
+    "images": {
+      "max_images": 1,
+      "max_pixels": 1048576,
+      "temperature": 1.0,
+      "verified": true
+    },
+    "attention_mode": "bidirectional",
+    "modes": [
+      "causal",
+      "bidirectional"
+    ]
+  },
+  "guard": {
+    "returncode": 4,
+    "stdout": "inactive\n",
+    "stderr": ""
+  },
+  "effective_unit": "# /etc/systemd/system/decider-h2o.service\n[Unit]\nDescription=Resident H2O Lightning FP8 on shared L4\nAfter=docker.service decider-vllm.service\nRequires=docker.service\nWants=decider-vllm.service\n[Service]\nExecStartPre=/usr/bin/python3 /opt/decider-open-models/source/wait_ready.py 8100\nExecStartPre=-/usr/bin/docker rm -f decider-h2o-resident\nExecStart=/usr/bin/docker run --name decider-h2o-resident --gpus all --network host --memory=8g --shm-size=1g --cap-drop=ALL --security-opt=no-new-privileges:true --log-opt max-size=10m --log-opt max-file=3 --entrypoint bash -v /opt/decider-open-models:/bench -e PATH=/bench/h2o-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin -e MAX_LEN=4096 -e GPU_UTIL=0.34 -e PORT=18803 -e VLLM_PORT=18802 -e MAX_IMAGES=1 -e MAX_PIXELS=65536 -e CUDA_GRAPH_MAX_TOKENS=128 -e VLLM_GDN_PREFILL_GRAPH_MAX_TOKENS=0 -e VLLM_GDN_PREFILL_GRAPH_PRECAPTURE=0 -e VLLM_CACHE_ROOT=/bench/h2o-cache -e \"VLLM_ARGS=--max-num-seqs 1 --max-num-batched-tokens 4096 --enforce-eager --quantization fp8\" sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07 /bench/models/h2o/serve.sh\nExecStop=/usr/bin/docker stop --time 30 decider-h2o-resident\nRestart=always\nRestartSec=15\nTimeoutStartSec=0\nTimeoutStopSec=60\n[Install]\nWantedBy=multi-user.target\n",
+  "docker_env": {
+    "returncode": 0,
+    "stdout": "[\"GPU_UTIL=0.34\",\"VLLM_PORT=18802\",\"MAX_PIXELS=65536\",\"VLLM_GDN_PREFILL_GRAPH_MAX_TOKENS=0\",\"VLLM_ARGS=--max-num-seqs 1 --max-num-batched-tokens 4096 --enforce-eager --quantization fp8\",\"PORT=18803\",\"MAX_IMAGES=1\",\"CUDA_GRAPH_MAX_TOKENS=128\",\"VLLM_GDN_PREFILL_GRAPH_PRECAPTURE=0\",\"VLLM_CACHE_ROOT=/bench/h2o-cache\",\"PATH=/bench/h2o-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\"MAX_LEN=4096\",\"NVARCH=x86_64\",\"NVIDIA_REQUIRE_CUDA=cuda>=13.0 brand=unknown,driver>=535,driver<536 brand=grid,driver>=535,driver<536 brand=tesla,driver>=535,driver<536 brand=nvidia,driver>=535,driver<536 brand=quadro,driver>=535,driver<536 brand=quadrortx,driver>=535,driver<536 brand=nvidiartx,driver>=535,driver<536 brand=vapps,driver>=535,driver<536 brand=vpc,driver>=535,driver<536 brand=vcs,driver>=535,driver<536 brand=vws,driver>=535,driver<536 brand=cloudgaming,driver>=535,driver<536 brand=unknown,driver>=550,driver<551 brand=grid,driver>=550,driver<551 brand=tesla,driver>=550,driver<551 brand=nvidia,driver>=550,driver<551 brand=quadro,driver>=550,driver<551 brand=quadrortx,driver>=550,driver<551 brand=nvidiartx,driver>=550,driver<551 brand=vapps,driver>=550,driver<551 brand=vpc,driver>=550,driver<551 brand=vcs,driver>=550,driver<551 brand=vws,driver>=550,driver<551 brand=cloudgaming,driver>=550,driver<551 brand=unknown,driver>=565,driver<566 brand=grid,driver>=565,driver<566 brand=tesla,driver>=565,driver<566 brand=nvidia,driver>=565,driver<566 brand=quadro,driver>=565,driver<566 brand=quadrortx,driver>=565,driver<566 brand=nvidiartx,driver>=565,driver<566 brand=vapps,driver>=565,driver<566 brand=vpc,driver>=565,driver<566 brand=vcs,driver>=565,driver<566 brand=vws,driver>=565,driver<566 brand=cloudgaming,driver>=565,driver<566 brand=unknown,driver>=570,driver<571 brand=grid,driver>=570,driver<571 brand=tesla,driver>=570,driver<571 brand=nvidia,driver>=570,driver<571 brand=quadro,driver>=570,driver<571 brand=quadrortx,driver>=570,driver<571 brand=nvidiartx,driver>=570,driver<571 brand=vapps,driver>=570,driver<571 brand=vpc,driver>=570,driver<571 brand=vcs,driver>=570,driver<571 brand=vws,driver>=570,driver<571 brand=cloudgaming,driver>=570,driver<571 brand=unknown,driver>=575,driver<576 brand=grid,driver>=575,driver<576 brand=tesla,driver>=575,driver<576 brand=nvidia,driver>=575,driver<576 brand=quadro,driver>=575,driver<576 brand=quadrortx,driver>=575,driver<576 brand=nvidiartx,driver>=575,driver<576 brand=vapps,driver>=575,driver<576 brand=vpc,driver>=575,driver<576 brand=vcs,driver>=575,driver<576 brand=vws,driver>=575,driver<576 brand=cloudgaming,driver>=575,driver<576\",\"NV_CUDA_CUDART_VERSION=13.0.96-1\",\"CUDA_VERSION=13.0.2\",\"LD_LIBRARY_PATH=/usr/local/nvidia/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda/lib64\",\"NVIDIA_VISIBLE_DEVICES=all\",\"NVIDIA_DRIVER_CAPABILITIES=compute,utility\",\"DEBIAN_FRONTEND=noninteractive\",\"CUDA_HOME=/usr/local/cuda\",\"CRIU_CUDA_PLUGIN_DIR=/usr/local/lib/criu\",\"UV_HTTP_TIMEOUT=500\",\"UV_INDEX_STRATEGY=unsafe-best-match\",\"UV_LINK_MODE=copy\",\"UV_PYTHON_INSTALL_DIR=/opt/uv/python\",\"UV_CACHE_DIR=/opt/uv/cache\",\"UV_OVERRIDE=/etc/uv-overrides.txt\",\"VLLM_ENABLE_CUDA_COMPATIBILITY=0\",\"TORCH_CUDA_ARCH_LIST=7.5 8.0 8.6 8.9 9.0 10.0 12.0\",\"VLLM_USAGE_SOURCE=production-docker-image\",\"VLLM_BUILD_COMMIT=db9527a46873454610df6dbedf79a36d6bf1a7f6\",\"VLLM_BUILD_PIPELINE=019d130e-464e-4ff7-b84b-492992c0c06b\",\"VLLM_BUILD_URL=https://buildkite.com/vllm/release-v2/builds/7746\",\"VLLM_IMAGE_TAG=vllm/vllm-openai:v0.31.0\",\"HF_HUB_OFFLINE=1\",\"TRANSFORMERS_OFFLINE=1\",\"TOKENIZERS_PARALLELISM=false\",\"VLLM_WORKER_MULTIPROC_METHOD=spawn\",\"VLLM_NO_USAGE_STATS=1\",\"OMP_NUM_THREADS=1\"]\n",
+    "stderr": ""
+  }
+}

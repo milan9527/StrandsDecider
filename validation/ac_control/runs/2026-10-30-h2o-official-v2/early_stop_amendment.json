@@ -1,0 +1,13 @@
+{
+  "prepared_at": "2026-10-30T11:58:53.680729+00:00",
+  "original_plan_sha256": "a2bf76696bd4ac37c7457e0397a8cea17f50cde41d0d2dc61ad9757b886478d4",
+  "selection_sha256": "990e582aa9cc532b3b76c349fd935afc3184b3377cf29f3afd3e201ff21fff8a",
+  "reason": "Both causal profiles fail the predeclared no-regression gate. Reject causal adoption now; preserve the 24 held-back cases unqueried. No further prompt tuning.",
+  "remaining_work": "Check exact-original restart repeatability on N03/N09/N10 and warm S03 timing; screen official GDN1024 only for baseline bidirectional.",
+  "runtime_screen_policy": "Three paired S03 full30 repetitions before/after runtime, >=10% improvement required. If screen fails or runtime startup fails, restore original immediately, do not run held-back validation. If it passes, freeze additional full two-order known and held-back baseline-bidirectional validation jobs before inference, require no raw-choice changes vs original runtime before accepting runtime alone.",
+  "graph_candidate_profile": "baseline",
+  "graph_candidate_attention": "bidirectional",
+  "external_concurrency": 1,
+  "validation_outputs_seen": false,
+  "no_new_reference_answers_sent": true
+}

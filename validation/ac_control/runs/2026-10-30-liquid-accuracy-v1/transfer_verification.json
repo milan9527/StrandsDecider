@@ -1,0 +1,185 @@
+{
+  "verified_at": "2026-10-30T11:28:10.129628+00:00",
+  "bucket": "strands-decider-vllm-632930644527",
+  "prefixes": [
+    "input/ac-control/2026-10-30-liquid-accuracy-v1/",
+    "output/ac-control/2026-10-30-liquid-accuracy-v1/results/"
+  ],
+  "objects": [
+    {
+      "key": "input/ac-control/2026-10-30-liquid-accuracy-v1/development.tar.gz",
+      "bytes": 75707,
+      "sha256": "421adb578ed2ffb9e09ea41f5839ef9f4b358b479fe2eef2701ad2f4da0cf157"
+    },
+    {
+      "key": "input/ac-control/2026-10-30-liquid-accuracy-v1/validation.tar.gz",
+      "bytes": 51779,
+      "sha256": "95a64db6660eb9ca310d2b17049f6078226f01aace98d6fe5bcd19673bc18556"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/__pycache__/ablation_protocol.cpython-312.pyc",
+      "bytes": 8190,
+      "sha256": "6e93ae8ca7e7e1c305e8685ff99c55c522129bbbbdb3d7ca91b2eba7b11441a9"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/__pycache__/liquid_ac_client.cpython-312.pyc",
+      "bytes": 4082,
+      "sha256": "54ad625d8bc1ab87aa52df432e93feaa3cd19c4fa58e2687f3a46563c9594ff7"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/__pycache__/liquid_ac_protocol.cpython-312.pyc",
+      "bytes": 11899,
+      "sha256": "337246ddbac6d944a60c4a05f831785a1f67a25360e81983b363a8385d4f1bdc"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/__pycache__/run_ablation.cpython-312.pyc",
+      "bytes": 14113,
+      "sha256": "39001a0bc3b7711ff17b6b4ea5cad3ac7d01bcb1da16f37e5ea551ffff75e52d"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/__pycache__/run_resident.cpython-312.pyc",
+      "bytes": 9725,
+      "sha256": "0d464b008f27592439fbc159a4671e46a3ed73a6711f341a5af3c45251bb4d1c"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/ablation_protocol.py",
+      "bytes": 7646,
+      "sha256": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/after_environment.json",
+      "bytes": 776,
+      "sha256": "8d0dcc2a4da4e506313fa977d77543b49296a5567c5a0c27c05e0c17900770bd"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/before_environment.json",
+      "bytes": 776,
+      "sha256": "57e33aa1f02dc7581c46c00e2d7a7e161aebc35178d5a2998a9021881833107f"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/health_after.json",
+      "bytes": 311,
+      "sha256": "7d05d8b9bccaaaa09191b28484006f3bea214076f298a3ce009a9b2862b51df2"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/health_before.json",
+      "bytes": 312,
+      "sha256": "216c07b927e0b2033102ffef72c7912fd93d7dc221d3a73978abc016e627326f"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/receipts.jsonl",
+      "bytes": 16854772,
+      "sha256": "55bc26b3193b3f78add28c7f482ad32758cf7cdf485d9c157a77761d77afc590"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/run.json",
+      "bytes": 445,
+      "sha256": "8a2b7ee104493f2865dd2fffe547cf09ea40e9d9dce0d51e1d7d67088e3fdd1c"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/runtime.json",
+      "bytes": 261,
+      "sha256": "2efd62def783178bd048740d95810d1a768e62bb87fe926859f1029ce5405159"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development/warmup.jsonl",
+      "bytes": 268532,
+      "sha256": "250c6c9a54da13179645b9a24f861d77e0d1efc1b9d19fbebfc273eb45fd5466"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development_cases.json",
+      "bytes": 1575943,
+      "sha256": "d2cabbb73afb9550c20958f11bf7fc78016762313cc8ac6dbbaf567a12d3382f"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/development_input.tar.gz",
+      "bytes": 75707,
+      "sha256": "421adb578ed2ffb9e09ea41f5839ef9f4b358b479fe2eef2701ad2f4da0cf157"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/liquid_ac_client.py",
+      "bytes": 2884,
+      "sha256": "2002138c40bb375abf2d2c1ffb741206644ac2cd56f668079a58a5b4e5154eda"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/liquid_ac_protocol.py",
+      "bytes": 10490,
+      "sha256": "f3b52e7d2c6cd60875c985da268e79da7ae90c6af137642b7eba0ab9a28d7a61"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/plan.json",
+      "bytes": 2568,
+      "sha256": "fec2f3a29c6e5495ff160b5f9d539b95a177eac62ca2ccd6998491c87f26bce2"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/run_ablation.py",
+      "bytes": 9505,
+      "sha256": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/run_liquid_accuracy.py",
+      "bytes": 3906,
+      "sha256": "4ffe3f9fdcfe849e42ae8048c93a819323eda4512e159d611fe06b494f31c39a"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/run_resident.py",
+      "bytes": 6463,
+      "sha256": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/selection.json",
+      "bytes": 429,
+      "sha256": "edabcbaae515327554b6c9a66cf64dcb0cbad31ead8e32c2a88fd9c8c50c574d"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/after_environment.json",
+      "bytes": 778,
+      "sha256": "4462b3b59f00967e59286912739da4922d8a37784b5df15ceae1cd43508cf63b"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/before_environment.json",
+      "bytes": 776,
+      "sha256": "692ee36b5b5c64859c46b0a1bba979fb6ebddef35f658865ab352dee235944e7"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/health_after.json",
+      "bytes": 311,
+      "sha256": "e9faa7c902ddf87870b60f8b15abc0985ad291e9138ae1b5b140af06d7dd9d11"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/health_before.json",
+      "bytes": 312,
+      "sha256": "ae48e830308429575f26d835245f56017a1b7558e86c5f8b1150684df4d77d28"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/receipts.jsonl",
+      "bytes": 7179895,
+      "sha256": "5e84a319e25bdef8129b4cb2bf007593285ee0ead08d62e82b828fc92723da30"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/run.json",
+      "bytes": 391,
+      "sha256": "df878f5d01facf79269943524af617f9b65e91ba8f176b1385aef21ae903ab5c"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/runtime.json",
+      "bytes": 261,
+      "sha256": "2efd62def783178bd048740d95810d1a768e62bb87fe926859f1029ce5405159"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation/warmup.jsonl",
+      "bytes": 145976,
+      "sha256": "04df3f354d0418cf3d01a534bb6a3dd142254a5a85a9222a94b2dbef63f78224"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation_cases.json",
+      "bytes": 1260919,
+      "sha256": "0b2ea5798bc598061bb35abefe9fff407635fd2831f1188183bdec0c8b652509"
+    },
+    {
+      "key": "output/ac-control/2026-10-30-liquid-accuracy-v1/results/validation_input.tar.gz",
+      "bytes": 51779,
+      "sha256": "95a64db6660eb9ca310d2b17049f6078226f01aace98d6fe5bcd19673bc18556"
+    }
+  ]
+}

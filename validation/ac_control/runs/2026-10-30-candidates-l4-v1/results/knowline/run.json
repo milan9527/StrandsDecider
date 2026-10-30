@@ -1,0 +1,48 @@
+{
+  "started_at": "2026-10-30T13:06:04.824044+00:00",
+  "status": "complete",
+  "provider": "knowline",
+  "model": {
+    "repository": "PelaAI/KnowLine-4B-Gen5.5",
+    "revision": "779944d2cc8ffa19cef386aee83c83bcb967ade2"
+  },
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "runner_sha256": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+  "calls": 285,
+  "errors": 0,
+  "serial30_blocks": [
+    {
+      "repetition": 0,
+      "started_at": "2026-10-30T13:08:50.032488+00:00",
+      "finished_at": "2026-10-30T13:08:52.094317+00:00",
+      "wall_ms": 2061.8214579999403,
+      "http_sum_ms": 2051.014077000218,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 1,
+      "started_at": "2026-10-30T13:08:54.376417+00:00",
+      "finished_at": "2026-10-30T13:08:59.807133+00:00",
+      "wall_ms": 5430.708967999635,
+      "http_sum_ms": 5419.564738996996,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "repetition": 2,
+      "started_at": "2026-10-30T13:09:00.799164+00:00",
+      "finished_at": "2026-10-30T13:09:02.411357+00:00",
+      "wall_ms": 1612.1867740002926,
+      "http_sum_ms": 1601.9157149985404,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "endpoint": "http://127.0.0.1:18811",
+  "last": {
+    "case_id": "S03",
+    "order": "original",
+    "kind": "full30",
+    "repetition": 2
+  },
+  "finished_at": "2026-10-30T13:09:04.071414+00:00"
+}

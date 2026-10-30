@@ -1,0 +1,6 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "NVIDIA L4, 23034 MiB, 595.91.07\nPython 3.12.3\nDocker version 29.8.2, build 7fc2dff\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/root       193G   50G  144G  26% /\n/dev/root       193G   50G  144G  26% /\n\u25cf ac-candidate-auto-stop.timer - /usr/sbin/shutdown -h now\n     Loaded: loaded (/run/systemd/transient/ac-candidate-auto-stop.timer; transient)\n  Transient: yes\n     Active: active (waiting) since Fri 2026-10-30 12:01:37 UTC; 43s ago\n    Trigger: Fri 2026-10-30 18:01:37 UTC; 5h 59min left\n   Triggers: \u25cf ac-candidate-auto-stop.service\n\nOct 30 12:01:37 ip-172-31-44-254 systemd[1]: Started ac-candidate-auto-stop.timer - /usr/sbin/shutdown -h now.\n  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\r  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\r  0  172k    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\nHTTP/2 200 \r\ncontent-type: text/html; charset=utf-8\r\ncontent-length: 176303\r\ndate: Fri, 30 Oct 2026 12:02:12 GMT\r\netag: W/\"2b0af-461FyAbG8j2uFfW+rRPv1gGQNIs\"\r\nx-powered-by: huggingface-moon\r\nx-request-id: Root=1-6ae48744-691d74774f7022747627ee26\r\n",
+  "StandardErrorContent": ""
+}

@@ -1,0 +1,32 @@
+{
+  "requested_at": "2026-10-30T14:41:45.898445+00:00",
+  "response": {
+    "StoppingInstances": [
+      {
+        "InstanceId": "i-0bd4d9196f1c163c0",
+        "CurrentState": {
+          "Code": 64,
+          "Name": "stopping"
+        },
+        "PreviousState": {
+          "Code": 16,
+          "Name": "running"
+        }
+      }
+    ],
+    "ResponseMetadata": {
+      "RequestId": "fab21255-af17-49ea-b751-a1be9f725890",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "fab21255-af17-49ea-b751-a1be9f725890",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-type": "text/xml;charset=UTF-8",
+        "content-length": "411",
+        "date": "Fri, 30 Oct 2026 14:41:45 GMT",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  }
+}

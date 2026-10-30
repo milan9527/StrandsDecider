@@ -1,0 +1,257 @@
+{
+  "state": "{\"query\":\"Enable 8-degree frost protection; leave the operating mode unchanged.\",\"deviceTypeCode\":\"009\",\"commandSet\":[{\"name\":\"Power\",\"key\":\"t_power\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Mode\",\"key\":\"t_work_mode\",\"type\":\"enum\",\"options\":{\"0\":\"Fan\",\"1\":\"Heat\",\"2\":\"Cool\",\"3\":\"Dry\",\"4\":\"Auto\"}},{\"name\":\"Temperature (Celsius)\",\"key\":\"t_temp\",\"type\":\"range\",\"min\":16,\"max\":32,\"unit\":\"°C\"},{\"name\":\"Temperature (Fahrenheit)\",\"key\":\"t_temp_f\",\"type\":\"range\",\"min\":61,\"max\":90,\"unit\":\"°F\"},{\"name\":\"Temperature Unit\",\"key\":\"t_temp_type\",\"type\":\"enum\",\"options\":{\"0\":\"Celsius\",\"1\":\"Fahrenheit\"}},{\"name\":\"Fan Speed\",\"key\":\"t_fan_speed\",\"type\":\"enum\",\"options\":{\"0\":\"Auto\",\"5\":\"Low\",\"6\":\"Medium Low\",\"7\":\"Medium\",\"8\":\"Medium High\",\"9\":\"High\"}},{\"name\":\"Quiet\",\"key\":\"t_fan_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Super Mode\",\"key\":\"t_super\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Up and Down Swing\",\"key\":\"t_up_down\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Comfort Auto\",\"key\":\"t_indoortemp_detection\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Left and Right Swing\",\"key\":\"t_left_right\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Airflow\",\"key\":\"t_swing_angle\",\"type\":\"enum\",\"options\":{\"0\":\"Up and down swing\",\"1\":\"Auto\",\"2\":\"Position 1\",\"3\":\"Position 2\",\"4\":\"Position 3\",\"5\":\"Position 4\",\"6\":\"Position 5\",\"7\":\"Position 6\"}},{\"name\":\"Horizontal Airflow\",\"key\":\"t_swing_direction\",\"type\":\"enum\",\"options\":{\"0\":\"Straight\",\"1\":\"All Right\",\"2\":\"Both sides\",\"3\":\"Left and Right Swing\",\"4\":\"All Left\",\"5\":\"Stop\"}},{\"name\":\"Energy Saving\",\"key\":\"t_eco\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Air Purification\",\"key\":\"t_purify\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Wind\",\"key\":\"t_swing_follow\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Blow Towards\",\"2\":\"Do Not Blow\"}},{\"name\":\"8° Heat\",\"key\":\"t_8heat\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Sleep Mode\",\"key\":\"t_sleep\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Normal Sleep\",\"2\":\"Elder Sleep\",\"3\":\"Youth Sleep\",\"4\":\"Child Sleep\"}},{\"name\":\"Dimmer\",\"key\":\"t_dimmer\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Indoor Self-Clean\",\"key\":\"t_indoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Self-Clean\",\"key\":\"t_outdoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"One-Key Self-Clean\",\"key\":\"t_onekey_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Fresh Air\",\"key\":\"t_fresh_air\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Smart Control\",\"key\":\"t_tms\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Healthy Wind\",\"key\":\"t_health_fan\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Quiet\",\"key\":\"t_outdoor_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR On/Off\",\"key\":\"t_dr_onoff\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR Offset Temperature\",\"key\":\"t_dr_offset\",\"type\":\"range\",\"min\":0,\"max\":31,\"unit\":\"°\"},{\"name\":\"DR Load Capacity\",\"key\":\"t_dr_mode\",\"type\":\"range\",\"min\":0,\"max\":100,\"unit\":\"%\"},{\"name\":\"Auto-Defrost Clean\",\"key\":\"t_auto_defrost_clean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Enabled but not executing\",\"2\":\"Enabled and started\",\"3\":\"In progress\",\"4\":\"Finished\"},\"userControllableValues\":[\"0\",\"1\"]}],\"rules\":\"TASK: Translate query into only the command changes requested by the user. query is the user's request. commandSet is a capability catalogue, not a list of requested changes. Each question concerns exactly one command key. Choose omit when that command is neither requested nor a mandatory protocol companion. omit sends nothing; value 0 sends a real setting. Select every requested compatible command, using only supported values and ranges. Do not add defaults, conversions, or inferred power, mode, fan-speed or feature changes. Power and main operating mode are independent: turning power on or off alone requests no mode change. Comfort Auto is separate from Auto operating mode; 8-degree frost-protection heating is separate from Heat operating mode. A Celsius setpoint requires t_temp and t_temp_type=0; a Fahrenheit setpoint requires t_temp_f and t_temp_type=1. The user does not need to separately request the unit companion. When both vertical swing keys are available, a request to enable or disable continuous vertical swing uses t_up_down only; do not additionally emit t_swing_angle=0 for the same request. Fixed vertical positions use t_swing_angle. A generic horizontal swing toggle uses t_left_right; an explicitly requested horizontal direction uses t_swing_direction. An independent feature request does not change the main operating mode or other features.\"}",
+  "questions": {
+    "t_power": {
+      "type": "choice",
+      "instructions": "Does the current query request switching the whole air conditioner on or off; a feature switch is not main power? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: switching the whole air conditioner on or off; a feature switch is not main power.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: switching the whole air conditioner on or off; a feature switch is not main power.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: switching the whole air conditioner on or off; a feature switch is not main power."
+      }
+    },
+    "t_work_mode": {
+      "type": "choice",
+      "instructions": "Does the current query request changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing the main mode to fan-only, heating, cooling, drying or automatic mode; independent features are not modes."
+      }
+    },
+    "temperature_action": {
+      "type": "choice",
+      "instructions": "Does the current query request setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: setting a supported Celsius or Fahrenheit target temperature including its required unit, or changing only the temperature unit."
+      }
+    },
+    "t_fan_speed": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Fan Speed? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Fan Speed.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Fan Speed.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Fan Speed."
+      }
+    },
+    "t_fan_mute": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling quiet operation of the indoor unit; outdoor quiet is a different feature."
+      }
+    },
+    "t_super": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Super Mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Super Mode.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Super Mode.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Super Mode."
+      }
+    },
+    "t_up_down": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling continuous vertical/up-and-down oscillation? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling continuous vertical/up-and-down oscillation.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling continuous vertical/up-and-down oscillation.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling continuous vertical/up-and-down oscillation."
+      }
+    },
+    "t_indoortemp_detection": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling Comfort Auto; this is separate from Auto operating mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling Comfort Auto; this is separate from Auto operating mode.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling Comfort Auto; this is separate from Auto operating mode.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling Comfort Auto; this is separate from Auto operating mode."
+      }
+    },
+    "t_left_right": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling the basic left-and-right swing switch? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling the basic left-and-right swing switch.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling the basic left-and-right swing switch.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling the basic left-and-right swing switch."
+      }
+    },
+    "t_swing_angle": {
+      "type": "choice",
+      "instructions": "Does the current query request selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: selecting a fixed vertical airflow position or automatic vertical position; continuous vertical oscillation uses the separate up-and-down switch."
+      }
+    },
+    "t_swing_direction": {
+      "type": "choice",
+      "instructions": "Does the current query request selecting an explicit horizontal airflow direction such as straight, left, right or both sides? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: selecting an explicit horizontal airflow direction such as straight, left, right or both sides.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: selecting an explicit horizontal airflow direction such as straight, left, right or both sides.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: selecting an explicit horizontal airflow direction such as straight, left, right or both sides."
+      }
+    },
+    "t_eco": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Energy Saving? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Energy Saving.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Energy Saving.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Energy Saving."
+      }
+    },
+    "t_purify": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling air purification; ventilation/fresh air and the display light are different functions? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling air purification; ventilation/fresh air and the display light are different functions.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling air purification; ventilation/fresh air and the display light are different functions.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling air purification; ventilation/fresh air and the display light are different functions."
+      }
+    },
+    "t_swing_follow": {
+      "type": "choice",
+      "instructions": "Does the current query request turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: turning AI Wind off, towards people, or away from people; AI Smart/TMS is a different function."
+      }
+    },
+    "t_8heat": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling 8-degree frost-protection heating; this does not select Heat operating mode."
+      }
+    },
+    "t_sleep": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Sleep Mode? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Sleep Mode.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Sleep Mode.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Sleep Mode."
+      }
+    },
+    "t_dimmer": {
+      "type": "choice",
+      "instructions": "Does the current query request switching the display/panel light on or off; this does not switch main power or purification? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: switching the display/panel light on or off; this does not switch main power or purification.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: switching the display/panel light on or off; this does not switch main power or purification.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: switching the display/panel light on or off; this does not switch main power or purification."
+      }
+    },
+    "t_indoor_selfclean": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Indoor Self-Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Indoor Self-Clean.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Indoor Self-Clean.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Indoor Self-Clean."
+      }
+    },
+    "t_outdoor_selfclean": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Outdoor Self-Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Outdoor Self-Clean.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Outdoor Self-Clean.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Outdoor Self-Clean."
+      }
+    },
+    "t_onekey_selfclean": {
+      "type": "choice",
+      "instructions": "Does the current query request changing One-Key Self-Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing One-Key Self-Clean.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing One-Key Self-Clean.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing One-Key Self-Clean."
+      }
+    },
+    "t_fresh_air": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling fresh-air ventilation; healthy wind and purification are different functions? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling fresh-air ventilation; healthy wind and purification are different functions.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling fresh-air ventilation; healthy wind and purification are different functions.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling fresh-air ventilation; healthy wind and purification are different functions."
+      }
+    },
+    "t_tms": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling AI Smart/TMS; AI Wind human-sensing airflow is a different function."
+      }
+    },
+    "t_health_fan": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling healthy wind; fresh-air ventilation is a different function? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling healthy wind; fresh-air ventilation is a different function.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling healthy wind; fresh-air ventilation is a different function.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling healthy wind; fresh-air ventilation is a different function."
+      }
+    },
+    "t_outdoor_mute": {
+      "type": "choice",
+      "instructions": "Does the current query request enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: enabling or disabling quiet operation of the outdoor unit; indoor quiet is a different feature."
+      }
+    },
+    "t_dr_onoff": {
+      "type": "choice",
+      "instructions": "Does the current query request explicitly enabling or disabling demand response? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: explicitly enabling or disabling demand response.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: explicitly enabling or disabling demand response.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: explicitly enabling or disabling demand response."
+      }
+    },
+    "t_dr_offset": {
+      "type": "choice",
+      "instructions": "Does the current query request setting the demand-response temperature offset; target temperature and frost protection are different settings? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: setting the demand-response temperature offset; target temperature and frost protection are different settings.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: setting the demand-response temperature offset; target temperature and frost protection are different settings.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: setting the demand-response temperature offset; target temperature and frost protection are different settings."
+      }
+    },
+    "t_dr_mode": {
+      "type": "choice",
+      "instructions": "Does the current query request setting the demand-response load/capacity percentage? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: setting the demand-response load/capacity percentage.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: setting the demand-response load/capacity percentage.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: setting the demand-response load/capacity percentage."
+      }
+    },
+    "t_auto_defrost_clean": {
+      "type": "choice",
+      "instructions": "Does the current query request changing Auto-Defrost Clean? Judge only this function. Its availability in commandSet is not a request. An explicit disable/stop/off counts as a requested change. Unmentioned or explicitly unchanged functions get omit. Select all compatible requested functions independently. Use review only for a related change in the current query, not merely because a capability exists. Examples illustrate rules; only query describes the current user request.",
+      "criteria": {
+        "omit": "The current user query requests no change to this function, or explicitly keeps it unchanged: changing Auto-Defrost Clean.",
+        "apply": "The current user query requests this function to change, including an explicit OFF or a required unit: changing Auto-Defrost Clean.",
+        "review": "The query appears to request a change related to this function, but its exact applicability needs a second check: changing Auto-Defrost Clean."
+      }
+    }
+  }
+}

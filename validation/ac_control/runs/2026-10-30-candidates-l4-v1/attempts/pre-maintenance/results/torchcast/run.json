@@ -1,0 +1,25 @@
+{
+  "started_at": "2026-10-30T12:38:33.736353+00:00",
+  "status": "failed",
+  "provider": "torchcast",
+  "model": {
+    "repository": "torchcast-ai/torchcast-decision-4b",
+    "revision": "492bfb19662f3c6e601cc9c4bd2911ac95609ed4"
+  },
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "runner_sha256": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+  "calls": 68,
+  "errors": 3,
+  "serial30_blocks": [],
+  "endpoint": "http://127.0.0.1:18811",
+  "last": {
+    "case_id": "H03",
+    "order": "original",
+    "kind": "quality",
+    "repetition": 0
+  },
+  "error_type": "AssertionError",
+  "error": "Three consecutive errors; preserve partial run",
+  "finished_at": "2026-10-30T12:52:30.981069+00:00"
+}

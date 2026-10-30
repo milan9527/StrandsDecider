@@ -1,0 +1,258 @@
+{
+  "audited_at": "2026-10-30T12:21:07.849322+00:00",
+  "passed": true,
+  "accepted": false,
+  "reason": "Causal profiles regressed known cases; GDN1024 speedup below 10% threshold.",
+  "formal_calls": 234,
+  "warmup_calls": 8,
+  "errors": 0,
+  "request_overlap_count": 0,
+  "heldback_queried": false,
+  "reference_answers_sent": false,
+  "exact_original_unit_restored": true,
+  "protected_services_unchanged": true,
+  "early_stop_amendment": {
+    "prepared_at": "2026-10-30T11:58:53.680729+00:00",
+    "original_plan_sha256": "a2bf76696bd4ac37c7457e0397a8cea17f50cde41d0d2dc61ad9757b886478d4",
+    "selection_sha256": "990e582aa9cc532b3b76c349fd935afc3184b3377cf29f3afd3e201ff21fff8a",
+    "reason": "Both causal profiles fail the predeclared no-regression gate. Reject causal adoption now; preserve the 24 held-back cases unqueried. No further prompt tuning.",
+    "remaining_work": "Check exact-original restart repeatability on N03/N09/N10 and warm S03 timing; screen official GDN1024 only for baseline bidirectional.",
+    "runtime_screen_policy": "Three paired S03 full30 repetitions before/after runtime, >=10% improvement required. If screen fails or runtime startup fails, restore original immediately, do not run held-back validation. If it passes, freeze additional full two-order known and held-back baseline-bidirectional validation jobs before inference, require no raw-choice changes vs original runtime before accepting runtime alone.",
+    "graph_candidate_profile": "baseline",
+    "graph_candidate_attention": "bidirectional",
+    "external_concurrency": 1,
+    "validation_outputs_seen": false,
+    "no_new_reference_answers_sent": true
+  },
+  "screen": {
+    "recorded_at": "2026-10-30T12:09:39.383349+00:00",
+    "startup_status": "Success",
+    "profile": "baseline",
+    "attention": "bidirectional",
+    "heldback_queried": false,
+    "eager_full30_ms": 5920.836666666667,
+    "gdn_full30_ms": 5837.897,
+    "speedup": 1.0142071137374755,
+    "screen_passed": false
+  },
+  "repeatability": {
+    "restart_stability": {
+      "N03": {
+        "correct": 3,
+        "choice_variants": 1,
+        "changed_vs_development": 0,
+        "commands": [
+          [
+            {
+              "cmdKey": "t_8heat",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_8heat",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_8heat",
+              "cmdValue": "1"
+            }
+          ]
+        ]
+      },
+      "N09": {
+        "correct": 0,
+        "choice_variants": 1,
+        "changed_vs_development": 0,
+        "commands": [
+          [
+            {
+              "cmdKey": "t_up_down",
+              "cmdValue": "1"
+            },
+            {
+              "cmdKey": "t_swing_angle",
+              "cmdValue": "0"
+            },
+            {
+              "cmdKey": "t_swing_direction",
+              "cmdValue": "0"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_up_down",
+              "cmdValue": "1"
+            },
+            {
+              "cmdKey": "t_swing_angle",
+              "cmdValue": "0"
+            },
+            {
+              "cmdKey": "t_swing_direction",
+              "cmdValue": "0"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_up_down",
+              "cmdValue": "1"
+            },
+            {
+              "cmdKey": "t_swing_angle",
+              "cmdValue": "0"
+            },
+            {
+              "cmdKey": "t_swing_direction",
+              "cmdValue": "0"
+            }
+          ]
+        ]
+      },
+      "N10": {
+        "correct": 3,
+        "choice_variants": 1,
+        "changed_vs_development": 0,
+        "commands": [
+          [
+            {
+              "cmdKey": "t_fresh_air",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_fresh_air",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_fresh_air",
+              "cmdValue": "1"
+            }
+          ]
+        ]
+      }
+    },
+    "final_stability": {
+      "N03": {
+        "correct": 3,
+        "choice_variants": 1,
+        "changed_vs_development": 0,
+        "commands": [
+          [
+            {
+              "cmdKey": "t_8heat",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_8heat",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_8heat",
+              "cmdValue": "1"
+            }
+          ]
+        ]
+      },
+      "N09": {
+        "correct": 0,
+        "choice_variants": 1,
+        "changed_vs_development": 0,
+        "commands": [
+          [
+            {
+              "cmdKey": "t_up_down",
+              "cmdValue": "1"
+            },
+            {
+              "cmdKey": "t_swing_angle",
+              "cmdValue": "0"
+            },
+            {
+              "cmdKey": "t_swing_direction",
+              "cmdValue": "0"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_up_down",
+              "cmdValue": "1"
+            },
+            {
+              "cmdKey": "t_swing_angle",
+              "cmdValue": "0"
+            },
+            {
+              "cmdKey": "t_swing_direction",
+              "cmdValue": "0"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_up_down",
+              "cmdValue": "1"
+            },
+            {
+              "cmdKey": "t_swing_angle",
+              "cmdValue": "0"
+            },
+            {
+              "cmdKey": "t_swing_direction",
+              "cmdValue": "0"
+            }
+          ]
+        ]
+      },
+      "N10": {
+        "correct": 3,
+        "choice_variants": 1,
+        "changed_vs_development": 0,
+        "commands": [
+          [
+            {
+              "cmdKey": "t_fresh_air",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_fresh_air",
+              "cmdValue": "1"
+            }
+          ],
+          [
+            {
+              "cmdKey": "t_fresh_air",
+              "cmdValue": "1"
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "ssm_statuses": {
+    "development": "Success",
+    "restart-original": "Success",
+    "restart_stability": "Success",
+    "eager_baseline": "Success",
+    "gdn-start": "Success",
+    "gdn_baseline_screen": "Success",
+    "restore-original": "Success",
+    "final_stability": "Success"
+  },
+  "serial30_http_sum_ms": [
+    6017.9490000000005,
+    6035.8550000000005,
+    6026.475
+  ],
+  "serial30_wall_caveat": "Frozen runner publishes artifacts every 8 calls, including inside serial30. Harness wall time includes uploads. Use summed HTTP times only, with this caveat; the isolated candidate runner moves all artifact work outside serial30."
+}

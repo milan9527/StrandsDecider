@@ -1,0 +1,61 @@
+{
+  "audited_at": "2026-10-30T11:28:08.365088+00:00",
+  "passed": true,
+  "observations": 444,
+  "formal_calls": 747,
+  "warmup_calls": 14,
+  "formal_errors": 0,
+  "request_overlap_count": 0,
+  "services_unchanged": true,
+  "selection_precedes_validation": true,
+  "archives": {
+    "development": {
+      "sha256": "421adb578ed2ffb9e09ea41f5839ef9f4b358b479fe2eef2701ad2f4da0cf157",
+      "members": [
+        "plan.json",
+        "development_cases.json",
+        "liquid_ac_protocol.py",
+        "liquid_ac_client.py",
+        "run_liquid_accuracy.py",
+        "ablation_protocol.py",
+        "run_ablation.py",
+        "run_resident.py"
+      ],
+      "reference_file_absent": true
+    },
+    "validation": {
+      "sha256": "95a64db6660eb9ca310d2b17049f6078226f01aace98d6fe5bcd19673bc18556",
+      "members": [
+        "validation_cases.json",
+        "selection.json"
+      ],
+      "reference_file_absent": true
+    }
+  },
+  "recommendation": {
+    "candidate": "temperature_bundle",
+    "recommended_strategy": "two_stage",
+    "validation_passed_frozen_rule": false,
+    "scope": "Opt-in AC client protocol; native model service and generic application are unchanged.",
+    "selection_sha256": "edabcbaae515327554b6c9a66cf64dcb0cbad31ead8e32c2a88fd9c8c50c574d",
+    "receipts_sha256": {
+      "development": "55bc26b3193b3f78add28c7f482ad32758cf7cdf485d9c157a77761d77afc590",
+      "validation": "5e84a319e25bdef8129b4cb2bf007593285ee0ead08d62e82b828fc92723da30"
+    },
+    "validation_original": {
+      "two_stage": 12,
+      "temperature_bundle": 12
+    },
+    "validation_reversed": {
+      "two_stage": 12,
+      "temperature_bundle": 12
+    }
+  },
+  "source_sha256": {
+    "audit_liquid_accuracy.py": "5d7274bfd1bd2841146841e45587a55ae8125fc062ecbfbdee36f3cdf266af7d",
+    "analyze_liquid_accuracy.py": "587eace57095183443355ab0696a574581204c2f91f60435f73788b62c0b7a84",
+    "remote_liquid_accuracy.py": "8561622963519b990bc37dbd7aa065c7015421a205daccdf94f435402af1716e",
+    "prepare_liquid_accuracy.py": "befd9f726a5e5a148da18721975cbd804cbd1ceb2266529ecfa6bbe0f9a941c3",
+    "test_liquid_accuracy.py": "778adb59849c8bec1396ad50c3d6de638ec930225acad6a1939c7991ecff512d"
+  }
+}

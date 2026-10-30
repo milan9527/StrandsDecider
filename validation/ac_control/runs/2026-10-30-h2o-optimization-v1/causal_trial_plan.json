@@ -1,0 +1,8 @@
+{
+  "prepared_at": "2026-10-30T10:28:03.244824+00:00",
+  "runtime": "seq1-gdn4096",
+  "variant": "seq1-gdn4096-causal",
+  "change": "Only explicit attention_mode=causal in each request; server default stays bidirectional",
+  "reason": "Test prefix reuse on the currently loaded runtime without another restart; compare mode effect against seq1-gdn4096 and quality against frozen seq1-eager baseline",
+  "scope": "Same3 performance repetitions and50 original quality observations; no prompt/candidate filtering or output repair"
+}

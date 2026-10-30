@@ -1,0 +1,335 @@
+JevBench methodology: decision model benchmark
+Skip to main content
+Benchmark
+Heaven
+BETA
+— Work in progress
+Overview
+Benchmaxxing
+Benchmarks
+Compare
+Charts
+More ▾
+Cost vs Capability
+Providers per Model
+Provider explorer
+Gateways
+EU & Sovereign
+Jev-class models
+Image JevBench
+AudioJevBench
+Submit a model
+About
+Options
+Benchmaxxing
+Benchmarks
+More
+Overview
+Benchmaxxing
+Compare
+Charts
+Cost vs Capability
+Providers per Model
+Provider explorer
+Gateways
+EU & Sovereign
+Jev-class models
+Image JevBench
+AudioJevBench
+Submit a model
+About
+Ranking
+Score
+Composite
+AA Coding Agent v1.4
+DesignArena Full-Stack Elo
+DesignArena Web Apps (agentic) Elo
+AA Coding
+AA Intelligence
+Epoch Software ECI
+Epoch ECI
+Min score
+✓
+Featured
+i
+✓
+Include Benchmaxxing signal in the score
+i
+Price basis
+✓
+Adjusted costs
+Fixed I/O blend
+Output only (0:1)
+1:1 input/output
+3:1 input/output
+10:1 input/output
+20:1 input/output
+30:1 input/output
+100:1 input/output
+Input only (1:0)
+Task workload
+Same for every model
+As used on OpenRouter
+i
+I'm buying for a company
+i
+Models, providers and labs
+Models
+:
+All
+▾
+Providers
+:
+All
+▾
+Labs
+:
+All
+▾
+Regional
+Hosted in
+✓
+China
+✓
+EU
+✓
+US
+✓
+Other
+Provider company based in
+✓
+China
+✓
+EU
+✓
+US
+✓
+Other
+Model lab based in
+✓
+China
+✓
+EU
+✓
+US
+✓
+Other
+Hosting = where inference runs; company = where the provider or lab is registered.
+EU hosting means the route's inference runs inside the EU: an EU region, AWS Bedrock's EU cross-region (geo) profiles, Azure's Europe Data Zone, or a provider whose entire public fleet is documented as EU-hosted, each checked per model against the provider's documentation. Global deployments do not count, and neither does an EU billing region, an EU company or an EU control plane on its own. One disclosed company-policy exception stays in, marked “EU equivalent”.
+Data confidentiality
+what the provider may do with your prompts
+Trains or keeps your data
+i
+More settings
+✓
+One variant for Reasoning models
+✓
+Hide deprecated
+Open-weights only
+Evidence requirements (benchmark evidence, priced provider, measured task tokens) sit above the table they apply to.
+“Hide deprecated” removes retired models (every Artificial Analysis configuration retired, on no current DesignArena board) and older retired configurations of current models. Applies to model tables, charts, price views & model offers; benchmark evidence stays unfiltered.
+Show results
+Presets
+:
+None
+JevBench by Benchmark Heaven · Decision model evaluation
+Decision model benchmark methodology — JevBench v1.6.1
+JevBench measures typed decisions: application state and a bounded rubric go in; a structured answer and, where supported, probabilities come out. Compare accuracy and calibration alongside measured latency and modeled cost. The open-weights board leads with Capability; the hosted API board leads with Composite.
+Reviewed
+2026-10-09
+· Maintained by Benchmark Heaven, independently of TypeSafe AI.
+Release and measurement dates
+Published release
+v1.6.1
+, initially published
+2026-10-06
+. The
+versioned leaderboard
+retains its release context.
+Additions stored in the results file: a6 (2026-10-07), a7 (2026-10-07), a8 (2026-10-07), a11 (2026-10-08), a12 (2026-10-08); amended through 2026-10-08; latest row measurement 2026-10-07.
+Cite
+source_sha256
+5cd8c1332226ea9c179883d2285c0d8b8cc593ae38f2645197364a7ddd9c83c1
+for these exact result bytes.
+The live board may also include later dated API reruns and presentation revisions.
+The release draw contains
+1,200
+sealed and
+300
+public decisions. Self-hosted systems answer
+1,500
+decisions.
+The v1.6.1 full-set API rows answer the same set.
+Older subsets and later reruns are explicitly labeled and may be equated. Missing or refused answers are counted by the scorer, rather than silently removed.
+Capability and Composite are different scores
+Capability:
+Arithmetic mean of Intelligence and Calibration; ranked models within both official caps. Headline on the open-weights board.
+The cost cap is USD
+0.0646
+per 1,000 decisions, and the adjusted median-latency cap is
+1.23
+seconds. Eligibility is separate from the raw score.
+Composite:
+Weighted harmonic mean of Intelligence, Calibration, Speed and Cost, multiplied by squared penalties when Intelligence is below its configured floor, or Speed or Cost is below 50. Equal 25% weights do not mean an arithmetic average.
+Official option
+A
+uses weights
+Calibration 25%, Cost 25%, Intelligence 25%, Speed 25%
+; Intelligence floor
+50
+. A zero axis gives zero Composite; a missing axis gives no score.
+H = Σw / Σ(w / axis). Composite = H × min(1, I /
+50
+)² × min(1, Speed / 50)² × min(1, Cost / 50)².
+Cost basis:
+On every draw, very long items that a ranked row refuses because they exceed its context length are left out of cost for all rows: cost per 1,000 decisions is computed on the same remaining items for every row. A refused item still counts as a wrong answer for Intelligence.
+First published as the v1.6.1 cost rule (5 Oct 2026; 23 items on that draw). From v1.6.30 it applies to draw v1.6-regular-20261012: the 15 items the Jev reference refused with max_tokens_exceeded are left out and 1,485 remain. Rows of draw v1.6-regular-20261010-a2 still show the all-items cost they were published with until a following release re-costs them under this rule.
+Intelligence is chance-corrected decision accuracy, with tier weighting and a public/sealed gap adjustment. Calibration evaluates probability distributions; it is not simply accuracy among confident answers. Noul handling, per-type normalization and equating are versioned in the scorer. The four normalized axes are on a 0–100 scale; actual seconds and USD remain separate values.
+Latency: what is measured and what is estimated
+We time every request and use the median (p50) and the 95th percentile (p95).
+API models
+are timed end to end from our measuring host against the vendor endpoint, so their latency includes the network round trip.
+Self-hosted (open-weights) models
+run on hardware we rent and operate (a GPU, or a CPU host for the smallest models) and are timed over loopback, where there is no network at all. We tag that value “on-GPU, no network” (or “on-CPU, no network”) wherever it appears, and it is not directly comparable with API latency.
+Those two numbers are not comparable as they stand, so for every self-hosted model the ranking and the latency cap use the same estimate that adds the network:
+2 × measured p50 + 150 ms
+(the same adjustment is applied to p95). This is an assumption, not a measurement: it stands in for the extra time an API call to the same model would spend on the network and the serving layer. The Speed axis, the Jev-class latency cap and every rank use the estimate; the measured loopback value is shown next to it on the board, the model pages and in the JSON (
+p50_s_measured
+,
+latency_basis
+).
+Hosted endpoint timing on request.
+A model author may provide a hosted endpoint for their model. We then time it exactly like an API, network included, with no assumption, and that measured latency replaces the estimate for that row, noted in the revision history. Contact
+info@productivity-boost.com
+or note it in your
+submission
+.
+Calibrating the assumption (planned, not yet applied).
+The 2 × + 150 ms rule is a fixed assumption. We intend to check it against real end-to-end timings of self-hosted models behind public endpoints, for example endpoints that model authors provide. Any change to the rule will be announced in the revision history and applied to all self-hosted rows at once, never switched silently for single rows. If we use timings from decisionmodels.io, we will say so, because decisionmodels.io hosts some of these models.
+10-second limit per decision (method v1.7, from JevBench v1.7.0).
+Every decision is timed on the harness the system is measured with, from the moment the request is sent until the answer is received. A decision that takes longer than 10 seconds counts as failed: it is scored as a wrong answer and as zero calibration for that item (each type's calibration is multiplied by the share of its decisions answered within 10 seconds). Exactly 10 seconds passes. The limit uses the measured time, not the displayed estimate for self-hosted rows. The rule is the same for every system. The Speed axis uses the measured times of all decisions, including the slow tail, and every row shows its median (p50) and 95th-percentile (p95) time and how many of its decisions took longer than 10 seconds. All rows were recomputed from their recorded per-decision times. Systems whose times were recorded on a shared, loaded machine are listed as “re-measure pending” with their v1.6 values until they are measured again. Earlier results stay available with their method label; the previous method page is
+method v1.6
+.
+Reproducibility and model versions
+Scorer and public benchmark repository
+·
+Board source
+·
+Release manifest and scorer hashes
+·
+Published aggregate artifact
+.
+Artifact SHA-256:
+5cd8c1332226ea9c179883d2285c0d8b8cc593ae38f2645197364a7ddd9c83c1
+. The
+data card
+documents model pins, measurement dates, price bases and latency adjustments. Unknown pins and dates remain null; hosted service names do not guarantee immutable weights.
+Sealed questions, identifiers and predictions are not downloadable. Public-split experiments can be reproduced, and aggregate Composite scores can be recalculated from the published axes. Complete independent reruns of the sealed evaluation require the official evaluation process.
+Limitations and historical methods
+Coverage is finite and uneven across languages and domains. Cost is modeled from a stated hardware or list-price basis; latency depends on the measured runtime and location. Confidence, coherence, robustness and real-world error costs need additional workload-specific checks. Training on the public split must be disclosed, and a sealed split is not a guarantee of no prior exposure.
+Historical releases retain their original scoring definitions and measurement sets. Do not compare scores across method versions as if they were the same experiment.
+ImageJevBench
+v0.3.0
+has a separate image pool and frozen eligibility envelope; core and computer-use tracks remain separate. Its reserve size is not the number of decisions answered by each model.
+Another project named
+JevBench tests metamorphic coherence
+. It is independent of Benchmark Heaven and measures consistency rather than this board's accuracy/cost/latency score.
+Open-weights leaderboard
+API leaderboard
+ImageJevBench
+Methodology
+Data card & downloads
+Compare benchmarks
+Calibration & reliability
+Jev alternatives
+Cost of self-hosted open weights, from v1.8
+Until v1.7, self-hosted open weights used the public list-price estimate for their base model, applied to the row's own scored tokens. From v1.8, they use GPU time: GPU price per hour multiplied by the hours one GPU needs for 1,000 decisions on the same scored inputs and outputs. The estimate is capped at the old list-price cost, so no row becomes more expensive.
+GPU price: EUR 999/month for one RTX PRO 6000 96 GB, divided by 730 hours and converted at the ECB rate of USD 1.1133/EUR on 28 October 2026: USD 1.5235/hour, at 70% average load. Cost per 1,000 decisions = min(old list-price cost, 1.5235 × tokens per decision × 1,000 / (3,600 × throughput × 0.70)). Each row retains the token totals and item membership used for its preceding cost, including legacy rows priced on earlier pools.
+Architecture estimates use an efficient inference engine on one GPU, including batching and prefix caching, calibrated on public items on 29 October 2026. Throughput is capped at 100,000 tokens/s. The constants below are divided by active parameters in billions; small means below 20B active parameters. Encoders and architectures outside the six calibrated Gemma/Qwen classes keep their old cost. Throughput was calibrated on prompt processing (prefill); generated tokens are counted at the same rate. Three diffusion-readout rows are priced with the closest calibrated class (MoE Gemma); this is an approximation. A missing verified token basis also keeps the old cost and is disclosed.
+Architecture class
+Tokens/s
+Dense Gemma
+313,302 / active B
+Dense Qwen
+317,601 / active B
+Small Gemma
+322,343 / active B
+Small Qwen
+246,100 / active B
+MoE Gemma
+138,650 / active B
+MoE Qwen
+113,999 / active B
+The following thirteen rows use direct efficient-throughput measurements instead of their class estimate: fresh passes over 200 public decisions on an RTX PRO 6000 Server, stock vLLM 0.32.0 EFF. Native uses the row's own weights; base-arch uses its weights with native attention or head changes omitted; trunk-equivalent uses the stock Qwen3.8-27B trunk with the row's own prompts and does not reproduce the custom 255-way readout head or noncausal attention. These throughput measurements estimate efficient serving cost; they do not replace the measured latency or benchmark answers.
+Model
+Load mode
+Measured tokens/s
+AJev lm6q (Gemma 4 31B)
+native
+8,583
+basal-omni-1.0-ultra (Remek Kinas, Gemma-4-31B-it + merged LoRA, typed-decision readout, self-hosted)
+native
+10,285
+DOPEST 1.0 31B
+native
+8,752
+Fastino GLiDE 1.2 (open weights, self-hosted)
+trunk-equivalent
+11,861
+H2O-Lightning-31B v1.0.7 (H2O.ai, Gemma-4-31B-it fine-tune, vLLM + h2oai overlay, one-engine FP8 profile, self-hosted)
+native
+10,147
+Jeffan-31b-1710
+native
+13,045
+KnowLine 31B-Gen1
+native
+10,271
+baselabs mammoth-1 (27B)
+base-arch
+11,840
+Perplexity Decider v1.1 27B (Qwen3.8-27B, noncausal decision readout)
+trunk-equivalent
+11,831
+StartLux-Decision v1.1 27B Instant (StartLux Labs, Qwen3.8-27B fine-tune)
+base-arch
+11,849
+Turion Jev 31B
+native
+10,665
+vLLM-SR d3
+trunk-equivalent
+11,823
+vLLM-SR d3-turbo
+trunk-equivalent
+11,805
+API systems retain their published prices. The Jev-compatible reference, cost cap of USD 0.06459465517241379 per 1,000 decisions and median-latency cap of 1.2329566404223442 seconds are unchanged. Intelligence, Calibration, the ten-second failure rule and measured latency are unchanged. Cost axes, composites and eligibility reflect the new costs. Affected composite confidence intervals are withheld because the archived intervals used the old cost; Intelligence and Calibration intervals are retained. Archived v1.7 release pages keep the earlier values.
+Benchmark Heaven
+Sources & methodology
+Decision model benchmarks
+JevBench methodology
+Need custom eval on your data?
+Public API
+GitHub
+MIT licence
+Privacy
+Terms
+Impressum
+Benchmark results with their source and date, and a modeled cost per task that accounts for provider prices, caching and token efficiency. Data from OpenRouter, Artificial Analysis, Epoch AI, DesignArena, benchmark maintainers and provider catalogs.
+Data:
+Artificial Analysis
+·
+Data:
+Epoch AI
+(
+CC BY
+)
+Open source (MIT) and a hobby project —
+the code is on GitHub
+, built to give the world better tools to decide which LLM to choose for the job. The licence covers the code, not the third-party data (its own terms apply).
+Benchmark publishers can ask for their numbers to be removed or shown differently —
+data sources & removal on request
+.
+Support Benchmark Heaven
+·
+Payments go to productivity-boost.com Betriebs UG (haftungsbeschränkt) & Co. KG, the one-person company behind this project.

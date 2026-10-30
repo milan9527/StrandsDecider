@@ -1,0 +1,12 @@
+{
+  "prepared_at": "2026-10-30T10:15:38.905977+00:00",
+  "sequences": 4,
+  "graphs": "off",
+  "gdn_graph_max_tokens": 0,
+  "gdn_graph_max_sequences": null,
+  "startup_timeout_seconds": 600,
+  "mode": "bidirectional remains default; causal only by explicit request",
+  "override": "[Service]\nExecStart=\nExecStart=/usr/bin/docker run --name decider-h2o-resident --gpus all --network host --memory=8g --shm-size=1g --cap-drop=ALL --security-opt=no-new-privileges:true --log-opt max-size=10m --log-opt max-file=3 --entrypoint bash -v /opt/decider-open-models:/bench -e PATH=/bench/h2o-env/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin -e MAX_LEN=4096 -e GPU_UTIL=0.34 -e PORT=18803 -e VLLM_PORT=18802 -e MAX_IMAGES=1 -e MAX_PIXELS=65536 -e CUDA_GRAPH_MAX_TOKENS=128 -e VLLM_GDN_PREFILL_GRAPH_MAX_TOKENS=0 -e VLLM_GDN_PREFILL_GRAPH_PRECAPTURE=0 -e VLLM_CACHE_ROOT=/bench/h2o-cache/ac-optimization-seq4-eager -e \"VLLM_ARGS=--max-num-seqs 4 --max-num-batched-tokens 4096 --enforce-eager --quantization fp8\" sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07 /bench/models/h2o/serve.sh\nRestart=no\n",
+  "cache_directory": "/bench/h2o-cache/ac-optimization-seq4-eager",
+  "controller_sha256": "60c428c6b77040fb4276af26186da0ab4db67c40bbf69b8b267740722dc38e3a"
+}

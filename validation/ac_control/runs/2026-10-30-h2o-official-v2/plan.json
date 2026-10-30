@@ -1,0 +1,29 @@
+{
+  "prepared_at": "2026-10-30T11:48:03.004630+00:00",
+  "model": "h2oai/h2o-lightning-4b",
+  "development_sha256": "be2108daf7ebbc3276b897a72b00e7148f46fb659ffbd96d63887e098a26c458",
+  "validation_sha256": "654b85ca2a1dfef43b979322f4ef3fead8638249c4410d6b3e068020bcdd6e64",
+  "references_sha256": "afa9693d70301fdd1450513b0674d7f7dac9dec56b6e767d13cfa9adc9de2cd1",
+  "capabilities_sha256": "3c214dd5b60d039d683477448f08be266769114d18d96f8238696c800c41de41",
+  "sources": {
+    "h2o_ac_client.py": "5cc253d521187648de3356337dcb8b53e2b32ec2181c95af1f20e9d7aae69ad2",
+    "run_h2o_official.py": "5e869336139c53c7d250d085688439c4a10daba2b68f62f97ddc9c7e1a9bbad1",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e"
+  },
+  "profiles": [
+    "baseline",
+    "rules_only"
+  ],
+  "modes": [
+    "bidirectional",
+    "causal"
+  ],
+  "selection_policy": "Select a causal prompt using only development original results before validation inference. Require zero transport errors, no loss of any originally correct development case versus same-process baseline bidirectional, and mean complete-request latency <= 80% of that control. Rank by exact correct count, fewer extra pairs, fewer missing pairs, then lower mean latency. If none qualifies, freeze the strongest causal prompt only as a diagnostic candidate, not adopted. GDN1024 can be recommended only with >=10% lower paired S03 full-request mean than the same candidate without GDN and no changed development choices or transport failures. Final adoption additionally requires no regression on any correct control case in both orders of the 30 development and 24 validation queries and mean validation latency <=80% of control. No tuning or replacement candidate after validation.",
+  "validation_policy": "24 new queries authored using known error categories and frozen before trials; same-domain held-back validation, not an external blind benchmark.",
+  "runtime_policy": "Preserve other three resident services; only H2O restarts. Unique compile-cache directory per trial. Automatic rollback for runtime mutations. BF16 only if memory allows without evicting other models.",
+  "timing_policy": "External requests strictly serial; rotate profile/mode order per case; separate warmups, full30, single-Key and serial30 totals. SHIM_CACHE_WRITE remains all for multi-question workloads.",
+  "automatic_retries": 0,
+  "external_concurrency": 1
+}

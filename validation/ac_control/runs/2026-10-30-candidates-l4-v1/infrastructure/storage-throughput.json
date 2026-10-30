@@ -1,0 +1,27 @@
+{
+  "recorded_at": "2026-10-30T12:12:09.792697+00:00",
+  "volume_id": "vol-08a0620e59a0484bd",
+  "reason": "Accelerate temporary weight download and verification; warm inference still on the same g6.xlarge/L4",
+  "before": {
+    "Size": 200,
+    "VolumeType": "gp3",
+    "Iops": 3000,
+    "Throughput": 125
+  },
+  "modification": {
+    "VolumeId": "vol-08a0620e59a0484bd",
+    "ModificationState": "modifying",
+    "TargetSize": 200,
+    "TargetIops": 3000,
+    "TargetVolumeType": "gp3",
+    "TargetThroughput": 500,
+    "TargetMultiAttachEnabled": false,
+    "OriginalSize": 200,
+    "OriginalIops": 3000,
+    "OriginalVolumeType": "gp3",
+    "OriginalThroughput": 125,
+    "OriginalMultiAttachEnabled": false,
+    "Progress": 0,
+    "StartTime": "2026-10-30 12:12:09+00:00"
+  }
+}

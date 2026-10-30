@@ -1,0 +1,92 @@
+{
+  "selected_at": "2026-10-30T11:58:28.035008+00:00",
+  "profile": "rules_only",
+  "attention": "causal",
+  "development_eligible": false,
+  "candidates": {
+    "baseline": {
+      "metrics": {
+        "count": 30,
+        "correct": 26,
+        "errors": 0,
+        "extra_pairs": 4,
+        "missing_pairs": 0,
+        "client_ms": {
+          "count": 30,
+          "mean": 2518.2040333333334,
+          "p50": 2520.5245,
+          "p95": 2621.402,
+          "min": 2394.093,
+          "max": 2638.23,
+          "total": 75546.121
+        },
+        "server_ms": {
+          "count": 30,
+          "mean": 2516.32,
+          "p50": 2518.6499999999996,
+          "p95": 2619.4,
+          "min": 2392.3,
+          "max": 2636.3,
+          "total": 75489.6
+        },
+        "processed_input_tokens": {
+          "count": 30,
+          "mean": 6468.5,
+          "p50": 6467.0,
+          "p95": 6479,
+          "min": 6461,
+          "max": 6483,
+          "total": 194055
+        }
+      },
+      "regressions": [
+        "N10"
+      ],
+      "eligible": false
+    },
+    "rules_only": {
+      "metrics": {
+        "count": 30,
+        "correct": 27,
+        "errors": 0,
+        "extra_pairs": 4,
+        "missing_pairs": 0,
+        "client_ms": {
+          "count": 30,
+          "mean": 2811.8441333333335,
+          "p50": 2798.1395,
+          "p95": 2975.09,
+          "min": 2592.62,
+          "max": 2988.912,
+          "total": 84355.324
+        },
+        "server_ms": {
+          "count": 30,
+          "mean": 2809.92,
+          "p50": 2796.3,
+          "p95": 2973.0,
+          "min": 2590.8,
+          "max": 2987.0,
+          "total": 84297.6
+        },
+        "processed_input_tokens": {
+          "count": 30,
+          "mean": 7014.5,
+          "p50": 7013.0,
+          "p95": 7025,
+          "min": 7007,
+          "max": 7029,
+          "total": 210435
+        }
+      },
+      "regressions": [
+        "M09",
+        "N03",
+        "N08"
+      ],
+      "eligible": false
+    }
+  },
+  "development_receipts_sha256": "dacd812ee88c4ee01894111ed421dfb7c1c50336229be2207ed5780f851c3e67",
+  "validation_outputs_seen": false
+}

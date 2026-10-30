@@ -1,0 +1,23 @@
+{
+  "restored_at": "2026-10-29T02:39:26.585517+00:00",
+  "instance_id": "i-0daca64f56056aa1c",
+  "instance_left_running": true,
+  "original_model_service": {
+    "desired": 1,
+    "running": 1,
+    "health": "HEALTHY"
+  },
+  "vision_health_http": 200,
+  "model_ready_http": 200,
+  "controller_concurrency": 1,
+  "controller_schedule": "ENABLED",
+  "benchmark_container_removed": true,
+  "temporary_gpu_weights_and_environments_removed": true,
+  "gpu_disk_available_gib": 57.7,
+  "online_vllm_instance_used": false,
+  "temporary_control_task_definitions_deregistered": 6,
+  "temporary_s3_objects_removed": 369,
+  "temporary_s3_gib_removed": 34.7,
+  "temporary_control_task_status": "STOPPED",
+  "temporary_control_log_streams_removed": 6
+}

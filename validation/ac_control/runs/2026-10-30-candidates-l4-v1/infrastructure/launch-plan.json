@@ -1,0 +1,82 @@
+{
+  "ImageId": "ami-028357be7d5b15c53",
+  "InstanceType": "g6.xlarge",
+  "MinCount": 1,
+  "MaxCount": 1,
+  "ClientToken": "ac-candidate-l4-20261030-1200-v1",
+  "IamInstanceProfile": {
+    "Arn": "arn:aws:iam::632930644527:instance-profile/strands-decider-vllm"
+  },
+  "NetworkInterfaces": [
+    {
+      "DeviceIndex": 0,
+      "SubnetId": "subnet-0693778771c7fe672",
+      "Groups": [
+        "sg-051a9e10a77085738"
+      ],
+      "AssociatePublicIpAddress": true
+    }
+  ],
+  "BlockDeviceMappings": [
+    {
+      "DeviceName": "/dev/sda1",
+      "Ebs": {
+        "VolumeSize": 200,
+        "VolumeType": "gp3",
+        "DeleteOnTermination": true,
+        "Encrypted": true
+      }
+    }
+  ],
+  "MetadataOptions": {
+    "HttpTokens": "required",
+    "HttpEndpoint": "enabled",
+    "HttpPutResponseHopLimit": 1
+  },
+  "InstanceInitiatedShutdownBehavior": "stop",
+  "UserData": "#!/bin/bash\nset -eu\nmkdir -p /opt/ac-candidate-tests\nchmod 755 /opt/ac-candidate-tests\nsystemd-run --unit=ac-candidate-auto-stop --on-active=6h /usr/sbin/shutdown -h now\n",
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-candidate-l4-20261030"
+        },
+        {
+          "Key": "Project",
+          "Value": "DecisionDemo"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "authorized-serial-AC-model-evaluation"
+        },
+        {
+          "Key": "AutoStop",
+          "Value": "6h-from-boot"
+        }
+      ]
+    },
+    {
+      "ResourceType": "volume",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-candidate-l4-20261030"
+        },
+        {
+          "Key": "Project",
+          "Value": "DecisionDemo"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "authorized-serial-AC-model-evaluation"
+        },
+        {
+          "Key": "AutoStop",
+          "Value": "6h-from-boot"
+        }
+      ]
+    }
+  ]
+}

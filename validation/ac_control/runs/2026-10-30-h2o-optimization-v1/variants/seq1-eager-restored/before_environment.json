@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-10-30T10:46:23.216889+00:00",
+  "gpu": {
+    "returncode": 0,
+    "stdout": "NVIDIA L4, 23034 MiB, 20455 MiB, 0 %\n",
+    "stderr": ""
+  },
+  "services": {
+    "returncode": 0,
+    "stdout": "NRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:15:32 UTC\nId=decider-vllm.service\nActiveState=active\nSubState=running\n\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:21:44 UTC\nId=decider-liquid.service\nActiveState=active\nSubState=running\n\nNRestarts=0\nExecMainStartTimestamp=Fri 2026-10-30 10:42:34 UTC\nId=decider-h2o.service\nActiveState=active\nSubState=running\n\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:18:01 UTC\nId=decider-comparison-gateway.service\nActiveState=active\nSubState=running\n",
+    "stderr": ""
+  }
+}

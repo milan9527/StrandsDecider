@@ -1,0 +1,1037 @@
+{
+  "expected_local_only": [
+    {
+      "cmdName": "Power",
+      "cmdKey": "t_power",
+      "cmdValue": "1"
+    }
+  ],
+  "raw_receipt": {
+    "case_id": "S01",
+    "dataset": "spec",
+    "order": "original",
+    "language": "en",
+    "kind": "quality",
+    "repetition": 0,
+    "started_at": "2026-10-30T14:08:49.406619+00:00",
+    "transport_request": {
+      "state": "{\"query\":\"Turn on the air conditioner.\",\"deviceTypeCode\":\"009\",\"commandSet\":[{\"name\":\"Power\",\"key\":\"t_power\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Mode\",\"key\":\"t_work_mode\",\"type\":\"enum\",\"options\":{\"0\":\"Fan\",\"1\":\"Heat\",\"2\":\"Cool\",\"3\":\"Dry\",\"4\":\"Auto\"}},{\"name\":\"Temperature (Celsius)\",\"key\":\"t_temp\",\"type\":\"range\",\"min\":16,\"max\":32,\"unit\":\"°C\"},{\"name\":\"Temperature (Fahrenheit)\",\"key\":\"t_temp_f\",\"type\":\"range\",\"min\":61,\"max\":90,\"unit\":\"°F\"},{\"name\":\"Temperature Unit\",\"key\":\"t_temp_type\",\"type\":\"enum\",\"options\":{\"0\":\"Celsius\",\"1\":\"Fahrenheit\"}},{\"name\":\"Fan Speed\",\"key\":\"t_fan_speed\",\"type\":\"enum\",\"options\":{\"0\":\"Auto\",\"5\":\"Low\",\"6\":\"Medium Low\",\"7\":\"Medium\",\"8\":\"Medium High\",\"9\":\"High\"}},{\"name\":\"Quiet\",\"key\":\"t_fan_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Super Mode\",\"key\":\"t_super\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Up and Down Swing\",\"key\":\"t_up_down\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Comfort Auto\",\"key\":\"t_indoortemp_detection\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Left and Right Swing\",\"key\":\"t_left_right\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Airflow\",\"key\":\"t_swing_angle\",\"type\":\"enum\",\"options\":{\"0\":\"Up and down swing\",\"1\":\"Auto\",\"2\":\"Position 1\",\"3\":\"Position 2\",\"4\":\"Position 3\",\"5\":\"Position 4\",\"6\":\"Position 5\",\"7\":\"Position 6\"}},{\"name\":\"Horizontal Airflow\",\"key\":\"t_swing_direction\",\"type\":\"enum\",\"options\":{\"0\":\"Straight\",\"1\":\"All Right\",\"2\":\"Both sides\",\"3\":\"Left and Right Swing\",\"4\":\"All Left\",\"5\":\"Stop\"}},{\"name\":\"Energy Saving\",\"key\":\"t_eco\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Air Purification\",\"key\":\"t_purify\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Wind\",\"key\":\"t_swing_follow\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Blow Towards\",\"2\":\"Do Not Blow\"}},{\"name\":\"8° Heat\",\"key\":\"t_8heat\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Sleep Mode\",\"key\":\"t_sleep\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Normal Sleep\",\"2\":\"Elder Sleep\",\"3\":\"Youth Sleep\",\"4\":\"Child Sleep\"}},{\"name\":\"Dimmer\",\"key\":\"t_dimmer\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Indoor Self-Clean\",\"key\":\"t_indoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Self-Clean\",\"key\":\"t_outdoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"One-Key Self-Clean\",\"key\":\"t_onekey_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Fresh Air\",\"key\":\"t_fresh_air\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Smart Control\",\"key\":\"t_tms\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Healthy Wind\",\"key\":\"t_health_fan\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Quiet\",\"key\":\"t_outdoor_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR On/Off\",\"key\":\"t_dr_onoff\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR Offset Temperature\",\"key\":\"t_dr_offset\",\"type\":\"range\",\"min\":0,\"max\":31,\"unit\":\"°\"},{\"name\":\"DR Load Capacity\",\"key\":\"t_dr_mode\",\"type\":\"range\",\"min\":0,\"max\":100,\"unit\":\"%\"},{\"name\":\"Auto-Defrost Clean\",\"key\":\"t_auto_defrost_clean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Enabled but not executing\",\"2\":\"Enabled and started\",\"3\":\"In progress\",\"4\":\"Finished\"},\"userControllableValues\":[\"0\",\"1\"]}],\"rules\":\"Select all and only the compatible settings explicitly requested by query. Use only the supplied commandSet keys and legal values. Do not add implied power, mode, fan speed or feature changes. Do not approximate unsupported values. A Celsius setpoint requires both t_temp and t_temp_type=0; a Fahrenheit setpoint requires both t_temp_f and t_temp_type=1. If a command is not requested (and is not the required temperature-unit companion), choose omit; omit means no command, while value 0 is an actual setting.\"}",
+      "questions": {
+        "t_power": {
+          "type": "choice",
+          "instructions": "For Power (t_power), select the value explicitly requested in query, or omit if not requested. Main appliance power only; not the switch for an individual feature. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_power: Power is not requested.",
+            "0": "Set Power to Off.",
+            "1": "Set Power to On."
+          }
+        },
+        "t_work_mode": {
+          "type": "choice",
+          "instructions": "For Mode (t_work_mode), select the value explicitly requested in query, or omit if not requested. Main operating mode. Auto mode is different from Comfort Auto. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_work_mode: Mode is not requested.",
+            "0": "Set Mode to Fan.",
+            "1": "Set Mode to Heat.",
+            "2": "Set Mode to Cool.",
+            "3": "Set Mode to Dry.",
+            "4": "Set Mode to Auto."
+          }
+        },
+        "t_temp": {
+          "type": "choice",
+          "instructions": "For Temperature (Celsius) (t_temp), select the value explicitly requested in query, or omit if not requested. Celsius setpoint only. A Celsius temperature requires t_temp_type=0 too. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_temp: Temperature (Celsius) is not requested.",
+            "16": "16 °C",
+            "17": "17 °C",
+            "18": "18 °C",
+            "19": "19 °C",
+            "20": "20 °C",
+            "21": "21 °C",
+            "22": "22 °C",
+            "23": "23 °C",
+            "24": "24 °C",
+            "25": "25 °C",
+            "26": "26 °C",
+            "27": "27 °C",
+            "28": "28 °C",
+            "29": "29 °C",
+            "30": "30 °C",
+            "31": "31 °C",
+            "32": "32 °C"
+          }
+        },
+        "t_temp_f": {
+          "type": "choice",
+          "instructions": "For Temperature (Fahrenheit) (t_temp_f), select the value explicitly requested in query, or omit if not requested. Fahrenheit setpoint only. A Fahrenheit temperature requires t_temp_type=1 too. Do not convert to Celsius. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_temp_f: Temperature (Fahrenheit) is not requested.",
+            "61": "61 °F",
+            "62": "62 °F",
+            "63": "63 °F",
+            "64": "64 °F",
+            "65": "65 °F",
+            "66": "66 °F",
+            "67": "67 °F",
+            "68": "68 °F",
+            "69": "69 °F",
+            "70": "70 °F",
+            "71": "71 °F",
+            "72": "72 °F",
+            "73": "73 °F",
+            "74": "74 °F",
+            "75": "75 °F",
+            "76": "76 °F",
+            "77": "77 °F",
+            "78": "78 °F",
+            "79": "79 °F",
+            "80": "80 °F",
+            "81": "81 °F",
+            "82": "82 °F",
+            "83": "83 °F",
+            "84": "84 °F",
+            "85": "85 °F",
+            "86": "86 °F",
+            "87": "87 °F",
+            "88": "88 °F",
+            "89": "89 °F",
+            "90": "90 °F"
+          }
+        },
+        "t_temp_type": {
+          "type": "choice",
+          "instructions": "For Temperature Unit (t_temp_type), select the value explicitly requested in query, or omit if not requested. Required companion of a temperature setting: Celsius=0, Fahrenheit=1. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_temp_type: Temperature Unit is not requested.",
+            "0": "Set Temperature Unit to Celsius.",
+            "1": "Set Temperature Unit to Fahrenheit."
+          }
+        },
+        "t_fan_speed": {
+          "type": "choice",
+          "instructions": "For Fan Speed (t_fan_speed), select the value explicitly requested in query, or omit if not requested. Fan speed. Turbo/Super is a separate function, not a fan speed. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_fan_speed: Fan Speed is not requested.",
+            "0": "Set Fan Speed to Auto.",
+            "5": "Set Fan Speed to Low.",
+            "6": "Set Fan Speed to Medium Low.",
+            "7": "Set Fan Speed to Medium.",
+            "8": "Set Fan Speed to Medium High.",
+            "9": "Set Fan Speed to High."
+          }
+        },
+        "t_fan_mute": {
+          "type": "choice",
+          "instructions": "For Quiet (t_fan_mute), select the value explicitly requested in query, or omit if not requested. Indoor unit quiet only; different from outdoor quiet. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_fan_mute: Quiet is not requested.",
+            "0": "Set Quiet to Off.",
+            "1": "Set Quiet to On."
+          }
+        },
+        "t_super": {
+          "type": "choice",
+          "instructions": "For Super Mode (t_super), select the value explicitly requested in query, or omit if not requested. Super/Turbo/powerful/rapid cooling or heating function; separate from fan speed. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_super: Super Mode is not requested.",
+            "0": "Set Super Mode to Off.",
+            "1": "Set Super Mode to On."
+          }
+        },
+        "t_up_down": {
+          "type": "choice",
+          "instructions": "For Up and Down Swing (t_up_down), select the value explicitly requested in query, or omit if not requested. Continuous up-and-down swing switch; fixed vertical positions use t_swing_angle. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_up_down: Up and Down Swing is not requested.",
+            "0": "Set Up and Down Swing to Off.",
+            "1": "Set Up and Down Swing to On."
+          }
+        },
+        "t_indoortemp_detection": {
+          "type": "choice",
+          "instructions": "For Comfort Auto (t_indoortemp_detection), select the value explicitly requested in query, or omit if not requested. Comfort Auto based on indoor temperature detection; different from Auto operating mode. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_indoortemp_detection: Comfort Auto is not requested.",
+            "0": "Set Comfort Auto to Off.",
+            "1": "Set Comfort Auto to On."
+          }
+        },
+        "t_left_right": {
+          "type": "choice",
+          "instructions": "For Left and Right Swing (t_left_right), select the value explicitly requested in query, or omit if not requested. Basic left-and-right swing switch; specific horizontal directions use t_swing_direction. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_left_right: Left and Right Swing is not requested.",
+            "0": "Set Left and Right Swing to Off.",
+            "1": "Set Left and Right Swing to On."
+          }
+        },
+        "t_swing_angle": {
+          "type": "choice",
+          "instructions": "For Airflow (t_swing_angle), select the value explicitly requested in query, or omit if not requested. Vertical airflow position. Use the option value, not the position number in its label. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_swing_angle: Airflow is not requested.",
+            "0": "Set Airflow to Up and down swing.",
+            "1": "Set Airflow to Auto.",
+            "2": "Set Airflow to Position 1.",
+            "3": "Set Airflow to Position 2.",
+            "4": "Set Airflow to Position 3.",
+            "5": "Set Airflow to Position 4.",
+            "6": "Set Airflow to Position 5.",
+            "7": "Set Airflow to Position 6."
+          }
+        },
+        "t_swing_direction": {
+          "type": "choice",
+          "instructions": "For Horizontal Airflow (t_swing_direction), select the value explicitly requested in query, or omit if not requested. Horizontal airflow direction. Splayed/both-sides airflow is value 2. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_swing_direction: Horizontal Airflow is not requested.",
+            "0": "Set Horizontal Airflow to Straight.",
+            "1": "Set Horizontal Airflow to All Right.",
+            "2": "Set Horizontal Airflow to Both sides.",
+            "3": "Set Horizontal Airflow to Left and Right Swing.",
+            "4": "Set Horizontal Airflow to All Left.",
+            "5": "Set Horizontal Airflow to Stop."
+          }
+        },
+        "t_eco": {
+          "type": "choice",
+          "instructions": "For Energy Saving (t_eco), select the value explicitly requested in query, or omit if not requested. Energy saving/Eco function; not an operating mode value. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_eco: Energy Saving is not requested.",
+            "0": "Set Energy Saving to Off.",
+            "1": "Set Energy Saving to On."
+          }
+        },
+        "t_purify": {
+          "type": "choice",
+          "instructions": "For Air Purification (t_purify), select the value explicitly requested in query, or omit if not requested. Air purification; different from the LED display/Dimmer. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_purify: Air Purification is not requested.",
+            "0": "Set Air Purification to Off.",
+            "1": "Set Air Purification to On."
+          }
+        },
+        "t_swing_follow": {
+          "type": "choice",
+          "instructions": "For AI Wind (t_swing_follow), select the value explicitly requested in query, or omit if not requested. AI Wind human-sensing airflow; different from AI Smart/TMS. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_swing_follow: AI Wind is not requested.",
+            "0": "Set AI Wind to Off.",
+            "1": "Set AI Wind to Blow Towards.",
+            "2": "Set AI Wind to Do Not Blow."
+          }
+        },
+        "t_8heat": {
+          "type": "choice",
+          "instructions": "For 8° Heat (t_8heat), select the value explicitly requested in query, or omit if not requested. 8-degree Celsius frost-protection heating; different from Heat operating mode. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_8heat: 8° Heat is not requested.",
+            "0": "Set 8° Heat to Off.",
+            "1": "Set 8° Heat to On."
+          }
+        },
+        "t_sleep": {
+          "type": "choice",
+          "instructions": "For Sleep Mode (t_sleep), select the value explicitly requested in query, or omit if not requested. Sleep profile selection. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_sleep: Sleep Mode is not requested.",
+            "0": "Set Sleep Mode to Off.",
+            "1": "Set Sleep Mode to Normal Sleep.",
+            "2": "Set Sleep Mode to Elder Sleep.",
+            "3": "Set Sleep Mode to Youth Sleep.",
+            "4": "Set Sleep Mode to Child Sleep."
+          }
+        },
+        "t_dimmer": {
+          "type": "choice",
+          "instructions": "For Dimmer (t_dimmer), select the value explicitly requested in query, or omit if not requested. LED display/panel light; different from air purification. Off=0, On=1. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_dimmer: Dimmer is not requested.",
+            "0": "Set Dimmer to Off.",
+            "1": "Set Dimmer to On."
+          }
+        },
+        "t_indoor_selfclean": {
+          "type": "choice",
+          "instructions": "For Indoor Self-Clean (t_indoor_selfclean), select the value explicitly requested in query, or omit if not requested. Clean only the indoor unit. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_indoor_selfclean: Indoor Self-Clean is not requested.",
+            "0": "Set Indoor Self-Clean to Off.",
+            "1": "Set Indoor Self-Clean to On."
+          }
+        },
+        "t_outdoor_selfclean": {
+          "type": "choice",
+          "instructions": "For Outdoor Self-Clean (t_outdoor_selfclean), select the value explicitly requested in query, or omit if not requested. Clean only the outdoor unit. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_outdoor_selfclean: Outdoor Self-Clean is not requested.",
+            "0": "Set Outdoor Self-Clean to Off.",
+            "1": "Set Outdoor Self-Clean to On."
+          }
+        },
+        "t_onekey_selfclean": {
+          "type": "choice",
+          "instructions": "For One-Key Self-Clean (t_onekey_selfclean), select the value explicitly requested in query, or omit if not requested. Combined one-key indoor/outdoor self-clean function. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_onekey_selfclean: One-Key Self-Clean is not requested.",
+            "0": "Set One-Key Self-Clean to Off.",
+            "1": "Set One-Key Self-Clean to On."
+          }
+        },
+        "t_fresh_air": {
+          "type": "choice",
+          "instructions": "For Fresh Air (t_fresh_air), select the value explicitly requested in query, or omit if not requested. Fresh air/ventilation function; different from Healthy Wind. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_fresh_air: Fresh Air is not requested.",
+            "0": "Set Fresh Air to Off.",
+            "1": "Set Fresh Air to On."
+          }
+        },
+        "t_tms": {
+          "type": "choice",
+          "instructions": "For AI Smart Control (t_tms), select the value explicitly requested in query, or omit if not requested. General AI Smart/TMS function; different from AI Wind. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_tms: AI Smart Control is not requested.",
+            "0": "Set AI Smart Control to Off.",
+            "1": "Set AI Smart Control to On."
+          }
+        },
+        "t_health_fan": {
+          "type": "choice",
+          "instructions": "For Healthy Wind (t_health_fan), select the value explicitly requested in query, or omit if not requested. Healthy Wind function; different from Fresh Air. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_health_fan: Healthy Wind is not requested.",
+            "0": "Set Healthy Wind to Off.",
+            "1": "Set Healthy Wind to On."
+          }
+        },
+        "t_outdoor_mute": {
+          "type": "choice",
+          "instructions": "For Outdoor Quiet (t_outdoor_mute), select the value explicitly requested in query, or omit if not requested. Outdoor unit quiet only; different from indoor Quiet. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_outdoor_mute: Outdoor Quiet is not requested.",
+            "0": "Set Outdoor Quiet to Off.",
+            "1": "Set Outdoor Quiet to On."
+          }
+        },
+        "t_dr_onoff": {
+          "type": "choice",
+          "instructions": "For DR On/Off (t_dr_onoff), select the value explicitly requested in query, or omit if not requested. Demand Response main switch. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_dr_onoff: DR On/Off is not requested.",
+            "0": "Set DR On/Off to Off.",
+            "1": "Set DR On/Off to On."
+          }
+        },
+        "t_dr_offset": {
+          "type": "choice",
+          "instructions": "For DR Offset Temperature (t_dr_offset), select the value explicitly requested in query, or omit if not requested. Demand Response temperature offset. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_dr_offset: DR Offset Temperature is not requested.",
+            "0": "0 °",
+            "1": "1 °",
+            "2": "2 °",
+            "3": "3 °",
+            "4": "4 °",
+            "5": "5 °",
+            "6": "6 °",
+            "7": "7 °",
+            "8": "8 °",
+            "9": "9 °",
+            "10": "10 °",
+            "11": "11 °",
+            "12": "12 °",
+            "13": "13 °",
+            "14": "14 °",
+            "15": "15 °",
+            "16": "16 °",
+            "17": "17 °",
+            "18": "18 °",
+            "19": "19 °",
+            "20": "20 °",
+            "21": "21 °",
+            "22": "22 °",
+            "23": "23 °",
+            "24": "24 °",
+            "25": "25 °",
+            "26": "26 °",
+            "27": "27 °",
+            "28": "28 °",
+            "29": "29 °",
+            "30": "30 °",
+            "31": "31 °"
+          }
+        },
+        "t_dr_mode": {
+          "type": "choice",
+          "instructions": "For DR Load Capacity (t_dr_mode), select the value explicitly requested in query, or omit if not requested. Demand Response load/capacity percentage. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_dr_mode: DR Load Capacity is not requested.",
+            "0": "0 %",
+            "1": "1 %",
+            "2": "2 %",
+            "3": "3 %",
+            "4": "4 %",
+            "5": "5 %",
+            "6": "6 %",
+            "7": "7 %",
+            "8": "8 %",
+            "9": "9 %",
+            "10": "10 %",
+            "11": "11 %",
+            "12": "12 %",
+            "13": "13 %",
+            "14": "14 %",
+            "15": "15 %",
+            "16": "16 %",
+            "17": "17 %",
+            "18": "18 %",
+            "19": "19 %",
+            "20": "20 %",
+            "21": "21 %",
+            "22": "22 %",
+            "23": "23 %",
+            "24": "24 %",
+            "25": "25 %",
+            "26": "26 %",
+            "27": "27 %",
+            "28": "28 %",
+            "29": "29 %",
+            "30": "30 %",
+            "31": "31 %",
+            "32": "32 %",
+            "33": "33 %",
+            "34": "34 %",
+            "35": "35 %",
+            "36": "36 %",
+            "37": "37 %",
+            "38": "38 %",
+            "39": "39 %",
+            "40": "40 %",
+            "41": "41 %",
+            "42": "42 %",
+            "43": "43 %",
+            "44": "44 %",
+            "45": "45 %",
+            "46": "46 %",
+            "47": "47 %",
+            "48": "48 %",
+            "49": "49 %",
+            "50": "50 %",
+            "51": "51 %",
+            "52": "52 %",
+            "53": "53 %",
+            "54": "54 %",
+            "55": "55 %",
+            "56": "56 %",
+            "57": "57 %",
+            "58": "58 %",
+            "59": "59 %",
+            "60": "60 %",
+            "61": "61 %",
+            "62": "62 %",
+            "63": "63 %",
+            "64": "64 %",
+            "65": "65 %",
+            "66": "66 %",
+            "67": "67 %",
+            "68": "68 %",
+            "69": "69 %",
+            "70": "70 %",
+            "71": "71 %",
+            "72": "72 %",
+            "73": "73 %",
+            "74": "74 %",
+            "75": "75 %",
+            "76": "76 %",
+            "77": "77 %",
+            "78": "78 %",
+            "79": "79 %",
+            "80": "80 %",
+            "81": "81 %",
+            "82": "82 %",
+            "83": "83 %",
+            "84": "84 %",
+            "85": "85 %",
+            "86": "86 %",
+            "87": "87 %",
+            "88": "88 %",
+            "89": "89 %",
+            "90": "90 %",
+            "91": "91 %",
+            "92": "92 %",
+            "93": "93 %",
+            "94": "94 %",
+            "95": "95 %",
+            "96": "96 %",
+            "97": "97 %",
+            "98": "98 %",
+            "99": "99 %",
+            "100": "100 %"
+          }
+        },
+        "t_auto_defrost_clean": {
+          "type": "choice",
+          "instructions": "For Auto-Defrost Clean (t_auto_defrost_clean), select the value explicitly requested in query, or omit if not requested. Only values 0 and 1 are user-controllable. Values 2, 3 and 4 describe running status and must never be commanded. Do not infer extra settings from another requested feature.",
+          "criteria": {
+            "omit": "Do not send t_auto_defrost_clean: Auto-Defrost Clean is not requested.",
+            "0": "Set Auto-Defrost Clean to Off.",
+            "1": "Set Auto-Defrost Clean to Enabled but not executing."
+          }
+        }
+      },
+      "model": "Cloudflare/clef-flash"
+    },
+    "input_sha256": "f45cddcf26485821a951eb2587e740067f50bc7d3abed1ff4f3878a1d431ad97",
+    "http_status": 200,
+    "response_text": "{\"model\": \"Cloudflare/clef-flash\", \"answers\": {\"t_power\": {\"type\": \"choice\", \"choice\": \"1\", \"confidence\": 0.713, \"probabilities\": {\"omit\": 0.277, \"0\": 0.0099, \"1\": 0.713}}, \"t_work_mode\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8206, \"probabilities\": {\"omit\": 0.8206, \"0\": 0.0164, \"1\": 0.0084, \"2\": 0.1229, \"3\": 0.0111, \"4\": 0.0207}}, \"t_temp\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8442, \"probabilities\": {\"omit\": 0.8442, \"16\": 0.0072, \"17\": 0.0061, \"18\": 0.0076, \"19\": 0.0077, \"20\": 0.0111, \"21\": 0.0082, \"22\": 0.0103, \"23\": 0.0089, \"24\": 0.0134, \"25\": 0.0118, \"26\": 0.0159, \"27\": 0.0114, \"28\": 0.0114, \"29\": 0.0079, \"30\": 0.0069, \"31\": 0.0051, \"32\": 0.0048}}, \"t_temp_f\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.6937, \"probabilities\": {\"omit\": 0.6937, \"61\": 0.0096, \"62\": 0.0081, \"63\": 0.0082, \"64\": 0.0121, \"65\": 0.011, \"66\": 0.0109, \"67\": 0.0114, \"68\": 0.02, \"69\": 0.0153, \"70\": 0.0168, \"71\": 0.0121, \"72\": 0.0197, \"73\": 0.0089, \"74\": 0.0123, \"75\": 0.0119, \"76\": 0.0109, \"77\": 0.0083, \"78\": 0.0121, \"79\": 0.008, \"80\": 0.0092, \"81\": 0.0074, \"82\": 0.007, \"83\": 0.0055, \"84\": 0.0082, \"85\": 0.0065, \"86\": 0.0078, \"87\": 0.0061, \"88\": 0.0077, \"89\": 0.007, \"90\": 0.0064}}, \"t_temp_type\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9769, \"probabilities\": {\"omit\": 0.9769, \"0\": 0.014, \"1\": 0.0092}}, \"t_fan_speed\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8974, \"probabilities\": {\"omit\": 0.8974, \"0\": 0.0267, \"5\": 0.0111, \"6\": 0.0147, \"7\": 0.0167, \"8\": 0.0172, \"9\": 0.0162}}, \"t_fan_mute\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8662, \"probabilities\": {\"omit\": 0.8662, \"0\": 0.1273, \"1\": 0.0065}}, \"t_super\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8597, \"probabilities\": {\"omit\": 0.8597, \"0\": 0.1229, \"1\": 0.0174}}, \"t_up_down\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9412, \"probabilities\": {\"omit\": 0.9412, \"0\": 0.0411, \"1\": 0.0177}}, \"t_indoortemp_detection\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8659, \"probabilities\": {\"omit\": 0.8659, \"0\": 0.1129, \"1\": 0.0212}}, \"t_left_right\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9569, \"probabilities\": {\"omit\": 0.9569, \"0\": 0.0312, \"1\": 0.0119}}, \"t_swing_angle\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8764, \"probabilities\": {\"omit\": 0.8764, \"0\": 0.0265, \"1\": 0.0324, \"2\": 0.0117, \"3\": 0.01, \"4\": 0.0099, \"5\": 0.01, \"6\": 0.0114, \"7\": 0.0116}}, \"t_swing_direction\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9193, \"probabilities\": {\"omit\": 0.9193, \"0\": 0.0258, \"1\": 0.0076, \"2\": 0.0136, \"3\": 0.0186, \"4\": 0.0065, \"5\": 0.0086}}, \"t_eco\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8899, \"probabilities\": {\"omit\": 0.8899, \"0\": 0.0983, \"1\": 0.0118}}, \"t_purify\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9245, \"probabilities\": {\"omit\": 0.9245, \"0\": 0.067, \"1\": 0.0085}}, \"t_swing_follow\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8351, \"probabilities\": {\"omit\": 0.8351, \"0\": 0.1423, \"1\": 0.0122, \"2\": 0.0103}}, \"t_8heat\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.7261, \"probabilities\": {\"omit\": 0.7261, \"0\": 0.2713, \"1\": 0.0025}}, \"t_sleep\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8087, \"probabilities\": {\"omit\": 0.8087, \"0\": 0.1722, \"1\": 0.0061, \"2\": 0.004, \"3\": 0.0054, \"4\": 0.0037}}, \"t_dimmer\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9492, \"probabilities\": {\"omit\": 0.9492, \"0\": 0.0425, \"1\": 0.0082}}, \"t_indoor_selfclean\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9103, \"probabilities\": {\"omit\": 0.9103, \"0\": 0.0853, \"1\": 0.0043}}, \"t_outdoor_selfclean\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9492, \"probabilities\": {\"omit\": 0.9492, \"0\": 0.0456, \"1\": 0.0052}}, \"t_onekey_selfclean\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.9317, \"probabilities\": {\"omit\": 0.9317, \"0\": 0.0644, \"1\": 0.0039}}, \"t_fresh_air\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.7686, \"probabilities\": {\"omit\": 0.7686, \"0\": 0.2134, \"1\": 0.0179}}, \"t_tms\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8852, \"probabilities\": {\"omit\": 0.8852, \"0\": 0.0908, \"1\": 0.0241}}, \"t_health_fan\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8207, \"probabilities\": {\"omit\": 0.8207, \"0\": 0.1591, \"1\": 0.0202}}, \"t_outdoor_mute\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8936, \"probabilities\": {\"omit\": 0.8936, \"0\": 0.0977, \"1\": 0.0087}}, \"t_dr_onoff\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8971, \"probabilities\": {\"omit\": 0.8971, \"0\": 0.0815, \"1\": 0.0214}}, \"t_dr_offset\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.8552, \"probabilities\": {\"omit\": 0.8552, \"0\": 0.0332, \"1\": 0.0045, \"2\": 0.0017, \"3\": 0.0015, \"4\": 0.0015, \"5\": 0.0021, \"6\": 0.0023, \"7\": 0.0026, \"8\": 0.0048, \"9\": 0.0051, \"10\": 0.006, \"11\": 0.0046, \"12\": 0.0041, \"13\": 0.0037, \"14\": 0.0048, \"15\": 0.0042, \"16\": 0.0036, \"17\": 0.0048, \"18\": 0.0062, \"19\": 0.0055, \"20\": 0.0023, \"21\": 0.0021, \"22\": 0.0025, \"23\": 0.0024, \"24\": 0.0026, \"25\": 0.0031, \"26\": 0.0042, \"27\": 0.005, \"28\": 0.0046, \"29\": 0.0046, \"30\": 0.0024, \"31\": 0.0023}}, \"t_dr_mode\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.6777, \"probabilities\": {\"omit\": 0.6777, \"0\": 0.0237, \"1\": 0.0041, \"2\": 0.0017, \"3\": 0.0014, \"4\": 0.0017, \"5\": 0.002, \"6\": 0.0017, \"7\": 0.0019, \"8\": 0.0022, \"9\": 0.0027, \"10\": 0.0059, \"11\": 0.002, \"12\": 0.0019, \"13\": 0.0016, \"14\": 0.0021, \"15\": 0.0038, \"16\": 0.0028, \"17\": 0.0025, \"18\": 0.0028, \"19\": 0.0027, \"20\": 0.0027, \"21\": 0.0016, \"22\": 0.0016, \"23\": 0.0017, \"24\": 0.0022, \"25\": 0.0039, \"26\": 0.0021, \"27\": 0.0022, \"28\": 0.0022, \"29\": 0.0025, \"30\": 0.0025, \"31\": 0.0018, \"32\": 0.0014, \"33\": 0.0012, \"34\": 0.0014, \"35\": 0.0017, \"36\": 0.0015, \"37\": 0.0015, \"38\": 0.0018, \"39\": 0.0021, \"40\": 0.003, \"41\": 0.0018, \"42\": 0.0016, \"43\": 0.0015, \"44\": 0.0017, \"45\": 0.0028, \"46\": 0.0023, \"47\": 0.0024, \"48\": 0.0025, \"49\": 0.0034, \"50\": 0.0047, \"51\": 0.0022, \"52\": 0.0023, \"53\": 0.002, \"54\": 0.0028, \"55\": 0.0032, \"56\": 0.0034, \"57\": 0.0027, \"58\": 0.0031, \"59\": 0.0031, \"60\": 0.0036, \"61\": 0.0023, \"62\": 0.0027, \"63\": 0.0026, \"64\": 0.0034, \"65\": 0.0043, \"66\": 0.0037, \"67\": 0.0031, \"68\": 0.0041, \"69\": 0.0038, \"70\": 0.0048, \"71\": 0.0028, \"72\": 0.0027, \"73\": 0.0024, \"74\": 0.003, \"75\": 0.0038, \"76\": 0.0032, \"77\": 0.0031, \"78\": 0.0032, \"79\": 0.0034, \"80\": 0.0045, \"81\": 0.0025, \"82\": 0.0027, \"83\": 0.0024, \"84\": 0.0033, \"85\": 0.0038, \"86\": 0.0038, \"87\": 0.0037, \"88\": 0.0051, \"89\": 0.0052, \"90\": 0.006, \"91\": 0.0033, \"92\": 0.0038, \"93\": 0.0033, \"94\": 0.0038, \"95\": 0.0051, \"96\": 0.0045, \"97\": 0.0054, \"98\": 0.0051, \"99\": 0.0061, \"100\": 0.0101}}, \"t_auto_defrost_clean\": {\"type\": \"choice\", \"choice\": \"omit\", \"confidence\": 0.7954, \"probabilities\": {\"omit\": 0.7954, \"0\": 0.1835, \"1\": 0.0212}}}, \"usage\": {\"input_tokens\": 9417, \"output_tokens\": 0}, \"benchmark_timing\": {\"sdk_call_ms\": 3188.278802000241, \"gpu_peak_allocated_bytes\": 20628013568}}",
+    "status": "ok",
+    "response": {
+      "model": "Cloudflare/clef-flash",
+      "answers": {
+        "t_power": {
+          "type": "choice",
+          "choice": "1",
+          "confidence": 0.713,
+          "probabilities": {
+            "omit": 0.277,
+            "0": 0.0099,
+            "1": 0.713
+          }
+        },
+        "t_work_mode": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8206,
+          "probabilities": {
+            "omit": 0.8206,
+            "0": 0.0164,
+            "1": 0.0084,
+            "2": 0.1229,
+            "3": 0.0111,
+            "4": 0.0207
+          }
+        },
+        "t_temp": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8442,
+          "probabilities": {
+            "omit": 0.8442,
+            "16": 0.0072,
+            "17": 0.0061,
+            "18": 0.0076,
+            "19": 0.0077,
+            "20": 0.0111,
+            "21": 0.0082,
+            "22": 0.0103,
+            "23": 0.0089,
+            "24": 0.0134,
+            "25": 0.0118,
+            "26": 0.0159,
+            "27": 0.0114,
+            "28": 0.0114,
+            "29": 0.0079,
+            "30": 0.0069,
+            "31": 0.0051,
+            "32": 0.0048
+          }
+        },
+        "t_temp_f": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.6937,
+          "probabilities": {
+            "omit": 0.6937,
+            "61": 0.0096,
+            "62": 0.0081,
+            "63": 0.0082,
+            "64": 0.0121,
+            "65": 0.011,
+            "66": 0.0109,
+            "67": 0.0114,
+            "68": 0.02,
+            "69": 0.0153,
+            "70": 0.0168,
+            "71": 0.0121,
+            "72": 0.0197,
+            "73": 0.0089,
+            "74": 0.0123,
+            "75": 0.0119,
+            "76": 0.0109,
+            "77": 0.0083,
+            "78": 0.0121,
+            "79": 0.008,
+            "80": 0.0092,
+            "81": 0.0074,
+            "82": 0.007,
+            "83": 0.0055,
+            "84": 0.0082,
+            "85": 0.0065,
+            "86": 0.0078,
+            "87": 0.0061,
+            "88": 0.0077,
+            "89": 0.007,
+            "90": 0.0064
+          }
+        },
+        "t_temp_type": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9769,
+          "probabilities": {
+            "omit": 0.9769,
+            "0": 0.014,
+            "1": 0.0092
+          }
+        },
+        "t_fan_speed": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8974,
+          "probabilities": {
+            "omit": 0.8974,
+            "0": 0.0267,
+            "5": 0.0111,
+            "6": 0.0147,
+            "7": 0.0167,
+            "8": 0.0172,
+            "9": 0.0162
+          }
+        },
+        "t_fan_mute": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8662,
+          "probabilities": {
+            "omit": 0.8662,
+            "0": 0.1273,
+            "1": 0.0065
+          }
+        },
+        "t_super": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8597,
+          "probabilities": {
+            "omit": 0.8597,
+            "0": 0.1229,
+            "1": 0.0174
+          }
+        },
+        "t_up_down": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9412,
+          "probabilities": {
+            "omit": 0.9412,
+            "0": 0.0411,
+            "1": 0.0177
+          }
+        },
+        "t_indoortemp_detection": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8659,
+          "probabilities": {
+            "omit": 0.8659,
+            "0": 0.1129,
+            "1": 0.0212
+          }
+        },
+        "t_left_right": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9569,
+          "probabilities": {
+            "omit": 0.9569,
+            "0": 0.0312,
+            "1": 0.0119
+          }
+        },
+        "t_swing_angle": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8764,
+          "probabilities": {
+            "omit": 0.8764,
+            "0": 0.0265,
+            "1": 0.0324,
+            "2": 0.0117,
+            "3": 0.01,
+            "4": 0.0099,
+            "5": 0.01,
+            "6": 0.0114,
+            "7": 0.0116
+          }
+        },
+        "t_swing_direction": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9193,
+          "probabilities": {
+            "omit": 0.9193,
+            "0": 0.0258,
+            "1": 0.0076,
+            "2": 0.0136,
+            "3": 0.0186,
+            "4": 0.0065,
+            "5": 0.0086
+          }
+        },
+        "t_eco": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8899,
+          "probabilities": {
+            "omit": 0.8899,
+            "0": 0.0983,
+            "1": 0.0118
+          }
+        },
+        "t_purify": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9245,
+          "probabilities": {
+            "omit": 0.9245,
+            "0": 0.067,
+            "1": 0.0085
+          }
+        },
+        "t_swing_follow": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8351,
+          "probabilities": {
+            "omit": 0.8351,
+            "0": 0.1423,
+            "1": 0.0122,
+            "2": 0.0103
+          }
+        },
+        "t_8heat": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.7261,
+          "probabilities": {
+            "omit": 0.7261,
+            "0": 0.2713,
+            "1": 0.0025
+          }
+        },
+        "t_sleep": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8087,
+          "probabilities": {
+            "omit": 0.8087,
+            "0": 0.1722,
+            "1": 0.0061,
+            "2": 0.004,
+            "3": 0.0054,
+            "4": 0.0037
+          }
+        },
+        "t_dimmer": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9492,
+          "probabilities": {
+            "omit": 0.9492,
+            "0": 0.0425,
+            "1": 0.0082
+          }
+        },
+        "t_indoor_selfclean": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9103,
+          "probabilities": {
+            "omit": 0.9103,
+            "0": 0.0853,
+            "1": 0.0043
+          }
+        },
+        "t_outdoor_selfclean": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9492,
+          "probabilities": {
+            "omit": 0.9492,
+            "0": 0.0456,
+            "1": 0.0052
+          }
+        },
+        "t_onekey_selfclean": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.9317,
+          "probabilities": {
+            "omit": 0.9317,
+            "0": 0.0644,
+            "1": 0.0039
+          }
+        },
+        "t_fresh_air": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.7686,
+          "probabilities": {
+            "omit": 0.7686,
+            "0": 0.2134,
+            "1": 0.0179
+          }
+        },
+        "t_tms": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8852,
+          "probabilities": {
+            "omit": 0.8852,
+            "0": 0.0908,
+            "1": 0.0241
+          }
+        },
+        "t_health_fan": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8207,
+          "probabilities": {
+            "omit": 0.8207,
+            "0": 0.1591,
+            "1": 0.0202
+          }
+        },
+        "t_outdoor_mute": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8936,
+          "probabilities": {
+            "omit": 0.8936,
+            "0": 0.0977,
+            "1": 0.0087
+          }
+        },
+        "t_dr_onoff": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8971,
+          "probabilities": {
+            "omit": 0.8971,
+            "0": 0.0815,
+            "1": 0.0214
+          }
+        },
+        "t_dr_offset": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.8552,
+          "probabilities": {
+            "omit": 0.8552,
+            "0": 0.0332,
+            "1": 0.0045,
+            "2": 0.0017,
+            "3": 0.0015,
+            "4": 0.0015,
+            "5": 0.0021,
+            "6": 0.0023,
+            "7": 0.0026,
+            "8": 0.0048,
+            "9": 0.0051,
+            "10": 0.006,
+            "11": 0.0046,
+            "12": 0.0041,
+            "13": 0.0037,
+            "14": 0.0048,
+            "15": 0.0042,
+            "16": 0.0036,
+            "17": 0.0048,
+            "18": 0.0062,
+            "19": 0.0055,
+            "20": 0.0023,
+            "21": 0.0021,
+            "22": 0.0025,
+            "23": 0.0024,
+            "24": 0.0026,
+            "25": 0.0031,
+            "26": 0.0042,
+            "27": 0.005,
+            "28": 0.0046,
+            "29": 0.0046,
+            "30": 0.0024,
+            "31": 0.0023
+          }
+        },
+        "t_dr_mode": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.6777,
+          "probabilities": {
+            "omit": 0.6777,
+            "0": 0.0237,
+            "1": 0.0041,
+            "2": 0.0017,
+            "3": 0.0014,
+            "4": 0.0017,
+            "5": 0.002,
+            "6": 0.0017,
+            "7": 0.0019,
+            "8": 0.0022,
+            "9": 0.0027,
+            "10": 0.0059,
+            "11": 0.002,
+            "12": 0.0019,
+            "13": 0.0016,
+            "14": 0.0021,
+            "15": 0.0038,
+            "16": 0.0028,
+            "17": 0.0025,
+            "18": 0.0028,
+            "19": 0.0027,
+            "20": 0.0027,
+            "21": 0.0016,
+            "22": 0.0016,
+            "23": 0.0017,
+            "24": 0.0022,
+            "25": 0.0039,
+            "26": 0.0021,
+            "27": 0.0022,
+            "28": 0.0022,
+            "29": 0.0025,
+            "30": 0.0025,
+            "31": 0.0018,
+            "32": 0.0014,
+            "33": 0.0012,
+            "34": 0.0014,
+            "35": 0.0017,
+            "36": 0.0015,
+            "37": 0.0015,
+            "38": 0.0018,
+            "39": 0.0021,
+            "40": 0.003,
+            "41": 0.0018,
+            "42": 0.0016,
+            "43": 0.0015,
+            "44": 0.0017,
+            "45": 0.0028,
+            "46": 0.0023,
+            "47": 0.0024,
+            "48": 0.0025,
+            "49": 0.0034,
+            "50": 0.0047,
+            "51": 0.0022,
+            "52": 0.0023,
+            "53": 0.002,
+            "54": 0.0028,
+            "55": 0.0032,
+            "56": 0.0034,
+            "57": 0.0027,
+            "58": 0.0031,
+            "59": 0.0031,
+            "60": 0.0036,
+            "61": 0.0023,
+            "62": 0.0027,
+            "63": 0.0026,
+            "64": 0.0034,
+            "65": 0.0043,
+            "66": 0.0037,
+            "67": 0.0031,
+            "68": 0.0041,
+            "69": 0.0038,
+            "70": 0.0048,
+            "71": 0.0028,
+            "72": 0.0027,
+            "73": 0.0024,
+            "74": 0.003,
+            "75": 0.0038,
+            "76": 0.0032,
+            "77": 0.0031,
+            "78": 0.0032,
+            "79": 0.0034,
+            "80": 0.0045,
+            "81": 0.0025,
+            "82": 0.0027,
+            "83": 0.0024,
+            "84": 0.0033,
+            "85": 0.0038,
+            "86": 0.0038,
+            "87": 0.0037,
+            "88": 0.0051,
+            "89": 0.0052,
+            "90": 0.006,
+            "91": 0.0033,
+            "92": 0.0038,
+            "93": 0.0033,
+            "94": 0.0038,
+            "95": 0.0051,
+            "96": 0.0045,
+            "97": 0.0054,
+            "98": 0.0051,
+            "99": 0.0061,
+            "100": 0.0101
+          }
+        },
+        "t_auto_defrost_clean": {
+          "type": "choice",
+          "choice": "omit",
+          "confidence": 0.7954,
+          "probabilities": {
+            "omit": 0.7954,
+            "0": 0.1835,
+            "1": 0.0212
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 9417,
+        "output_tokens": 0
+      },
+      "benchmark_timing": {
+        "sdk_call_ms": 3188.278802000241,
+        "gpu_peak_allocated_bytes": 20628013568
+      }
+    },
+    "client_ms": 3189.5507250001174,
+    "choices": {
+      "t_power": "1",
+      "t_work_mode": "omit",
+      "t_temp": "omit",
+      "t_temp_f": "omit",
+      "t_temp_type": "omit",
+      "t_fan_speed": "omit",
+      "t_fan_mute": "omit",
+      "t_super": "omit",
+      "t_up_down": "omit",
+      "t_indoortemp_detection": "omit",
+      "t_left_right": "omit",
+      "t_swing_angle": "omit",
+      "t_swing_direction": "omit",
+      "t_eco": "omit",
+      "t_purify": "omit",
+      "t_swing_follow": "omit",
+      "t_8heat": "omit",
+      "t_sleep": "omit",
+      "t_dimmer": "omit",
+      "t_indoor_selfclean": "omit",
+      "t_outdoor_selfclean": "omit",
+      "t_onekey_selfclean": "omit",
+      "t_fresh_air": "omit",
+      "t_tms": "omit",
+      "t_health_fan": "omit",
+      "t_outdoor_mute": "omit",
+      "t_dr_onoff": "omit",
+      "t_dr_offset": "omit",
+      "t_dr_mode": "omit",
+      "t_auto_defrost_clean": "omit"
+    },
+    "commands": [
+      {
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ],
+    "finished_at": "2026-10-30T14:08:52.596531+00:00"
+  }
+}

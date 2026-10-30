@@ -1,0 +1,98 @@
+{
+  "region": "us-east-1",
+  "bucket": "strands-decider-vllm-632930644527",
+  "instance": "i-0ae7eb0abcb815af3",
+  "prefix": "ac-control/2026-10-30-h2o-official-v2",
+  "remote": "/opt/decider-open-models/ac-control/2026-10-30-h2o-official-v2",
+  "commands": [
+    {
+      "name": "development",
+      "action": "job",
+      "submitted_at": "2026-10-30T11:48:03.594010+00:00",
+      "id": "8bbd721a-c9b7-4364-a443-eed9599cac45",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/development.tar.gz",
+      "archive_sha256": "1314f1133aefc278e2d4f349645b2659ed5d9470ec6af2130b628ceb31298455",
+      "files": {
+        "plan.json": "a2bf76696bd4ac37c7457e0397a8cea17f50cde41d0d2dc61ad9757b886478d4",
+        "h2o_ac_client.py": "5cc253d521187648de3356337dcb8b53e2b32ec2181c95af1f20e9d7aae69ad2",
+        "run_h2o_official.py": "5e869336139c53c7d250d085688439c4a10daba2b68f62f97ddc9c7e1a9bbad1",
+        "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+        "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+        "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+        "tune_h2o_runtime.py": "6f42dbec5682d2fbd68ccb667e32a251df5ad0ad8cc207eabe2f0214f50c0fd3",
+        "jobs/development.json": "d8620447c4c5fff437990f0b7fd5dd064bb5f64239a006f9d2b30781d90f39ce"
+      }
+    },
+    {
+      "name": "restart-original",
+      "action": "restart",
+      "submitted_at": "2026-10-30T11:58:55.718442+00:00",
+      "id": "8ffa0c52-e5e8-441f-8508-961170037815",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/restart-original.tar.gz",
+      "archive_sha256": "cb76654756c3707cbf5ff169595a2c286d6f85616cf89206e7049d196b47cb0c",
+      "files": {}
+    },
+    {
+      "name": "restart_stability",
+      "action": "job",
+      "submitted_at": "2026-10-30T12:03:03.382924+00:00",
+      "id": "8db35bc3-7638-4487-a48c-a974e75617cc",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/restart_stability.tar.gz",
+      "archive_sha256": "0887964fd256395b6d3fbdf41f04429565c1fad7696bb7953c11bc35ccadb675",
+      "files": {
+        "jobs/restart_stability.json": "8a012e44a7df5a55ad480d0156126ee53245efde16cc1594959b7f25c09217bf"
+      }
+    },
+    {
+      "name": "eager_baseline",
+      "action": "job",
+      "submitted_at": "2026-10-30T12:04:09.800558+00:00",
+      "id": "50462982-dcb4-4360-8005-0660c86323dd",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/eager_baseline.tar.gz",
+      "archive_sha256": "e0f00f7072364169cdb6563d6c6d37b162d6e7cc32578f832594f610b199a874",
+      "files": {
+        "jobs/eager_baseline.json": "c27eab182419db4ef7249c7d84acb6a10235783a2467c501a10fd47845d0dcad"
+      }
+    },
+    {
+      "name": "gdn-start",
+      "action": "gdn1024",
+      "submitted_at": "2026-10-30T12:05:14.519303+00:00",
+      "id": "d8d30045-b24c-41d1-946c-140b10a0603e",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/gdn-start.tar.gz",
+      "archive_sha256": "d0f69ef4756a11b0d3d604c54fccdaadef961ecea2cc2cb34f482f1ef580d91d",
+      "files": {}
+    },
+    {
+      "name": "gdn_baseline_screen",
+      "action": "job",
+      "submitted_at": "2026-10-30T12:09:39.968929+00:00",
+      "id": "8f393742-77ca-4520-8590-91999f9c2463",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/gdn_baseline_screen.tar.gz",
+      "archive_sha256": "d6e76243526cb089d1b9c46e8829ebab3a3ea9646eab69bf731235f7121a0dfd",
+      "files": {
+        "jobs/gdn_baseline_screen.json": "2d02ad5309f0b1b2c3aabd6e001e78c912dcfe77633fcf3a594fd1ff481fc4e6"
+      }
+    },
+    {
+      "name": "restore-original",
+      "action": "rollback",
+      "submitted_at": "2026-10-30T12:10:30.395641+00:00",
+      "id": "3c6b6b44-f995-452f-a468-47508e4d0a87",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/restore-original.tar.gz",
+      "archive_sha256": "73c6b1f0d1c485ade2412e90b7b38a0c5c47668eebe4674527bba270d474f3d6",
+      "files": {}
+    },
+    {
+      "name": "final_stability",
+      "action": "job",
+      "submitted_at": "2026-10-30T12:14:36.089375+00:00",
+      "id": "e17323b3-d8c0-42d8-8452-16db5298b72a",
+      "input_key": "input/ac-control/2026-10-30-h2o-official-v2/final_stability.tar.gz",
+      "archive_sha256": "4d45d10e581f0b2b9dddb6e18b4b25729bebf29bf787ae9ecd90464bfe42ff47",
+      "files": {
+        "jobs/final_stability.json": "995b8489c2482d03041d16a446675cad09bbe612217acf84f99cd4dd362335cd"
+      }
+    }
+  ]
+}

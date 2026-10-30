@@ -1,0 +1,892 @@
+[
+  {
+    "case_id": "payment-pending-pending-intake",
+    "variant": "original",
+    "ordered_request_sha256": "7eb6ed47262677da9ec0d3fa00466b2d5c35aed02faa95e99b3cded36b7ce24f"
+  },
+  {
+    "case_id": "payment-pending-pending-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "7811e2a03cd50d9bfd1d87101f24b2261533feba8ccf8d8c4109a90575d91fc7"
+  },
+  {
+    "case_id": "payment-pending-pending-verify",
+    "variant": "original",
+    "ordered_request_sha256": "7551a9063013a52afa8e13a23f1f9e90f34998482a9f97751c5dc637dc552888"
+  },
+  {
+    "case_id": "payment-pending-pending-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "25713b193f409417388b9692432ab7540060d41ac8710b1a95a133c9bf6752e0"
+  },
+  {
+    "case_id": "payment-pending-pending-approve",
+    "variant": "original",
+    "ordered_request_sha256": "1606d909ba2c4333131bc86f0ff8417eaaf890b155f81552f3089290f9b874b4"
+  },
+  {
+    "case_id": "payment-pending-pending-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "bf748bac0e8bcf07a1a185e82bcf223ee0628a8098ec2588a1d37ebe2e5674b2"
+  },
+  {
+    "case_id": "payment-pending-pending-execute",
+    "variant": "original",
+    "ordered_request_sha256": "e194b6e4a2d7069c6c8f66d8b37a775b7b15b5c868c77add73d29a3d7de45cac"
+  },
+  {
+    "case_id": "payment-pending-pending-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "f470c82ebf0d4547d9f79556084a5dcdf4fd91822533be342ca5cbe73c21dcbe"
+  },
+  {
+    "case_id": "payment-pending-pending-close",
+    "variant": "original",
+    "ordered_request_sha256": "6e266c8c22623a17d2fb826c1726ffa7945a3630f530080e4be6fa7f5bd29982"
+  },
+  {
+    "case_id": "payment-pending-pending-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "98704ffe4770b84d5a06b4758b646f2a7f8330ea403519ba02b5f38832b0cb07"
+  },
+  {
+    "case_id": "payment-pending-ready-intake",
+    "variant": "original",
+    "ordered_request_sha256": "c03a2fed4ef7b4935c8529a16c3810b57ae7d70199ce6dd58c1660edcf0ee1d9"
+  },
+  {
+    "case_id": "payment-pending-ready-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "e99388f2bbce061a236b38cfc24dc442ff76ba1a1b8ebd2e827098fa23953d76"
+  },
+  {
+    "case_id": "payment-pending-ready-verify",
+    "variant": "original",
+    "ordered_request_sha256": "d9bc3bf11c5a1a9a11b32af2db4dffc20989fa7e6b053ac9c5e887709e7f7d00"
+  },
+  {
+    "case_id": "payment-pending-ready-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "1a314ef90ca05aca3d497a9f1954c0058c7e8eadb504c6ab442b895b33b48da3"
+  },
+  {
+    "case_id": "payment-pending-ready-approve",
+    "variant": "original",
+    "ordered_request_sha256": "9ddd67a666309af02a40679752461d9dd4707ce971a23d6c9807716bd8704d63"
+  },
+  {
+    "case_id": "payment-pending-ready-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "0a37c172aca2966e417e36f16d56e2a80e6b8100b12e7f4292341feb6bb4ac01"
+  },
+  {
+    "case_id": "payment-pending-ready-execute",
+    "variant": "original",
+    "ordered_request_sha256": "6af6c2fe82150d7220c15a1c02fdfecc3e96123aff37fb804985b38ed2e8ad66"
+  },
+  {
+    "case_id": "payment-pending-ready-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "cd5b53dad5acac04acb24ca1e949aeb8c473871bdd8bfa510a77a0af953aaa3e"
+  },
+  {
+    "case_id": "payment-pending-ready-close",
+    "variant": "original",
+    "ordered_request_sha256": "d1e32dd7e834a77d5dbe4542aefe71edcfb2ace06807a564908b85d2278b5fc5"
+  },
+  {
+    "case_id": "payment-pending-ready-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "0795317ddab113b6b1479249641bb57575eb1ce5a4182c2c751f8e5a2406ed01"
+  },
+  {
+    "case_id": "payment-underpaid-pending-intake",
+    "variant": "original",
+    "ordered_request_sha256": "d9da34d45d2bd8139eb7125f182dbf9e2968458ed74f1c22fa4e556a0d71632f"
+  },
+  {
+    "case_id": "payment-underpaid-pending-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "1f8641166aabe601a0aeb0712e2752fd0768d6eea18250bf6f2a2888753e1515"
+  },
+  {
+    "case_id": "payment-underpaid-pending-verify",
+    "variant": "original",
+    "ordered_request_sha256": "5de1c743127ae718eb1c5eaba4d59f35854737e584085cfe81b3873fc0769cf8"
+  },
+  {
+    "case_id": "payment-underpaid-pending-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "71c16e51a8d666d0c2e7bbfc1b01643268b20f25ff6af62fdf8fd9030f9a3c17"
+  },
+  {
+    "case_id": "payment-underpaid-pending-approve",
+    "variant": "original",
+    "ordered_request_sha256": "3afda326bb42b8a35cdd4f223f43153ca73e9542684018750bf7fed210cb370e"
+  },
+  {
+    "case_id": "payment-underpaid-pending-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "5db3e96e93a5bd98517c87ec1a19b8affd8e81b7d21764d6ba5172a6b3c8709b"
+  },
+  {
+    "case_id": "payment-underpaid-pending-execute",
+    "variant": "original",
+    "ordered_request_sha256": "3dde16d1db95ef5a36fc6afb008e8ca66067b6285386fd96073e9c4a35d6c38c"
+  },
+  {
+    "case_id": "payment-underpaid-pending-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "7d5f68b9a21806aff3dfcd597352edb87e4626b6c620bdd23a8e9da64fe720fa"
+  },
+  {
+    "case_id": "payment-underpaid-pending-close",
+    "variant": "original",
+    "ordered_request_sha256": "a2454a8cc6c5c269db66ee25e8fe1079f859945f4c4424dacc8d6e402b9e5ee7"
+  },
+  {
+    "case_id": "payment-underpaid-pending-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "ddf9aadb2506273b240dcc6020b5c7939da49ed855aaedb92ef5858a63e20f40"
+  },
+  {
+    "case_id": "payment-underpaid-ready-intake",
+    "variant": "original",
+    "ordered_request_sha256": "c03a19a6339479c4d59650932f7710d085afc47fb847f6c8a3018f1463d6886d"
+  },
+  {
+    "case_id": "payment-underpaid-ready-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "380ac7a5908455ab5a6afe831c9be484fb19198dd6e681fe8c8a1a82aa826d81"
+  },
+  {
+    "case_id": "payment-underpaid-ready-verify",
+    "variant": "original",
+    "ordered_request_sha256": "fa04ad515e51f836dd9429edbdaeee0c3dc6deb32a45c0623813217b2290d3b9"
+  },
+  {
+    "case_id": "payment-underpaid-ready-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "55e4dbf5d399bdc0fb5688dd8637f468b614dfe4fee21966b1347a2a4ab5adac"
+  },
+  {
+    "case_id": "payment-underpaid-ready-approve",
+    "variant": "original",
+    "ordered_request_sha256": "8d13d9a81f1d45d9d7eab5631ce4c6a1a9ccd91b34d643783cd67f1fc4035e9d"
+  },
+  {
+    "case_id": "payment-underpaid-ready-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "99d56ac51fc9e5f4383159d76e6a343201435944211e0b020d790694d1a9f9b9"
+  },
+  {
+    "case_id": "payment-underpaid-ready-execute",
+    "variant": "original",
+    "ordered_request_sha256": "4688548722f6d4d37bfe15a222c4e8e3ca023e0943bbef41dfd3eb412ab98a20"
+  },
+  {
+    "case_id": "payment-underpaid-ready-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "e8e584b82ff59aa21496033a8faa8f24f0bfec3b5e6694de5f803b11d55ad64c"
+  },
+  {
+    "case_id": "payment-underpaid-ready-close",
+    "variant": "original",
+    "ordered_request_sha256": "ec614a8f1f693272fe0e9e4a59d999a9df12d9953a09f7d4141ec353cc1ea08f"
+  },
+  {
+    "case_id": "payment-underpaid-ready-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "a1f417355e1ac48fef21d54ff2f8db139f2a7244cdad79a7a9b569aed8a70648"
+  },
+  {
+    "case_id": "payment-refund-pending-intake",
+    "variant": "original",
+    "ordered_request_sha256": "107a34cfaeca8d03f30900a182eb7e1a60717e506755eaa134da3ad55f3e2aa3"
+  },
+  {
+    "case_id": "payment-refund-pending-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "1950c022ba7fe6d58f8f576ceb13955d8c6ad659a563905714d2da420a4f5cce"
+  },
+  {
+    "case_id": "payment-refund-pending-verify",
+    "variant": "original",
+    "ordered_request_sha256": "66cba983046ff8615df0d88b03112cbb5268afae765760838f08d86b46430bd2"
+  },
+  {
+    "case_id": "payment-refund-pending-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "a3cc4dc79d83e7a6bac4fdd12b008ce7db06fb2613f01972a17f7ab72ebe1240"
+  },
+  {
+    "case_id": "payment-refund-pending-approve",
+    "variant": "original",
+    "ordered_request_sha256": "23dd7986f65ed7e0faaf23a6f0a2043376cb86c29820bec9b76d2ee570f5a50a"
+  },
+  {
+    "case_id": "payment-refund-pending-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "ab12c0785bd6bc478e8e69fe4cfac3914746b0e221aac17b535aaffb3c931b46"
+  },
+  {
+    "case_id": "payment-refund-pending-execute",
+    "variant": "original",
+    "ordered_request_sha256": "21335623c02ceb239aa03595213dafd72f16379b38858b65bb88ddf89b8f0b38"
+  },
+  {
+    "case_id": "payment-refund-pending-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "ec12394ae6ec3e88df431d67f5c9376a87e031ab9995f2f3adcecda6403c079e"
+  },
+  {
+    "case_id": "payment-refund-pending-close",
+    "variant": "original",
+    "ordered_request_sha256": "751741f6d46080482ff573f7407c6d275227b4392c1eb71dfcdf9aa36a659458"
+  },
+  {
+    "case_id": "payment-refund-pending-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "b64cdbc3b382d3eaa5d2f65cd951f0251333a500b4946e5078673be83a51a69f"
+  },
+  {
+    "case_id": "payment-refund-ready-intake",
+    "variant": "original",
+    "ordered_request_sha256": "d1a6185ba5f26cd20a938ef55ed76ec4d12aec0e547369af036a199f84f483b0"
+  },
+  {
+    "case_id": "payment-refund-ready-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "7675d928b98cf7eea0365f0778c9e35f59789679b541c6e04c7c7e6d2fe84f83"
+  },
+  {
+    "case_id": "payment-refund-ready-verify",
+    "variant": "original",
+    "ordered_request_sha256": "c5ba6e2a852c1e20344923cc754fbaf494ceb582d03222e60ed325691d4d4804"
+  },
+  {
+    "case_id": "payment-refund-ready-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "b20a563b58b5231fe35a331cdcc7e6b57af120e519a1e5400ec3aab4dd8e6767"
+  },
+  {
+    "case_id": "payment-refund-ready-approve",
+    "variant": "original",
+    "ordered_request_sha256": "2cf5eea99f64204d6adee7caef6753479803394e9bf94b07b2f0257e240f4f9c"
+  },
+  {
+    "case_id": "payment-refund-ready-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "867eb21a96fa5a1b1d4b585b1c57d12578ffa0b99d072d7da973381802d789f0"
+  },
+  {
+    "case_id": "payment-refund-ready-execute",
+    "variant": "original",
+    "ordered_request_sha256": "1a9335383e0c3579781c8fb47849da75ff80e6cb55ad0787f622ecfa516dc0d6"
+  },
+  {
+    "case_id": "payment-refund-ready-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "4eb47ad7fa9447ea90bb92b913e0aa380286b96f91a3465f943a076c11a556d4"
+  },
+  {
+    "case_id": "payment-refund-ready-close",
+    "variant": "original",
+    "ordered_request_sha256": "6f2e6ca9cf18786294d12626aca6cc8892d27f499b72449f3dd4c39255c6af65"
+  },
+  {
+    "case_id": "payment-refund-ready-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "496fd062ffab1c90fa8e376f2027fcbee4c67207c93105a3d17c26392083b4c0"
+  },
+  {
+    "case_id": "payment-settlement-pending-intake",
+    "variant": "original",
+    "ordered_request_sha256": "9b18c3e493af80a100a2f134b173485793bcb7799e86b41439d3e087dc1ddf66"
+  },
+  {
+    "case_id": "payment-settlement-pending-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "377a3a865cea1806bf3efd89b6fcaf4f2af73ba23e5de54e86196ae45b51d455"
+  },
+  {
+    "case_id": "payment-settlement-pending-verify",
+    "variant": "original",
+    "ordered_request_sha256": "dff1800fbf75d790dcd1ab15f6d7da26fbaac93c6f6f133d9be98d44286d8353"
+  },
+  {
+    "case_id": "payment-settlement-pending-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "e689292304912ff9e2e70290df44861eb6639508f403ea356e20b1bf133e31c1"
+  },
+  {
+    "case_id": "payment-settlement-pending-approve",
+    "variant": "original",
+    "ordered_request_sha256": "4c81f3b2ab0457a87fb386e8dc2d957044d481eac0ff8b47ee928d1971540b30"
+  },
+  {
+    "case_id": "payment-settlement-pending-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "ebef00dd040d091c98133ce1043f2b524d9837a77c7ce78c15008e7373fa7209"
+  },
+  {
+    "case_id": "payment-settlement-pending-execute",
+    "variant": "original",
+    "ordered_request_sha256": "300ca4ef45daea5cb63393e245eaa62da97ed8ab2c3b01f6fbfc789d8114f167"
+  },
+  {
+    "case_id": "payment-settlement-pending-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "b73d9afb19ff94369ac2109a3a819cef1fcd66a3eea1d64c8b683e8988045550"
+  },
+  {
+    "case_id": "payment-settlement-pending-close",
+    "variant": "original",
+    "ordered_request_sha256": "24e6b844c8e797bd02f825d6a878bda5d83fc446409f7d62dd6bf16882de9b25"
+  },
+  {
+    "case_id": "payment-settlement-pending-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "b0cd931901111dfd82e1dbcb3cc058f4b5928b27b65e3ba498219efe421f842d"
+  },
+  {
+    "case_id": "payment-settlement-ready-intake",
+    "variant": "original",
+    "ordered_request_sha256": "8527325511bea9d608ab51e2858f58f4c7ab5d6836bc09028a9dfecada0d87dc"
+  },
+  {
+    "case_id": "payment-settlement-ready-intake",
+    "variant": "reversed",
+    "ordered_request_sha256": "e2c8b46f7d9fb5bacb15f84ddea5f702d8401fa4effc686453d261ba92f4d77e"
+  },
+  {
+    "case_id": "payment-settlement-ready-verify",
+    "variant": "original",
+    "ordered_request_sha256": "6b544128f2fe62ec6ddefddc8ed5d4c6833d269a31a33c0cfbfcf24a09470a7e"
+  },
+  {
+    "case_id": "payment-settlement-ready-verify",
+    "variant": "reversed",
+    "ordered_request_sha256": "7d49868ece8e6b329cc990226f21509c80a71139fc0d3f464b0ca6980a50fb4e"
+  },
+  {
+    "case_id": "payment-settlement-ready-approve",
+    "variant": "original",
+    "ordered_request_sha256": "712f37f3e4f94b7ae7cab0bd6a7c5a9edf07b050e134d7f6bb32576033b7b412"
+  },
+  {
+    "case_id": "payment-settlement-ready-approve",
+    "variant": "reversed",
+    "ordered_request_sha256": "1b511a1f2829870605cf6fd9ca16612f8abe60f5066a71af2d1543e44d0af068"
+  },
+  {
+    "case_id": "payment-settlement-ready-execute",
+    "variant": "original",
+    "ordered_request_sha256": "6c839fb506593edff43b6db65e4209ed99c9e5ffed09b1d3f0758973c340c62e"
+  },
+  {
+    "case_id": "payment-settlement-ready-execute",
+    "variant": "reversed",
+    "ordered_request_sha256": "197dd41a2715521a52f83793f36313515a0f4982e0cae7f35c13d03dddb04db5"
+  },
+  {
+    "case_id": "payment-settlement-ready-close",
+    "variant": "original",
+    "ordered_request_sha256": "8c64f32295fb608420aeb59d1352e97a685544c8921573cf21dd620284c74a1d"
+  },
+  {
+    "case_id": "payment-settlement-ready-close",
+    "variant": "reversed",
+    "ordered_request_sha256": "0f245866c5a02b2f69d04d9718f7e1661e89d822bf4fd59af72d7161898ceb4e"
+  },
+  {
+    "case_id": "routing-intent-rewrite",
+    "variant": "original",
+    "ordered_request_sha256": "d0d8adb8f0cd51c23839b52119595fb1b8a11d7b9216a63418cb5358ad147215"
+  },
+  {
+    "case_id": "routing-intent-rewrite",
+    "variant": "reversed",
+    "ordered_request_sha256": "94b5989d24bf051842175edc9f597adf3d9694fa611e71cf315a71e4f0984f3e"
+  },
+  {
+    "case_id": "routing-intent-ticket-label",
+    "variant": "original",
+    "ordered_request_sha256": "3e5bfbd5a59aca796fffca389bc90d4e546bb0a93f71f018b5836a3efdedb30e"
+  },
+  {
+    "case_id": "routing-intent-ticket-label",
+    "variant": "reversed",
+    "ordered_request_sha256": "f4977cdec49ca710312999cdd030fe08cb55ffc7b15877fbe4ca50cc5026171d"
+  },
+  {
+    "case_id": "routing-intent-concurrency",
+    "variant": "original",
+    "ordered_request_sha256": "80e4efd453623b3936deae26bcfb006b6bc4e53fa0245159d9dba05997e3a329"
+  },
+  {
+    "case_id": "routing-intent-concurrency",
+    "variant": "reversed",
+    "ordered_request_sha256": "1720da9d1ef87501201248df8ae7e2a816c70e94b9890009d443b1d5734d3031"
+  },
+  {
+    "case_id": "routing-intent-debug",
+    "variant": "original",
+    "ordered_request_sha256": "efd578a9a7cfeb4e306760fd5b806affd330db3d41747b3713c3a9ae7ff71197"
+  },
+  {
+    "case_id": "routing-intent-debug",
+    "variant": "reversed",
+    "ordered_request_sha256": "ad6e091aa169c770d9cb073e0aba033e8f6b43d996a5ed9f7af5c2c256b96e7c"
+  },
+  {
+    "case_id": "routing-intent-proof",
+    "variant": "original",
+    "ordered_request_sha256": "5c24039635867a6547871fe795fa64b765af36d4d45fb97b09990506bfc38b16"
+  },
+  {
+    "case_id": "routing-intent-proof",
+    "variant": "reversed",
+    "ordered_request_sha256": "9ab53a593143dfcbea44e00c3043875fbd75bc652a8fc7898e9fcb7f95dfdd50"
+  },
+  {
+    "case_id": "routing-intent-invoice-image",
+    "variant": "original",
+    "ordered_request_sha256": "674aff272ccf0e4776e231c063ee8bb77b06cf9256064fd2c32e5553dbb8edac"
+  },
+  {
+    "case_id": "routing-intent-invoice-image",
+    "variant": "reversed",
+    "ordered_request_sha256": "165ba5408cc439fbd424197d7b3255367b3723f9b869df0fa890c2a3272ff026"
+  },
+  {
+    "case_id": "routing-intent-long-contracts",
+    "variant": "original",
+    "ordered_request_sha256": "93850e6872fccb747c8c09f3111fd3d4f20129e41290e5fd17c9bfe67f5861cc"
+  },
+  {
+    "case_id": "routing-intent-long-contracts",
+    "variant": "reversed",
+    "ordered_request_sha256": "2a140efcd1096cacae6ec64cbbc6ddc4db4b9069b680d67a0dbb2cae4c5c8422"
+  },
+  {
+    "case_id": "routing-intent-missing-attachment",
+    "variant": "original",
+    "ordered_request_sha256": "80837cce45a25fd24d52dbcd10a187be174412aa66a78c4a6abd85a2ddd623ea"
+  },
+  {
+    "case_id": "routing-intent-missing-attachment",
+    "variant": "reversed",
+    "ordered_request_sha256": "758ab34bddaff5f97be0ae8c5d9869f18d246ea7b7ba4f57e1c02a2b6d00d9c9"
+  },
+  {
+    "case_id": "routing-cap-image",
+    "variant": "original",
+    "ordered_request_sha256": "f03ae06f69ee3ed15877b07cb07e1ddaf005e72a6b3dc8eec4480b36b1dc5cea"
+  },
+  {
+    "case_id": "routing-cap-image",
+    "variant": "reversed",
+    "ordered_request_sha256": "ee395d3dc4a86d60da74bd09a92642da90f7dc6f3653f355d07878f1b9e7c9e6"
+  },
+  {
+    "case_id": "routing-cap-audio",
+    "variant": "original",
+    "ordered_request_sha256": "8c180b6df129347208a06bd038a64cbcc882e06f3244af07320019143e189c8a"
+  },
+  {
+    "case_id": "routing-cap-audio",
+    "variant": "reversed",
+    "ordered_request_sha256": "b6835d97d6055f593c4ab036bc240c766a5a89ad92706957490c515f669ab114"
+  },
+  {
+    "case_id": "routing-cap-video",
+    "variant": "original",
+    "ordered_request_sha256": "5fc4041411713e70d1b926e2e2eb178636487b212f2f0c78d34377076b68898b"
+  },
+  {
+    "case_id": "routing-cap-video",
+    "variant": "reversed",
+    "ordered_request_sha256": "cf52fe12e33b00cb8e2d8f30a380dc229f8bd62ff4bfad922de932643dd34197"
+  },
+  {
+    "case_id": "routing-cap-context",
+    "variant": "original",
+    "ordered_request_sha256": "45523c6a34f49a34704af61ec93891587ad50d2bb28fa7ba229b0bb80bf51745"
+  },
+  {
+    "case_id": "routing-cap-context",
+    "variant": "reversed",
+    "ordered_request_sha256": "762d226caf13ba0b87ba720cc83bb1ff8cb92a72ba51b76f986da5aa30ea7d58"
+  },
+  {
+    "case_id": "routing-cap-output",
+    "variant": "original",
+    "ordered_request_sha256": "2da4916bc337d1cbd59a52fa9aadaef8c3d85f53e73a84bdeadaab98c71fa7a1"
+  },
+  {
+    "case_id": "routing-cap-output",
+    "variant": "reversed",
+    "ordered_request_sha256": "7cdc063929d37913d982b579e2cfcb6121af206c1b47cac2ae96b6e19c29cd84"
+  },
+  {
+    "case_id": "routing-cap-image-logprobs",
+    "variant": "original",
+    "ordered_request_sha256": "a94e3c3a0696b28e29ef011f59af0ae9700b0074b875b84d0078315fa0b16c86"
+  },
+  {
+    "case_id": "routing-cap-image-logprobs",
+    "variant": "reversed",
+    "ordered_request_sha256": "e5b2398354aa0358d72e53f0db64f0823af8b17387785ec693d3d8e39a5d865d"
+  },
+  {
+    "case_id": "routing-cap-json-tools",
+    "variant": "original",
+    "ordered_request_sha256": "60f7d81be5a8968121fd8595347a493476748b6b6f84d29a39e6f29838117dec"
+  },
+  {
+    "case_id": "routing-cap-json-tools",
+    "variant": "reversed",
+    "ordered_request_sha256": "f8f8c6a96c7bb0d7b4ec7f00a85eaf0fd5c10e9a502d92e24d97ebe5a57824a5"
+  },
+  {
+    "case_id": "routing-cap-image-output",
+    "variant": "original",
+    "ordered_request_sha256": "77a17188f0d921265d58e4413283908bf94b0ab0e0f017cf279e263994641949"
+  },
+  {
+    "case_id": "routing-cap-image-output",
+    "variant": "reversed",
+    "ordered_request_sha256": "5ebce87c61acfa0997201060b534a52bf0ab4940f41d24f329bd1d6500918fed"
+  },
+  {
+    "case_id": "routing-cost-basic",
+    "variant": "original",
+    "ordered_request_sha256": "91e5e3fe38d5160a55d1e192b6e8e834c1b6a02b0b47d9cf6eddc95ab0184150"
+  },
+  {
+    "case_id": "routing-cost-basic",
+    "variant": "reversed",
+    "ordered_request_sha256": "8a062556b47c8ad904ad441ad9feea4c49179e978abd72920fc2c4cea03074b4"
+  },
+  {
+    "case_id": "routing-cost-input-heavy",
+    "variant": "original",
+    "ordered_request_sha256": "38d54ef8f0a0b8692d251c3374afa3ba35fc55634ec2a679beb0d717b672ee44"
+  },
+  {
+    "case_id": "routing-cost-input-heavy",
+    "variant": "reversed",
+    "ordered_request_sha256": "b5f65501c57a5f803577a42510ff7ea215ec94f25cbc86fc1a36bab768a112e8"
+  },
+  {
+    "case_id": "routing-cost-output-heavy",
+    "variant": "original",
+    "ordered_request_sha256": "aa01c5ed3a8c7aa65d3a2191651482792573ef03a33de15186bf3005701227b3"
+  },
+  {
+    "case_id": "routing-cost-output-heavy",
+    "variant": "reversed",
+    "ordered_request_sha256": "5d6157b35e08a1595b46dc835caeeb3b1ceb9ed590aa78253142bccfb4474afa"
+  },
+  {
+    "case_id": "routing-cost-no-budget",
+    "variant": "original",
+    "ordered_request_sha256": "9e5464d664c20c3b9bb47defe504d08a7964a3bb82e46b864847899dde96f96f"
+  },
+  {
+    "case_id": "routing-cost-no-budget",
+    "variant": "reversed",
+    "ordered_request_sha256": "8bff7c0f87e85210e0d5b4a624bef95b91e3705fcd8d24239760d1358caa8701"
+  },
+  {
+    "case_id": "routing-cost-exact-budget",
+    "variant": "original",
+    "ordered_request_sha256": "f6a3129473348b6402cbd0b390dcc8331602e217f9399a70e7e3d5f8f5568b6a"
+  },
+  {
+    "case_id": "routing-cost-exact-budget",
+    "variant": "reversed",
+    "ordered_request_sha256": "38178b3b4f7306f2c181b9e3f47c084076bfa70e6e9e1a83c02d7397d70d768b"
+  },
+  {
+    "case_id": "routing-cost-one-fits",
+    "variant": "original",
+    "ordered_request_sha256": "70a0ce712ecc044ef4e48f76f7ae25f9263e9871df5cdc89493dda9f46ba700a"
+  },
+  {
+    "case_id": "routing-cost-one-fits",
+    "variant": "reversed",
+    "ordered_request_sha256": "96d45c87cc1c9528ded45c9f9a035fb897c3a250fe2cd37a1321246b025d4203"
+  },
+  {
+    "case_id": "routing-cost-long-context",
+    "variant": "original",
+    "ordered_request_sha256": "d2cf421bf32c09c2e16ded74cf424bfd5152053eb38f0f61fe5ddb0e3ac1867b"
+  },
+  {
+    "case_id": "routing-cost-long-context",
+    "variant": "reversed",
+    "ordered_request_sha256": "d04ed384aaf5562ce4dfe214d8748b0f267095f959157bf80e76e53126792408"
+  },
+  {
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "original",
+    "ordered_request_sha256": "d40fd66238ec848da89bb92a46da1102526125c71faba8ca1868dee8842895ea"
+  },
+  {
+    "case_id": "routing-cost-reasoning-output",
+    "variant": "reversed",
+    "ordered_request_sha256": "288385e8ad1a66a0aaf0f45956d093dedd5eb49b12aea3c82716643e8bbd7707"
+  },
+  {
+    "case_id": "routing-fallback-primary-down",
+    "variant": "original",
+    "ordered_request_sha256": "32c3dc3e9aabd9231dc69a1990e1c9938daca9b24e643d3af64beb871a7fc6f1"
+  },
+  {
+    "case_id": "routing-fallback-primary-down",
+    "variant": "reversed",
+    "ordered_request_sha256": "d413d1e4eaabdddc41eb5b21fa1c67cc310614e5b20f662fae0a40c61fd54391"
+  },
+  {
+    "case_id": "routing-fallback-rate-limit",
+    "variant": "original",
+    "ordered_request_sha256": "e138a6c37b63cef254e9ba095044c71d3bb399506e7f37c60aae77a4b615affe"
+  },
+  {
+    "case_id": "routing-fallback-rate-limit",
+    "variant": "reversed",
+    "ordered_request_sha256": "5b0cbdac38427809c3cd169a0b72ea66aa539f61af73fbed6630a306c9a6fc57"
+  },
+  {
+    "case_id": "routing-fallback-disabled",
+    "variant": "original",
+    "ordered_request_sha256": "00a2d7826d596cc621d9ab4c6ce1ee961f812da6c3f5bd8905b9209e3af0334d"
+  },
+  {
+    "case_id": "routing-fallback-disabled",
+    "variant": "reversed",
+    "ordered_request_sha256": "5eb6bca120c7eaffc15a7ecb3f66d49a5e58af60a9df4358a6e1dde30029dcf1"
+  },
+  {
+    "case_id": "routing-fallback-all-down",
+    "variant": "original",
+    "ordered_request_sha256": "65ff244fba61be9ed64aff5be6d114db1b58a25ad040341604a2ae0660dd626a"
+  },
+  {
+    "case_id": "routing-fallback-all-down",
+    "variant": "reversed",
+    "ordered_request_sha256": "ad2ba749cf273fbb44df92a29afb3cbc2929ae5451f7fe1e828f5a30702ed6db"
+  },
+  {
+    "case_id": "routing-fallback-excluded",
+    "variant": "original",
+    "ordered_request_sha256": "1cad137c6419821c5755b6e63356fe02ccd73b80e49699e6ed1fdc832ee4be16"
+  },
+  {
+    "case_id": "routing-fallback-excluded",
+    "variant": "reversed",
+    "ordered_request_sha256": "aa3e339402e8084066c8501d282242c784692e5ce6d0b5db6110c8c21dfdb365"
+  },
+  {
+    "case_id": "routing-fallback-retention",
+    "variant": "original",
+    "ordered_request_sha256": "b625175155115d5718e0bf495f678c16773d05c6fb7cb8e94e3f25894675502d"
+  },
+  {
+    "case_id": "routing-fallback-retention",
+    "variant": "reversed",
+    "ordered_request_sha256": "ceac11b9858c3ecaf36c1922482865aee15af9b36498587a757ed38c4906d941"
+  },
+  {
+    "case_id": "routing-latency-soft-unmet",
+    "variant": "original",
+    "ordered_request_sha256": "d9d57b72ecbe6d00d38fa4c36300c894cd2d24f95e9676b0a427747c52e64e7f"
+  },
+  {
+    "case_id": "routing-latency-soft-unmet",
+    "variant": "reversed",
+    "ordered_request_sha256": "6bbcfaf071e2efe1eb5735b24f18805a287d408fc26fbd84cfca06ed0e04de29"
+  },
+  {
+    "case_id": "routing-latency-preferred-pool",
+    "variant": "original",
+    "ordered_request_sha256": "cca57f137d013628b5e21b3da6d31c268f1742c84c5df2a616108b2e40c8ce8f"
+  },
+  {
+    "case_id": "routing-latency-preferred-pool",
+    "variant": "reversed",
+    "ordered_request_sha256": "212b56ba5d5cfff52cb6d83340e18aba54bd1500201d12191580b5baba1a91d3"
+  },
+  {
+    "case_id": "device-00",
+    "variant": "original",
+    "ordered_request_sha256": "4373bec5ce5bc98a5a2cd6b1a87e711f7cb60f372b9a3f81ea305350009f7559"
+  },
+  {
+    "case_id": "device-00",
+    "variant": "reversed",
+    "ordered_request_sha256": "57b85ace33a7fe58965e51b01d583abf21696a2b7d1ddb5014bcafaab31c98d0"
+  },
+  {
+    "case_id": "device-01",
+    "variant": "original",
+    "ordered_request_sha256": "f8124a0a254dd8f2d94b1fc6e90de106852288dc40613049398e7d8cac8597fb"
+  },
+  {
+    "case_id": "device-01",
+    "variant": "reversed",
+    "ordered_request_sha256": "13fcd5222cf8610be375abd1111dfc93dd3c4a573cfdd99fbec00cc65444682e"
+  },
+  {
+    "case_id": "device-02",
+    "variant": "original",
+    "ordered_request_sha256": "077024dfbe7fd8bfaff3e345af278a505e9fbf9076ed2e7a95180c2629e8ef6d"
+  },
+  {
+    "case_id": "device-02",
+    "variant": "reversed",
+    "ordered_request_sha256": "f9a4df5fddea3b8c484781ffa39e5451044697f7b4bbe43ec01128a42c71e1b6"
+  },
+  {
+    "case_id": "device-03",
+    "variant": "original",
+    "ordered_request_sha256": "e6d0016306b78f6fcfb679ac237b70df219d16a696c6de88f7c08ec9bfb0aee3"
+  },
+  {
+    "case_id": "device-03",
+    "variant": "reversed",
+    "ordered_request_sha256": "d0a3298706ad243b86661d7dfcc6f171ef6a4c8dd65bd04a926796299dd34dc1"
+  },
+  {
+    "case_id": "device-04",
+    "variant": "original",
+    "ordered_request_sha256": "bf2e417d736184e838a9b4243735c3f65c5e01af9eaaf3414cdca09d68ffff16"
+  },
+  {
+    "case_id": "device-04",
+    "variant": "reversed",
+    "ordered_request_sha256": "42fa95ddee2c21d3eec43451abf69e8c7dcb97e67eb7b28728f64999a4629ee1"
+  },
+  {
+    "case_id": "device-05",
+    "variant": "original",
+    "ordered_request_sha256": "480532d6eedeee2529202ba8bc4604445db9af019b8d87f6fecda6d82c5fa546"
+  },
+  {
+    "case_id": "device-05",
+    "variant": "reversed",
+    "ordered_request_sha256": "303b41cfbe0478083b6d6077d958d6fc40dd8ce88ffa2c14138d327a8fc89ec5"
+  },
+  {
+    "case_id": "device-06",
+    "variant": "original",
+    "ordered_request_sha256": "4515b9dab136a3200c1f85d1d2a35b5cdcb60bf265605f5597f5a4917cb6ed19"
+  },
+  {
+    "case_id": "device-06",
+    "variant": "reversed",
+    "ordered_request_sha256": "8e9184ccf184293161960edd4b3a99b2451d132b0ec59a773b599c67792d886f"
+  },
+  {
+    "case_id": "device-07",
+    "variant": "original",
+    "ordered_request_sha256": "d4ae3b23a82a848533a838bbf5ec78ce0eee176e7143296318f092b38b2dfc90"
+  },
+  {
+    "case_id": "device-07",
+    "variant": "reversed",
+    "ordered_request_sha256": "200087362a169d1507a785f93f1eda9a2b3e65c7d2fe23675f3876c1b6497d3d"
+  },
+  {
+    "case_id": "device-08",
+    "variant": "original",
+    "ordered_request_sha256": "f8c00ed0d00209aaeed3c534caf2abe5aa7a0531e1d7eb6014f35264bc44ad1c"
+  },
+  {
+    "case_id": "device-08",
+    "variant": "reversed",
+    "ordered_request_sha256": "896c706109decde351124f21db2efa41fa1f34c2d4243ae207fa6041d6d98563"
+  },
+  {
+    "case_id": "device-09",
+    "variant": "original",
+    "ordered_request_sha256": "9ad83389e91a4bc39a700e2ea8918f1e4bb59bc131827f1c4a78de88e3b31fc0"
+  },
+  {
+    "case_id": "device-09",
+    "variant": "reversed",
+    "ordered_request_sha256": "b90a97177a687043ee1075ebad779f099e6e1bd5dea1d79a92a15da67d67525e"
+  },
+  {
+    "case_id": "device-10",
+    "variant": "original",
+    "ordered_request_sha256": "e0f38cf6a1014fd7e5bbc86a5d9512e3e981822ecdf8a260ecf966bc04dbb018"
+  },
+  {
+    "case_id": "device-10",
+    "variant": "reversed",
+    "ordered_request_sha256": "948b7baa535fed285d1ce17ae9679c5dab7c8dacdc36318aa70def61b1b3ffe3"
+  },
+  {
+    "case_id": "device-11",
+    "variant": "original",
+    "ordered_request_sha256": "c3c22688b08098f01e6d246b76cb742d50b4e65fedad6eb51684d65e87345ee3"
+  },
+  {
+    "case_id": "device-11",
+    "variant": "reversed",
+    "ordered_request_sha256": "5c01f1f7cfe39e920cdc3504f08f135c4bb2e9d2b2289bee237d8b70775f81b0"
+  },
+  {
+    "case_id": "temperature-set-00",
+    "variant": "original",
+    "ordered_request_sha256": "6326b784855166e27b4b87ece259d1621dbfd19c89e73434f2acafc4265325b5"
+  },
+  {
+    "case_id": "temperature-set-00",
+    "variant": "reversed",
+    "ordered_request_sha256": "b65567c7249bbc1efb9879c6a385138906ba8c4abf7fdae8046b9c92bce2e71a"
+  },
+  {
+    "case_id": "temperature-set-01",
+    "variant": "original",
+    "ordered_request_sha256": "7c7c1432bcad860501cf92d9b33077313d737115e621fc8fbbaf414e9f0def25"
+  },
+  {
+    "case_id": "temperature-set-01",
+    "variant": "reversed",
+    "ordered_request_sha256": "b738b1481a3d4759b3be9557ab86d163d737f6fc8680d871c34f7c6072928842"
+  },
+  {
+    "case_id": "temperature-set-02",
+    "variant": "original",
+    "ordered_request_sha256": "1380fa2b1a283afd52a54ac8130a87b8a7dcca8cea6c766363b4723845fc8d51"
+  },
+  {
+    "case_id": "temperature-set-02",
+    "variant": "reversed",
+    "ordered_request_sha256": "1b2b1422c590cf75bcdbf38f3b1b293f637b27f2a10034ece67b542087c75497"
+  },
+  {
+    "case_id": "temperature-set-03",
+    "variant": "original",
+    "ordered_request_sha256": "325c072b249e3f09c3bbfeaf4c5ed0443ef3dc6fb2b7d83453efc725b9109baf"
+  },
+  {
+    "case_id": "temperature-set-03",
+    "variant": "reversed",
+    "ordered_request_sha256": "d3fc625c2e953a239969949634f354e1ead4fa27f48f3377c61289d98687e36e"
+  },
+  {
+    "case_id": "temperature-set-04",
+    "variant": "original",
+    "ordered_request_sha256": "14703578524ab81ef83ecef56ef5d2b9828651c871de6dedcbab83470defe0b4"
+  },
+  {
+    "case_id": "temperature-set-04",
+    "variant": "reversed",
+    "ordered_request_sha256": "34d8bb6c81133343cbb18988cbec2099683cfbe1e6cd076372a440e068a8c486"
+  }
+]

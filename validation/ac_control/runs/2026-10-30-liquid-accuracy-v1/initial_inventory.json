@@ -1,0 +1,36 @@
+{
+  "CommandId": "780c2fa0-4183-49b6-8b16-2dd6e1979ff3",
+  "InstanceId": "i-0ae7eb0abcb815af3",
+  "Comment": "",
+  "DocumentName": "AWS-RunShellScript",
+  "DocumentVersion": "$DEFAULT",
+  "PluginName": "aws:runShellScript",
+  "ResponseCode": 0,
+  "ExecutionStartDateTime": "2026-10-30T11:16:13.938Z",
+  "ExecutionElapsedTime": "PT0.107S",
+  "ExecutionEndDateTime": "2026-10-30T11:16:13.938Z",
+  "Status": "Success",
+  "StatusDetails": "Success",
+  "StandardOutputContent": "Fri Oct 30 11:16:13 UTC 2026\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:21:44 UTC\nId=decider-liquid.service\nActiveState=active\nSubState=running\n\nNRestarts=0\nExecMainStartTimestamp=Fri 2026-10-30 10:42:34 UTC\nId=decider-h2o.service\nActiveState=active\nSubState=running\n\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:15:32 UTC\nId=decider-vllm.service\nActiveState=active\nSubState=running\n\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:18:01 UTC\nId=decider-comparison-gateway.service\nActiveState=active\nSubState=running\n{\"status\":\"ok\",\"model\":\"LiquidAI/d1-2B\",\"device\":\"cuda\",\"dtype\":\"BF16\"}",
+  "StandardOutputUrl": "",
+  "StandardErrorContent": "",
+  "StandardErrorUrl": "",
+  "CloudWatchOutputConfig": {
+    "CloudWatchLogGroupName": "",
+    "CloudWatchOutputEnabled": false
+  },
+  "ResponseMetadata": {
+    "RequestId": "50c549e6-17ad-4bec-be7b-40fb800f88d0",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "server": "Server",
+      "date": "Fri, 30 Oct 2026 11:17:09 GMT",
+      "content-type": "application/x-amz-json-1.1",
+      "content-length": "1232",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "50c549e6-17ad-4bec-be7b-40fb800f88d0",
+      "cache-control": "no-store"
+    },
+    "RetryAttempts": 0
+  }
+}

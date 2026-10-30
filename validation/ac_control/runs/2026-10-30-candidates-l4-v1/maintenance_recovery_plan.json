@@ -1,0 +1,19 @@
+{
+  "prepared_at": "2026-10-30T12:55:34.712304+00:00",
+  "cause": "Ubuntu apt-daily-upgrade/unattended-upgrade started at 12:52:13 UTC; systemd stopped/restarted Torchcast at 12:52:29 during H02. No OOM evidence.",
+  "policy": "Preserve all pre-maintenance receipts, including 3 transport errors; no model/prompt/choice tuning. Complete OS maintenance and temporarily stop automatic maintenance on this test VM. Re-run all five models from identical frozen inputs under one stable post-maintenance environment. Primary comparison uses complete post-maintenance runs, with earlier results reported separately.",
+  "pre_maintenance_http_calls": 638,
+  "pre_maintenance_formal_calls": 569,
+  "pre_maintenance_warmups": 69,
+  "pre_maintenance_errors": 3,
+  "model_order": [
+    "pplx",
+    "knowline",
+    "torchcast",
+    "clef",
+    "h2o"
+  ],
+  "attempt": "post-maintenance",
+  "original_stop_deadline_utc": "2026-10-30T18:01:37+00:00",
+  "inference_code_or_gold_changed": false
+}
