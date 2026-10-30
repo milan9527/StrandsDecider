@@ -4,6 +4,8 @@
 
 阅读入口：[五模型测试总结、优化建议与结论边界](../../docs/AC_CONTROL_COMPARISON.md)。
 
+新增[Jev / GPT按相同标准的串行补测](runs/2026-10-30-api-serial-latency-v1/LATENCY.zh.md)：沿用S03基线、完整30项状态及原候选，Jev全部完成后才开始GPT；每模型预热1次，每种模式3轮。单Key均值 **55.6 / 902.3 ms**，30步串行总时间 **1.68 / 27.08秒**，一次回答30题 **0.108 / 2.31秒**；新增186次正式调用全部有效且无重叠，两个模型三轮拆分前后回答均一致。各Key实际选择与GPT原生缓存用量完整保存。此处“单步”指单Key请求，不是两阶段方案中的门控阶段。
+
 延迟复核：[单任务与逐Key串行补测](runs/2026-10-30-serial-latency-v1/LATENCY.zh.md)。原测试已按空调Query串行、三个GPU模型依次运行；每条Query含30个选择题。补测独立单Key平均 Decider **97.3 ms**、Liquid **105.8 ms**、H2O **200.5 ms**，逐Key串行完成30题为 **2.93 / 3.18 / 6.02秒**。同一S03输入、每模式3轮、279次正式调用全部成功且无重叠。Liquid拆分后每轮6个Key选择改变，原准确率仍属于完整30题封装，不能与单题诊断混用。
 
 最新：[加入Jev与GPT 6.1 Sol low的五模型实测](runs/2026-10-30-api-ablation-v1/FIVE_MODELS.zh.md) · [错误定位、完整问题选项与实际回答](runs/2026-10-30-api-ablation-v1/DIAGNOSTICS.zh.md)。Jev使用原生API，返回 `jev-1.14.0`；GPT使用Bedrock `us.openai.gpt-6.1-sol`，每次显式设置low effort。新增两个模型各250条观察，业务输入与参考沿用已冻结对照；原三个模型复用750条已核验观察。
@@ -178,6 +180,25 @@ GPT通过Bedrock Converse调用 `us.openai.gpt-6.1-sol`，每次显式传入 `re
 .venv/bin/python validation/ac_control/analyze_api_ablation.py \
   --run validation/ac_control/runs/YOUR_API_ABLATION
 ```
+
+### Jev / GPT单Key串行耗时补测
+
+`run_api_serial_latency.py`复用上述API适配器和GPT low参数，但在同一进程中顺序执行Jev、GPT。输入逐字节复制自三个GPU模型的串行补测，每模型先预热一次，再交替执行3轮完整30题与3轮逐Key请求；不读取参考答案，不自动重试或修复。SDK二进制字段无损保存，已有响应目录拒绝重跑。
+
+```bash
+python validation/ac_control/run_api_serial_latency.py --prepare \
+  --run validation/ac_control/runs/YOUR_API_SERIAL \
+  --parent validation/ac_control/runs/2026-10-30-serial-latency-v1 \
+  --api-parent validation/ac_control/runs/2026-10-30-api-ablation-v1
+
+python validation/ac_control/run_api_serial_latency.py \
+  --run validation/ac_control/runs/YOUR_API_SERIAL
+
+python validation/ac_control/analyze_api_serial_latency.py \
+  --run validation/ac_control/runs/YOUR_API_SERIAL
+```
+
+分析脚本离线核验冻结源码、业务输入、传输参数、完整执行顺序、合法回答及请求时间无重叠，生成逐Key统计和五模型对照。单步均值每模型90次请求；30步总时间包含请求之间的记录开销。GPU模型走GPU本机接口，API模型沿用原API测试主机；这些是实际调用路径的计时，不是同硬件模型性能排名。
 
 运行中可为评分命令增加 `--partial`，它只显示部分结果，不写最终报告。正式评分同时核验旧证据未改变、冻结输入与源码、实际业务请求与模型传输参数、候选ID、两阶段选择、耗时与调用数。结果为 `FIVE_MODELS.zh.md`、`five_model_results.json`、`five_model_summary.json` 和 `audit.json`；每个API的 `formal_receipts.jsonl` 包含完整实际请求与原始返回，不包含请求头密钥。
 

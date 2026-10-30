@@ -1,0 +1,54 @@
+{
+  "prepared_at": "2026-10-30T09:38:39.184012+00:00",
+  "case_id": "S03",
+  "payload_sha256": "8ec7719c25ed936635d2f2a0bfb7325e2337a7a5c60cc6fefb1b8401f5d356d9",
+  "repetitions": 3,
+  "warmup_per_provider": 1,
+  "providers": [
+    "jev",
+    "gpt"
+  ],
+  "modes": [
+    "full_30",
+    "serial_1"
+  ],
+  "outer_concurrency": 1,
+  "single_question_concurrency": 1,
+  "automatic_retries": 0,
+  "online_output_repair": false,
+  "model_order": "jev completes before gpt starts; no overlapping model windows",
+  "state_policy": "Identical full 30-command state for both modes and every single-question call",
+  "scoring_policy": "Latency diagnostic only; not a rerun or replacement of full-suite accuracy",
+  "client_host": "ip-172-31-42-154.ec2.internal",
+  "client_host_policy": "Existing authorized API test host, as in the original API comparison; GPU serial diagnostic used a separate GPU host and loopback",
+  "region": "us-east-1",
+  "jev_secret_arn": "arn:aws:secretsmanager:us-east-1:632930644527:secret:strands-decider-demo/jev-api-key-1MqPkS",
+  "jev_request_model": "jev-latest",
+  "jev_expected_response_model": "jev-1.14.0",
+  "gpt_model": "us.openai.gpt-6.1-sol",
+  "gpt_effort": "low",
+  "gpt_max_output_tokens": 8192,
+  "gpt_formatting_system": "Answer the supplied decision questions using the supplied state, including its task rules, and each question's instructions and candidate criteria. Return exactly one JSON object with the single key answers. Its value must be an object mapping EVERY supplied question ID to its selected candidate ID as a JSON string, including questions whose selected candidate is omit. Output shape: {\"answers\":{\"QUESTION_ID\":\"CANDIDATE_ID\"}}. Use only the supplied candidate IDs. Do not add explanations, probabilities, confidence estimates or Markdown.",
+  "transport": "Jev native HTTPS via persistent httpx; GPT Bedrock Converse via boto3",
+  "cache_policy": "No explicit cache controls; record native usage without inferring hidden caching",
+  "parent_run_name": "2026-10-30-serial-latency-v1",
+  "parent_files_sha256": {
+    "plan.json": "3ebe5f1c097c579db038c1dde8a09ecd472ab82b0349632896a713d7132213c4",
+    "payload.json": "8b59a685aafa48679282682686b531890899be7c46491903f184238f56a8a7bb",
+    "receipts.jsonl": "b07f87480bd65ce16638c951063da8d393b043ae48da7a2f7d90f0d042dda026",
+    "summary.json": "358b2a6de0f370a338ff3c5c454c6ea8ca9d490865e7414e84375f5e68e95b0d"
+  },
+  "api_parent_run_name": "2026-10-30-api-ablation-v1",
+  "api_parent_plan_sha256": "842d3b09d4e4971c535b3acfc101a3106b971919f5e08dadb5b7d758188711df",
+  "source_sha256": {
+    "run_api_serial_latency.py": "72e0f660a46a2997f923ca31db666201c814bb7879a242fed27752edae52d659",
+    "analyze_api_serial_latency.py": "f0927b4d27b916d4fc1fc19c853902fe8545f2ceefce161ca9fafcb7fe612694",
+    "run_api_ablation.py": "d0557d87502565ac50bbbe43f65cc881c385175efc2c6dd0ec1078b485494330",
+    "api_ablation_protocol.py": "ed88ab706e866718f745187086d083a17eb1bca38ca152b0a74f8b1d9897e676",
+    "resume_api_capture.py": "d64e93c4a4f844df4572ad9d027c218723feae77dd1e29817adc02b961141c08",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "analyze.py": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c"
+  }
+}

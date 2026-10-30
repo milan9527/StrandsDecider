@@ -8,7 +8,7 @@
 
 **[空调控制五模型对照总结](docs/AC_CONTROL_COMPARISON.md)**（2026-10-30）：完整30项能力集，比较基线、选项改写、规则澄清、合并改写与两阶段。原规范20题基线：Decider **4/20**、Liquid **0/20**、H2O **18/20**、Jev **19/20**、GPT 6.1 Sol low **20/20**；仅改规则后Jev为20/20，两阶段H2O为20/20、Liquid为11/20。另10条诊断题中Jev/GPT五组均10/10，H2O两阶段出现回归。包含完整问题、选项、原始回答与耗时；GPT换序测试1条采集缺失已计失败、未重跑，不影响原始顺序主成绩。
 
-补充[单任务串行耗时复核](docs/AC_CONTROL_COMPARISON.md#单任务串行与单key串行的补测)：原GPU测试按空调请求串行，每条含30个Key选择题；独立单Key补测均值 Decider **97.3 ms**、Liquid **105.8 ms**、H2O **200.5 ms**。279次正式调用无重叠；完整30题耗时与单题耗时分别统计，Liquid拆分后输出也有变化。
+补充[五模型单步决策与总体耗时](docs/AC_CONTROL_COMPARISON.md#单任务串行与单key串行的补测)：相同S03输入、各模型依次运行，每模式3轮。独立单Key均值 Decider **97.3 ms**、Liquid **105.8 ms**、H2O **200.5 ms**、Jev **55.6 ms**、GPT low **902.3 ms**；Jev/GPT完成30步串行分别 **1.68 / 27.08秒**，一次回答全部30题为 **0.108 / 2.31秒**。合计465次正式调用无重叠；单步与总体时间分别实测，保留网络与缓存条件。Jev/GPT拆分前后回答一致，Liquid有变化。
 
 **[五模型对比实测报告](docs/FIVE_MODELS_COMPARISON.md)**（[English](docs/FIVE_MODELS_COMPARISON.en.md)）：Strands Decider、Liquid d1-2B、H2O-Lightning 4B、Jev、GPT，覆盖原始支付四场景、模型路由四场景和设备控制三场景（含常用温度）。包含逐步请求、实际选择、耗时、执行结果和截图；支付单步平均 **48.5 / 37.4 / 77.9 / 446.4 / 1018.7 ms**，参考一致 **14/20 / 12/20 / 14/20 / 18/20 / 20/20**。三个本地模型同卡常驻、单并发运行。[打开模块](https://d3i7ogfx5ml7dc.cloudfront.net/#comparison)。
 

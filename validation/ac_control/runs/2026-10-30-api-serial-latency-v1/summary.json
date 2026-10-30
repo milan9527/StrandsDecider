@@ -1,0 +1,1559 @@
+{
+  "case_id": "S03",
+  "repetitions": 3,
+  "formal_http_calls": 186,
+  "warmup_http_calls": 2,
+  "errors": 0,
+  "request_overlap_count": 0,
+  "model_windows_overlap": false,
+  "all_five_model_windows_overlap": false,
+  "same_client_host_as_gpu_diagnostic": false,
+  "same_full_state_and_candidate_values_verified": true,
+  "receipts_sha256": "61850fb7ef4ff666a28030cbe2c6fedc2ec3f6adb285f86c3119c74e58b7f97c",
+  "analyzer_sha256": "f0927b4d27b916d4fc1fc19c853902fe8545f2ceefce161ca9fafcb7fe612694",
+  "models": {
+    "jev": {
+      "full_30_ms": {
+        "count": 3,
+        "mean": 108.107,
+        "p50": 89.224,
+        "p95": 153.095,
+        "min": 82.002,
+        "max": 153.095,
+        "total": 324.321
+      },
+      "single_question_ms": {
+        "count": 90,
+        "mean": 55.61208888888889,
+        "p50": 52.9275,
+        "p95": 82.659,
+        "min": 35.381,
+        "max": 99.888,
+        "total": 5005.088
+      },
+      "serial_30_wall_ms": {
+        "count": 3,
+        "mean": 1679.8526666666667,
+        "p50": 1667.226,
+        "p95": 1714.1390000000001,
+        "min": 1658.193,
+        "max": 1714.1390000000001,
+        "total": 5039.558
+      },
+      "server_full_30_ms": {
+        "count": 0
+      },
+      "server_single_question_ms": {
+        "count": 0
+      },
+      "formal_errors": 0,
+      "per_key": {
+        "t_power": {
+          "client_ms": {
+            "count": 3,
+            "mean": 53.415,
+            "p50": 53.472,
+            "p95": 54.079,
+            "min": 52.694,
+            "max": 54.079,
+            "total": 160.245
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_work_mode": {
+          "client_ms": {
+            "count": 3,
+            "mean": 59.29866666666666,
+            "p50": 62.724,
+            "p95": 64.836,
+            "min": 50.336,
+            "max": 64.836,
+            "total": 177.896
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_temp": {
+          "client_ms": {
+            "count": 3,
+            "mean": 47.098,
+            "p50": 48.495,
+            "p95": 53.451,
+            "min": 39.348,
+            "max": 53.451,
+            "total": 141.29399999999998
+          },
+          "choices": [
+            "24",
+            "24",
+            "24"
+          ]
+        },
+        "t_temp_f": {
+          "client_ms": {
+            "count": 3,
+            "mean": 61.497,
+            "p50": 52.825,
+            "p95": 82.659,
+            "min": 49.007,
+            "max": 82.659,
+            "total": 184.491
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_temp_type": {
+          "client_ms": {
+            "count": 3,
+            "mean": 65.45,
+            "p50": 56.519,
+            "p95": 89.228,
+            "min": 50.603,
+            "max": 89.228,
+            "total": 196.35
+          },
+          "choices": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "t_fan_speed": {
+          "client_ms": {
+            "count": 3,
+            "mean": 52.43633333333333,
+            "p50": 48.46,
+            "p95": 68.16,
+            "min": 40.689,
+            "max": 68.16,
+            "total": 157.309
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_fan_mute": {
+          "client_ms": {
+            "count": 3,
+            "mean": 49.802,
+            "p50": 52.999,
+            "p95": 57.276,
+            "min": 39.131,
+            "max": 57.276,
+            "total": 149.406
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_super": {
+          "client_ms": {
+            "count": 3,
+            "mean": 58.260999999999996,
+            "p50": 54.766,
+            "p95": 67.576,
+            "min": 52.441,
+            "max": 67.576,
+            "total": 174.783
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_up_down": {
+          "client_ms": {
+            "count": 3,
+            "mean": 63.215,
+            "p50": 67.724,
+            "p95": 69.318,
+            "min": 52.603,
+            "max": 69.318,
+            "total": 189.645
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_indoortemp_detection": {
+          "client_ms": {
+            "count": 3,
+            "mean": 47.537,
+            "p50": 44.941,
+            "p95": 53.353,
+            "min": 44.317,
+            "max": 53.353,
+            "total": 142.611
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_left_right": {
+          "client_ms": {
+            "count": 3,
+            "mean": 63.26333333333333,
+            "p50": 60.544,
+            "p95": 77.901,
+            "min": 51.345,
+            "max": 77.901,
+            "total": 189.79
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_swing_angle": {
+          "client_ms": {
+            "count": 3,
+            "mean": 61.117333333333335,
+            "p50": 61.651,
+            "p95": 71.408,
+            "min": 50.293,
+            "max": 71.408,
+            "total": 183.352
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_swing_direction": {
+          "client_ms": {
+            "count": 3,
+            "mean": 48.57266666666666,
+            "p50": 49.384,
+            "p95": 50.126,
+            "min": 46.208,
+            "max": 50.126,
+            "total": 145.718
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_eco": {
+          "client_ms": {
+            "count": 3,
+            "mean": 64.11166666666666,
+            "p50": 59.946,
+            "p95": 82.982,
+            "min": 49.407,
+            "max": 82.982,
+            "total": 192.33499999999998
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_purify": {
+          "client_ms": {
+            "count": 3,
+            "mean": 49.997,
+            "p50": 48.999,
+            "p95": 55.393,
+            "min": 45.599,
+            "max": 55.393,
+            "total": 149.99099999999999
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_swing_follow": {
+          "client_ms": {
+            "count": 3,
+            "mean": 72.11766666666666,
+            "p50": 75.163,
+            "p95": 83.998,
+            "min": 57.192,
+            "max": 83.998,
+            "total": 216.353
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_8heat": {
+          "client_ms": {
+            "count": 3,
+            "mean": 51.76233333333333,
+            "p50": 52.693,
+            "p95": 53.004,
+            "min": 49.59,
+            "max": 53.004,
+            "total": 155.287
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_sleep": {
+          "client_ms": {
+            "count": 3,
+            "mean": 51.07933333333333,
+            "p50": 46.247,
+            "p95": 63.949,
+            "min": 43.042,
+            "max": 63.949,
+            "total": 153.238
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dimmer": {
+          "client_ms": {
+            "count": 3,
+            "mean": 52.034666666666666,
+            "p50": 51.451,
+            "p95": 55.119,
+            "min": 49.534,
+            "max": 55.119,
+            "total": 156.10399999999998
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_indoor_selfclean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 56.010666666666665,
+            "p50": 54.251,
+            "p95": 77.765,
+            "min": 36.016,
+            "max": 77.765,
+            "total": 168.03199999999998
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_outdoor_selfclean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 49.39,
+            "p50": 52.856,
+            "p95": 55.424,
+            "min": 39.89,
+            "max": 55.424,
+            "total": 148.17000000000002
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_onekey_selfclean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 58.757666666666665,
+            "p50": 58.418,
+            "p95": 59.565,
+            "min": 58.29,
+            "max": 59.565,
+            "total": 176.273
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_fresh_air": {
+          "client_ms": {
+            "count": 3,
+            "mean": 53.51166666666666,
+            "p50": 51.738,
+            "p95": 57.147,
+            "min": 51.65,
+            "max": 57.147,
+            "total": 160.535
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_tms": {
+          "client_ms": {
+            "count": 3,
+            "mean": 50.893,
+            "p50": 50.88,
+            "p95": 52.092,
+            "min": 49.707,
+            "max": 52.092,
+            "total": 152.679
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_health_fan": {
+          "client_ms": {
+            "count": 3,
+            "mean": 49.04533333333333,
+            "p50": 52.719,
+            "p95": 55.537,
+            "min": 38.88,
+            "max": 55.537,
+            "total": 147.136
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_outdoor_mute": {
+          "client_ms": {
+            "count": 3,
+            "mean": 56.226,
+            "p50": 55.321,
+            "p95": 63.284,
+            "min": 50.073,
+            "max": 63.284,
+            "total": 168.678
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dr_onoff": {
+          "client_ms": {
+            "count": 3,
+            "mean": 46.74433333333333,
+            "p50": 50.79,
+            "p95": 54.062,
+            "min": 35.381,
+            "max": 54.062,
+            "total": 140.233
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dr_offset": {
+          "client_ms": {
+            "count": 3,
+            "mean": 69.36133333333333,
+            "p50": 66.686,
+            "p95": 99.888,
+            "min": 41.51,
+            "max": 99.888,
+            "total": 208.084
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dr_mode": {
+          "client_ms": {
+            "count": 3,
+            "mean": 52.93533333333333,
+            "p50": 49.606,
+            "p95": 60.646,
+            "min": 48.554,
+            "max": 60.646,
+            "total": 158.806
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_auto_defrost_clean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 53.42133333333334,
+            "p50": 53.429,
+            "p95": 57.954,
+            "min": 48.881,
+            "max": 57.954,
+            "total": 160.264
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        }
+      },
+      "native_usage_totals_by_mode": {
+        "full_30": {
+          "input_tokens": 24387,
+          "output_tokens": 7959
+        },
+        "serial_1": {
+          "input_tokens": 146535,
+          "output_tokens": 8220
+        }
+      },
+      "measurements": [
+        {
+          "repetition": 0,
+          "full_30_client_ms": 82.002,
+          "serial_30_client_sum_ms": 1702.641,
+          "serial_30_wall_ms": 1714.1390000000001,
+          "all_responses_valid": true,
+          "changed_keys": [],
+          "full_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "serial_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "full_usage": {
+            "input_tokens": 8129,
+            "output_tokens": 2653
+          }
+        },
+        {
+          "repetition": 1,
+          "full_30_client_ms": 89.224,
+          "serial_30_client_sum_ms": 1655.638,
+          "serial_30_wall_ms": 1667.226,
+          "all_responses_valid": true,
+          "changed_keys": [],
+          "full_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "serial_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "full_usage": {
+            "input_tokens": 8129,
+            "output_tokens": 2653
+          }
+        },
+        {
+          "repetition": 2,
+          "full_30_client_ms": 153.095,
+          "serial_30_client_sum_ms": 1646.809,
+          "serial_30_wall_ms": 1658.193,
+          "all_responses_valid": true,
+          "changed_keys": [],
+          "full_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "serial_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "full_usage": {
+            "input_tokens": 8129,
+            "output_tokens": 2653
+          }
+        }
+      ]
+    },
+    "gpt": {
+      "full_30_ms": {
+        "count": 3,
+        "mean": 2308.6366666666668,
+        "p50": 2322.664,
+        "p95": 2433.608,
+        "min": 2169.638,
+        "max": 2433.608,
+        "total": 6925.91
+      },
+      "single_question_ms": {
+        "count": 90,
+        "mean": 902.3174444444444,
+        "p50": 878.383,
+        "p95": 1322.803,
+        "min": 558.231,
+        "max": 1567.395,
+        "total": 81208.57
+      },
+      "serial_30_wall_ms": {
+        "count": 3,
+        "mean": 27084.946,
+        "p50": 26383.683,
+        "p95": 28552.577,
+        "min": 26318.577999999998,
+        "max": 28552.577,
+        "total": 81254.838
+      },
+      "server_full_30_ms": {
+        "count": 3,
+        "mean": 2298.3333333333335,
+        "p50": 2314,
+        "p95": 2421,
+        "min": 2160,
+        "max": 2421,
+        "total": 6895
+      },
+      "server_single_question_ms": {
+        "count": 90,
+        "mean": 892.7666666666667,
+        "p50": 870.0,
+        "p95": 1306,
+        "min": 552,
+        "max": 1551,
+        "total": 80349
+      },
+      "formal_errors": 0,
+      "per_key": {
+        "t_power": {
+          "client_ms": {
+            "count": 3,
+            "mean": 629.475,
+            "p50": 639.565,
+            "p95": 642.122,
+            "min": 606.738,
+            "max": 642.122,
+            "total": 1888.4250000000002
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_work_mode": {
+          "client_ms": {
+            "count": 3,
+            "mean": 829.6553333333334,
+            "p50": 828.337,
+            "p95": 841.767,
+            "min": 818.862,
+            "max": 841.767,
+            "total": 2488.966
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_temp": {
+          "client_ms": {
+            "count": 3,
+            "mean": 810.795,
+            "p50": 780.201,
+            "p95": 897.466,
+            "min": 754.718,
+            "max": 897.466,
+            "total": 2432.385
+          },
+          "choices": [
+            "24",
+            "24",
+            "24"
+          ]
+        },
+        "t_temp_f": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1083.8253333333332,
+            "p50": 868.686,
+            "p95": 1567.395,
+            "min": 815.395,
+            "max": 1567.395,
+            "total": 3251.476
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_temp_type": {
+          "client_ms": {
+            "count": 3,
+            "mean": 793.074,
+            "p50": 743.453,
+            "p95": 910.995,
+            "min": 724.774,
+            "max": 910.995,
+            "total": 2379.2219999999998
+          },
+          "choices": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "t_fan_speed": {
+          "client_ms": {
+            "count": 3,
+            "mean": 860.6686666666667,
+            "p50": 860.398,
+            "p95": 894.728,
+            "min": 826.88,
+            "max": 894.728,
+            "total": 2582.006
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_fan_mute": {
+          "client_ms": {
+            "count": 3,
+            "mean": 600.201,
+            "p50": 592.578,
+            "p95": 624.214,
+            "min": 583.811,
+            "max": 624.214,
+            "total": 1800.603
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_super": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1044.651,
+            "p50": 950.193,
+            "p95": 1234.595,
+            "min": 949.165,
+            "max": 1234.595,
+            "total": 3133.953
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_up_down": {
+          "client_ms": {
+            "count": 3,
+            "mean": 932.9393333333334,
+            "p50": 921.629,
+            "p95": 989.294,
+            "min": 887.895,
+            "max": 989.294,
+            "total": 2798.818
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_indoortemp_detection": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1022.3263333333333,
+            "p50": 959.287,
+            "p95": 1275.966,
+            "min": 831.726,
+            "max": 1275.966,
+            "total": 3066.979
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_left_right": {
+          "client_ms": {
+            "count": 3,
+            "mean": 872.6003333333333,
+            "p50": 876.375,
+            "p95": 958.735,
+            "min": 782.691,
+            "max": 958.735,
+            "total": 2617.801
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_swing_angle": {
+          "client_ms": {
+            "count": 3,
+            "mean": 988.768,
+            "p50": 885.604,
+            "p95": 1216.763,
+            "min": 863.937,
+            "max": 1216.763,
+            "total": 2966.304
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_swing_direction": {
+          "client_ms": {
+            "count": 3,
+            "mean": 823.3936666666667,
+            "p50": 785.968,
+            "p95": 1056.794,
+            "min": 627.419,
+            "max": 1056.794,
+            "total": 2470.181
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_eco": {
+          "client_ms": {
+            "count": 3,
+            "mean": 862.788,
+            "p50": 694.054,
+            "p95": 1336.079,
+            "min": 558.231,
+            "max": 1336.079,
+            "total": 2588.364
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_purify": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1013.078,
+            "p50": 949.425,
+            "p95": 1188.197,
+            "min": 901.612,
+            "max": 1188.197,
+            "total": 3039.234
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_swing_follow": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1190.8666666666666,
+            "p50": 1219.087,
+            "p95": 1294.674,
+            "min": 1058.839,
+            "max": 1294.674,
+            "total": 3572.6
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_8heat": {
+          "client_ms": {
+            "count": 3,
+            "mean": 970.1526666666666,
+            "p50": 974.836,
+            "p95": 1064.866,
+            "min": 870.756,
+            "max": 1064.866,
+            "total": 2910.458
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_sleep": {
+          "client_ms": {
+            "count": 3,
+            "mean": 921.0483333333333,
+            "p50": 892.607,
+            "p95": 1149.416,
+            "min": 721.122,
+            "max": 1149.416,
+            "total": 2763.145
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dimmer": {
+          "client_ms": {
+            "count": 3,
+            "mean": 657.414,
+            "p50": 624.101,
+            "p95": 743.618,
+            "min": 604.523,
+            "max": 743.618,
+            "total": 1972.2420000000002
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_indoor_selfclean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 799.1763333333333,
+            "p50": 873.006,
+            "p95": 880.391,
+            "min": 644.132,
+            "max": 880.391,
+            "total": 2397.529
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_outdoor_selfclean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 976.1803333333334,
+            "p50": 918.153,
+            "p95": 1217.89,
+            "min": 792.498,
+            "max": 1217.89,
+            "total": 2928.541
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_onekey_selfclean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 693.8546666666666,
+            "p50": 703.862,
+            "p95": 720.942,
+            "min": 656.76,
+            "max": 720.942,
+            "total": 2081.564
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_fresh_air": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1320.8786666666667,
+            "p50": 1322.803,
+            "p95": 1490.908,
+            "min": 1148.925,
+            "max": 1490.908,
+            "total": 3962.636
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_tms": {
+          "client_ms": {
+            "count": 3,
+            "mean": 872.1436666666667,
+            "p50": 891.336,
+            "p95": 911.142,
+            "min": 813.953,
+            "max": 911.142,
+            "total": 2616.431
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_health_fan": {
+          "client_ms": {
+            "count": 3,
+            "mean": 919.9586666666667,
+            "p50": 873.724,
+            "p95": 1055.506,
+            "min": 830.646,
+            "max": 1055.506,
+            "total": 2759.876
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_outdoor_mute": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1055.3936666666666,
+            "p50": 958.669,
+            "p95": 1358.124,
+            "min": 849.388,
+            "max": 1358.124,
+            "total": 3166.181
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dr_onoff": {
+          "client_ms": {
+            "count": 3,
+            "mean": 1042.5176666666666,
+            "p50": 1083.931,
+            "p95": 1145.333,
+            "min": 898.289,
+            "max": 1145.333,
+            "total": 3127.553
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dr_offset": {
+          "client_ms": {
+            "count": 3,
+            "mean": 908.3149999999999,
+            "p50": 971.329,
+            "p95": 971.509,
+            "min": 782.107,
+            "max": 971.509,
+            "total": 2724.9449999999997
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_dr_mode": {
+          "client_ms": {
+            "count": 3,
+            "mean": 869.4486666666667,
+            "p50": 907.164,
+            "p95": 934.313,
+            "min": 766.869,
+            "max": 934.313,
+            "total": 2608.346
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        },
+        "t_auto_defrost_clean": {
+          "client_ms": {
+            "count": 3,
+            "mean": 703.9353333333333,
+            "p50": 657.076,
+            "p95": 838.775,
+            "min": 615.955,
+            "max": 838.775,
+            "total": 2111.806
+          },
+          "choices": [
+            "omit",
+            "omit",
+            "omit"
+          ]
+        }
+      },
+      "native_usage_totals_by_mode": {
+        "full_30": {
+          "cacheReadInputTokens": 15660,
+          "cacheWriteInputTokens": 0,
+          "inputTokens": 6,
+          "outputTokens": 621,
+          "totalTokens": 16287
+        },
+        "serial_1": {
+          "cacheReadInputTokens": 100572,
+          "cacheWriteInputTokens": 27405,
+          "inputTokens": 180,
+          "outputTokens": 1230,
+          "totalTokens": 129387
+        }
+      },
+      "measurements": [
+        {
+          "repetition": 0,
+          "full_30_client_ms": 2433.608,
+          "serial_30_client_sum_ms": 28537.209,
+          "serial_30_wall_ms": 28552.577,
+          "all_responses_valid": true,
+          "changed_keys": [],
+          "full_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "serial_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "full_usage": {
+            "inputTokens": 2,
+            "outputTokens": 207,
+            "totalTokens": 5429,
+            "cacheReadInputTokens": 5220,
+            "cacheWriteInputTokens": 0
+          }
+        },
+        {
+          "repetition": 1,
+          "full_30_client_ms": 2322.664,
+          "serial_30_client_sum_ms": 26303.121,
+          "serial_30_wall_ms": 26318.577999999998,
+          "all_responses_valid": true,
+          "changed_keys": [],
+          "full_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "serial_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "full_usage": {
+            "inputTokens": 2,
+            "outputTokens": 207,
+            "totalTokens": 5429,
+            "cacheReadInputTokens": 5220,
+            "cacheWriteInputTokens": 0
+          }
+        },
+        {
+          "repetition": 2,
+          "full_30_client_ms": 2169.638,
+          "serial_30_client_sum_ms": 26368.24,
+          "serial_30_wall_ms": 26383.683,
+          "all_responses_valid": true,
+          "changed_keys": [],
+          "full_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "serial_choices": {
+            "t_power": "omit",
+            "t_work_mode": "omit",
+            "t_temp": "24",
+            "t_temp_f": "omit",
+            "t_temp_type": "0",
+            "t_fan_speed": "omit",
+            "t_fan_mute": "omit",
+            "t_super": "omit",
+            "t_up_down": "omit",
+            "t_indoortemp_detection": "omit",
+            "t_left_right": "omit",
+            "t_swing_angle": "omit",
+            "t_swing_direction": "omit",
+            "t_eco": "omit",
+            "t_purify": "omit",
+            "t_swing_follow": "omit",
+            "t_8heat": "omit",
+            "t_sleep": "omit",
+            "t_dimmer": "omit",
+            "t_indoor_selfclean": "omit",
+            "t_outdoor_selfclean": "omit",
+            "t_onekey_selfclean": "omit",
+            "t_fresh_air": "omit",
+            "t_tms": "omit",
+            "t_health_fan": "omit",
+            "t_outdoor_mute": "omit",
+            "t_dr_onoff": "omit",
+            "t_dr_offset": "omit",
+            "t_dr_mode": "omit",
+            "t_auto_defrost_clean": "omit"
+          },
+          "full_usage": {
+            "inputTokens": 2,
+            "outputTokens": 207,
+            "totalTokens": 5429,
+            "cacheReadInputTokens": 5220,
+            "cacheWriteInputTokens": 0
+          }
+        }
+      ]
+    }
+  }
+}

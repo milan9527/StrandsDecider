@@ -1,0 +1,157 @@
+{
+  "case_id": "S03",
+  "reference_file_sha256": "dbfe0d9a53a65752e0ec39ceaa1cad58d06a7ae6f166940990b1879aa403a4e1",
+  "reference_collection_sha256": "79f9067e63088d905c3bfec0b7acf76ab22d6bb0570ec440c5515ce2a6d0c335",
+  "reference": {
+    "id": "S03",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ],
+    "dataset": "spec"
+  },
+  "checks": [
+    {
+      "provider": "jev",
+      "repetition": 0,
+      "mode": "full_30",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "jev",
+      "repetition": 0,
+      "mode": "serial_1",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "jev",
+      "repetition": 1,
+      "mode": "full_30",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "jev",
+      "repetition": 1,
+      "mode": "serial_1",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "jev",
+      "repetition": 2,
+      "mode": "full_30",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "jev",
+      "repetition": 2,
+      "mode": "serial_1",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "gpt",
+      "repetition": 0,
+      "mode": "full_30",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "gpt",
+      "repetition": 0,
+      "mode": "serial_1",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "gpt",
+      "repetition": 1,
+      "mode": "full_30",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "gpt",
+      "repetition": 1,
+      "mode": "serial_1",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "gpt",
+      "repetition": 2,
+      "mode": "full_30",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    },
+    {
+      "provider": "gpt",
+      "repetition": 2,
+      "mode": "serial_1",
+      "selected_commands": {
+        "t_temp": "24",
+        "t_temp_type": "0"
+      },
+      "exact_match": true
+    }
+  ],
+  "gpt_cache_observation": {
+    "full_30": {
+      "calls": 3,
+      "calls_with_cache_read": 3
+    },
+    "serial_1": {
+      "calls": 90,
+      "calls_with_cache_read": 71
+    }
+  },
+  "scope": "Post-hoc check of this latency case only, not new full-suite accuracy; references never used by the online runner."
+}
