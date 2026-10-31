@@ -1,0 +1,73 @@
+{
+  "recorded_at": "2026-10-31T16:55:20.625896+00:00",
+  "provider": "clef",
+  "phase": "prefix-screen",
+  "run": {
+    "provider": "clef",
+    "phase": "prefix-screen",
+    "status": "complete",
+    "started_at": "2026-10-31T15:12:53.081859+00:00",
+    "jobs": 22,
+    "completed_jobs": 22,
+    "http_calls": 341,
+    "errors": 0,
+    "outer_concurrency": 1,
+    "automatic_retries": 0,
+    "last": {
+      "case_id": "Z05",
+      "order": "original",
+      "variant": "serial30",
+      "kind": "screen",
+      "repetition": 0
+    },
+    "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+    "schedule_sha256": "9257f4ace2e5838aa7397e69b02b0db0e9589aa99b466575089f0823f694dafd",
+    "runner_sha256": "90c93a3d85d9a35b60d123450f050b3f93a22846e1666ca58e351c34be838029",
+    "finished_at": "2026-10-31T15:16:56.149915+00:00"
+  },
+  "raw_tasks": 22,
+  "http_calls": 341,
+  "request_overlaps": 0,
+  "input_hash_checks": 341,
+  "variants": {
+    "serial30": {
+      "tasks": 10,
+      "correct": 8,
+      "accuracy_pct": 80.0,
+      "mean_ms": 15199.271675800264,
+      "p95_ms": 15343.494296003337,
+      "sdk_mean_ms": 15164.213430388918,
+      "extra_commands": 3,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 300
+    },
+    "prefix30": {
+      "tasks": 10,
+      "correct": 8,
+      "accuracy_pct": 80.0,
+      "mean_ms": 5099.315910098085,
+      "p95_ms": 5173.529486101324,
+      "sdk_mean_ms": 5096.219110400125,
+      "extra_commands": 3,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 10
+    }
+  },
+  "comparisons": {
+    "prefix30": {
+      "paired_tasks": 10,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.025999999999999995,
+      "tokens_equal": true,
+      "speedup": 2.9806491583903276,
+      "mean_reduction_pct": 66.45026144103316,
+      "p95_reduction_pct": 66.28193430847807,
+      "passes_screen": true
+    }
+  }
+}

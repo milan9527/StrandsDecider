@@ -1,0 +1,247 @@
+{
+  "audited_at": "2026-10-31T16:55:21.269218+00:00",
+  "passed": true,
+  "checks": [
+    {
+      "provider": "clef",
+      "phase": "confirmation",
+      "tasks": 434,
+      "input_hash_checks": 6727
+    },
+    {
+      "provider": "clef",
+      "phase": "prefix-screen",
+      "tasks": 22,
+      "input_hash_checks": 341
+    },
+    {
+      "provider": "clef",
+      "phase": "repeatability",
+      "tasks": 62,
+      "input_hash_checks": 961
+    },
+    {
+      "provider": "clef",
+      "phase": "screen",
+      "tasks": 66,
+      "input_hash_checks": 649
+    },
+    {
+      "provider": "clef",
+      "phase": "sorted-screen",
+      "tasks": 22,
+      "input_hash_checks": 374
+    },
+    {
+      "provider": "pplx",
+      "phase": "screen",
+      "tasks": 44,
+      "input_hash_checks": 627
+    },
+    {
+      "provider": "pplx",
+      "phase": "tight-screen",
+      "tasks": 22,
+      "input_hash_checks": 660
+    }
+  ],
+  "runs": [
+    {
+      "provider": "clef",
+      "phase": "confirmation",
+      "run": {
+        "provider": "clef",
+        "phase": "confirmation",
+        "status": "complete",
+        "started_at": "2026-10-31T15:22:11.408561+00:00",
+        "jobs": 434,
+        "completed_jobs": 434,
+        "http_calls": 6727,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "M10",
+          "order": "original",
+          "variant": "serial30",
+          "kind": "performance",
+          "repetition": 2
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "e288b5dbb6578f8a74b9847fb453af9f49de851a8c46d34999ca8e69e4002d5c",
+        "runner_sha256": "76aee82cbbfee70a847ad5fe8bcecfccae8883592dbd2aedf12345e5c6586b85",
+        "finished_at": "2026-10-31T16:36:32.350561+00:00"
+      }
+    },
+    {
+      "provider": "clef",
+      "phase": "prefix-screen",
+      "run": {
+        "provider": "clef",
+        "phase": "prefix-screen",
+        "status": "complete",
+        "started_at": "2026-10-31T15:12:53.081859+00:00",
+        "jobs": 22,
+        "completed_jobs": 22,
+        "http_calls": 341,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "Z05",
+          "order": "original",
+          "variant": "serial30",
+          "kind": "screen",
+          "repetition": 0
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "9257f4ace2e5838aa7397e69b02b0db0e9589aa99b466575089f0823f694dafd",
+        "runner_sha256": "90c93a3d85d9a35b60d123450f050b3f93a22846e1666ca58e351c34be838029",
+        "finished_at": "2026-10-31T15:16:56.149915+00:00"
+      }
+    },
+    {
+      "provider": "clef",
+      "phase": "repeatability",
+      "run": {
+        "provider": "clef",
+        "phase": "repeatability",
+        "status": "complete",
+        "started_at": "2026-10-31T16:38:04.607393+00:00",
+        "jobs": 62,
+        "completed_jobs": 62,
+        "http_calls": 961,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "Z05",
+          "order": "original",
+          "variant": "serial30",
+          "kind": "repeatability",
+          "repetition": 2
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "0d1104dded71569af973feea7209d8b0ec61ca2845c42c2c2354e641cd025635",
+        "runner_sha256": "76aee82cbbfee70a847ad5fe8bcecfccae8883592dbd2aedf12345e5c6586b85",
+        "finished_at": "2026-10-31T16:48:40.835857+00:00"
+      }
+    },
+    {
+      "provider": "clef",
+      "phase": "screen",
+      "run": {
+        "provider": "clef",
+        "phase": "screen",
+        "status": "complete",
+        "started_at": "2026-10-31T14:39:22.320831+00:00",
+        "jobs": 66,
+        "completed_jobs": 66,
+        "http_calls": 649,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "Z05",
+          "order": "original",
+          "variant": "batch4",
+          "kind": "screen",
+          "repetition": 0
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "df8ba67abecfc1136b151b5b233a83650dacdb0ef2a4c9a644e81f839736fabb",
+        "runner_sha256": "5d404d9e82e327e57771e2be7364eaedacf278ccbe4ab8c1bd00bf45d10db832",
+        "finished_at": "2026-10-31T14:55:18.616661+00:00"
+      }
+    },
+    {
+      "provider": "clef",
+      "phase": "sorted-screen",
+      "run": {
+        "provider": "clef",
+        "phase": "sorted-screen",
+        "status": "complete",
+        "started_at": "2026-10-31T14:55:24.512984+00:00",
+        "jobs": 22,
+        "completed_jobs": 22,
+        "http_calls": 374,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "Z05",
+          "order": "original",
+          "variant": "serial30",
+          "kind": "screen",
+          "repetition": 0
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "1f56f43e94428bdccbcbbd9a746b428cc5f828eeed3eb7a1f43e5259290593bd",
+        "runner_sha256": "1b66812c37b91dafa647afea7d3532cd86fdb6986d0fb12834c7d462376cd12c",
+        "finished_at": "2026-10-31T15:01:38.360288+00:00"
+      }
+    },
+    {
+      "provider": "pplx",
+      "phase": "screen",
+      "run": {
+        "provider": "pplx",
+        "phase": "screen",
+        "status": "complete",
+        "started_at": "2026-10-31T15:02:40.551321+00:00",
+        "jobs": 44,
+        "completed_jobs": 44,
+        "http_calls": 627,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "Z05",
+          "order": "original",
+          "variant": "serial30",
+          "kind": "screen",
+          "repetition": 0
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "179e6c8b0f9e610a0162f02c68962ae05175635a11ecfad9529ee5ad1a750507",
+        "runner_sha256": "1b66812c37b91dafa647afea7d3532cd86fdb6986d0fb12834c7d462376cd12c",
+        "finished_at": "2026-10-31T15:11:35.812668+00:00"
+      }
+    },
+    {
+      "provider": "pplx",
+      "phase": "tight-screen",
+      "run": {
+        "provider": "pplx",
+        "phase": "tight-screen",
+        "status": "complete",
+        "started_at": "2026-10-31T16:50:13.699480+00:00",
+        "jobs": 22,
+        "completed_jobs": 22,
+        "http_calls": 660,
+        "errors": 0,
+        "outer_concurrency": 1,
+        "automatic_retries": 0,
+        "last": {
+          "case_id": "Z05",
+          "order": "original",
+          "variant": "serial30",
+          "kind": "screen",
+          "repetition": 0
+        },
+        "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+        "schedule_sha256": "4e7f1fd31a1240a63a90101e339ef99b268b4a545260f9a4fdb76d6acabe576f",
+        "runner_sha256": "76aee82cbbfee70a847ad5fe8bcecfccae8883592dbd2aedf12345e5c6586b85",
+        "finished_at": "2026-10-31T16:54:05.606470+00:00"
+      }
+    }
+  ],
+  "http_inference_calls": 10339,
+  "request_overlaps": 0,
+  "interface_errors": 0,
+  "readme_hashes_preserved": 99,
+  "reference_answers_transferred": false,
+  "automatic_retries": 0,
+  "github_commit_or_push_performed": false,
+  "ec2_policy": "keep_running"
+}

@@ -1,0 +1,341 @@
+{
+  "recorded_at": "2026-10-31T16:55:20.403826+00:00",
+  "provider": "clef",
+  "phase": "confirmation",
+  "run": {
+    "provider": "clef",
+    "phase": "confirmation",
+    "status": "complete",
+    "started_at": "2026-10-31T15:22:11.408561+00:00",
+    "jobs": 434,
+    "completed_jobs": 434,
+    "http_calls": 6727,
+    "errors": 0,
+    "outer_concurrency": 1,
+    "automatic_retries": 0,
+    "last": {
+      "case_id": "M10",
+      "order": "original",
+      "variant": "serial30",
+      "kind": "performance",
+      "repetition": 2
+    },
+    "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+    "schedule_sha256": "e288b5dbb6578f8a74b9847fb453af9f49de851a8c46d34999ca8e69e4002d5c",
+    "runner_sha256": "76aee82cbbfee70a847ad5fe8bcecfccae8883592dbd2aedf12345e5c6586b85",
+    "finished_at": "2026-10-31T16:36:32.350561+00:00"
+  },
+  "raw_tasks": 434,
+  "http_calls": 6727,
+  "request_overlaps": 0,
+  "input_hash_checks": 6727,
+  "variants": {
+    "serial30": {
+      "tasks": 216,
+      "correct": 204,
+      "accuracy_pct": 94.44444444444444,
+      "mean_ms": 15170.38043512036,
+      "p95_ms": 15302.875565497743,
+      "sdk_mean_ms": 15137.793059504407,
+      "extra_commands": 16,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43635.75,
+      "http_calls": 6480
+    },
+    "prefix30": {
+      "tasks": 216,
+      "correct": 204,
+      "accuracy_pct": 94.44444444444444,
+      "mean_ms": 5066.674884426296,
+      "p95_ms": 5138.304161248016,
+      "sdk_mean_ms": 5063.5681589582655,
+      "extra_commands": 16,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43635.75,
+      "http_calls": 216
+    }
+  },
+  "comparisons": {
+    "prefix30": {
+      "paired_tasks": 216,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.025999999999999995,
+      "tokens_equal": true,
+      "speedup": 2.9941491769583153,
+      "mean_reduction_pct": 66.60153048834138,
+      "p95_reduction_pct": 66.42262338698637,
+      "passes_screen": true
+    }
+  },
+  "confirmation_gate": {
+    "prefix30": {
+      "passed_before_restart": true,
+      "performance": {
+        "serial30": {
+          "tasks": 60,
+          "correct": 60,
+          "accuracy_pct": 100,
+          "mean_ms": 15186.623522166701,
+          "p95_ms": 15322.512896601256,
+          "sdk_mean_ms": 15154.388982667055,
+          "extra_commands": 0,
+          "missing_commands": 0,
+          "errors": 0,
+          "mean_logical_input_tokens": 43632.5,
+          "http_calls": 1800
+        },
+        "prefix30": {
+          "tasks": 60,
+          "correct": 60,
+          "accuracy_pct": 100,
+          "mean_ms": 5068.268051983978,
+          "p95_ms": 5153.391312499662,
+          "sdk_mean_ms": 5065.244976866355,
+          "extra_commands": 0,
+          "missing_commands": 0,
+          "errors": 0,
+          "mean_logical_input_tokens": 43632.5,
+          "http_calls": 60
+        }
+      },
+      "quality": {
+        "chinese/original": {
+          "serial30": {
+            "tasks": 24,
+            "correct": 21,
+            "accuracy_pct": 87.5,
+            "mean_ms": 15193.357609292738,
+            "p95_ms": 15274.964648050809,
+            "sdk_mean_ms": 15160.68100266572,
+            "extra_commands": 4,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43644.5,
+            "http_calls": 720
+          },
+          "prefix30": {
+            "tasks": 24,
+            "correct": 21,
+            "accuracy_pct": 87.5,
+            "mean_ms": 5076.70229812508,
+            "p95_ms": 5120.0201389026915,
+            "sdk_mean_ms": 5073.5008713751695,
+            "extra_commands": 4,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43644.5,
+            "http_calls": 24
+          },
+          "passed": true
+        },
+        "chinese/reversed": {
+          "serial30": {
+            "tasks": 24,
+            "correct": 21,
+            "accuracy_pct": 87.5,
+            "mean_ms": 15196.23212458282,
+            "p95_ms": 15280.761529198935,
+            "sdk_mean_ms": 15163.623944918072,
+            "extra_commands": 4,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43644.5,
+            "http_calls": 720
+          },
+          "prefix30": {
+            "tasks": 24,
+            "correct": 21,
+            "accuracy_pct": 87.5,
+            "mean_ms": 5066.620652999821,
+            "p95_ms": 5115.934509746512,
+            "sdk_mean_ms": 5063.240174457557,
+            "extra_commands": 4,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43644.5,
+            "http_calls": 24
+          },
+          "passed": true
+        },
+        "extension/original": {
+          "serial30": {
+            "tasks": 10,
+            "correct": 9,
+            "accuracy_pct": 90.0,
+            "mean_ms": 15119.42389060132,
+            "p95_ms": 15270.432159000484,
+            "sdk_mean_ms": 15084.920886599139,
+            "extra_commands": 1,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43646,
+            "http_calls": 300
+          },
+          "prefix30": {
+            "tasks": 10,
+            "correct": 9,
+            "accuracy_pct": 90.0,
+            "mean_ms": 5058.575756900973,
+            "p95_ms": 5098.565371304721,
+            "sdk_mean_ms": 5055.4788343004475,
+            "extra_commands": 1,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43646,
+            "http_calls": 10
+          },
+          "passed": true
+        },
+        "extension/reversed": {
+          "serial30": {
+            "tasks": 10,
+            "correct": 9,
+            "accuracy_pct": 90.0,
+            "mean_ms": 15116.473094700632,
+            "p95_ms": 15254.683024798942,
+            "sdk_mean_ms": 15082.097455995245,
+            "extra_commands": 1,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43646,
+            "http_calls": 300
+          },
+          "prefix30": {
+            "tasks": 10,
+            "correct": 9,
+            "accuracy_pct": 90.0,
+            "mean_ms": 5075.674663799873,
+            "p95_ms": 5125.811071647695,
+            "sdk_mean_ms": 5072.4970222014235,
+            "extra_commands": 1,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43646,
+            "http_calls": 10
+          },
+          "passed": true
+        },
+        "spec/original": {
+          "serial30": {
+            "tasks": 20,
+            "correct": 20,
+            "accuracy_pct": 100,
+            "mean_ms": 15140.511955550392,
+            "p95_ms": 15297.098568297588,
+            "sdk_mean_ms": 15109.068332503011,
+            "extra_commands": 0,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43632.5,
+            "http_calls": 600
+          },
+          "prefix30": {
+            "tasks": 20,
+            "correct": 20,
+            "accuracy_pct": 100,
+            "mean_ms": 5056.909955100127,
+            "p95_ms": 5156.801307595742,
+            "sdk_mean_ms": 5053.946395250387,
+            "extra_commands": 0,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43632.5,
+            "http_calls": 20
+          },
+          "passed": true
+        },
+        "spec/reversed": {
+          "serial30": {
+            "tasks": 20,
+            "correct": 20,
+            "accuracy_pct": 100,
+            "mean_ms": 15187.949983298677,
+            "p95_ms": 15316.282751198014,
+            "sdk_mean_ms": 15156.087176202345,
+            "extra_commands": 0,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43632.5,
+            "http_calls": 600
+          },
+          "prefix30": {
+            "tasks": 20,
+            "correct": 20,
+            "accuracy_pct": 100,
+            "mean_ms": 5054.698108250159,
+            "p95_ms": 5133.525060549073,
+            "sdk_mean_ms": 5051.600154349944,
+            "extra_commands": 0,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43632.5,
+            "http_calls": 20
+          },
+          "passed": true
+        },
+        "validation/original": {
+          "serial30": {
+            "tasks": 24,
+            "correct": 22,
+            "accuracy_pct": 91.66666666666666,
+            "mean_ms": 15151.547071540941,
+            "p95_ms": 15282.216091652299,
+            "sdk_mean_ms": 15118.409288915245,
+            "extra_commands": 3,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43629.5,
+            "http_calls": 720
+          },
+          "prefix30": {
+            "tasks": 24,
+            "correct": 22,
+            "accuracy_pct": 91.66666666666666,
+            "mean_ms": 5070.805730875691,
+            "p95_ms": 5125.670714196531,
+            "sdk_mean_ms": 5067.78027566664,
+            "extra_commands": 3,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43629.5,
+            "http_calls": 24
+          },
+          "passed": true
+        },
+        "validation/reversed": {
+          "serial30": {
+            "tasks": 24,
+            "correct": 22,
+            "accuracy_pct": 91.66666666666666,
+            "mean_ms": 15153.719612333285,
+            "p95_ms": 15277.589311548218,
+            "sdk_mean_ms": 15120.896942370868,
+            "extra_commands": 3,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43629.5,
+            "http_calls": 720
+          },
+          "prefix30": {
+            "tasks": 24,
+            "correct": 22,
+            "accuracy_pct": 91.66666666666666,
+            "mean_ms": 5066.330753125537,
+            "p95_ms": 5132.042053149053,
+            "sdk_mean_ms": 5063.200935416414,
+            "extra_commands": 3,
+            "missing_commands": 0,
+            "errors": 0,
+            "mean_logical_input_tokens": 43629.5,
+            "http_calls": 24
+          },
+          "passed": true
+        }
+      },
+      "restart_verification_required": true
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "prepared_at": "2026-10-31T15:14:12.682933+00:00",
+  "applies_to": "Future complete confirmations, before any such inference begins.",
+  "rule": "A newly wrong task relative to its paired baseline irreversibly fails the quality gate. Stop after the current whole task once an offline paired check detects it, retain all calls and mark the phase stopped_quality_gate.",
+  "purpose": "Avoid spending time on remaining latency trials for a rejected configuration. Passing candidates still require all 156 quality cases, all 60 paired performance tasks and restart verification.",
+  "reference_answers_transferred": false,
+  "stop_marker": "Reason and observation sequence only, never reference commands."
+}

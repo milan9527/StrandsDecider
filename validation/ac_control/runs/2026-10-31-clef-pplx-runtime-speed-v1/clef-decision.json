@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-10-31T16:48:50.783488+00:00",
+  "provider": "clef",
+  "adopted": true,
+  "production_deployed": false,
+  "variants": {
+    "prefix30": {
+      "passed": true,
+      "restart_schedule_complete": true,
+      "restart_choice_drift": [],
+      "restart_newly_wrong_tasks": [],
+      "restart_performance": {
+        "serial30": {
+          "tasks": 30,
+          "correct": 24,
+          "accuracy_pct": 80.0,
+          "mean_ms": 15124.714873931953,
+          "p95_ms": 15502.485073198113,
+          "sdk_mean_ms": 15093.233175932983,
+          "extra_commands": 9,
+          "missing_commands": 0,
+          "errors": 0,
+          "mean_logical_input_tokens": 43673,
+          "http_calls": 900
+        },
+        "prefix30": {
+          "tasks": 30,
+          "correct": 24,
+          "accuracy_pct": 80.0,
+          "mean_ms": 5046.764063000592,
+          "p95_ms": 5170.021931800875,
+          "sdk_mean_ms": 5043.760467532896,
+          "extra_commands": 9,
+          "missing_commands": 0,
+          "errors": 0,
+          "mean_logical_input_tokens": 43673,
+          "http_calls": 30
+        }
+      },
+      "restart_speedup": 2.996913405327579,
+      "reason": "All declared gates passed."
+    }
+  },
+  "reason": "Validated for this workload; not deployed to production."
+}

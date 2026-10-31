@@ -1,0 +1,73 @@
+{
+  "recorded_at": "2026-10-31T16:55:20.776714+00:00",
+  "provider": "clef",
+  "phase": "repeatability",
+  "run": {
+    "provider": "clef",
+    "phase": "repeatability",
+    "status": "complete",
+    "started_at": "2026-10-31T16:38:04.607393+00:00",
+    "jobs": 62,
+    "completed_jobs": 62,
+    "http_calls": 961,
+    "errors": 0,
+    "outer_concurrency": 1,
+    "automatic_retries": 0,
+    "last": {
+      "case_id": "Z05",
+      "order": "original",
+      "variant": "serial30",
+      "kind": "repeatability",
+      "repetition": 2
+    },
+    "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+    "schedule_sha256": "0d1104dded71569af973feea7209d8b0ec61ca2845c42c2c2354e641cd025635",
+    "runner_sha256": "76aee82cbbfee70a847ad5fe8bcecfccae8883592dbd2aedf12345e5c6586b85",
+    "finished_at": "2026-10-31T16:48:40.835857+00:00"
+  },
+  "raw_tasks": 62,
+  "http_calls": 961,
+  "request_overlaps": 0,
+  "input_hash_checks": 961,
+  "variants": {
+    "serial30": {
+      "tasks": 30,
+      "correct": 24,
+      "accuracy_pct": 80.0,
+      "mean_ms": 15124.714873931953,
+      "p95_ms": 15502.485073198113,
+      "sdk_mean_ms": 15093.233175932983,
+      "extra_commands": 9,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 900
+    },
+    "prefix30": {
+      "tasks": 30,
+      "correct": 24,
+      "accuracy_pct": 80.0,
+      "mean_ms": 5046.764063000592,
+      "p95_ms": 5170.021931800875,
+      "sdk_mean_ms": 5043.760467532896,
+      "extra_commands": 9,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 30
+    }
+  },
+  "comparisons": {
+    "prefix30": {
+      "paired_tasks": 30,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.025999999999999995,
+      "tokens_equal": true,
+      "speedup": 2.996913405327579,
+      "mean_reduction_pct": 66.63233584853299,
+      "p95_reduction_pct": 66.65036665160733,
+      "passes_screen": true
+    }
+  }
+}

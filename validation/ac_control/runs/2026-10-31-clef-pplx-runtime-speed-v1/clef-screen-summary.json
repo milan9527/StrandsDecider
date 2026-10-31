@@ -1,0 +1,158 @@
+{
+  "recorded_at": "2026-10-31T16:55:20.918029+00:00",
+  "provider": "clef",
+  "phase": "screen",
+  "run": {
+    "provider": "clef",
+    "phase": "screen",
+    "status": "complete",
+    "started_at": "2026-10-31T14:39:22.320831+00:00",
+    "jobs": 66,
+    "completed_jobs": 66,
+    "http_calls": 649,
+    "errors": 0,
+    "outer_concurrency": 1,
+    "automatic_retries": 0,
+    "last": {
+      "case_id": "Z05",
+      "order": "original",
+      "variant": "batch4",
+      "kind": "screen",
+      "repetition": 0
+    },
+    "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+    "schedule_sha256": "df8ba67abecfc1136b151b5b233a83650dacdb0ef2a4c9a644e81f839736fabb",
+    "runner_sha256": "5d404d9e82e327e57771e2be7364eaedacf278ccbe4ab8c1bd00bf45d10db832",
+    "finished_at": "2026-10-31T14:55:18.616661+00:00"
+  },
+  "raw_tasks": 66,
+  "http_calls": 649,
+  "request_overlaps": 0,
+  "input_hash_checks": 649,
+  "variants": {
+    "serial30": {
+      "tasks": 10,
+      "correct": 8,
+      "accuracy_pct": 80.0,
+      "mean_ms": 15077.571371100203,
+      "p95_ms": 15323.842871598026,
+      "sdk_mean_ms": 15044.493714406417,
+      "extra_commands": 3,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 300
+    },
+    "batch2": {
+      "tasks": 10,
+      "correct": 8,
+      "accuracy_pct": 80.0,
+      "mean_ms": 16563.71857560007,
+      "p95_ms": 16814.653915851522,
+      "sdk_mean_ms": 16545.186969697534,
+      "extra_commands": 3,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 150
+    },
+    "batch4": {
+      "tasks": 10,
+      "correct": 8,
+      "accuracy_pct": 80.0,
+      "mean_ms": 17595.003814299707,
+      "p95_ms": 17873.62783435019,
+      "sdk_mean_ms": 17584.169242998905,
+      "extra_commands": 3,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 80
+    },
+    "batch8": {
+      "tasks": 10,
+      "correct": 8,
+      "accuracy_pct": 80.0,
+      "mean_ms": 20553.881039500266,
+      "p95_ms": 20773.073181098152,
+      "sdk_mean_ms": 20547.381603501708,
+      "extra_commands": 3,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 43673,
+      "http_calls": 40
+    },
+    "full_original": {
+      "tasks": 10,
+      "correct": 5,
+      "accuracy_pct": 50.0,
+      "mean_ms": 3386.594048501138,
+      "p95_ms": 3432.5131615009013,
+      "sdk_mean_ms": 3384.989890201541,
+      "extra_commands": 6,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 9424.7,
+      "http_calls": 10
+    },
+    "full_transfer": {
+      "tasks": 10,
+      "correct": 5,
+      "accuracy_pct": 50.0,
+      "mean_ms": 3387.1063718979713,
+      "p95_ms": 3433.866085397676,
+      "sdk_mean_ms": 3385.5499324999982,
+      "extra_commands": 6,
+      "missing_commands": 0,
+      "errors": 0,
+      "mean_logical_input_tokens": 9424.7,
+      "http_calls": 10
+    }
+  },
+  "comparisons": {
+    "batch2": {
+      "paired_tasks": 10,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.017600000000000005,
+      "tokens_equal": true,
+      "speedup": 0.9102769587809164,
+      "mean_reduction_pct": -9.856674977167913,
+      "p95_reduction_pct": -9.728702237065079,
+      "passes_screen": false
+    },
+    "batch4": {
+      "paired_tasks": 10,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.018100000000000005,
+      "tokens_equal": true,
+      "speedup": 0.8569234499879135,
+      "mean_reduction_pct": -16.696538064643285,
+      "p95_reduction_pct": -16.63933116593137,
+      "passes_screen": false
+    },
+    "batch8": {
+      "paired_tasks": 10,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.018100000000000005,
+      "tokens_equal": true,
+      "speedup": 0.7335632303273655,
+      "mean_reduction_pct": -36.32090032017179,
+      "p95_reduction_pct": -35.56046844881189,
+      "passes_screen": false
+    },
+    "full_transfer": {
+      "paired_tasks": 10,
+      "newly_wrong_tasks": [],
+      "choice_changes": [],
+      "max_reported_probability_delta": 0.0,
+      "tokens_equal": true,
+      "speedup": 0.9998487430447759,
+      "mean_reduction_pct": -0.015127983735174766,
+      "p95_reduction_pct": -0.03941496603565575,
+      "passes_screen": false
+    }
+  }
+}
