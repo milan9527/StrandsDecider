@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-10-30T16:14:50.999157+00:00",
+  "error": {
+    "Error": {
+      "Code": "InsufficientInstanceCapacity",
+      "Message": "We currently do not have sufficient g6.xlarge capacity in the Availability Zone you requested (us-east-1a). Our system will be working on provisioning additional capacity. You can currently get g6.xlarge capacity by not specifying an Availability Zone in your request or choosing us-east-1b, us-east-1c, us-east-1d, us-east-1f."
+    },
+    "ResponseMetadata": {
+      "RequestId": "7c8c41ea-6a48-49d9-a507-f1ff4ddf03ca",
+      "HTTPStatusCode": 500,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "7c8c41ea-6a48-49d9-a507-f1ff4ddf03ca",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "accept-encoding",
+        "content-type": "text/xml;charset=UTF-8",
+        "transfer-encoding": "chunked",
+        "date": "Fri, 30 Oct 2026 16:14:50 GMT",
+        "connection": "close",
+        "server": "AmazonEC2"
+      },
+      "MaxAttemptsReached": true,
+      "RetryAttempts": 4
+    }
+  }
+}

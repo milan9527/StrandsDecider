@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-10-30T16:25:54.861070+00:00",
+  "reason": "g6.4xlarge direct launch also failed for capacity.",
+  "host_type": "g6.8xlarge",
+  "gpu": "One full NVIDIA L4, unchanged",
+  "guest_cpu_options": {
+    "CoreCount": 2,
+    "ThreadsPerCore": 2
+  },
+  "benchmark_memory_max_gib": 16,
+  "all_seven_local_models_same_host_and_limits": true,
+  "inference_protocol_unchanged": true,
+  "instance_memory_gib": 128,
+  "maximum_test_gpu_allocations": 1
+}

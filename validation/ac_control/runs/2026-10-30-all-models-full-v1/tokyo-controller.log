@@ -1,0 +1,64 @@
+2026-10-30T17:11:47.866516+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:12:18.340292+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:12:48.961205+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:13:19.446719+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:13:49.917510+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:14:20.424143+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:14:50.890755+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:15:21.426895+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:15:52.387848+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:16:22.855590+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:16:53.328760+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:17:23.799002+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:17:54.397095+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:18:24.865933+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:18:55.333392+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:19:25.824416+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:19:56.762789+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:20:27.245037+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:20:57.700990+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:21:28.157425+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:21:58.661331+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:22:29.113801+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:22:59.576252+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:23:30.031696+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:24:01.001936+00:00 image pending reservation cr-04feca18d7671028a
+2026-10-30T17:24:17.882687+00:00 image available reservation cr-04feca18d7671028a
+{"recorded_at": "2026-10-30T17:24:19.429793+00:00", "instance_id": "i-01e87f489911925cf", "region": "ap-northeast-1", "availability_zone": "ap-northeast-1a", "instance_type": "g6.xlarge", "source_image": "ami-0a555d6d091154165", "capacity_reservation_id": "cr-04feca18d7671028a"}
+{"at": "2026-10-30T17:26:23.512149+00:00", "operation": "replacement-inventory", "status": "Success"}
+{"at": "2026-10-30T17:26:24.177200+00:00", "bootstrap": {"id": "581f2ed6-cb69-4f57-9c45-f8bc9d11b0ed", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T17:26:24.176797+00:00", "script_sha256": "3bb8bdd954334f1601d13698aaacc28ce8495ce878bb5053edeb8d3deddca46f"}}
+{"at": "2026-10-30T18:10:46.564143+00:00", "operation": "prepare-complete-runtime", "status": "Success"}
+{"at": "2026-10-30T18:10:47.803549+00:00", "launch": {"id": "5f8efcd1-2bae-4ca4-9981-abcc0eec8e65", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T18:10:47.803125+00:00", "script_sha256": "2ed14f967fc95781126f85b0c8a603a4d18f9ab614b6cad335b36c6ae4cf0b05"}}
+{"at": "2026-10-30T18:13:33.509586+00:00", "operation": "start-decider-nine-models", "status": "Success"}
+{"at": "2026-10-30T18:13:34.193728+00:00", "benchmark": {"id": "26f7d3df-8278-4eff-a093-5159eaa9c918", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T18:13:34.193421+00:00", "script_sha256": "54d2e1395cb86776a0c65d29638997ec5fbe63127741c1dcb9754cc1d990580e"}}
+{"at": "2026-10-30T18:37:38.870135+00:00", "operation": "benchmark-decider-nine-models", "status": "Success"}
+{"at": "2026-10-30T18:37:40.426460+00:00", "provider": "decider", "calls": 2049, "errors": 0, "status": "complete"}
+{"at": "2026-10-30T18:37:41.091941+00:00", "launch": {"id": "4a279a46-d549-4120-9e33-bcbe0e213dac", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T18:37:41.091480+00:00", "script_sha256": "ac90e1c6182f9456d1649868d3f06a52a6a0086cf76c0e6a612cc4310b390f87"}}
+{"at": "2026-10-30T18:38:43.640249+00:00", "operation": "start-liquid-nine-models", "status": "Success"}
+{"at": "2026-10-30T18:38:44.311940+00:00", "benchmark": {"id": "6385d211-8f2d-463c-86f0-e7dd939e7652", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T18:38:44.311464+00:00", "script_sha256": "a10eaf2a00be1f0d73efecab18eaef39da70aa69029e2c278dd8b9c6a6b7a16e"}}
+{"at": "2026-10-30T18:53:52.515694+00:00", "operation": "benchmark-liquid-nine-models", "status": "Success"}
+{"at": "2026-10-30T18:53:54.830027+00:00", "provider": "liquid", "calls": 2049, "errors": 0, "status": "complete"}
+{"at": "2026-10-30T18:53:55.500101+00:00", "launch": {"id": "38a843f9-4563-4759-a7bf-afcc483342cb", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T18:53:55.499663+00:00", "script_sha256": "8a7732ac11d04b641ac05cb8f98d9b4b7acbf77b07eb3a20603da869a0992525"}}
+{"at": "2026-10-30T18:54:58.099938+00:00", "operation": "start-pplx-nine-models", "status": "Success"}
+{"at": "2026-10-30T18:54:58.786604+00:00", "benchmark": {"id": "12576653-e24c-4895-8935-c1d2c6caeaaf", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T18:54:58.786122+00:00", "script_sha256": "40d1fd9a06c1800beaf8239b377f077d8450bddb99eac7f88ef2159122c3f4c1"}}
+{"at": "2026-10-30T19:21:07.244188+00:00", "operation": "benchmark-pplx-nine-models", "status": "Success"}
+{"at": "2026-10-30T19:21:10.640384+00:00", "provider": "pplx", "calls": 2049, "errors": 0, "status": "complete"}
+{"at": "2026-10-30T19:21:11.327483+00:00", "launch": {"id": "33e5684f-8319-4978-a2ef-84dfb91c11e4", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T19:21:11.327060+00:00", "script_sha256": "cc9845eed0f61417b392df16d7ed7975b3ecd14cc39ae9dad2f3732664ffe9bf"}}
+{"at": "2026-10-30T19:23:15.759173+00:00", "operation": "start-knowline-nine-models", "status": "Success"}
+{"at": "2026-10-30T19:23:16.443520+00:00", "benchmark": {"id": "4dc6664f-0dfb-421b-9af2-d225f33f7984", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T19:23:16.443063+00:00", "script_sha256": "936f80584c3fba0523300ba5e71192494b8f4fe079bb64be4d8bab2e62fe2004"}}
+Traceback (most recent call last):
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/continue_all_models.py", line 96, in <module>
+    main(parser.parse_args().controller_name)
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/continue_all_models.py", line 79, in main
+    wait_operation("benchmark-" + provider + "-nine-models")
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/continue_all_models.py", line 25, in wait_operation
+    raise RuntimeError(f"{name}: {current['Status']}; inspect retained operation logs")
+RuntimeError: benchmark-knowline-nine-models: Failed; inspect retained operation logs
+Traceback (most recent call last):
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/launch_all_models_reserved.py", line 83, in <module>
+    main()
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/launch_all_models_reserved.py", line 77, in main
+    subprocess.run(
+  File "/home/ec2-user/.local/share/uv/python/cpython-3.11.14-linux-aarch64-gnu/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/ec2-user/ai/DecisionDemo/.venv/bin/python', '-u', '/home/ec2-user/ai/DecisionDemo/validation/ac_control/continue_all_models.py', '--controller-name', 'gpu-controller-tokyo']' returned non-zero exit status 1.

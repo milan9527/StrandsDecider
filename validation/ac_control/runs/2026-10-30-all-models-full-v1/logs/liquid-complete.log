@@ -1,0 +1,13 @@
+2026-10-30T18:37:41+00:00 ip-172-31-37-233 systemd[1]: Started ac-nine-liquid.service - /usr/bin/docker run --rm --name ac-nine-liquid --gpus all --network host --shm-size=2g --memory=6g --cpuset-cpus=0-3 --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint /bench/envs/h2o/bin/python -v /opt/ac-nine-tests:/bench -v /opt/ac-candidate-tests:/opt/ac-candidate-tests:ro 632930644527.dkr.ecr.us-east-1.amazonaws.com/strands-decider-vllm@sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07 /bench/run/liquid_server.py --model /bench/models/liquid.
+2026-10-30T18:37:58+00:00 ip-172-31-37-233 docker[9109]: [467B blob data]
+2026-10-30T18:38:15+00:00 ip-172-31-37-233 docker[9109]: INFO:     Started server process [1]
+2026-10-30T18:38:15+00:00 ip-172-31-37-233 docker[9109]: INFO:     Waiting for application startup.
+2026-10-30T18:38:15+00:00 ip-172-31-37-233 docker[9109]: INFO:     Application startup complete.
+2026-10-30T18:38:15+00:00 ip-172-31-37-233 docker[9109]: INFO:     Uvicorn running on http://127.0.0.1:18801 (Press CTRL+C to quit)
+2026-10-30T18:53:31+00:00 ip-172-31-37-233 systemd[1]: Stopping ac-nine-liquid.service - /usr/bin/docker run --rm --name ac-nine-liquid --gpus all --network host --shm-size=2g --memory=6g --cpuset-cpus=0-3 --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint /bench/envs/h2o/bin/python -v /opt/ac-nine-tests:/bench -v /opt/ac-candidate-tests:/opt/ac-candidate-tests:ro 632930644527.dkr.ecr.us-east-1.amazonaws.com/strands-decider-vllm@sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07 /bench/run/liquid_server.py --model /bench/models/liquid...
+2026-10-30T18:53:31+00:00 ip-172-31-37-233 docker[9109]: INFO:     Shutting down
+2026-10-30T18:53:32+00:00 ip-172-31-37-233 docker[9109]: INFO:     Waiting for application shutdown.
+2026-10-30T18:53:32+00:00 ip-172-31-37-233 docker[9109]: INFO:     Application shutdown complete.
+2026-10-30T18:53:32+00:00 ip-172-31-37-233 docker[9109]: INFO:     Finished server process [1]
+2026-10-30T18:53:35+00:00 ip-172-31-37-233 systemd[1]: ac-nine-liquid.service: Deactivated successfully.
+2026-10-30T18:53:35+00:00 ip-172-31-37-233 systemd[1]: Stopped ac-nine-liquid.service - /usr/bin/docker run --rm --name ac-nine-liquid --gpus all --network host --shm-size=2g --memory=6g --cpuset-cpus=0-3 --cap-drop=ALL --security-opt=no-new-privileges:true --entrypoint /bench/envs/h2o/bin/python -v /opt/ac-nine-tests:/bench -v /opt/ac-candidate-tests:/opt/ac-candidate-tests:ro 632930644527.dkr.ecr.us-east-1.amazonaws.com/strands-decider-vllm@sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07 /bench/run/liquid_server.py --model /bench/models/liquid.

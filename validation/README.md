@@ -1,6 +1,8 @@
 # 场景验证结果汇总：Strands Decider 与 Jev
 
-空调规范主结果：[七模型对照总结：过程、结果与差异解释](../docs/AC_SPEC_UNIFIED_RESULTS.md)。严格按 `AC_Control_Test_Spec.md` 原序 20 题、完整 30 项命令集验收，Jev/GPT 补跑相同请求与预热流程，所有外部请求串行。GPT low **20/20**，Jev、Clef **19/20**，KnowLine、H2O、Torchcast **18/20**，Perplexity **1/20**；主表使用规范完整请求耗时，S03 的单字段、30 步串行及一次完整请求时间和准确率单列。报告包含完整选项与响应、中英文扩展分项、模型实现解释和历史提示词实验的适用范围。
+空调规范主结果：[九模型完整统一测试：过程、准确率、耗时与差异解释](../docs/AC_ALL_MODELS_FULL_RESULTS.md)。Strands、Liquid、H2O、Perplexity、KnowLine、Torchcast、Clef、Jev 与 GPT 全部重新调用，使用相同输入、选项、顺序和预热流程。三种请求方式覆盖规范全部 20 条指令、每题三轮；规范原序主成绩 GPT **20/20**，Jev、Clef **19/20**。单字段与整组正确率分别报告，保留接口异常和全部原始选择。
+
+历史[七模型统一对照](../docs/AC_SPEC_UNIFIED_RESULTS.md)仅对 S03 做三种请求方式的重复计时；该轮结果保留，不再作为全部 20 条指令的布局结论。
 
 此前空调测试总结：[五模型对照、提示优化收益、耗时与结论边界](../docs/AC_CONTROL_COMPARISON.md)。下方保留各轮实测与原始证据入口。
 

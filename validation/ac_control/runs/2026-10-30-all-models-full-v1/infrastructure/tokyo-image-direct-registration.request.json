@@ -1,0 +1,43 @@
+{
+  "Architecture": "x86_64",
+  "BootMode": "uefi-preferred",
+  "VirtualizationType": "hvm",
+  "RootDeviceName": "/dev/sda1",
+  "EnaSupport": true,
+  "SriovNetSupport": "simple",
+  "ImdsSupport": "v2.0",
+  "Name": "ac-nine-models-environment-20261030-tokyo-direct",
+  "Description": "Register the completed copied snapshot with the original boot and device parameters",
+  "BlockDeviceMappings": [
+    {
+      "Ebs": {
+        "DeleteOnTermination": true,
+        "Iops": 3000,
+        "SnapshotId": "snap-013b703746a5b1dd3",
+        "VolumeSize": 200,
+        "VolumeType": "gp3",
+        "Throughput": 500
+      },
+      "DeviceName": "/dev/sda1"
+    },
+    {
+      "DeviceName": "/dev/sdb",
+      "VirtualName": "ephemeral0"
+    },
+    {
+      "DeviceName": "/dev/sdc",
+      "VirtualName": "ephemeral1"
+    }
+  ],
+  "TagSpecifications": [
+    {
+      "ResourceType": "image",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-environment-20261030-tokyo-direct"
+        }
+      ]
+    }
+  ]
+}

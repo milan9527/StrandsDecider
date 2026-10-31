@@ -1,0 +1,29 @@
+{
+  "Name": "ac-nine-models-environment-20261030-tokyo",
+  "Description": "Temporary exact disk clone for unified nine-model AC evaluation",
+  "SourceRegion": "us-east-1",
+  "SourceImageId": "ami-035e007c40c3d6957",
+  "Encrypted": true,
+  "ClientToken": "ac-nine-20261030-tokyo-image",
+  "CopyImageTags": false,
+  "TagSpecifications": [
+    {
+      "ResourceType": "image",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-environment-20261030-tokyo"
+        }
+      ]
+    },
+    {
+      "ResourceType": "snapshot",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-environment-20261030-tokyo"
+        }
+      ]
+    }
+  ]
+}

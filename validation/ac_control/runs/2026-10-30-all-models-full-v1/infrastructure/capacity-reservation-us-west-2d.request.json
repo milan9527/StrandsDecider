@@ -1,0 +1,26 @@
+{
+  "ClientToken": "ac-nine-20261030-us-west-2d",
+  "InstanceType": "g6.xlarge",
+  "InstancePlatform": "Linux/UNIX",
+  "AvailabilityZone": "us-west-2d",
+  "InstanceCount": 1,
+  "InstanceMatchCriteria": "targeted",
+  "Tenancy": "default",
+  "EndDateType": "limited",
+  "EndDate": "2026-10-30 22:17:51.864896+00:00",
+  "TagSpecifications": [
+    {
+      "ResourceType": "capacity-reservation",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-L4-temporary-20261030"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "One temporary L4 allocation while copying benchmark environment"
+        }
+      ]
+    }
+  ]
+}

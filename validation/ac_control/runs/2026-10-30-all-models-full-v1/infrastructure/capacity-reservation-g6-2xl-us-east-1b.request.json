@@ -1,0 +1,26 @@
+{
+  "ClientToken": "ac-nine-20261030-g6-2xl-us-east-1b",
+  "InstanceType": "g6.2xlarge",
+  "InstancePlatform": "Linux/UNIX",
+  "AvailabilityZone": "us-east-1b",
+  "InstanceCount": 1,
+  "InstanceMatchCriteria": "targeted",
+  "Tenancy": "default",
+  "EndDateType": "limited",
+  "EndDate": "2026-10-30 22:19:25.443803+00:00",
+  "TagSpecifications": [
+    {
+      "ResourceType": "capacity-reservation",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-L4-temporary-20261030"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "One L4 benchmark allocation; CPU and RAM constrained uniformly"
+        }
+      ]
+    }
+  ]
+}

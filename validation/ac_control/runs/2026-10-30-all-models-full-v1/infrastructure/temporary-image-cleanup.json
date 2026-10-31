@@ -1,0 +1,352 @@
+{
+  "started_at": "2026-10-30T22:24:09.114891+00:00",
+  "status": "complete",
+  "inventory": {
+    "us-east-1": {
+      "images": [
+        {
+          "PlatformDetails": "Linux/UNIX",
+          "UsageOperation": "RunInstances",
+          "BlockDeviceMappings": [
+            {
+              "Ebs": {
+                "DeleteOnTermination": true,
+                "Iops": 3000,
+                "SnapshotId": "snap-0268249ee324c48cc",
+                "VolumeSize": 200,
+                "VolumeType": "gp3",
+                "Throughput": 500,
+                "Encrypted": true
+              },
+              "DeviceName": "/dev/sda1"
+            },
+            {
+              "DeviceName": "/dev/sdb",
+              "VirtualName": "ephemeral0"
+            },
+            {
+              "DeviceName": "/dev/sdc",
+              "VirtualName": "ephemeral1"
+            }
+          ],
+          "Description": "Temporary stopped-L4 environment clone for the authorized complete AC comparison",
+          "EnaSupport": true,
+          "Hypervisor": "xen",
+          "Name": "ac-nine-models-capacity-recovery-20261030",
+          "RootDeviceName": "/dev/sda1",
+          "RootDeviceType": "ebs",
+          "SriovNetSupport": "simple",
+          "Tags": [
+            {
+              "Key": "Purpose",
+              "Value": "AC nine-model uniform test temporary image"
+            }
+          ],
+          "VirtualizationType": "hvm",
+          "BootMode": "uefi-preferred",
+          "ImdsSupport": "v2.0",
+          "SourceInstanceId": "i-0bd4d9196f1c163c0",
+          "DeregistrationProtection": "disabled",
+          "SourceImageId": "ami-028357be7d5b15c53",
+          "SourceImageRegion": "us-east-1",
+          "FreeTierEligible": true,
+          "ImageId": "ami-035e007c40c3d6957",
+          "ImageLocation": "632930644527/ac-nine-models-capacity-recovery-20261030",
+          "State": "available",
+          "OwnerId": "632930644527",
+          "CreationDate": "2026-10-30T15:54:43.000Z",
+          "Public": false,
+          "Architecture": "x86_64",
+          "ImageType": "machine"
+        }
+      ],
+      "snapshots": [
+        {
+          "Tags": [
+            {
+              "Key": "Purpose",
+              "Value": "AC nine-model uniform test temporary snapshot"
+            }
+          ],
+          "StorageTier": "standard",
+          "TransferType": "standard",
+          "CompletionTime": "2026-10-30 16:13:38.482000+00:00",
+          "FullSnapshotSizeInBytes": 162173288448,
+          "SnapshotId": "snap-0268249ee324c48cc",
+          "VolumeId": "vol-08a0620e59a0484bd",
+          "State": "completed",
+          "StartTime": "2026-10-30 15:54:43.732000+00:00",
+          "Progress": "100%",
+          "OwnerId": "632930644527",
+          "Description": "Created by CreateImage(i-0bd4d9196f1c163c0) for ami-035e007c40c3d6957",
+          "VolumeSize": 200,
+          "Encrypted": true,
+          "KmsKeyId": "arn:aws:kms:us-east-1:632930644527:key/98007108-53ad-4190-9b64-740236a7638f"
+        }
+      ]
+    },
+    "ap-northeast-1": {
+      "images": [
+        {
+          "PlatformDetails": "Linux/UNIX",
+          "UsageOperation": "RunInstances",
+          "BlockDeviceMappings": [
+            {
+              "Ebs": {
+                "DeleteOnTermination": true,
+                "Iops": 3000,
+                "SnapshotId": "snap-013b703746a5b1dd3",
+                "VolumeSize": 200,
+                "VolumeType": "gp3",
+                "Throughput": 500,
+                "Encrypted": true
+              },
+              "DeviceName": "/dev/sda1"
+            },
+            {
+              "DeviceName": "/dev/sdb",
+              "VirtualName": "ephemeral0"
+            },
+            {
+              "DeviceName": "/dev/sdc",
+              "VirtualName": "ephemeral1"
+            }
+          ],
+          "Description": "Register the completed copied snapshot with the original boot and device parameters",
+          "EnaSupport": true,
+          "Hypervisor": "xen",
+          "Name": "ac-nine-models-environment-20261030-tokyo-direct",
+          "RootDeviceName": "/dev/sda1",
+          "RootDeviceType": "ebs",
+          "SriovNetSupport": "simple",
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "ac-nine-models-environment-20261030-tokyo-direct"
+            }
+          ],
+          "VirtualizationType": "hvm",
+          "BootMode": "uefi-preferred",
+          "ImdsSupport": "v2.0",
+          "DeregistrationProtection": "disabled",
+          "LastLaunchedTime": "2026-10-30T17:24:19Z",
+          "FreeTierEligible": true,
+          "ImageId": "ami-0a555d6d091154165",
+          "ImageLocation": "632930644527/ac-nine-models-environment-20261030-tokyo-direct",
+          "State": "available",
+          "OwnerId": "632930644527",
+          "CreationDate": "2026-10-30T17:24:04.000Z",
+          "Public": false,
+          "Architecture": "x86_64",
+          "ImageType": "machine"
+        },
+        {
+          "PlatformDetails": "Linux/UNIX",
+          "UsageOperation": "RunInstances",
+          "BlockDeviceMappings": [
+            {
+              "Ebs": {
+                "DeleteOnTermination": true,
+                "Iops": 3000,
+                "SnapshotId": "snap-013b703746a5b1dd3",
+                "VolumeSize": 200,
+                "VolumeType": "gp3",
+                "Throughput": 500,
+                "Encrypted": true
+              },
+              "DeviceName": "/dev/sda1"
+            },
+            {
+              "DeviceName": "/dev/sdb",
+              "VirtualName": "ephemeral0"
+            },
+            {
+              "DeviceName": "/dev/sdc",
+              "VirtualName": "ephemeral1"
+            }
+          ],
+          "Description": "Temporary exact disk clone for unified nine-model AC evaluation",
+          "EnaSupport": true,
+          "Hypervisor": "xen",
+          "Name": "ac-nine-models-environment-20261030-tokyo",
+          "RootDeviceName": "/dev/sda1",
+          "RootDeviceType": "ebs",
+          "SriovNetSupport": "simple",
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "ac-nine-models-environment-20261030-tokyo"
+            }
+          ],
+          "VirtualizationType": "hvm",
+          "BootMode": "uefi-preferred",
+          "ImdsSupport": "v2.0",
+          "DeregistrationProtection": "disabled",
+          "SourceImageId": "ami-035e007c40c3d6957",
+          "SourceImageRegion": "us-east-1",
+          "FreeTierEligible": true,
+          "ImageId": "ami-0f10edf115af897b3",
+          "ImageLocation": "632930644527/ac-nine-models-environment-20261030-tokyo",
+          "State": "available",
+          "OwnerId": "632930644527",
+          "CreationDate": "2026-10-30T17:11:33.000Z",
+          "Public": false,
+          "Architecture": "x86_64",
+          "ImageType": "machine"
+        }
+      ],
+      "snapshots": [
+        {
+          "Tags": [
+            {
+              "Key": "Name",
+              "Value": "ac-nine-models-environment-20261030-tokyo"
+            }
+          ],
+          "StorageTier": "standard",
+          "TransferType": "standard",
+          "CompletionTime": "2026-10-30 17:19:49.035000+00:00",
+          "FullSnapshotSizeInBytes": 162173288448,
+          "SnapshotId": "snap-013b703746a5b1dd3",
+          "VolumeId": "vol-ffffffff",
+          "State": "completed",
+          "StartTime": "2026-10-30 17:11:34.536000+00:00",
+          "Progress": "100%",
+          "OwnerId": "632930644527",
+          "Description": "Copied for DestinationAmi ami-0f10edf115af897b3 from SourceAmi ami-035e007c40c3d6957 for SourceSnapshot snap-0268249ee324c48cc. Task created on 1,793,380,293,453.",
+          "VolumeSize": 200,
+          "Encrypted": true,
+          "KmsKeyId": "arn:aws:kms:ap-northeast-1:632930644527:key/cdb812a7-af8a-455f-91e5-bb0aeed15c80"
+        }
+      ]
+    }
+  },
+  "actions": [
+    {
+      "at": "2026-10-30T22:24:09.426175+00:00",
+      "region": "us-east-1",
+      "deregistered_image": "ami-035e007c40c3d6957",
+      "response": {
+        "Return": true,
+        "DeleteSnapshotResults": [],
+        "ResponseMetadata": {
+          "RequestId": "a61ea0a2-5f44-4304-a828-a319b27edd67",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amzn-requestid": "a61ea0a2-5f44-4304-a828-a319b27edd67",
+            "cache-control": "no-cache, no-store",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "content-type": "text/xml;charset=UTF-8",
+            "content-length": "245",
+            "date": "Fri, 30 Oct 2026 22:24:09 GMT",
+            "server": "AmazonEC2"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-30T22:24:09.645389+00:00",
+      "region": "us-east-1",
+      "deleted_snapshot": "snap-0268249ee324c48cc",
+      "response": {
+        "ResponseMetadata": {
+          "RequestId": "7ae070e1-4b4e-4400-b055-14b53d4fb6e4",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amzn-requestid": "7ae070e1-4b4e-4400-b055-14b53d4fb6e4",
+            "cache-control": "no-cache, no-store",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "content-type": "text/xml;charset=UTF-8",
+            "content-length": "217",
+            "date": "Fri, 30 Oct 2026 22:24:09 GMT",
+            "server": "AmazonEC2"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-30T22:24:10.849834+00:00",
+      "region": "ap-northeast-1",
+      "deregistered_image": "ami-0a555d6d091154165",
+      "response": {
+        "Return": true,
+        "DeleteSnapshotResults": [],
+        "ResponseMetadata": {
+          "RequestId": "de6fe553-28f2-471b-b88a-77d776bb76c1",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amzn-requestid": "de6fe553-28f2-471b-b88a-77d776bb76c1",
+            "cache-control": "no-cache, no-store",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "content-type": "text/xml;charset=UTF-8",
+            "content-length": "245",
+            "date": "Fri, 30 Oct 2026 22:24:10 GMT",
+            "server": "AmazonEC2"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-30T22:24:11.182626+00:00",
+      "region": "ap-northeast-1",
+      "deregistered_image": "ami-0f10edf115af897b3",
+      "response": {
+        "Return": true,
+        "DeleteSnapshotResults": [],
+        "ResponseMetadata": {
+          "RequestId": "dc17d23e-09f4-4efa-8e2d-319e07cdd88e",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amzn-requestid": "dc17d23e-09f4-4efa-8e2d-319e07cdd88e",
+            "cache-control": "no-cache, no-store",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "content-type": "text/xml;charset=UTF-8",
+            "content-length": "245",
+            "date": "Fri, 30 Oct 2026 22:24:11 GMT",
+            "server": "AmazonEC2"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-30T22:24:11.552053+00:00",
+      "region": "ap-northeast-1",
+      "deleted_snapshot": "snap-013b703746a5b1dd3",
+      "response": {
+        "ResponseMetadata": {
+          "RequestId": "102019df-dffa-4986-b64f-6783aa305c89",
+          "HTTPStatusCode": 200,
+          "HTTPHeaders": {
+            "x-amzn-requestid": "102019df-dffa-4986-b64f-6783aa305c89",
+            "cache-control": "no-cache, no-store",
+            "strict-transport-security": "max-age=31536000; includeSubDomains",
+            "content-type": "text/xml;charset=UTF-8",
+            "content-length": "217",
+            "date": "Fri, 30 Oct 2026 22:24:11 GMT",
+            "server": "AmazonEC2"
+          },
+          "RetryAttempts": 0
+        }
+      }
+    }
+  ],
+  "finished_at": "2026-10-30T22:24:11.552586+00:00",
+  "retained_test_instance": "i-01e87f489911925cf",
+  "instance_state": "stopped",
+  "retained_test_root_volumes": [
+    {
+      "DeviceName": "/dev/sda1",
+      "Ebs": {
+        "AttachTime": "2026-10-30 17:24:19+00:00",
+        "DeleteOnTermination": true,
+        "Status": "attached",
+        "VolumeId": "vol-0b9119d8e97a1571d",
+        "EbsCardIndex": 0
+      }
+    }
+  ]
+}

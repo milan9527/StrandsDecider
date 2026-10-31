@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "Fri Oct 30 17:39:39 UTC 2026\nPID                 PPID                STAT                WCHAN                   COMMAND\n2631                2608                Ds                  folio_wait_bit_common   decider-vllm\n2631\n2631\nrchar: 3143863589\nwchar: 55883045\nsyscr: 16233\nsyscw: 2324\nread_bytes: 3219193856\nwrite_bytes: 61075456\ncancelled_write_bytes: 4096\ntotal 0\nlrwx------ 1 root root 64 Oct 30 17:35 0 -> /dev/null\nl-wx------ 1 root root 64 Oct 30 17:35 1 -> pipe:[14724]\nl-wx------ 1 root root 64 Oct 30 17:35 2 -> pipe:[14725]\nlr-x------ 1 root root 64 Oct 30 17:39 3 -> /models/decider-vllm/model-00002-of-00002.safetensors\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T17:39:39.082Z",
+  "ExecutionEndDateTime": "2026-10-30T17:39:39.082Z"
+}

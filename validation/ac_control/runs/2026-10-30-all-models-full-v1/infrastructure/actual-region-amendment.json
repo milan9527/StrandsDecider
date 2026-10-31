@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-30T17:24:19.429793+00:00",
+  "instance_id": "i-01e87f489911925cf",
+  "region": "ap-northeast-1",
+  "availability_zone": "ap-northeast-1a",
+  "instance_type": "g6.xlarge",
+  "source_image": "ami-0a555d6d091154165",
+  "capacity_reservation_id": "cr-04feca18d7671028a",
+  "gpu": "One NVIDIA L4",
+  "vcpus": 4,
+  "memory_gib": 16,
+  "reason": "US capacity attempts failed; targeted reservation succeeded in Tokyo.",
+  "environment_source": "Complete stopped benchmark disk copied through an AMI.",
+  "boot_image_registration": "infrastructure/tokyo-image-direct-registration.json",
+  "completed_snapshot_registered_directly": true,
+  "inference_inputs_and_schedule_unchanged": true,
+  "all_seven_local_models_same_host": true,
+  "cloud_api_region_unchanged": "us-east-1"
+}

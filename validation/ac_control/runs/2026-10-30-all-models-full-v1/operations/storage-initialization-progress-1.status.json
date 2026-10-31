@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "Fri Oct 30 17:46:06 UTC 2026\n{\n  \"status\": \"running\",\n  \"device\": \"/dev/nvme0n1\",\n  \"read_only\": true,\n  \"direct_io\": true,\n  \"workers\": 16,\n  \"chunk_bytes\": 4194304,\n  \"total_bytes\": 268435456000,\n  \"read_bytes\": 4286578688,\n  \"elapsed_seconds\": 30.022454037999978,\n  \"mean_mib_s\": 136.1647517163568,\n  \"model_inference_paused\": true,\n  \"read_ahead_kb_before_inference\": 128\n}\nprocs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu\n 4 17      0 2608792 152060 12396312    0    0 16859 35973 10207   36  5  4 72 19  0  0\n 0 17      0 2605576 152060 12399456    0    0 143360     0 3633 4128  0  1  0 98  0  0\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T17:46:06.105Z",
+  "ExecutionEndDateTime": "2026-10-30T17:46:07.105Z"
+}

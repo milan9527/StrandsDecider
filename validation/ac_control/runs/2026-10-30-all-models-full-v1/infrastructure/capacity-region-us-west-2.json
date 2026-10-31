@@ -1,0 +1,65 @@
+{
+  "region": "us-west-2",
+  "g_vcpu_quota": 768.0,
+  "default_vpc": "vpc-02913673d108df9f9",
+  "offerings": [
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-west-2a"
+    },
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-west-2b"
+    },
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-west-2c"
+    },
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-west-2d"
+    }
+  ],
+  "subnets": [
+    {
+      "SubnetId": "subnet-08b927d4ec37fea7f",
+      "AvailabilityZone": "us-west-2a",
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "SubnetId": "subnet-0d8a8b2a5e95048b2",
+      "AvailabilityZone": "us-west-2b",
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "SubnetId": "subnet-0748fcd0dbd125011",
+      "AvailabilityZone": "us-west-2d",
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "SubnetId": "subnet-062041804f434fa4a",
+      "AvailabilityZone": "us-west-2b",
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "SubnetId": "subnet-0326f958465c81d20",
+      "AvailabilityZone": "us-west-2a",
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "SubnetId": "subnet-08f9dd33a35945365",
+      "AvailabilityZone": "us-west-2c",
+      "MapPublicIpOnLaunch": true
+    }
+  ],
+  "groups": [
+    {
+      "GroupId": "sg-086810599c0e44d6a",
+      "GroupName": "default"
+    }
+  ]
+}

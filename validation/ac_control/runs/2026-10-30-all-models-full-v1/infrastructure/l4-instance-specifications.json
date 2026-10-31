@@ -1,0 +1,168 @@
+[
+  {
+    "InstanceType": "g6.4xlarge",
+    "VCpuInfo": {
+      "DefaultVCpus": 16,
+      "DefaultCores": 8,
+      "DefaultThreadsPerCore": 2,
+      "ValidCores": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "ValidThreadsPerCore": [
+        1,
+        2
+      ]
+    },
+    "MemoryInfo": {
+      "SizeInMiB": 65536
+    },
+    "GpuInfo": {
+      "Gpus": [
+        {
+          "Name": "L4",
+          "Manufacturer": "NVIDIA",
+          "Count": 1,
+          "LogicalGpuCount": 1,
+          "GpuPartitionSize": 1.0,
+          "Workloads": [
+            "graphics",
+            "ml-ai"
+          ],
+          "MemoryInfo": {
+            "SizeInMiB": 22888
+          }
+        }
+      ],
+      "TotalGpuMemoryInMiB": 22888
+    }
+  },
+  {
+    "InstanceType": "g6.8xlarge",
+    "VCpuInfo": {
+      "DefaultVCpus": 32,
+      "DefaultCores": 16,
+      "DefaultThreadsPerCore": 2,
+      "ValidCores": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "ValidThreadsPerCore": [
+        1,
+        2
+      ]
+    },
+    "MemoryInfo": {
+      "SizeInMiB": 131072
+    },
+    "GpuInfo": {
+      "Gpus": [
+        {
+          "Name": "L4",
+          "Manufacturer": "NVIDIA",
+          "Count": 1,
+          "LogicalGpuCount": 1,
+          "GpuPartitionSize": 1.0,
+          "Workloads": [
+            "graphics",
+            "ml-ai"
+          ],
+          "MemoryInfo": {
+            "SizeInMiB": 22888
+          }
+        }
+      ],
+      "TotalGpuMemoryInMiB": 22888
+    }
+  },
+  {
+    "InstanceType": "g6.2xlarge",
+    "VCpuInfo": {
+      "DefaultVCpus": 8,
+      "DefaultCores": 4,
+      "DefaultThreadsPerCore": 2,
+      "ValidCores": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "ValidThreadsPerCore": [
+        1,
+        2
+      ]
+    },
+    "MemoryInfo": {
+      "SizeInMiB": 32768
+    },
+    "GpuInfo": {
+      "Gpus": [
+        {
+          "Name": "L4",
+          "Manufacturer": "NVIDIA",
+          "Count": 1,
+          "LogicalGpuCount": 1,
+          "GpuPartitionSize": 1.0,
+          "Workloads": [
+            "graphics",
+            "ml-ai"
+          ],
+          "MemoryInfo": {
+            "SizeInMiB": 22888
+          }
+        }
+      ],
+      "TotalGpuMemoryInMiB": 22888
+    }
+  },
+  {
+    "InstanceType": "g6.xlarge",
+    "VCpuInfo": {
+      "DefaultVCpus": 4,
+      "DefaultCores": 2,
+      "DefaultThreadsPerCore": 2,
+      "ValidCores": [
+        1,
+        2
+      ],
+      "ValidThreadsPerCore": [
+        1,
+        2
+      ]
+    },
+    "MemoryInfo": {
+      "SizeInMiB": 16384
+    },
+    "GpuInfo": {
+      "Gpus": [
+        {
+          "Name": "L4",
+          "Manufacturer": "NVIDIA",
+          "Count": 1,
+          "LogicalGpuCount": 1,
+          "GpuPartitionSize": 1.0,
+          "Workloads": [
+            "graphics",
+            "ml-ai"
+          ],
+          "MemoryInfo": {
+            "SizeInMiB": 22888
+          }
+        }
+      ],
+      "TotalGpuMemoryInMiB": 22888
+    }
+  }
+]

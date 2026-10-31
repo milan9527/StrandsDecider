@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "308:             return self._send(200, {\"status\": \"ok\", \"model\": self.server.name, \"temperature\": self.server.engine.T,\n311:             return self._send(200, {\"object\": \"list\", \"data\": [{\"id\": self.server.name, \"object\": \"model\", \"owned_by\": \"PelaAI\"}]})\n329:         self._send(200, {\"id\": f\"jev-{uuid.uuid4().hex[:16]}\", \"model\": body.get(\"model\") or self.server.name,\n339:     p.add_argument(\"--served-model-name\", default=\"m\")\n361:     srv.engine, srv.name = KnowLine(tok, backend, a.temperature, a.workers, temps, layout), a.served_model_name\n{\"archived\": \"/opt/ac-nine-tests/run/attempts/knowline-health-alias/results/knowline\", \"decision_calls\": 0, \"server_sha256\": \"1b4c73419ce597cbf5635a8171b2fe981b577a9cf4856fb9387ce261e81a3729\"}\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T19:25:06.925Z",
+  "ExecutionEndDateTime": "2026-10-30T19:25:08.925Z"
+}

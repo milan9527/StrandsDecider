@@ -1,0 +1,35 @@
+{
+  "Name": "ac-nine-models-environment-20261030",
+  "SourceImageId": "ami-035e007c40c3d6957",
+  "SourceRegion": "us-east-1",
+  "Encrypted": true,
+  "Description": "Temporary exact benchmark environment copy for single L4 capacity recovery",
+  "TagSpecifications": [
+    {
+      "ResourceType": "image",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-temporary-environment-20261030"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "Temporary AC benchmark capacity recovery"
+        }
+      ]
+    },
+    {
+      "ResourceType": "snapshot",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-temporary-environment-20261030"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "Temporary AC benchmark capacity recovery"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+2026-10-30T16:54:25.432163+00:00 image pending
+2026-10-30T16:54:55.525716+00:00 image pending
+2026-10-30T16:55:25.629649+00:00 image pending
+2026-10-30T16:55:55.720315+00:00 image pending
+2026-10-30T16:56:25.813792+00:00 image pending
+2026-10-30T16:56:55.912876+00:00 image available
+Traceback (most recent call last):
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/launch_all_models_west2.py", line 64, in <module>
+    main()
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/launch_all_models_west2.py", line 46, in main
+    response = client.run_instances(**request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/ai/DecisionDemo/.venv/lib/python3.11/site-packages/botocore/client.py", line 606, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/ai/DecisionDemo/.venv/lib/python3.11/site-packages/botocore/context.py", line 123, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/ai/DecisionDemo/.venv/lib/python3.11/site-packages/botocore/client.py", line 1094, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (InsufficientInstanceCapacity) when calling the RunInstances operation (reached max retries: 0): Insufficient capacity.

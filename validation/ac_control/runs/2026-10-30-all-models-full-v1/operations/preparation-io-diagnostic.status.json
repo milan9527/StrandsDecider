@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "Fri Oct 30 17:41:38 UTC 2026\nNAME                   SIZE  RA TYPE MOUNTPOINTS\nloop0                 28.4M 128 loop /snap/amazon-ssm-agent/13349\nloop1                   74M 128 loop /snap/core22/2955\nloop2                 50.3M 128 loop /snap/snapd/27738\nnvme1n1              232.8G 128 disk \n└─vg.01-lv_ephemeral 232.8G 128 lvm  /opt/dlami/nvme\nnvme0n1                250G 128 disk \n├─nvme0n1p1            249G 128 part /\n├─nvme0n1p14             4M 128 part \n├─nvme0n1p15           106M 128 part /boot/efi\n└─nvme0n1p16           913M 128 part /boot\nprocs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------\n r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st gu\n 1  1      0 2095320 151720 12914552    0    0 10623 45351 12389   44  6  5 75 14  0  0\n 0  1      0 2087016 151720 12922792    0    0  8192     0 1734 1827  0  0 75 25  0  0\n 0  1      0 2078576 151736 12930984    0    0  8192   992 1605 1678  0  0 75 25  0  0\n   2828 D    folio_wait_bit_common    python3\n-rw-r--r-- 1 root root 38 Oct 30 17:41 /opt/ac-nine-tests/logs/strands-model-integrity.json\nsome avg10=85.24 avg60=82.78 avg300=65.03 total=425441656\nfull avg10=85.21 avg60=82.64 avg300=64.53 total=417547973\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T17:41:38.623Z",
+  "ExecutionEndDateTime": "2026-10-30T17:41:40.623Z"
+}

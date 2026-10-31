@@ -1,0 +1,13 @@
+{
+  "recorded_at": "2026-10-30T16:56:55.913145+00:00",
+  "region": "us-west-2",
+  "instance_type": "g6.xlarge",
+  "gpu": "One NVIDIA L4",
+  "vcpus": 4,
+  "memory_gib": 16,
+  "reason": "No successful independent L4 allocation in us-east-1; attempt normal on-demand launch in us-west-2.",
+  "environment_source": "Complete stopped benchmark disk copied through an AMI.",
+  "inference_inputs_and_schedule_unchanged": true,
+  "all_seven_local_models_same_host": true,
+  "cloud_api_region_unchanged": "us-east-1"
+}

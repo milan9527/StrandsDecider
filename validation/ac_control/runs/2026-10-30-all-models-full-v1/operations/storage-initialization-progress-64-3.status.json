@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "Fri Oct 30 18:00:49 UTC 2026\n{\n  \"status\": \"running\",\n  \"device\": \"/dev/nvme0n1\",\n  \"read_only\": true,\n  \"direct_io\": true,\n  \"workers\": 64,\n  \"chunk_bytes\": 4194304,\n  \"total_bytes\": 268435456000,\n  \"read_bytes\": 127624282112,\n  \"elapsed_seconds\": 481.64762169200026,\n  \"mean_mib_s\": 252.69926501958585,\n  \"model_inference_paused\": true,\n  \"read_ahead_kb_before_inference\": 128\n}\nl-wx------ 1 root root 64 Oct 30 18:00 2 -> pipe:[12097]\nlr-x------ 1 root root 64 Oct 30 18:00 3 -> /opt/ac-candidate-tests/models/pplx/model-00001-of-00002.safetensors\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T18:00:49.600Z",
+  "ExecutionEndDateTime": "2026-10-30T18:00:49.600Z"
+}

@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-10-30T16:21:48.600172+00:00",
+  "reason": "g6.2xlarge direct automatic-placement launch also returned InsufficientInstanceCapacity.",
+  "host_type": "g6.4xlarge",
+  "gpu": "One full NVIDIA L4, unchanged",
+  "guest_cpu_options": {
+    "CoreCount": 2,
+    "ThreadsPerCore": 2
+  },
+  "benchmark_memory_max_gib": 16,
+  "all_seven_local_models_same_host_and_limits": true,
+  "inference_protocol_unchanged": true,
+  "physical_host_memory_gib": 64,
+  "maximum_test_gpu_allocations": 1
+}

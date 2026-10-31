@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-10-30T17:11:24.308378+00:00",
+  "response": {
+    "CapacityReservation": {
+      "CapacityReservationId": "cr-04feca18d7671028a",
+      "OwnerId": "632930644527",
+      "CapacityReservationArn": "arn:aws:ec2:ap-northeast-1:632930644527:capacity-reservation/cr-04feca18d7671028a",
+      "InstanceType": "g6.xlarge",
+      "InstancePlatform": "Linux/UNIX",
+      "AvailabilityZone": "ap-northeast-1a",
+      "Tenancy": "default",
+      "TotalInstanceCount": 1,
+      "AvailableInstanceCount": 1,
+      "EbsOptimized": false,
+      "EphemeralStorage": false,
+      "State": "active",
+      "StartDate": "2026-10-30 17:11:24+00:00",
+      "EndDate": "2026-10-30 23:11:23+00:00",
+      "EndDateType": "limited",
+      "InstanceMatchCriteria": "targeted",
+      "CreateDate": "2026-10-30 17:11:24+00:00",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-L4-temporary-20261030"
+        }
+      ]
+    },
+    "ResponseMetadata": {
+      "RequestId": "185be81d-9a03-49fb-afbf-72d6621a82dd",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "185be81d-9a03-49fb-afbf-72d6621a82dd",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "accept-encoding",
+        "content-type": "text/xml;charset=UTF-8",
+        "transfer-encoding": "chunked",
+        "date": "Fri, 30 Oct 2026 17:11:24 GMT",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  }
+}

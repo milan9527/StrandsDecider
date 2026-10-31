@@ -1,0 +1,917 @@
+{
+  "Subnets": [
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "ManagedBy",
+          "Value": "Terraform"
+        },
+        {
+          "Key": "Project",
+          "Value": "FairlyCommerce"
+        },
+        {
+          "Key": "Environment",
+          "Value": "production"
+        },
+        {
+          "Key": "Name",
+          "Value": "fairly-prod-app-0"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0e80b938b6b9670d4",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0e80b938b6b9670d4",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.29.10.0/24",
+      "AvailableIpAddressCount": 246,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az3",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0280c6306405e4dfa",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0280c6306405e4dfa",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.48.0/20",
+      "AvailableIpAddressCount": 4073,
+      "AvailabilityZone": "us-east-1e",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "PrivateSubnetA"
+        },
+        {
+          "Key": "Name",
+          "Value": "timespace-live-origin-a"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "timespace-live-app"
+        },
+        {
+          "Key": "Project",
+          "Value": "timespace-live"
+        },
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/timespace-live-app/84bc4a80-c9d7-11f1-9cc9-0e7ab38690db"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-035e0da55b7ff4052",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-035e0da55b7ff4052",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.109.0/24",
+      "AvailableIpAddressCount": 247,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/decider-guardrails-lab-app/5949afa0-c856-11f1-87ed-0affd06347cb"
+        },
+        {
+          "Key": "Application",
+          "Value": "decider-guardrails"
+        },
+        {
+          "Key": "Name",
+          "Value": "decider-guardrails-lab-app-OriginSubnetB"
+        },
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "OriginSubnetB"
+        },
+        {
+          "Key": "ManagedBy",
+          "Value": "CloudFormation"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "decider-guardrails-lab-app"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-08028e7f1d46459a7",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-08028e7f1d46459a7",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.102.0/24",
+      "AvailableIpAddressCount": 249,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "timespace-live-app"
+        },
+        {
+          "Key": "Name",
+          "Value": "timespace-live-tasks-a"
+        },
+        {
+          "Key": "Project",
+          "Value": "timespace-live"
+        },
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/timespace-live-app/84bc4a80-c9d7-11f1-9cc9-0e7ab38690db"
+        },
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "PublicSubnetA"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0279ac01220502731",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0279ac01220502731",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.107.0/24",
+      "AvailableIpAddressCount": 250,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/timespace-live-app/84bc4a80-c9d7-11f1-9cc9-0e7ab38690db"
+        },
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "PrivateSubnetB"
+        },
+        {
+          "Key": "Name",
+          "Value": "timespace-live-origin-b"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "timespace-live-app"
+        },
+        {
+          "Key": "Project",
+          "Value": "timespace-live"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0f0b00245ebf52ca5",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0f0b00245ebf52ca5",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.110.0/24",
+      "AvailableIpAddressCount": 248,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "Project",
+          "Value": "timespace-live"
+        },
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "PublicSubnetB"
+        },
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/timespace-live-app/84bc4a80-c9d7-11f1-9cc9-0e7ab38690db"
+        },
+        {
+          "Key": "Name",
+          "Value": "timespace-live-tasks-b"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "timespace-live-app"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-02c73aade112ab34d",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-02c73aade112ab34d",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.108.0/24",
+      "AvailableIpAddressCount": 250,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "TaskSubnetB"
+        },
+        {
+          "Key": "Application",
+          "Value": "decider-guardrails"
+        },
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/decider-guardrails-lab-app/5949afa0-c856-11f1-87ed-0affd06347cb"
+        },
+        {
+          "Key": "Name",
+          "Value": "decider-guardrails-lab-app-TaskSubnetB"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "decider-guardrails-lab-app"
+        },
+        {
+          "Key": "ManagedBy",
+          "Value": "CloudFormation"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-077d21b0afd609bf3",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-077d21b0afd609bf3",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.101.0/24",
+      "AvailableIpAddressCount": 250,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az4",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0f2ad481e002122b7",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0f2ad481e002122b7",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.98.0/24",
+      "AvailableIpAddressCount": 240,
+      "AvailabilityZone": "us-east-1c",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "ManagedBy",
+          "Value": "Terraform"
+        },
+        {
+          "Key": "Project",
+          "Value": "FairlyCommerce"
+        },
+        {
+          "Key": "Environment",
+          "Value": "production"
+        },
+        {
+          "Key": "Name",
+          "Value": "fairly-prod-data-0"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0f4d56247ddd0be50",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0f4d56247ddd0be50",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.29.20.0/24",
+      "AvailableIpAddressCount": 249,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-062a148d1354577b3",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-062a148d1354577b3",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.0.0/20",
+      "AvailableIpAddressCount": 4022,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "ManagedBy",
+          "Value": "CloudFormation"
+        },
+        {
+          "Key": "Name",
+          "Value": "decider-guardrails-lab-app-OriginSubnetA"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "decider-guardrails-lab-app"
+        },
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "OriginSubnetA"
+        },
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/decider-guardrails-lab-app/5949afa0-c856-11f1-87ed-0affd06347cb"
+        },
+        {
+          "Key": "Application",
+          "Value": "decider-guardrails"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0e724d365bcf0f5de",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0e724d365bcf0f5de",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.100.0/24",
+      "AvailableIpAddressCount": 249,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "fairly-prod-data-1"
+        },
+        {
+          "Key": "Environment",
+          "Value": "production"
+        },
+        {
+          "Key": "ManagedBy",
+          "Value": "Terraform"
+        },
+        {
+          "Key": "Project",
+          "Value": "FairlyCommerce"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0173e81d673172b79",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0173e81d673172b79",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.29.21.0/24",
+      "AvailableIpAddressCount": 249,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az4",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-029c0264a7e188a46",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-029c0264a7e188a46",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.16.0/20",
+      "AvailableIpAddressCount": 4014,
+      "AvailabilityZone": "us-east-1c",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az6",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0693778771c7fe672",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0693778771c7fe672",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.32.0/20",
+      "AvailableIpAddressCount": 4049,
+      "AvailabilityZone": "us-east-1d",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "ManagedBy",
+          "Value": "CloudFormation"
+        },
+        {
+          "Key": "aws:cloudformation:logical-id",
+          "Value": "TaskSubnetA"
+        },
+        {
+          "Key": "Application",
+          "Value": "decider-guardrails"
+        },
+        {
+          "Key": "Name",
+          "Value": "decider-guardrails-lab-app-TaskSubnetA"
+        },
+        {
+          "Key": "aws:cloudformation:stack-id",
+          "Value": "arn:aws:cloudformation:us-east-1:632930644527:stack/decider-guardrails-lab-app/5949afa0-c856-11f1-87ed-0affd06347cb"
+        },
+        {
+          "Key": "aws:cloudformation:stack-name",
+          "Value": "decider-guardrails-lab-app"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-04890b4c0d13507e3",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-04890b4c0d13507e3",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.99.0/24",
+      "AvailableIpAddressCount": 251,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-023880de85fb9261b",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-023880de85fb9261b",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.80.0/20",
+      "AvailableIpAddressCount": 4038,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "fairly-prod-app-1"
+        },
+        {
+          "Key": "ManagedBy",
+          "Value": "Terraform"
+        },
+        {
+          "Key": "Environment",
+          "Value": "production"
+        },
+        {
+          "Key": "Project",
+          "Value": "FairlyCommerce"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-06e6d9f8a3b6b52ed",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-06e6d9f8a3b6b52ed",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.29.11.0/24",
+      "AvailableIpAddressCount": 245,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0e96679f4b53229bd",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0e96679f4b53229bd",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.97.0/24",
+      "AvailableIpAddressCount": 229,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az2",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "fairly-prod-public-1"
+        },
+        {
+          "Key": "Project",
+          "Value": "FairlyCommerce"
+        },
+        {
+          "Key": "ManagedBy",
+          "Value": "Terraform"
+        },
+        {
+          "Key": "Environment",
+          "Value": "production"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0a2491a63fec88ed9",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0a2491a63fec88ed9",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.29.1.0/24",
+      "AvailableIpAddressCount": 250,
+      "AvailabilityZone": "us-east-1b",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "fairly-prod-public-0"
+        },
+        {
+          "Key": "Project",
+          "Value": "FairlyCommerce"
+        },
+        {
+          "Key": "ManagedBy",
+          "Value": "Terraform"
+        },
+        {
+          "Key": "Environment",
+          "Value": "production"
+        }
+      ],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-07a3eed4eb505339f",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-07a3eed4eb505339f",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.29.0.0/24",
+      "AvailableIpAddressCount": 251,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az1",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-0b1b7db3a6600fbe1",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-0b1b7db3a6600fbe1",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.96.0/24",
+      "AvailableIpAddressCount": 220,
+      "AvailabilityZone": "us-east-1a",
+      "DefaultForAz": false,
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "AvailabilityZoneId": "use1-az5",
+      "MapCustomerOwnedIpOnLaunch": false,
+      "OwnerId": "632930644527",
+      "AssignIpv6AddressOnCreation": false,
+      "Ipv6CidrBlockAssociationSet": [],
+      "SubnetArn": "arn:aws:ec2:us-east-1:632930644527:subnet/subnet-035e3e2820bda44e3",
+      "EnableDns64": false,
+      "Ipv6Native": false,
+      "PrivateDnsNameOptionsOnLaunch": {
+        "HostnameType": "ip-name",
+        "EnableResourceNameDnsARecord": false,
+        "EnableResourceNameDnsAAAARecord": false
+      },
+      "BlockPublicAccessStates": {
+        "InternetGatewayBlockMode": "off"
+      },
+      "SubnetId": "subnet-035e3e2820bda44e3",
+      "State": "available",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "CidrBlock": "172.31.64.0/20",
+      "AvailableIpAddressCount": 4065,
+      "AvailabilityZone": "us-east-1f",
+      "DefaultForAz": true,
+      "MapPublicIpOnLaunch": true
+    }
+  ],
+  "ResponseMetadata": {
+    "RequestId": "a138629d-56b1-40f0-9b77-ce9c261b22c5",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "x-amzn-requestid": "a138629d-56b1-40f0-9b77-ce9c261b22c5",
+      "cache-control": "no-cache, no-store",
+      "strict-transport-security": "max-age=31536000; includeSubDomains",
+      "vary": "accept-encoding",
+      "content-type": "text/xml;charset=UTF-8",
+      "transfer-encoding": "chunked",
+      "date": "Fri, 30 Oct 2026 15:54:15 GMT",
+      "server": "AmazonEC2"
+    },
+    "RetryAttempts": 0
+  }
+}

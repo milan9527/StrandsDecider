@@ -1,0 +1,34 @@
+{
+  "verified_at": "2026-10-30T22:24:36.204815+00:00",
+  "test_instance_id": "i-01e87f489911925cf",
+  "test_instance_state": "stopped",
+  "capacity_reservation_state": "cancelled",
+  "protected_instance_states": {
+    "i-0ae7eb0abcb815af3": "running",
+    "i-0bd4d9196f1c163c0": "stopped"
+  },
+  "temporary_images_and_snapshots_remaining": {
+    "us-east-1": {
+      "images": [],
+      "snapshots": []
+    },
+    "ap-northeast-1": {
+      "images": [],
+      "snapshots": []
+    }
+  },
+  "retained_test_root_volumes": [
+    {
+      "DeviceName": "/dev/sda1",
+      "Ebs": {
+        "AttachTime": "2026-10-30 17:24:19+00:00",
+        "DeleteOnTermination": true,
+        "Status": "attached",
+        "VolumeId": "vol-0b9119d8e97a1571d",
+        "EbsCardIndex": 0
+      }
+    }
+  ],
+  "audit_sha256": "6cacf0ad02d198be1a33941899ed14dc6d7f17445716cc91cb4660763cbdb56d",
+  "receipt_archive_sha256": "1bd8c56addae40845685aca3bec6682d6011ef1522b71f51727d134df0da4a49"
+}

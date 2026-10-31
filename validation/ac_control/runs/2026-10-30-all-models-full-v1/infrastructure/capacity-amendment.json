@@ -1,0 +1,15 @@
+{
+  "recorded_at": "2026-10-30T16:14:40.490705+00:00",
+  "reason": "Original test instance StartInstances returned InsufficientInstanceCapacity three times.",
+  "source_instance": "i-0bd4d9196f1c163c0",
+  "source_state": "stopped",
+  "clone_ami": "ami-035e007c40c3d6957",
+  "replacement_specification": "g6.xlarge: one NVIDIA L4 24GB, four vCPUs, 16GiB RAM",
+  "root_disk_gib": 250,
+  "source_root_disk_gib": 200,
+  "storage_reason": "Additional pinned Strands container and Strands/Liquid weights.",
+  "unchanged": "Frozen model/request schedule; existing five candidate environments and weights cloned byte-for-byte.",
+  "protected_resident": "i-0ae7eb0abcb815af3",
+  "maximum_running_dedicated_test_instances": 1,
+  "stop_guard_hours": 6
+}

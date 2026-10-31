@@ -1,0 +1,55 @@
+{
+  "region": "us-east-2",
+  "g_vcpu_quota": 64.0,
+  "default_vpc": "vpc-0d829be5b32cedda7",
+  "offerings": [
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-east-2b"
+    },
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-east-2a"
+    },
+    {
+      "InstanceType": "g6.xlarge",
+      "LocationType": "availability-zone",
+      "Location": "us-east-2c"
+    }
+  ],
+  "subnets": [
+    {
+      "SubnetId": "subnet-08cac12e7a232540b",
+      "AvailabilityZone": "us-east-2c",
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "SubnetId": "subnet-02374aaaa190fa3ec",
+      "AvailabilityZone": "us-east-2a",
+      "MapPublicIpOnLaunch": false
+    },
+    {
+      "SubnetId": "subnet-076c65a355de813cf",
+      "AvailabilityZone": "us-east-2b",
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "SubnetId": "subnet-0da11846dfbc952d4",
+      "AvailabilityZone": "us-east-2a",
+      "MapPublicIpOnLaunch": true
+    },
+    {
+      "SubnetId": "subnet-033c43d404bdf0f52",
+      "AvailabilityZone": "us-east-2b",
+      "MapPublicIpOnLaunch": false
+    }
+  ],
+  "groups": [
+    {
+      "GroupId": "sg-07f5ba78a7338ff2a",
+      "GroupName": "default"
+    }
+  ]
+}

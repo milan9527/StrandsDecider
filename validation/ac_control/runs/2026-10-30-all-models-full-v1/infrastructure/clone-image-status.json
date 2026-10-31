@@ -1,0 +1,58 @@
+{
+  "recorded_at": "2026-10-30T16:14:40.374035+00:00",
+  "image": {
+    "PlatformDetails": "Linux/UNIX",
+    "UsageOperation": "RunInstances",
+    "BlockDeviceMappings": [
+      {
+        "Ebs": {
+          "DeleteOnTermination": true,
+          "Iops": 3000,
+          "SnapshotId": "snap-0268249ee324c48cc",
+          "VolumeSize": 200,
+          "VolumeType": "gp3",
+          "Throughput": 500,
+          "Encrypted": true
+        },
+        "DeviceName": "/dev/sda1"
+      },
+      {
+        "DeviceName": "/dev/sdb",
+        "VirtualName": "ephemeral0"
+      },
+      {
+        "DeviceName": "/dev/sdc",
+        "VirtualName": "ephemeral1"
+      }
+    ],
+    "Description": "Temporary stopped-L4 environment clone for the authorized complete AC comparison",
+    "EnaSupport": true,
+    "Hypervisor": "xen",
+    "Name": "ac-nine-models-capacity-recovery-20261030",
+    "RootDeviceName": "/dev/sda1",
+    "RootDeviceType": "ebs",
+    "SriovNetSupport": "simple",
+    "Tags": [
+      {
+        "Key": "Purpose",
+        "Value": "AC nine-model uniform test temporary image"
+      }
+    ],
+    "VirtualizationType": "hvm",
+    "BootMode": "uefi-preferred",
+    "ImdsSupport": "v2.0",
+    "SourceInstanceId": "i-0bd4d9196f1c163c0",
+    "DeregistrationProtection": "disabled",
+    "SourceImageId": "ami-028357be7d5b15c53",
+    "SourceImageRegion": "us-east-1",
+    "FreeTierEligible": true,
+    "ImageId": "ami-035e007c40c3d6957",
+    "ImageLocation": "632930644527/ac-nine-models-capacity-recovery-20261030",
+    "State": "available",
+    "OwnerId": "632930644527",
+    "CreationDate": "2026-10-30T15:54:43.000Z",
+    "Public": false,
+    "Architecture": "x86_64",
+    "ImageType": "machine"
+  }
+}

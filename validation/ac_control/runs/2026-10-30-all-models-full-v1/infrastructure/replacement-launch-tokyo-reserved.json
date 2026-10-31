@@ -1,0 +1,160 @@
+{
+  "recorded_at": "2026-10-30T17:24:19.429398+00:00",
+  "response": {
+    "ReservationId": "r-0360efce1c7856298",
+    "OwnerId": "632930644527",
+    "Groups": [],
+    "Instances": [
+      {
+        "Architecture": "x86_64",
+        "BlockDeviceMappings": [],
+        "ClientToken": "ac-nine-20261030-tokyo-reserved",
+        "EbsOptimized": false,
+        "EnaSupport": true,
+        "Hypervisor": "xen",
+        "IamInstanceProfile": {
+          "Arn": "arn:aws:iam::632930644527:instance-profile/strands-decider-vllm",
+          "Id": "AIPAZGXM3GIXW6IU6VYZA"
+        },
+        "NetworkInterfaces": [
+          {
+            "Attachment": {
+              "AttachTime": "2026-10-30 17:24:19+00:00",
+              "AttachmentId": "eni-attach-01f380bac46a0374f",
+              "DeleteOnTermination": true,
+              "DeviceIndex": 0,
+              "Status": "attaching",
+              "NetworkCardIndex": 0
+            },
+            "Description": "",
+            "Groups": [
+              {
+                "GroupId": "sg-07b84c41dbcb185b2",
+                "GroupName": "default"
+              }
+            ],
+            "Ipv6Addresses": [],
+            "MacAddress": "06:ff:ff:41:47:1b",
+            "NetworkInterfaceId": "eni-0f364ac40d232b4d1",
+            "OwnerId": "632930644527",
+            "PrivateDnsName": "ip-172-31-37-233.ap-northeast-1.compute.internal",
+            "PrivateIpAddress": "172.31.37.233",
+            "PrivateIpAddresses": [
+              {
+                "Primary": true,
+                "PrivateDnsName": "ip-172-31-37-233.ap-northeast-1.compute.internal",
+                "PrivateIpAddress": "172.31.37.233"
+              }
+            ],
+            "SourceDestCheck": true,
+            "Status": "in-use",
+            "SubnetId": "subnet-0e6b0ea241ba96485",
+            "VpcId": "vpc-0ff30fbdafef519d8",
+            "InterfaceType": "interface",
+            "Operator": {
+              "Managed": false
+            }
+          }
+        ],
+        "RootDeviceName": "/dev/sda1",
+        "RootDeviceType": "ebs",
+        "SecurityGroups": [
+          {
+            "GroupId": "sg-07b84c41dbcb185b2",
+            "GroupName": "default"
+          }
+        ],
+        "SourceDestCheck": true,
+        "StateReason": {
+          "Code": "pending",
+          "Message": "pending"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "ac-nine-models-isolated-L4-20261030"
+          },
+          {
+            "Key": "Purpose",
+            "Value": "Temporary complete uniform AC model benchmark"
+          }
+        ],
+        "VirtualizationType": "hvm",
+        "CpuOptions": {
+          "CoreCount": 2,
+          "ThreadsPerCore": 2
+        },
+        "CapacityReservationSpecification": {
+          "CapacityReservationTarget": {
+            "CapacityReservationId": "cr-04feca18d7671028a"
+          }
+        },
+        "MetadataOptions": {
+          "State": "pending",
+          "HttpTokens": "required",
+          "HttpPutResponseHopLimit": 2,
+          "HttpEndpoint": "enabled",
+          "HttpProtocolIpv6": "disabled",
+          "InstanceMetadataTags": "disabled"
+        },
+        "EnclaveOptions": {
+          "Enabled": false
+        },
+        "BootMode": "uefi-preferred",
+        "PrivateDnsNameOptions": {
+          "HostnameType": "ip-name",
+          "EnableResourceNameDnsARecord": false,
+          "EnableResourceNameDnsAAAARecord": false
+        },
+        "MaintenanceOptions": {
+          "AutoRecovery": "default",
+          "RebootMigration": "default"
+        },
+        "CurrentInstanceBootMode": "uefi",
+        "Operator": {
+          "Managed": false
+        },
+        "InstanceId": "i-01e87f489911925cf",
+        "ImageId": "ami-0a555d6d091154165",
+        "State": {
+          "Code": 0,
+          "Name": "pending"
+        },
+        "PrivateDnsName": "ip-172-31-37-233.ap-northeast-1.compute.internal",
+        "PublicDnsName": "",
+        "StateTransitionReason": "",
+        "AmiLaunchIndex": 0,
+        "ProductCodes": [],
+        "InstanceType": "g6.xlarge",
+        "LaunchTime": "2026-10-30 17:24:19+00:00",
+        "Placement": {
+          "AvailabilityZoneId": "apne1-az4",
+          "GroupName": "",
+          "Tenancy": "default",
+          "AvailabilityZone": "ap-northeast-1a"
+        },
+        "Monitoring": {
+          "State": "disabled"
+        },
+        "SubnetId": "subnet-0e6b0ea241ba96485",
+        "VpcId": "vpc-0ff30fbdafef519d8",
+        "PrivateIpAddress": "172.31.37.233"
+      }
+    ],
+    "ResponseMetadata": {
+      "RequestId": "5b4be6be-7df1-4f5e-bfcc-24a7a11a0b67",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "5b4be6be-7df1-4f5e-bfcc-24a7a11a0b67",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "accept-encoding",
+        "content-type": "text/xml;charset=UTF-8",
+        "content-length": "4263",
+        "date": "Fri, 30 Oct 2026 17:24:19 GMT",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  }
+}

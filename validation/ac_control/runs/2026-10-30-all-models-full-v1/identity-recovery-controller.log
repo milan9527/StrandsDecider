@@ -1,0 +1,23 @@
+{"at": "2026-10-30T19:26:01.689203+00:00", "launch": {"id": "570d0ef0-8bf8-49a6-b3bf-f9b8c6caafcf", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T19:26:01.688805+00:00", "script_sha256": "b6d9078e30d8473d71edf2e61556e8b479aa873d450a61405dbb52f315e39f56"}}
+{"at": "2026-10-30T19:27:24.894034+00:00", "operation": "start-knowline-nine-models-identity", "status": "Success"}
+{"at": "2026-10-30T19:27:25.557250+00:00", "benchmark": {"id": "7ed2bb43-0d4d-4b57-af21-9543713452fa", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T19:27:25.556828+00:00", "script_sha256": "936f80584c3fba0523300ba5e71192494b8f4fe079bb64be4d8bab2e62fe2004"}}
+{"at": "2026-10-30T19:47:22.684750+00:00", "operation": "benchmark-knowline-nine-models-identity", "status": "Success"}
+{"at": "2026-10-30T19:47:27.798485+00:00", "provider": "knowline", "calls": 2049, "errors": 0, "status": "complete"}
+{"at": "2026-10-30T19:47:28.443630+00:00", "launch": {"id": "deef75b6-385a-4503-aa42-2c232d82d45e", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T19:47:28.443226+00:00", "script_sha256": "20fc549fd93a54d189580e3c9d1478b0201f73dfe3ed84f3bbbcb105adeaa79b"}}
+{"at": "2026-10-30T19:49:12.248329+00:00", "operation": "start-torchcast-nine-models", "status": "Success"}
+{"at": "2026-10-30T19:49:12.922763+00:00", "benchmark": {"id": "5a42d255-1f50-4b94-b459-8ac94b2a510c", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T19:49:12.922336+00:00", "script_sha256": "fc6a4c132500d47432ff0e5dc495c56baa3cbfe4b802ffca6e4f3d8ef5504531"}}
+{"at": "2026-10-30T20:55:54.833126+00:00", "operation": "benchmark-torchcast-nine-models", "status": "Success"}
+{"at": "2026-10-30T20:56:00.623420+00:00", "provider": "torchcast", "calls": 2049, "errors": 0, "status": "complete"}
+{"at": "2026-10-30T20:56:01.288881+00:00", "launch": {"id": "6fbb4b19-48c5-4ed4-b6d9-b071b1947859", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T20:56:01.288449+00:00", "script_sha256": "f5d6347d6ad2f6a1c8434ca4dbb4ff63e79fefd9d04c93cd7c57744b684cb57b"}}
+{"at": "2026-10-30T20:57:45.109038+00:00", "operation": "start-clef-nine-models", "status": "Success"}
+{"at": "2026-10-30T20:57:45.756797+00:00", "benchmark": {"id": "f8baa6b8-c497-4c29-9163-858b8e8b930f", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T20:57:45.756344+00:00", "script_sha256": "e03593afa55df30f277079b185542e240ab078f6b8a02dfce3809f8a6bb054b3"}}
+{"at": "2026-10-30T21:34:33.573282+00:00", "operation": "benchmark-clef-nine-models", "status": "Success"}
+{"at": "2026-10-30T21:34:40.219777+00:00", "provider": "clef", "calls": 2049, "errors": 0, "status": "complete"}
+{"at": "2026-10-30T21:34:40.922313+00:00", "launch": {"id": "7b3ffc20-c0ce-4671-9ac7-7bc999af5cc9", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T21:34:40.921846+00:00", "script_sha256": "651ecfec8914ba62e0af094a262146b8437a177ba44a8115b7b6fd0d9acd1e4c"}}
+{"at": "2026-10-30T21:37:05.946190+00:00", "operation": "start-h2o-nine-models", "status": "Success"}
+{"at": "2026-10-30T21:37:06.617563+00:00", "benchmark": {"id": "b941f715-406f-4608-80c9-14c8babc3165", "instance": "i-01e87f489911925cf", "region": "ap-northeast-1", "submitted_at": "2026-10-30T21:37:06.617103+00:00", "script_sha256": "9b56a5dda39c702c26512aa58cec2e9aa4f3fd87723f638b5faf680f1e40bced"}}
+{"at": "2026-10-30T22:15:57.952161+00:00", "operation": "benchmark-h2o-nine-models", "status": "Success"}
+{"at": "2026-10-30T22:16:06.455632+00:00", "provider": "h2o", "calls": 2049, "errors": 0, "status": "complete"}
+{'id': '6e5a37be-a946-45df-b459-e0912bf605b9', 'instance': 'i-01e87f489911925cf', 'region': 'ap-northeast-1', 'submitted_at': '2026-10-30T22:16:07.970289+00:00', 'script_sha256': 'eb91f3c20b98f253913fcae901f688fa8eeba4ceea3c03e92744801c7ca26e0b'}
+{'objects_downloaded': 82}
+{"completed_at": "2026-10-30T22:23:47.044187+00:00", "calls": 18441, "errors": 3, "instance_stopped": "i-01e87f489911925cf"}

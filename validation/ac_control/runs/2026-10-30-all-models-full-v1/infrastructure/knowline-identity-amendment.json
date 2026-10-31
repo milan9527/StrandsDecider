@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-30T19:26:00.991043+00:00",
+  "previous_controller": {
+    "started_at": "2026-10-30T17:24:19.532494+00:00",
+    "status": "failed",
+    "phase": "benchmark",
+    "instance_id": "i-01e87f489911925cf",
+    "provider": "knowline",
+    "error_type": "RuntimeError",
+    "error": "benchmark-knowline-nine-models: Failed; inspect retained operation logs",
+    "updated_at": "2026-10-30T19:23:37.687549+00:00"
+  },
+  "reason": "Official /health reports configured alias m; the uniform runner requires repository identity.",
+  "change": "Both KnowLine --served-model-name arguments now use PelaAI/KnowLine-4B-Gen5.5.",
+  "routing_and_health_identity_only": true,
+  "business_inputs_unchanged": true,
+  "model_weights_and_code_unchanged": true,
+  "inference_parameters_unchanged": true,
+  "prior_decision_calls": 0,
+  "prior_attempt": "attempts/knowline-health-alias/",
+  "inference_runner_sha256": "f333692c935a0682e096418d2fb03f2607e6db49b9b4448713b9a38740ed9059",
+  "deployment_helper_sha256": "d06d595bc8bf645a6726c5396e582be8cd9a5f040fbc0edccbab35f35dea5feb"
+}

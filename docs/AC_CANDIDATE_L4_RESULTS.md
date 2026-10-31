@@ -1,5 +1,7 @@
 # 新候选模型的独占 L4 部署与扩展测试记录
 
+历史部署与扩展记录。最新[九模型完整统一测试](AC_ALL_MODELS_FULL_RESULTS.md)重新测试全部九模型，并将三种请求方式扩展到规范全部 20 条指令各三轮。以下保留原候选轮的环境、结果与维护过程。
+
 测试日期：2026-10-30。选型依据见[候选模型研究](AC_MODEL_CANDIDATES.md)。本轮使用用户授权新增的一台 g6.xlarge，逐个装载 Perplexity Flash、KnowLine、Torchcast、Clef 与 H2O，已完成全部测试与证据审计。
 
 **规范验收请看[七模型统一对照](AC_SPEC_UNIFIED_RESULTS.md)，主成绩只计 `AC_Control_Test_Spec.md` 的原始 20 题。** 本地模型在规范原序上：Clef **19/20**，KnowLine、H2O、Torchcast 均 **18/20**，Perplexity **1/20**。规范 20 条完整请求均值分别为 **3.241 / 1.046 / 6.154 / 12.482 / 1.483 秒**。Jev/GPT 的同方式补测、规范各项指标及逐题选择集中列在主报告。

@@ -1,0 +1,8 @@
+{
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "NRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:15:32 UTC\nId=decider-vllm.service\nActiveState=active\n\nNRestarts=0\nExecMainStartTimestamp=Thu 2026-10-29 05:21:44 UTC\nId=decider-liquid.service\nActiveState=active\n\nNRestarts=0\nExecMainStartTimestamp=Fri 2026-10-30 12:10:37 UTC\nId=decider-h2o.service\nActiveState=active\n{\"Names\": \"decider-h2o-resident\", \"Image\": \"0bd44d374991\", \"Status\": \"Up 4 hours\"}\n{\"Names\": \"decider-liquid-resident\", \"Image\": \"0bd44d374991\", \"Status\": \"Up 35 hours\"}\n{\"Names\": \"decider-comparison-gateway\", \"Image\": \"0bd44d374991\", \"Status\": \"Up 35 hours\"}\n{\"Names\": \"decider-vllm-service\", \"Image\": \"decider-vllm:service\", \"Status\": \"Up 35 hours (healthy)\"}\n{\"image\": \"decider-vllm:service\", \"id\": \"sha256:0bd44d374991dc8782b93d58bb41b3aab63fa0d242149578b342cb139f371d07\", \"size\": 32726405184}\n/opt/decider-vllm ['Dockerfile', 'check-health.sh', 'deployment', 'examples', 'fetch-key.sh', 'pyproject.toml', 'src']\n/opt/decider-open-models ['ac-control', 'decider-health.json', 'gpu-smoke.json', 'h2o-cache', 'h2o-env', 'install.log', 'models', 'rollback', 'runtime-ready', 'services.tar.gz', 'smoke.tar.gz', 'source', 'source.tar.gz']\n",
+  "StandardErrorContent": "",
+  "ExecutionStartDateTime": "2026-10-30T15:53:49.042Z",
+  "ExecutionEndDateTime": "2026-10-30T15:53:51.042Z"
+}

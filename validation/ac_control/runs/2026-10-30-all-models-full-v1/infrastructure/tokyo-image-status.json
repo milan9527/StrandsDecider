@@ -1,0 +1,55 @@
+{
+  "recorded_at": "2026-10-30T17:24:17.882377+00:00",
+  "image": {
+    "PlatformDetails": "Linux/UNIX",
+    "UsageOperation": "RunInstances",
+    "BlockDeviceMappings": [
+      {
+        "Ebs": {
+          "DeleteOnTermination": true,
+          "Iops": 3000,
+          "SnapshotId": "snap-013b703746a5b1dd3",
+          "VolumeSize": 200,
+          "VolumeType": "gp3",
+          "Throughput": 500,
+          "Encrypted": true
+        },
+        "DeviceName": "/dev/sda1"
+      },
+      {
+        "DeviceName": "/dev/sdb",
+        "VirtualName": "ephemeral0"
+      },
+      {
+        "DeviceName": "/dev/sdc",
+        "VirtualName": "ephemeral1"
+      }
+    ],
+    "Description": "Register the completed copied snapshot with the original boot and device parameters",
+    "EnaSupport": true,
+    "Hypervisor": "xen",
+    "Name": "ac-nine-models-environment-20261030-tokyo-direct",
+    "RootDeviceName": "/dev/sda1",
+    "RootDeviceType": "ebs",
+    "SriovNetSupport": "simple",
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "ac-nine-models-environment-20261030-tokyo-direct"
+      }
+    ],
+    "VirtualizationType": "hvm",
+    "BootMode": "uefi-preferred",
+    "ImdsSupport": "v2.0",
+    "DeregistrationProtection": "disabled",
+    "FreeTierEligible": true,
+    "ImageId": "ami-0a555d6d091154165",
+    "ImageLocation": "632930644527/ac-nine-models-environment-20261030-tokyo-direct",
+    "State": "available",
+    "OwnerId": "632930644527",
+    "CreationDate": "2026-10-30T17:24:04.000Z",
+    "Public": false,
+    "Architecture": "x86_64",
+    "ImageType": "machine"
+  }
+}

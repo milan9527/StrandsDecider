@@ -1,0 +1,61 @@
+{
+  "ImageId": "ami-035e007c40c3d6957",
+  "InstanceType": "g6.xlarge",
+  "MinCount": 1,
+  "MaxCount": 1,
+  "SubnetId": "subnet-0280c6306405e4dfa",
+  "SecurityGroupIds": [
+    "sg-051a9e10a77085738"
+  ],
+  "IamInstanceProfile": {
+    "Arn": "arn:aws:iam::632930644527:instance-profile/strands-decider-vllm"
+  },
+  "MetadataOptions": {
+    "HttpTokens": "required",
+    "HttpEndpoint": "enabled"
+  },
+  "InstanceInitiatedShutdownBehavior": "stop",
+  "BlockDeviceMappings": [
+    {
+      "DeviceName": "/dev/sda1",
+      "Ebs": {
+        "VolumeSize": 250,
+        "VolumeType": "gp3",
+        "Iops": 3000,
+        "Throughput": 500,
+        "Encrypted": true,
+        "DeleteOnTermination": true
+      }
+    }
+  ],
+  "TagSpecifications": [
+    {
+      "ResourceType": "instance",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-isolated-L4-20261030"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "Temporary complete uniform AC model benchmark"
+        }
+      ]
+    },
+    {
+      "ResourceType": "volume",
+      "Tags": [
+        {
+          "Key": "Name",
+          "Value": "ac-nine-models-isolated-L4-20261030"
+        },
+        {
+          "Key": "Purpose",
+          "Value": "Temporary complete uniform AC model benchmark"
+        }
+      ]
+    }
+  ],
+  "UserData": "#!/bin/bash\nset -eu\nsystemctl stop apt-daily.timer apt-daily-upgrade.timer fwupd-refresh.timer update-notifier-download.timer || true\nsystemctl mask --runtime apt-daily.service apt-daily-upgrade.service fwupd-refresh.service update-notifier-download.service\nsystemd-run --unit=ac-nine-auto-stop --on-active=6h /usr/sbin/shutdown -h now",
+  "ClientToken": "ac-nine-20261030-us-east-1e"
+}

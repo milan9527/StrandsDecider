@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-10-30T16:19:25.201366+00:00",
+  "reason": "g6.xlarge allocation failed across us-east-1 explicit/automatic placement and targeted reservations in us-east-2/us-west-2.",
+  "planned_host_type": "g6.2xlarge",
+  "gpu_unchanged": "One NVIDIA L4 24GB",
+  "benchmark_cpu_set": "0-3",
+  "benchmark_memory_max_gib": 16,
+  "scope": "All seven local models and their request runner in the same constrained benchmark slice; all inference inputs and ordering remain frozen.",
+  "physical_host_difference": "8 vCPU/32GiB host, not an identical g6.xlarge host; disclose alongside measured results.",
+  "maximum_test_gpu_allocations": 1
+}

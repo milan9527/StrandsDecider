@@ -1,0 +1,33 @@
+{"at": "2026-10-30T16:02:38.498045+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:03:08.574961+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:03:38.652902+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:04:08.736043+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:04:38.810552+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:05:08.884567+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:05:38.962972+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:06:09.057719+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:06:39.133633+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:07:09.210708+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:07:39.294277+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:08:09.369849+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:08:39.442247+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:09:09.521799+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:09:39.598511+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:10:09.671239+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:10:39.744721+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:11:09.843765+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:11:39.909591+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:12:09.985671+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:12:40.066727+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:13:10.146331+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:13:40.228345+00:00", "capacity": {"status": "image_pending"}}
+{"at": "2026-10-30T16:14:10.302189+00:00", "capacity": {"status": "image_pending"}}
+Traceback (most recent call last):
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/continue_all_models.py", line 91, in <module>
+    main()
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/continue_all_models.py", line 35, in main
+    note(capacity=recover_capacity())
+                  ^^^^^^^^^^^^^^^^^^
+  File "/home/ec2-user/ai/DecisionDemo/validation/ac_control/recover_all_models_capacity.py", line 83, in launch
+    raise RuntimeError("No replacement launched: all candidate availability zones failed.")
+RuntimeError: No replacement launched: all candidate availability zones failed.

@@ -1,0 +1,95 @@
+{
+  "recorded_at": "2026-10-30T17:14:16.457420+00:00",
+  "unused_image": {
+    "PlatformDetails": "Linux/UNIX",
+    "UsageOperation": "RunInstances",
+    "BlockDeviceMappings": [
+      {
+        "Ebs": {
+          "DeleteOnTermination": true,
+          "Iops": 3000,
+          "SnapshotId": "snap-08997191d00d617c9",
+          "VolumeSize": 200,
+          "VolumeType": "gp3",
+          "Throughput": 500,
+          "Encrypted": true
+        },
+        "DeviceName": "/dev/sda1"
+      },
+      {
+        "DeviceName": "/dev/sdb",
+        "VirtualName": "ephemeral0"
+      },
+      {
+        "DeviceName": "/dev/sdc",
+        "VirtualName": "ephemeral1"
+      }
+    ],
+    "Description": "Temporary exact benchmark environment copy for single L4 capacity recovery",
+    "EnaSupport": true,
+    "Hypervisor": "xen",
+    "Name": "ac-nine-models-environment-20261030",
+    "RootDeviceName": "/dev/sda1",
+    "RootDeviceType": "ebs",
+    "SriovNetSupport": "simple",
+    "Tags": [
+      {
+        "Key": "Purpose",
+        "Value": "Temporary AC benchmark capacity recovery"
+      },
+      {
+        "Key": "Name",
+        "Value": "ac-nine-models-temporary-environment-20261030"
+      }
+    ],
+    "VirtualizationType": "hvm",
+    "BootMode": "uefi-preferred",
+    "ImdsSupport": "v2.0",
+    "DeregistrationProtection": "disabled",
+    "SourceImageId": "ami-035e007c40c3d6957",
+    "SourceImageRegion": "us-east-1",
+    "FreeTierEligible": true,
+    "ImageId": "ami-0720f6757eb26faec",
+    "ImageLocation": "632930644527/ac-nine-models-environment-20261030",
+    "State": "available",
+    "OwnerId": "632930644527",
+    "CreationDate": "2026-10-30T16:47:36.000Z",
+    "Public": false,
+    "Architecture": "x86_64",
+    "ImageType": "machine"
+  },
+  "deregister_image": {
+    "Return": true,
+    "DeleteSnapshotResults": [],
+    "ResponseMetadata": {
+      "RequestId": "b23e03bb-d624-4ab6-924e-3eabe296a70f",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "b23e03bb-d624-4ab6-924e-3eabe296a70f",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-type": "text/xml;charset=UTF-8",
+        "content-length": "245",
+        "date": "Fri, 30 Oct 2026 17:14:16 GMT",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  },
+  "delete_snapshot": {
+    "ResponseMetadata": {
+      "RequestId": "3e1250ef-e1ac-4918-a53c-12a95aeeff9f",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "3e1250ef-e1ac-4918-a53c-12a95aeeff9f",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-type": "text/xml;charset=UTF-8",
+        "content-length": "217",
+        "date": "Fri, 30 Oct 2026 17:14:16 GMT",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  }
+}

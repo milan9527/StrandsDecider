@@ -1,0 +1,97 @@
+{
+  "recorded_at": "2026-10-30T17:24:04.302725+00:00",
+  "source_image": {
+    "PlatformDetails": "Linux/UNIX",
+    "UsageOperation": "RunInstances",
+    "BlockDeviceMappings": [
+      {
+        "Ebs": {
+          "DeleteOnTermination": true,
+          "Iops": 3000,
+          "SnapshotId": "snap-0268249ee324c48cc",
+          "VolumeSize": 200,
+          "VolumeType": "gp3",
+          "Throughput": 500,
+          "Encrypted": true
+        },
+        "DeviceName": "/dev/sda1"
+      },
+      {
+        "DeviceName": "/dev/sdb",
+        "VirtualName": "ephemeral0"
+      },
+      {
+        "DeviceName": "/dev/sdc",
+        "VirtualName": "ephemeral1"
+      }
+    ],
+    "Description": "Temporary stopped-L4 environment clone for the authorized complete AC comparison",
+    "EnaSupport": true,
+    "Hypervisor": "xen",
+    "Name": "ac-nine-models-capacity-recovery-20261030",
+    "RootDeviceName": "/dev/sda1",
+    "RootDeviceType": "ebs",
+    "SriovNetSupport": "simple",
+    "Tags": [
+      {
+        "Key": "Purpose",
+        "Value": "AC nine-model uniform test temporary image"
+      }
+    ],
+    "VirtualizationType": "hvm",
+    "BootMode": "uefi-preferred",
+    "ImdsSupport": "v2.0",
+    "SourceInstanceId": "i-0bd4d9196f1c163c0",
+    "DeregistrationProtection": "disabled",
+    "SourceImageId": "ami-028357be7d5b15c53",
+    "SourceImageRegion": "us-east-1",
+    "FreeTierEligible": true,
+    "ImageId": "ami-035e007c40c3d6957",
+    "ImageLocation": "632930644527/ac-nine-models-capacity-recovery-20261030",
+    "State": "available",
+    "OwnerId": "632930644527",
+    "CreationDate": "2026-10-30T15:54:43.000Z",
+    "Public": false,
+    "Architecture": "x86_64",
+    "ImageType": "machine"
+  },
+  "snapshot": {
+    "Tags": [
+      {
+        "Key": "Name",
+        "Value": "ac-nine-models-environment-20261030-tokyo"
+      }
+    ],
+    "StorageTier": "standard",
+    "TransferType": "standard",
+    "CompletionTime": "2026-10-30 17:19:49.035000+00:00",
+    "FullSnapshotSizeInBytes": 162173288448,
+    "SnapshotId": "snap-013b703746a5b1dd3",
+    "VolumeId": "vol-ffffffff",
+    "State": "completed",
+    "StartTime": "2026-10-30 17:11:34.536000+00:00",
+    "Progress": "100%",
+    "OwnerId": "632930644527",
+    "Description": "Copied for DestinationAmi ami-0f10edf115af897b3 from SourceAmi ami-035e007c40c3d6957 for SourceSnapshot snap-0268249ee324c48cc. Task created on 1,793,380,293,453.",
+    "VolumeSize": 200,
+    "Encrypted": true,
+    "KmsKeyId": "arn:aws:kms:ap-northeast-1:632930644527:key/cdb812a7-af8a-455f-91e5-bb0aeed15c80"
+  },
+  "response": {
+    "ImageId": "ami-0a555d6d091154165",
+    "ResponseMetadata": {
+      "RequestId": "c242c41b-113d-48f0-b11b-3baff1825c7a",
+      "HTTPStatusCode": 200,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "c242c41b-113d-48f0-b11b-3baff1825c7a",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-type": "text/xml;charset=UTF-8",
+        "content-length": "234",
+        "date": "Fri, 30 Oct 2026 17:24:04 GMT",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  }
+}

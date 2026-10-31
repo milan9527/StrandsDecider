@@ -1,0 +1,240 @@
+{
+  "recorded_at": "2026-10-30T22:16:09.653065+00:00",
+  "reference_files_absent": true,
+  "gpu_processes": "",
+  "results_file_sha256": {
+    "decider": {
+      "environment.json": "48b0069205ef449f2829fbf19f551ae420ee4cf28fa9f3aeaf73a66e56ae7f42",
+      "run.json": "2ed7b028778690dc1ae4c3aea9bcba666c8343e9bb50d749e16bab9ea8166fb5",
+      "health_after.json": "0b8e951b79d6d9447cc73a3c01cd784d887c1c88ba8ae9591271e4ba3f0c2f13",
+      "health_before.json": "3f45486aaa32092d5a8e4cbabd3a5e7cd2bc13bad1c96c35bea018d98d6801d5",
+      "receipts.jsonl": "b6a7eeeae5048b1c4581867c7d341b6bb6f38cdf0729fc2d52495e0abbcdb179"
+    },
+    "liquid": {
+      "environment.json": "f2c1fc1170cc5e136fbc1db5739b410192a4e2fd7b290c2803292a1642f64814",
+      "run.json": "a80ca6fe2ef4a087038ce1529b37ad20ee14fa9c41b6ac758b65ec7cbc0dd031",
+      "health_after.json": "f549875e8cd629d9f026eae3f329ac6423cce6f2538a5d04f771939c74c06821",
+      "health_before.json": "79816642e6798d888227324524fa2e2c04cdfc39aaf8cdce3bf3e2a189991cca",
+      "receipts.jsonl": "e2bfdc0564046c6623cc75c1a5be6614d2386efc011275a90541c8a2d3dd00b3"
+    },
+    "pplx": {
+      "environment.json": "94d20ea5a068c2311fd046274329fa138da96c277bbfc22e9e7156ed95970d96",
+      "run.json": "ae89ef08acec35360dbb3a76a8c3460f3ab8d4ce3952f89e1d146c6b7a2f4fba",
+      "health_after.json": "7e6f4d8ea11065faa1dd120b46cb53b03c254c264e958122c147dac3ba9d3d5b",
+      "health_before.json": "d616fe059a361c239e9f2582f803f092a8e974ed1804c0b9c1515f7cadd43af7",
+      "receipts.jsonl": "ce5551cca1b54f5ad77e049e9ce2a1a11f9b05c9e98c83d58bec7e2cda34ae82"
+    },
+    "knowline": {
+      "environment.json": "ee127b638a124d7ac80920ff5eaca249273e37ce5a8a02672bb887ae3e92a8d4",
+      "run.json": "ce2b285bd18cd20dc53455a3b18947d23c9cfb632f785f40ef42995ccb864e16",
+      "health_after.json": "f2e2b058f85cfb9b7f0e3b562780e56f09d4b4a0077c6f3b645d020fbd7913fe",
+      "health_before.json": "016c5084af0bbb4eea581eaf869577e88a62f138bc5b66504be994b25ac147d3",
+      "receipts.jsonl": "0e8eb3891e11ae181af1daa41f3e806baaf1323e9e21e96657c4b980cd279014"
+    },
+    "torchcast": {
+      "environment.json": "129536c7f1024e1f917cdb98a5d8756a480a1429881e24aedc643572b54dd3da",
+      "run.json": "c50870856f255b4899852bd19add750a87959eac5e996ca32bc48c53d1e5c416",
+      "health_after.json": "74f1102c3a7d8cd1f80a00037d0e0ec112f3e947e214f0fe6344c9d6bd925e32",
+      "health_before.json": "cf742beef6f3bed64ea431a861b8e17113f91eb8110dfa524a18a46f9c7d4203",
+      "receipts.jsonl": "f3bfce9fa801a29969e6fe666361ab72c5d34bca8aaf975fa3c5b5d2e1041129"
+    },
+    "clef": {
+      "environment.json": "ad571ea21a5838780221ce63a734224b44ea7f7b8ec690b381a263888cdaeedc",
+      "run.json": "3eea110766bc3305529a1658f0afe04a8754257c365cbb39ccba363c1dc8386b",
+      "health_after.json": "f510f6c9fd0bf595eaea2ccab64502d56eca60fc7a944ca1d0ee3586bbe407f6",
+      "health_before.json": "244b5bbcbfe1210aa1f1beed27f6c02b3b0db980032fbba824175f5327ccde1e",
+      "receipts.jsonl": "603749d600ee1ab022d3f8e0ce2aa5120b30bc4be486bbcb04571799abcc503c"
+    },
+    "h2o": {
+      "environment.json": "9a4b4293f01c02f689c14702145fb565c0f894d2f3f5f091358ddfb0c1bc7f07",
+      "run.json": "57a34465b411e08594105900fc5c5ccc424019a4f5790e6b2f3d4dbfe8f22b2e",
+      "health_after.json": "5762190325bcf4a9ad81375554e1bf598028043a6fe11efe4e3323c4fa6084ed",
+      "health_before.json": "a1562b0e4f68757d2cd9df3b8bdf75d8de454a945083671788a11ffa3f32b3b5",
+      "receipts.jsonl": "26c41814692ff2e8ff2c2af26f6854c879d823ec7d98e9590f64ac5a46adecee"
+    }
+  },
+  "models": {
+    "knowline": {
+      "source_sha256_rechecked": {
+        "SHA256SUMS": "d402678ede169f45d14a95b42b9d31e60a19fe24174963a4f2ab9a69b8d8b860",
+        "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "config.json": "ddc63e1c717afa86c865bb5e01313d89d72bb53b97ad4a8a03ba8510c0621670",
+        "configuration.json": "f888421726665e8a84b738eed42a64875aed79de8be7daade851ac8bf4c0cef9",
+        "knowline_engine.py": "a95d0d9261b932cb8777d0398945f087eab5cb7b235750978278c12443afc350",
+        "knowline_layout.py": "aa0fb35619f4883edd6c3bd1cc6dc259f41f082cfe0471e586c60d783da2af9d",
+        "knowline_server.py": "1b4c73419ce597cbf5635a8171b2fe981b577a9cf4856fb9387ce261e81a3729",
+        "model.safetensors.index.json": "48b56300c2b19dcd9a43001c9098098e7eaf4c6bc9f5cdd108148611fdfdca56",
+        "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "serve_knowline.sh": "7a15933a0b859d9e19b7abaef5a00762d572732bb6daf16ddda5729d4247aea6",
+        "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+        "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+        "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      }
+    },
+    "liquid": {
+      "source_sha256_rechecked": {
+        "api.py": "d57845b414b6766cd0410f0437080244320adebd4f9f031a03777acbec243d2a",
+        "attention.py": "2608cc3f48bc3f906b64244322df81de5a18cd1faa8243680713289d5540fd2c",
+        "box.py": "1a123160ce3c94c25074132407c41d553601a6d8cb7056c814397ad0718dd16f",
+        "calibration.json": "e534464458f485d800fe6cc896ac241590bbc8cd54f5af08f7b3064b0d884d69",
+        "calibration.py": "04243c3a2c1c727440184901dd60a4b4b04f72204dc577bd9f30b0ea3373d114",
+        "chat_template.jinja": "66f3050983faa01907ac9897dcb01827b669917badfb512e610449a9eab32041",
+        "config.json": "ffdc4c996152d23dbe8a2659a8c6aabe2992aa3fa3a41601dd0fca8771d6f332",
+        "configuration_lfm3.py": "cd9e8499d5e764e058c7aa1bb62234a0592acdf086126bea36770eb9e45e48cf",
+        "configuration_lfm3_vl.py": "d65e130693c7415a0b20b527e2c8df5322112cd8e7e4b3793348a2ddcd0343be",
+        "depthwise.py": "0e55c1d97227ebdb144503f1726b93693ea1232d8e9a98e4c60c044fbfdb6ce1",
+        "grid.py": "a5626b67094eda0a4a22d50e73346f3bc2f1b4b6eb6d95ba64333c6f71592eff",
+        "image_processing_lfm3_vl.py": "4f319e51f80051bce417db52df568a94ff3ea9a4527e1e0844f8ed3e21934b4b",
+        "integrations_lfm3.py": "4c443aab5945ef28298f7c4b58fb4c303dd9dec8fcb21adfca966b92e9caef00",
+        "json_spans.py": "91c4a6d585a58dfe7e06e4430f4516956f8143523a3e2de870bc8dd92ba20375",
+        "lfm3.py": "7e90cdc38526be73d435a120ef1722099538255622186be6caa9c84afa2bc180",
+        "media.py": "1b2c76ba9fa13e75bf8b66caa9294682e76fbf463fe56c13b4e1f47c96e81e8e",
+        "modeling_d1.py": "214d3477cef38e7831f2b4fb0250ace7fb1aeac5b02066fcfd5cc030c541fd72",
+        "modeling_d1_lfm3_vl.py": "68d71f38188f07d11ad8af7cb557c8edc87536eb0db20870b7c5e6ae58fe5f30",
+        "modeling_lfm3.py": "1617c42a7e3ccb97c810867536a8f6bb71f3543db00cafda9b3bd7a571ec72b9",
+        "modeling_lfm3_vl.py": "c61dd6d90425d126de8402a9aa0a2a9d0241910100b719b8ab2bfee65e5e974f",
+        "native_lfm3.py": "8c7e7533b406315546d7a4eaceb83c8a49bed4dac7cb29328a76fa9f972e8a19",
+        "native_lfm3_vl.py": "90574b978c7138f36ea9970fff4fb691ad9ccd472580ae20c4110de090ed4b94",
+        "parsing.py": "0f0a05e7f2eee037f2e5ce1fefc984ff34824e07e7999120d94563a82642b54a",
+        "pointer.py": "53e7b403d5f9d6f24e18a3f08b4dd9e93fea6da1da7eaeea92d07a4700cfedb3",
+        "processing_lfm3_vl.py": "f4198f935ff6474cb1f44d5bdf02248f800a11eb7fc782dc1a168889b0b53da8",
+        "processor_config.json": "37396ef3370083a04381ef25f9e1b50dec184b8cdcf08cf718feb8944ad8f3bc",
+        "prompt.py": "e5344f65481374da6b30e5ceda2a5ee398100b13ee69ed2ce52ac42713a7a048",
+        "runner.py": "ac195b19f60f985a6081ccecc1a5c9f7c9fbe6711e8916c0e9835aaaac0bc2a2",
+        "slots.py": "67adea5fb377a79832827c43054b4ce94de0fa48f5ba0a39e6f2867b7e59f373",
+        "tokenizer.json": "a39eed58008cbcbc09e5b629b81338a654269c64cd13348aaa6090f4db75c7e7",
+        "tokenizer_config.json": "594a96e4caedd07536a595b48f5dc84655bd672b715b6ac891ca3d503d439f76",
+        "video_processing_lfm3_vl.py": "597ca93c1df97f746166b93f3431edec4da6d938a1b3a60a9bf9900e54ab4e93"
+      }
+    },
+    "torchcast": {
+      "source_sha256_rechecked": {
+        "SHA256SUMS": "ec927f412b4eac11b1912088c23c17f5edd80722388ff58192da719a00c0b16e",
+        "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "config.json": "c1166cebf4601a70e49380d4fed99aa0909df25c9ea1eafce5fa00575c7a3703",
+        "decision_config.json": "58b904ef2ee33fa8885d9bcfa8806bcc392ff392c9b10742ffc3bc26c379a460",
+        "generation_config.json": "0b725bef7b591339bc06389199c47d8e91bd7cef83c47bca3b747aefd3be489e",
+        "model.safetensors.index.json": "1a494191015008cdf35983137d43f849991693ead1088c3c2324a42cda4b859f",
+        "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+        "torchcast_decision/__init__.py": "4ae00e563a90d2c6d6db54df4213cb0e3cddc6d8d63ee76c4f30aca7f3ca973d",
+        "torchcast_decision/_pin_triton.py": "f4abc4447988eba412339da3eba1dc37cd284fc7e07abb1da6a77a50c2afe23d",
+        "torchcast_decision/check.py": "2fc500415a1fb207bc26618189c9e1d7d0a612975574fb79956cebbf1f5116e7",
+        "torchcast_decision/model.py": "577708dd45f44135dee438c23e207c31ed98c536132b18018c31452c9e4b6bb8",
+        "torchcast_decision/render.py": "bf27e517e83562338279404790c706daa939e211e623481ce2d908ca130727be",
+        "torchcast_decision/server.py": "de1d72aa51dcfb6eeda07a495037855e1dcebd3844467309980b49a47d857181",
+        "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+        "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      }
+    },
+    "decider": {
+      "source_sha256_rechecked": {
+        "chat_template.jinja": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+        "config.json": "85a0a8d60b7d0971bc7e20049e4a56d3dcce51f08eb66010cdffdc794829419d",
+        "decider/config.json": "c6f5e10bc7dbb3a6360c964dc7e827a9c6b4545e345050ca23420649675b490f",
+        "model.safetensors.index.json": "5b1c8f62375466557b810ef01603b4fe610b9f557c7b54ee55dac5cf6cef5d2d",
+        "tokenizer.json": "a2cdd2e108566b09079afa8d266e9e65e7c280f27b771218237a06de5ba9cd86",
+        "tokenizer_config.json": "7683314e50e8a6b7ea94c47e733e766fada83190a0c9896532a025d555864259"
+      }
+    },
+    "h2o": {
+      "source_sha256_rechecked": {
+        "assets.py": "e30ff2efd7628ade3cdc548c936751db9c433e6ad3a143f4d122b0baddcdc94c",
+        "box.py": "e26ad9d8ea1ac501730d2d770c2aeebda642962bdb1d591c86f0cfb843274301",
+        "card_common.py": "daf9a50dd3fd366a45a1c4ed767fe3a8dc709a3b69e453a673ae50ded08402ae",
+        "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "config.json": "9217764b18e7182502c371c4309ec1757e1ba8d9ef2b9b1efbaf94de2d331bba",
+        "engine/vllm_per_request_attention.SHA256SUMS": "fcbbe7244fae7d315a5b73f0ae72e9a400cabadf711f582f9f20fce3e49cf9f5",
+        "generation_config.json": "731e41edbcd0336b21c36d03fdf6fc54977dfc28cd9396491999ca8ddb052c42",
+        "h2o_lightning_shim.py": "75fd4c79b3a7b106bf4f57de47de436d16bece938f58566df642852a0cf8d670",
+        "pooled_readout.py": "d59e62ccb3b5af742021e8064a5987ee27291744ea043ad94fbc8baa4eee1199",
+        "preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+        "selector_v2.py": "bd518a2c3bea9167803b6c21e480b37386fa212cf35101093b84e75c5307b7e3",
+        "serve.sh": "378e5c056f62956a1736fc6eb15ab7934201442ac7691058b2543af3ae9067ce",
+        "serve_config.json": "81c021f1139e2ee3f6378891c3c1db2cd9935359df9da93c37baaafec25cbba0",
+        "test_card.py": "77ffed847f3964d85aa38515700491996f1918d480c7f7af564f63fb2315b3d8",
+        "test_card_controls.py": "b9f1da450da17e0d2334f822359ef90f7e8a31c004f3444a6b009fb6d28cc5b9",
+        "test_security.py": "2c402d9713337c2b3c0f307176b5e8429b9c4ad1e7b99c49047663678f399fe9",
+        "test_shim.py": "319b5ef0ee450ac9631bbb3861b24af097f6bdf6ab9e6428b55faff263bc1594",
+        "tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "tokenizer/chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "tokenizer/tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+        "tokenizer/tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+        "tokenizer/vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003",
+        "tokenizer_config.json": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+        "tokenizer_contract.json": "7eb96aaea6b7dbb495f0840b42f18014ca5a697697305f76f39d46cae890ccb2",
+        "video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+        "vllm_patches/SHA256SUMS": "84913564131c4b4247138b46e550b72db455f01c6433c04897734ad215f98531",
+        "vllm_patches/vllm030_gdn_initial_state_no_sync.patch": "55bd8afc93f5375764eb7e8e9d1b3c3f63b1d9a8b23651553bb0f27bbcf8df67",
+        "vllm_patches/vllm030_scheduler_skip_same_step_mamba.patch": "4bb168a9dc6046f258c770ba5bfe32cf73f8eb3795ae0ff7426e85f6ff1078ed",
+        "vocab.json": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003"
+      }
+    },
+    "pplx": {
+      "source_sha256_rechecked": {
+        "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "config.json": "1bdb718faa99e32673f1622ea2f536affe20867bcb4703888aac9a030ec59e22",
+        "decision_config.json": "6d59a4e66f459596cad6f3ff932c635e379f1dc1c49819357869de8abe01722f",
+        "joint_config.json": "ecc88efc2a8ebd81ddf93f7d722e35b2829fd7526b5ce754db53395aa49fb510",
+        "model.safetensors.index.json": "0597ef32377f77ec490bbce02e5e3fd1d0b8e3b00b2ef500cd9306d445ab0f5c",
+        "processor_config.json": "b4b905eee2d1cf96dcbdac1c68b35113c8151958a4c1f76667242b01168572cd",
+        "release-manifest.json": "b92d6898a1a0cebeec8573c3ba34cfbb810a2920fc49da60097f3a8e2de24ebc",
+        "source/pyproject.toml": "d89014942e02c01f0bbc3f4f2be4034cc6910f2efba91c5747947996a403ad78",
+        "source/src/pplx_decider/__init__.py": "48c26c24432476f2e4a43486d60e24ee0a6e124093a38fb8803686e99fecb5b3",
+        "source/src/pplx_decider/fast.py": "afef05e1935be967b6ab6015bea3c86933dd5a45b7f349b0ed2ab5788a66cdbc",
+        "source/src/pplx_decider/model.py": "ab5f42bd051d9e04cb9266e378d96dd72684c7a7f074efd9fc5117508e3dee91",
+        "source/src/pplx_decider/protocol.py": "b29d7a50d7214bd42397f8d3ddd5b5706cb8da2b257e175bf89b5a8da455d6a0",
+        "source/src/pplx_decider/types.py": "3de3e545d81692346f65c0f4ff9843952696a12f7b357cf6a5d0e8545badff8a",
+        "tokenizer.json": "6f32ce20dc35f57a7f9ad1eac03525bd7d30f9df8cea6507e958279cc3657706",
+        "tokenizer_config.json": "188cf0b9db5cfd6e92f1b63c646f5975be6f8383c6c9a2fa5dc2b48a8b229402"
+      }
+    },
+    "clef": {
+      "source_sha256_rechecked": {
+        "chat_template.jinja": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+        "config.json": "66f87f6fb2616b46604daf2a9c67ddc87938296d07156efa34d59b5be49e3238",
+        "generation_config.json": "45707f8467bf4e54e112c6095a1b2d1f2d63651cf86816344cfff21f02dda0d4",
+        "joint_head_config.json": "77efe959a38b5b17b241543e129e695f3c77465ece55a25985279bd8176279a0",
+        "joint_schema_model.py": "0e304cf7c6500e8bb59bef7e2afd2c6373f82596dfb3b57d1aa93c175e2dc3a3",
+        "model.safetensors.index.json": "941305ff9f77551e145a6cea976ef456cd5cb208cbece99f168376c752fcf96c",
+        "processor_config.json": "d89ef49ce9cd37fbf510158e13c1ef063d9286411c1ec9049932dbe0487143b1",
+        "tokenizer.json": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+        "tokenizer_config.json": "91a08f825d370d085d692e04cf117cdd7faad7bf18e996f1e6031b6dab03db72"
+      }
+    }
+  },
+  "inference_sources": {
+    "all_models_protocol.py": "a8d941888152ff36cca2cbaf70fb98a47dfe099b876adb02e768b47233ec9746",
+    "run_all_models.py": "f333692c935a0682e096418d2fb03f2607e6db49b9b4448713b9a38740ed9059",
+    "run_candidate_benchmark.py": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+    "api_ablation_protocol.py": "ed88ab706e866718f745187086d083a17eb1bca38ca152b0a74f8b1d9897e676",
+    "run_api_ablation.py": "d0557d87502565ac50bbbe43f65cc881c385175efc2c6dd0ec1078b485494330",
+    "resume_api_capture.py": "d64e93c4a4f844df4572ad9d027c218723feae77dd1e29817adc02b961141c08",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5"
+  },
+  "runtime_input_files": {
+    "all_models_protocol.py": "a8d941888152ff36cca2cbaf70fb98a47dfe099b876adb02e768b47233ec9746",
+    "run_all_models.py": "f333692c935a0682e096418d2fb03f2607e6db49b9b4448713b9a38740ed9059",
+    "run_candidate_benchmark.py": "99e6ae2e5b343c044fc443c8822e93ef0943778638f6c267aedb86455bbb80d4",
+    "api_ablation_protocol.py": "ed88ab706e866718f745187086d083a17eb1bca38ca152b0a74f8b1d9897e676",
+    "run_api_ablation.py": "d0557d87502565ac50bbbe43f65cc881c385175efc2c6dd0ec1078b485494330",
+    "resume_api_capture.py": "d64e93c4a4f844df4572ad9d027c218723feae77dd1e29817adc02b961141c08",
+    "run_resident.py": "e320f620ae1b78991d43cf1abc4c62e32c8a31baa1ba78a07c78ac40a77dcb1e",
+    "run_ablation.py": "005f3a4ba2303b3ee93134b2720ca7edb2b124ac3b9cb8e9e6c762fe0a56bbe0",
+    "ablation_protocol.py": "0a98621b1a4fd03ef98b1abd08548a29ba5123000a553beb168ab5c66e359db5",
+    "plan.json": "1692e3483e175890179668b916f5eedd6475ae19d9f6c283ec9b6e3e5d056ddb",
+    "cases.json": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+    "models.json": "d7998beca4c125ff84f634f0930a6ff29008c77d6b7ac7ad3dc264d753c5427e",
+    "schedule.json": "f18a4f4e23ba0fc3ba2ba9cb91ee769525c0a64184281fd1ae80f200cf498e06",
+    "candidate_server.py": "e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb",
+    "liquid_server.py": "a6ea1ba8dea322e45ea12b840efadec703f980b6fb5dea58075655a1268ba253"
+  },
+  "gpu": "name, memory.total [MiB], memory.used [MiB], driver_version\nNVIDIA L4, 23034 MiB, 0 MiB, 595.91.07\n",
+  "disk": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/root       242G  167G   75G  70% /\n",
+  "root_read_ahead_kb": "128",
+  "maintenance": "Id=apt-daily.service\nLoadState=masked\nActiveState=inactive\nUnitFileState=masked-runtime\n\nId=apt-daily-upgrade.service\nLoadState=masked\nActiveState=inactive\nUnitFileState=masked-runtime\n"
+}

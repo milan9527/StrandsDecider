@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-30T16:15:21.588580+00:00",
+  "error": {
+    "Error": {
+      "Code": "Unsupported",
+      "Message": "Your requested instance type (g6.xlarge) is not supported in your requested Availability Zone (us-east-1e). Please retry your request by not specifying an Availability Zone or choosing us-east-1a, us-east-1b, us-east-1c, us-east-1d, us-east-1f."
+    },
+    "ResponseMetadata": {
+      "RequestId": "89f42c80-eaaa-4bea-b339-3b38041dc59f",
+      "HTTPStatusCode": 400,
+      "HTTPHeaders": {
+        "x-amzn-requestid": "89f42c80-eaaa-4bea-b339-3b38041dc59f",
+        "cache-control": "no-cache, no-store",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "vary": "accept-encoding",
+        "content-type": "text/xml;charset=UTF-8",
+        "transfer-encoding": "chunked",
+        "date": "Fri, 30 Oct 2026 16:15:21 GMT",
+        "connection": "close",
+        "server": "AmazonEC2"
+      },
+      "RetryAttempts": 0
+    }
+  }
+}

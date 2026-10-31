@@ -1,0 +1,43 @@
+2026-10-30T13:47:24+00:00 ip-172-31-44-254 systemd[1]: Started ac-candidate-clef.service - /opt/ac-candidate-tests/envs/clef/bin/python /opt/ac-candidate-tests/run/candidate_server.py --provider clef --model /opt/ac-candidate-tests/models/clef --cases /opt/ac-candidate-tests/run/cases.json --metadata /opt/ac-candidate-tests/logs/clef-runtime.json --port 18811.
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]: Traceback (most recent call last):
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/run/candidate_server.py", line 120, in <module>
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     main(parser.parse_args())
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/run/candidate_server.py", line 59, in main
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     model, processor = load_release_model(path, device="cuda")
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/models/clef/joint_schema_model.py", line 503, in load_release_model
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     from transformers import AutoProcessor, Qwen3_5ForConditionalGeneration
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2254, in __getattr__
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     module = self._get_module(self._class_to_module[name])
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2488, in _get_module
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     raise e
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/transformers/utils/import_utils.py", line 2486, in _get_module
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     return importlib.import_module("." + module_name, self.__name__)
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     return _bootstrap._gcd_import(name[level:], package, level)
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/transformers/models/qwen3_5/modeling_qwen3_5.py", line 67, in <module>
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     from causal_conv1d import causal_conv1d_fn, causal_conv1d_update
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d/__init__.py", line 3, in <module>
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     from causal_conv1d.causal_conv1d_interface import causal_conv1d_fn, causal_conv1d_update
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d/causal_conv1d_interface.py", line 6, in <module>
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     from causal_conv1d.cpp_functions import causal_conv1d_fwd_function, causal_conv1d_bwd_function, causal_conv1d_update_function
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:   File "/opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d/cpp_functions.py", line 5, in <module>
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]:     import causal_conv1d_cuda
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 python[28972]: ImportError: /opt/ac-candidate-tests/envs/clef/lib/python3.12/site-packages/causal_conv1d_cuda.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c104cuda29c10_cuda_check_implementationEiPKcS2_ib
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 systemd[1]: ac-candidate-clef.service: Main process exited, code=exited, status=1/FAILURE
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 systemd[1]: ac-candidate-clef.service: Failed with result 'exit-code'.
+2026-10-30T13:47:27+00:00 ip-172-31-44-254 systemd[1]: ac-candidate-clef.service: Consumed 3.688s CPU time.
+2026-10-30T14:05:41+00:00 ip-172-31-44-254 systemd[1]: Started ac-candidate-clef.service - /opt/ac-candidate-tests/envs/clef/bin/python /opt/ac-candidate-tests/run/candidate_server.py --provider clef --model /opt/ac-candidate-tests/models/clef --cases /opt/ac-candidate-tests/run/cases.json --metadata /opt/ac-candidate-tests/logs/clef-runtime.json --port 18811.
+2026-10-30T14:06:42+00:00 ip-172-31-44-254 python[29524]: [10.3K blob data]
+2026-10-30T14:06:51+00:00 ip-172-31-44-254 python[29524]: {"ready": true, "provider": "clef", "repository": "Cloudflare/clef-flash", "revision": "f0b7d3cd65296abfe459e6c228b618f5d8b26d2f", "gpu": "NVIDIA L4", "torch": "2.11.0+cu130", "cuda": "13.0", "transformers": "5.10.2", "cpu_threads": 2, "external_concurrency": 1, "adapter_sha256": "e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb", "runtime": "official Clef joint schema head, BF16", "max_encoded_tokens": 9438, "input_truncated": false, "gpu_allocated_after_load": 19063236096}
+2026-10-30T14:19:03+00:00 ip-172-31-44-254 systemd[1]: Stopping ac-candidate-clef.service - /opt/ac-candidate-tests/envs/clef/bin/python /opt/ac-candidate-tests/run/candidate_server.py --provider clef --model /opt/ac-candidate-tests/models/clef --cases /opt/ac-candidate-tests/run/cases.json --metadata /opt/ac-candidate-tests/logs/clef-runtime.json --port 18811...
+2026-10-30T14:19:03+00:00 ip-172-31-44-254 systemd[1]: ac-candidate-clef.service: Deactivated successfully.
+2026-10-30T14:19:03+00:00 ip-172-31-44-254 systemd[1]: Stopped ac-candidate-clef.service - /opt/ac-candidate-tests/envs/clef/bin/python /opt/ac-candidate-tests/run/candidate_server.py --provider clef --model /opt/ac-candidate-tests/models/clef --cases /opt/ac-candidate-tests/run/cases.json --metadata /opt/ac-candidate-tests/logs/clef-runtime.json --port 18811.
+2026-10-30T14:19:03+00:00 ip-172-31-44-254 systemd[1]: ac-candidate-clef.service: Consumed 11min 2.547s CPU time.
+-- Boot 760c398e9a48435f933de1a46f0b1711 --
+2026-10-30T20:56:17+00:00 ip-172-31-37-233 systemd[1]: Started ac-candidate-clef.service - /opt/ac-nine-tests/envs/clef/bin/python /opt/ac-nine-tests/run/candidate_server.py --provider clef --model /opt/ac-nine-tests/models/clef --cases /opt/ac-nine-tests/run/cases.json --metadata /opt/ac-nine-tests/logs/clef-runtime.json --port 18811.
+2026-10-30T20:57:19+00:00 ip-172-31-37-233 python[32829]: [10.5K blob data]
+2026-10-30T20:57:28+00:00 ip-172-31-37-233 python[32829]: {"ready": true, "provider": "clef", "repository": "Cloudflare/clef-flash", "revision": "f0b7d3cd65296abfe459e6c228b618f5d8b26d2f", "gpu": "NVIDIA L4", "torch": "2.11.0+cu130", "cuda": "13.0", "transformers": "5.10.2", "cpu_threads": 2, "external_concurrency": 1, "adapter_sha256": "e235190de26e5afeee295f37ff2d7aa80943047d20b18c773371642be748dcfb", "runtime": "official Clef joint schema head, BF16", "max_encoded_tokens": 9438, "input_truncated": false, "gpu_allocated_after_load": 19063236096}

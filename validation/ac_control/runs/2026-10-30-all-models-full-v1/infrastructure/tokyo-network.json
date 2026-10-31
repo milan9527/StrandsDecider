@@ -1,0 +1,65 @@
+{
+  "subnet": {
+    "AvailabilityZoneId": "apne1-az4",
+    "MapCustomerOwnedIpOnLaunch": false,
+    "OwnerId": "632930644527",
+    "AssignIpv6AddressOnCreation": false,
+    "Ipv6CidrBlockAssociationSet": [],
+    "SubnetArn": "arn:aws:ec2:ap-northeast-1:632930644527:subnet/subnet-0e6b0ea241ba96485",
+    "EnableDns64": false,
+    "Ipv6Native": false,
+    "PrivateDnsNameOptionsOnLaunch": {
+      "HostnameType": "ip-name",
+      "EnableResourceNameDnsARecord": false,
+      "EnableResourceNameDnsAAAARecord": false
+    },
+    "BlockPublicAccessStates": {
+      "InternetGatewayBlockMode": "off"
+    },
+    "SubnetId": "subnet-0e6b0ea241ba96485",
+    "State": "available",
+    "VpcId": "vpc-0ff30fbdafef519d8",
+    "CidrBlock": "172.31.32.0/20",
+    "AvailableIpAddressCount": 4086,
+    "AvailabilityZone": "ap-northeast-1a",
+    "DefaultForAz": true,
+    "MapPublicIpOnLaunch": true
+  },
+  "security_groups": [
+    {
+      "GroupId": "sg-07b84c41dbcb185b2",
+      "IpPermissionsEgress": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [],
+          "IpRanges": [
+            {
+              "CidrIp": "0.0.0.0/0"
+            }
+          ],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ],
+      "VpcId": "vpc-0ff30fbdafef519d8",
+      "SecurityGroupArn": "arn:aws:ec2:ap-northeast-1:632930644527:security-group/sg-07b84c41dbcb185b2",
+      "OwnerId": "632930644527",
+      "GroupName": "default",
+      "Description": "default VPC security group",
+      "IpPermissions": [
+        {
+          "IpProtocol": "-1",
+          "UserIdGroupPairs": [
+            {
+              "UserId": "632930644527",
+              "GroupId": "sg-07b84c41dbcb185b2"
+            }
+          ],
+          "IpRanges": [],
+          "Ipv6Ranges": [],
+          "PrefixListIds": []
+        }
+      ]
+    }
+  ]
+}

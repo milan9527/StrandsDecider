@@ -1,0 +1,41 @@
+{
+  "reason": "Health returned routing alias m instead of the pinned repository name",
+  "decision_calls": 0,
+  "warmup_calls": 0,
+  "formal_calls": 0,
+  "health": {
+    "http_status": 200,
+    "response_text": "{\"status\": \"ok\", \"model\": \"m\", \"temperature\": 1.0, \"layout\": {\"header\": false, \"header_min_questions\": 1, \"read_twice\": true, \"twice_max_tokens\": 3000}}",
+    "status": "ok",
+    "response": {
+      "status": "ok",
+      "model": "m",
+      "temperature": 1.0,
+      "layout": {
+        "header": false,
+        "header_min_questions": 1,
+        "read_twice": true,
+        "twice_max_tokens": 3000
+      }
+    },
+    "client_ms": 18.165602999943076
+  },
+  "run": {
+    "provider": "knowline",
+    "model": {
+      "repository": "PelaAI/KnowLine-4B-Gen5.5",
+      "revision": "779944d2cc8ffa19cef386aee83c83bcb967ade2"
+    },
+    "started_at": "2026-10-30T19:23:16.731762+00:00",
+    "status": "running",
+    "calls": 0,
+    "errors": 0,
+    "blocks": [],
+    "external_concurrency": 1,
+    "automatic_retries": 0,
+    "plan_sha256": "1692e3483e175890179668b916f5eedd6475ae19d9f6c283ec9b6e3e5d056ddb",
+    "runner_sha256": "f333692c935a0682e096418d2fb03f2607e6db49b9b4448713b9a38740ed9059",
+    "hostname": "ip-172-31-37-233",
+    "expected_model": "PelaAI/KnowLine-4B-Gen5.5"
+  }
+}
