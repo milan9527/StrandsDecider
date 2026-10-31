@@ -1,0 +1,49 @@
+{
+  "model": "Cloudflare/clef-flash",
+  "revision": "f0b7d3cd65296abfe459e6c228b618f5d8b26d2f",
+  "inference_performed": false,
+  "accuracy_measured": false,
+  "latency_measured": false,
+  "spec_sha256": "d72aee30f97a4b2a8d7b57d1a680b10756b419884c10ba1e5a64df9a2f49f1e6",
+  "cases_sha256": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+  "tokenizer_sha256": "06b9509352d2af50381ab2247e083b80d32d5c0aba91c272ca9ff729b6a0e523",
+  "encoder_sha256": "0e304cf7c6500e8bb59bef7e2afd2c6373f82596dfb3b57d1aa93c175e2dc3a3",
+  "protocol_sha256": "ba70795fe03d3cc15c5048623a17eb0aa7c7e6c546f11683e9ef9b3e00b72f66",
+  "variants": {
+    "baseline": {
+      "audited_requests": 156,
+      "full30_tokens_min": 9416,
+      "full30_tokens_max": 9438,
+      "spec_full30_tokens_mean": 9423.35,
+      "single_field_tokens_mean": 1454.4166666666667,
+      "serial30_tokens_sum_mean": 43632.5,
+      "fields": 30,
+      "candidates": 283,
+      "s03_tokens": 9423
+    },
+    "compact_catalog": {
+      "audited_requests": 156,
+      "full30_tokens_min": 6746,
+      "full30_tokens_max": 6768,
+      "spec_full30_tokens_mean": 6753.35,
+      "single_field_tokens_mean": 1365.4166666666667,
+      "serial30_tokens_sum_mean": 40962.5,
+      "fields": 30,
+      "candidates": 283,
+      "s03_tokens": 6753
+    },
+    "schema_once": {
+      "audited_requests": 156,
+      "full30_tokens_min": 6141,
+      "full30_tokens_max": 6163,
+      "spec_full30_tokens_mean": 6148.35,
+      "single_field_tokens_mean": 1377.1166666666666,
+      "serial30_tokens_sum_mean": 41313.5,
+      "fields": 30,
+      "candidates": 283,
+      "s03_tokens": 6148
+    }
+  },
+  "verified_baseline_receipts": 2049,
+  "range_policy": "Keep all existing integer candidates; fractional inputs remain untested."
+}

@@ -1,0 +1,628 @@
+{
+  "provider": "liquid",
+  "model": {
+    "repository": "LiquidAI/d1-2B",
+    "revision": "cfe5760ff5d5998f91d9ac56bd4b2dbd96996d41",
+    "runtime": "Official BF16 Transformers system_one"
+  },
+  "started_at": "2026-10-31T06:49:47.070832+00:00",
+  "status": "complete",
+  "calls": 2049,
+  "errors": 0,
+  "blocks": [
+    {
+      "case_id": "S01",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:34.788070+00:00",
+      "finished_at": "2026-10-31T06:51:38.287445+00:00",
+      "wall_ms": 3499.368824001067,
+      "http_sum_ms": 3483.21897599817,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S02",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:39.602637+00:00",
+      "finished_at": "2026-10-31T06:51:43.098677+00:00",
+      "wall_ms": 3496.0332610007754,
+      "http_sum_ms": 3479.029318996254,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S03",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:43.101640+00:00",
+      "finished_at": "2026-10-31T06:51:46.593157+00:00",
+      "wall_ms": 3491.5098019992,
+      "http_sum_ms": 3475.3194360018824,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S04",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:47.910187+00:00",
+      "finished_at": "2026-10-31T06:51:51.396551+00:00",
+      "wall_ms": 3486.357408000913,
+      "http_sum_ms": 3469.360377001067,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S05",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:51.399498+00:00",
+      "finished_at": "2026-10-31T06:51:54.891473+00:00",
+      "wall_ms": 3491.966630999741,
+      "http_sum_ms": 3476.1013939969416,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S06",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:56.202751+00:00",
+      "finished_at": "2026-10-31T06:51:59.686912+00:00",
+      "wall_ms": 3484.1543459988316,
+      "http_sum_ms": 3468.706600004225,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S07",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:51:59.689777+00:00",
+      "finished_at": "2026-10-31T06:52:03.151387+00:00",
+      "wall_ms": 3461.6036120005447,
+      "http_sum_ms": 3445.7086060010624,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S08",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:04.464719+00:00",
+      "finished_at": "2026-10-31T06:52:07.940349+00:00",
+      "wall_ms": 3475.6236350003746,
+      "http_sum_ms": 3459.5988770051918,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S09",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:07.943278+00:00",
+      "finished_at": "2026-10-31T06:52:11.430296+00:00",
+      "wall_ms": 3487.009817999933,
+      "http_sum_ms": 3471.434508004677,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S10",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:12.750954+00:00",
+      "finished_at": "2026-10-31T06:52:16.225005+00:00",
+      "wall_ms": 3474.043944999721,
+      "http_sum_ms": 3459.9036930048896,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M01",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:16.227839+00:00",
+      "finished_at": "2026-10-31T06:52:19.723214+00:00",
+      "wall_ms": 3495.369058000506,
+      "http_sum_ms": 3481.1599740005477,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M02",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:21.044336+00:00",
+      "finished_at": "2026-10-31T06:52:24.550907+00:00",
+      "wall_ms": 3506.5635630016914,
+      "http_sum_ms": 3492.802793998635,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M03",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:24.553762+00:00",
+      "finished_at": "2026-10-31T06:52:28.045253+00:00",
+      "wall_ms": 3491.484356998626,
+      "http_sum_ms": 3477.547254997262,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M04",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:29.363791+00:00",
+      "finished_at": "2026-10-31T06:52:32.823584+00:00",
+      "wall_ms": 3459.7861469992495,
+      "http_sum_ms": 3445.9851300052833,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M05",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:32.826496+00:00",
+      "finished_at": "2026-10-31T06:52:36.301432+00:00",
+      "wall_ms": 3474.9298819988326,
+      "http_sum_ms": 3460.834719997365,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M06",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:37.619248+00:00",
+      "finished_at": "2026-10-31T06:52:41.075554+00:00",
+      "wall_ms": 3456.299564000801,
+      "http_sum_ms": 3442.004786002144,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M07",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:41.078553+00:00",
+      "finished_at": "2026-10-31T06:52:44.550750+00:00",
+      "wall_ms": 3472.1892870002193,
+      "http_sum_ms": 3458.348037001997,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M08",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:45.869398+00:00",
+      "finished_at": "2026-10-31T06:52:49.357140+00:00",
+      "wall_ms": 3487.7355019998504,
+      "http_sum_ms": 3473.6403940041782,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M09",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:49.360107+00:00",
+      "finished_at": "2026-10-31T06:52:52.851639+00:00",
+      "wall_ms": 3491.5265789986734,
+      "http_sum_ms": 3477.4971199985885,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M10",
+      "repetition": 0,
+      "started_at": "2026-10-31T06:52:54.178375+00:00",
+      "finished_at": "2026-10-31T06:52:57.667393+00:00",
+      "wall_ms": 3489.0101910004887,
+      "http_sum_ms": 3474.3732459955936,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S01",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:52:58.327769+00:00",
+      "finished_at": "2026-10-31T06:53:01.792833+00:00",
+      "wall_ms": 3465.0554960007867,
+      "http_sum_ms": 3450.745372003439,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S02",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:01.795839+00:00",
+      "finished_at": "2026-10-31T06:53:05.252636+00:00",
+      "wall_ms": 3456.7895750005846,
+      "http_sum_ms": 3442.763677006951,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S03",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:06.564068+00:00",
+      "finished_at": "2026-10-31T06:53:10.014411+00:00",
+      "wall_ms": 3450.336491001508,
+      "http_sum_ms": 3436.464928001442,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S04",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:10.017258+00:00",
+      "finished_at": "2026-10-31T06:53:13.461510+00:00",
+      "wall_ms": 3444.2463439991116,
+      "http_sum_ms": 3430.2992949997133,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S05",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:14.767301+00:00",
+      "finished_at": "2026-10-31T06:53:18.202990+00:00",
+      "wall_ms": 3435.6831360000797,
+      "http_sum_ms": 3421.8030419979186,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S06",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:18.206044+00:00",
+      "finished_at": "2026-10-31T06:53:21.643137+00:00",
+      "wall_ms": 3437.086764999549,
+      "http_sum_ms": 3422.841393001363,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S07",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:22.952282+00:00",
+      "finished_at": "2026-10-31T06:53:26.388920+00:00",
+      "wall_ms": 3436.6315829993255,
+      "http_sum_ms": 3422.2843979987374,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S08",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:26.391895+00:00",
+      "finished_at": "2026-10-31T06:53:29.826979+00:00",
+      "wall_ms": 3435.0774719987385,
+      "http_sum_ms": 3421.260575996712,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S09",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:31.136631+00:00",
+      "finished_at": "2026-10-31T06:53:34.593758+00:00",
+      "wall_ms": 3457.120435001343,
+      "http_sum_ms": 3442.5169520036434,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S10",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:34.596818+00:00",
+      "finished_at": "2026-10-31T06:53:38.061012+00:00",
+      "wall_ms": 3464.1872399988642,
+      "http_sum_ms": 3450.0230989960983,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M01",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:39.377120+00:00",
+      "finished_at": "2026-10-31T06:53:42.860908+00:00",
+      "wall_ms": 3483.781683000416,
+      "http_sum_ms": 3470.0285009985237,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M02",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:42.863920+00:00",
+      "finished_at": "2026-10-31T06:53:46.348705+00:00",
+      "wall_ms": 3484.7784739995404,
+      "http_sum_ms": 3470.69161500076,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M03",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:47.665649+00:00",
+      "finished_at": "2026-10-31T06:53:51.154421+00:00",
+      "wall_ms": 3488.765264999529,
+      "http_sum_ms": 3474.8303400028817,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M04",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:51.157420+00:00",
+      "finished_at": "2026-10-31T06:53:54.622978+00:00",
+      "wall_ms": 3465.551798000888,
+      "http_sum_ms": 3451.6492809980264,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M05",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:55.937456+00:00",
+      "finished_at": "2026-10-31T06:53:59.396249+00:00",
+      "wall_ms": 3458.785753000484,
+      "http_sum_ms": 3444.4774559960933,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M06",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:53:59.399307+00:00",
+      "finished_at": "2026-10-31T06:54:02.847932+00:00",
+      "wall_ms": 3448.6181200009014,
+      "http_sum_ms": 3434.719442999267,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M07",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:54:04.156577+00:00",
+      "finished_at": "2026-10-31T06:54:07.607132+00:00",
+      "wall_ms": 3450.549189999947,
+      "http_sum_ms": 3436.338674000581,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M08",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:54:07.610197+00:00",
+      "finished_at": "2026-10-31T06:54:11.065175+00:00",
+      "wall_ms": 3454.9720920003892,
+      "http_sum_ms": 3440.9584130062285,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M09",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:54:12.377763+00:00",
+      "finished_at": "2026-10-31T06:54:15.827202+00:00",
+      "wall_ms": 3449.4330489997083,
+      "http_sum_ms": 3435.1880850008456,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M10",
+      "repetition": 1,
+      "started_at": "2026-10-31T06:54:15.830324+00:00",
+      "finished_at": "2026-10-31T06:54:19.288510+00:00",
+      "wall_ms": 3458.180675999756,
+      "http_sum_ms": 3444.2112089891452,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S01",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:19.944114+00:00",
+      "finished_at": "2026-10-31T06:54:23.381297+00:00",
+      "wall_ms": 3437.176351999369,
+      "http_sum_ms": 3423.415050001495,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S02",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:24.694089+00:00",
+      "finished_at": "2026-10-31T06:54:28.132421+00:00",
+      "wall_ms": 3438.325346000056,
+      "http_sum_ms": 3424.5045710031263,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S03",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:28.135532+00:00",
+      "finished_at": "2026-10-31T06:54:31.583215+00:00",
+      "wall_ms": 3447.6770969995414,
+      "http_sum_ms": 3433.843140992394,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S04",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:32.896937+00:00",
+      "finished_at": "2026-10-31T06:54:36.364378+00:00",
+      "wall_ms": 3467.434438000055,
+      "http_sum_ms": 3452.7442930011603,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S05",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:36.367489+00:00",
+      "finished_at": "2026-10-31T06:54:39.827196+00:00",
+      "wall_ms": 3459.701347999726,
+      "http_sum_ms": 3445.506084995941,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S06",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:41.141571+00:00",
+      "finished_at": "2026-10-31T06:54:44.596901+00:00",
+      "wall_ms": 3455.3235590010445,
+      "http_sum_ms": 3441.124826002124,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S07",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:44.600105+00:00",
+      "finished_at": "2026-10-31T06:54:48.050566+00:00",
+      "wall_ms": 3450.45335299983,
+      "http_sum_ms": 3436.353520999546,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S08",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:49.365226+00:00",
+      "finished_at": "2026-10-31T06:54:52.813721+00:00",
+      "wall_ms": 3448.488493999321,
+      "http_sum_ms": 3434.724874996391,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S09",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:52.816848+00:00",
+      "finished_at": "2026-10-31T06:54:56.288934+00:00",
+      "wall_ms": 3472.07918300046,
+      "http_sum_ms": 3457.6473189990793,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "S10",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:54:57.603128+00:00",
+      "finished_at": "2026-10-31T06:55:01.070002+00:00",
+      "wall_ms": 3466.867494998951,
+      "http_sum_ms": 3452.9283279971423,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M01",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:01.073131+00:00",
+      "finished_at": "2026-10-31T06:55:04.552904+00:00",
+      "wall_ms": 3479.7660219992395,
+      "http_sum_ms": 3465.258514002926,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M02",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:05.873191+00:00",
+      "finished_at": "2026-10-31T06:55:09.354486+00:00",
+      "wall_ms": 3481.28877399904,
+      "http_sum_ms": 3467.0635530055733,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M03",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:09.357656+00:00",
+      "finished_at": "2026-10-31T06:55:12.848954+00:00",
+      "wall_ms": 3491.291150001416,
+      "http_sum_ms": 3477.2756599959393,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M04",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:14.164317+00:00",
+      "finished_at": "2026-10-31T06:55:17.630620+00:00",
+      "wall_ms": 3466.295876000004,
+      "http_sum_ms": 3452.0322120024503,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M05",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:17.633821+00:00",
+      "finished_at": "2026-10-31T06:55:21.096302+00:00",
+      "wall_ms": 3462.474186999316,
+      "http_sum_ms": 3448.200740003813,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M06",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:22.407452+00:00",
+      "finished_at": "2026-10-31T06:55:25.866297+00:00",
+      "wall_ms": 3458.8384030012094,
+      "http_sum_ms": 3444.6883390010044,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M07",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:25.870741+00:00",
+      "finished_at": "2026-10-31T06:55:29.325539+00:00",
+      "wall_ms": 3454.7911990011926,
+      "http_sum_ms": 3440.1022189995274,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M08",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:30.643054+00:00",
+      "finished_at": "2026-10-31T06:55:34.120151+00:00",
+      "wall_ms": 3477.0900780004013,
+      "http_sum_ms": 3463.223676002599,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M09",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:34.123367+00:00",
+      "finished_at": "2026-10-31T06:55:37.619304+00:00",
+      "wall_ms": 3495.9309450005094,
+      "http_sum_ms": 3481.45248000219,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    },
+    {
+      "case_id": "M10",
+      "repetition": 2,
+      "started_at": "2026-10-31T06:55:38.942979+00:00",
+      "finished_at": "2026-10-31T06:55:42.422344+00:00",
+      "wall_ms": 3479.357464999339,
+      "http_sum_ms": 3465.1136609991227,
+      "calls": 30,
+      "artifact_operations_inside_block": 0
+    }
+  ],
+  "external_concurrency": 1,
+  "automatic_retries": 0,
+  "plan_sha256": "eeed65841e756413d9eb053d64021d3b70aa6331c37d03fb95a3bf0be4ec0ac2",
+  "runner_sha256": "f333692c935a0682e096418d2fb03f2607e6db49b9b4448713b9a38740ed9059",
+  "hostname": "ip-172-31-44-254",
+  "expected_model": "LiquidAI/d1-2B",
+  "last": {
+    "case_id": "M10",
+    "kind": "serial30",
+    "repetition": 2,
+    "order": "original"
+  },
+  "completed_jobs": 309,
+  "finished_at": "2026-10-31T06:55:42.425518+00:00"
+}

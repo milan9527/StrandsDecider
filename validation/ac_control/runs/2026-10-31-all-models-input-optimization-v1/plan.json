@@ -1,0 +1,96 @@
+{
+  "prepared_at": "2026-10-31T03:05:27.382084+00:00",
+  "providers": [
+    "jev",
+    "gpt",
+    "decider",
+    "liquid",
+    "pplx",
+    "knowline",
+    "torchcast",
+    "clef",
+    "h2o"
+  ],
+  "profiles": [
+    "baseline",
+    "compact_catalog",
+    "schema_once"
+  ],
+  "calls_per_profile_provider": 2049,
+  "total_calls": 55323,
+  "formal_calls": 54432,
+  "outer_concurrency": 1,
+  "automatic_retries": 0,
+  "profile_order": {
+    "jev": [
+      "baseline",
+      "compact_catalog",
+      "schema_once"
+    ],
+    "gpt": [
+      "compact_catalog",
+      "schema_once",
+      "baseline"
+    ],
+    "decider": [
+      "schema_once",
+      "baseline",
+      "compact_catalog"
+    ],
+    "liquid": [
+      "baseline",
+      "compact_catalog",
+      "schema_once"
+    ],
+    "pplx": [
+      "compact_catalog",
+      "schema_once",
+      "baseline"
+    ],
+    "knowline": [
+      "schema_once",
+      "baseline",
+      "compact_catalog"
+    ],
+    "torchcast": [
+      "baseline",
+      "compact_catalog",
+      "schema_once"
+    ],
+    "clef": [
+      "compact_catalog",
+      "schema_once",
+      "baseline"
+    ],
+    "h2o": [
+      "schema_once",
+      "baseline",
+      "compact_catalog"
+    ]
+  },
+  "runtime_order": [
+    "jev",
+    "gpt",
+    "decider",
+    "liquid",
+    "pplx",
+    "knowline",
+    "torchcast",
+    "clef",
+    "h2o"
+  ],
+  "primary": "20 original specification queries, all 30 fields, entire command-set exact match.",
+  "layouts": "Every primary query, three repetitions each of serial30 and full30; single-step reuses serial calls.",
+  "quality": "156 requests per profile/model: spec, diagnostic, English variations, Chinese translations; both orders.",
+  "portable_descriptions": "Numeric candidate descriptions are their string IDs for all nine models; no null descriptions.",
+  "capability_policy": "Full mapping recoverable in every request, including single-field requests.",
+  "profile_policy": "Frozen before inference; no answer-based tuning or best-case profile mixing.",
+  "cache_policy": "Keep native caches and identical within-profile warmups; rotate profile order by provider.",
+  "hardware_policy": "Reuse dedicated g6.xlarge/L4; same pinned model runtimes. Hosted models use prior US clients.",
+  "answers_transferred": false,
+  "historical_records_reused": false,
+  "latency_policy": "Request-response; serial wall contains only the thirty calls and their in-memory handling.",
+  "scope": "Input representation only; no output repair, query-based candidate filtering, or unit auto-completion.",
+  "upstream_run": "2026-10-30-all-models-full-v1",
+  "spec_sha256": "d72aee30f97a4b2a8d7b57d1a680b10756b419884c10ba1e5a64df9a2f49f1e6"
+}

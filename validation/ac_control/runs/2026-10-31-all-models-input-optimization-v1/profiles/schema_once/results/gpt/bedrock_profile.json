@@ -1,0 +1,33 @@
+{
+  "ResponseMetadata": {
+    "RequestId": "25f4f184-7f2f-4381-bc24-24a2b7ac6ceb",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "date": "Sat, 31 Oct 2026 03:45:08 GMT",
+      "content-type": "application/json",
+      "content-length": "662",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "25f4f184-7f2f-4381-bc24-24a2b7ac6ceb"
+    },
+    "RetryAttempts": 0
+  },
+  "inferenceProfileName": "US OpenAI GPT-6.1 Sol",
+  "description": "Routes requests to GPT-6.1 Sol in us-east-1, us-east-2, us-west-2.",
+  "createdAt": "2026-09-29 19:44:47.161000+00:00",
+  "updatedAt": "2026-09-29 19:44:47.161000+00:00",
+  "inferenceProfileArn": "arn:aws:bedrock:us-east-1:632930644527:inference-profile/us.openai.gpt-6.1-sol",
+  "models": [
+    {
+      "modelArn": "arn:aws:bedrock:us-east-1::foundation-model/openai.gpt-6.1-sol"
+    },
+    {
+      "modelArn": "arn:aws:bedrock:us-east-2::foundation-model/openai.gpt-6.1-sol"
+    },
+    {
+      "modelArn": "arn:aws:bedrock:us-west-2::foundation-model/openai.gpt-6.1-sol"
+    }
+  ],
+  "inferenceProfileId": "us.openai.gpt-6.1-sol",
+  "status": "ACTIVE",
+  "type": "SYSTEM_DEFINED"
+}

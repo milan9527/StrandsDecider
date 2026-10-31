@@ -1,0 +1,260 @@
+{
+  "model": "h2oai/h2o-lightning-4b",
+  "revision": "2240c9eb666a45ac6c566808a0a9ca84dbe9809b",
+  "bucket": "strands-decider-vllm-632930644527",
+  "files": [
+    {
+      "path": "LICENSE",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/LICENSE",
+      "bytes": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/README.md",
+      "bytes": 65700,
+      "sha256": "0f1118ff4ce87b222c28dce41d3df0ccd191fc86d29a37a859d3c491a2ccf0ad",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/README.md"
+    },
+    {
+      "path": "assets.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/assets.py",
+      "bytes": 9700,
+      "sha256": "e30ff2efd7628ade3cdc548c936751db9c433e6ad3a143f4d122b0baddcdc94c",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/assets.py"
+    },
+    {
+      "path": "box.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/box.py",
+      "bytes": 27769,
+      "sha256": "e26ad9d8ea1ac501730d2d770c2aeebda642962bdb1d591c86f0cfb843274301",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/box.py"
+    },
+    {
+      "path": "card_common.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/card_common.py",
+      "bytes": 22301,
+      "sha256": "daf9a50dd3fd366a45a1c4ed767fe3a8dc709a3b69e453a673ae50ded08402ae",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/card_common.py"
+    },
+    {
+      "path": "chat_template.jinja",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/chat_template.jinja"
+    },
+    {
+      "path": "config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/config.json",
+      "bytes": 2872,
+      "sha256": "9217764b18e7182502c371c4309ec1757e1ba8d9ef2b9b1efbaf94de2d331bba",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/config.json"
+    },
+    {
+      "path": "engine/vllm_per_request_attention.SHA256SUMS",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/engine/vllm_per_request_attention.SHA256SUMS",
+      "bytes": 3101,
+      "sha256": "fcbbe7244fae7d315a5b73f0ae72e9a400cabadf711f582f9f20fce3e49cf9f5",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/engine/vllm_per_request_attention.SHA256SUMS"
+    },
+    {
+      "path": "generation_config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/generation_config.json",
+      "bytes": 116,
+      "sha256": "731e41edbcd0336b21c36d03fdf6fc54977dfc28cd9396491999ca8ddb052c42",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/generation_config.json"
+    },
+    {
+      "path": "h2o_lightning_shim.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/h2o_lightning_shim.py",
+      "bytes": 140021,
+      "sha256": "75fd4c79b3a7b106bf4f57de47de436d16bece938f58566df642852a0cf8d670",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/h2o_lightning_shim.py"
+    },
+    {
+      "path": "label_rows.lightning",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/label_rows.lightning",
+      "bytes": 2620688,
+      "sha256": "319a8a6be2f05f0a2d1d39f66a41295f6fc97472aff71bdf7cc127fb9d013fe9",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/label_rows.lightning"
+    },
+    {
+      "path": "merges.txt",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/merges.txt",
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/merges.txt"
+    },
+    {
+      "path": "model.safetensors",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/model.safetensors",
+      "bytes": 9319828352,
+      "sha256": "c9b6290d4c0c4338c37ce37425a978027473e4d45b84e038da2369b76ff8a377",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/model.safetensors"
+    },
+    {
+      "path": "pooled_readout.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/pooled_readout.py",
+      "bytes": 11981,
+      "sha256": "d59e62ccb3b5af742021e8064a5987ee27291744ea043ad94fbc8baa4eee1199",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/pooled_readout.py"
+    },
+    {
+      "path": "preprocessor_config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/preprocessor_config.json",
+      "bytes": 390,
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/preprocessor_config.json"
+    },
+    {
+      "path": "selector_v2.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/selector_v2.py",
+      "bytes": 13497,
+      "sha256": "bd518a2c3bea9167803b6c21e480b37386fa212cf35101093b84e75c5307b7e3",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/selector_v2.py"
+    },
+    {
+      "path": "serve.sh",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/serve.sh",
+      "bytes": 17613,
+      "sha256": "378e5c056f62956a1736fc6eb15ab7934201442ac7691058b2543af3ae9067ce",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/serve.sh"
+    },
+    {
+      "path": "serve_config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/serve_config.json",
+      "bytes": 3718,
+      "sha256": "81c021f1139e2ee3f6378891c3c1db2cd9935359df9da93c37baaafec25cbba0",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/serve_config.json"
+    },
+    {
+      "path": "test_card.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/test_card.py",
+      "bytes": 38567,
+      "sha256": "77ffed847f3964d85aa38515700491996f1918d480c7f7af564f63fb2315b3d8",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/test_card.py"
+    },
+    {
+      "path": "test_card_controls.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/test_card_controls.py",
+      "bytes": 5307,
+      "sha256": "b9f1da450da17e0d2334f822359ef90f7e8a31c004f3444a6b009fb6d28cc5b9",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/test_card_controls.py"
+    },
+    {
+      "path": "test_security.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/test_security.py",
+      "bytes": 10016,
+      "sha256": "2c402d9713337c2b3c0f307176b5e8429b9c4ad1e7b99c49047663678f399fe9",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/test_security.py"
+    },
+    {
+      "path": "test_shim.py",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/test_shim.py",
+      "bytes": 112638,
+      "sha256": "319b5ef0ee450ac9631bbb3861b24af097f6bdf6ab9e6428b55faff263bc1594",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/test_shim.py"
+    },
+    {
+      "path": "tokenizer.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer.json"
+    },
+    {
+      "path": "tokenizer/chat_template.jinja",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer/chat_template.jinja",
+      "bytes": 7756,
+      "sha256": "a4aee8afcf2e0711942cf848899be66016f8d14a889ff9ede07bca099c28f715",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer/chat_template.jinja"
+    },
+    {
+      "path": "tokenizer/merges.txt",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer/merges.txt",
+      "bytes": 3353259,
+      "sha256": "a9d356d7bdf1ef4949e3e748e95b8e10ad9d4e2e838eddc38a0a7b6b94d1db8d",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer/merges.txt"
+    },
+    {
+      "path": "tokenizer/tokenizer.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer/tokenizer.json"
+    },
+    {
+      "path": "tokenizer/tokenizer_config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer/tokenizer_config.json",
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer/tokenizer_config.json"
+    },
+    {
+      "path": "tokenizer/vocab.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer/vocab.json",
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer/vocab.json"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer_config.json",
+      "bytes": 16710,
+      "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer_config.json"
+    },
+    {
+      "path": "tokenizer_contract.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/tokenizer_contract.json",
+      "bytes": 10320,
+      "sha256": "7eb96aaea6b7dbb495f0840b42f18014ca5a697697305f76f39d46cae890ccb2",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/tokenizer_contract.json"
+    },
+    {
+      "path": "video_preprocessor_config.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/video_preprocessor_config.json",
+      "bytes": 385,
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/video_preprocessor_config.json"
+    },
+    {
+      "path": "vllm_patches/README.md",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/vllm_patches/README.md",
+      "bytes": 1133,
+      "sha256": "4ffd35ac7f51ad36eaeaa23ba1fb3f7c3f8fb1c0745358ca149d7a3c82bacc98",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/vllm_patches/README.md"
+    },
+    {
+      "path": "vllm_patches/SHA256SUMS",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/vllm_patches/SHA256SUMS",
+      "bytes": 217,
+      "sha256": "84913564131c4b4247138b46e550b72db455f01c6433c04897734ad215f98531",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/vllm_patches/SHA256SUMS"
+    },
+    {
+      "path": "vllm_patches/vllm030_gdn_initial_state_no_sync.patch",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/vllm_patches/vllm030_gdn_initial_state_no_sync.patch",
+      "bytes": 1386,
+      "sha256": "55bd8afc93f5375764eb7e8e9d1b3c3f63b1d9a8b23651553bb0f27bbcf8df67",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/vllm_patches/vllm030_gdn_initial_state_no_sync.patch"
+    },
+    {
+      "path": "vllm_patches/vllm030_scheduler_skip_same_step_mamba.patch",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/vllm_patches/vllm030_scheduler_skip_same_step_mamba.patch",
+      "bytes": 4095,
+      "sha256": "4bb168a9dc6046f258c770ba5bfe32cf73f8eb3795ae0ff7426e85f6ff1078ed",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/vllm_patches/vllm030_scheduler_skip_same_step_mamba.patch"
+    },
+    {
+      "path": "vocab.json",
+      "key": "input/ac-candidates/2026-10-30-l4-v1/models/h2o/vocab.json",
+      "bytes": 6722759,
+      "sha256": "ce99b4cb2983d118806ce0a8b777a35b093e2000a503ebde25853284c9dfa003",
+      "source": "https://huggingface.co/h2oai/h2o-lightning-4b/resolve/2240c9eb666a45ac6c566808a0a9ca84dbe9809b/vocab.json"
+    }
+  ],
+  "complete": true
+}

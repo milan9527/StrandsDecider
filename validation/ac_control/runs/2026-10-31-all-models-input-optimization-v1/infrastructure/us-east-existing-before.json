@@ -1,0 +1,166 @@
+{
+  "Architecture": "x86_64",
+  "BlockDeviceMappings": [
+    {
+      "DeviceName": "/dev/sda1",
+      "Ebs": {
+        "AttachTime": "2026-10-30 11:59:36+00:00",
+        "DeleteOnTermination": true,
+        "Status": "attached",
+        "VolumeId": "vol-08a0620e59a0484bd",
+        "EbsCardIndex": 0
+      }
+    }
+  ],
+  "ClientToken": "ac-candidate-l4-20261030-1200-v1",
+  "EbsOptimized": false,
+  "EnaSupport": true,
+  "Hypervisor": "xen",
+  "IamInstanceProfile": {
+    "Arn": "arn:aws:iam::632930644527:instance-profile/strands-decider-vllm",
+    "Id": "AIPAZGXM3GIXW6IU6VYZA"
+  },
+  "NetworkInterfaces": [
+    {
+      "Attachment": {
+        "AttachTime": "2026-10-30 11:59:35+00:00",
+        "AttachmentId": "eni-attach-018ff59f49036a0b5",
+        "DeleteOnTermination": true,
+        "DeviceIndex": 0,
+        "Status": "attached",
+        "NetworkCardIndex": 0
+      },
+      "Description": "",
+      "Groups": [
+        {
+          "GroupId": "sg-051a9e10a77085738",
+          "GroupName": "strands-decider-vllm"
+        }
+      ],
+      "Ipv6Addresses": [],
+      "MacAddress": "0e:ff:e1:8f:e4:13",
+      "NetworkInterfaceId": "eni-062a7985d540ff173",
+      "OwnerId": "632930644527",
+      "PrivateDnsName": "ip-172-31-44-254.ec2.internal",
+      "PrivateIpAddress": "172.31.44.254",
+      "PrivateIpAddresses": [
+        {
+          "Primary": true,
+          "PrivateDnsName": "ip-172-31-44-254.ec2.internal",
+          "PrivateIpAddress": "172.31.44.254"
+        }
+      ],
+      "SourceDestCheck": true,
+      "Status": "in-use",
+      "SubnetId": "subnet-0693778771c7fe672",
+      "VpcId": "vpc-0c036c30b82b3703f",
+      "InterfaceType": "interface",
+      "Operator": {
+        "Managed": false
+      }
+    }
+  ],
+  "RootDeviceName": "/dev/sda1",
+  "RootDeviceType": "ebs",
+  "SecurityGroups": [
+    {
+      "GroupId": "sg-051a9e10a77085738",
+      "GroupName": "strands-decider-vllm"
+    }
+  ],
+  "SourceDestCheck": true,
+  "StateReason": {
+    "Code": "Client.UserInitiatedShutdown",
+    "Message": "Client.UserInitiatedShutdown: User initiated shutdown"
+  },
+  "Tags": [
+    {
+      "Key": "AutoStop",
+      "Value": "6h-from-boot"
+    },
+    {
+      "Key": "Patch Group",
+      "Value": "DEV"
+    },
+    {
+      "Key": "Purpose",
+      "Value": "authorized-serial-AC-model-evaluation"
+    },
+    {
+      "Key": "Name",
+      "Value": "ac-candidate-l4-20261030"
+    },
+    {
+      "Key": "Project",
+      "Value": "DecisionDemo"
+    }
+  ],
+  "VirtualizationType": "hvm",
+  "CpuOptions": {
+    "CoreCount": 2,
+    "ThreadsPerCore": 2
+  },
+  "CapacityReservationSpecification": {
+    "CapacityReservationPreference": "open"
+  },
+  "HibernationOptions": {
+    "Configured": false
+  },
+  "MetadataOptions": {
+    "State": "applied",
+    "HttpTokens": "required",
+    "HttpPutResponseHopLimit": 1,
+    "HttpEndpoint": "enabled",
+    "HttpProtocolIpv6": "disabled",
+    "InstanceMetadataTags": "disabled"
+  },
+  "EnclaveOptions": {
+    "Enabled": false
+  },
+  "BootMode": "uefi-preferred",
+  "PlatformDetails": "Linux/UNIX",
+  "UsageOperation": "RunInstances",
+  "UsageOperationUpdateTime": "2026-10-30 11:59:35+00:00",
+  "PrivateDnsNameOptions": {
+    "HostnameType": "ip-name",
+    "EnableResourceNameDnsARecord": false,
+    "EnableResourceNameDnsAAAARecord": false
+  },
+  "MaintenanceOptions": {
+    "AutoRecovery": "default",
+    "RebootMigration": "default"
+  },
+  "CurrentInstanceBootMode": "uefi",
+  "NetworkPerformanceOptions": {
+    "BandwidthWeighting": "default"
+  },
+  "Operator": {
+    "Managed": false
+  },
+  "SecondaryInterfaces": [],
+  "InstanceId": "i-0bd4d9196f1c163c0",
+  "ImageId": "ami-028357be7d5b15c53",
+  "State": {
+    "Code": 80,
+    "Name": "stopped"
+  },
+  "PrivateDnsName": "ip-172-31-44-254.ec2.internal",
+  "PublicDnsName": "",
+  "StateTransitionReason": "User initiated (2026-10-30 14:41:45 GMT)",
+  "AmiLaunchIndex": 0,
+  "ProductCodes": [],
+  "InstanceType": "g6.xlarge",
+  "LaunchTime": "2026-10-30 11:59:35+00:00",
+  "Placement": {
+    "AvailabilityZoneId": "use1-az6",
+    "GroupName": "",
+    "Tenancy": "default",
+    "AvailabilityZone": "us-east-1d"
+  },
+  "Monitoring": {
+    "State": "disabled"
+  },
+  "SubnetId": "subnet-0693778771c7fe672",
+  "VpcId": "vpc-0c036c30b82b3703f",
+  "PrivateIpAddress": "172.31.44.254"
+}

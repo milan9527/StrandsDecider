@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-31T03:24:07.385866+00:00",
+  "status": "running",
+  "active_instance": {
+    "recorded_at": "2026-10-31T03:06:32.136902+00:00",
+    "instance_id": "i-0bd4d9196f1c163c0",
+    "region": "us-east-1",
+    "availability_zone": "us-east-1d",
+    "instance_type": "g6.xlarge",
+    "reused": true
+  },
+  "controllers": {
+    "hosted_tests": 43520,
+    "amended_jev_profile": 46858,
+    "gpu_tests": 39729,
+    "audit_report_stop": 36646
+  },
+  "main_cloud_state": "cloud-orchestration.json",
+  "supplemental_cloud_state": "cloud-amendment-orchestration.json",
+  "gpu_state": "gpu-orchestration.json",
+  "completion_state": "finalization.json",
+  "intended_final_report": "docs/AC_ALL_MODELS_INPUT_OPTIMIZATION_RESULTS.md",
+  "final_comparison_calls": 55323,
+  "excluded_predecessor_calls": 2049,
+  "github_commit_or_push_authorized": false,
+  "test_instance_autostop_guard_hours": 12,
+  "model_inference_sources_unchanged": true
+}

@@ -1,0 +1,61 @@
+{
+  "started_at": "2026-10-31T03:05:43.163960+00:00",
+  "status": "complete",
+  "completed": [
+    {
+      "provider": "jev",
+      "profile": "baseline",
+      "exit_code": 0,
+      "status": "complete",
+      "calls": 2049,
+      "errors": 0
+    },
+    {
+      "provider": "jev",
+      "profile": "compact_catalog",
+      "exit_code": 0,
+      "status": "complete",
+      "calls": 2049,
+      "errors": 0
+    },
+    {
+      "provider": "jev",
+      "profile": "schema_once",
+      "exit_code": 0,
+      "status": "complete",
+      "calls": 2049,
+      "errors": 0
+    },
+    {
+      "provider": "gpt",
+      "profile": "compact_catalog",
+      "exit_code": 0,
+      "status": "complete",
+      "calls": 2049,
+      "errors": 0
+    },
+    {
+      "provider": "gpt",
+      "profile": "schema_once",
+      "exit_code": 0,
+      "status": "complete",
+      "calls": 2049,
+      "errors": 0
+    },
+    {
+      "provider": "gpt",
+      "profile": "baseline",
+      "exit_code": 0,
+      "status": "complete",
+      "calls": 2049,
+      "errors": 0
+    }
+  ],
+  "external_concurrency": 1,
+  "active": {
+    "provider": "gpt",
+    "profile": "baseline",
+    "started_at": "2026-10-31T04:17:54.574641+00:00"
+  },
+  "finished_at": "2026-10-31T04:49:45.118137+00:00"
+}

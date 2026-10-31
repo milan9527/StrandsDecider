@@ -1,0 +1,468 @@
+{
+  "state": "{\"query\":\"Set the air conditioner temperature to 24 degrees Celsius.\",\"deviceTypeCode\":\"009\",\"commandSet\":[{\"name\":\"Power\",\"key\":\"t_power\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Mode\",\"key\":\"t_work_mode\",\"type\":\"enum\",\"options\":{\"0\":\"Fan\",\"1\":\"Heat\",\"2\":\"Cool\",\"3\":\"Dry\",\"4\":\"Auto\"}},{\"name\":\"Temperature (Celsius)\",\"key\":\"t_temp\",\"type\":\"range\",\"min\":16,\"max\":32,\"unit\":\"°C\"},{\"name\":\"Temperature (Fahrenheit)\",\"key\":\"t_temp_f\",\"type\":\"range\",\"min\":61,\"max\":90,\"unit\":\"°F\"},{\"name\":\"Temperature Unit\",\"key\":\"t_temp_type\",\"type\":\"enum\",\"options\":{\"0\":\"Celsius\",\"1\":\"Fahrenheit\"}},{\"name\":\"Fan Speed\",\"key\":\"t_fan_speed\",\"type\":\"enum\",\"options\":{\"0\":\"Auto\",\"5\":\"Low\",\"6\":\"Medium Low\",\"7\":\"Medium\",\"8\":\"Medium High\",\"9\":\"High\"}},{\"name\":\"Quiet\",\"key\":\"t_fan_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Super Mode\",\"key\":\"t_super\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Up and Down Swing\",\"key\":\"t_up_down\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Comfort Auto\",\"key\":\"t_indoortemp_detection\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Left and Right Swing\",\"key\":\"t_left_right\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Airflow\",\"key\":\"t_swing_angle\",\"type\":\"enum\",\"options\":{\"0\":\"Up and down swing\",\"1\":\"Auto\",\"2\":\"Position 1\",\"3\":\"Position 2\",\"4\":\"Position 3\",\"5\":\"Position 4\",\"6\":\"Position 5\",\"7\":\"Position 6\"}},{\"name\":\"Horizontal Airflow\",\"key\":\"t_swing_direction\",\"type\":\"enum\",\"options\":{\"0\":\"Straight\",\"1\":\"All Right\",\"2\":\"Both sides\",\"3\":\"Left and Right Swing\",\"4\":\"All Left\",\"5\":\"Stop\"}},{\"name\":\"Energy Saving\",\"key\":\"t_eco\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Air Purification\",\"key\":\"t_purify\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Wind\",\"key\":\"t_swing_follow\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Blow Towards\",\"2\":\"Do Not Blow\"}},{\"name\":\"8° Heat\",\"key\":\"t_8heat\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Sleep Mode\",\"key\":\"t_sleep\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Normal Sleep\",\"2\":\"Elder Sleep\",\"3\":\"Youth Sleep\",\"4\":\"Child Sleep\"}},{\"name\":\"Dimmer\",\"key\":\"t_dimmer\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Indoor Self-Clean\",\"key\":\"t_indoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Self-Clean\",\"key\":\"t_outdoor_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"One-Key Self-Clean\",\"key\":\"t_onekey_selfclean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Fresh Air\",\"key\":\"t_fresh_air\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"AI Smart Control\",\"key\":\"t_tms\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Healthy Wind\",\"key\":\"t_health_fan\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"Outdoor Quiet\",\"key\":\"t_outdoor_mute\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR On/Off\",\"key\":\"t_dr_onoff\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"On\"}},{\"name\":\"DR Offset Temperature\",\"key\":\"t_dr_offset\",\"type\":\"range\",\"min\":0,\"max\":31,\"unit\":\"°\"},{\"name\":\"DR Load Capacity\",\"key\":\"t_dr_mode\",\"type\":\"range\",\"min\":0,\"max\":100,\"unit\":\"%\"},{\"name\":\"Auto-Defrost Clean\",\"key\":\"t_auto_defrost_clean\",\"type\":\"enum\",\"options\":{\"0\":\"Off\",\"1\":\"Enabled but not executing\",\"2\":\"Enabled and started\",\"3\":\"In progress\",\"4\":\"Finished\"},\"userControllableValues\":[\"0\",\"1\"]}],\"rules\":\"Select all and only the compatible settings explicitly requested by query. Use only the supplied commandSet keys and legal values. Do not add implied power, mode, fan speed or feature changes. Do not approximate unsupported values. A Celsius setpoint requires both t_temp and t_temp_type=0; a Fahrenheit setpoint requires both t_temp_f and t_temp_type=1. If a command is not requested (and is not the required temperature-unit companion), choose omit; omit means no command, while value 0 is an actual setting.\"}",
+  "questions": {
+    "t_power": {
+      "type": "choice",
+      "instructions": "Power. Main appliance power only; not the switch for an individual feature.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_work_mode": {
+      "type": "choice",
+      "instructions": "Mode. Main operating mode. Auto mode is different from Comfort Auto.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Fan",
+        "1": "Heat",
+        "2": "Cool",
+        "3": "Dry",
+        "4": "Auto"
+      }
+    },
+    "t_temp": {
+      "type": "choice",
+      "instructions": "Temperature (Celsius). Celsius setpoint only. A Celsius temperature requires t_temp_type=0 too.",
+      "criteria": {
+        "omit": "No change.",
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": null
+      }
+    },
+    "t_temp_f": {
+      "type": "choice",
+      "instructions": "Temperature (Fahrenheit). Fahrenheit setpoint only. A Fahrenheit temperature requires t_temp_type=1 too. Do not convert to Celsius.",
+      "criteria": {
+        "omit": "No change.",
+        "61": null,
+        "62": null,
+        "63": null,
+        "64": null,
+        "65": null,
+        "66": null,
+        "67": null,
+        "68": null,
+        "69": null,
+        "70": null,
+        "71": null,
+        "72": null,
+        "73": null,
+        "74": null,
+        "75": null,
+        "76": null,
+        "77": null,
+        "78": null,
+        "79": null,
+        "80": null,
+        "81": null,
+        "82": null,
+        "83": null,
+        "84": null,
+        "85": null,
+        "86": null,
+        "87": null,
+        "88": null,
+        "89": null,
+        "90": null
+      }
+    },
+    "t_temp_type": {
+      "type": "choice",
+      "instructions": "Temperature Unit. Required companion of a temperature setting: Celsius=0, Fahrenheit=1.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Celsius",
+        "1": "Fahrenheit"
+      }
+    },
+    "t_fan_speed": {
+      "type": "choice",
+      "instructions": "Fan Speed. Fan speed. Turbo/Super is a separate function, not a fan speed.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Auto",
+        "5": "Low",
+        "6": "Medium Low",
+        "7": "Medium",
+        "8": "Medium High",
+        "9": "High"
+      }
+    },
+    "t_fan_mute": {
+      "type": "choice",
+      "instructions": "Quiet. Indoor unit quiet only; different from outdoor quiet.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_super": {
+      "type": "choice",
+      "instructions": "Super Mode. Super/Turbo/powerful/rapid cooling or heating function; separate from fan speed.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_up_down": {
+      "type": "choice",
+      "instructions": "Up and Down Swing. Continuous up-and-down swing switch; fixed vertical positions use t_swing_angle.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_indoortemp_detection": {
+      "type": "choice",
+      "instructions": "Comfort Auto. Comfort Auto based on indoor temperature detection; different from Auto operating mode.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_left_right": {
+      "type": "choice",
+      "instructions": "Left and Right Swing. Basic left-and-right swing switch; specific horizontal directions use t_swing_direction.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_swing_angle": {
+      "type": "choice",
+      "instructions": "Airflow. Vertical airflow position. Use the option value, not the position number in its label.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Up and down swing",
+        "1": "Auto",
+        "2": "Position 1",
+        "3": "Position 2",
+        "4": "Position 3",
+        "5": "Position 4",
+        "6": "Position 5",
+        "7": "Position 6"
+      }
+    },
+    "t_swing_direction": {
+      "type": "choice",
+      "instructions": "Horizontal Airflow. Horizontal airflow direction. Splayed/both-sides airflow is value 2.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Straight",
+        "1": "All Right",
+        "2": "Both sides",
+        "3": "Left and Right Swing",
+        "4": "All Left",
+        "5": "Stop"
+      }
+    },
+    "t_eco": {
+      "type": "choice",
+      "instructions": "Energy Saving. Energy saving/Eco function; not an operating mode value.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_purify": {
+      "type": "choice",
+      "instructions": "Air Purification. Air purification; different from the LED display/Dimmer.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_swing_follow": {
+      "type": "choice",
+      "instructions": "AI Wind. AI Wind human-sensing airflow; different from AI Smart/TMS.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "Blow Towards",
+        "2": "Do Not Blow"
+      }
+    },
+    "t_8heat": {
+      "type": "choice",
+      "instructions": "8° Heat. 8-degree Celsius frost-protection heating; different from Heat operating mode.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_sleep": {
+      "type": "choice",
+      "instructions": "Sleep Mode. Sleep profile selection.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "Normal Sleep",
+        "2": "Elder Sleep",
+        "3": "Youth Sleep",
+        "4": "Child Sleep"
+      }
+    },
+    "t_dimmer": {
+      "type": "choice",
+      "instructions": "Dimmer. LED display/panel light; different from air purification. Off=0, On=1.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_indoor_selfclean": {
+      "type": "choice",
+      "instructions": "Indoor Self-Clean. Clean only the indoor unit.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_outdoor_selfclean": {
+      "type": "choice",
+      "instructions": "Outdoor Self-Clean. Clean only the outdoor unit.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_onekey_selfclean": {
+      "type": "choice",
+      "instructions": "One-Key Self-Clean. Combined one-key indoor/outdoor self-clean function.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_fresh_air": {
+      "type": "choice",
+      "instructions": "Fresh Air. Fresh air/ventilation function; different from Healthy Wind.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_tms": {
+      "type": "choice",
+      "instructions": "AI Smart Control. General AI Smart/TMS function; different from AI Wind.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_health_fan": {
+      "type": "choice",
+      "instructions": "Healthy Wind. Healthy Wind function; different from Fresh Air.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_outdoor_mute": {
+      "type": "choice",
+      "instructions": "Outdoor Quiet. Outdoor unit quiet only; different from indoor Quiet.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_dr_onoff": {
+      "type": "choice",
+      "instructions": "DR On/Off. Demand Response main switch.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "On"
+      }
+    },
+    "t_dr_offset": {
+      "type": "choice",
+      "instructions": "DR Offset Temperature. Demand Response temperature offset.",
+      "criteria": {
+        "omit": "No change.",
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": null,
+        "14": null,
+        "15": null,
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null
+      }
+    },
+    "t_dr_mode": {
+      "type": "choice",
+      "instructions": "DR Load Capacity. Demand Response load/capacity percentage.",
+      "criteria": {
+        "omit": "No change.",
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null,
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": null,
+        "14": null,
+        "15": null,
+        "16": null,
+        "17": null,
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": null,
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": null,
+        "33": null,
+        "34": null,
+        "35": null,
+        "36": null,
+        "37": null,
+        "38": null,
+        "39": null,
+        "40": null,
+        "41": null,
+        "42": null,
+        "43": null,
+        "44": null,
+        "45": null,
+        "46": null,
+        "47": null,
+        "48": null,
+        "49": null,
+        "50": null,
+        "51": null,
+        "52": null,
+        "53": null,
+        "54": null,
+        "55": null,
+        "56": null,
+        "57": null,
+        "58": null,
+        "59": null,
+        "60": null,
+        "61": null,
+        "62": null,
+        "63": null,
+        "64": null,
+        "65": null,
+        "66": null,
+        "67": null,
+        "68": null,
+        "69": null,
+        "70": null,
+        "71": null,
+        "72": null,
+        "73": null,
+        "74": null,
+        "75": null,
+        "76": null,
+        "77": null,
+        "78": null,
+        "79": null,
+        "80": null,
+        "81": null,
+        "82": null,
+        "83": null,
+        "84": null,
+        "85": null,
+        "86": null,
+        "87": null,
+        "88": null,
+        "89": null,
+        "90": null,
+        "91": null,
+        "92": null,
+        "93": null,
+        "94": null,
+        "95": null,
+        "96": null,
+        "97": null,
+        "98": null,
+        "99": null,
+        "100": null
+      }
+    },
+    "t_auto_defrost_clean": {
+      "type": "choice",
+      "instructions": "Auto-Defrost Clean. Only values 0 and 1 are user-controllable. Values 2, 3 and 4 describe running status and must never be commanded.",
+      "criteria": {
+        "omit": "No change.",
+        "0": "Off",
+        "1": "Enabled but not executing"
+      }
+    }
+  }
+}

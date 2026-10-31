@@ -1,0 +1,362 @@
+[
+  {
+    "id": "S01",
+    "title": "开机",
+    "category": "single",
+    "query": "Turn on the air conditioner.",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "S02",
+    "title": "选择制冷模式",
+    "category": "single",
+    "query": "Set the air conditioner to cooling mode.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      }
+    ]
+  },
+  {
+    "id": "S03",
+    "title": "设置摄氏温度",
+    "category": "single",
+    "query": "Set the air conditioner temperature to 24 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "S04",
+    "title": "设置华氏温度",
+    "category": "single",
+    "query": "Set the air conditioner temperature to 68 degrees Fahrenheit.",
+    "expected": [
+      {
+        "cmdName": "Temperature (Fahrenheit)",
+        "cmdKey": "t_temp_f",
+        "cmdValue": "68"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "S05",
+    "title": "选择高风速",
+    "category": "single",
+    "query": "Set the air conditioner fan speed to high.",
+    "expected": [
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      }
+    ]
+  },
+  {
+    "id": "S06",
+    "title": "开启室内机静音",
+    "category": "single",
+    "query": "Turn on quiet mode for the indoor unit.",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "S07",
+    "title": "开启室外机静音",
+    "category": "single",
+    "query": "Turn on outdoor quiet mode.",
+    "expected": [
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "S08",
+    "title": "开启空气净化",
+    "category": "single",
+    "query": "Turn on air purification.",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "S09",
+    "title": "关闭 LED 显示屏",
+    "category": "single",
+    "query": "Turn off the air conditioner display light.",
+    "expected": [
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "S10",
+    "title": "选择两侧水平送风",
+    "category": "single",
+    "query": "Set the horizontal airflow to both sides.",
+    "expected": [
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ]
+  },
+  {
+    "id": "M01",
+    "title": "电源、模式与摄氏温度",
+    "category": "multi",
+    "query": "Turn on the air conditioner, switch it to cooling mode, and set the temperature to 24 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Power",
+        "cmdKey": "t_power",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "24"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "M02",
+    "title": "制热模式、温度与风速",
+    "category": "multi",
+    "query": "Switch the air conditioner to heating mode, set it to 26 degrees Celsius, and use medium fan speed.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "26"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "7"
+      }
+    ]
+  },
+  {
+    "id": "M03",
+    "title": "制冷模式、高风速与节能",
+    "category": "multi",
+    "query": "Set cooling mode, change the fan speed to high, and turn on energy saving.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Fan Speed",
+        "cmdKey": "t_fan_speed",
+        "cmdValue": "9"
+      },
+      {
+        "cmdName": "Energy Saving",
+        "cmdKey": "t_eco",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "M04",
+    "title": "室内与室外静音",
+    "category": "multi",
+    "query": "Turn on both indoor quiet mode and outdoor quiet mode.",
+    "expected": [
+      {
+        "cmdName": "Quiet",
+        "cmdKey": "t_fan_mute",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Quiet",
+        "cmdKey": "t_outdoor_mute",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "M05",
+    "title": "空气净化与显示屏",
+    "category": "multi",
+    "query": "Turn on air purification and turn off the display light.",
+    "expected": [
+      {
+        "cmdName": "Air Purification",
+        "cmdKey": "t_purify",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Dimmer",
+        "cmdKey": "t_dimmer",
+        "cmdValue": "0"
+      }
+    ]
+  },
+  {
+    "id": "M06",
+    "title": "新风与健康风",
+    "category": "multi",
+    "query": "Enable fresh air and healthy wind.",
+    "expected": [
+      {
+        "cmdName": "Fresh Air",
+        "cmdKey": "t_fresh_air",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Healthy Wind",
+        "cmdKey": "t_health_fan",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "M07",
+    "title": "室内与室外自清洁",
+    "category": "multi",
+    "query": "Start indoor self-clean and outdoor self-clean.",
+    "expected": [
+      {
+        "cmdName": "Indoor Self-Clean",
+        "cmdKey": "t_indoor_selfclean",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Outdoor Self-Clean",
+        "cmdKey": "t_outdoor_selfclean",
+        "cmdValue": "1"
+      }
+    ]
+  },
+  {
+    "id": "M08",
+    "title": "垂直与水平风向",
+    "category": "multi",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "expected": [
+      {
+        "cmdName": "Up and Down Swing",
+        "cmdKey": "t_up_down",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Horizontal Airflow",
+        "cmdKey": "t_swing_direction",
+        "cmdValue": "2"
+      }
+    ]
+  },
+  {
+    "id": "M09",
+    "title": "需求响应设置",
+    "category": "multi",
+    "query": "Turn on demand response, set the DR temperature offset to 5 degrees, and set the DR load capacity to 60 percent.",
+    "expected": [
+      {
+        "cmdName": "DR On/Off",
+        "cmdKey": "t_dr_onoff",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "DR Offset Temperature",
+        "cmdKey": "t_dr_offset",
+        "cmdValue": "5"
+      },
+      {
+        "cmdName": "DR Load Capacity",
+        "cmdKey": "t_dr_mode",
+        "cmdValue": "60"
+      }
+    ]
+  },
+  {
+    "id": "M10",
+    "title": "制冷模式、Super Mode 与温度",
+    "category": "multi",
+    "query": "Switch to cooling mode, turn on Super Mode, and set the temperature to 22 degrees Celsius.",
+    "expected": [
+      {
+        "cmdName": "Mode",
+        "cmdKey": "t_work_mode",
+        "cmdValue": "2"
+      },
+      {
+        "cmdName": "Super Mode",
+        "cmdKey": "t_super",
+        "cmdValue": "1"
+      },
+      {
+        "cmdName": "Temperature (Celsius)",
+        "cmdKey": "t_temp",
+        "cmdValue": "22"
+      },
+      {
+        "cmdName": "Temperature Unit",
+        "cmdKey": "t_temp_type",
+        "cmdValue": "0"
+      }
+    ]
+  }
+]

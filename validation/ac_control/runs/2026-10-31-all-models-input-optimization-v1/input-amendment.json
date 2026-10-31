@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-10-31T03:14:37.047306+00:00",
+  "profile": "schema_once",
+  "encoding": "columnar_full_state_v2",
+  "reason": "Some backends score fields separately. Keep the complete capability mapping in shared state for every scoring task.",
+  "prior_complete_profile_runs": [
+    {
+      "provider": "jev",
+      "calls": 2049,
+      "path": "attempts/schema-once-distributed-v1"
+    }
+  ],
+  "final_profile_inference_calls_before_amendment": 0,
+  "baseline_and_compact_catalog_unchanged": true,
+  "schema_plan_sha256": "ebd7db47eb619439cc3e1cecc27b25e2e54e9d412056fd9a2cbec1df4c0214da",
+  "preparation_source_sha256": {
+    "full_context_input.py": "f31964c87392dff5ba258f69d1f1d83432a940a207c207cdb8133b24b8cc694f"
+  }
+}

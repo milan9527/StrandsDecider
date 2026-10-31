@@ -1,0 +1,11 @@
+{
+  "recorded_at": "2026-10-31T06:06:55.332663+00:00",
+  "cause": "GetCommandInvocation was polled before the submitted command became visible.",
+  "startup_operation": "start-decider-input-optimization",
+  "actual_startup_status": "Success",
+  "inference_sources_changed": false,
+  "completed_profile_models": 6,
+  "completed_calls_including_warmup": 12294,
+  "model_requests_automatically_retried": false,
+  "fix": "Treat only a recently submitted invisible SSM command as Pending; resume immutable operation IDs; lock controllers."
+}
