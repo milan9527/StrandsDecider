@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-10-31T00:46:37.744686+00:00",
+  "passed": true,
+  "providers": [
+    "gpt"
+  ],
+  "observed_calls": 2049,
+  "formal_calls": 2016,
+  "warmups": 33,
+  "errors": 0,
+  "overlap_count": 0,
+  "local_hostnames": [],
+  "same_ordered_business_requests": true,
+  "all_results_new_live_calls": true,
+  "output_repair": false,
+  "references_sent": false,
+  "analyzer_sha256": "070ac0581e76ad642b542841d514f4fd5cc07e4c71e355f27489b472d70e749f",
+  "grading_sources_sha256": {
+    "report_all_models.py": "070ac0581e76ad642b542841d514f4fd5cc07e4c71e355f27489b472d70e749f",
+    "analyze.py": "8c70c4333780647af8fba34ee1344c58295fdba184d83c6fafade205f7b45f3c",
+    "prepare.py": "756dfc0916dda153d64e9931a0bafdd710cf89e2d6a44d9bac66502e588a680a",
+    "analyze_knowline_layout.py": "c42c68d38cee47d11baabd8ecd3641cd788c7443eed4c8a7bd6bbfb3b7da6604"
+  },
+  "clean_interface_run": true,
+  "parent_run": "validation/ac_control/runs/2026-10-30-all-models-full-v1",
+  "parent_plan_sha256": "1692e3483e175890179668b916f5eedd6475ae19d9f6c283ec9b6e3e5d056ddb",
+  "same_client_hostname": true,
+  "same_ordered_transport_requests_as_parent": true,
+  "unique_request_ids": 2049,
+  "request_ids_reused_from_parent": 0,
+  "http_status_counts": {
+    "200": 2049
+  },
+  "successful_response_sdk_retry_counts": {
+    "0": 2049
+  },
+  "retest_manifest_sha256": "c944e67776b56ea548397fefaf070d62a7e5d6ac735a1553e486d46d178cab73",
+  "retest_reporter_sha256": "f0b4296df9eb5de7a074870d50fd7172f79f769ebb5f4aca1bd149ecaf8c4f96",
+  "evidence": {
+    "gpt": {
+      "receipts_sha256": "1351cc7dcebc3b1bb3fac8237d3f062c087b410549329adc50829b7b7a15f560",
+      "run_sha256": "ede37972d7c760823231c83933357ffe30eeb0670fee9bc44df65cf6f6709eb3",
+      "started_at": "2026-10-31T00:13:12.074759+00:00",
+      "finished_at": "2026-10-31T00:45:47.564475+00:00"
+    }
+  }
+}

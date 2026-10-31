@@ -6,6 +6,8 @@
 
 [七款开源模型简单总结](../../docs/AC_ALL_MODELS_FULL_RESULTS.md#open-model-summary)：完整任务优先评估 Clef，兼顾延迟可评估 KnowLine，逐字段方案可继续验证 Perplexity。H2O 在本批扩展题表现较好但延迟仍高；Torchcast 暂无优势；Strands 主要漏动作，Liquid 主要多发动作。
 
+2026-10-31 [GPT 完整重测](../../docs/AC_GPT_RETEST_RESULTS.md)：相同冻结协议下重新调用 2,049 次，全部成功且 SDK 重试为 0。单步 **1,800/1,800 / 764.2 ms**，30 步串行 **60/60 / 22.94 秒**，全答 **60/60 / 2.51 秒**；原三个失败位置均正常、选择正确。[独立原始记录与审计](runs/2026-10-31-gpt-retest-v1/)保留全部调用，原九模型记录不变。
+
 以下为历史[七模型对照](../../docs/AC_SPEC_UNIFIED_RESULTS.md)：该轮未包含 Strands、Liquid，本地结果复用候选测试，Jev/GPT 新增调用；三种请求方式仅重复 S03。规范主成绩及其历史耗时保留在原报告，新一轮全部 20 题的结论以上方九模型报告为准。
 
 历史[S03 三种请求方式汇总](../../docs/AC_SPEC_UNIFIED_RESULTS.md#request-layouts)：单步使用 30 种 Key × 3 轮共 90 次请求；串行与全答按每轮完整命令评分。七模型单步均 90/90、串行均 3/3；Perplexity 全答为 0/3，其他模型全答均 3/3。`summary.json` 的 `s03_mode_accuracy` 保存字段分数、整组分数及 90 条逐步核对结果。此处仅有一条 S03 指令，不扩大为 90 个业务场景，也不替代规范 20 题成绩。

@@ -1,0 +1,46 @@
+{
+  "prepared_at": "2026-10-31T00:13:10.292224+00:00",
+  "purpose": "Independent complete GPT rerun requested to verify absence of interface errors.",
+  "parent_run": "validation/ac_control/runs/2026-10-30-all-models-full-v1",
+  "parent_plan_sha256": "1692e3483e175890179668b916f5eedd6475ae19d9f6c283ec9b6e3e5d056ddb",
+  "parent_gpt_run_sha256": "35f6b196788418a033811964c886ef5262e652e651e124928fb25dae954ebc8f",
+  "parent_gpt_receipts_sha256": "a7644dd114a983894e36bfa21c1eff863f16364fd594e99ec535228d8c6c73c2",
+  "providers": [
+    "gpt"
+  ],
+  "model": "us.openai.gpt-6.1-sol",
+  "reasoning_effort": "low",
+  "calls": 2049,
+  "formal_calls": 2016,
+  "warmups": 33,
+  "outer_concurrency": 1,
+  "automatic_retries": 0,
+  "same_schedule_inputs_transport_and_runner": true,
+  "copied_plan_is_original_nine_model_protocol": "Only GPT is rerun; other providers are not executed or mixed into new-run statistics.",
+  "failure_policy": "Retain every call and error. No retry, replacement of failed rows, or selective replay; original runner aborts after three consecutive errors or failed warmup.",
+  "clean_run_acceptance": "All 2049 attempts completed; every response HTTP 200 and valid; all SDK RetryAttempts=0; ordered-input and no-overlap audit passes. Model accuracy scored separately.",
+  "original_results_preserved": true,
+  "model_inference_in_preparation": 0,
+  "git_head": "8e77e4af290c4643462a8e8df032e0d979b163b7",
+  "copied_files_sha256": {
+    "plan.json": "1692e3483e175890179668b916f5eedd6475ae19d9f6c283ec9b6e3e5d056ddb",
+    "cases.json": "c5255ed3f6063121d056840de7019d863ee76a4589656c61bd421800a5e6b839",
+    "references.json": "52d86c9b8a71950b32f13f3687183658f1bdab2ce9171be190a9f906f5143b07",
+    "command_set.json": "72de68383714e3eb8feb69de94409283cc731d71e5e671993413a276c2768fe5",
+    "spec_references.json": "d3c42584b758a81c5c769c2ef39c13d45404c70d1bcb15049a6efd96b314504f",
+    "spec.md": "d72aee30f97a4b2a8d7b57d1a680b10756b419884c10ba1e5a64df9a2f49f1e6",
+    "models.json": "d7998beca4c125ff84f634f0930a6ff29008c77d6b7ac7ad3dc264d753c5427e",
+    "schedule.json": "f18a4f4e23ba0fc3ba2ba9cb91ee769525c0a64184281fd1ae80f200cf498e06",
+    "runtime-transfer.json": "e87a301b0b52bbbe57c724a26ae3a13d95a7e981208fdf4083f3a447af0c8370",
+    "runtime-input.tar.gz": "903095850e64919f670b4b7a4004bcc8b0fce01ee16938a26d03771c3df84a53"
+  },
+  "runner_command": [
+    ".venv/bin/python",
+    "-u",
+    "validation/ac_control/run_all_models.py",
+    "--run",
+    "validation/ac_control/runs/2026-10-31-gpt-retest-v1",
+    "--provider",
+    "gpt"
+  ]
+}
