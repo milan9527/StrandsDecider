@@ -6,7 +6,7 @@
 
 支付对比统一并排展示 **Strands Decider vs Jev vs GPT**，一次运行三个模型，支持四个场景及三种测试方式。接入与比较口径见 [三模型对比说明](docs/JEV.md)。
 
-**[空调控制九模型实测与选型](docs/AC_ALL_MODELS_FULL_RESULTS.md#open-model-summary)**：综合统一测试及后续优化，托管低延迟选 Jev、准确率优先选 GPT；开源即用优先 KnowLine，低延迟方向评估 Liquid LoRA（一次全答 **90% / 0.657 秒**），准确率优先评估 Clef 前缀优化（完整任务 **100% / 5.068 秒**）。各配置的测试口径、中文表现和九模型评价见报告。
+**[空调控制九模型完整统一实测](docs/AC_ALL_MODELS_FULL_RESULTS.md#open-model-summary)**：覆盖七款开源模型与 Jev/GPT，并汇总后续优化。**[Liquid LoRA 微调](docs/LIQUID_AC_LORA_RESULTS.md)** 将原规范一次全答完整正确率从 **0% 提升到 90%**，平均耗时保持 **0.657 秒**，成为开源低延迟候选。选型建议：托管低延迟选 **Jev**、准确率优先选 **GPT**；开源即用优先 **KnowLine**，愿意持续微调并追求低延迟优先 **Liquid LoRA**，准确率优先评估 **Clef 前缀优化**。中文表现、剩余错误及完整对比见报告。
 
 补充测试：[九模型输入压缩完整实测](docs/AC_ALL_MODELS_INPUT_OPTIMIZATION_RESULTS.md) · [Clef 与 Perplexity 保留完整输入的运行时加速实测](docs/AC_RUNTIME_SPEED_RESULTS.md) · [Liquid LoRA 微调实测](docs/LIQUID_AC_LORA_RESULTS.md)。
 
