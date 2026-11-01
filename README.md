@@ -8,6 +8,8 @@
 
 **[空调控制九模型完整统一实测](docs/AC_ALL_MODELS_FULL_RESULTS.md)**：七款开源模型与 Jev/GPT 按规范全部 20 条指令、三种请求方式各测三轮。开源模型中，Clef 全答 **95% / 3.31 秒**，KnowLine **90% / 1.01 秒**；Perplexity 串行 **100% / 10.68 秒**，但全答仅 **5%**。选型取舍及其余模型结论见[开源模型简单总结](docs/AC_ALL_MODELS_FULL_RESULTS.md#open-model-summary)。
 
+补充测试：[九模型输入压缩完整实测](docs/AC_ALL_MODELS_INPUT_OPTIMIZATION_RESULTS.md) · [Clef 与 Perplexity 保留完整输入的运行时加速实测](docs/AC_RUNTIME_SPEED_RESULTS.md)。
+
 GPT [完整重测](docs/AC_GPT_RETEST_RESULTS.md)：**2,049 次调用零异常、零重试**，单步、30 步串行、一次全答均为 **100%**；平均耗时 **764 ms / 22.94 秒 / 2.51 秒**。
 
 **[五模型对比实测报告](docs/FIVE_MODELS_COMPARISON.md)**（[English](docs/FIVE_MODELS_COMPARISON.en.md)）：Strands Decider、Liquid d1-2B、H2O-Lightning 4B、Jev、GPT，覆盖原始支付四场景、模型路由四场景和设备控制三场景（含常用温度）。包含逐步请求、实际选择、耗时、执行结果和截图；支付单步平均 **48.5 / 37.4 / 77.9 / 446.4 / 1018.7 ms**，参考一致 **14/20 / 12/20 / 14/20 / 18/20 / 20/20**。三个本地模型同卡常驻、单并发运行。[打开模块](https://d3i7ogfx5ml7dc.cloudfront.net/#comparison)。
