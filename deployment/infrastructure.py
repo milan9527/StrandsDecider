@@ -3,6 +3,11 @@
 import json
 from pathlib import Path
 
+if __package__:
+    from .ac_control_infrastructure import add_ac_control
+else:
+    from ac_control_infrastructure import add_ac_control
+
 
 def ref(name):
     return {"Ref": name}
@@ -932,7 +937,7 @@ def template():
         "LogGroupName": ref("LogGroup"),
         "AuthTableName": ref("AuthTable"),
     }
-    return {
+    return add_ac_control({
         "AWSTemplateFormatVersion": "2010-09-09",
         "Description": "Strands Decider: private S3/OAC, internal ALB, small ARM64 Fargate API with a separately managed reusable On-Demand GPU.",
         "Parameters": {
@@ -967,7 +972,7 @@ def template():
         },
         "Resources": resources,
         "Outputs": {key: {"Value": value} for key, value in outputs.items()},
-    }
+    })
 
 
 if __name__ == "__main__":

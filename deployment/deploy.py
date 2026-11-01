@@ -330,6 +330,10 @@ def main():
         parameters.extend([
             {"ParameterKey": "VisionUrl", "ParameterValue": vision_url},
             {"ParameterKey": "VisionSecurityGroupId", "ParameterValue": vision_sg},
+            *[
+                {"ParameterKey": name, "ParameterValue": previous_parameters.get(name, "")}
+                for name in ("AcLoraUrl", "AcLoraSecretArn")
+            ],
         ])
         try:
             aws(

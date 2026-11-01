@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="/static/crypto.css?v=triple1" />
     <link rel="stylesheet" href="/static/routing.css?v=model-evidence-v1" />
     <link rel="stylesheet" href="/static/vision.css?v=vision-triple-v1" />
-    <script src="/static/app.js?v=vision-triple-v1" type="module"></script>
+    <link rel="stylesheet" href="/static/ac-control.css?v=ac-lora-v1" />
+    <script src="/static/app.js?v=ac-lora-v1" type="module"></script>
   </head>
   <body class="auth-pending">
     <section id="login-page" class="login-page" aria-label="登录决策实验室">
@@ -123,6 +124,9 @@
         >
         <a href="#crypto" data-page="crypto" class="nav-item"
           ><span data-icon="route"></span>支付流程对比</a
+        >
+        <a href="#ac-control" data-page="ac-control" class="nav-item"
+          ><span data-icon="layers"></span>空调控制对比</a
         >
         <a href="#routing" data-page="routing" class="nav-item"
           ><span data-icon="layers"></span>模型路由对比</a
@@ -567,6 +571,12 @@ What's the weather?</textarea>
         <section id="page-vision" class="page" hidden aria-label="图片内容决策">
           <div id="vision-workspace">
             <div class="loading-placeholder">正在加载图片决策…</div>
+          </div>
+        </section>
+
+        <section id="page-ac-control" class="page" hidden aria-label="空调控制三模型实时对比">
+          <div id="ac-control-workspace">
+            <div class="loading-placeholder">正在加载空调控制场景…</div>
           </div>
         </section>
 

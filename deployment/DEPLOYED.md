@@ -1,6 +1,6 @@
 # 已部署环境
 
-最近发布日期：2026-10-23。
+最近发布日期：2026-11-01。
 
 **访问地址：https://d3i7ogfx5ml7dc.cloudfront.net**
 
@@ -9,6 +9,16 @@ API 文档：https://d3i7ogfx5ml7dc.cloudfront.net/api/docs
 **当前：文字 Decider 调用共享 vLLM / EC2 On-Demand `g6.xlarge`；图片 Decider 调用另一台现有 `g6.xlarge` 上的官方视觉服务，两者持续运行。图片模块同时支持 Jev / Bedrock GPT 对比。** 项目区域资源位于 `us-east-1`；CloudFront 和 IAM 为全球资源。Bedrock 使用美国跨区域推理配置。
 
 **加密支付业务台：https://d3i7ogfx5ml7dc.cloudfront.net/#crypto**。演示路线、比较口径与实测结果见 [CRYPTO.md](CRYPTO.md)。
+
+## 空调控制 Liquid LoRA / Jev / GPT 对比（2026-11-01，ac-lora-v1）
+
+- 新入口：[空调控制对比](https://d3i7ogfx5ml7dc.cloudfront.net/#ac-control)。沿用空调规范和冻结回归输入，提供 78 个场景、30 字段、283 个候选；支持单 / 多指令筛选、单步、30 步串行、一次全答、完整问题选项、倒序、逐字段错误和计时、20 题批量运行、取消、刷新恢复及 JSON 导出。[模块说明与验收结果](../docs/AC_CONTROL_DEMO.md)。
+- Liquid LoRA 复用现有 `i-0bd4d9196f1c163c0` / `g6.xlarge` / L4，加载本次 `adapter-1024.pt`，校验固定基础权重、适配器和推理脚本；合并 BF16 权重，仅驻留微调模型。模型与私网认证网关由 systemd 管理，18821 仅监听本机，18125 仅对 API 安全组开放。CloudFormation 保存 `AcLoraUrl` / `AcLoraSecretArn`，Secrets Manager 提供密钥；既有 VPC peering 增加实例 /32 路由。未新增或停止 EC2。
+- Jev 沿用现有 Lambda 转发，仅扩展 30 问 / 每问 102 候选限制；实际返回 `jev-1.14.0`。GPT 沿用 Bedrock `us.openai.gpt-6.1-sol` low，与空调历史测试系统提示词及输出上限一致。三模型按相同业务输入顺序调用，无模型请求重试或答案修复，完整记录接口错误。
+- **261 次真实调用全部成功**。原规范 20 题全答为 Liquid **18/20、0.756 秒**，Jev **19/20、0.432 秒**，GPT **20/20、2.311 秒**；含首次冷启动及实际转发开销。另验收 S01 / M09 的三种方式、原序 / 倒序和中文场景；Liquid M09 串行漏发保留。此次为上线验收，不替代历史多轮基准。[全部回执](../docs/results/ac-control-demo-2026-11-01.json)。
+- **97 项相关自动化测试通过**；156 份原序 / 倒序页面输入与后端 SHA-256 一致。本地浏览器合成响应验证错误隔离、取消等分支；真实浏览器验证开始、查询、逐字段差异、完整选项、导出与 390px 布局，导出和后端记录一致，无 JavaScript 错误。
+- API 镜像 `ac-lora-20261101-v2`，摘要 `sha256:952f9d11d78db7e744f90e8ed539ae47fd0938fbd16bd93a793dfa4b45745701`，ECS revision **31**；CloudFormation 与滚动更新完成。CloudFront invalidation `IC46YRG4MXUWCR5Q4M7KL1R5YY` 已完成，四项发布资源与预备文件逐字节一致。发布包在原线上版本中加入本模块，未发布工作区其他未完成的修改。
+- 临时验收账号在检查后移除；过程、截图与部署备份位于 `.deployment/ac-control/`。
 
 ## 图片三模型对比（2026-10-23，vision-triple-v1）
 

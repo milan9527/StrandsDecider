@@ -15,6 +15,8 @@ from fastapi.staticfiles import StaticFiles
 from starlette.concurrency import run_in_threadpool
 
 from app.auth import Auth
+from app.ac_control import ACRuns
+from app.ac_control import router as ac_control_router
 from app.auth import router as auth_router
 from app.bedrock import create_client as create_bedrock
 from app.crypto import router as crypto_router
@@ -55,6 +57,7 @@ async def lifespan(app):
     app.state.bedrock_slots = asyncio.Semaphore(2)
     app.state.jev = create_jev()
     app.state.jev_slots = asyncio.Semaphore(2)
+    app.state.ac_control = ACRuns()
     async with httpx.AsyncClient(
         timeout=httpx.Timeout(app.state.model_timeout, connect=5),
         trust_env=False,
@@ -63,6 +66,7 @@ async def lifespan(app):
         try:
             yield
         finally:
+            await app.state.ac_control.close()
             if app.state.sagemaker:
                 app.state.sagemaker.close()
             if app.state.bedrock:
@@ -85,6 +89,7 @@ app.include_router(crypto_router)
 app.include_router(crypto_loop_router)
 app.include_router(routing_router)
 app.include_router(vision_router)
+app.include_router(ac_control_router)
 
 
 @app.middleware("http")

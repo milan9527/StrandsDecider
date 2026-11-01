@@ -20,7 +20,7 @@ def valid_request(event):
         or not isinstance(event["state"], str)
         or len(event["state"]) > 32_768
         or not isinstance(event["questions"], dict)
-        or not 1 <= len(event["questions"]) <= 8
+        or not 1 <= len(event["questions"]) <= 30
     ):
         return False
     for key, question in event["questions"].items():
@@ -35,7 +35,7 @@ def valid_request(event):
             return False
         criteria = question.get("criteria")
         if question["type"] == "choice":
-            if not isinstance(criteria, dict) or not 2 <= len(criteria) <= 24:
+            if not isinstance(criteria, dict) or not 2 <= len(criteria) <= 102:
                 return False
         elif criteria is not None and (not isinstance(criteria, dict) or set(criteria) != {"true", "false"}):
             return False
