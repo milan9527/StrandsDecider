@@ -1,0 +1,35 @@
+{
+  "created_at": "2026-11-01T00:41:06.459494+00:00",
+  "model": "LiquidAI/d1-2B",
+  "revision": "cfe5760ff5d5998f91d9ac56bd4b2dbd96996d41",
+  "counts": {
+    "train": 1024,
+    "dev": 96,
+    "test": 192
+  },
+  "seed": 11012026,
+  "data": "Deterministic synthetic intents with programmatic ground truth; no teacher model.",
+  "separation": "Disjoint exact semantic families and request templates; shared vocabulary and generator. Not an external blind test. Historical AC cases excluded from training.",
+  "training": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "lr": 5e-05,
+    "epochs": 1,
+    "accumulation": 16,
+    "checkpoints_after_examples": [
+      256,
+      512,
+      1024
+    ],
+    "targets": "text attention q_proj,v_proj only; original head and embeddings frozen",
+    "loss": "0.5 mean CE on active fields + 0.5 mean CE on omit fields, per whole task",
+    "selection": "Highest dev exact-task accuracy, then fewest extra+missing commands, then earlier checkpoint"
+  },
+  "validation": "Dev labels used for checkpoint selection. Held-out and historical reference labels stay local.",
+  "evaluation": "Untuned vs selected LoRA, 192 new queries and 78 historical queries, original/reversed options. Original 20 spec queries x3, full30 and serial30 HTTP calls; single-step from actual serial calls. Fresh reload and merged-weight check before timing.",
+  "adoption": "Held-out exact accuracy must improve, active-field accuracy and historical spec exact accuracy must not decline; zero interface errors; mean and p95 full-task latency within 10% of baseline.",
+  "ec2": "Existing us-east-1d L4; keep running; no production deployment.",
+  "readme_changes": false,
+  "github_push": false
+}

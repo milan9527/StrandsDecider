@@ -1,0 +1,962 @@
+[
+  {
+    "id": "test-0000",
+    "query": "The settings I need now are a demand-response load capacity of 70 percent. Leave continuous vertical oscillation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0001",
+    "query": "现在需要需求响应负载容量50%，请执行。舒适自动功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0002",
+    "query": "Keep the entire air conditioner configuration exactly as it currently is. Leave continuous vertical oscillation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0003",
+    "query": "现在需要垂直风向位置5，同时需求响应负载容量19%，同时关闭新风功能，请执行。室内机自清洁保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0004",
+    "query": "The settings I need now are a demand-response load capacity of 43 percent. Leave the basic left-right swing switch unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0005",
+    "query": "帮我把以下要求落实：水平风向停止，同时目标温度69华氏度，同时关闭自动除霜清洁，同时需求响应温度偏移23度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0006",
+    "query": "Could you arrange for a demand-response load capacity of 95 percent? Leave indoor quiet operation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0007",
+    "query": "帮我把以下要求落实：开启室内机静音。空调整机电源保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0008",
+    "query": "Could you arrange for a demand-response load capacity of 30 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0009",
+    "query": "帮我把以下要求落实：需求响应负载容量41%，同时需求响应温度偏移29度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0010",
+    "query": "Could you arrange for vertical airflow position 4 and a demand-response load capacity of 1 percent and automatic defrost cleaning off?",
+    "language": "en"
+  },
+  {
+    "id": "test-0011",
+    "query": "现在需要普通睡眠，同时需求响应负载容量83%，请执行。强力模式保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0012",
+    "query": "Could you arrange for a demand-response load capacity of 48 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0013",
+    "query": "帮我把以下要求落实：自动风速，同时关闭需求响应，同时开启自动除霜清洁，同时需求响应负载容量89%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0014",
+    "query": "The settings I need now are air purification on.",
+    "language": "en"
+  },
+  {
+    "id": "test-0015",
+    "query": "帮我把以下要求落实：需求响应负载容量97%，同时开启健康风。强力模式保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0016",
+    "query": "Could you arrange for horizontal airflow all left and a demand-response load capacity of 29 percent? Leave air purification unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0017",
+    "query": "帮我把以下要求落实：制热模式，同时需求响应负载容量34%，同时目标温度19摄氏度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0018",
+    "query": "Could you arrange for the display light off and a target temperature of 87 degrees Fahrenheit and a demand-response load capacity of 14 percent? Leave indoor-unit self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0019",
+    "query": "帮我把以下要求落实：目标温度66华氏度，同时需求响应负载容量19%，同时需求响应温度偏移7度。自动除霜清洁保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0020",
+    "query": "The settings I need now are a demand-response load capacity of 61 percent and a demand-response temperature offset of 8 degrees.",
+    "language": "en"
+  },
+  {
+    "id": "test-0021",
+    "query": "现在需要目标温度20摄氏度，同时需求响应负载容量48%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0022",
+    "query": "Could you arrange for a demand-response load capacity of 19 percent and a demand-response temperature offset of 5 degrees?",
+    "language": "en"
+  },
+  {
+    "id": "test-0023",
+    "query": "现在需要需求响应负载容量92%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0024",
+    "query": "Could you arrange for automatic defrost cleaning off?",
+    "language": "en"
+  },
+  {
+    "id": "test-0025",
+    "query": "帮我把以下要求落实：需求响应温度偏移7度，同时中风速。舒适自动功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0026",
+    "query": "Could you arrange for a target temperature of 88 degrees Fahrenheit and a demand-response load capacity of 44 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0027",
+    "query": "帮我把以下要求落实：目标温度71华氏度，同时需求响应负载容量21%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0028",
+    "query": "The settings I need now are a demand-response load capacity of 45 percent and a target temperature of 66 degrees Fahrenheit and a demand-response temperature offset of 6 degrees and energy saving off.",
+    "language": "en"
+  },
+  {
+    "id": "test-0029",
+    "query": "帮我把以下要求落实：目标温度22摄氏度，同时开启健康风，同时需求响应负载容量10%，同时关闭室外机自清洁。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0030",
+    "query": "Could you arrange for a demand-response load capacity of 18 percent and a target temperature of 25 degrees Celsius?",
+    "language": "en"
+  },
+  {
+    "id": "test-0031",
+    "query": "现在需要需求响应负载容量25%，同时华氏显示单位，同时开启空调整机电源，同时关闭新风功能，请执行。左右摆风开关保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0032",
+    "query": "Could you arrange for a demand-response load capacity of 3 percent and air purification off? Leave automatic defrost cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0033",
+    "query": "现在需要需求响应负载容量82%，同时目标温度66华氏度，同时关闭显示屏灯光，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0034",
+    "query": "Could you arrange for a demand-response load capacity of 90 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0035",
+    "query": "帮我把以下要求落实：需求响应负载容量21%，同时关闭8度防冻。节能功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0036",
+    "query": "Could you arrange for a demand-response temperature offset of 31 degrees and vertical airflow position 3?",
+    "language": "en"
+  },
+  {
+    "id": "test-0037",
+    "query": "帮我把以下要求落实：目标温度90华氏度，同时关闭室外机自清洁。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0038",
+    "query": "Could you arrange for a target temperature of 62 degrees Fahrenheit and a demand-response load capacity of 40 percent and a demand-response temperature offset of 11 degrees and AI Smart control on? Leave indoor quiet operation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0039",
+    "query": "现在需要需求响应负载容量14%，同时目标温度90华氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0040",
+    "query": "Could you arrange for a demand-response load capacity of 91 percent and a demand-response temperature offset of 23 degrees?",
+    "language": "en"
+  },
+  {
+    "id": "test-0041",
+    "query": "帮我把以下要求落实：需求响应温度偏移31度。8度防冻保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0042",
+    "query": "The settings I need now are fan-only mode and a demand-response load capacity of 57 percent.",
+    "language": "en"
+  },
+  {
+    "id": "test-0043",
+    "query": "现在需要需求响应负载容量32%，同时需求响应温度偏移19度，同时开启8度防冻，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0044",
+    "query": "Could you arrange for a demand-response load capacity of 76 percent and the vertical airflow option Up and down swing? Leave the display light unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0045",
+    "query": "现在需要需求响应温度偏移22度，同时关闭室外机自清洁，同时需求响应负载容量31%，请执行。AI智能控制保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0046",
+    "query": "The settings I need now are a target temperature of 85 degrees Fahrenheit and automatic fan speed. Leave outdoor-unit self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0047",
+    "query": "现在需要老人睡眠，请执行。节能功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0048",
+    "query": "The settings I need now are a target temperature of 72 degrees Fahrenheit and indoor-unit self-cleaning off and a demand-response load capacity of 12 percent and a demand-response temperature offset of 22 degrees. Leave continuous vertical oscillation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0049",
+    "query": "帮我把以下要求落实：需求响应负载容量4%。8度防冻保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0050",
+    "query": "Could you arrange for a target temperature of 74 degrees Fahrenheit and AI Smart control on?",
+    "language": "en"
+  },
+  {
+    "id": "test-0051",
+    "query": "帮我把以下要求落实：需求响应负载容量98%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0052",
+    "query": "The settings I need now are a demand-response load capacity of 35 percent and a demand-response temperature offset of 19 degrees. Leave indoor quiet operation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0053",
+    "query": "帮我把以下要求落实：目标温度81华氏度。室内机自清洁保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0054",
+    "query": "Could you arrange for a target temperature of 17 degrees Celsius and a demand-response temperature offset of 9 degrees? Leave Super mode unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0055",
+    "query": "现在需要需求响应负载容量59%，同时关闭显示屏灯光，同时关闭空调整机电源，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0056",
+    "query": "The settings I need now are a demand-response temperature offset of 17 degrees and healthy wind off. Leave fresh-air ventilation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0057",
+    "query": "现在需要水平直吹，同时需求响应温度偏移11度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0058",
+    "query": "Could you arrange for Super mode off and a target temperature of 62 degrees Fahrenheit? Leave 8-degree frost protection unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0059",
+    "query": "现在需要需求响应温度偏移24度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0060",
+    "query": "Could you arrange for fresh-air ventilation off?",
+    "language": "en"
+  },
+  {
+    "id": "test-0061",
+    "query": "现在需要需求响应负载容量6%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0062",
+    "query": "The settings I need now are the basic left-right swing switch off and child sleep.",
+    "language": "en"
+  },
+  {
+    "id": "test-0063",
+    "query": "帮我把以下要求落实：目标温度80华氏度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0064",
+    "query": "The settings I need now are a demand-response load capacity of 9 percent.",
+    "language": "en"
+  },
+  {
+    "id": "test-0065",
+    "query": "帮我把以下要求落实：需求响应温度偏移0度，同时目标温度66华氏度，同时需求响应负载容量47%，同时开启自动除霜清洁。节能功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0066",
+    "query": "Could you arrange for a demand-response load capacity of 60 percent and horizontal airflow stop and a target temperature of 86 degrees Fahrenheit and vertical airflow position 4?",
+    "language": "en"
+  },
+  {
+    "id": "test-0067",
+    "query": "现在需要需求响应负载容量87%，同时需求响应温度偏移14度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0068",
+    "query": "The settings I need now are a demand-response load capacity of 25 percent and a target temperature of 66 degrees Fahrenheit and AI Wind away from people. Leave AI Smart control unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0069",
+    "query": "帮我把以下要求落实：需求响应负载容量89%。需求响应保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0070",
+    "query": "The settings I need now are a demand-response load capacity of 8 percent.",
+    "language": "en"
+  },
+  {
+    "id": "test-0071",
+    "query": "帮我把以下要求落实：需求响应负载容量96%，同时关闭AI智能控制，同时目标温度24摄氏度，同时AI风关闭。新风功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0072",
+    "query": "Could you arrange for a demand-response load capacity of 17 percent and medium-low fan speed? Leave automatic defrost cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0073",
+    "query": "现在需要目标温度67华氏度，同时需求响应负载容量59%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0074",
+    "query": "The settings I need now are a target temperature of 30 degrees Celsius.",
+    "language": "en"
+  },
+  {
+    "id": "test-0075",
+    "query": "帮我把以下要求落实：目标温度32摄氏度，同时需求响应温度偏移18度，同时需求响应负载容量73%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0076",
+    "query": "Could you arrange for a target temperature of 88 degrees Fahrenheit and Super mode off? Leave energy saving unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0077",
+    "query": "帮我把以下要求落实：需求响应负载容量63%，同时目标温度63华氏度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0078",
+    "query": "The settings I need now are a target temperature of 19 degrees Celsius and a demand-response load capacity of 10 percent. Leave combined one-key self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0079",
+    "query": "现在需要需求响应负载容量68%，同时需求响应温度偏移20度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0080",
+    "query": "Could you arrange for continuous vertical oscillation off and a demand-response load capacity of 86 percent and automatic fan speed?",
+    "language": "en"
+  },
+  {
+    "id": "test-0081",
+    "query": "帮我把以下要求落实：需求响应负载容量62%，同时目标温度28摄氏度，同时关闭节能功能。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0082",
+    "query": "The settings I need now are a demand-response load capacity of 44 percent and main appliance power off.",
+    "language": "en"
+  },
+  {
+    "id": "test-0083",
+    "query": "现在需要垂直风向位置3，同时需求响应温度偏移18度，同时儿童睡眠，同时需求响应负载容量76%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0084",
+    "query": "The settings I need now are a target temperature of 75 degrees Fahrenheit. Leave air purification unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0085",
+    "query": "现在需要需求响应温度偏移5度，同时需求响应负载容量21%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0086",
+    "query": "Could you arrange for 8-degree frost protection off and a demand-response temperature offset of 10 degrees and automatic operating mode? Leave indoor quiet operation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0087",
+    "query": "帮我把以下要求落实：水平风向全左，同时需求响应负载容量14%。需求响应保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0088",
+    "query": "Could you arrange for automatic operating mode and a demand-response load capacity of 51 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0089",
+    "query": "帮我把以下要求落实：需求响应负载容量20%，同时水平风向两侧。室外机静音保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0090",
+    "query": "Could you arrange for vertical airflow position 5 and a demand-response load capacity of 54 percent and air purification on?",
+    "language": "en"
+  },
+  {
+    "id": "test-0091",
+    "query": "帮我把以下要求落实：需求响应温度偏移25度，同时需求响应负载容量90%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0092",
+    "query": "The settings I need now are automatic fan speed and a target temperature of 87 degrees Fahrenheit. Leave healthy wind unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0093",
+    "query": "帮我把以下要求落实：开启节能功能，同时华氏显示单位。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0094",
+    "query": "The settings I need now are a demand-response load capacity of 63 percent and Super mode on.",
+    "language": "en"
+  },
+  {
+    "id": "test-0095",
+    "query": "帮我把以下要求落实：需求响应负载容量16%，同时开启左右摆风开关。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0096",
+    "query": "Could you arrange for drying mode and a demand-response load capacity of 97 percent? Leave 8-degree frost protection unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0097",
+    "query": "帮我把以下要求落实：关闭舒适自动功能，同时需求响应温度偏移3度，同时目标温度23摄氏度。室外机静音保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0098",
+    "query": "Could you arrange for fan-only mode? Leave healthy wind unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0099",
+    "query": "现在需要目标温度66华氏度，同时需求响应负载容量9%，请执行。节能功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0100",
+    "query": "Could you arrange for a demand-response load capacity of 14 percent and a target temperature of 20 degrees Celsius and energy saving on?",
+    "language": "en"
+  },
+  {
+    "id": "test-0101",
+    "query": "帮我把以下要求落实：目标温度71华氏度，同时需求响应温度偏移2度，同时需求响应负载容量59%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0102",
+    "query": "Could you arrange for a target temperature of 76 degrees Fahrenheit and a demand-response temperature offset of 15 degrees and main appliance power on and a demand-response load capacity of 34 percent? Leave automatic defrost cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0103",
+    "query": "现在需要目标温度29摄氏度，同时需求响应负载容量25%，请执行。室内机静音保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0104",
+    "query": "Could you arrange for a demand-response temperature offset of 20 degrees and a demand-response load capacity of 64 percent and a target temperature of 83 degrees Fahrenheit? Leave the display light unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0105",
+    "query": "帮我把以下要求落实：需求响应负载容量70%，同时需求响应温度偏移15度，同时开启强力模式。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0106",
+    "query": "The settings I need now are a demand-response load capacity of 37 percent and a target temperature of 74 degrees Fahrenheit and Comfort Auto on and a demand-response temperature offset of 27 degrees. Leave demand response unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0107",
+    "query": "现在需要低风速，同时需求响应负载容量42%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0108",
+    "query": "Could you arrange for a demand-response load capacity of 57 percent and a target temperature of 76 degrees Fahrenheit?",
+    "language": "en"
+  },
+  {
+    "id": "test-0109",
+    "query": "帮我把以下要求落实：需求响应负载容量100%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0110",
+    "query": "The settings I need now are a demand-response load capacity of 48 percent. Leave the basic left-right swing switch unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0111",
+    "query": "现在需要需求响应负载容量45%，同时关闭舒适自动功能，同时目标温度17摄氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0112",
+    "query": "The settings I need now are a demand-response load capacity of 100 percent and a target temperature of 87 degrees Fahrenheit. Leave 8-degree frost protection unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0113",
+    "query": "现在需要需求响应温度偏移5度，请执行。室外机静音保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0114",
+    "query": "The settings I need now are a demand-response load capacity of 59 percent and cooling mode and Comfort Auto off. Leave combined one-key self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0115",
+    "query": "现在需要需求响应负载容量47%，同时开启舒适自动功能，同时目标温度89华氏度，同时开启节能功能，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0116",
+    "query": "Could you arrange for a demand-response load capacity of 94 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0117",
+    "query": "帮我把以下要求落实：目标温度75华氏度，同时关闭左右摆风开关。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0118",
+    "query": "The settings I need now are a demand-response load capacity of 9 percent and child sleep.",
+    "language": "en"
+  },
+  {
+    "id": "test-0119",
+    "query": "现在需要需求响应负载容量76%，同时关闭8度防冻，同时目标温度66华氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0120",
+    "query": "The settings I need now are a target temperature of 68 degrees Fahrenheit.",
+    "language": "en"
+  },
+  {
+    "id": "test-0121",
+    "query": "帮我把以下要求落实：水平风向全右，同时需求响应负载容量35%。自动除霜清洁保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0122",
+    "query": "Could you arrange for a demand-response load capacity of 82 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0123",
+    "query": "帮我把以下要求落实：需求响应负载容量81%。健康风保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0124",
+    "query": "Could you arrange for a target temperature of 65 degrees Fahrenheit? Leave combined one-key self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0125",
+    "query": "帮我把以下要求落实：目标温度88华氏度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0126",
+    "query": "The settings I need now are medium-high fan speed.",
+    "language": "en"
+  },
+  {
+    "id": "test-0127",
+    "query": "帮我把以下要求落实：需求响应负载容量35%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0128",
+    "query": "Could you arrange for a demand-response load capacity of 71 percent and a target temperature of 27 degrees Celsius?",
+    "language": "en"
+  },
+  {
+    "id": "test-0129",
+    "query": "现在需要水平直吹，同时关闭室内机自清洁，同时需求响应负载容量80%，请执行。空气净化保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0130",
+    "query": "The settings I need now are a demand-response load capacity of 82 percent and a demand-response temperature offset of 3 degrees. Leave the basic left-right swing switch unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0131",
+    "query": "帮我把以下要求落实：关闭室外机静音，同时关闭新风功能，同时垂直风向位置3。健康风保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0132",
+    "query": "Could you arrange for a target temperature of 27 degrees Celsius?",
+    "language": "en"
+  },
+  {
+    "id": "test-0133",
+    "query": "帮我把以下要求落实：需求响应负载容量29%，同时目标温度31摄氏度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0134",
+    "query": "Could you arrange for vertical airflow position 4 and a demand-response load capacity of 7 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0135",
+    "query": "现在需要目标温度26摄氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0136",
+    "query": "The settings I need now are a demand-response temperature offset of 15 degrees and a demand-response load capacity of 36 percent.",
+    "language": "en"
+  },
+  {
+    "id": "test-0137",
+    "query": "现在需要关闭新风功能，同时开启舒适自动功能，同时需求响应温度偏移12度，请执行。AI智能控制保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0138",
+    "query": "Could you arrange for combined one-key self-cleaning off and cooling mode?",
+    "language": "en"
+  },
+  {
+    "id": "test-0139",
+    "query": "帮我把以下要求落实：AI风向人吹，同时目标温度74华氏度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0140",
+    "query": "Could you arrange for a demand-response load capacity of 88 percent and indoor-unit self-cleaning on?",
+    "language": "en"
+  },
+  {
+    "id": "test-0141",
+    "query": "帮我把以下要求落实：需求响应温度偏移21度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0142",
+    "query": "Could you arrange for a target temperature of 81 degrees Fahrenheit? Leave demand response unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0143",
+    "query": "现在需要需求响应负载容量73%，同时自动风速，请执行。室内机自清洁保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0144",
+    "query": "Could you arrange for a demand-response load capacity of 34 percent and a target temperature of 88 degrees Fahrenheit?",
+    "language": "en"
+  },
+  {
+    "id": "test-0145",
+    "query": "现在需要需求响应负载容量14%，同时目标温度84华氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0146",
+    "query": "Could you arrange for AI Wind away from people and sleep off?",
+    "language": "en"
+  },
+  {
+    "id": "test-0147",
+    "query": "帮我把以下要求落实：需求响应负载容量25%，同时需求响应温度偏移4度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0148",
+    "query": "Could you arrange for a demand-response load capacity of 83 percent and healthy wind off and a demand-response temperature offset of 28 degrees? Leave indoor-unit self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0149",
+    "query": "现在需要需求响应负载容量84%，同时目标温度16摄氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0150",
+    "query": "Could you arrange for a demand-response load capacity of 0 percent and 8-degree frost protection on? Leave indoor quiet operation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0151",
+    "query": "现在需要目标温度28摄氏度，同时水平风向两侧，请执行。需求响应保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0152",
+    "query": "Could you arrange for child sleep and a demand-response load capacity of 46 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0153",
+    "query": "帮我把以下要求落实：需求响应负载容量21%，同时需求响应温度偏移3度。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0154",
+    "query": "The settings I need now are horizontal airflow to both sides and the display light on. Leave fresh-air ventilation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0155",
+    "query": "现在需要开启左右摆风开关，同时需求响应负载容量67%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0156",
+    "query": "Could you arrange for a demand-response temperature offset of 31 degrees and the display light off and drying mode and a demand-response load capacity of 67 percent?",
+    "language": "en"
+  },
+  {
+    "id": "test-0157",
+    "query": "现在需要需求响应负载容量53%，同时制冷模式，请执行。上下连续摆风保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0158",
+    "query": "The settings I need now are combined one-key self-cleaning off.",
+    "language": "en"
+  },
+  {
+    "id": "test-0159",
+    "query": "现在需要需求响应温度偏移11度，同时普通睡眠，同时开启健康风，请执行。空调整机电源保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0160",
+    "query": "Could you arrange for normal sleep and a demand-response temperature offset of 20 degrees?",
+    "language": "en"
+  },
+  {
+    "id": "test-0161",
+    "query": "帮我把以下要求落实：目标温度67华氏度，同时需求响应负载容量28%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0162",
+    "query": "The settings I need now are a target temperature of 25 degrees Celsius. Leave fresh-air ventilation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0163",
+    "query": "现在需要关闭舒适自动功能，同时需求响应负载容量60%，请执行。节能功能保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0164",
+    "query": "Could you arrange for sleep off?",
+    "language": "en"
+  },
+  {
+    "id": "test-0165",
+    "query": "帮我把以下要求落实：需求响应负载容量0%，同时目标温度17摄氏度。需求响应保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0166",
+    "query": "The settings I need now are vertical airflow position 6 and a demand-response temperature offset of 25 degrees and indoor quiet operation on and a demand-response load capacity of 35 percent.",
+    "language": "en"
+  },
+  {
+    "id": "test-0167",
+    "query": "帮我把以下要求落实：目标温度82华氏度，同时需求响应负载容量5%，同时需求响应温度偏移9度，同时水平风向两侧。室内机静音保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0168",
+    "query": "The settings I need now are a demand-response load capacity of 41 percent and a demand-response temperature offset of 23 degrees and a target temperature of 76 degrees Fahrenheit. Leave continuous vertical oscillation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0169",
+    "query": "现在需要需求响应负载容量18%，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0170",
+    "query": "The settings I need now are vertical airflow position 3. Leave the basic left-right swing switch unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0171",
+    "query": "现在需要需求响应温度偏移15度，同时需求响应负载容量39%，同时目标温度72华氏度，同时开启室外机自清洁，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0172",
+    "query": "Could you arrange for a demand-response load capacity of 67 percent and a target temperature of 70 degrees Fahrenheit? Leave indoor quiet operation unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0173",
+    "query": "帮我把以下要求落实：需求响应负载容量29%，同时自动运行模式。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0174",
+    "query": "Could you arrange for a demand-response load capacity of 10 percent and a demand-response temperature offset of 6 degrees?",
+    "language": "en"
+  },
+  {
+    "id": "test-0175",
+    "query": "帮我把以下要求落实：目标温度87华氏度，同时老人睡眠，同时需求响应负载容量60%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0176",
+    "query": "The settings I need now are cooling mode and a demand-response load capacity of 22 percent and a target temperature of 64 degrees Fahrenheit.",
+    "language": "en"
+  },
+  {
+    "id": "test-0177",
+    "query": "帮我把以下要求落实：需求响应负载容量72%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0178",
+    "query": "Could you arrange for vertical airflow position 2 and a target temperature of 19 degrees Celsius and a demand-response temperature offset of 27 degrees? Leave combined one-key self-cleaning unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0179",
+    "query": "帮我把以下要求落实：需求响应温度偏移28度，同时开启一键内外机自清洁，同时摄氏显示单位，同时需求响应负载容量48%。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0180",
+    "query": "Could you arrange for a demand-response temperature offset of 18 degrees?",
+    "language": "en"
+  },
+  {
+    "id": "test-0181",
+    "query": "帮我把以下要求落实：需求响应温度偏移16度，同时关闭显示屏灯光，同时垂直风向位置6。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0182",
+    "query": "The settings I need now are a demand-response load capacity of 99 percent and outdoor-unit quiet operation on.",
+    "language": "en"
+  },
+  {
+    "id": "test-0183",
+    "query": "现在需要需求响应温度偏移0度，同时关闭8度防冻，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0184",
+    "query": "The settings I need now are a demand-response temperature offset of 28 degrees and high fan speed.",
+    "language": "en"
+  },
+  {
+    "id": "test-0185",
+    "query": "帮我把以下要求落实：AI风关闭，同时目标温度67华氏度，同时关闭8度防冻。左右摆风开关保持不变。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0186",
+    "query": "The settings I need now are medium-low fan speed and fresh-air ventilation off.",
+    "language": "en"
+  },
+  {
+    "id": "test-0187",
+    "query": "现在需要需求响应负载容量7%，同时开启一键内外机自清洁，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0188",
+    "query": "The settings I need now are a demand-response temperature offset of 16 degrees and a target temperature of 64 degrees Fahrenheit and a demand-response load capacity of 57 percent.",
+    "language": "en"
+  },
+  {
+    "id": "test-0189",
+    "query": "现在需要AI风关闭，同时需求响应负载容量67%，同时目标温度19摄氏度，请执行。",
+    "language": "zh"
+  },
+  {
+    "id": "test-0190",
+    "query": "The settings I need now are a demand-response load capacity of 68 percent. Leave AI Smart control unchanged.",
+    "language": "en"
+  },
+  {
+    "id": "test-0191",
+    "query": "帮我把以下要求落实：需求响应负载容量23%，同时目标温度75华氏度。室外机自清洁保持不变。",
+    "language": "zh"
+  }
+]

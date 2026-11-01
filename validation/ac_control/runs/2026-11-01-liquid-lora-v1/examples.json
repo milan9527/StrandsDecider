@@ -1,0 +1,60 @@
+[
+  {
+    "id": "S01",
+    "query": "Turn on the air conditioner.",
+    "expected": {
+      "t_power": "1"
+    },
+    "base": {
+      "t_power": "1",
+      "t_swing_angle": "0",
+      "t_swing_follow": "0",
+      "t_8heat": "1",
+      "t_outdoor_selfclean": "1"
+    },
+    "lora": {
+      "t_power": "1"
+    }
+  },
+  {
+    "id": "S09",
+    "query": "Turn off the air conditioner display light.",
+    "expected": {
+      "t_dimmer": "0"
+    },
+    "base": {
+      "t_power": "0",
+      "t_fan_mute": "0",
+      "t_swing_angle": "0",
+      "t_swing_follow": "0",
+      "t_8heat": "0",
+      "t_dimmer": "0",
+      "t_outdoor_selfclean": "1",
+      "t_tms": "0",
+      "t_outdoor_mute": "0",
+      "t_dr_mode": "0"
+    },
+    "lora": {}
+  },
+  {
+    "id": "M08",
+    "query": "Turn on up-and-down swing and set the horizontal airflow to both sides.",
+    "expected": {
+      "t_up_down": "1",
+      "t_swing_direction": "2"
+    },
+    "base": {
+      "t_up_down": "1",
+      "t_left_right": "1",
+      "t_swing_angle": "0",
+      "t_swing_direction": "2",
+      "t_swing_follow": "0",
+      "t_outdoor_selfclean": "1"
+    },
+    "lora": {
+      "t_up_down": "1",
+      "t_swing_angle": "0",
+      "t_swing_direction": "2"
+    }
+  }
+]
