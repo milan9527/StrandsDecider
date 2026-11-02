@@ -1,6 +1,6 @@
 # 空调控制选择测试
 
-依据 [AC_Control_Test_Spec.md](../../docs/AC_Control_Test_Spec.md)，评估用户 Query 到完整空调 `cmdList` 的选择。七个本地模型使用 EC2 L4，Jev/GPT 使用各自托管 API。
+依据 [AC_Control_Test_Spec.md](runs/2026-10-30-v1/spec.md)，评估用户 Query 到完整空调 `cmdList` 的选择。七个本地模型使用 EC2 L4，Jev/GPT 使用各自托管 API。
 
 最新[九模型完整统一测试](../../docs/AC_ALL_MODELS_FULL_RESULTS.md)：Strands、Liquid、H2O、Perplexity、KnowLine、Torchcast、Clef、Jev 与 GPT 全部重新调用。相同输入、完整选项、预热及请求顺序，全部外部请求串行；七个本地模型依次独占同一台 g6.xlarge/L4。三种请求方式覆盖规范全部 20 条指令各三轮，每模型 1,800 次单字段请求组成 60 个串行任务，另有 60 个全答任务。单字段与整组正确率分别评分，异常保留在分母，不重试、不修正回答。[计划与完整证据](runs/2026-10-30-all-models-full-v1/) · [三种方式对比](../../docs/AC_ALL_MODELS_FULL_RESULTS.md#request-layouts)。
 

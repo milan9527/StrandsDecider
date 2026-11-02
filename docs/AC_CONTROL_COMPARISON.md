@@ -2,7 +2,7 @@
 
 最新主报告为[空调控制七模型对照总结：测试过程、结果与差异解释](AC_SPEC_UNIFIED_RESULTS.md)，覆盖规范 20 题、三种请求方式和中英文扩展。本文保留原五模型的提示词、两阶段及早期串行实验；模型范围、预热与计时条件不同，历史成绩不合并到最新主表。
 
-测试日期：2026-10-30。依据 [AC_Control_Test_Spec.md](AC_Control_Test_Spec.md)，比较 **Strands Decider、Liquid、H2O、Jev、GPT 6.1 Sol low** 根据英文请求选择空调控制 Key / Value 的能力，并验证提示词澄清及两阶段选择是否有帮助。
+测试日期：2026-10-30。依据 [AC_Control_Test_Spec.md](../validation/ac_control/runs/2026-10-30-v1/spec.md)，比较 **Strands Decider、Liquid、H2O、Jev、GPT 6.1 Sol low** 根据英文请求选择空调控制 Key / Value 的能力，并验证提示词澄清及两阶段选择是否有帮助。
 
 **本批原规范20题中，GPT基线已全部正确；Jev从19/20提升至20/20，只需澄清规则。H2O和Liquid受益于两阶段，但存在诊断题回归或漏选；Decider的四种改写均未超过基线。** 结果支持按模型选择提示与流程，不能把“增加说明”或“拆成两步”视为普遍有效的优化。
 

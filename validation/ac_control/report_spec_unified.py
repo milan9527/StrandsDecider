@@ -263,7 +263,7 @@ def render(root, result):
     link = "../validation/ac_control/runs/" + root.name
     text = [
         "# 空调控制七模型对照总结：测试过程、结果与差异解释", "",
-        "2026-10-30。验收依据为 [AC_Control_Test_Spec.md](AC_Control_Test_Spec.md) 的原文、"
+        "2026-10-30。验收依据为 [AC_Control_Test_Spec.md](../validation/ac_control/runs/2026-10-30-v1/spec.md) 的原文、"
         "完整 30 项 Command Set 和全部 20 条标准答案：S01–S10 单指令、M01–M10 多指令。"
         "**主成绩只计原始选项顺序的这 20 题**，共 40 个预期 Key/Value；"
         "中文题、诊断题、新增题和选项反转均不计入主成绩。", "",

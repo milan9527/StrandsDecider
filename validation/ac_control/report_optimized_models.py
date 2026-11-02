@@ -61,7 +61,7 @@ def audit_one(root, profile, provider):
     for name, checksum in plan["source_sha256"].items():
         assert digest(folder / "sources" / name) == checksum, name
         assert digest(Path(__file__).with_name(name)) == checksum, name
-    assert digest(folder / "spec.md") == digest(PROJECT / "docs/AC_Control_Test_Spec.md")
+    assert digest(folder / "spec.md") == digest(PROJECT / "validation/ac_control/runs/2026-10-30-v1/spec.md")
     cases = {(c["case_id"], c["order"]): c for c in json.loads((folder / "cases.json").read_text())}
     original = {(c["case_id"], c["order"]): c for c in json.loads((BASELINE / "cases.json").read_text())}
     for key, case in cases.items():
@@ -337,7 +337,7 @@ def render(root, result):
 
     lines = [
         "# 空调控制九模型输入压缩完整实测", "",
-        "按 [AC_Control_Test_Spec.md](AC_Control_Test_Spec.md) 重跑全部九模型，"
+        "按 [AC_Control_Test_Spec.md](../validation/ac_control/runs/2026-10-30-v1/spec.md) 重跑全部九模型，"
         "比较原始输入与两种压缩表示。27 组均完成，每组 2,049 次新调用，合计 55,323 次；"
         "全局外部并发为 1，无自动重试和答案修复。", "",
         "另保留第二种压缩表示的早期 Jev 试跑 2,049 次，共计实际调用 57,372 次。"

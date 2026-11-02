@@ -56,7 +56,7 @@ def audit(root, providers=PROVIDERS, write=True):
     for name, checksum in plan["source_sha256"].items():
         assert digest(root / "sources" / name) == checksum, name
         assert digest(Path(__file__).with_name(name)) == checksum, "Working inference helper changed: " + name
-    assert digest(PROJECT / "docs/AC_Control_Test_Spec.md") == digest(root / "spec.md")
+    assert digest(PROJECT / "validation/ac_control/runs/2026-10-30-v1/spec.md") == digest(root / "spec.md")
     cases = {(r["case_id"], r["order"]): r for r in json.loads((root / "cases.json").read_text())}
     refs = {r["id"]: r for r in json.loads((root / "references.json").read_text())}
     primary_refs = json.loads((root / "spec_references.json").read_text())
@@ -342,7 +342,7 @@ def render(root, result):
     text = [
         "# 空调控制九模型完整统一测试", "",
         f"测试日期：{models['jev']['evidence']['started_at'][:10]}（UTC）。"
-        "按 [AC_Control_Test_Spec.md](AC_Control_Test_Spec.md) 的原文、完整 30 项能力与标准答案，"
+        "按 [AC_Control_Test_Spec.md](../validation/ac_control/runs/2026-10-30-v1/spec.md) 的原文、完整 30 项能力与标准答案，"
         "重新实测 Strands Decider、Liquid、H2O、Perplexity、KnowLine、Torchcast、Clef、Jev 与 GPT。"
         "本轮所有九模型均产生新的原始调用记录，旧七模型和五模型成绩分别保留为历史参考。", "",
         "本次补齐了两项覆盖：**Strands 与 Liquid 加入统一测试；单步决策、30 步串行、"

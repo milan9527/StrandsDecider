@@ -8,7 +8,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-SPEC = ROOT / "docs/AC_Control_Test_Spec.md"
+SPEC = ROOT / "validation/ac_control/runs/2026-10-30-v1/spec.md"
 OMIT = "omit"
 
 # General capability semantics from section 2.1, independent of test queries.

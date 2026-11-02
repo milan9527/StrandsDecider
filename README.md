@@ -6,12 +6,6 @@
 
 支付对比统一并排展示 **Strands Decider vs Jev vs GPT**，一次运行三个模型，支持四个场景及三种测试方式。接入与比较口径见 [三模型对比说明](docs/JEV.md)。
 
-**[空调控制九模型完整统一实测](docs/AC_ALL_MODELS_FULL_RESULTS.md#open-model-summary)**：覆盖七款开源模型与 Jev/GPT，并汇总后续优化。**[Liquid LoRA 微调](docs/LIQUID_AC_LORA_RESULTS.md)** 将原规范一次全答完整正确率从 **0% 提升到 90%**，平均耗时保持 **0.657 秒**，成为开源低延迟候选。选型建议：托管低延迟选 **Jev**、准确率优先选 **GPT**；开源即用优先 **KnowLine**，愿意持续微调并追求低延迟优先 **Liquid LoRA**，准确率优先评估 **Clef 前缀优化**。中文表现、剩余错误及完整对比见报告。
-
-补充测试：[九模型输入压缩完整实测](docs/AC_ALL_MODELS_INPUT_OPTIMIZATION_RESULTS.md) · [Clef 与 Perplexity 保留完整输入的运行时加速实测](docs/AC_RUNTIME_SPEED_RESULTS.md) · [Liquid LoRA 微调实测](docs/LIQUID_AC_LORA_RESULTS.md)。
-
-GPT [完整重测](docs/AC_GPT_RETEST_RESULTS.md)：**2,049 次调用零异常、零重试**，单步、30 步串行、一次全答均为 **100%**；平均耗时 **764 ms / 22.94 秒 / 2.51 秒**。
-
 **[五模型对比实测报告](docs/FIVE_MODELS_COMPARISON.md)**（[English](docs/FIVE_MODELS_COMPARISON.en.md)）：Strands Decider、Liquid d1-2B、H2O-Lightning 4B、Jev、GPT，覆盖原始支付四场景、模型路由四场景和设备控制三场景（含常用温度）。包含逐步请求、实际选择、耗时、执行结果和截图；支付单步平均 **48.5 / 37.4 / 77.9 / 446.4 / 1018.7 ms**，参考一致 **14/20 / 12/20 / 14/20 / 18/20 / 20/20**。三个本地模型同卡常驻、单并发运行。[打开模块](https://d3i7ogfx5ml7dc.cloudfront.net/#comparison)。
 
 **[模型路由对比](docs/MODEL_ROUTING.md)**：Decider、Jev 与 **GPT-6 Sol（low effort）** 从纯业务任务选择处理流程和目标型号。前端只保留原始流程，展示逐步输入输出、选型、耗时和目标执行；覆盖客服、代码、结算、双语索引四场景。当前使用 LiveBench + MTEB，支持接入 Artificial Analysis API。

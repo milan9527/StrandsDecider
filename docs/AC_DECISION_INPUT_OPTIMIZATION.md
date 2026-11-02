@@ -8,7 +8,7 @@
 
 ## 1. 规范允许优化哪些内容
 
-[AC_Control_Test_Spec.md 第 2.2 节](AC_Control_Test_Spec.md#22-标准-command-set-输入)明确规定：
+[AC_Control_Test_Spec.md 第 2.2 节](../validation/ac_control/runs/2026-10-30-v1/spec.md#22-标准-command-set-输入)明确规定：
 
 > 供应商可以将上表转换为 Decider 所需的选择问题格式，但语义输入必须保留完整映射。
 
